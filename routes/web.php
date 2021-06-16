@@ -16,16 +16,14 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
 
-// Route::get('/', 'AuthController@login')->name('login');
+Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'postlogin'])->name('login_user.postlogin');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout.index');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login_user.postlogin');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/error', [AuthController::class, 'error'])->name('error');
 
+// Login Success
 Route::name('default.')->group(function () {
     Route::get('default', [AuthController::class, 'index'])->name('index');
 });

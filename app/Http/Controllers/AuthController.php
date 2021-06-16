@@ -8,16 +8,20 @@ use App\Models\Userlogin;
 use App\Models\Userlog;
 use Auth;
 use DB;
-use Session;
 
 class AuthController extends Controller
 {
+    public function login()
+    {
+        return view('login');
+    }
+
     public function index()
     {
         return Auth::user()->usernm;
     }
 
-    public function postlogin(Request $request)
+    public function loginPost(Request $request)
     {
         $loginid = $request->userid;
         $password = $request->userpw;
