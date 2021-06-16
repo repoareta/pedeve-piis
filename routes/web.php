@@ -24,8 +24,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/error', [AuthController::class, 'error'])->name('error');
 
 // Login Success
-Route::name('default.')->group(function () {
-    Route::get('default', [AuthController::class, 'index'])->name('index');
+Route::name('dashboard.')->group(function () {
+    Route::get('dashboard', [AuthController::class, 'index'])->name('index');
 });
 
 // ROUTE EXTENDED

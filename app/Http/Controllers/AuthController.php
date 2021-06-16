@@ -18,7 +18,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        return Auth::user()->usernm;
+        return view('dashboard');
     }
 
     public function loginPost(Request $request)
@@ -65,7 +65,7 @@ class AuthController extends Controller
                             $request->session()->put('log', $login);
                             $request->session()->put('tgltrans', $login);
                                 
-                            return redirect()->route('default.index');
+                            return redirect()->route('dashboard.index');
                         } else {
                             $dLogin = date('Y-m-d H:i:s');
                             Userlogin::insert([
@@ -95,12 +95,12 @@ class AuthController extends Controller
                                     $tglex = date_format($tgl, 'd F Y');
                                     $request->session()->put('tglex', $tglex);
                                     $request->session()->put('remain', $objRS->remain);
-                                    return redirect()->route('default.index');
+                                    return redirect()->route('dashboard.index');
                                 } else {
                                     if ($objRS->status == "exp") {
                                         return redirect('/error')->with('notif', "Password Anda Sudah Expired");
                                     } else {
-                                        return redirect()->route('default.index');
+                                        return redirect()->route('dashboard.index');
                                     }
                                 }
                             }
