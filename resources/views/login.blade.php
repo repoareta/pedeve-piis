@@ -50,12 +50,18 @@
 							<div class="mb-10">
 								<h3>Sign In to Your Account</h3>
 							</div>
-							<form class="form" id="kt_login_signin_form">
+                            
+                            @if(\Session::has('notif'))
+                                <span style="padding-top:20px;margin-bottom:-15px;color:red; font-size:2; float:left;">{{Session::get('notif')}}</span>
+                            @endif
+
+							<form class="form" action="{{ route('login_user.postlogin') }}" method="post" id="kt_login_signin_form">
+                                @csrf
 								<div class="form-group mb-5">
-									<input class="form-control h-auto form-control-solid py-4 px-8" type="text" placeholder="Username" name="username" autocomplete="off" />
+									<input class="form-control h-auto form-control-solid py-4 px-8" type="text" placeholder="Username" name="userid" autocomplete="off" />
 								</div>
 								<div class="form-group mb-5">
-									<input class="form-control h-auto form-control-solid py-4 px-8" type="password" placeholder="Password" name="password" />
+									<input class="form-control h-auto form-control-solid py-4 px-8" type="password" placeholder="Password" name="userpw" />
 								</div>
 								<div class="form-group d-flex flex-wrap justify-content-between align-items-center">
 									<div class="checkbox-inline">

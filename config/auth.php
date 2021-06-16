@@ -75,6 +75,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'users' => [
+            'driver' => 'customauthserviceprovider',
+            'model' => App\Models\UserPdv::class,
+        ],
     ],
 
     /*

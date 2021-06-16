@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,11 +21,14 @@ Route::get('/', function () {
 });
 
 // Route::get('/', 'AuthController@login')->name('login');
-Route::get('/login', 'AuthController@login')->name('login');
-Route::post('login_user', 'AuthController@postlogin')->name('login_user.postlogin');
-Route::get('/logout', 'AuthController@logout')->name('logout.index');
-Route::get('/error', 'AuthController@error')->name('error');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'postlogin'])->name('login_user.postlogin');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout.index');
+Route::get('/error', [AuthController::class, 'error'])->name('error');
 
+Route::name('default.')->group(function () {
+    Route::get('default', [AuthController::class, 'index'])->name('index');
+});
 
 // ROUTE EXTENDED
 Route::group([], __DIR__.'/web/modul_administrator.php');
