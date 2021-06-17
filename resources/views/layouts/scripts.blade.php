@@ -78,3 +78,13 @@
 <script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
 
 <!--end::Page Scripts-->
+
+<script>
+    $(".sidebar-switch").click(function() {
+        if($(this).is(":checked")) {
+            $("#kt_body").removeClass('aside-minimize',300);
+        } else {
+            $("#kt_body").addClass('aside-minimize',200);
+        }
+    });
+</script>

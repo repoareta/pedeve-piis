@@ -47,7 +47,10 @@
 }
 .aside-menu .menu-nav > .menu-item > .menu-heading .menu-icon,
 .aside-menu .menu-nav > .menu-item > .menu-link .menu-icon {
-  color: #494b74;
+  color: #494b74 !important;
+}
+.aside-menu .menu-nav > .menu-item > .menu-link .menu-icon i{
+  color: #494b74 !important;
 }
 .aside-menu .menu-nav > .menu-item > .menu-heading .menu-icon.svg-icon svg g [fill],
 .aside-menu .menu-nav > .menu-item > .menu-link .menu-icon.svg-icon svg g [fill] {
@@ -438,7 +441,7 @@
     background: transparent;
   }
   .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item > .menu-link > .menu-icon {
-    color: #7c87a6;
+    color: #7c87a6 !important;
   }
   .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-hover, .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-open {
     background: transparent !important;
