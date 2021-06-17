@@ -431,7 +431,7 @@
     background: transparent;
   }
   .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item > .menu-link > .menu-icon {
-    color: #B5B5C3;
+    color: #B5B5C3 !important;
   }
   .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-hover, .aside-minimize:not(.aside-minimize-hover) .aside-menu .menu-nav > .menu-item.menu-item-open {
     background: transparent !important;

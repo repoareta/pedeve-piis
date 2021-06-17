@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Userlogin;
-use App\Models\Userlog;
+use App\Models\UserLogin;
+use App\Models\UserLog;
 use Auth;
 use DB;
 
@@ -44,7 +44,7 @@ class AuthController extends Controller
                         return redirect('/error')->with('notif', "You are not allowed to access from there...");
                     } else {
                         $rsUserLogin = DB::select("select userid from userlogin where terminal='$GetTerminalName' and userid='$loginid'");
-                        Userlogin::where('terminal', $GetTerminalName)->where('userid', $loginid)->delete();
+                        UserLogin::where('terminal', $GetTerminalName)->where('userid', $loginid)->delete();
                         if (!empty($rsUserLogin)) {
                             $userid = Auth::user()->userid;
                             $dLogin = session()->get('log');

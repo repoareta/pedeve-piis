@@ -85210,7 +85210,7 @@ body {
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-text,
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-link .menu-text {
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: initial;
 }
 .aside-menu .menu-nav > .menu-item .menu-submenu .menu-item > .menu-heading .menu-icon,
