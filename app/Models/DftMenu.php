@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class Dftmenu extends Model
+class DftMenu extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table="dftmenu";
     protected $primaryKey = null;
     public $incrementing = false;
     public $timestamps = false;
     protected $dates = ['deleted_at'];
-
 }

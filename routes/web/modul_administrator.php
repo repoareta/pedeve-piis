@@ -9,6 +9,7 @@ use App\Http\Controllers\Administrator\SetFunctionController;
 use App\Http\Controllers\Administrator\SetMenuController;
 use App\Http\Controllers\Administrator\SetUserController;
 use App\Http\Controllers\Administrator\TabelMenuController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,15 +27,15 @@ Route::prefix('administrator')->group(function () {
     //set_user
     // Route assigned name "set_user.index"...
     Route::name('set_user.')->group(function () {
-        Route::get('set_user', [SetUserController::class, 'index'])->name('index');
-        Route::post('set_user/index/search', [SetUserController::class, 'searchIndex'])->name('search.index');
-        Route::get('set_user/create', [SetUserController::class, 'create'])->name('create');
-        Route::post('set_user/store', [SetUserController::class, 'store'])->name('store');
-        Route::get('set_user/edit/{id}', [SetUserController::class, 'edit'])->name('edit');
-        Route::get('set_user/reset', [SetUserController::class, 'Reset'])->name('reset');
-        Route::post('set_user/update', [SetUserController::class, 'update'])->name('update');
-        Route::delete('set_user/delete', [SetUserController::class, 'delete'])->name('delete');
-        Route::post('set_user/export', [SetUserController::class, 'export'])->name('export');
+        Route::get('set-user', [SetUserController::class, 'index'])->name('index');
+        Route::post('set-user/index/search', [SetUserController::class, 'searchIndex'])->name('search.index');
+        Route::get('set-user/create', [SetUserController::class, 'create'])->name('create');
+        Route::post('set-user/store', [SetUserController::class, 'store'])->name('store');
+        Route::get('set-user/edit/{id}', [SetUserController::class, 'edit'])->name('edit');
+        Route::get('set-user/reset', [SetUserController::class, 'Reset'])->name('reset');
+        Route::post('set-user/update', [SetUserController::class, 'update'])->name('update');
+        Route::delete('set-user/delete', [SetUserController::class, 'delete'])->name('delete');
+        Route::post('set-user/export', [SetUserController::class, 'export'])->name('export');
     });
     //end set_user
 
@@ -82,9 +83,9 @@ Route::prefix('administrator')->group(function () {
     //password_administrator
     // Route assigned name "password_administrator.index"...
     Route::name('password_administrator.')->group(function () {
-        Route::get('password_administrator', [PasswordController::class, 'index'])->name('index');
-        Route::post('password_administrator/pass/json', [PasswordController::class, 'passJson'])->name('passJson');
-        Route::post('password_administrator/store', [PasswordController::class, 'store'])->name('store');
+        Route::get('password_administrator', [PasswordAdministratorController::class, 'index'])->name('index');
+        Route::post('password_administrator/pass/json', [PasswordAdministratorController::class, 'passJson'])->name('passJson');
+        Route::post('password_administrator/store', [PasswordAdministratorController::class, 'store'])->name('store');
     });
     //end password_administrator
 

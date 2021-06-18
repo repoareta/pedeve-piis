@@ -24,7 +24,7 @@ class SetUserController extends Controller
     public function index()
     {
         $data = UserPdv::orderBy('userid', 'asc')->get();
-        return view('set_user.index',compact('data'));
+        return view('modul_administrator.set_user.index', compact('data'));
     }
 
     public function searchIndex(Request $request)
@@ -80,7 +80,7 @@ class SetUserController extends Controller
             return $radio;
         })
         ->addColumn('reset', function ($data) {
-            $radio = '<center><a style="color:blue;" href="'. route('set_user.reset', ['no' => $data->userid]).'">RESET</a></center>';
+            $radio = '<center><a style="color:blue;" href="'. route('modul_administrator.set_user.reset', ['no' => $data->userid]).'">RESET</a></center>';
             return $radio;
         })
         ->rawColumns(['radio','userap','reset'])
@@ -93,7 +93,7 @@ class SetUserController extends Controller
         $gcg_jabatan_list = GcgJabatan::all();
         $pekerja_list = Pekerja::all();
 
-        return view('set_user.create', compact('gcg_fungsi_list', 'gcg_jabatan_list', 'pekerja_list'));
+        return view('modul_administrator.set_user.create', compact('gcg_fungsi_list', 'gcg_jabatan_list', 'pekerja_list'));
     }
 
     public function store(Request $request)
@@ -131,29 +131,29 @@ class SetUserController extends Controller
                 'gcg_fungsi_id' => $request->gcg_fungsi,
                 'gcg_jabatan_id' => $request->gcg_jabatan
             ]);
-            if($request->akt == 'A'){
+            if ($request->akt == 'A') {
                 $akt = 'AKT';
-            }else{
+            } else {
                 $akt = '';
             }
-            if($request->cm == 'G'){
+            if ($request->cm == 'G') {
                 $cm = 'CM';
-            }else{
+            } else {
                 $cm = '';
             }
-            if($request->pbd == 'D'){
+            if ($request->pbd == 'D') {
                 $pbd = 'PBD';
-            }else{
+            } else {
                 $pbd = '';
             }
-            if($request->umu == 'E'){
+            if ($request->umu == 'E') {
                 $umu = 'UMU';
-            }else{
+            } else {
                 $umu = '';
             }
-            if($request->sdm == 'F'){
+            if ($request->sdm == 'F') {
                 $sdm = 'SDM';
-            }else{
+            } else {
                 $sdm = '';
             }
             $data_menu = DB::select("select distinct(menuid) as menuid from dftmenu where userap in ('$akt','$cm','$pbd','$umu','$sdm')");
@@ -193,7 +193,7 @@ class SetUserController extends Controller
         $gcg_jabatan_list = GcgJabatan::all();
         $pekerja_list = Pekerja::all();
 
-        return view('set_user.edit', compact(
+        return view('modul_administrator.set_user.edit', compact(
             'userid',
             'userpw',
             'usernm',
@@ -231,29 +231,29 @@ class SetUserController extends Controller
             'gcg_jabatan_id' => $request->gcg_jabatan
         ]);
 
-        if($request->akt == 'A'){
+        if ($request->akt == 'A') {
             $akt = 'AKT';
-        }else{
+        } else {
             $akt = '';
         }
-        if($request->cm == 'G'){
+        if ($request->cm == 'G') {
             $cm = 'CM';
-        }else{
+        } else {
             $cm = '';
         }
-        if($request->pbd == 'D'){
+        if ($request->pbd == 'D') {
             $pbd = 'PBD';
-        }else{
+        } else {
             $pbd = '';
         }
-        if($request->umu == 'E'){
+        if ($request->umu == 'E') {
             $umu = 'UMU';
-        }else{
+        } else {
             $umu = '';
         }
-        if($request->sdm == 'F'){
+        if ($request->sdm == 'F') {
             $sdm = 'SDM';
-        }else{
+        } else {
             $sdm = '';
         }
 
@@ -261,13 +261,13 @@ class SetUserController extends Controller
         $data_menu = DB::select("select distinct(menuid) as menuid from dftmenu where userap in ('$akt','$cm','$pbd','$umu','$sdm')");
         foreach ($data_menu as $data_m) {
             $data_cek = DB::select("select * from usermenu where userid ='$userid' and menuid='$data_m->menuid'");
-            if(!empty($data_cek)){
-                UserMenu::where('userid',$userid)->where('menuid',$data_m->menuid)
+            if (!empty($data_cek)) {
+                UserMenu::where('userid', $userid)->where('menuid', $data_m->menuid)
                 ->update([
                     'userid' => $userid,
                     'menuid' => $data_m->menuid
                 ]);
-            }else{
+            } else {
                 UserMenu::insert([
                         'userid' => $userid,
                         'menuid' => $data_m->menuid,
@@ -291,12 +291,12 @@ class SetUserController extends Controller
 
     public function export(Request $request)
     {
-        if($request->cetak == 'A'){
+        if ($request->cetak == 'A') {
             $data_user = UserPdv::all();
-        }else{
+        } else {
             $data_user = UserPdv::where('userid', $request->userid)->get();
         }
-        $pdf = DomPDF::loadview('set_user.export', compact('data_user'))->setPaper('a4', 'Portrait');
+        $pdf = DomPDF::loadview('modul_administrator.set_user.export', compact('data_user'))->setPaper('a4', 'Portrait');
         // return $pdf->download('rekap_permint_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();
     }
@@ -316,6 +316,6 @@ class SetUserController extends Controller
                 'passexp' => $tglexp
             ]);
         Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('set_user.index');
+        return redirect()->route('modul_administrator.set_user.index');
     }
 }
