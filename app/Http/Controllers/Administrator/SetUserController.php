@@ -80,7 +80,8 @@ class SetUserController extends Controller
             return $radio;
         })
         ->addColumn('reset', function ($data) {
-            $radio = '<center><a style="color:blue;" href="'. route('modul-administrator.set-user.reset', ['no' => $data->userid]).'">RESET</a></center>';
+            // Ini route mas bukan folder / file
+            $radio = '<center><a style="color:blue;" href="'. route('modul_administrator.set_user.reset', ['no' => $data->userid]).'">RESET</a></center>';
             return $radio;
         })
         ->rawColumns(['radio','userap','reset'])
@@ -175,19 +176,17 @@ class SetUserController extends Controller
 
     public function edit($no)
     {
-        $data_user = DB::select("select * from userpdv where userid='$no'");
-        foreach ($data_user as $data) {
-            $userid = $data->userid;
-            $userpw  = $data->userpw;
-            $usernm = $data->usernm;
-            $kode = $data->kode;
-            $userlv = $data->userlv;
-            $userap = $data->userap;
-            $usrupd = $data->usrupd;
-            $nopeg = $data->nopeg;
-            $gcg_fungsi_id = $data->gcg_fungsi_id;
-            $gcg_jabatan_id = $data->gcg_jabatan_id;
-        }
+        $data = UserPdv::where('userid', $no)->first();
+        $userid = $data->userid;
+        $userpw  = $data->userpw;
+        $usernm = $data->usernm;
+        $kode = $data->kode;
+        $userlv = $data->userlv;
+        $userap = $data->userap;
+        $usrupd = $data->usrupd;
+        $nopeg = $data->nopeg;
+        $gcg_fungsi_id = $data->gcg_fungsi_id;
+        $gcg_jabatan_id = $data->gcg_jabatan_id;
 
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();

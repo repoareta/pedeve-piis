@@ -48,7 +48,7 @@
 						<h6 style="padding-top:20px;" class="menu-text">
 							Welcome
 						</h6>
-						<h4 style="color:#ffffff;" class="menu-text">ADMIN</h4>
+						<h4 style="color:#ffffff;" class="menu-text">{{ Auth::user()->usernm }}</h4>
 					</div>
 				</li>
 				<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
@@ -72,10 +72,7 @@
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
-									<span class="menu-text">Perjalanan Dinas</span>
-									<span class="menu-label">
-										<span class="label label-rounded label-primary">6</span>
-									</span>
+									<span class="menu-text">Perjalanan Dinas</span>									
 									<i class="menu-arrow"></i>
 								</a>
 								<div class="menu-submenu">
@@ -254,10 +251,7 @@
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
-									<span class="menu-text">Master Data</span>
-									<span class="menu-label">
-										<span class="label label-rounded label-primary">6</span>
-									</span>
+									<span class="menu-text">Master Data</span>									
 									<i class="menu-arrow"></i>
 								</a>
 								<div class="menu-submenu">
@@ -782,10 +776,7 @@
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
-									<span class="menu-text">Pembayaran</span>
-									<span class="menu-label">
-										<span class="label label-rounded label-primary">6</span>
-									</span>
+									<span class="menu-text">Pembayaran</span>									
 									<i class="menu-arrow"></i>
 								</a>
 								<div class="menu-submenu">
@@ -1094,10 +1085,7 @@
 									<i class="menu-bullet menu-bullet-line">
 										<span></span>
 									</i>
-									<span class="menu-text">Treassury</span>
-									<span class="menu-label">
-										<span class="label label-rounded label-primary">6</span>
-									</span>
+									<span class="menu-text">Treassury</span>									
 									<i class="menu-arrow"></i>
 								</a>
 								<div class="menu-submenu">
