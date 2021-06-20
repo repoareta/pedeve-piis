@@ -24,7 +24,7 @@ class SetUserController extends Controller
     public function index()
     {
         $data = UserPdv::orderBy('userid', 'asc')->get();
-        return view('modul_administrator.set_user.index', compact('data'));
+        return view('modul-administrator.set-user.index', compact('data'));
     }
 
     public function searchIndex(Request $request)
@@ -80,7 +80,7 @@ class SetUserController extends Controller
             return $radio;
         })
         ->addColumn('reset', function ($data) {
-            $radio = '<center><a style="color:blue;" href="'. route('modul_administrator.set_user.reset', ['no' => $data->userid]).'">RESET</a></center>';
+            $radio = '<center><a style="color:blue;" href="'. route('modul-administrator.set-user.reset', ['no' => $data->userid]).'">RESET</a></center>';
             return $radio;
         })
         ->rawColumns(['radio','userap','reset'])
@@ -93,7 +93,7 @@ class SetUserController extends Controller
         $gcg_jabatan_list = GcgJabatan::all();
         $pekerja_list = Pekerja::all();
 
-        return view('modul_administrator.set_user.create', compact('gcg_fungsi_list', 'gcg_jabatan_list', 'pekerja_list'));
+        return view('modul-administrator.set-user.create', compact('gcg_fungsi_list', 'gcg_jabatan_list', 'pekerja_list'));
     }
 
     public function store(Request $request)
@@ -193,7 +193,7 @@ class SetUserController extends Controller
         $gcg_jabatan_list = GcgJabatan::all();
         $pekerja_list = Pekerja::all();
 
-        return view('modul_administrator.set_user.edit', compact(
+        return view('modul-administrator.set-user.edit', compact(
             'userid',
             'userpw',
             'usernm',
@@ -296,7 +296,7 @@ class SetUserController extends Controller
         } else {
             $data_user = UserPdv::where('userid', $request->userid)->get();
         }
-        $pdf = DomPDF::loadview('modul_administrator.set_user.export', compact('data_user'))->setPaper('a4', 'Portrait');
+        $pdf = DomPDF::loadview('modul-administrator.set-user.export', compact('data_user'))->setPaper('a4', 'Portrait');
         // return $pdf->download('rekap_permint_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();
     }
@@ -316,6 +316,6 @@ class SetUserController extends Controller
                 'passexp' => $tglexp
             ]);
         Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_administrator.set_user.index');
+        return redirect()->route('modul-administrator.set-user.index');
     }
 }
