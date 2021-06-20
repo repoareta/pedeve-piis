@@ -80,7 +80,7 @@ class SetUserController extends Controller
             return $radio;
         })
         ->addColumn('reset', function ($data) {
-            $radio = '<center><a style="color:blue;" href="'. route('modul-administrator.set-user.reset', ['no' => $data->userid]).'">RESET</a></center>';
+            $radio = '<center><a style="color:blue;" href="'. route('modul_administrator.set_user.reset', ['no' => $data->userid]).'">RESET</a></center>';
             return $radio;
         })
         ->rawColumns(['radio','userap','reset'])
