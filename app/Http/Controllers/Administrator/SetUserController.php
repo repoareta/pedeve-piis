@@ -316,6 +316,6 @@ class SetUserController extends Controller
                 'passexp' => $tglexp
             ]);
         Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul-administrator.set-user.index');
+        return redirect()->route('modul_administrator.set_user.index');
     }
 }
