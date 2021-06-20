@@ -22,7 +22,7 @@ use App\Http\Controllers\Administrator\TabelMenuController;
 */
 
 //Administrator
-Route::prefix('administrator')->group(function () {
+Route::prefix('administrator')->name('modul_administrator.')->group(function () {
 
     //set_user
     // Route assigned name "set_user.index"...

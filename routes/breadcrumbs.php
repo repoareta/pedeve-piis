@@ -10,5 +10,5 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 // Home
 Breadcrumbs::for('set-user', function (BreadcrumbTrail $trail) {
-    $trail->push('Set User', route('set_user.index'));
+    $trail->push('Set User', route('modul_administrator.set_user.index'));
 });
