@@ -1,7 +1,4 @@
-
 <?php
-
-use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Administrator\LogController;
 use App\Http\Controllers\Administrator\PasswordAdministratorController;
@@ -9,17 +6,6 @@ use App\Http\Controllers\Administrator\SetFunctionController;
 use App\Http\Controllers\Administrator\SetMenuController;
 use App\Http\Controllers\Administrator\SetUserController;
 use App\Http\Controllers\Administrator\TabelMenuController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 //Administrator
 Route::prefix('administrator')->name('modul_administrator.')->group(function () {
