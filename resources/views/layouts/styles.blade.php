@@ -21,5 +21,6 @@
 <link href="{{ asset('assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet" type="text/css" />
 
+@stack('page-styles')
 <!--end::Layout Themes-->
 <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
