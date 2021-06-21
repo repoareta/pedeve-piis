@@ -23,15 +23,17 @@ Route::post('/login', [AuthController::class, 'loginPost'])->name('login_user.po
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/error', [AuthController::class, 'error'])->name('error');
 
-// Login Success
-Route::name('dashboard.')->group(function () {
-    Route::get('dashboard', [AuthController::class, 'index'])->name('index');
-});
+Route::group(['middleware'=> ['auth']], function () {
+    // Login Success
+    Route::name('dashboard.')->group(function () {
+        Route::get('dashboard', [AuthController::class, 'index'])->name('index');
+    });
 
-// ROUTE EXTENDED
-Route::group([], __DIR__.'/web/modul_administrator.php');
-Route::group([], __DIR__.'/web/modul_customer_management.php');
-Route::group([], __DIR__.'/web/modul_kontroler.php');
-Route::group([], __DIR__.'/web/modul_sdm_payroll.php');
-Route::group([], __DIR__.'/web/modul_treasury.php');
-Route::group([], __DIR__.'/web/modul_umum.php');
+    // ROUTE EXTENDED
+    Route::group([], __DIR__.'/web/modul_administrator.php');
+    Route::group([], __DIR__.'/web/modul_customer_management.php');
+    Route::group([], __DIR__.'/web/modul_kontroler.php');
+    Route::group([], __DIR__.'/web/modul_sdm_payroll.php');
+    Route::group([], __DIR__.'/web/modul_treasury.php');
+    Route::group([], __DIR__.'/web/modul_umum.php');
+});
