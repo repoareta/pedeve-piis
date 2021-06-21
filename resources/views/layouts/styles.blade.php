@@ -39,4 +39,8 @@
     .error-help-block {
         color: crimson;
     }
+
+    .swal2-popup .swal2-icon {
+        margin: 2rem 0 0 4.5rem;
+    }
 </style>

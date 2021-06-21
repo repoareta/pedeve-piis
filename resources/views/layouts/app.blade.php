@@ -87,6 +87,8 @@
 		@include('layouts.partials._extras.offcanvas.demo-panel')
 
 		@include('layouts.scripts')
+
+		@include('sweetalert::alert')
 	</body>
 
 	<!--end::Body-->

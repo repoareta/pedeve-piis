@@ -31,7 +31,9 @@ class UserPdv extends Authenticatable
         'kode',
         'passexp',
         'host',
-        'nopeg'
+        'nopeg',
+        'gcg_fungsi_id',
+        'gcg_jabatan_id',
     ];
 
     public function getAuthPassword()
