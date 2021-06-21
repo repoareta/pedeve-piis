@@ -8,7 +8,7 @@
 		<title>
 			{{ config('app.name', 'Pertamina PDV') }} | 
 			{{ ucwords(str_replace('_', ' ', Request::segment(1) == 'sdm' ? 'SDM & Payroll' : Request::segment(1))) }}
-			@if(Request::segment(2)) - {{ ucwords(str_replace('_', ' ', Request::segment(2))) }} @endif
+			@if(Request::segment(2)) - {{ ucwords(str_replace('-', ' ', Request::segment(2))) }} @endif
 		</title>
 		
 		<meta name="description" content="Pedeve Pertamina" />
