@@ -39,7 +39,7 @@
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/006-plurk.svg" class="h-50 align-self-center" alt="" />
+										<img src="{{ asset('assets/media/svg/misc/006-plurk.svg') }}" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -55,7 +55,7 @@
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/015-telegram.svg" class="h-50 align-self-center" alt="" />
+										<img src="{{ asset('assets/media/svg/misc/015-telegram.svg') }}" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -71,7 +71,7 @@
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/003-puzzle.svg" class="h-50 align-self-center" alt="" />
+										<img src="{{ asset('assets/media/svg/misc/003-puzzle.svg') }}" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -87,7 +87,7 @@
 							<div class="d-flex align-items-center flex-wrap mb-5">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/005-bebo.svg" class="h-50 align-self-center" alt="" />
+										<img src="{{ asset('assets/media/svg/misc/005-bebo.svg') }}" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
@@ -103,7 +103,7 @@
 							<div class="d-flex align-items-center flex-wrap">
 								<div class="symbol symbol-50 symbol-light mr-5">
 									<span class="symbol-label">
-										<img src="assets/media/svg/misc/014-kickstarter.svg" class="h-50 align-self-center" alt="" />
+										<img src="{{ asset('assets/media/svg/misc/014-kickstarter.svg') }}" class="h-50 align-self-center" alt="" />
 									</span>
 								</div>
 								<div class="d-flex flex-column flex-grow-1 mr-2">
