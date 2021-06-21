@@ -12,10 +12,13 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.4",
         "laravel-lang/lang": "^10.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "phpoffice/phpspreadsheet": "^1.18",
         "realrashid/sweet-alert": "^4.0",
+        "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
