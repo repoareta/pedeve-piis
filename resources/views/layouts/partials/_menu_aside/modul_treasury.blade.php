@@ -250,7 +250,7 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Cash Flow Mutasi</span>
+                                <span class="menu-text">CF Per Bulan</span>
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
@@ -258,7 +258,7 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Cash Flow Per Mata Uang</span>
+                                <span class="menu-text">CF Per Periode</span>
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
