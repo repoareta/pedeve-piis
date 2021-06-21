@@ -25,3 +25,14 @@
 @stack('page-styles')
 <!--end::Layout Themes-->
 <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
+
+<style>
+    .fa-disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+    tr {
+        cursor: pointer;
+    }
+</style>

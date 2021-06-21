@@ -16,6 +16,7 @@
         "laravel-lang/lang": "^10.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.18",
         "realrashid/sweet-alert": "^4.0",
         "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
