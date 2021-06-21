@@ -19,7 +19,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
         Route::post('set-user/store', [SetUserController::class, 'store'])->name('store');
         Route::get('set-user/edit/{id}', [SetUserController::class, 'edit'])->name('edit');
         Route::get('set-user/reset', [SetUserController::class, 'Reset'])->name('reset');
-        Route::post('set-user/update', [SetUserController::class, 'update'])->name('update');
+        Route::post('set-user/update/{id}', [SetUserController::class, 'update'])->name('update');
         Route::delete('set-user/delete', [SetUserController::class, 'delete'])->name('delete');
         Route::post('set-user/export', [SetUserController::class, 'export'])->name('export');
     });

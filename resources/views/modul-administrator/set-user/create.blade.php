@@ -5,7 +5,7 @@
 @endsection
 
 @push('page-styles')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
+
 @endpush
 
 @section('content')
@@ -153,36 +153,33 @@
             $(this).valid();
         });
 
-        $("#formSetUser").on('submit', function(e){
+        $("#formSetUser").on('submit', function(e){            
+                e.preventDefault();
 
-            e.preventDefault();
+                if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
 
-            if($(this).valid()) {
-            const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-primary',
-                cancelButton: 'btn btn-danger'
-            },
-                buttonsStyling: false
-            })
-
-            swalWithBootstrapButtons.fire({
-                title: "Apakah anda yakin mau menyimpan data ini?",
-                text: "",
-                type: 'warning',
-                showCancelButton: true,
-                reverseButtons: true,
-                confirmButtonText: 'Ya, Simpan',
-                cancelButtonText: 'Tidak'
-            })
-            .then((result) => {
-                if (result.value) {                    
-                    $(this).unbind('submit').submit();
-                }
-                else if (result.dismiss === Swal.DismissReason.cancel) {                    
-                    $(this).unbind('submit').submit();
-                }
-            });
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    type: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan Panjar',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        console.log(result);
+                        $(this).unbind('submit').submit();
+                    }
+                });
             }
         });
     });

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class UserMenu extends Model
 {
     use SoftDeletes;
-
+    
     protected $table="usermenu";
     protected $primaryKey = null;
     public $incrementing = false;
