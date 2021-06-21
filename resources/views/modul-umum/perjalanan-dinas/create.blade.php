@@ -248,6 +248,61 @@
 			// format   : 'yyyy-mm-dd'
 			format   : 'dd-mm-yyyy'
 		});
+
+        $("#formPanjarDinas").on('submit', function(e){
+
+            e.preventDefault();
+
+            if ($('#nopek-error').length){
+                $("#nopek-error").insertAfter("#nopek-nya");
+            }
+
+            if ($('#jabatan-error').length){
+                $("#jabatan-error").insertAfter("#jabatan-nya");
+            }
+
+            if ($('#jenis_dinas-error').length){
+                $("#jenis_dinas-error").insertAfter("#jenis_dinas-nya");
+            }
+
+            if ($('#biaya-error').length){
+                $("#biaya-error").insertAfter("#biaya-nya");
+            }
+
+            if ($('#sampai-error').length){
+                $("#sampai-error").addClass("float-right");
+            }
+
+            if($(this).valid()) {
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-danger'
+            },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: "Apakah anda yakin mau menyimpan data ini?",
+                text: "",
+                type: 'warning',
+                showCancelButton: true,
+                reverseButtons: true,
+                confirmButtonText: 'Ya, Simpan Panjar',
+                cancelButtonText: 'Tidak'
+            })
+            .then((result) => {
+                if (result.value) {
+                    $(this).append('<input type="hidden" name="url" value="edit" />');
+                    $(this).unbind('submit').submit();
+                }
+                else if (result.dismiss === Swal.DismissReason.cancel) {
+                    $(this).append('<input type="hidden" name="url" value="pekerja.index" />');
+                    $(this).unbind('submit').submit();
+                }
+            });
+            }
+        });
     });
     
 </script>

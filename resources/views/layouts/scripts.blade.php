@@ -70,7 +70,7 @@
 <!--end::Global Theme Bundle-->
 
 <!--begin::Page Vendors(used by this page)-->
-<script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script> --}}
 <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
 <!--end::Page Vendors-->
 
@@ -79,7 +79,7 @@
 <!--end::Page Vendors -->
 
 <!--begin::Page Scripts(used by this page)-->
-<script src="{{ asset('assets/js/pages/widgets.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
 
 <!--end::Page Scripts-->
 @stack('page-scripts')

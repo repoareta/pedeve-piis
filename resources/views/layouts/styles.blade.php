@@ -35,4 +35,8 @@
     tr {
         cursor: pointer;
     }
+
+    .error-help-block {
+        color: crimson;
+    }
 </style>
