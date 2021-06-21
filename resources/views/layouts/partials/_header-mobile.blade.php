@@ -4,7 +4,7 @@
 
 			<!--begin::Logo-->
 			<a href="index.html">
-				<img alt="Logo" src="assets/media/logos/logo-light.png" />
+				<img alt="Logo" height="40px" src="{{ asset('images/pertamina.png') }}" />
 			</a>
 
 			<!--end::Logo-->
