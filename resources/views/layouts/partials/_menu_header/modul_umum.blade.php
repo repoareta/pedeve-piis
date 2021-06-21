@@ -1,32 +1,22 @@
-<li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+<li class="menu-item menu-item-submenu menu-item-rel menu-item-active" data-menu-toggle="click" aria-haspopup="true">
     <a href="javascript:;" class="menu-link menu-toggle">
-        <span class="menu-icon">
-            <i class="fa fa-boxes"></i>
-        </span>
         <span class="menu-text">Umum</span>
         <i class="menu-arrow"></i>
     </a>
-    <div class="menu-submenu">
-        <i class="menu-arrow"></i>
+    <div class="menu-submenu menu-submenu-classic menu-submenu-left">
         <ul class="menu-subnav">
-            <li class="menu-item menu-item-parent" aria-haspopup="true">
-                <span class="menu-link">
-                    <span class="menu-text">Umum</span>
-                </span>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="javascript:;" class="menu-link menu-toggle">
+            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
-                    </i>
-                    <span class="menu-text">Perjalanan Dinas</span>									
+                    </i>									
+                    <span class="menu-text">Perjalanan Dinas</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="menu-submenu">
-                    <i class="menu-arrow"></i>
+                <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -34,7 +24,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -44,19 +34,18 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
+                        <span></span>	
+                    </i>									
                     <span class="menu-text">Uang Muka Kerja</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="menu-submenu">
-                    <i class="menu-arrow"></i>
+                <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -64,7 +53,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -73,28 +62,19 @@
                         </li>
                     </ul>
                 </div>
-            </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="#" class="menu-link menu-toggle">
+            </li>								
+            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
-                    </i>
-                    <span class="menu-text">Permintaan Bayar</span>													
-                </a>
-            </li>											
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="javascript:;" class="menu-link menu-toggle">
-                    <i class="menu-bullet menu-bullet-line">
-                        <span></span>
-                    </i>
+                    </i>							
                     <span class="menu-text">Anggaran Umum</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="menu-submenu">
-                    <i class="menu-arrow"></i>
+                <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -102,7 +82,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -110,7 +90,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -118,7 +98,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -128,19 +108,18 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="javascript:;" class="menu-link menu-toggle">
+            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+                <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
-                    </i>
+                    </i>							
                     <span class="menu-text">Report Umum</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="menu-submenu">
-                    <i class="menu-arrow"></i>
+                <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -148,7 +127,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -156,7 +135,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="javascript:;" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -166,12 +145,20 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="#" class="menu-link menu-toggle">
+            <li class="menu-item" aria-haspopup="true">
+                <a href="#" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Vendor</span>													
+                    <span class="menu-text">Permintaan Bayar</span>
+                </a>
+            </li>
+            <li class="menu-item" aria-haspopup="true">
+                <a href="#" class="menu-link">
+                    <i class="menu-bullet menu-bullet-line">
+                        <span></span>
+                    </i>
+                    <span class="menu-text">Vendor</span>
                 </a>
             </li>
         </ul>
