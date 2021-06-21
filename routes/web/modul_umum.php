@@ -108,11 +108,11 @@ Route::prefix('umum')->group(function () {
 
             // P UANG MUKA KERJA DETAIL START
             Route::name('detail.')->group(function () {
-                Route::get('uang-muka-kerja/pertanggungjawaban/detail/index-json', [UangMukaKerjaPertanggungjDetailawabanController::class, 'indexJson'])->name('index.json');
-                Route::post('uang-muka-kerja/pertanggungjawaban/detail/store', [UangMukaKerjaPertanggungjDetailawabanController::class, 'store'])->name('store');
-                Route::get('uang-muka-kerja/pertanggungjawaban/detail/show', [UangMukaKerjaPertanggungjDetailawabanController::class, 'show'])->name('show.json');
-                Route::post('uang-muka-kerja/pertanggungjawaban/detail/update', [UangMukaKerjaPertanggungjDetailawabanController::class, 'update'])->name('update');
-                Route::delete('uang-muka-kerja/pertanggungjawaban/detail/delete', [UangMukaKerjaPertanggungjDetailawabanController::class, 'delete'])->name('delete');
+                Route::get('uang-muka-kerja/pertanggungjawaban/detail/index-json', [UangMukaKerjaPertanggungjawabanDetailController::class, 'indexJson'])->name('index.json');
+                Route::post('uang-muka-kerja/pertanggungjawaban/detail/store', [UangMukaKerjaPertanggungjawabanDetailController::class, 'store'])->name('store');
+                Route::get('uang-muka-kerja/pertanggungjawaban/detail/show', [UangMukaKerjaPertanggungjawabanDetailController::class, 'show'])->name('show.json');
+                Route::post('uang-muka-kerja/pertanggungjawaban/detail/update', [UangMukaKerjaPertanggungjawabanDetailController::class, 'update'])->name('update');
+                Route::delete('uang-muka-kerja/pertanggungjawaban/detail/delete', [UangMukaKerjaPertanggungjawabanDetailController::class, 'delete'])->name('delete');
             });
             // P UANG MUKA KERJA DETAIL END
         });
