@@ -6,271 +6,271 @@ Route::prefix('perbendaharaan')->group(function () {
     //Penerimaan kas
     // Route assigned name "penerimaan_kas.index"...
     Route::name('penerimaan_kas.')->group(function () {
-        Route::get('penerimaan_kas', 'PenerimaanKasController@index')->name('index');
-        Route::post('penerimaan_kas/search', 'PenerimaanKasController@searchIndex')->name('search.index');
-        Route::get('penerimaan_kas/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
-        Route::get('penerimaan_kas/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
-        Route::get('penerimaan_kas/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
-        Route::get('penerimaan_kas/search/cj', 'UangMukaKerjaController@searchCj')->name('search.cj');
-        Route::get('penerimaan_kas/createmp', 'PenerimaanKasController@createmp')->name('createmp');
-        Route::post('penerimaan_kas/create', 'PenerimaanKasController@create')->name('create');
-        Route::post('penerimaan_kas/create/json', 'PenerimaanKasController@createJson')->name('createJson');
-        Route::post('penerimaan_kas/lokasi/json', 'PenerimaanKasController@lokasiJson')->name('lokasiJson');
-        Route::post('penerimaan_kas/nobukti/json', 'PenerimaanKasController@nobuktiJson')->name('nobuktiJson');
-        Route::post('penerimaan_kas/kepada/json', 'PenerimaanKasController@kepadaJson')->name('kepadaJson');
-        Route::post('penerimaan_kas/store', 'PenerimaanKasController@store')->name('store');
-        Route::post('penerimaan_kas/store_detail', 'PenerimaanKasController@storeDetail')->name('store.detail');
-        Route::post('penerimaan_kas/store_app', 'PenerimaanKasController@storeApp')->name('store.app');
-        Route::get('penerimaan_kas/edit/{no}', 'PenerimaanKasController@edit')->name('edit');
-        Route::get('penerimaan_kas/editdetail/{id}/{no}', 'PenerimaanKasController@editDetail')->name('edit.detail');
-        Route::post('penerimaan_kas/update', 'PenerimaanKasController@update')->name('update');
-        Route::delete('penerimaan_kas/delete', 'PenerimaanKasController@delete')->name('delete');
-        Route::delete('penerimaan_kas/deletedetail', 'PenerimaanKasController@deleteDetail')->name('delete.detail');
-        Route::get('penerimaan_kas/approv/{id}/{status}', 'PenerimaanKasController@approv')->name('approv');
-        Route::get('penerimaan_kas/export', 'PenerimaanKasController@export')->name('export');
+        Route::get('penerimaan-kas', 'PenerimaanKasController@index')->name('index');
+        Route::post('penerimaan-kas/search', 'PenerimaanKasController@searchIndex')->name('search.index');
+        Route::get('penerimaan-kas/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
+        Route::get('penerimaan-kas/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
+        Route::get('penerimaan-kas/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
+        Route::get('penerimaan-kas/search/cj', 'UangMukaKerjaController@searchCj')->name('search.cj');
+        Route::get('penerimaan-kas/createmp', 'PenerimaanKasController@createmp')->name('createmp');
+        Route::post('penerimaan-kas/create', 'PenerimaanKasController@create')->name('create');
+        Route::post('penerimaan-kas/create/json', 'PenerimaanKasController@createJson')->name('createJson');
+        Route::post('penerimaan-kas/lokasi/json', 'PenerimaanKasController@lokasiJson')->name('lokasiJson');
+        Route::post('penerimaan-kas/nobukti/json', 'PenerimaanKasController@nobuktiJson')->name('nobuktiJson');
+        Route::post('penerimaan-kas/kepada/json', 'PenerimaanKasController@kepadaJson')->name('kepadaJson');
+        Route::post('penerimaan-kas/store', 'PenerimaanKasController@store')->name('store');
+        Route::post('penerimaan-kas/store-detail', 'PenerimaanKasController@storeDetail')->name('store.detail');
+        Route::post('penerimaan-kas/store_app', 'PenerimaanKasController@storeApp')->name('store.app');
+        Route::get('penerimaan-kas/edit/{no}', 'PenerimaanKasController@edit')->name('edit');
+        Route::get('penerimaan-kas/editdetail/{id}/{no}', 'PenerimaanKasController@editDetail')->name('edit.detail');
+        Route::post('penerimaan-kas/update', 'PenerimaanKasController@update')->name('update');
+        Route::delete('penerimaan-kas/delete', 'PenerimaanKasController@delete')->name('delete');
+        Route::delete('penerimaan-kas/deletedetail', 'PenerimaanKasController@deleteDetail')->name('delete.detail');
+        Route::get('penerimaan-kas/approv/{id}/{status}', 'PenerimaanKasController@approv')->name('approv');
+        Route::get('penerimaan-kas/export', 'PenerimaanKasController@export')->name('export');
     });
     //end penerimaan kas
 
     //informasi saldo
     // Route assigned name "informasi_saldo.index"...
     Route::name('informasi_saldo.')->group(function () {
-        Route::get('informasi_saldo', 'InformasiSaldoController@index')->name('index');
-        Route::post('informasi_saldo/index/json', 'InformasiSaldoController@indexJson')->name('index.json');
-        Route::get('informasi_saldo/create', 'InformasiSaldoController@create')->name('create');
-        Route::post('informasi_saldo/store', 'InformasiSaldoController@store')->name('store');
-        Route::get('informasi_saldo/edit/{bulan}/{tahun}/{nopek}', 'InformasiSaldoController@edit')->name('edit');
-        Route::post('informasi_saldo/update', 'InformasiSaldoController@update')->name('update');
-        Route::delete('informasi_saldo/delete', 'InformasiSaldoController@delete')->name('delete');
+        Route::get('informasi-saldo', 'InformasiSaldoController@index')->name('index');
+        Route::post('informasi-saldo/index/json', 'InformasiSaldoController@indexJson')->name('index.json');
+        Route::get('informasi-saldo/create', 'InformasiSaldoController@create')->name('create');
+        Route::post('informasi-saldo/store', 'InformasiSaldoController@store')->name('store');
+        Route::get('informasi-saldo/edit/{bulan}/{tahun}/{nopek}', 'InformasiSaldoController@edit')->name('edit');
+        Route::post('informasi-saldo/update', 'InformasiSaldoController@update')->name('update');
+        Route::delete('informasi-saldo/delete', 'InformasiSaldoController@delete')->name('delete');
     });
-    //end informasi_saldo
+    //end informasi-saldo
 
 
     //data Pajak
     // Route assigned name "data_pajak.index"...
     Route::name('data_pajak.')->group(function () {
-        Route::get('data_pajak', 'DataPajakController@index')->name('index');
-        Route::post('data_pajak/index/json', 'DataPajakController@indexJson')->name('index.json');
-        Route::get('data_pajak/create', 'DataPajakController@create')->name('create');
-        Route::post('data_pajak/store', 'DataPajakController@store')->name('store');
-        Route::get('data_pajak/edit/{tahun}/{bulan}/{nopek}/{jenis}', 'DataPajakController@edit')->name('edit');
-        Route::post('data_pajak/update', 'DataPajakController@update')->name('update');
-        Route::delete('data_pajak/delete', 'DataPajakController@delete')->name('delete');
+        Route::get('data-pajak', 'DataPajakController@index')->name('index');
+        Route::post('data-pajak/index/json', 'DataPajakController@indexJson')->name('index.json');
+        Route::get('data-pajak/create', 'DataPajakController@create')->name('create');
+        Route::post('data-pajak/store', 'DataPajakController@store')->name('store');
+        Route::get('data-pajak/edit/{tahun}/{bulan}/{nopek}/{jenis}', 'DataPajakController@edit')->name('edit');
+        Route::post('data-pajak/update', 'DataPajakController@update')->name('update');
+        Route::delete('data-pajak/delete', 'DataPajakController@delete')->name('delete');
     });
-    //end data_pajak
+    //end data-pajak
 
     //proses pajak
     // Route assigned name "proses_pajak.rekap"...
     Route::name('proses_pajak.')->group(function () {
-        Route::get('proses_pajak', 'PajakTahunanController@RekapPostPajak')->name('rekap');
-        Route::post('proses_pajak/export', 'PajakTahunanController@ExportProses')->name('export.proses');
+        Route::get('proses-pajak', 'PajakTahunanController@RekapPostPajak')->name('rekap');
+        Route::post('proses-pajak/export', 'PajakTahunanController@ExportProses')->name('export.proses');
     });
     //end proses_pajak
  
     //laporan pajak
     // Route assigned name "laporan_pajak.rekap"...
     Route::name('laporan_pajak.')->group(function () {
-        Route::get('laporan_pajak', 'PajakTahunanController@RekapLaporanPajak')->name('rekap');
-        Route::post('laporan_pajak/export', 'PajakTahunanController@ExportLaporan')->name('export.laporan');
+        Route::get('laporan-pajak', 'PajakTahunanController@RekapLaporanPajak')->name('rekap');
+        Route::post('laporan-pajak/export', 'PajakTahunanController@ExportLaporan')->name('export.laporan');
     });
     //end laporan_pajak
 
-    //bulan_perbendaharaan
+    //bulan-perbendaharaan
     // Route assigned name "bulan_perbendaharaan.index"...
     Route::name('bulan_perbendaharaan.')->group(function () {
-        Route::get('bulan_perbendaharaan', 'BulanPerbendaharaanController@index')->name('index');
-        Route::post('bulan_perbendaharaan/index/search', 'BulanPerbendaharaanController@searchIndex')->name('search.index');
-        Route::get('bulan_perbendaharaan/create', 'BulanPerbendaharaanController@create')->name('create');
-        Route::post('bulan_perbendaharaan/store', 'BulanPerbendaharaanController@store')->name('store');
-        Route::get('bulan_perbendaharaan/edit/{no}', 'BulanPerbendaharaanController@edit')->name('edit');
-        Route::post('bulan_perbendaharaan/update', 'BulanPerbendaharaanController@update')->name('update');
-        Route::delete('bulan_perbendaharaan/delete', 'BulanPerbendaharaanController@delete')->name('delete');
+        Route::get('bulan-perbendaharaan', 'BulanPerbendaharaanController@index')->name('index');
+        Route::post('bulan-perbendaharaan/index/search', 'BulanPerbendaharaanController@searchIndex')->name('search.index');
+        Route::get('bulan-perbendaharaan/create', 'BulanPerbendaharaanController@create')->name('create');
+        Route::post('bulan-perbendaharaan/store', 'BulanPerbendaharaanController@store')->name('store');
+        Route::get('bulan-perbendaharaan/edit/{no}', 'BulanPerbendaharaanController@edit')->name('edit');
+        Route::post('bulan-perbendaharaan/update', 'BulanPerbendaharaanController@update')->name('update');
+        Route::delete('bulan-perbendaharaan/delete', 'BulanPerbendaharaanController@delete')->name('delete');
     });
-    //end bulan_perbendaharaan
+    //end bulan-perbendaharaan
 
-    //opening_balance
-    // Route assigned name "opening_balance.index"...
+    //opening-balance
+    // Route assigned name "opening-balance.index"...
     Route::name('opening_balance.')->group(function () {
-        Route::get('opening_balance', 'OpeningBalanceController@index')->name('index');
-        Route::post('opening_balance/index/search', 'OpeningBalanceController@searchIndex')->name('search.index');
-        Route::get('opening_balance/create', 'OpeningBalanceController@create')->name('create');
-        Route::post('opening_balance/store', 'OpeningBalanceController@store')->name('store');
-        Route::get('opening_balance/edit/{no}', 'OpeningBalanceController@edit')->name('edit');
-        Route::post('opening_balance/update', 'OpeningBalanceController@update')->name('update');
+        Route::get('opening-balance', 'OpeningBalanceController@index')->name('index');
+        Route::post('opening-balance/index/search', 'OpeningBalanceController@searchIndex')->name('search.index');
+        Route::get('opening-balance/create', 'OpeningBalanceController@create')->name('create');
+        Route::post('opening-balance/store', 'OpeningBalanceController@store')->name('store');
+        Route::get('opening-balance/edit/{no}', 'OpeningBalanceController@edit')->name('edit');
+        Route::post('opening-balance/update', 'OpeningBalanceController@update')->name('update');
     });
-    //end opening_balance
+    //end opening-balance
 
     //Penempatan deposito
     // Route assigned name "penempatan_deposito.index"...
     Route::name('penempatan_deposito.')->group(function () {
-        Route::get('penempatan_deposito', 'PenempatanDepositoController@index')->name('index');
-        Route::post('penempatan_deposito/search', 'PenempatanDepositoController@searchIndex')->name('search.index');
-        Route::post('penempatan_deposito/lineno/json', 'PenempatanDepositoController@linenoJson')->name('linenoJson');
-        Route::post('penempatan_deposito/kurs/json', 'PenempatanDepositoController@kursJson')->name('kursJson');
-        Route::post('penempatan_deposito/kdbank/json', 'PenempatanDepositoController@kdbankJson')->name('kdbankJson');
-        Route::post('penempatan_deposito/nokas/json', 'PenempatanDepositoController@nokasJson')->name('nokas.json');
-        Route::get('penempatan_deposito/create', 'PenempatanDepositoController@create')->name('create');
-        Route::post('penempatan_deposito/store', 'PenempatanDepositoController@store')->name('store');
-        Route::get('penempatan_deposito/edit/{nodok}/{lineno}/{pjg}', 'PenempatanDepositoController@edit')->name('edit');
-        Route::post('penempatan_deposito/update', 'PenempatanDepositoController@update')->name('update');
-        Route::delete('penempatan_deposito/delete', 'PenempatanDepositoController@delete')->name('delete');
-        Route::get('penempatan_deposito/depopjg/{nodok}/{lineno}/{pjg}', 'PenempatanDepositoController@depopjg')->name('depopjg');
-        Route::post('penempatan_deposito/updatedepopjg', 'PenempatanDepositoController@updatedepopjg')->name('updatedepopjg');
-        Route::get('penempatan_deposito/rekap', 'PenempatanDepositoController@rekap')->name('rekap');
-        Route::post('penempatan_deposito/ctkdepo', 'PenempatanDepositoController@ctkdepo')->name('ctkdepo');
-        Route::get('penempatan_deposito/rekaprc/{no}/{id}', 'PenempatanDepositoController@rekaprc')->name('rekaprc');
-        Route::get('penempatan_deposito/rekap_rc/{no}/{id}', 'PenempatanDepositoController@rekap_Rc')->name('rekap_rc');
-        Route::post('penempatan_deposito/exportrc', 'PenempatanDepositoController@exportRc')->name('export_rc');
+        Route::get('penempatan-deposito', 'PenempatanDepositoController@index')->name('index');
+        Route::post('penempatan-deposito/search', 'PenempatanDepositoController@searchIndex')->name('search.index');
+        Route::post('penempatan-deposito/lineno/json', 'PenempatanDepositoController@linenoJson')->name('linenoJson');
+        Route::post('penempatan-deposito/kurs/json', 'PenempatanDepositoController@kursJson')->name('kursJson');
+        Route::post('penempatan-deposito/kdbank/json', 'PenempatanDepositoController@kdbankJson')->name('kdbankJson');
+        Route::post('penempatan-deposito/nokas/json', 'PenempatanDepositoController@nokasJson')->name('nokas.json');
+        Route::get('penempatan-deposito/create', 'PenempatanDepositoController@create')->name('create');
+        Route::post('penempatan-deposito/store', 'PenempatanDepositoController@store')->name('store');
+        Route::get('penempatan-deposito/edit/{nodok}/{lineno}/{pjg}', 'PenempatanDepositoController@edit')->name('edit');
+        Route::post('penempatan-deposito/update', 'PenempatanDepositoController@update')->name('update');
+        Route::delete('penempatan-deposito/delete', 'PenempatanDepositoController@delete')->name('delete');
+        Route::get('penempatan-deposito/depopjg/{nodok}/{lineno}/{pjg}', 'PenempatanDepositoController@depopjg')->name('depopjg');
+        Route::post('penempatan-deposito/updatedepopjg', 'PenempatanDepositoController@updatedepopjg')->name('updatedepopjg');
+        Route::get('penempatan-deposito/rekap', 'PenempatanDepositoController@rekap')->name('rekap');
+        Route::post('penempatan-deposito/ctkdepo', 'PenempatanDepositoController@ctkdepo')->name('ctkdepo');
+        Route::get('penempatan-deposito/rekaprc/{no}/{id}', 'PenempatanDepositoController@rekaprc')->name('rekaprc');
+        Route::get('penempatan-deposito/rekap_rc/{no}/{id}', 'PenempatanDepositoController@rekap_Rc')->name('rekap_rc');
+        Route::post('penempatan-deposito/exportrc', 'PenempatanDepositoController@exportRc')->name('export_rc');
     });
-    //end penempatan_deposito
+    //end penempatan-deposito
 
-    //Penempatan deposito
-    // Route assigned name "penempatan_deposito.index"...
+    // Perhitungan bagi hasil
+    // Route assigned name "perhitungan_bagihasil.index"...
     Route::name('perhitungan_bagihasil.')->group(function () {
-        Route::get('perhitungan_bagihasil', 'PerhitunganBagiHasilController@index')->name('index');
-        Route::post('perhitungan_bagihasil/search', 'PerhitunganBagiHasilController@index')->name('index.search');
-        Route::delete('perhitungan_bagihasil/delete', 'PerhitunganBagiHasilController@delete')->name('delete');
-        Route::get('perhitungan_bagihasil/rekap', 'PerhitunganBagiHasilController@RekapPerhitungan')->name('rekap');
-        Route::post('perhitungan_bagihasil/export', 'PerhitunganBagiHasilController@exportPerhitungan')->name('export');
+        Route::get('perhitungan-bagihasil', 'PerhitunganBagiHasilController@index')->name('index');
+        Route::post('perhitungan-bagihasil/search', 'PerhitunganBagiHasilController@index')->name('index.search');
+        Route::delete('perhitungan-bagihasil/delete', 'PerhitunganBagiHasilController@delete')->name('delete');
+        Route::get('perhitungan-bagihasil/rekap', 'PerhitunganBagiHasilController@RekapPerhitungan')->name('rekap');
+        Route::post('perhitungan-bagihasil/export', 'PerhitunganBagiHasilController@exportPerhitungan')->name('export');
     });
-    //end perhitungan_bagihasil
+    //end perhitungan-bagihasil
 
-    //pembayaran_gaji
+    //pembayaran Gaji
     // Route assigned name "pembayaran_gaji.index"...
     Route::name('pembayaran_gaji.')->group(function () {
-        Route::get('pembayaran_gaji', 'PembayaranGajiController@index')->name('index');
-        Route::post('pembayaran_gaji/search', 'PembayaranGajiController@searchIndex')->name('search.index');
-        Route::get('pembayaran_gaji/create', 'PembayaranGajiController@create')->name('create');
-        Route::post('pembayaran_gaji/create/json', 'PembayaranGajiController@createJson')->name('createJson');
-        Route::post('pembayaran_gaji/lokasi/json', 'PembayaranGajiController@lokasiJson')->name('lokasiJson');
-        Route::post('pembayaran_gaji/nobukti/json', 'PembayaranGajiController@nobuktiJson')->name('nobuktiJson');
-        Route::post('pembayaran_gaji/store', 'PembayaranGajiController@store')->name('store');
-        Route::post('pembayaran_gaji/store_detail', 'PembayaranGajiController@storeDetail')->name('store.detail');
-        Route::post('pembayaran_gaji/store_app', 'PembayaranGajiController@storeApp')->name('store.app');
-        Route::get('pembayaran_gaji/edit/{no}', 'PembayaranGajiController@edit')->name('edit');
-        Route::get('pembayaran_gaji/editdetail/{id}/{no}', 'PembayaranGajiController@editDetail')->name('edit.detail');
-        Route::post('pembayaran_gaji/update', 'PembayaranGajiController@update')->name('update');
-        Route::post('pembayaran_gaji/update/detail', 'PembayaranGajiController@updateDetail')->name('update.detail');
-        Route::delete('pembayaran_gaji/delete', 'PembayaranGajiController@delete')->name('delete');
-        Route::delete('pembayaran_gaji/deletedetail', 'PembayaranGajiController@deleteDetail')->name('delete.detail');
-        Route::delete('pembayaran_gaji/deletedetail/all', 'PembayaranGajiController@deleteDetailall')->name('delete.detail.all');
-        Route::get('pembayaran_gaji/approv/{id}/{status}', 'PembayaranGajiController@approv')->name('approv');
-        Route::get('pembayaran_gaji/rekap/{docno}', 'PembayaranGajiController@rekap')->name('rekap');
-        Route::post('pembayaran_gaji/export', 'PembayaranGajiController@export')->name('export');
-        Route::get('pembayaran_gaji/rekaprc/{docno}', 'PembayaranGajiController@rekapRc')->name('rekap_rc');
-        Route::post('pembayaran_gaji/exportrc', 'PembayaranGajiController@exportRc')->name('export_rc');
+        Route::get('pembayaran-gaji', 'PembayaranGajiController@index')->name('index');
+        Route::post('pembayaran-gaji/search', 'PembayaranGajiController@searchIndex')->name('search.index');
+        Route::get('pembayaran-gaji/create', 'PembayaranGajiController@create')->name('create');
+        Route::post('pembayaran-gaji/create/json', 'PembayaranGajiController@createJson')->name('createJson');
+        Route::post('pembayaran-gaji/lokasi/json', 'PembayaranGajiController@lokasiJson')->name('lokasiJson');
+        Route::post('pembayaran-gaji/nobukti/json', 'PembayaranGajiController@nobuktiJson')->name('nobuktiJson');
+        Route::post('pembayaran-gaji/store', 'PembayaranGajiController@store')->name('store');
+        Route::post('pembayaran-gaji/store-detail', 'PembayaranGajiController@storeDetail')->name('store.detail');
+        Route::post('pembayaran-gaji/store_app', 'PembayaranGajiController@storeApp')->name('store.app');
+        Route::get('pembayaran-gaji/edit/{no}', 'PembayaranGajiController@edit')->name('edit');
+        Route::get('pembayaran-gaji/editdetail/{id}/{no}', 'PembayaranGajiController@editDetail')->name('edit.detail');
+        Route::post('pembayaran-gaji/update', 'PembayaranGajiController@update')->name('update');
+        Route::post('pembayaran-gaji/update/detail', 'PembayaranGajiController@updateDetail')->name('update.detail');
+        Route::delete('pembayaran-gaji/delete', 'PembayaranGajiController@delete')->name('delete');
+        Route::delete('pembayaran-gaji/deletedetail', 'PembayaranGajiController@deleteDetail')->name('delete.detail');
+        Route::delete('pembayaran-gaji/deletedetail/all', 'PembayaranGajiController@deleteDetailall')->name('delete.detail.all');
+        Route::get('pembayaran-gaji/approv/{id}/{status}', 'PembayaranGajiController@approv')->name('approv');
+        Route::get('pembayaran-gaji/rekap/{docno}', 'PembayaranGajiController@rekap')->name('rekap');
+        Route::post('pembayaran-gaji/export', 'PembayaranGajiController@export')->name('export');
+        Route::get('pembayaran-gaji/rekaprc/{docno}', 'PembayaranGajiController@rekapRc')->name('rekap_rc');
+        Route::post('pembayaran-gaji/exportrc', 'PembayaranGajiController@exportRc')->name('export_rc');
     });
-    //end pembayaran_gaji
+    //end pembayaran-gaji
 
-    //pembayaran_umk
+    // pembayaran umk
     // Route assigned name "pembayaran_umk.index"...
     Route::name('pembayaran_umk.')->group(function () {
-        Route::get('pembayaran_umk', 'PembayaranUmkController@index')->name('index');
-        Route::post('pembayaran_umk/search', 'PembayaranUmkController@searchIndex')->name('search.index');
-        Route::get('pembayaran_umk/create', 'PembayaranUmkController@create')->name('create');
-        Route::post('pembayaran_umk/create/json', 'PembayaranUmkController@createJson')->name('createJson');
-        Route::post('pembayaran_umk/lokasi/json', 'PembayaranUmkController@lokasiJson')->name('lokasiJson');
-        Route::post('pembayaran_umk/nobukti/json', 'PembayaranUmkController@nobuktiJson')->name('nobuktiJson');
-        Route::post('pembayaran_umk/store', 'PembayaranUmkController@store')->name('store');
-        Route::post('pembayaran_umk/store_detail', 'PembayaranUmkController@storeDetail')->name('store.detail');
-        Route::post('pembayaran_umk/store_app', 'PembayaranUmkController@storeApp')->name('store.app');
-        Route::get('pembayaran_umk/edit/{no}', 'PembayaranUmkController@edit')->name('edit');
-        Route::get('pembayaran_umk/editdetail/{id}/{no}', 'PembayaranUmkController@editDetail')->name('edit.detail');
-        Route::post('pembayaran_umk/update', 'PembayaranUmkController@update')->name('update');
-        Route::post('pembayaran_umk/update/detail', 'PembayaranUmkController@updateDetail')->name('update.detail');
-        Route::delete('pembayaran_umk/delete', 'PembayaranUmkController@delete')->name('delete');
-        Route::delete('pembayaran_umk/deletedetail', 'PembayaranUmkController@deleteDetail')->name('delete.detail');
-        Route::delete('pembayaran_umk/deletedetail/all', 'PembayaranUmkController@deleteDetailall')->name('delete.detail.all');
-        Route::get('pembayaran_umk/approv/{id}/{status}', 'PembayaranUmkController@approv')->name('approv');
-        Route::get('pembayaran_umk/rekap/{docno}', 'PembayaranUmkController@rekap')->name('rekap');
-        Route::post('pembayaran_umk/export', 'PembayaranUmkController@export')->name('export');
-        Route::get('pembayaran_umk/rekaprc/{docno}', 'PembayaranUmkController@rekapRc')->name('rekap_rc');
-        Route::post('pembayaran_umk/exportrc', 'PembayaranUmkController@exportRc')->name('export_rc');
+        Route::get('pembayaran-umk', 'PembayaranUmkController@index')->name('index');
+        Route::post('pembayaran-umk/search', 'PembayaranUmkController@searchIndex')->name('search.index');
+        Route::get('pembayaran-umk/create', 'PembayaranUmkController@create')->name('create');
+        Route::post('pembayaran-umk/create/json', 'PembayaranUmkController@createJson')->name('createJson');
+        Route::post('pembayaran-umk/lokasi/json', 'PembayaranUmkController@lokasiJson')->name('lokasiJson');
+        Route::post('pembayaran-umk/nobukti/json', 'PembayaranUmkController@nobuktiJson')->name('nobuktiJson');
+        Route::post('pembayaran-umk/store', 'PembayaranUmkController@store')->name('store');
+        Route::post('pembayaran-umk/store-detail', 'PembayaranUmkController@storeDetail')->name('store.detail');
+        Route::post('pembayaran-umk/store_app', 'PembayaranUmkController@storeApp')->name('store.app');
+        Route::get('pembayaran-umk/edit/{no}', 'PembayaranUmkController@edit')->name('edit');
+        Route::get('pembayaran-umk/editdetail/{id}/{no}', 'PembayaranUmkController@editDetail')->name('edit.detail');
+        Route::post('pembayaran-umk/update', 'PembayaranUmkController@update')->name('update');
+        Route::post('pembayaran-umk/update/detail', 'PembayaranUmkController@updateDetail')->name('update.detail');
+        Route::delete('pembayaran-umk/delete', 'PembayaranUmkController@delete')->name('delete');
+        Route::delete('pembayaran-umk/deletedetail', 'PembayaranUmkController@deleteDetail')->name('delete.detail');
+        Route::delete('pembayaran-umk/deletedetail/all', 'PembayaranUmkController@deleteDetailall')->name('delete.detail.all');
+        Route::get('pembayaran-umk/approv/{id}/{status}', 'PembayaranUmkController@approv')->name('approv');
+        Route::get('pembayaran-umk/rekap/{docno}', 'PembayaranUmkController@rekap')->name('rekap');
+        Route::post('pembayaran-umk/export', 'PembayaranUmkController@export')->name('export');
+        Route::get('pembayaran-umk/rekaprc/{docno}', 'PembayaranUmkController@rekapRc')->name('rekap_rc');
+        Route::post('pembayaran-umk/exportrc', 'PembayaranUmkController@exportRc')->name('export_rc');
     });
-    //end pembayaran_umk
+    //end pembayaran-umk
 
 
-    //pembayaran_jumk
+    // Pembayaran jumk
     // Route assigned name "pembayaran_jumk.index"...
     Route::name('pembayaran_jumk.')->group(function () {
-        Route::get('pembayaran_jumk', 'PembayaranJumkController@index')->name('index');
-        Route::post('pembayaran_jumk/search', 'PembayaranJumkController@searchIndex')->name('search.index');
-        Route::get('pembayaran_jumk/create', 'PembayaranJumkController@create')->name('create');
-        Route::post('pembayaran_jumk/create/json', 'PembayaranJumkController@createJson')->name('createJson');
-        Route::post('pembayaran_jumk/lokasi/json', 'PembayaranJumkController@lokasiJson')->name('lokasiJson');
-        Route::post('pembayaran_jumk/nobukti/json', 'PembayaranJumkController@nobuktiJson')->name('nobuktiJson');
-        Route::post('pembayaran_jumk/store', 'PembayaranJumkController@store')->name('store');
-        Route::post('pembayaran_jumk/store_detail', 'PembayaranJumkController@storeDetail')->name('store.detail');
-        Route::post('pembayaran_jumk/store_app', 'PembayaranJumkController@storeApp')->name('store.app');
-        Route::get('pembayaran_jumk/edit/{no}', 'PembayaranJumkController@edit')->name('edit');
-        Route::get('pembayaran_jumk/editdetail/{id}/{no}', 'PembayaranJumkController@editDetail')->name('edit.detail');
-        Route::post('pembayaran_jumk/update', 'PembayaranJumkController@update')->name('update');
-        Route::post('pembayaran_jumk/update/detail', 'PembayaranJumkController@updateDetail')->name('update.detail');
-        Route::delete('pembayaran_jumk/delete', 'PembayaranJumkController@delete')->name('delete');
-        Route::delete('pembayaran_jumk/deletedetail', 'PembayaranJumkController@deleteDetail')->name('delete.detail');
-        Route::delete('pembayaran_jumk/deletedetail/all', 'PembayaranJumkController@deleteDetailall')->name('delete.detail.all');
-        Route::get('pembayaran_jumk/approv/{id}/{status}', 'PembayaranJumkController@approv')->name('approv');
-        Route::get('pembayaran_jumk/rekap/{docno}', 'PembayaranJumkController@rekap')->name('rekap');
-        Route::post('pembayaran_jumk/export', 'PembayaranJumkController@export')->name('export');
-        Route::get('pembayaran_jumk/rekaprc/{docno}', 'PembayaranJumkController@rekapRc')->name('rekap_rc');
-        Route::post('pembayaran_jumk/exportrc', 'PembayaranJumkController@exportRc')->name('export_rc');
+        Route::get('pembayaran-jumk', 'PembayaranJumkController@index')->name('index');
+        Route::post('pembayaran-jumk/search', 'PembayaranJumkController@searchIndex')->name('search.index');
+        Route::get('pembayaran-jumk/create', 'PembayaranJumkController@create')->name('create');
+        Route::post('pembayaran-jumk/create/json', 'PembayaranJumkController@createJson')->name('createJson');
+        Route::post('pembayaran-jumk/lokasi/json', 'PembayaranJumkController@lokasiJson')->name('lokasiJson');
+        Route::post('pembayaran-jumk/nobukti/json', 'PembayaranJumkController@nobuktiJson')->name('nobuktiJson');
+        Route::post('pembayaran-jumk/store', 'PembayaranJumkController@store')->name('store');
+        Route::post('pembayaran-jumk/store-detail', 'PembayaranJumkController@storeDetail')->name('store.detail');
+        Route::post('pembayaran-jumk/store_app', 'PembayaranJumkController@storeApp')->name('store.app');
+        Route::get('pembayaran-jumk/edit/{no}', 'PembayaranJumkController@edit')->name('edit');
+        Route::get('pembayaran-jumk/editdetail/{id}/{no}', 'PembayaranJumkController@editDetail')->name('edit.detail');
+        Route::post('pembayaran-jumk/update', 'PembayaranJumkController@update')->name('update');
+        Route::post('pembayaran-jumk/update/detail', 'PembayaranJumkController@updateDetail')->name('update.detail');
+        Route::delete('pembayaran-jumk/delete', 'PembayaranJumkController@delete')->name('delete');
+        Route::delete('pembayaran-jumk/deletedetail', 'PembayaranJumkController@deleteDetail')->name('delete.detail');
+        Route::delete('pembayaran-jumk/deletedetail/all', 'PembayaranJumkController@deleteDetailall')->name('delete.detail.all');
+        Route::get('pembayaran-jumk/approv/{id}/{status}', 'PembayaranJumkController@approv')->name('approv');
+        Route::get('pembayaran-jumk/rekap/{docno}', 'PembayaranJumkController@rekap')->name('rekap');
+        Route::post('pembayaran-jumk/export', 'PembayaranJumkController@export')->name('export');
+        Route::get('pembayaran-jumk/rekaprc/{docno}', 'PembayaranJumkController@rekapRc')->name('rekap_rc');
+        Route::post('pembayaran-jumk/exportrc', 'PembayaranJumkController@exportRc')->name('export_rc');
     });
-    //end pembayaran_jumk
+    //end pembayaran-jumk
 
-    //pembayaran_pbayar
+    // Pembayaran pbayar
     // Route assigned name "pembayaran_pbayar.index"...
-    Route::name('pembayaran_pbayar.')->group(function () {
-        Route::get('pembayaran_pbayar', 'PembayaranPbayarController@index')->name('index');
-        Route::post('pembayaran_pbayar/search', 'PembayaranPbayarController@searchIndex')->name('search.index');
-        Route::get('pembayaran_pbayar/create', 'PembayaranPbayarController@create')->name('create');
-        Route::post('pembayaran_pbayar/create/json', 'PembayaranPbayarController@createJson')->name('createJson');
-        Route::post('pembayaran_pbayar/lokasi/json', 'PembayaranPbayarController@lokasiJson')->name('lokasiJson');
-        Route::post('pembayaran_pbayar/nobukti/json', 'PembayaranPbayarController@nobuktiJson')->name('nobuktiJson');
-        Route::post('pembayaran_pbayar/store', 'PembayaranPbayarController@store')->name('store');
-        Route::post('pembayaran_pbayar/store_detail', 'PembayaranPbayarController@storeDetail')->name('store.detail');
-        Route::post('pembayaran_pbayar/store_app', 'PembayaranPbayarController@storeApp')->name('store.app');
-        Route::get('pembayaran_pbayar/edit/{no}', 'PembayaranPbayarController@edit')->name('edit');
-        Route::get('pembayaran_pbayar/editdetail/{id}/{no}', 'PembayaranPbayarController@editDetail')->name('edit.detail');
-        Route::post('pembayaran_pbayar/update', 'PembayaranPbayarController@update')->name('update');
-        Route::post('pembayaran_pbayar/update/detail', 'PembayaranPbayarController@updateDetail')->name('update.detail');
-        Route::delete('pembayaran_pbayar/delete', 'PembayaranPbayarController@delete')->name('delete');
-        Route::delete('pembayaran_pbayar/deletedetail', 'PembayaranPbayarController@deleteDetail')->name('delete.detail');
-        Route::delete('pembayaran_pbayar/deletedetail/all', 'PembayaranPbayarController@deleteDetailall')->name('delete.detail.all');
-        Route::get('pembayaran_pbayar/approv/{id}/{status}', 'PembayaranPbayarController@approv')->name('approv');
-        Route::get('pembayaran_pbayar/rekap/{docno}', 'PembayaranPbayarController@rekap')->name('rekap');
-        Route::post('pembayaran_pbayar/export', 'PembayaranPbayarController@export')->name('export');
-        Route::get('pembayaran_pbayar/rekaprc/{docno}', 'PembayaranPbayarController@rekapRc')->name('rekap_rc');
-        Route::post('pembayaran_pbayar/exportrc', 'PembayaranPbayarController@exportRc')->name('export_rc');
-        Route::get('pembayaran_pbayar/rekaprc/{docno}', 'PembayaranPbayarController@rekapRc')->name('rekap_rc');
-        Route::post('pembayaran_pbayar/exportrc', 'PembayaranPbayarController@exportRc')->name('export_rc');
+    Route::name('pembayaran-pbayar.')->group(function () {
+        Route::get('pembayaran-pbayar', 'PembayaranPbayarController@index')->name('index');
+        Route::post('pembayaran-pbayar/search', 'PembayaranPbayarController@searchIndex')->name('search.index');
+        Route::get('pembayaran-pbayar/create', 'PembayaranPbayarController@create')->name('create');
+        Route::post('pembayaran-pbayar/create/json', 'PembayaranPbayarController@createJson')->name('createJson');
+        Route::post('pembayaran-pbayar/lokasi/json', 'PembayaranPbayarController@lokasiJson')->name('lokasiJson');
+        Route::post('pembayaran-pbayar/nobukti/json', 'PembayaranPbayarController@nobuktiJson')->name('nobuktiJson');
+        Route::post('pembayaran-pbayar/store', 'PembayaranPbayarController@store')->name('store');
+        Route::post('pembayaran-pbayar/store-detail', 'PembayaranPbayarController@storeDetail')->name('store.detail');
+        Route::post('pembayaran-pbayar/store_app', 'PembayaranPbayarController@storeApp')->name('store.app');
+        Route::get('pembayaran-pbayar/edit/{no}', 'PembayaranPbayarController@edit')->name('edit');
+        Route::get('pembayaran-pbayar/editdetail/{id}/{no}', 'PembayaranPbayarController@editDetail')->name('edit.detail');
+        Route::post('pembayaran-pbayar/update', 'PembayaranPbayarController@update')->name('update');
+        Route::post('pembayaran-pbayar/update/detail', 'PembayaranPbayarController@updateDetail')->name('update.detail');
+        Route::delete('pembayaran-pbayar/delete', 'PembayaranPbayarController@delete')->name('delete');
+        Route::delete('pembayaran-pbayar/deletedetail', 'PembayaranPbayarController@deleteDetail')->name('delete.detail');
+        Route::delete('pembayaran-pbayar/deletedetail/all', 'PembayaranPbayarController@deleteDetailall')->name('delete.detail.all');
+        Route::get('pembayaran-pbayar/approv/{id}/{status}', 'PembayaranPbayarController@approv')->name('approv');
+        Route::get('pembayaran-pbayar/rekap/{docno}', 'PembayaranPbayarController@rekap')->name('rekap');
+        Route::post('pembayaran-pbayar/export', 'PembayaranPbayarController@export')->name('export');
+        Route::get('pembayaran-pbayar/rekaprc/{docno}', 'PembayaranPbayarController@rekapRc')->name('rekap_rc');
+        Route::post('pembayaran-pbayar/exportrc', 'PembayaranPbayarController@exportRc')->name('export_rc');
+        Route::get('pembayaran-pbayar/rekaprc/{docno}', 'PembayaranPbayarController@rekapRc')->name('rekap_rc');
+        Route::post('pembayaran-pbayar/exportrc', 'PembayaranPbayarController@exportRc')->name('export_rc');
     });
-    //end pembayaran_pbayar
+    //end pembayaran-pbayar
 
-    //Rekap Harian Kas
+    // Rekap Harian Kas
     // Route assigned name "rekap_harian_kas.index"...
     Route::name('rekap_harian_kas.')->group(function () {
-        Route::get('rekap_harian_kas', 'RekapHarianKasController@index')->name('index');
-        Route::post('rekap_harian_kas/search', 'RekapHarianKasController@searchIndex')->name('search.index');
-        Route::post('rekap_harian_kas/jeniskartu/json', 'RekapHarianKasController@JeniskaruJson')->name('jenis.kartu.json');
-        Route::post('rekap_harian_kas/nokas/json', 'RekapHarianKasController@NokasJson')->name('nokas.json');
-        Route::get('rekap_harian_kas/create', 'RekapHarianKasController@create')->name('create');
-        Route::post('rekap_harian_kas/store', 'RekapHarianKasController@store')->name('store');
-        Route::get('rekap_harian_kas/edit/{no}/{id}/{tgl}', 'RekapHarianKasController@edit')->name('edit');
-        Route::post('rekap_harian_kas/update', 'RekapHarianKasController@update')->name('update');
-        Route::delete('rekap_harian_kas/delete', 'RekapHarianKasController@delete')->name('delete');
-        Route::get('rekap_harian_kas/rekap/{no}/{id}/{tanggal}', 'RekapHarianKasController@RekapHarian')->name('rekap');
-        Route::post('rekap_harian_kas/ctkharian', 'RekapHarianKasController@CtkHarian')->name('ctkharian');
+        Route::get('rekap-harian-kas', 'RekapHarianKasController@index')->name('index');
+        Route::post('rekap-harian-kas/search', 'RekapHarianKasController@searchIndex')->name('search.index');
+        Route::post('rekap-harian-kas/jeniskartu/json', 'RekapHarianKasController@JeniskaruJson')->name('jenis.kartu.json');
+        Route::post('rekap-harian-kas/nokas/json', 'RekapHarianKasController@NokasJson')->name('nokas.json');
+        Route::get('rekap-harian-kas/create', 'RekapHarianKasController@create')->name('create');
+        Route::post('rekap-harian-kas/store', 'RekapHarianKasController@store')->name('store');
+        Route::get('rekap-harian-kas/edit/{no}/{id}/{tgl}', 'RekapHarianKasController@edit')->name('edit');
+        Route::post('rekap-harian-kas/update', 'RekapHarianKasController@update')->name('update');
+        Route::delete('rekap-harian-kas/delete', 'RekapHarianKasController@delete')->name('delete');
+        Route::get('rekap-harian-kas/rekap/{no}/{id}/{tanggal}', 'RekapHarianKasController@RekapHarian')->name('rekap');
+        Route::post('rekap-harian-kas/ctkharian', 'RekapHarianKasController@CtkHarian')->name('ctkharian');
     });
-    //end rekap_harian_kas
+    //end rekap-harian-kas
 
-    //Rekap Harian Kas
+    // Rekap Periode Kas
     // Route assigned name "rekap_periode_kas.index"...
     Route::name('rekap_periode_kas.')->group(function () {
-        Route::get('rekap_periode_kas/create', 'RekapPeriodeKasController@RekapPeriode')->name('create');
-        Route::post('rekap_periode_kas/export', 'RekapPeriodeKasController@exportPeriode')->name('exportperiode');
-        Route::post('rekap_periode_kas/json/nokas', 'RekapPeriodeKasController@nokasJson')->name('nokas.json');
-        Route::post('rekap_periode_kas/json/jk', 'RekapPeriodeKasController@jkJson')->name('jk.json');
+        Route::get('rekap-periode-kas/create', 'RekapPeriodeKasController@RekapPeriode')->name('create');
+        Route::post('rekap-periode-kas/export', 'RekapPeriodeKasController@exportPeriode')->name('exportperiode');
+        Route::post('rekap-periode-kas/json/nokas', 'RekapPeriodeKasController@nokasJson')->name('nokas.json');
+        Route::post('rekap-periode-kas/json/jk', 'RekapPeriodeKasController@jkJson')->name('jk.json');
     });
-    //end rekap_harian_kas
+    //end rekap-harian-kas
 
 
     //Report Kas Kas Bank
