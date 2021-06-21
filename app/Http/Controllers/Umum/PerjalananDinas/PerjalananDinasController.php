@@ -92,7 +92,7 @@ class PerjalananDinasController extends Controller
             $no_spd = sprintf("%03d", $last_panjar_no)."/PDV/CS/$year_now";
         }
 
-        return view('perjalanan_dinas.create', compact(
+        return view('modul-umum.perjalanan-dinas.create', compact(
             'pegawai_list',
             'no_spd',
             'jabatan_list'
