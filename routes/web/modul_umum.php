@@ -5,6 +5,7 @@ use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasPertanggungjawabanC
 
 use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaController;
 use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaPertanggungjawabanController;
+use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaPertanggungjawabanDetailController;
 
 use App\Http\Controllers\Umum\PermintaanBayarController;
 use App\Http\Controllers\Umum\VendorController;
@@ -70,48 +71,48 @@ Route::prefix('umum')->group(function () {
     // Route assigned name "uang-muka-kerja.index"...
     Route::name('uang_muka_kerja.')->group(function () {
         Route::get('uang-muka-kerja', [UangMukaKerjaController::class, 'index'])->name('index');
-        Route::post('uang-muka-kerja/search_json', 'UangMukaKerja@searchIndex')->name('search.index');
-        Route::get('uang-muka-kerja/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
-        Route::get('uang-muka-kerja/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
-        Route::get('uang-muka-kerja/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
-        Route::get('uang-muka-kerja/search/cj', 'UangMukaKerjaController@searchCj')->name('search.cj');
-        Route::get('uang-muka-kerja/create', 'UangMukaKerjaController@create')->name('create');
-        Route::post('uang-muka-kerja/store', 'UangMukaKerjaController@store')->name('store');
-        Route::post('uang-muka-kerja/store_detail', 'UangMukaKerjaController@storeDetail')->name('store.detail');
-        Route::post('uang-muka-kerja/store_app', 'UangMukaKerjaController@storeApp')->name('store.app');
-        Route::delete('uang-muka-kerja/delete', 'UangMukaKerjaController@delete')->name('delete');
-        Route::delete('uang-muka-kerja/delete-detail', 'UangMukaKerjaController@deleteDetail')->name('delete.detail');
+        Route::post('uang-muka-kerja/search-json', [UangMukaKerjaController::class, 'searchIndex'])->name('search.index');
+        Route::get('uang-muka-kerja/search/account', [UangMukaKerjaController::class, 'searchAccount'])->name('search.account');
+        Route::get('uang-muka-kerja/search/bagian', [UangMukaKerjaController::class, 'searchBagian'])->name('search.bagian');
+        Route::get('uang-muka-kerja/search/jb', [UangMukaKerjaController::class, 'searchJb'])->name('search.jb');
+        Route::get('uang-muka-kerja/search/cj', [UangMukaKerjaController::class, 'searchCj'])->name('search.cj');
+        Route::get('uang-muka-kerja/create', [UangMukaKerjaController::class, 'create'])->name('create');
+        Route::post('uang-muka-kerja/store', [UangMukaKerjaController::class, 'store'])->name('store');
+        Route::post('uang-muka-kerja/store-detail', [UangMukaKerjaController::class, 'storeDetail'])->name('store.detail');
+        Route::post('uang-muka-kerja/store-app', [UangMukaKerjaController::class, 'storeApp'])->name('store.app');
+        Route::delete('uang-muka-kerja/delete', [UangMukaKerjaController::class, 'delete'])->name('delete');
+        Route::delete('uang-muka-kerja/delete-detail', [UangMukaKerjaController::class, 'deleteDetail'])->name('delete.detail');
         Route::get('uang-muka-kerja/edit/{no}', [UangMukaKerjaController::class, 'edit'])->name('edit');
-        Route::get('uang-muka-kerja/edit_detail/{id}/{no}', 'UangMukaKerjaController@edit_detail')->name('edit.detail');
-        Route::get('uang-muka-kerja/approv/{id}', 'UangMukaKerjaController@approv')->name('approv');
-        Route::get('uang-muka-kerja/rekap/{id}', 'UangMukaKerjaController@rekap')->name('rekap');
-        Route::get('uang-muka-kerja/rekaprange', 'UangMukaKerjaController@rekapRange')->name('rekap.range');
-        Route::post('uang-muka-kerja/rekap/export', 'UangMukaKerjaController@rekapExport')->name('rekap.export');
-        Route::post('uang-muka-kerja/rekap/export/range', 'UangMukaKerjaController@rekapExportRange')->name('rekap.export.range');
-        Route::get('uang-muka-kerja/show_json', 'UangMukaKerjaController@showJson')->name('show.json');
+        Route::get('uang-muka-kerja/edit-detail/{id}/{no}', [UangMukaKerjaController::class, 'editDetail'])->name('edit.detail');
+        Route::get('uang-muka-kerja/approve/{id}', [UangMukaKerjaController::class, 'approve'])->name('approve');
+        Route::get('uang-muka-kerja/rekap/{id}', [UangMukaKerjaController::class, 'rekap'])->name('rekap');
+        Route::get('uang-muka-kerja/rekaprange', [UangMukaKerjaController::class, 'rekapRange'])->name('rekap.range');
+        Route::post('uang-muka-kerja/rekap/export', [UangMukaKerjaController::class, 'rekapExport'])->name('rekap.export');
+        Route::post('uang-muka-kerja/rekap/export/range', [UangMukaKerjaController::class, 'rekapExportRange'])->name('rekap.export.range');
+        Route::get('uang-muka-kerja/show-json', [UangMukaKerjaController::class, 'showJson'])->name('show.json');
 
         // Route assigned name "uang-muka-kerja.pertanggungjawaban.index"...
         Route::name('pertanggungjawaban.')->group(function () {
             // P UANG MUKA KERJA START
-            Route::get('uang-muka-kerja/pertanggungjawaban', [UangMukaKerjaPertanggungJawabanController::class, 'index'])->name('index');
-            Route::get('uang-muka-kerja/pertanggungjawaban/index-json', 'UangMukaKerjaPertanggungJawabanController@indexJson')->name('index.json');
-            Route::get('uang-muka-kerja/pertanggungjawaban/create', 'UangMukaKerjaPertanggungJawabanController@create')->name('create');
-            Route::post('uang-muka-kerja/pertanggungjawaban/store', 'UangMukaKerjaPertanggungJawabanController@store')->name('store');
-            Route::get('uang-muka-kerja/pertanggungjawaban/edit/{no_pumk}', 'UangMukaKerjaPertanggungJawabanController@edit')->name('edit');
-            Route::post('uang-muka-kerja/pertanggungjawaban/update/{no_pumk}', 'UangMukaKerjaPertanggungJawabanController@update')->name('update');
-            Route::get('uang-muka-kerja/pertanggungjawaban/approval/{no_pumk}', 'UangMukaKerjaPertanggungJawabanController@approv')->name('approval');
-            Route::delete('uang-muka-kerja/pertanggungjawaban/delete', 'UangMukaKerjaPertanggungJawabanController@delete')->name('delete');
-            Route::get('uang-muka-kerja/pertanggungjawaban/export/{no_pumk}', 'UangMukaKerjaPertanggungJawabanController@exportRow')->name('export');
-            Route::post('uang-muka-kerja/pertanggungjawaban/store_app', 'UangMukaKerjaPertanggungJawabanController@storeApp')->name('store.app');
+            Route::get('uang-muka-kerja/pertanggungjawaban', [UangMukaKerjaPertanggungjawabanController::class, 'index'])->name('index');
+            Route::get('uang-muka-kerja/pertanggungjawaban/index-json', [UangMukaKerjaPertanggungjawabanController::class, 'indexJson'])->name('index.json');
+            Route::get('uang-muka-kerja/pertanggungjawaban/create', [UangMukaKerjaPertanggungjawabanController::class, 'create'])->name('create');
+            Route::post('uang-muka-kerja/pertanggungjawaban/store', [UangMukaKerjaPertanggungjawabanController::class, 'store'])->name('store');
+            Route::get('uang-muka-kerja/pertanggungjawaban/edit/{no_pumk}', [UangMukaKerjaPertanggungjawabanController::class, 'edit'])->name('edit');
+            Route::post('uang-muka-kerja/pertanggungjawaban/update/{no_pumk}', [UangMukaKerjaPertanggungjawabanController::class, 'update'])->name('update');
+            Route::get('uang-muka-kerja/pertanggungjawaban/approve/{no_pumk}', [UangMukaKerjaPertanggungjawabanController::class, 'approve'])->name('approval');
+            Route::delete('uang-muka-kerja/pertanggungjawaban/delete', [UangMukaKerjaPertanggungjawabanController::class, 'delete'])->name('delete');
+            Route::get('uang-muka-kerja/pertanggungjawaban/export/{no_pumk}', [UangMukaKerjaPertanggungjawabanController::class, 'exportRow'])->name('export');
+            Route::post('uang-muka-kerja/pertanggungjawaban/store-app', [UangMukaKerjaPertanggungjawabanController::class, 'storeApp'])->name('store.app');
             // P UANG MUKA KERJA END
 
             // P UANG MUKA KERJA DETAIL START
             Route::name('detail.')->group(function () {
-                Route::get('uang-muka-kerja/pertanggungjawaban/detail/index-json', 'UangMukaKerjaPertanggungJawabanDetailController@indexJson')->name('index.json');
-                Route::post('uang-muka-kerja/pertanggungjawaban/detail/store', 'UangMukaKerjaPertanggungJawabanDetailController@store')->name('store');
-                Route::get('uang-muka-kerja/pertanggungjawaban/detail/show', 'UangMukaKerjaPertanggungJawabanDetailController@show')->name('show.json');
-                Route::post('uang-muka-kerja/pertanggungjawaban/detail/update', 'UangMukaKerjaPertanggungJawabanDetailController@update')->name('update');
-                Route::delete('uang-muka-kerja/pertanggungjawaban/detail/delete', 'UangMukaKerjaPertanggungJawabanDetailController@delete')->name('delete');
+                Route::get('uang-muka-kerja/pertanggungjawaban/detail/index-json', [UangMukaKerjaPertanggungjDetailawabanController::class, 'indexJson'])->name('index.json');
+                Route::post('uang-muka-kerja/pertanggungjawaban/detail/store', [UangMukaKerjaPertanggungjDetailawabanController::class, 'store'])->name('store');
+                Route::get('uang-muka-kerja/pertanggungjawaban/detail/show', [UangMukaKerjaPertanggungjDetailawabanController::class, 'show'])->name('show.json');
+                Route::post('uang-muka-kerja/pertanggungjawaban/detail/update', [UangMukaKerjaPertanggungjDetailawabanController::class, 'update'])->name('update');
+                Route::delete('uang-muka-kerja/pertanggungjawaban/detail/delete', [UangMukaKerjaPertanggungjDetailawabanController::class, 'delete'])->name('delete');
             });
             // P UANG MUKA KERJA DETAIL END
         });

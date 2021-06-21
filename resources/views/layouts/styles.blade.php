@@ -4,6 +4,7 @@
 <!--end::Fonts-->
 
 <!--begin::Page Vendors Styles(used by this page)-->
+<link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
 <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
 
 <!--end::Page Vendors Styles-->
