@@ -66114,7 +66114,7 @@ code {
   border-color: #3699FF;
 }
 .checkbox.checkbox-primary > span {
-  border: 1px solid transparent;
+  border: 1px solid #3699FF;
 }
 .checkbox.checkbox-primary > input:focus ~ span {
   border: 1px solid transparent;

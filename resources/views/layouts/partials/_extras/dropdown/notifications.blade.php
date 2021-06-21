@@ -1,6 +1,6 @@
 
 <!--begin::Header-->
-											<div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url(assets/media/misc/bg-1.jpg)">
+											<div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url( {{ asset('assets/media/misc/bg-1.jpg') }})">
 
 												<!--begin::Title-->
 												<h4 class="d-flex flex-center rounded-top">

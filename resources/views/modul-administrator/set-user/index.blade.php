@@ -23,7 +23,7 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <div class="">
-                    <a href="#">
+                    <a href="{{ route('modul_administrator.set_user.create') }}">
                         <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                             <i class="fas icon-2x fa-plus-circle text-success"></i>
                         </span>

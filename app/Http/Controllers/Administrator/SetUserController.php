@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+//load form request
+use App\Http\Requests\SetUserStore;
+
 // load model
 use App\Models\UserPdv;
 use App\Models\UserMenu;
@@ -15,9 +19,11 @@ use App\Models\Pekerja;
 
 // load plugin
 use Auth;
+use Carbon\Carbon;
 use DB;
 use DomPDF;
 use Alert;
+use App\Models\DftMenu;
 
 class SetUserController extends Controller
 {
@@ -93,85 +99,77 @@ class SetUserController extends Controller
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
         $pekerja_list = Pekerja::all();
-
-        return view('modul-administrator.set-user.create', compact('gcg_fungsi_list', 'gcg_jabatan_list', 'pekerja_list'));
+        return view('modul-administrator.set-user.create', compact(
+                        'gcg_fungsi_list',
+                        'gcg_jabatan_list',
+                        'pekerja_list'
+                    ));
     }
 
-    public function store(Request $request)
+    public function store(SetUserStore $request)
     {
-        $userid = $request->userid;
-        $usernm = $request->usernm;
-        $userlv = $request->userlv;
-        $userap = $request->akt.''.$request->cm.''.$request->pbd.''.$request->umu.''.$request->sdm;
-        $userpw = "v3ntur4";
-        $usrupd = Auth::user()->userid;
-        $kode = $request->kode;
-        $data_chkuser = DB::select("select userid from userpdv where userid='$userid'");
-        if (!empty($data_chkuser)) {
-            foreach ($data_chkuser as $data_ch) {
-                $data = $data_ch->userid;
-                return response()->json($data);
-            }
-        } else {
-            $data_tglexp = DB::select("select (date(now()) + INTERVAL  '4' month) as tglexp");
-            foreach ($data_tglexp as $data_tgl) {
-                $tglexp = $data_tgl->tglexp;
-            }
-            $tglupd = date('Y-m-d');
-            UserPdv::insert([
-                'userid' => $userid,
-                'userpw' => $userpw ,
-                'usernm' => $usernm,
-                'kode' => $kode,
-                'userlv' => $userlv,
-                'userap' => $userap,
-                'tglupd' => $tglupd,
-                'passexp' => $tglexp,
-                'usrupd' => $usrupd,
-                'nopeg' => $request->nopeg,
-                'gcg_fungsi_id' => $request->gcg_fungsi,
-                'gcg_jabatan_id' => $request->gcg_jabatan
-            ]);
-            if ($request->akt == 'A') {
-                $akt = 'AKT';
-            } else {
-                $akt = '';
-            }
-            if ($request->cm == 'G') {
-                $cm = 'CM';
-            } else {
-                $cm = '';
-            }
-            if ($request->pbd == 'D') {
-                $pbd = 'PBD';
-            } else {
-                $pbd = '';
-            }
-            if ($request->umu == 'E') {
-                $umu = 'UMU';
-            } else {
-                $umu = '';
-            }
-            if ($request->sdm == 'F') {
-                $sdm = 'SDM';
-            } else {
-                $sdm = '';
-            }
-            $data_menu = DB::select("select distinct(menuid) as menuid from dftmenu where userap in ('$akt','$cm','$pbd','$umu','$sdm')");
-            foreach ($data_menu as $data_m) {
-                UserMenu::insert([
-                        'userid' => $userid,
-                        'menuid' => $data_m->menuid,
-                        'cetak' => '0',
-                        'tambah' => '0',
-                        'rubah' => '0',
-                        'lihat' => '0',
-                        'hapus' => '0'
-                    ]);
-            }
+        $data_chkuser = UserPdv::find($request->userid);
+        if ($data_chkuser) {            
+            Alert::error('User ID sudah ada')->persistent(true)->autoClose(2000);
+            return redirect()->back();
         }
-        $data = 1;
-        return response()->json($data);
+        $user_pdv = New UserPdv();
+        $user_pdv->userid = $request->userid;
+        $user_pdv->usernm = $request->usernm;
+        $user_pdv->userlv = $request->userlv;
+        $user_pdv->userap = $request->akt.''.$request->cm.''.$request->pbd.''.$request->umu.''.$request->sdm;
+        $user_pdv->userpw = "v3ntur4";
+        $user_pdv->usrupd = Auth::user()->userid;
+        $user_pdv->kode = $request->kode;
+        $user_pdv->tglupd = Carbon::now();
+        $user_pdv->passexp = Carbon::now();
+        $user_pdv->nopeg = $request->nopeg;
+        $user_pdv->gcg_fungsi_id = $request->gcg_fungsi_id;
+        $user_pdv->gcg_jabatan_id = $request->gcg_jabatan_id;
+        $user_pdv->save();
+
+        if ($request->akt == 'A') {
+            $akt = 'AKT';
+        }else{
+            $akt = '';
+        }
+        if ($request->cm == 'G') {
+            $cm = 'CM';
+        }else{
+            $cm = '';
+        }
+        if ($request->pbd == 'D') {
+            $pbd = 'PBD';
+        }else{
+            $pbd = '';
+        }
+        if ($request->umu == 'E') {
+            $umu = 'UMU';
+        }else{
+            $umu = '';
+        }
+        if ($request->sdm == 'F') {
+            $sdm = 'SDM';
+        }else{
+            $sdm = '';
+        }
+        
+        $data_menu = DftMenu::whereIn('userap', [$akt, $cm, $pbd, $umu, $sdm])->get();
+        
+        foreach ($data_menu as $data_m) {
+            UserMenu::insert([
+                    'userid' => $user_pdv->userid,
+                    'menuid' => $data_m->menuid,
+                    'cetak' => '0',
+                    'tambah' => '0',
+                    'rubah' => '0',
+                    'lihat' => '0',
+                    'hapus' => '0'
+                ]);
+        }
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_administrator.set_user.index');
     }
 
     public function edit($no)
@@ -314,7 +312,7 @@ class SetUserController extends Controller
                 'tglupd' => $tglupd,
                 'passexp' => $tglexp
             ]);
-        Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_administrator.set_user.index');
     }
 }
