@@ -80,7 +80,6 @@
 <!--begin::Page Scripts(used by this page)-->
 {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
 <!--end::Page Scripts-->
-@stack('page-scripts')
 <script>
     $( document ).ready(function() {
         $(".sidebar-switch").click(function() {
@@ -274,3 +273,5 @@
     });
     
 </script>
+
+@stack('page-scripts')
