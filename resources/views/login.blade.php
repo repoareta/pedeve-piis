@@ -49,12 +49,12 @@
 						<div class="login-signin">
 							<div class="mb-10">
 								<h3>Sign In to Your Account</h3>
+
+								@if(\Session::has('notif'))
+									<span class="text-danger">{{Session::get('notif')}}</span>
+								@endif
 							</div>
                             
-                            @if(\Session::has('notif'))
-                                <span style="padding-top:20px;margin-bottom:-15px;color:red; font-size:2; float:left;">{{Session::get('notif')}}</span>
-                            @endif
-
 							<form class="form" action="{{ route('login_user.postlogin') }}" method="post" id="kt_login_signin_form">
                                 @csrf
 								<div class="form-group mb-5">
