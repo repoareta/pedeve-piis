@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SetUserStore extends FormRequest
+class SetUserUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class SetUserStore extends FormRequest
     public function rules()
     {
         return [
-            'userid'      => 'required|unique:App\Models\UserPdv,userid',
             'usernm'      => 'required',
             'kode'        => 'required',
             'userlv'      => 'required',

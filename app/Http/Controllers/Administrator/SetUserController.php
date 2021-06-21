@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 //load form request
 use App\Http\Requests\SetUserStore;
+use App\Http\Requests\SetUserUpdate;
 
 // load model
 use App\Models\UserPdv;
@@ -122,7 +123,7 @@ class SetUserController extends Controller
         $user_pdv->usrupd = Auth::user()->userid;
         $user_pdv->kode = $request->kode;
         $user_pdv->tglupd = Carbon::now();
-        $user_pdv->passexp = Carbon::now();
+        $user_pdv->passexp = Carbon::now()->addMonths(4);
         $user_pdv->nopeg = $request->nopeg;
         $user_pdv->gcg_fungsi_id = $request->gcg_fungsi_id;
         $user_pdv->gcg_jabatan_id = $request->gcg_jabatan_id;
@@ -172,61 +173,34 @@ class SetUserController extends Controller
         return redirect()->route('modul_administrator.set_user.index');
     }
 
-    public function edit($no)
+    public function edit($id)
     {
-        $data = UserPdv::where('userid', $no)->first();
-        $userid = $data->userid;
-        $userpw  = $data->userpw;
-        $usernm = $data->usernm;
-        $kode = $data->kode;
-        $userlv = $data->userlv;
-        $userap = $data->userap;
-        $usrupd = $data->usrupd;
-        $nopeg = $data->nopeg;
-        $gcg_fungsi_id = $data->gcg_fungsi_id;
-        $gcg_jabatan_id = $data->gcg_jabatan_id;
+        $data = UserPdv::where('userid', $id)->first();
 
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
         $pekerja_list = Pekerja::all();
 
         return view('modul-administrator.set-user.edit', compact(
-            'userid',
-            'userpw',
-            'usernm',
-            'kode',
-            'userlv',
-            'userap',
-            'usrupd',
+            'data',
             'gcg_fungsi_list',
             'gcg_jabatan_list',
-            'pekerja_list',
-            'nopeg',
-            'gcg_fungsi_id',
-            'gcg_jabatan_id'
+            'pekerja_list'
         ));
     }
-    public function update(Request $request)
+    public function update(SetUserUpdate $request, $id)
     {
-        $userid = $request->userid;
-        $usernm = $request->usernm;
-        $userlv = $request->userlv;
-        $kode = $request->kode;
-        $tglupd = date('Y-m-d');
-        $usrupd = Auth::user()->userid;
-        $userap = $request->akt.''.$request->cm.''.$request->pbd.''.$request->umu.''.$request->sdm;
-        UserPdv::where('userid', $userid)
-        ->update([
-            'usernm' => $usernm,
-            'kode' => $kode,
-            'userlv' => $userlv,
-            'userap' => $userap,
-            'tglupd' => $tglupd,
-            'usrupd' => $usrupd,
-            'nopeg' => $request->nopeg,
-            'gcg_fungsi_id' => $request->gcg_fungsi,
-            'gcg_jabatan_id' => $request->gcg_jabatan
-        ]);
+        $user_pdv = UserPdv::where('userid', $id)->first();        
+        $user_pdv->usernm = $request->usernm;
+        $user_pdv->userlv = $request->userlv;
+        $user_pdv->kode = $request->kode;
+        $user_pdv->tglupd = Carbon::now();
+        $user_pdv->usrupd = Auth::user()->userid;
+        $user_pdv->userap = $request->akt.''.$request->cm.''.$request->pbd.''.$request->umu.''.$request->sdm;
+        $user_pdv->nopeg = $request->nopeg;
+        $user_pdv->gcg_fungsi_id = $request->gcg_fungsi_id;
+        $user_pdv->gcg_jabatan_id = $request->gcg_jabatan_id;        
+        $user_pdv->update();
 
         if ($request->akt == 'A') {
             $akt = 'AKT';
@@ -254,35 +228,29 @@ class SetUserController extends Controller
             $sdm = '';
         }
 
-        
-        $data_menu = DB::select("select distinct(menuid) as menuid from dftmenu where userap in ('$akt','$cm','$pbd','$umu','$sdm')");
-        foreach ($data_menu as $data_m) {
-            $data_cek = DB::select("select * from usermenu where userid ='$userid' and menuid='$data_m->menuid'");
-            if (!empty($data_cek)) {
-                UserMenu::where('userid', $userid)->where('menuid', $data_m->menuid)
-                ->update([
-                    'userid' => $userid,
-                    'menuid' => $data_m->menuid
+        DB::table('usermenu')->where('userid', $user_pdv->userid)->delete();
+
+        $data_menus = DftMenu::whereIn('userap', [$akt, $cm, $pbd, $umu, $sdm])->get();
+        foreach ($data_menus as $data_menu) {
+            UserMenu::insert([
+                    'userid' => $user_pdv->userid,
+                    'menuid' => $data_menu->menuid,
+                    'cetak' => '0',
+                    'tambah' => '0',
+                    'rubah' => '0',
+                    'lihat' => '0',
+                    'hapus' => '0'
                 ]);
-            } else {
-                UserMenu::insert([
-                        'userid' => $userid,
-                        'menuid' => $data_m->menuid,
-                        'cetak' => '0',
-                        'tambah' => '0',
-                        'rubah' => '0',
-                        'lihat' => '0',
-                        'hapus' => '0'
-                    ]);
-            }
         }
-        return response()->json();
+
+        Alert::success('Berhasil', 'Data Berhasil Diperbarui')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_administrator.set_user.index');
     }
 
     public function delete(Request $request)
     {
         UserPdv::where('userid', $request->kode)->delete();
-        UserMenu::where('userid', $request->kode)->delete();
+        DB::table('usermenu')->where('userid', $request->kode)->delete();
         return response()->json();
     }
 
