@@ -5,7 +5,7 @@
 @endsection
 
 @push('page-styles')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">    
+    
 @endpush
 
 @section('content')
@@ -72,8 +72,6 @@
 
 @endsection
 @push('page-scripts')
-<!--begin::Page Vendors(used by this page) -->
-<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
             var t = $('#kt_table').DataTable({
