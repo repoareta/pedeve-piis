@@ -84,11 +84,195 @@
 <!--end::Page Scripts-->
 @stack('page-scripts')
 <script>
-    $(".sidebar-switch").click(function() {
-        if($(this).is(":checked")) {
-            $("#kt_body").removeClass('aside-minimize',300);
-        } else {
-            $("#kt_body").addClass('aside-minimize',200);
+    $( document ).ready(function() {
+        $(".sidebar-switch").click(function() {
+            if($(this).is(":checked")) {
+                $("#kt_body").removeClass('aside-minimize',300);
+            } else {
+                $("#kt_body").addClass('aside-minimize',200);
+            }
+        });
+
+        function swalAlertInit(text) {
+            Swal.fire({
+                type: 'warning',
+                timer: 2000,
+                title: 'Oops...',
+                text: 'Tandai baris yang ingin di' + text
+            });
         }
+
+        function swalSuccessInit(title) {
+            Swal.fire({
+                type : 'success',
+                title: title,
+                text : 'Berhasil',
+                timer: 2000
+            });
+        }
+
+        (function ($, DataTable) {
+            // Datatable global configuration
+            $.extend(true, DataTable.defaults, {
+                language: {
+                    // url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json",
+                    "sEmptyTable":	 "Tidak ada data yang tersedia pada tabel ini",
+                    "sProcessing":   '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Sedang memproses...',
+                    "sLengthMenu":   "Tampilkan _MENU_ entri",
+                    "sZeroRecords":  "Tidak ditemukan data yang sesuai",
+                    "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                    "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
+                    "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Cari:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Pertama",
+                        "sPrevious": "Sebelumnya",
+                        "sNext":     "Selanjutnya",
+                        "sLast":     "Terakhir"
+                    }
+                },
+            });
+
+        })(jQuery, jQuery.fn.dataTable);
+
+        jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+            return this.flatten().reduce( function ( a, b ) {
+                if ( typeof a === 'string' ) {
+                    a = a.replace(/[^\d.-]/g, '') * 1;
+                }
+                if ( typeof b === 'string' ) {
+                    b = b.replace(/[^\d.-]/g, '') * 1;
+                }
+
+                return a + b;
+            }, 0 );
+        });
+
+        // Restricts input for the set of matched elements to the given inputFilter function.
+        (function($) {
+        $.fn.inputFilter = function(inputFilter) {
+            return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+            if (inputFilter(this.value)) {
+                this.oldValue = this.value;
+                this.oldSelectionStart = this.selectionStart;
+                this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+                this.value = this.oldValue;
+                this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+                this.value = "";
+            }
+            });
+        };
+        }(jQuery));
+
+        $('#nopek').select2().on('change', function() {
+            var id = $(this).val();
+            var url = '{{ route("pekerja.show.json", ":pekerja") }}';
+            // go to page edit
+            url = url.replace(':pekerja',id);
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {
+                    _token:"{{ csrf_token() }}"		
+                },
+                success: function(response){
+                    // console.log(response);
+                    // isi jabatan
+                    $('#jabatan').val(response.jabatan).trigger('change');
+                    // isi golongan
+                    $('#golongan').val(response.golongan);
+                    console.log(response.pekerja.noktp);
+                },
+                error: function () {
+                    alert("Terjadi kesalahan, coba lagi nanti");
+                }
+            });
+        });
+
+        $('#nopek_detail').select2().on('change', function() {
+            // console.log($(this).val());
+            var id = $(this).val().split('-')[0];
+            // var id = $('#nopek_detail').val().split('-')[0];
+            var url = '{{ route("pekerja.show.json", ":pekerja") }}';
+            // go to page edit
+            url = url.replace(':pekerja',id);
+            if(id != ''){
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: {
+                        _token:"{{ csrf_token() }}"		
+                    },
+                    success: function(response){
+                        // console.log(response);
+                        // isi jabatan
+                        $('#jabatan_detail').val(response.jabatan).trigger('change');
+                        // isi golongan
+                        $('#golongan_detail').val(response.golongan);
+                    },
+                    error: function () {
+                        alert("Terjadi kesalahan, coba lagi nanti");
+                    }
+                });
+            }
+        });
+
+        $('#no_panjar').select2().on('change', function() {
+            var id = $(this).val().split('/').join('-');
+            var url = '{{ route("perjalanan_dinas.show.json") }}';
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {
+                    id: id,
+                    _token:"{{ csrf_token() }}"		
+                },
+                success: function(response){
+                    console.log(response);
+                    // isi keterangan
+                    $('#keterangan').val(response.keterangan);
+                    // isi jumlah
+                    const jumlah = parseFloat(response.jum_panjar).toFixed(2);
+                    $('#jumlah').data('jumlah', jumlah);
+                    $('#jumlah').val(jumlah).trigger("change");
+                    $('#nopek').val(response.nopek).trigger("change");
+                },
+                error: function () {
+                    alert("Terjadi kesalahan, coba lagi nanti");
+                }
+            });
+        });
+
+        $('#no_umk').select2().on('change', function(e) {
+            var id  = $(this).val().split('/').join('-');
+            var url = '{{ route("uang_muka_kerja.show.json") }}';
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {
+                    id: id,
+                    _token:"{{ csrf_token() }}"		
+                },
+                success: function(response){
+                    // isi keterangan
+                    $('#keterangan').val(response.keterangan);
+                    // isi jumlah
+                    const jumlah = parseFloat(response.jumlah).toFixed(2);
+                    $('#jumlah').data('jumlah', jumlah);
+                    $('#jumlah').val(jumlah).trigger("change");
+                    // $('#nopek').val(response.nopek).trigger("change");
+                },
+                error: function () {
+                    alert("Terjadi kesalahan, coba lagi nanti");
+                }
+            });
+        });
     });
+    
 </script>
