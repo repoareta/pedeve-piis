@@ -84,7 +84,8 @@ class PerjalananDinasController extends Controller
         // get tanggal panjar
         $last_panjar = PanjarHeader::where('no_panjar', 'like', '%D0000%')
         ->withTrashed()
-        ->latest()
+        ->orderBy('tgl_panjar', 'DESC')
+        ->orderBy('no_panjar', 'DESC')
         ->first();
 
         $year_now = date('Y');
