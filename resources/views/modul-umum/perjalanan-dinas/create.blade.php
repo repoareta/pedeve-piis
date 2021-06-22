@@ -222,7 +222,7 @@
 {!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasStore', '#formPanjarDinas'); !!}
 <script>
     $(document).ready(function () {
-        $('#jumlah').mask('000.000.000.000.000,00', {
+        $('#jumlah').mask('000,000,000,000,000.00', {
             reverse: true
         });
 

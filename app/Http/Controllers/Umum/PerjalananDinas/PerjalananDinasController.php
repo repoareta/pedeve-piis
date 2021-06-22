@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 //load form request
 use App\Http\Requests\PerjalananDinasStore;
 use App\Http\Requests\PerjalananDinasUpdate;
+
 // load models
 use App\Models\KodeJabatan;
 use App\Models\PanjarDetail;
 use App\Models\PanjarHeader;
 use App\Models\Pekerja;
+
 // load pluggin
 use Carbon\Carbon;
-use Dompdf\Dompdf;
 use Alert;
 use Excel;
+use DomPDF;
 
 use App\Exports\RekapSPD;
 
@@ -30,7 +32,8 @@ class PerjalananDinasController extends Controller
 
     public function indexJson(Request $request)
     {
-        $panjar_list = PanjarHeader::orderBy('tgl_panjar', 'desc');
+        $panjar_list = PanjarHeader::with('ppanjar_header')
+                        ->orderBy('tgl_panjar', 'desc');
 
         return datatables()->of($panjar_list)
             ->filter(function ($query) use ($request) {
@@ -250,7 +253,7 @@ class PerjalananDinasController extends Controller
         }
 
         // return default PDF
-        $pdf = DomPDF::loadview('modul-umum.perjalanan-dinas.export-pdf', compact('panjar_header_list', 'mulai', 'sampai'))
+        $pdf = DomPDF::loadView('modul-umum.perjalanan-dinas.export-pdf', compact('panjar_header_list', 'mulai', 'sampai'))
         ->setPaper('a4', 'landscape')
         ->setOptions(['isPhpEnabled' => true]);
 
@@ -271,7 +274,7 @@ class PerjalananDinasController extends Controller
 
         $panjar_header->save();
 
-        $pdf = Dompdf::loadview('modul-umum.perjalanan-dinas.export-row', compact('panjar_header'));
+        $pdf = DomPDF::loadView('modul-umum.perjalanan-dinas.export-row', compact('panjar_header'));
 
         return $pdf->stream('rekap_spd_'.date('Y-m-d H:i:s').'.pdf');
     }
