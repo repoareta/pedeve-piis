@@ -16368,6 +16368,87 @@
      
 }
 
+    namespace Riskihajar\Terbilang\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Terbilang {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function make($number, $suffix = false, $prefix = false)
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->make($number, $suffix, $prefix);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function short($number, $format = null)
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->short($number, $format);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function date($date, $format = 'Y-m-d')
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->date($date, $format);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function time($time, $format = 'h:i:s')
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->time($time, $format);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function period($start, $end = null, $format = null)
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->period($start, $end, $format);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function datetime($datetime, $format = 'Y-m-d h:i:s')
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->datetime($datetime, $format);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function roman($number, $lowercase = false)
+        {
+                        /** @var \Riskihajar\Terbilang\Terbilang $instance */
+                        return $instance->roman($number, $lowercase);
+        }
+         
+    }
+     
+}
+
     namespace Barryvdh\Debugbar { 
             /**
      * 
@@ -20975,6 +21056,7 @@ namespace  {
             class DomPDF extends \Barryvdh\DomPDF\Facade {}
             class Alert extends \RealRashid\SweetAlert\Facades\Alert {}
             class Excel extends \Maatwebsite\Excel\Facades\Excel {}
+            class Terbilang extends \Riskihajar\Terbilang\Facades\Terbilang {}
             class Debugbar extends \Barryvdh\Debugbar\Facade {}
             class PDF extends \Barryvdh\DomPDF\Facade {}
             class Breadcrumbs extends \Diglactic\Breadcrumbs\Breadcrumbs {}
