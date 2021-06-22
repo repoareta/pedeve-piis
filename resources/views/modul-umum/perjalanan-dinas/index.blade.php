@@ -131,7 +131,7 @@
 					var data_ppanjar = $(this).data('ppanjar');
 					if (data_ppanjar === true) {
 						Swal.fire({
-							type: 'warning',
+							icon: 'warning',
 							timer: 2000,
 							title: 'Oops...',
 							text: 'Data tidak bisa diubah'
@@ -155,7 +155,7 @@
 					var data_ppanjar = $(this).data('ppanjar');
 					if (data_ppanjar === true) {
 						Swal.fire({
-							type: 'warning',
+							icon: 'warning',
 							timer: 2000,
 							title: 'Oops...',
 							text: 'Data tidak bisa dihapus'
@@ -174,7 +174,7 @@
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "No. Panjar : " + id,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',
@@ -230,7 +230,7 @@
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dicetak?",
 						text: "No. Panjar : " + id,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Cetak',

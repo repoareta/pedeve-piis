@@ -34,7 +34,7 @@ class SetUserController extends Controller
         return view('modul-administrator.set-user.index', compact('data'));
     }
 
-    public function searchIndex(Request $request)
+    public function searchIndex()
     {
         $data = UserPdv::orderBy('userid', 'asc')->get();
         return datatables()->of($data)
@@ -268,17 +268,12 @@ class SetUserController extends Controller
 
     public function Reset(Request $request)
     {
-        $data_tglexp = DB::select("select (date(now()) + INTERVAL  '4' month) as tglexp");
-        foreach ($data_tglexp as $data_tgl) {
-            $tglexp = $data_tgl->tglexp;
-        }
-        $tglupd = date('Y-m-d');
         $userpw ="v3ntur4";
         UserPdv::where('userid', $request->no)
             ->update([
                 'userpw' => $userpw,
-                'tglupd' => $tglupd,
-                'passexp' => $tglexp
+                'tglupd' => Carbon::now(),
+                'passexp' => Carbon::now()->addMonths(4)
             ]);
         Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_administrator.set_user.index');

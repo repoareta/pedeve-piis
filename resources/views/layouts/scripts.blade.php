@@ -93,7 +93,7 @@
 
         function swalAlertInit(text) {
             Swal.fire({
-                type: 'warning',
+                icon: 'warning',
                 timer: 2000,
                 title: 'Oops...',
                 text: 'Tandai baris yang ingin di' + text
