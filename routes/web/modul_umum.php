@@ -25,7 +25,6 @@ Route::prefix('umum')->group(function () {
         Route::get('perjalanan-dinas/show_json', [PerjalananDinasController::class, 'showJson'])->name('show.json');
         Route::get('perjalanan-dinas/create', [PerjalananDinasController::class, 'create'])->name('create');
         Route::post('perjalanan-dinas/store', [PerjalananDinasController::class, 'store'])->name('store');
-        
         Route::get('perjalanan-dinas/edit/{no_panjar}', [PerjalananDinasController::class, 'edit'])->name('edit');
         Route::post('perjalanan-dinas/update/{no_panjar}', [PerjalananDinasController::class, 'update'])->name('update');
         Route::delete('perjalanan-dinas/delete', [PerjalananDinasController::class, 'delete'])->name('delete');

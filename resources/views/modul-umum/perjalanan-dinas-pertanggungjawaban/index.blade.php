@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.create') }}">
+                <a href="{{ route('perjalanan_dinas.pertanggungjawaban.create') }}">
 					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
