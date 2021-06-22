@@ -43,6 +43,7 @@
         },
         "files": [
             "app/Helpers/currency_idr_helper.php",
+            "app/Helpers/currency_format_helper.php",
             "app/Helpers/float_two_helper.php",
             "app/Helpers/pajak_helper.php",
             "app/Helpers/pekerja_status_helper.php",

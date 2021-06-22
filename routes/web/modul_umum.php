@@ -28,7 +28,7 @@ Route::prefix('umum')->group(function () {
         Route::get('perjalanan-dinas/edit/{no_panjar}', [PerjalananDinasController::class, 'edit'])->name('edit');
         Route::post('perjalanan-dinas/update/{no_panjar}', [PerjalananDinasController::class, 'update'])->name('update');
         Route::delete('perjalanan-dinas/delete', [PerjalananDinasController::class, 'delete'])->name('delete');
-        Route::post('perjalanan-dinas/export', [PerjalananDinasController::class, 'rowExport'])->name('export');
+        Route::get('perjalanan-dinas/export', [PerjalananDinasController::class, 'rowExport'])->name('export');
         Route::get('perjalanan-dinas/rekap', [PerjalananDinasController::class, 'rekap'])->name('rekap');
         Route::post('perjalanan-dinas/rekap/export', [PerjalananDinasController::class, 'rekapExport'])->name('rekap.export');
         // PERJALANAN DINAS END

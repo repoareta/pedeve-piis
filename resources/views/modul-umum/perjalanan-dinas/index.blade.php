@@ -107,7 +107,7 @@
 				{data: 'sampai', name: 'sampai', class:'no-wrap'},
 				{data: 'dari', name: 'dari', class:'no-wrap'},
 				{data: 'tujuan', name: 'tujuan', class:'no-wrap'},
-				{data: 'nopek', name: 'nopek'},
+				{data: 'nopek', name: 'nopek', class:'no-wrap'},
 				{data: 'keterangan', name: 'keterangan'},
 				{data: 'nilai', name: 'nilai', class:'text-right no-wrap'}
 			]
@@ -223,7 +223,7 @@
 			}
 		});
 
-		$('#exportRowData').click(function(e) {
+		$('#exportRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
@@ -250,8 +250,9 @@
 						if (result.value) {
 							var id = $(this).val().split("/").join("-");
 							// go to page edit
-							var url = "{{ url('umum/perjalanan_dinas/export') }}" + '/' + id;
-							window.open(url, '_blank');
+							var url = '{{ route("perjalanan_dinas.export", ":no_panjar") }}';
+							// go to page edit
+							window.open(url.replace(':no_panjar',id), '_blank');
 						}
 					});
 				});
