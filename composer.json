@@ -21,6 +21,7 @@
         "phpoffice/phpspreadsheet": "^1.18",
         "proengsoft/laravel-jsvalidation": "^4.4",
         "realrashid/sweet-alert": "^4.0",
+        "riskihajar/terbilang": "^1.2",
         "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
         "yajra/laravel-datatables-oracle": "^9.18"
     },

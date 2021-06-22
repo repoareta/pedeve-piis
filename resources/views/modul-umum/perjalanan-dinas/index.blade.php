@@ -4,10 +4,6 @@
     {{ Breadcrumbs::render('set-user') }}
 @endsection
 
-@push('page-styles')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
-@endpush
-
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
@@ -111,7 +107,7 @@
 				{data: 'sampai', name: 'sampai', class:'no-wrap'},
 				{data: 'dari', name: 'dari', class:'no-wrap'},
 				{data: 'tujuan', name: 'tujuan', class:'no-wrap'},
-				{data: 'nopek', name: 'nopek', class:'no-wrap'},
+				{data: 'nopek', name: 'nopek'},
 				{data: 'keterangan', name: 'keterangan'},
 				{data: 'nilai', name: 'nilai', class:'text-right no-wrap'}
 			]
