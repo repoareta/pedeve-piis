@@ -137,7 +137,7 @@
                             swalWithBootstrapButtons.fire({
                                 title: "Data yang akan dihapus?",
                                 text: "Jenis  : " +kode,
-                                type: 'warning',
+                                icon: 'warning',
                                 showCancelButton: true,
                                 reverseButtons: true,
                                 confirmButtonText: 'Ya, hapus',

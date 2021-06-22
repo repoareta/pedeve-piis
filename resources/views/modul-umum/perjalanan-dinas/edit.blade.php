@@ -284,7 +284,7 @@
             swalWithBootstrapButtons.fire({
                 title: "Apakah anda yakin mau menyimpan data ini?",
                 text: "",
-                type: 'warning',
+                icon: 'warning',
                 showCancelButton: true,
                 reverseButtons: true,
                 confirmButtonText: 'Ya, Simpan Panjar',
