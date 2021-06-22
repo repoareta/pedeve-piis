@@ -878,9 +878,26 @@ namespace App\Models{
 /**
  * App\Models\PanjarDetail
  *
+ * @property int $no
+ * @property string $no_panjar
+ * @property string|null $keterangan
+ * @property string|null $nopek
+ * @property string|null $nama
+ * @property string|null $jabatan
+ * @property string|null $status
+ * @property string|null $panjar
+ * @property-read \App\Models\PanjarHeader $panjar_header
  * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereJabatan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereNama($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereNoPanjar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail wherePanjar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PanjarDetail whereStatus($value)
  */
 	class PanjarDetail extends \Eloquent {}
 }
@@ -1085,6 +1102,17 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\PayTunjangan
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan query()
+ */
+	class PayTunjangan extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Pekerja
  *
  * @property string $nopeg
@@ -1118,7 +1146,8 @@ namespace App\Models{
  * @property string|null $noabsen
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Jabatan[] $jabatan
  * @property-read int|null $jabatan_count
- * @property-read \App\Models\Jabatan|null $jabatan_latest_one
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Jabatan[] $jabatan_latest
+ * @property-read int|null $jabatan_latest_count
  * @method static \Illuminate\Database\Eloquent\Builder|Pekerja newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pekerja newQuery()
  * @method static \Illuminate\Database\Query\Builder|Pekerja onlyTrashed()
@@ -1160,76 +1189,35 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\SdmMasterPegawai
+ * App\Models\Pendidikan
  *
- * @property string $nopeg
- * @property string|null $nama
- * @property string|null $status
- * @property string|null $tgllahir
- * @property string|null $tempatlhr
- * @property string|null $proplhr
- * @property string|null $agama
- * @property string|null $goldarah
- * @property string|null $notlp
- * @property string|null $kodekeluarga
- * @property string|null $noydp
- * @property string|null $noastek
- * @property string|null $tglaktifdns
- * @property string|null $alamat1
- * @property string|null $alamat2
- * @property string|null $alamat3
- * @property string|null $gelar1
- * @property string|null $gelar2
- * @property string|null $gelar3
- * @property string|null $nohp
- * @property string|null $gender
- * @property string|null $npwp
- * @property string|null $photo
- * @property string|null $userid
- * @property string|null $tglentry
- * @property string|null $fasilitas
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $noktp
- * @property string|null $noabsen
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\KoreksiGaji[] $koreksigaji
- * @property-read int|null $koreksigaji_count
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai newQuery()
- * @method static \Illuminate\Database\Query\Builder|SdmMasterPegawai onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai query()
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereAgama($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereAlamat1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereAlamat2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereAlamat3($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereFasilitas($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereGelar1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereGelar2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereGelar3($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereGender($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereGoldarah($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereKodekeluarga($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNama($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNoabsen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNoastek($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNohp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNoktp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNopeg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNotlp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNoydp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereNpwp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereProplhr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereTempatlhr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereTglaktifdns($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereTglentry($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereTgllahir($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SdmMasterPegawai whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|SdmMasterPegawai withTrashed()
- * @method static \Illuminate\Database\Query\Builder|SdmMasterPegawai withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan query()
  */
-	class SdmMasterPegawai extends \Eloquent {}
+	class Pendidikan extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\PerguruanTinggi
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi query()
+ */
+	class PerguruanTinggi extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Provinsi
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Provinsi newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provinsi newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provinsi query()
+ */
+	class Provinsi extends \Eloquent {}
 }
 
 namespace App\Models{

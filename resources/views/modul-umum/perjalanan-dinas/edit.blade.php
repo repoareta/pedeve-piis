@@ -4,10 +4,6 @@
     {{ Breadcrumbs::render('set-user') }}
 @endsection
 
-@push('page-styles')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
-@endpush
-
 @section('content')
 
 <div class="card card-custom gutter-b">
@@ -17,7 +13,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Panjar Dinas
+                Panjar Dinas
             </h3>
         </div>
     </div>
@@ -150,7 +146,7 @@
                     <div class="form-group row">
                         <label for="jumlah" class="col-2 col-form-label">Jumlah</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="jumlah" id="jumlah" value="{{ float_two($panjar_header->jum_panjar) }}">
+                            <input class="form-control money" type="text" name="jumlah" id="jumlah" value="{{ float_two($panjar_header->jum_panjar) }}">
                         </div>
                     </div>
     
@@ -228,9 +224,6 @@
 {!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasStore', '#formPanjarDinas'); !!}
 <script>
     $(document).ready(function () {
-        $('#jumlah').mask('000.000.000.000.000,00', {
-            reverse: true
-        });
 
         $('.kt-select2').select2().on('change', function() {
             $(this).valid();

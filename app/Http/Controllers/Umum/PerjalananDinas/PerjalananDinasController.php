@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 //load form request
 use App\Http\Requests\PerjalananDinasStore;
 use App\Http\Requests\PerjalananDinasUpdate;
+
 // load models
 use App\Models\KodeJabatan;
 use App\Models\PanjarDetail;
 use App\Models\PanjarHeader;
 use App\Models\Pekerja;
+
 // load pluggin
 use Carbon\Carbon;
-use Dompdf\Dompdf;
 use Alert;
 use Excel;
+use DomPDF;
 
 use App\Exports\RekapSPD;
 
@@ -30,7 +32,7 @@ class PerjalananDinasController extends Controller
 
     public function indexJson(Request $request)
     {
-        $panjar_list = PanjarHeader::orderBy('tgl_panjar', 'desc');
+        $panjar_list = PanjarHeader::with('ppanjar_header')->orderBy('tgl_panjar', 'desc');
 
         return datatables()->of($panjar_list)
             ->filter(function ($query) use ($request) {
@@ -80,16 +82,22 @@ class PerjalananDinasController extends Controller
         ->get();
 
         // get tanggal panjar
-        $last_panjar = PanjarHeader::withTrashed()->latest()->first();
+        $last_panjar = PanjarHeader::where('no_panjar', 'like', '%D0000%')
+        ->withTrashed()
+        ->latest()
+        ->first();
 
         $year_now = date('Y');
         $year_last_panjar = date('Y', strtotime($last_panjar->tgl_panjar));
-        $last_panjar_no = implode('/', array_slice(explode('/', $last_panjar->no_panjar), 0, 1)) + 1;
+        $last_panjar_no = implode('/', array_slice(explode('/', $last_panjar->no_panjar), 0, 1));
+        
+        // dd($last_panjar_no);
+
         if ($year_now > $year_last_panjar) {
             // reset no_spd ke 001
-            $no_spd = sprintf("%03d", 1)."/PDV/CS/$year_now";
+            $no_spd = sprintf("%03d", 1)."/D0000/$year_now";
         } else {
-            $no_spd = sprintf("%03d", $last_panjar_no)."/PDV/CS/$year_now";
+            $no_spd = sprintf("%03d", $last_panjar_no + 1)."/D0000/$year_now";
         }
 
         return view('modul-umum.perjalanan-dinas.create', compact(
@@ -125,16 +133,16 @@ class PerjalananDinasController extends Controller
         $panjar_header->kendaraan = $request->kendaraan;
         $panjar_header->ditanggung_oleh = $request->biaya;
         $panjar_header->keterangan = $request->keterangan;
-        $panjar_header->jum_panjar = $request->jumlah;
+        $panjar_header->jum_panjar = currency_format($request->jumlah);
         // Save Panjar Header
         $panjar_header->save();
 
         if ($request->url == 'edit') {
-            return redirect()->route('modul-umum.perjalanan-dinas.edit', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]);
+            return redirect()->route('perjalanan_dinas.edit', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]);
         }
 
         Alert::success('Simpan Panjar Dinas', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul-umum.perjalanan-dinas.index');
+        return redirect()->route('perjalanan_dinas.index');
     }
 
     public function showJson(Request $request)
@@ -158,7 +166,7 @@ class PerjalananDinasController extends Controller
 
         if (optional($panjar_header->ppanjar_header)->no_panjar) {
             Alert::warning('Data Panjar Dinas Tidak Bisa Diubah', 'Gagal')->persistent(true)->autoClose(2000);
-            return redirect()->route('modul-umum.perjalanan-dinas.index');
+            return redirect()->route('perjalanan_dinas.index');
         }
 
         $pegawai_list = Pekerja::where('status', '<>', 'P')
@@ -208,11 +216,11 @@ class PerjalananDinasController extends Controller
         $panjar_header->kendaraan = $request->kendaraan;
         $panjar_header->ditanggung_oleh = $request->biaya;
         $panjar_header->keterangan = $request->keterangan;
-        $panjar_header->jum_panjar = $request->jumlah;
+        $panjar_header->jum_panjar = currency_format($request->jumlah);
 
         $panjar_header->save();
 
-        return redirect()->route('modul-umum.perjalanan-dinas.index');
+        return redirect()->route('perjalanan_dinas.index');
     }
 
     /**
@@ -225,7 +233,7 @@ class PerjalananDinasController extends Controller
     {
         $panjar_header = PanjarHeader::where('no_panjar', $request->id)->first();
         if (is_null(optional($panjar_header->ppanjar_header)->no_panjar)) {
-            $panjar_header->delete();
+            $panjar_header->forceDelete();
         }
 
         return response()->json();
@@ -250,7 +258,7 @@ class PerjalananDinasController extends Controller
         }
 
         // return default PDF
-        $pdf = DomPDF::loadview('modul-umum.perjalanan-dinas.export-pdf', compact('panjar_header_list', 'mulai', 'sampai'))
+        $pdf = DomPDF::loadView('modul-umum.perjalanan-dinas.export-pdf', compact('panjar_header_list', 'mulai', 'sampai'))
         ->setPaper('a4', 'landscape')
         ->setOptions(['isPhpEnabled' => true]);
 
@@ -271,7 +279,7 @@ class PerjalananDinasController extends Controller
 
         $panjar_header->save();
 
-        $pdf = Dompdf::loadview('modul-umum.perjalanan-dinas.export-row', compact('panjar_header'));
+        $pdf = DomPDF::loadView('modul-umum.perjalanan-dinas.export-row', compact('panjar_header'));
 
         return $pdf->stream('rekap_spd_'.date('Y-m-d H:i:s').'.pdf');
     }

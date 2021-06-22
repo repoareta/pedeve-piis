@@ -9,6 +9,7 @@
         "awobaz/compoships": "^2.1",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "diglactic/laravel-breadcrumbs": "^7.0",
+        "elegantweb/sanitizer": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -20,10 +21,12 @@
         "phpoffice/phpspreadsheet": "^1.18",
         "proengsoft/laravel-jsvalidation": "^4.4",
         "realrashid/sweet-alert": "^4.0",
+        "riskihajar/terbilang": "^1.2",
         "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
@@ -40,6 +43,7 @@
         },
         "files": [
             "app/Helpers/currency_idr_helper.php",
+            "app/Helpers/currency_format_helper.php",
             "app/Helpers/float_two_helper.php",
             "app/Helpers/pajak_helper.php",
             "app/Helpers/pekerja_status_helper.php",

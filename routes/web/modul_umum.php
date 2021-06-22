@@ -13,6 +13,7 @@ use App\Http\Controllers\Umum\VendorController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainDetailController;
+use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasDetailController;
 
 Route::prefix('umum')->group(function () {
 
@@ -24,22 +25,21 @@ Route::prefix('umum')->group(function () {
         Route::get('perjalanan-dinas/show_json', [PerjalananDinasController::class, 'showJson'])->name('show.json');
         Route::get('perjalanan-dinas/create', [PerjalananDinasController::class, 'create'])->name('create');
         Route::post('perjalanan-dinas/store', [PerjalananDinasController::class, 'store'])->name('store');
-        
         Route::get('perjalanan-dinas/edit/{no_panjar}', [PerjalananDinasController::class, 'edit'])->name('edit');
         Route::post('perjalanan-dinas/update/{no_panjar}', [PerjalananDinasController::class, 'update'])->name('update');
         Route::delete('perjalanan-dinas/delete', [PerjalananDinasController::class, 'delete'])->name('delete');
-        Route::post('perjalanan-dinas/export', [PerjalananDinasController::class, 'rowExport'])->name('export');
+        Route::get('perjalanan-dinas/export', [PerjalananDinasController::class, 'rowExport'])->name('export');
         Route::get('perjalanan-dinas/rekap', [PerjalananDinasController::class, 'rekap'])->name('rekap');
         Route::post('perjalanan-dinas/rekap/export', [PerjalananDinasController::class, 'rekapExport'])->name('rekap.export');
         // PERJALANAN DINAS END
 
         // PERJALANAN DINAS DETAIL START
         Route::name('detail.')->group(function () {
-            Route::get('perjalanan-dinas/detail/index-json/{no_panjar?}', 'PerjalananDinasDetailController@indexJson')->name('index.json');
-            Route::post('perjalanan-dinas/detail/store/{no_panjar?}', 'PerjalananDinasDetailController@store')->name('store');
-            Route::get('perjalanan-dinas/detail/show', 'PerjalananDinasDetailController@show')->name('show.json');
-            Route::post('perjalanan-dinas/detail/update/{no_panjar}/{no_urut}/{nopek}', 'PerjalananDinasDetailController@update')->name('update');
-            Route::delete('perjalanan-dinas/detail/delete', 'PerjalananDinasDetailController@delete')->name('delete');
+            Route::get('perjalanan-dinas/detail/index-json/{no_panjar?}', [PerjalananDinasDetailController::class, 'indexJson'])->name('index.json');
+            Route::post('perjalanan-dinas/detail/store/{no_panjar?}', [PerjalananDinasController::class, 'store'])->name('store');
+            Route::get('perjalanan-dinas/detail/show', [PerjalananDinasController::class, 'show'])->name('show.json');
+            Route::post('perjalanan-dinas/detail/update/{no_panjar}/{no_urut}/{nopek}', [PerjalananDinasController::class, 'update'])->name('update');
+            Route::delete('perjalanan-dinas/detail/delete', [PerjalananDinasController::class, 'delete'])->name('delete');
         });
         
         // PERJALANAN DINAS DETAIL END
@@ -156,7 +156,7 @@ Route::prefix('umum')->group(function () {
         Route::post('anggaran/update/{kode_main}', [AnggaranController::class, 'update'])->name('update');
         Route::delete('anggaran/delete', [AnggaranController::class, 'delete'])->name('delete');
         Route::post('anggaran/rekap/export', [AnggaranController::class, 'rekapExport'])->name('rekap.export');
-        Route::get('anggaran/report', 'AnggaranController@report')->name('report');
+        Route::get('anggaran/report', [AnggaranController::class, 'report'])->name('report');
         Route::post('anggaran/report/export', [AnggaranController::class, 'reportExport'])->name('report.export');
     
         // ANGGARAN SUBMAIN START

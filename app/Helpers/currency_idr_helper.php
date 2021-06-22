@@ -5,7 +5,7 @@
  * @param  [type] $angka [description]
  * @return [type]        [description]
  */
-function currency_idr(float $angka)
+function currency_idr($angka)
 {
-    return "Rp. ".number_format($angka, 2, ',', '.');
+    return "Rp. ".number_format((float) $angka, 2, ',', '.');
 }

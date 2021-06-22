@@ -39,4 +39,8 @@
     .error-help-block {
         color: crimson;
     }
+    
+    td.no-wrap {
+        white-space: nowrap;
+    }
 </style>

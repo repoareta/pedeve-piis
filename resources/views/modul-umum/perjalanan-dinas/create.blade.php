@@ -144,7 +144,7 @@
 					<div class="form-group row">
 						<label for="jumlah" class="col-2 col-form-label">Jumlah</label>
 						<div class="col-10">
-							<input class="form-control money" type="text" name="jumlah" id="jumlah" value="0.00" maxlength="22">
+							<input class="form-control money" type="text" name="jumlah" id="jumlah" value="0,00" maxlength="22">
 						</div>
 					</div>
 
@@ -222,9 +222,6 @@
 {!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasStore', '#formPanjarDinas'); !!}
 <script>
     $(document).ready(function () {
-        $('#jumlah').mask('000.000.000.000.000,00', {
-            reverse: true
-        });
 
         $('.kt-select2').select2().on('change', function() {
             $(this).valid();

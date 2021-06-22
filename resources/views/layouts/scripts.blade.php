@@ -80,7 +80,6 @@
 <!--begin::Page Scripts(used by this page)-->
 {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
 <!--end::Page Scripts-->
-@stack('page-scripts')
 <script>
     $( document ).ready(function() {
         $(".sidebar-switch").click(function() {
@@ -89,6 +88,10 @@
             } else {
                 $("#kt_body").addClass('aside-minimize',200);
             }
+        });
+
+        $('.money').mask('000,000,000,000,000.00', {
+            reverse: true
         });
 
         function swalAlertInit(text) {
@@ -274,3 +277,5 @@
     });
     
 </script>
+
+@stack('page-scripts')

@@ -6,7 +6,7 @@
  * @param [type] $angka
  * @return void
  */
-function float_two(float $angka)
+function float_two($angka)
 {
-    return str_replace(',', '', number_format($angka, 2));
+    return str_replace(',', '', number_format((float) $angka, 2));
 }
