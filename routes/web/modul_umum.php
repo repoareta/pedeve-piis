@@ -36,10 +36,10 @@ Route::prefix('umum')->group(function () {
         // PERJALANAN DINAS DETAIL START
         Route::name('detail.')->group(function () {
             Route::get('perjalanan-dinas/detail/index-json/{no_panjar?}', [PerjalananDinasDetailController::class, 'indexJson'])->name('index.json');
-            Route::post('perjalanan-dinas/detail/store/{no_panjar?}', [PerjalananDinasController::class, 'store'])->name('store');
-            Route::get('perjalanan-dinas/detail/show', [PerjalananDinasController::class, 'show'])->name('show.json');
+            Route::post('perjalanan-dinas/detail/store/{no_panjar?}', [PerjalananDinasDetailController::class, 'store'])->name('store');
+            Route::get('perjalanan-dinas/detail/show', [PerjalananDinasDetailController::class, 'show'])->name('show.json');
             Route::post('perjalanan-dinas/detail/update/{no_panjar}/{no_urut}/{nopek}', [PerjalananDinasController::class, 'update'])->name('update');
-            Route::delete('perjalanan-dinas/detail/delete', [PerjalananDinasController::class, 'delete'])->name('delete');
+            Route::delete('perjalanan-dinas/detail/delete', [PerjalananDinasDetailController::class, 'delete'])->name('delete');
         });
         
         // PERJALANAN DINAS DETAIL END

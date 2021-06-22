@@ -80,7 +80,26 @@
 <!--begin::Page Scripts(used by this page)-->
 {{-- <script src="{{ asset('assets/js/pages/widgets.js') }}"></script> --}}
 <!--end::Page Scripts-->
-<script>
+<script type="text/javascript">
+    
+    function swalAlertInit(text) {
+        Swal.fire({
+            icon: 'warning',
+            timer: 2000,
+            title: 'Oops...',
+            text: 'Tandai baris yang ingin di' + text
+        });
+    }
+
+    function swalSuccessInit(title) {
+        Swal.fire({
+            icon : 'success',
+            title: title,
+            text : 'Berhasil',
+            timer: 2000
+        });
+    }
+    
     $( document ).ready(function() {
         $(".sidebar-switch").click(function() {
             if($(this).is(":checked")) {
@@ -93,24 +112,6 @@
         $('.money').mask('000,000,000,000,000.00', {
             reverse: true
         });
-
-        function swalAlertInit(text) {
-            Swal.fire({
-                type: 'warning',
-                timer: 2000,
-                title: 'Oops...',
-                text: 'Tandai baris yang ingin di' + text
-            });
-        }
-
-        function swalSuccessInit(title) {
-            Swal.fire({
-                type : 'success',
-                title: title,
-                text : 'Berhasil',
-                timer: 2000
-            });
-        }
 
         (function ($, DataTable) {
             // Datatable global configuration

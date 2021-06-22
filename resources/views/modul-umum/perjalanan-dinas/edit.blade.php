@@ -153,7 +153,7 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
                         </div>
                     </div>
@@ -176,19 +176,19 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <div class="">
-                    <a href="#">
-                        <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                            <i class="fas icon-2x fa-plus-circle text-dark"></i>
+                    <a href="#" id="openDetail">
+                        <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                            <i class="fas icon-2x fa-plus-circle text-primary"></i>
                         </span>
                     </a>
                     <a href="#">
-                        <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                            <i class="fas icon-2x fa-edit text-dark"></i>
+                        <span data-toggle="tooltip" data-placement="top" id="editRow" title="Ubah Data">
+                            <i class="fas icon-2x fa-edit text-warning"></i>
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-dark fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                            <i class="fas icon-2x fa-times-circle text-dark"></i>
+                        <span data-toggle="tooltip" data-placement="top" id="deleteRow" title="Hapus Data">
+                            <i class="fas icon-2x fa-times-circle text-danger"></i>
                         </span>
                     </a>
                 </div>
@@ -218,16 +218,138 @@
     </div>
 </div>
 
+<!--begin::Modal-->
+<div class="modal fade" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="title_modal" data-state="add">Tambah Detail Panjar Dinas</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				</button>
+			</div>
+			<form class="kt-form kt-form--label-right" action="" method="POST" id="formPanjarDinasDetail">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label for="spd-input" class="col-2 col-form-label">No. Urut</label>
+						<div class="col-10">
+							<input class="form-control" type="number" name="no_urut" id="no_urut">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+						<div class="col-10">
+							<textarea class="form-control" name="keterangan_detail" id="keterangan_detail"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="spd-input" class="col-2 col-form-label">Nopek</label>
+						<div class="col-10">
+							<select class="form-control kt-select2" id="nopek_detail" name="nopek_detail" style="width: 100% !important;">
+								<option value="">- Pilih Nopek -</option>
+								@foreach ($pegawai_list as $pegawai)
+									<option value="{{ $pegawai->nopeg.'-'.$pegawai->nama }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
+								@endforeach
+							</select>
+							<div id="nopek_detail-nya"></div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="spd-input" class="col-2 col-form-label">Jabatan</label>
+						<div class="col-10">
+							<select class="form-control kt-select2" name="jabatan_detail" readonly id="jabatan_detail" style="width: 100% !important;">
+								<option value="">- Pilih Jabatan -</option>
+								@foreach ($jabatan_list as $jabatan)
+									<option value="{{ $jabatan->keterangan }}">{{ $jabatan->keterangan }}</option>
+								@endforeach
+							</select>
+							<div id="jabatan_detail-nya"></div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="spd-input" class="col-2 col-form-label">Golongan</label>
+						<div class="col-10">
+							<input class="form-control" type="text" name="golongan_detail" id="golongan_detail" readonly>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!--end::Modal-->
+
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasStore', '#formPanjarDinas'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasUpdate', '#formPanjarDinas') !!}
+{!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasDetailStore', '#formPanjarDinasDetail') !!}
+{!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasDetailUpdate', '#formPanjarDinasDetail') !!}
 <script>
+    function refreshTable() {
+		var table = $('#kt_table').DataTable();
+		table.clear();
+		table.ajax.url("{{ route('perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}").load(function() {
+			// Callback loads updated row count into a DOM element
+			// (a Bootstrap badge on a menu item in this case):
+			var rowCount = table.rows().count();
+			$('#no_urut').val(rowCount + 1);
+		});
+	}
+
     $(document).ready(function () {
 
         $('.kt-select2').select2().on('change', function() {
             $(this).valid();
         });
+
+        var t = $('#kt_table').DataTable({
+			scrollX   : true,
+			processing: true,
+			serverSide: true,
+			ajax: "{{ route('perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}",
+			columns: [
+				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'no', name: 'no'},
+				{data: 'nopek', name: 'nopek'},
+				{data: 'nama', name: 'nama'},
+				{data: 'golongan', name: 'golongan'},
+				{data: 'jabatan', name: 'jabatan'},
+				{data: 'keterangan', name: 'keterangan'}
+			],
+			order: [[ 0, "asc" ], [ 1, "asc" ]]
+		});
+
+        $('#kt_table tbody').on( 'click', 'tr', function (event) {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				t.$('tr.selected').removeClass('selected');
+				// $(':radio', this).trigger('click');
+
+				if (event.target.type !== 'radio') {
+					$(':radio', this).trigger('click');
+				}
+
+				$(this).addClass('selected');
+			}
+		});
+
+        $('#openDetail').click(function(e) {
+			e.preventDefault();
+			refreshTable();
+			$('#kt_modal_4').modal('show');
+			$('#title_modal').data('state', 'add');
+		});
 
         // range picker
 		$('#date_range_picker').datepicker({
@@ -248,60 +370,204 @@
 			format   : 'dd-mm-yyyy'
 		});
 
-        $("#formPanjarDinas").on('submit', function(e){
+        
+		$("#formPanjarDinas").on('submit', function(){
+			if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#nopek-nya");
+			}
 
-            e.preventDefault();
+			if ($('#jabatan-error').length){
+				$("#jabatan-error").insertAfter("#jabatan-nya");
+			}
 
-            if ($('#nopek-error').length){
-                $("#nopek-error").insertAfter("#nopek-nya");
-            }
+			if ($('#jenis_dinas-error').length){
+				$("#jenis_dinas-error").insertAfter("#jenis_dinas-nya");
+			}
 
-            if ($('#jabatan-error').length){
-                $("#jabatan-error").insertAfter("#jabatan-nya");
-            }
+			if ($('#biaya-error').length){
+				$("#biaya-error").insertAfter("#biaya-nya");
+			}
 
-            if ($('#jenis_dinas-error').length){
-                $("#jenis_dinas-error").insertAfter("#jenis_dinas-nya");
-            }
+			if ($('#sampai-error').length){
+				$("#sampai-error").addClass("float-right");
+			}
+		});
 
-            if ($('#biaya-error').length){
-                $("#biaya-error").insertAfter("#biaya-nya");
-            }
+        $("#formPanjarDinasDetail").on('submit', function(){
+			if ($('#nopek_detail-error').length){
+				$("#nopek_detail-error").insertAfter("#nopek_detail-nya");
+			}
 
-            if ($('#sampai-error').length){
-                $("#sampai-error").addClass("float-right");
-            }
+			if ($('#jabatan_detail-error').length){
+				$("#jabatan_detail-error").insertAfter("#jabatan_detail-nya");
+			}
 
-            if($(this).valid()) {
-            const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-primary',
-                cancelButton: 'btn btn-danger'
-            },
-                buttonsStyling: false
-            })
+			if($(this).valid()) {
+				// do your ajax stuff here
+				var no = $('#no_urut').val();
+				var keterangan = $('#keterangan_detail').val();
+				var nopek = $('#nopek_detail').val().split('-')[0];
+				var nama = $('#nopek_detail').val().split('-')[1];
+				var jabatan = $('#jabatan_detail').val();
+				var golongan = $('#golongan_detail').val();
 
-            swalWithBootstrapButtons.fire({
-                title: "Apakah anda yakin mau menyimpan data ini?",
-                text: "",
-                type: 'warning',
-                showCancelButton: true,
-                reverseButtons: true,
-                confirmButtonText: 'Ya, Simpan Panjar',
-                cancelButtonText: 'Tidak'
-            })
-            .then((result) => {
-                if (result.value) {
-                    $(this).append('<input type="hidden" name="url" value="edit" />');
-                    $(this).unbind('submit').submit();
-                }
-                else if (result.dismiss === Swal.DismissReason.cancel) {
-                    $(this).append('<input type="hidden" name="url" value="pekerja.index" />');
-                    $(this).unbind('submit').submit();
-                }
-            });
-            }
-        });
+				var state = $('#title_modal').data('state');
+
+				var url, session, swal_title;
+
+				if(state == 'add'){
+					url = "{{ route('perjalanan_dinas.detail.store') }}";
+					session = false;
+					swal_title = "Tambah Detail Panjar";
+				} else {
+					url = "{{ route('perjalanan_dinas.detail.update', [
+						'no_panjar' => str_replace('/', '-', $panjar_header->no_panjar),
+						'no_urut' => ':no_urut',
+						'nopek' => ':nopek'
+					]) }}";
+					url = url
+						.replace(':no_urut', $('#no_urut').data('no_urut'))
+						.replace(':nopek', $('#nopek_detail').data('nopek_detail'));
+					session = false;
+					swal_title = "Update Detail Panjar";
+				}
+
+				$.ajax({
+					url: url,
+					type: "POST",
+					data: {
+						no: no,
+						no_panjar: "{{ $panjar_header->no_panjar }}",
+						keterangan: keterangan,
+						nopek: nopek,
+						nama: nama,
+						jabatan: jabatan,				
+						golongan: golongan,
+						session: session,
+						_token:"{{ csrf_token() }}"
+					},
+					success: function(dataResult){
+						swalSuccessInit(swal_title);
+						// close modal
+						$('#kt_modal_4').modal('toggle');
+						// clear form
+						$('#kt_modal_4').on('hidden.bs.modal', function () {
+							$(this).find('form').trigger('reset');
+							$('#nopek_detail').val('').trigger('change');
+							$('#jabatan_detail').val('').trigger('change');
+						});
+						// append to datatable
+						t.ajax.reload();
+					},
+					error: function () {
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
+			return false;
+		});
+
+		$('#deleteRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var no_nopek = $(this).val();
+					// delete stuff
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
+
+					swalWithBootstrapButtons.fire({
+						title: "Data yang akan dihapus?",
+						text: "Nopek : " + no_nopek,
+						icon: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Ya, hapus',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							$.ajax({
+								url: "{{ route('perjalanan_dinas.detail.delete') }}",
+								type: 'DELETE',
+								dataType: 'json',
+								data: {
+									"no_nopek": no_nopek,
+									"no_panjar": "{{ $panjar_header->no_panjar }}",
+									"session": false,
+									"_token": "{{ csrf_token() }}",
+								},
+								success: function () {
+									Swal.fire({
+										icon : 'success',
+										title: 'Hapus detail Panjar',
+										text : 'Berhasil',
+										timer: 2000
+									}).then(function() {
+										t.ajax.reload();
+									});
+								},
+								error: function () {
+									alert("Terjadi kesalahan, coba lagi nanti");
+								}
+							});
+						}
+					});
+				});
+			} else {
+				swalAlertInit('hapus');
+			}
+		});
+
+		$('#editRow').click(function(e) {
+			e.preventDefault();
+
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					// get value from row					
+					var no_urut = $(this).val().split('-')[0];
+					var no_nopek = $(this).val().split('-')[1];
+					$.ajax({
+						url: "{{ route('perjalanan_dinas.detail.show.json') }}",
+						type: 'GET',
+						data: {
+							"no_urut": no_urut,
+							"no_nopek": no_nopek,
+							"no_panjar": "{{ $panjar_header->no_panjar }}",
+							"session": false,
+							"_token": "{{ csrf_token() }}",
+						},
+						success: function (response) {
+							// update stuff
+							// append value
+							$('#no_urut').val(response.no);
+							$('#keterangan_detail').val(response.keterangan);
+							$('#nopek_detail').val(response.nopek + '-' + response.nama).trigger('change');
+							$('#jabatan_detail').val(response.jabatan).trigger('change');
+							$('#golongan_detail').val(response.status);
+							// title
+							$('#title_modal').text('Ubah Detail Panjar Dinas');
+							$('#title_modal').data('state', 'update');
+							$('#no_urut').data('no_urut', response.no);
+							$('#nopek_detail').data('nopek_detail', response.nopek);
+							// open modal
+							$('#kt_modal_4').modal('toggle');
+						},
+						error: function () {
+							alert("Terjadi kesalahan, coba lagi nanti");
+						}
+					});
+					
+				});
+			} else {
+				swalAlertInit('ubah');
+			}
+		});
     });
     
 </script>
