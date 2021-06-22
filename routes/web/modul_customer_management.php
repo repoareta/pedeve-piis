@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\CustomerManagement\DataPerkaraController;
 use App\Http\Controllers\CustomerManagement\MonitoringKinerjaController;
 use App\Http\Controllers\CustomerManagement\PencapaianKinerjaController;
@@ -145,3 +144,4 @@ Route::prefix('customer_management')->group(function () {
     });
     // perusahaan afiliasi END
 });
+// Customer Management END
