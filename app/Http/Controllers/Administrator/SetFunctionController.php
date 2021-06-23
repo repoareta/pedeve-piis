@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 // load model
 use App\Models\UserPdv;
@@ -11,15 +10,20 @@ use App\Models\UserMenu;
 
 // load plugin
 use DB;
+use Alert;
+
+// load Request
+use Illuminate\Http\Request;
+use App\Http\Requests\SetFunctionUpdate;
 
 class SetFunctionController extends Controller
 {
     public function index()
     {
-        return view('set_function.index');
+        return view('modul-administrator.set-function.index');
     }
 
-    public function searchIndex(Request $request)
+    public function searchIndex()
     {
         $data = UserPdv::orderBy('userid','asc')->get();
         return datatables()->of($data)
@@ -69,25 +73,33 @@ class SetFunctionController extends Controller
             return $userp1.' '.$userp2.' '.$userp4.' '.$userp5.' '.$userp6;
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.$data->userid.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->userid.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
         ->rawColumns(['radio','userap'])
         ->make(true); 
     }
 
-    public function create($no)
-    {
-        $data_userid = DB::select("select usernm,userid from userpdv where userid='$no'");
-        foreach($data_userid as $data)
-        {
-            $userid = $data->userid;
-            $usernm = $data->usernm;
-        }
-        $data_menuid = DB::select("select a.*,b.menunm from usermenu a, dftmenu b where a.userid='$no' and a.ability='1' and a.menuid=b.menuid order by b.menuid asc");
-        return view('set_function.create',compact('data_menuid','userid','usernm'));
-    }
     public function store(Request $request)
+    {
+        // 
+    }
+
+    public function edit($id)
+    {
+        $user_pdv = UserPdv::where('userid', $id)->first();
+
+        $user_menus = DB::table('usermenu')
+                    ->select('usermenu.* as usermenu', 'dftmenu.* as dftmenu')
+                    ->join('dftmenu', 'usermenu.menuid', 'dftmenu.menuid')
+                    ->where('usermenu.userid', $id)
+                    ->orderBy('usermenu.menuid' ,'asc')
+                    ->get();        
+        
+        return view('modul-administrator.set-function.edit',compact('user_menus','user_pdv'));
+    }
+
+    public function update(SetFunctionUpdate $request, $id)
     {
         if($request->tambah == ""){
             $tambah = 0;
@@ -114,70 +126,36 @@ class SetFunctionController extends Controller
         }else{
             $lihat = 1;
         }
-        $userid = $request->userid;
-        $menuid = $request->menuid;
-        UserMenu::where('userid',$userid)
-        ->where('menuid',$menuid)
-        ->update([
-            'tambah' => $tambah,
-            'rubah' => $rubah,
-            'hapus' => $hapus,
-            'cetak' => $cetak,
-            'lihat' => $lihat,
-        ]);
-        return response()->json($request->menuid);
-    }
 
-    public function menuidJson(Request $request)
-    {
-        $datas = DB::select("select a.* from usermenu a where a.userid='$request->userid' and menuid='$request->menuid'");
-        return response()->json($datas[0]);
-    }
-
-    public function edit($no)
-    {
-        $data_user = DB::table('usermenu')
-        ->join('dftmenu', 'usermenu.menuid', '=', 'dftmenu.menuid')
-        ->select('usermenu.ability','usermenu.userid','usermenu.menuid','dftmenu.userap', 'dftmenu.menunm')
-        ->where('usermenu.userid', $no)
-        ->where('usermenu.deleted_at', null)
-        ->whereNotIn('dftmenu.userap', ['INV','TAB'])
-        ->orderBy('dftmenu.userap' ,'asc')
-        ->get();
+        $user_menu = Usermenu::where('userid',$id)
+                    ->where('menuid',$request->menuid)
+                    ->update([
+                        'tambah' => $tambah,
+                        'rubah' => $rubah,
+                        'hapus' => $hapus,
+                        'cetak' => $cetak,
+                        'lihat' => $lihat,
+                    ]);
         
-        $userid  = $no; 
-        $data_jum = DB::select("select  count(a.userid) as jumlah from usermenu a join dftmenu b on  b.menuid=a.menuid where a.userid='$no'");
-        foreach($data_jum as $data_ju)
-        {
-            $jumlah  = $data_ju->jumlah; 
+        if($user_menu){
+            Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(300000);
+            return redirect()->route('modul_administrator.set_function.index');
         }
-        return view('set_function.edit',compact('userid','data_user','jumlah'));
-    }
-    public function update(Request $request)
-    {
-        $a = $request->jumlah;
-        for($count = 1; $count <= $a; $count++)
-        {
-            $ability = 0;
-            $menu = "menuid$count";
-            $user = "userid$count";
-            $abili = "ability$count";
-            $menuid = $request->$menu;
-            $ability = $request->$abili;
-            $userid = $request->$user;
-                UserMenu::where('userid',$userid)
-                ->where('menuid',$menuid)
-                ->update([
-                    'ability' => $ability
-                ]);
-            }      
-            return response()->json();
+        Alert::error('Gagal', 'Data Gagal Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->back();
     }
 
     public function delete(Request $request)
     {
-        UserPdv::where('userid',$request->kode)->delete();
-        UserMenu::where('userid',$request->kode)->delete();
-        return response()->json();
+        //
+    }
+
+    public function menuIdJson(Request $request)
+    {
+        $data = UserMenu::where('userid', $request->userid)
+                        ->where('menuid', $request->menuid)
+                        ->first();
+
+        return response()->json($data);
     }
 }
