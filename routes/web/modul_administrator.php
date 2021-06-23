@@ -39,13 +39,11 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     // Route assigned name "set_function.index"...
     Route::name('set_function.')->group(function () {
         Route::get('set-function', [SetFunctionController::class, 'index'])->name('index');
+        Route::post('set-function/menuid/json', [SetFunctionController::class, 'menuIdJson'])->name('menuid.json');
         Route::post('set-function/index/search', [SetFunctionController::class, 'searchIndex'])->name('search.index');
-        Route::post('set-function/menuid/json', [SetFunctionController::class, 'menuidJson'])->name('menuid.json');
-        Route::get('set-function/create/{no}', [SetFunctionController::class, 'create'])->name('create');
         Route::post('set-function/store', [SetFunctionController::class, 'store'])->name('store');
-        Route::get('set-function/edit/{no}', [SetFunctionController::class, 'edit'])->name('edit');
-        Route::post('set-function/update', [SetFunctionController::class, 'update'])->name('update');
-        Route::delete('set-function/delete', [SetFunctionController::class, 'delete'])->name('delete');
+        Route::get('set-function/edit/{id}', [SetFunctionController::class, 'edit'])->name('edit');
+        Route::post('set-function/update/{id}', [SetFunctionController::class, 'update'])->name('update');
     });
     //end set_function
 
@@ -56,7 +54,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
         Route::post('tabel-menu/index/search', [TabelMenuController::class, 'searchIndex'])->name('search.index');
         Route::get('tabel-menu/create', [TabelMenuController::class, 'create'])->name('create');
         Route::post('tabel-menu/store', [TabelMenuController::class, 'store'])->name('store');
-        Route::get('tabel-menu/edit/{no}', [TabelMenuController::class, 'edit'])->name('edit');
+        Route::get('tabel-menu/edit/{id}', [TabelMenuController::class, 'edit'])->name('edit');
         Route::post('tabel-menu/update', [TabelMenuController::class, 'update'])->name('update');
         Route::delete('tabel-menu/delete', [TabelMenuController::class, 'delete'])->name('delete');
     });
