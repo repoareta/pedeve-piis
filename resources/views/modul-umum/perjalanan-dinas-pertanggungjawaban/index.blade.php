@@ -179,7 +179,7 @@
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
+										icon  : 'success',
 										title : 'Hapus Detail PJ Panjar ' + id,
 										text  : 'Success',
 										timer : 2000

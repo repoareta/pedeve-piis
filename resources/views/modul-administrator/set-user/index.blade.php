@@ -74,6 +74,7 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
+            // Datatable
             var t = $('#kt_table').DataTable({
                 scrollX   : true,
                 processing: true,
@@ -105,10 +106,8 @@
                     {data: 'reset', name: 'reset'},
                 ]
             });
-            $('#search-form').on('submit', function(e) {
-                t.draw();
-                e.preventDefault();
-            });
+            
+            // Row table click and radio clicked
             $('#kt_table tbody').on( 'click', 'tr', function (event) {
                 if ( $(this).hasClass('selected') ) {
                     $(this).removeClass('selected');
@@ -121,6 +120,8 @@
                     $(this).addClass('selected');
                 }
             } );
+
+            // delete
             $('#deleteRow').click(function(e) {
                 e.preventDefault();
                 if($('input[class=btn-radio]').is(':checked')) { 
@@ -155,9 +156,9 @@
                                     },
                                     success: function (data) {
                                         Swal.fire({
-                                            type  : 'success',
-                                            title : "Data Set User dengan jenis  : " +kode+" Berhasil Dihapus.",
-                                            text  : 'Berhasil',
+                                            icon  : 'success',
+                                            text : "Data Set User dengan jenis  : " +kode+" Berhasil Dihapus.",
+                                            title  : 'Berhasil',
                                             
                                         }).then(function() {
                                             location.reload();

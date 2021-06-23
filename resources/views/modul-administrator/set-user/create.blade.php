@@ -29,7 +29,7 @@
                         <div class="alert-text">Header Set User</div>
                     </div>
                 </div>
-                <form class="kt-form kt-form--label-right" id="formSetUser" action="{{ route('modul_administrator.set_user.store') }}" method="POST">
+                <form class="form" id="formSetUser" action="{{ route('modul_administrator.set_user.store') }}" method="POST">
 					@csrf
 
 					<div class="form-group row">
@@ -95,7 +95,8 @@
                     <div class="form-group row">
 							<label for="nopeg-input" class="col-2 col-form-label">Nopeg Pekerja</label>
 							<div class="col-10">
-								<select class="form-control kt-select2" name="nopeg" id="nopeg">									
+								<select class="form-control kt-select2" name="nopeg" id="nopeg">	
+                                    <option value="">- Pilih Data -</option>								
 									@foreach ($pekerja_list as $pekerja)
 									    <option value="{{ $pekerja->nopeg }}">{{ $pekerja->nopeg." - ".$pekerja->nama }}</option>
 									@endforeach
@@ -105,7 +106,8 @@
 						<div class="form-group row">
 							<label for="gcg-fungsi-input" class="col-2 col-form-label">GCG Fungsi</label>
 							<div class="col-10">
-								<select class="form-control kt-select2" name="gcg_fungsi_id" id="gcg_fungsi_id">									
+								<select class="form-control kt-select2" name="gcg_fungsi_id" id="gcg_fungsi_id">
+                                    <option value="">- Pilih Data -</option>									
 									@foreach ($gcg_fungsi_list as $fungsi)
 									    <option value="{{ $fungsi->id }}">{{ $fungsi->nama }}</option>
 									@endforeach
@@ -115,7 +117,8 @@
 						<div class="form-group row">
 							<label for="gcg-jabatan-input" class="col-2 col-form-label">GCG Jabatan</label>
 							<div class="col-10">
-								<select class="form-control kt-select2" name="gcg_jabatan_id" id="gcg_jabatan_id">									
+								<select class="form-control kt-select2" name="gcg_jabatan_id" id="gcg_jabatan_id">	
+                                    <option value="">- Pilih Data -</option>								
 									@foreach ($gcg_jabatan_list as $jabatan)
 									    <option value="{{ $jabatan->id }}">{{ $jabatan->nama }}</option>
 									@endforeach

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+
+//load form request
 use Illuminate\Http\Request;
 
 // load model

@@ -17,7 +17,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Set User
+                Edit Set User
             </h3>
         </div>
     </div>
@@ -29,7 +29,7 @@
                         <div class="alert-text">Header Set User</div>
                     </div>
                 </div>
-                <form class="kt-form kt-form--label-right" id="formSetUser" action="{{ route('modul_administrator.set_user.update', $data->userid) }}" method="POST">
+                <form class="form" id="formSetUser" action="{{ route('modul_administrator.set_user.update', $data->userid) }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="userid-input" class="col-2 col-form-label">User ID</label>
@@ -121,7 +121,8 @@
                     <div class="form-group row">
 							<label for="nopeg-input" class="col-2 col-form-label">Nopeg Pekerja</label>
 							<div class="col-10">
-								<select class="form-control kt-select2" name="nopeg" id="nopeg">									
+								<select class="form-control kt-select2" name="nopeg" id="nopeg">
+                                    <option value="">- Pilih Data -</option>									
 									@foreach ($pekerja_list as $pekerja)
 									    <option value="{{ $pekerja->nopeg }}" {{ $data->nopeg == $pekerja->nopeg ? 'selected' : '' }}>{{ $pekerja->nopeg." - ".$pekerja->nama }}</option>
 									@endforeach
@@ -131,7 +132,8 @@
 						<div class="form-group row">
 							<label for="gcg-fungsi-input" class="col-2 col-form-label">GCG Fungsi</label>
 							<div class="col-10">
-								<select class="form-control kt-select2" name="gcg_fungsi_id" id="gcg_fungsi_id">									
+								<select class="form-control kt-select2" name="gcg_fungsi_id" id="gcg_fungsi_id">	
+                                    <option value="">- Pilih Data -</option>								
 									@foreach ($gcg_fungsi_list as $fungsi)
 									    <option value="{{ $fungsi->id }}" {{ $data->gcg_fungsi_id == $fungsi->id ? 'selected' : '' }}>{{ $fungsi->nama }}</option>
 									@endforeach

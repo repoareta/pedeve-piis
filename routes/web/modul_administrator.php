@@ -55,7 +55,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
         Route::get('tabel-menu/create', [TabelMenuController::class, 'create'])->name('create');
         Route::post('tabel-menu/store', [TabelMenuController::class, 'store'])->name('store');
         Route::get('tabel-menu/edit/{id}', [TabelMenuController::class, 'edit'])->name('edit');
-        Route::post('tabel-menu/update', [TabelMenuController::class, 'update'])->name('update');
+        Route::post('tabel-menu/update/{id}', [TabelMenuController::class, 'update'])->name('update');
         Route::delete('tabel-menu/delete', [TabelMenuController::class, 'delete'])->name('delete');
     });
     //end tabel_menu
