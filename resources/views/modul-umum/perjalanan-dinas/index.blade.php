@@ -202,9 +202,9 @@
 									},
 									success: function () {
 										Swal.fire({
-											type  : 'success',
+											icon  : 'success',
 											title : 'Hapus No. Panjar ' + id,
-											text  : 'Berhasil',
+											title  : 'Berhasil',
 											timer : 2000
 										}).then(function() {
 											t.ajax.reload();

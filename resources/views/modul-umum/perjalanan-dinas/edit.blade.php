@@ -25,7 +25,7 @@
                         <div class="alert-text">Header Panjar Dinas</div>
                     </div>
                 </div>
-                <form class="kt-form kt-form--label-right" id="formPanjarDinas" action="{{ route('perjalanan_dinas.update', ['no_panjar' => Request::segment(4)]) }}" method="POST">
+                <form class="form" id="formPanjarDinas" action="{{ route('perjalanan_dinas.update', ['no_panjar' => Request::segment(4)]) }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="spd-input" class="col-2 col-form-label">No. SPD</label>

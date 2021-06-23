@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
 
+// load Request
+use Illuminate\Http\Request;
+use App\Http\Requests\SetFunctionUpdate;
+
 // load model
 use App\Models\UserPdv;
 use App\Models\UserMenu;
@@ -12,9 +16,6 @@ use App\Models\UserMenu;
 use DB;
 use Alert;
 
-// load Request
-use Illuminate\Http\Request;
-use App\Http\Requests\SetFunctionUpdate;
 
 class SetFunctionController extends Controller
 {

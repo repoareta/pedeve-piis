@@ -29,7 +29,7 @@
                         <div class="alert-text">Header Set Function</div>
                     </div>
                 </div>
-                <form class="kt-form kt-form--label-right" id="formSetFunction" action="{{ route('modul_administrator.set_function.update', $user_pdv->userid) }}" method="POST">
+                <form class="form" id="formSetFunction" action="{{ route('modul_administrator.set_function.update', $user_pdv->userid) }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="userid-input" class="col-2 col-form-label">User ID</label>
