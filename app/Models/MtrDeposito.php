@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class MtrDeposito extends Model
 {
     use HasFactory;
+
+    protected $table="mtrdeposito";
+    protected $primaryKey = null;
+    public $incrementing = false;
+    public $timestamps = false;
 }

@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Traits\CompositeKey;
-
 class Jabatan extends Model
 {
-    use HasFactory, CompositeKey;
-    use \Awobaz\Compoships\Compoships;
+    use HasFactory;
 
     protected $table = "sdm_jabatan";
-    protected $primaryKey = ['nopeg', 'kdbag', 'kdjab'];
+    // protected $primaryKey = ['nopeg', 'kdbag', 'kdjab'];
     protected $keyType = 'string';
     public $timestamps = false;
     public $incrementing = false;
@@ -34,8 +31,8 @@ class Jabatan extends Model
         return $this->belongsTo('App\Models\KodeJabatan', 'kdjab', 'kdbag');
     }
 
-    public function kode_jabatan_new()
-    {
-        return $this->belongsTo('App\Models\KodeJabatan', ['kdjab', 'kdbag'], ['kdjab', 'kdbag']);
-    }
+    // public function kode_jabatan_new()
+    // {
+    //     return $this->belongsTo('App\Models\KodeJabatan', ['kdjab', 'kdbag'], ['kdjab', 'kdbag']);
+    // }
 }

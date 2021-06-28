@@ -35,10 +35,10 @@ class UangMukaKerjaController extends Controller
                 $tahun = substr($data_bul->bulan_buku, 0, 4);
             }
         } else {
-            $bulan =date('m');
-            $tahun =date('Y');
+            $bulan = date('m');
+            $tahun = date('Y');
         }
-        return view('umk.index', compact('bulan', 'tahun'));
+        return view('modul-umum.umk.index', compact('bulan', 'tahun'));
     }
 
     public function searchIndex(Request $request)
@@ -85,17 +85,17 @@ class UangMukaKerjaController extends Controller
             return date_format($tgl, 'd F Y');
         })
         ->addColumn('jumlah', function ($data) {
-            return number_format($data->jumlah,2,'.',',');
+            return number_format($data->jumlah, 2, '.', ',');
         })
 
         ->addColumn('radio', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" data-s="Y" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" class="btn-radio" name="btn-radio"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="Y" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" class="btn-radio" name="btn-radio"><span></span></label>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio" ><span></span></label>';
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio" ><span></span></label>';
                 } else {
-                    $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" data-s="N" class="btn-radio" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio"><span></span></label>';
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" class="btn-radio" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio"><span></span></label>';
                 }
             }
             return $radio;
@@ -103,11 +103,11 @@ class UangMukaKerjaController extends Controller
         ->addColumn('action', function ($data) {
             if ($data->app_pbd == 'Y') {
                 $action = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle" ></i></span></p>';
-            }else{
-                if($data->app_sdm == 'Y'){
-                    $action = '<p align="center"><a href="'. route('uang_muka_kerja.approve',['id' => str_replace('/', '-', $data->no_umk)]).'"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top"  title="Batalkan Approval"><i class="fas fa-check-circle" ></i></span></a></p>';
-                }else{
-                    $action = '<p align="center"><a href="'. route('uang_muka_kerja.approve',['id' => str_replace('/', '-', $data->no_umk)]).'"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Klik untuk Approval"><i class="fas fa-ban" ></i></span></a></p>';
+            } else {
+                if ($data->app_sdm == 'Y') {
+                    $action = '<p align="center"><a href="'. route('uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top"  title="Batalkan Approval"><i class="fas fa-check-circle" ></i></span></a></p>';
+                } else {
+                    $action = '<p align="center"><a href="'. route('uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Klik untuk Approval"><i class="fas fa-ban" ></i></span></a></p>';
                 }
             }
             return $action;

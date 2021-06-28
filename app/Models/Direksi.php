@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Direksi extends Model
 {
     use HasFactory;
+
+    protected $table = "cm_perusahaan_afiliasi_direksi";
 }

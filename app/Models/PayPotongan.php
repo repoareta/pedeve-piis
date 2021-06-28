@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PayPotongan extends Model
 {
     use HasFactory;
+
+    protected $table = "pay_potongan";
+    // protected $primaryKey = 'nopek'; // or null
+    public $timestamps = false;
+    public $incrementing = false;
 }

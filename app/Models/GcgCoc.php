@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class GcgCoc extends Model
 {
     use HasFactory;
+
+    protected $table = "gcg_coc";
 }

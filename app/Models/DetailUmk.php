@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailUmk extends Model
 {
+    protected $table="kerja_detail";
     public $incrementing = false;
     public $timestamps = false;
-    protected $table="kerja_detail";
 
     public function umk()
     {
