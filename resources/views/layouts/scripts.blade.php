@@ -225,7 +225,7 @@
 
         $('#no_panjar').select2().on('change', function() {
             var id = $(this).val().split('/').join('-');
-            var url = '{{ route("perjalanan_dinas.show.json") }}';
+            var url = '{{ route("modul_umum.perjalanan_dinas.show.json") }}';
 
             $.ajax({
                 url: url,
@@ -252,7 +252,7 @@
 
         $('#no_umk').select2().on('change', function(e) {
             var id  = $(this).val().split('/').join('-');
-            var url = '{{ route("uang_muka_kerja.show.json") }}';
+            var url = '{{ route("modul_umum.uang_muka_kerja.show.json") }}';
 
             $.ajax({
                 url: url,

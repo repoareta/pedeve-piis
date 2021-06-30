@@ -25,7 +25,7 @@
                         <div class="alert-text">Header Panjar Dinas</div>
                     </div>
                 </div>
-                <form class="form" id="formPanjarDinas" action="{{ route('perjalanan_dinas.update', ['no_panjar' => Request::segment(4)]) }}" method="POST">
+                <form class="form" id="formPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.update', ['no_panjar' => Request::segment(4)]) }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="spd-input" class="col-2 col-form-label">No. SPD</label>
@@ -297,7 +297,7 @@
     function refreshTable() {
 		var table = $('#kt_table').DataTable();
 		table.clear();
-		table.ajax.url("{{ route('perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}").load(function() {
+		table.ajax.url("{{ route('modul_umum.perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}").load(function() {
 			// Callback loads updated row count into a DOM element
 			// (a Bootstrap badge on a menu item in this case):
 			var rowCount = table.rows().count();
@@ -315,7 +315,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax: "{{ route('perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}",
+			ajax: "{{ route('modul_umum.perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}",
 			columns: [
 				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
 				{data: 'no', name: 'no'},
@@ -416,11 +416,11 @@
 				var url, session, swal_title;
 
 				if(state == 'add'){
-					url = "{{ route('perjalanan_dinas.detail.store') }}";
+					url = "{{ route('modul_umum.perjalanan_dinas.detail.store') }}";
 					session = false;
 					swal_title = "Tambah Detail Panjar";
 				} else {
-					url = "{{ route('perjalanan_dinas.detail.update', [
+					url = "{{ route('modul_umum.perjalanan_dinas.detail.update', [
 						'no_panjar' => str_replace('/', '-', $panjar_header->no_panjar),
 						'no_urut' => ':no_urut',
 						'nopek' => ':nopek'
@@ -493,7 +493,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('perjalanan_dinas.detail.delete') }}",
+								url: "{{ route('modul_umum.perjalanan_dinas.detail.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {
@@ -533,7 +533,7 @@
 					var no_urut = $(this).val().split('-')[0];
 					var no_nopek = $(this).val().split('-')[1];
 					$.ajax({
-						url: "{{ route('perjalanan_dinas.detail.show.json') }}",
+						url: "{{ route('modul_umum.perjalanan_dinas.detail.show.json') }}",
 						type: 'GET',
 						data: {
 							"no_urut": no_urut,

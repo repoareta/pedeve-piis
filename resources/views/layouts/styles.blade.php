@@ -52,4 +52,8 @@
         margin: auto;
         margin-top: 30px;
     }
+
+    .dataTables_wrapper .dataTable {
+        border-radius: 0rem;
+    }
 </style>

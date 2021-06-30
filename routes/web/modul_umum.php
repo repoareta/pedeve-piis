@@ -15,7 +15,7 @@ use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainDetailController;
 use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasDetailController;
 
-Route::prefix('umum')->group(function () {
+Route::prefix('umum')->name('modul_umum.')->group(function () {
 
     // PERJALANAN DINAS START
     // Route assigned name "perjalanan_dinas.index"...
@@ -192,7 +192,8 @@ Route::prefix('umum')->group(function () {
         Route::get('vendor/index-json', [VendorController::class, 'indexJson'])->name('index.json');
         Route::get('vendor/create', [VendorController::class, 'create'])->name('create');
         Route::post('vendor/store', [VendorController::class, 'store'])->name('store');
-        Route::get('vendor/edit/{id}', [VendorController::class, 'edit'])->name('edit');
+        Route::get('vendor/edit/{vendor}', [VendorController::class, 'edit'])->name('edit');
+        Route::post('vendor/update/{vendor}', [VendorController::class, 'update'])->name('update');
         Route::delete('vendor/delete', [VendorController::class, 'delete'])->name('delete');
     });
     //END VENDOR

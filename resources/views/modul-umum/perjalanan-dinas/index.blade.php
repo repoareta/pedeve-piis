@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
 					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -94,7 +94,7 @@
 			serverSide: true,
 			searching : false,
 			ajax      : {
-				url: "{{ route('perjalanan_dinas.index.json') }}",
+				url: "{{ route('modul_umum.perjalanan_dinas.index.json') }}",
 				data: function (d) {
 					d.nopanjar = $('input[name=nopanjar]').val();
 				}
@@ -148,7 +148,7 @@
 						});
 					} else {
 						var id = $(this).val().split("/").join("-");
-						var url = '{{ route("perjalanan_dinas.edit", ":no_panjar") }}';
+						var url = '{{ route("modul_umum.perjalanan_dinas.edit", ":no_panjar") }}';
 						// go to page edit
 						window.location.href = url.replace(':no_panjar',id);
 					}
@@ -193,7 +193,7 @@
 						.then((result) => {
 							if (result.value) {
 								$.ajax({
-									url: "{{ route('perjalanan_dinas.delete') }}",
+									url: "{{ route('modul_umum.perjalanan_dinas.delete') }}",
 									type: 'DELETE',
 									dataType: 'json',
 									data: {
@@ -250,7 +250,7 @@
 						if (result.value) {
 							var id = $(this).val().split("/").join("-");
 							// go to page edit
-							var url = '{{ route("perjalanan_dinas.export", ":no_panjar") }}';
+							var url = '{{ route("modul_umum.perjalanan_dinas.export", ":no_panjar") }}';
 							// go to page edit
 							window.open(url.replace(':no_panjar',id), '_blank');
 						}
@@ -266,12 +266,8 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
-
-					// str.replace("Microsoft", "W3Schools");
-
 					// open modal
 					$('#cetakModal').modal('show');
-
 					// fill no_panjar to no_panjar field
 					$('#no_panjar_dinas').val(id);
 				});

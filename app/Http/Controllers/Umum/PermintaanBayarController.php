@@ -11,13 +11,11 @@ use App\Models\PermintaanBayarDetail;
 use App\Models\UmuDebetNota;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use Carbon\Carbon;
 use DB;
-use Session;
 use DomPDF;
 use Alert;
 
-class PermintaanBayarHeaderController extends Controller
+class PermintaanBayarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,10 +31,10 @@ class PermintaanBayarHeaderController extends Controller
                 $tahun = substr($data_bul->bulan_buku, 0, 4);
             }
         } else {
-            $bulan =date('m');
-            $tahun =date('Y');
+            $bulan = date('m');
+            $tahun = date('Y');
         }
-        return view('permintaan_bayar.index', compact('bulan', 'tahun'));
+        return view('modul-umum.permintaan-bayar.index', compact('bulan', 'tahun'));
     }
 
     public function searchIndex(Request $request)
@@ -79,12 +77,12 @@ class PermintaanBayarHeaderController extends Controller
        })
         ->addColumn('radio', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" class="btn-radio" data-s="Y" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio" ><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio" ><span></span></label>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $radio =  '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
+                    $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
                 } else {
-                    $radio =  '<label  class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
+                    $radio =  '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
                 }
             }
             return $radio;
@@ -128,7 +126,7 @@ class PermintaanBayarHeaderController extends Controller
             $permintaan_header_count= sprintf("%03s", 1). '/CS/' . date('d/m/Y');
         }
         $vendor = Vendor::all();
-        return view('permintaan_bayar.create', compact('debit_nota', 'permintaan_header_count', 'vendor', 'bulan_buku'));
+        return view('modul-umum.permintaan-bayar.create', compact('debit_nota', 'permintaan_header_count', 'vendor', 'bulan_buku'));
     }
 
     /**
@@ -283,7 +281,7 @@ class PermintaanBayarHeaderController extends Controller
         } else {
             $no_bayar_details= 1;
         }
-        return view('permintaan_bayar.edit', compact(
+        return view('modul-umum.permintaan-bayar.edit', compact(
             'data_bayars',
             'debit_nota',
             'data_account',
@@ -376,7 +374,7 @@ class PermintaanBayarHeaderController extends Controller
     {
         $nobayar=str_replace('-', '/', $id);
         $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->select('*')->get();
-        return view('permintaan_bayar.approv', compact('data_app'));
+        return view('modul-umum.permintaan-bayar.approv', compact('data_app'));
     }
 
     //surat permintaan bayar
@@ -399,7 +397,7 @@ class PermintaanBayarHeaderController extends Controller
             $pemohons = "IA & RM";
         }
         $data_report = PermintaanBayarHeader::where('no_bayar', $nobayar)->select('*')->get();
-        return view('permintaan_bayar.rekap', compact(
+        return view('modul-umum.permintaan-bayar.rekap', compact(
             'data_report',
             'setuju',
             'setujus',
@@ -412,7 +410,7 @@ class PermintaanBayarHeaderController extends Controller
     //rekap permintaan bayar
     public function rekapRange()
     {
-        return view('permintaan_bayar.rekaprange');
+        return view('modul-umum.permintaan-bayar.rekaprange');
     }
 
 
@@ -433,7 +431,7 @@ class PermintaanBayarHeaderController extends Controller
         }
         $bayar_detail_list = PermintaanBayarDetail::where('no_bayar', $nobayar)->get();
         $list_acount =PermintaanBayarDetail::where('no_bayar', $nobayar)->select('nilai')->sum('nilai');
-        $pdf = DomPDF::loadview('permintaan_bayar.export', compact('list_acount', 'data_report', 'bayar_detail_list', 'request', 'data_rek'))->setPaper('a4', 'Portrait');
+        $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.export', compact('list_acount', 'data_report', 'bayar_detail_list', 'request', 'data_rek'))->setPaper('a4', 'Portrait');
         // return $pdf->download('rekap_permint_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();
     }
@@ -473,7 +471,7 @@ class PermintaanBayarHeaderController extends Controller
                 ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
                 ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                 ->get();
-                $pdf = DomPDF::loadview('permintaan_bayar.exportrange', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
+                $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.exportrange', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
                 $canvas = $dom_pdf ->get_canvas();
@@ -510,7 +508,7 @@ class PermintaanBayarHeaderController extends Controller
                 ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                 ->get();
                 $excel=new Spreadsheet;
-                return view('permintaan_bayar.exportexcel', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
+                return view('modul-umum.permintaan-bayar.exportexcel', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
@@ -541,7 +539,7 @@ class PermintaanBayarHeaderController extends Controller
                 ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                 ->get();
                 $excel=new Spreadsheet;
-                return view('permintaan_bayar.exportcsv', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
+                return view('modul-umum.permintaan-bayar.exportcsv', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
             }
         }
     }

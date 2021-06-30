@@ -16,7 +16,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('perjalanan_dinas.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.perjalanan_dinas.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('perjalanan_dinas.pertanggungjawaban.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -45,7 +45,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('uang_muka_kerja.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.uang_muka_kerja.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('uang_muka_kerja.pertanggungjawaban.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -74,7 +74,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('anggaran.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.anggaran.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -82,7 +82,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('anggaran.submain.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.anggaran.submain.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('anggaran.submain.detail.index') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.anggaran.submain.detail.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('anggaran.report') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.anggaran.report') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -119,7 +119,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('perjalanan_dinas.rekap') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.perjalanan_dinas.rekap') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -127,7 +127,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('uang_muka_kerja.rekap.range') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.uang_muka_kerja.rekap.range') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -135,7 +135,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('permintaan_bayar.rekap.range') }}" class="menu-link">
+                            <a href="{{ route('modul_umum.permintaan_bayar.rekap.range') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -145,16 +145,16 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item" aria-haspopup="true">
-                <a href="{{ route('permintaan_bayar.index') }}" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_umum.permintaan_bayar.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_umum.permintaan_bayar.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
                     <span class="menu-text">Permintaan Bayar</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
-                <a href="{{ route('vendor.index') }}" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_umum.vendor.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_umum.vendor.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>

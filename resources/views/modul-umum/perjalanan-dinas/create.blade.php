@@ -4,10 +4,6 @@
     {{ Breadcrumbs::render('set-user') }}
 @endsection
 
-@push('page-styles')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}">
-@endpush
-
 @section('content')
 
 <div class="card card-custom gutter-b">
@@ -29,7 +25,7 @@
                         <div class="alert-text">Header Panjar Dinas</div>
                     </div>
                 </div>
-                <form class="form" id="formPanjarDinas" action="{{ route('perjalanan_dinas.store') }}" method="POST">
+                <form class="form" id="formPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="spd-input" class="col-2 col-form-label">No. SPD</label>
@@ -294,7 +290,7 @@
                     $(this).unbind('submit').submit();
                 }
                 else if (result.dismiss === Swal.DismissReason.cancel) {
-                    $(this).append('<input type="hidden" name="url" value="pekerja.index" />');
+                    $(this).append('<input type="hidden" name="url" value="modul_umum.perjalanan_dinas.index" />');
                     $(this).unbind('submit').submit();
                 }
             });
