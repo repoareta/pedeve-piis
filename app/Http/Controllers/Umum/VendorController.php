@@ -26,7 +26,7 @@ class VendorController extends Controller
         $vendor = Vendor::orderBy('id', 'DESC');
         return datatables()->of($vendor)
             ->addColumn('action', function ($vendor) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$vendor->id.'" value="'.$vendor->id.'" name="btn-radio"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$vendor->id.'" data-nama="'.$vendor->nama.'" value="'.$vendor->id.'" name="btn-radio"><span></span></label>';
 
                 return $radio;
             })

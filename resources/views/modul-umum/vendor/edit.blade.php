@@ -19,7 +19,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form id="formVendor" action="{{ route('vendor.update', ['vendor' => $vendor->id]) }}" method="POST">
+                <form id="formVendor" action="{{ route('modul_umum.vendor.update', ['vendor' => $vendor->id]) }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="alert alert-custom alert-default" role="alert">
@@ -66,8 +66,8 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{ route('vendor.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
+                            <a  href="{{ route('modul_umum.vendor.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
                         </div>
                     </div>
                 </form>

@@ -92,22 +92,21 @@
                 }
                 $(this).addClass('selected');
             }
-        } );
+        });
     
         //edit vendor
         $('#editRow').click(function(e) {
-                e.preventDefault();
-    
-                if($('input[class=btn-radio]').is(':checked')) { 
-                    $("input[class=btn-radio]:checked").each(function(){
-                        var id = $(this).attr('data-id');
-                        location.replace("{{url('umum/vendor/edit')}}"+ '/' +id);
-                    });
-                } else {
-                    swalAlertInit('ubah');
-                }
-            });
-    
+            e.preventDefault();
+            if($('input[class=btn-radio]').is(':checked')) { 
+                $("input[class=btn-radio]:checked").each(function(){
+                    var id = $(this).attr('data-id');
+                    var url = '{{ route("modul_umum.vendor.edit", ":vendor_id") }}';
+                    window.location.href = url.replace(':vendor_id',id);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
     
         //delete vendor
         $('#deleteRow').click(function(e) {
@@ -115,6 +114,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function() {
                     var id = $(this).attr('data-id');
+                    var nama = $(this).attr('data-nama');
                     // delete stuff
                     const swalWithBootstrapButtons = Swal.mixin({
                         customClass: {
@@ -125,8 +125,8 @@
                         })
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
-                            text: "No. Vendor : " + id,
-                            type: 'warning',
+                            text: "Nama Vendor : " + nama,
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',
@@ -144,8 +144,8 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
-                                        title : 'Hapus No. Vendor ' + id,
+                                        icon  : 'success',
+                                        title : 'Hapus Nama Vendor ' + nama,
                                         text  : 'Berhasil',
                                         timer : 2000
                                     }).then(function() {
@@ -162,8 +162,7 @@
             } else {
                 swalAlertInit('hapus');
             }
-            
         });
     });		
-    </script>
+</script>
 @endpush
