@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\PUmkHeader;
 use App\Models\PUmkDetail;
 use App\Models\UmkHeader;
-use App\Models\SdmMasterPegawai;
+use App\Models\Pekerja;
 use App\Models\KodeBagian;
 use App\Models\KodeJabatan;
 
@@ -33,7 +33,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->orderBy('year', 'DESC')
         ->get([DB::raw('extract(year from tgl_pumk) as year')]);
 
-        return view('umk_pertanggungjawaban.index', compact('tahun'));
+        return view('modul-umum.umk_pertanggungjawaban.index', compact('tahun'));
     }
 
     /**
@@ -97,7 +97,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
      */
     public function create()
     {
-        $pegawai_list = SdmMasterPegawai::where('status', '<>', 'P')
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -118,7 +118,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         
         $c_judex_list = DB::select("select kode,nama from cashjudex order by kode");
 
-        return view('umk_pertanggungjawaban.create', compact(
+        return view('modul-umum.umk_pertanggungjawaban.create', compact(
             'pegawai_list',
             'umk_header_list',
             'pumk_header_count',
@@ -138,7 +138,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
      */
     public function store(Request $request)
     {
-        $pegawai = SdmMasterPegawai::find($request->nopek);
+        $pegawai = Pekerja::find($request->nopek);
         
         $pumk_header = new PUmkHeader;
         $pumk_header->no_pumk = $request->no_pumk;
@@ -193,7 +193,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
         ->first();
 
-        $pegawai_list = SdmMasterPegawai::where('status', '<>', 'P')
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -217,7 +217,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         
         $c_judex_list = DB::select("select kode,nama from cashjudex order by kode");
 
-        return view('umk_pertanggungjawaban.edit', compact(
+        return view('modul-umum.umk_pertanggungjawaban.edit', compact(
             'pegawai_list',
             'umk_header_list',
             'jabatan_list',
@@ -239,7 +239,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
      */
     public function update(Request $request, $no_pumk)
     {
-        $pegawai = SdmMasterPegawai::find($request->nopek);
+        $pegawai = Pekerja::find($request->nopek);
 
         $no_pumk = str_replace('-', '/', $no_pumk);
         
@@ -280,7 +280,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
         ->first();
 
-        $pdf = DomPDF::loadview('umk_pertanggungjawaban.export_row', [
+        $pdf = DomPDF::loadview('modul-umum.umk_pertanggungjawaban.export_row', [
             'pumk_header' => $pumk_header,
             'pekerja_jabatan' => $pekerja_jabatan
         ]);
@@ -291,7 +291,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
     {
         $no_pumk = str_replace('-', '/', $id);
         $pumk_header = PUmkHeader::where('no_pumk', $no_pumk)->first();
-        return view('umk_pertanggungjawaban.approv', compact('pumk_header'));
+        return view('modul-umum.umk_pertanggungjawaban.approv', compact('pumk_header'));
     }
 
     public function storeApp(Request $request)
