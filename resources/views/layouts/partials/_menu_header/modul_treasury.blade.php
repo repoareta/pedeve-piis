@@ -1,4 +1,4 @@
-<li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+<li class="menu-item menu-item-submenu menu-item-rel {{ Route::is('penerimaan_kas.*') ? 'menu-item-active' : null }}" data-menu-toggle="click" aria-haspopup="true">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="menu-text">Treasury</span>
         <i class="menu-arrow"></i>
@@ -256,8 +256,8 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item" aria-haspopup="true">
-                <a href="#" class="menu-link">
+            <li class="menu-item {{ Route::is('penerimaan_kas.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                <a href="{{ route('penerimaan_kas.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>

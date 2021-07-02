@@ -15,10 +15,10 @@ class Kasdoc extends Model
     public $timestamps = false;
     public $incrementing = false;
 
-    // public function storejk()
-    // {
-    //     return $this->belongsTo(Storejk::class);
-    // }
+    public function storejk()
+    {
+        return $this->belongsTo(StoreJK::class, 'store', 'kodestore');
+    }
 
     public function kasline()
     {
