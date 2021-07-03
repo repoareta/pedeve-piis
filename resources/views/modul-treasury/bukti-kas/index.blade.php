@@ -4,7 +4,6 @@
     {{ Breadcrumbs::render('set-user') }}
 @endsection
 
-
 @push('page-styles')
 
 @endpush
@@ -23,12 +22,12 @@
             </h3>
         </div>
     </div>
-    
+
     <div class="card-body">
 
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form" id="search-form" >
+                <form class="kt-form" id="search-form">
                     <div class="form-group row col-12">
                         <label for="" class="col-form-label">No. Bukti</label>
                         <div class="col-2">
@@ -37,13 +36,16 @@
                         <label for="" class="col-form-label">Bulan</label>
                         <div class="col-2">
                             <select name="bulan" class="form-control selectpicker" data-live-search="true">
-                                <option value="" >-- Pilih --</option>
+                                <option value="">-- Pilih --</option>
                                 @foreach ($daftarBulan as $month)
-                                <option value="{{ $month['month_number'] }}" {{ $bulan == $month['month_number'] ? 'selected' : null }} >{{ $month['month_name'] }}</option>    
+                                <option value="{{ $month['month_number'] }}"
+                                    {{ $bulan == $month['month_number'] ? 'selected' : null }}>
+                                    {{ $month['month_name'] }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
-        
+
                         <label for="" class="col-form-label">Tahun</label>
                         <div class="col-2">
                             <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>
@@ -84,5 +86,47 @@
 </div>
 @endsection
 @push('page-scripts')
-
+<script>
+    $(document).ready(function () {
+        $('#kt_table').DataTable({
+			processing: true,
+			serverSide: true,
+			searching: false,
+			lengthChange: false,
+			pageLength: 200,
+			scrollX:        true,
+			
+			language: {
+			processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
+			},
+			ajax      : {
+				url: "{{route('penerimaan_kas.ajax')}}",
+				type : "POST",
+				dataType : "JSON",
+				headers: {
+				'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				data: function (d) {
+					d.bukti = $('input[name=bukti]').val();
+					d.bulan = $('select[name=bulan]').val();
+					d.tahun = $('input[name=tahun]').val();
+				}
+			},
+			columns: [
+				{ data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button' },
+                { data: 'no_dok', name: 'no_dok' },
+                { data: 'tanggal', name: 'tanggal' },
+                { data: 'voucher', name: 'voucher' },
+                { data: 'kepada', name: 'kepada' },
+                { data: 'jk', name: 'jk' },
+                { data: 'store', name: 'store' },
+                { data: 'ci', name: 'ci' },
+                { data: 'rate', name: 'rate' },
+                { data: 'nilai_dokumen', name: 'nilai_dokumen' },
+                { data: 'status', name: 'status' },
+			]
+			
+	    });
+    });
+</script>
 @endpush

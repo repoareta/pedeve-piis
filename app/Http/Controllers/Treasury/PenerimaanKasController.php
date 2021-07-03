@@ -41,7 +41,7 @@ class PenerimaanKasController extends Controller
      */
     public function ajax(Request $request)
     {
-        return $this->penerimaanKasService->datatables($request, $this->timeTrans->getStringDate());
+        return $this->penerimaanKasService->getDatatables($this->timeTrans->getStringDate());
     }
 
     /**

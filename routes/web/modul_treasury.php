@@ -10,7 +10,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "penerimaan_kas.index"...
     Route::name('penerimaan_kas.')->group(function () {
         Route::get('penerimaan-kas', [PenerimaanKasController::class, 'index'])->name('index');
-        Route::get('penerimaan-kas/search', [PenerimaanKasController::class, 'ajax'])->name('ajax');
+        Route::post('penerimaan-kas/search', [PenerimaanKasController::class, 'ajax'])->name('ajax');
         Route::get('penerimaan-kas/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
         Route::get('penerimaan-kas/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
         Route::get('penerimaan-kas/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
