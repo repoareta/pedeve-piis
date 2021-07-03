@@ -48,10 +48,10 @@
 
                         <label for="" class="col-form-label">Tahun</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+                            <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" size="4" maxlength="4" autocomplete='off'>
                         </div>
                         <div class="col-2">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
                         </div>
                     </div>
                 </form>
@@ -75,6 +75,7 @@
                             <th>KURS</th>
                             <th>NILAI</th>
                             <th>STATUS</th>
+                            <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,24 +88,27 @@
 @endsection
 @push('page-scripts')
 <script>
+    function redirectToApproval(id) {
+        location.replace(`{{ url('perbendaharaan/penerimaan-kas') }}` + `/${id}` + '/approval');
+    }
+
     $(document).ready(function () {
-        $('#kt_table').DataTable({
+        var keenTable = $('#kt_table').DataTable({
 			processing: true,
 			serverSide: true,
 			searching: false,
 			lengthChange: false,
-			pageLength: 200,
-			scrollX:        true,
-			
+			pageLength: 50,
+			scrollX: true,
 			language: {
 			processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
 			},
-			ajax      : {
-				url: "{{route('penerimaan_kas.ajax')}}",
+			ajax: {
+				url: "{{ route('penerimaan_kas.ajax') }}",
 				type : "POST",
 				dataType : "JSON",
 				headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
+				    'X-CSRF-Token': '{{ csrf_token() }}',
 				},
 				data: function (d) {
 					d.bukti = $('input[name=bukti]').val();
@@ -123,10 +127,16 @@
                 { data: 'ci', name: 'ci' },
                 { data: 'rate', name: 'rate' },
                 { data: 'nilai_dokumen', name: 'nilai_dokumen' },
-                { data: 'status', name: 'status' },
+                { data: 'status', name: 'status', orderable: false, searchable: false, },
+                { data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-center' },
 			]
 			
 	    });
+
+        $('#search-form').on('submit', function(e) {
+            keenTable.draw();
+            e.preventDefault();
+        });
     });
 </script>
 @endpush

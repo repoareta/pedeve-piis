@@ -74,12 +74,38 @@ class PenerimaanKasService
 
         return datatables()->of($formattedKasData)
             ->addColumn('radio', function ($formattedKasData) {
-                return '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" value="' . $formattedKasData['no_dok'] . '" class="btn-radio" name="btn-radio"><span></span></label>';
+                return '
+                    <label class="kt-radio kt-radio--bold kt-radio--brand">
+                        <input type="radio" value="' . $formattedKasData['no_dok'] . '" class="btn-radio" name="btn-radio">
+                        <span></span>
+                    </label>';
             })
             ->addColumn('status', function ($formattedKasData) {
-                return '<span class="badge badge-' . ($formattedKasData['status_verified'] == 'N' ? 'danger' : 'success') . '">' . ($formattedKasData['status_verified'] == 'N' ? 'Belum Diverivikasi' : 'Terverivikasi') . '</span>';
+                return '
+                <span class="badge badge-' . ($formattedKasData['status_verified'] == 'N' ? 'danger' : 'success') . '">' . ($formattedKasData['status_verified'] == 'N' ? 'Belum Diverifikasi' : 'Terverifikasi') . '</span>
+                <span class="badge badge-' . ($formattedKasData['status_paid'] == 'N' ? 'danger' : 'success') . '">' . ($formattedKasData['status_paid'] == 'N' ? 'Belum Terbayar' : 'Telah Terbayar') . '</span>
+                ';
             })
-            ->rawColumns(['radio', 'status'])
+            ->addColumn('action', function ($formattedKasData) {
+                $onClickAction = 'onclick="redirectToApproval(`' . str_replace('/', '-', $formattedKasData['no_dok']) . '`)"';
+
+                $titleButton = $formattedKasData['status_paid'] == 'Y' ? 'Batalkan Pembayaran' : 'Klik untuk melakukan Pembayaran';
+
+                $actionButtonOpenTag = '<button class="btn btn-sm btn-clean btn-icon" title="' . $titleButton . '" ' . $onClickAction . '>';
+                
+                $actionButtonCloseTag = '</button>';
+
+                $iconButton = '<i class="la la-' . ($formattedKasData['status_paid'] == 'Y' ? 'times' : 'check') . '"></i>';
+
+                $actionButton = $actionButtonOpenTag . $iconButton . $actionButtonCloseTag;
+
+                if ($formattedKasData['status_verified'] == 'Y') {
+                    $actionButton = null;
+                }
+
+                return $formattedKasData['status_verified'] == 'N' ? $actionButton : null;
+            })
+            ->rawColumns(['radio', 'status', 'action'])
             ->make(true);
     }
 }
