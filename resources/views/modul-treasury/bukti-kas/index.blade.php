@@ -89,7 +89,7 @@
 @push('page-scripts')
 <script>
     function redirectToApproval(id) {
-        location.replace(`{{ url('perbendaharaan/penerimaan-kas') }}` + `/${id}` + '/approval');
+        location.href = `{{ url('perbendaharaan/penerimaan-kas') }}` + `/${id}` + '/approval';
     }
 
     $(document).ready(function () {
