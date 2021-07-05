@@ -15,6 +15,12 @@ class Kasdoc extends Model
     public $timestamps = false;
     public $incrementing = false;
 
+    protected $fillable = [
+        'paid',
+        'paidby',
+        'paiddate',
+    ];
+
     public function storejk()
     {
         return $this->belongsTo(StoreJK::class, 'store', 'kodestore');

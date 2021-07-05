@@ -6,11 +6,15 @@ use App\Http\Controllers\Treasury\PenerimaanKasController;
 
 Route::prefix('perbendaharaan')->group(function () {
 
-    //Penerimaan kas
+    // Penerimaan kas
     // Route assigned name "penerimaan_kas.index"...
     Route::name('penerimaan_kas.')->group(function () {
         Route::get('penerimaan-kas', [PenerimaanKasController::class, 'index'])->name('index');
         Route::post('penerimaan-kas/search', [PenerimaanKasController::class, 'ajax'])->name('ajax');
+        Route::get('penerimaan-kas/{documentId}/approval', [PenerimaanKasController::class, 'approval'])->name('approval');
+        Route::post('penerimaan-kas/{documentId}/approve', [PenerimaanKasController::class, 'approve'])->name('approve');
+        Route::get('penerimaan-kas/{documentId}/cancel-approval', [PenerimaanKasController::class, 'cancel'])->name('approval.cancel-form');
+        Route::post('penerimaan-kas/{documentId}/cancel-approval', [PenerimaanKasController::class, 'cancelApproval'])->name('approval.cancel');
         Route::get('penerimaan-kas/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
         Route::get('penerimaan-kas/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
         Route::get('penerimaan-kas/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
@@ -23,13 +27,11 @@ Route::prefix('perbendaharaan')->group(function () {
         Route::post('penerimaan-kas/kepada/json', 'PenerimaanKasController@kepadaJson')->name('kepadaJson');
         Route::post('penerimaan-kas/store', 'PenerimaanKasController@store')->name('store');
         Route::post('penerimaan-kas/store-detail', 'PenerimaanKasController@storeDetail')->name('store.detail');
-        Route::post('penerimaan-kas/store_app', 'PenerimaanKasController@storeApp')->name('store.app');
         Route::get('penerimaan-kas/edit/{no}', 'PenerimaanKasController@edit')->name('edit');
         Route::get('penerimaan-kas/editdetail/{id}/{no}', 'PenerimaanKasController@editDetail')->name('edit.detail');
         Route::post('penerimaan-kas/update', 'PenerimaanKasController@update')->name('update');
         Route::delete('penerimaan-kas/delete', 'PenerimaanKasController@delete')->name('delete');
         Route::delete('penerimaan-kas/deletedetail', 'PenerimaanKasController@deleteDetail')->name('delete.detail');
-        Route::get('penerimaan-kas/approv/{id}/{status}', 'PenerimaanKasController@approv')->name('approv');
         Route::get('penerimaan-kas/export', 'PenerimaanKasController@export')->name('export');
     });
     //end penerimaan kas

@@ -4,20 +4,28 @@ namespace App\Services;
 
 use App\Http\Resources\PenerimaanKasResource;
 use App\Models\Kasdoc;
+use App\Models\Kasline;
+use App\Models\SaldoStore;
 use DB;
 use Illuminate\Http\Request;
 
 class PenerimaanKasService
 {
     protected $kasHeader;
+    protected $kasLine;
     protected $stringDate;
+    protected $saldoStore;
     protected $request;
 
     public function __construct(
         Kasdoc $kasHeader,
+        Kasline $kasLine,
         Request $request,
+        SaldoStore $saldoStore
     ) {
         $this->kasHeader = $kasHeader;
+        $this->kasLine = $kasLine;
+        $this->saldoStore = $saldoStore;
         $this->request = $request;
     }
 
@@ -87,7 +95,7 @@ class PenerimaanKasService
                 ';
             })
             ->addColumn('action', function ($formattedKasData) {
-                $onClickAction = 'onclick="redirectToApproval(`' . str_replace('/', '-', $formattedKasData['no_dok']) . '`)"';
+                $onClickAction = 'onclick="redirectToApproval(`' . str_replace('/', '-', $formattedKasData['no_dok']) . '`, ' . ($formattedKasData['status_paid'] == 'Y' ? 'true' : 'false') . ')"';
 
                 $titleButton = $formattedKasData['status_paid'] == 'Y' ? 'Batalkan Pembayaran' : 'Klik untuk melakukan Pembayaran';
 
@@ -107,5 +115,79 @@ class PenerimaanKasService
             })
             ->rawColumns(['radio', 'status', 'action'])
             ->make(true);
+    }
+
+    public function getKasDocument($documentId, ?array $relations = null)
+    {
+        $documentId = str_replace('-', '/', $documentId);
+
+        $document = $this->kasHeader;
+
+        if ($relations) {
+            $document = $document->with($relations);
+        }
+
+        return $document->where('docno', $documentId)->first();
+    }
+
+    public function getTotalKasline($documentId)
+    {
+        return $this->kasLine->where([
+            'penutup' => 'N',
+            'docno' => str_replace('-', '/', $documentId),
+        ])->sum('totprice');
+    }
+
+    public function approval($documentId, $request, bool $cancelation = false)
+    {
+        $bayar = $cancelation ? -1 : 1;
+
+        $kasHeader = $this->getKasDocument($documentId);
+
+        $angkaAkhir = -9999999999999999;
+
+        $tanggalRekap = DB::table('rekapkas')
+                            ->select(DB::raw('max(tglrekap) as tanggal_rekap'))
+                            ->where('jk', $kasHeader->jk)
+                            ->where('store', $kasHeader->store)
+                            ->first();
+
+        if (empty($tanggalRekap)) {
+            $tanggalRekap = date(now());
+        }
+
+        $totalKasLine = $this->getTotalKasline($documentId);
+
+        $selisih = round($totalKasLine, 0) * $bayar;
+
+        if (($selisih + $angkaAkhir) >= 0) {
+            return false;
+        }
+
+        if ($selisih >= 0) {
+            $debet = $selisih;
+            $kredit = 0;
+        } else {
+            $debet = 0;
+            $kredit = $selisih;
+        }
+
+        $saldo = $this->saldoStore->where('jk', $kasHeader->jk)
+                            ->where('nokas', $kasHeader->store)
+                            ->first();
+
+        $saldo->update([
+            'saldoakhir' => round($saldo->saldoakhir) + round($selisih),
+            'debet' => round($saldo->debet) + $debet,
+            'kredit' => round($saldo->kredit) + $kredit
+        ]);
+
+        $kasHeader->update([
+            'paid' => $cancelation ? 'N' : 'Y',
+            'paidby' => $request->userid,
+            'paiddate' => $request->tanggal_approval,
+        ]);
+
+        return true;
     }
 }

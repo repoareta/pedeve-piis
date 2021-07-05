@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('breadcrumbs')
-    {{ Breadcrumbs::render('set-user') }}
-@endsection
-
 @push('page-styles')
 
 @endpush
@@ -88,8 +84,10 @@
 @endsection
 @push('page-scripts')
 <script>
-    function redirectToApproval(id) {
-        location.href = `{{ url('perbendaharaan/penerimaan-kas') }}` + `/${id}` + '/approval';
+    function redirectToApproval(id, cancelation) {
+        let approvalUrl = cancelation ? '/cancel-approval' : '/approval';
+
+        location.href = `{{ url('perbendaharaan/penerimaan-kas') }}` + `/${id}` + approvalUrl;
     }
 
     $(document).ready(function () {
