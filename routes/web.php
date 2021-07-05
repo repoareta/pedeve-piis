@@ -16,12 +16,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-
-Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('login_user.postlogin');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/error', [AuthController::class, 'error'])->name('error');
+Route::group(['middleware'=> ['guest']], function () {
+    Route::get('/', [AuthController::class, 'login'])->name('login');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login_user.postlogin');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/error', [AuthController::class, 'error'])->name('error');
+});
 
 Route::group(['middleware'=> ['auth']], function () {
     // Login Success
