@@ -8,7 +8,7 @@
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
 
-    <div class="card-header justify-content-start">
+    <div class="card-header">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
@@ -16,6 +16,22 @@
             <h3 class="card-label">
                 Bukti Kas/Bank
             </h3>
+            <div class="text-right">
+                @if($userAbility->tambah == 1)
+                <a href="{{ route('penerimaan_kas.create.kas') }}">
+                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                        <i class="fas icon-2x fa-plus-circle text-success"></i>
+                    </span>
+                </a>
+                @endif
+                @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
+                <a href="#">
+                    <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                        <i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+                    </span>
+                </a>
+                @endif
+            </div>
         </div>
     </div>
 
@@ -92,17 +108,17 @@
 
     $(document).ready(function () {
         var keenTable = $('#kt_table').DataTable({
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
-			pageLength: 50,
-			scrollX: true,
-			language: {
-			processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
+                processing: true,
+                serverSide: true,
+                searching: false,
+                lengthChange: false,
+                pageLength: 50,
+                scrollX: true,
+                language: {
+                processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
 			},
 			ajax: {
-				url: "{{ route('penerimaan_kas.ajax') }}",
+				url: "{{ route('penerimaan_kas.search') }}",
 				type : "POST",
 				dataType : "JSON",
 				headers: {
@@ -135,6 +151,18 @@
             keenTable.draw();
             e.preventDefault();
         });
+
+        $('#kt_table tbody').on( 'click', 'tr', function (event) {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                keenTable.$('tr.selected').removeClass('selected');
+                if (event.target.type !== 'radio') {
+                    $(':radio', this).trigger('click');
+                }
+                $(this).addClass('selected');
+            }
+        } );
     });
 </script>
 @endpush

@@ -6,6 +6,7 @@ use App\Http\Resources\PenerimaanKasResource;
 use App\Models\Kasdoc;
 use App\Models\Kasline;
 use App\Models\SaldoStore;
+use App\Models\StoreJK;
 use DB;
 use Illuminate\Http\Request;
 
@@ -15,17 +16,20 @@ class PenerimaanKasService
     protected $kasLine;
     protected $stringDate;
     protected $saldoStore;
+    protected $storeJK;
     protected $request;
 
     public function __construct(
         Kasdoc $kasHeader,
         Kasline $kasLine,
         Request $request,
-        SaldoStore $saldoStore
+        SaldoStore $saldoStore,
+        StoreJK $storeJK
     ) {
         $this->kasHeader = $kasHeader;
         $this->kasLine = $kasLine;
         $this->saldoStore = $saldoStore;
+        $this->storeJK = $storeJK;
         $this->request = $request;
     }
 
@@ -83,7 +87,7 @@ class PenerimaanKasService
         return datatables()->of($formattedKasData)
             ->addColumn('radio', function ($formattedKasData) {
                 return '
-                    <label class="kt-radio kt-radio--bold kt-radio--brand">
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
                         <input type="radio" value="' . $formattedKasData['no_dok'] . '" class="btn-radio" name="btn-radio">
                         <span></span>
                     </label>';
@@ -189,5 +193,56 @@ class PenerimaanKasService
         ]);
 
         return true;
+    }
+
+    public function createDocumentNumber($bagian, $tanggalBuku, $mpCode)
+    {
+        $number = $this->kasHeader
+                    ->where(DB::raw('substr(docno, 3, 5)'), $bagian)
+                    ->where('thnbln', $tanggalBuku)
+                    ->where(DB::raw('substr(docno, 1, 1)'), $mpCode)
+                    ->select([
+                        DB::raw('max(substr(docno, 13, 3)) as id')
+                    ])
+                    ->first();
+
+        if (!$number->id) {
+            $number->id = '000';
+        }
+
+        return $number->id;
+    }
+
+    public function getLocations($jenisKartu, $currencyIndex)
+    {
+        return $this->storeJK
+            ->where('jeniskartu', $jenisKartu)
+            ->where('ci', $currencyIndex)
+            ->select([
+                DB::raw('kodestore as kode_store'),
+                DB::raw('namabank as nama_bank'),
+                DB::raw('norekening as nomor_rekening'),
+            ])
+            ->orderBy('kodestore', 'asc')
+            ->get();
+    }
+
+    public function getVerNumber($tanggalBuku)
+    {
+        return $this->kasHeader
+            ->where(DB::raw('substr(docno, 1, 1)'), 'P')
+            ->where(DB::raw('left(thnbln, 4)'), $tanggalBuku)
+            ->select(DB::raw('max(left(mrs_no, 4)) as no_ver'))
+            ->first();
+    }
+
+    public function getNomorBukti($tanggalBuku, $lokasi, $mpCode)
+    {
+        return $this->kasHeader
+            ->where(DB::raw('substr(thnbln, 1, 4)'), $tanggalBuku)
+            ->where('store', $lokasi)
+            ->where(DB::raw('substr(docno, 1, 1)'), $mpCode)
+            ->select(DB::raw('max(voucher) as no_bukti'))
+            ->first();
     }
 }

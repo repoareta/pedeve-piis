@@ -10,7 +10,13 @@ class TimeTransactionService
 
     public function __construct()
     {
-        $this->stringDate = DB::select("select max(thnbln) as string_date from timetrans where status='1' and length(thnbln)='6'")[0]->string_date;
+        // $this->stringDate = DB::select("select max(thnbln) as string_date from timetrans where status='1' and length(thnbln)='6'")[0]->string_date;
+        $this->stringDate = DB::table('timetrans')
+                                ->select(DB::raw('max(thnbln) as string_date'))
+                                ->where('status', 1)
+                                ->where(DB::raw('length(thnbln)'), 6)
+                                ->get()
+                                ->first()->string_date;
     }
 
     public function getCurrentYear()

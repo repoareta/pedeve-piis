@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Treasury;
 
 use App\Http\Controllers\Controller;
-use App\Models\SaldoStore;
+use App\Models\SdmKDBag;
+use App\Models\UserMenu;
 use App\Services\PenerimaanKasService;
 use App\Services\TimeTransactionService;
-use DB;
 use Illuminate\Http\Request;
 
 class PenerimaanKasController extends Controller
@@ -29,11 +29,15 @@ class PenerimaanKasController extends Controller
      */
     public function index()
     {
+        $userAbility = UserMenu::where('userid', auth()->user()->userid)
+            ->where('menuid', 501)
+            ->first();
+
         $tahun = $this->timeTrans->getCurrentYear();
         $bulan = $this->timeTrans->getCurrentMonth();
         $daftarBulan = $this->timeTrans->getAllMonths();
-
-        return view('modul-treasury.bukti-kas.index', compact('tahun', 'bulan', 'daftarBulan'));
+        
+        return view('modul-treasury.bukti-kas.index', compact('tahun', 'bulan', 'daftarBulan', 'userAbility'));
     }
 
     /**
@@ -41,7 +45,7 @@ class PenerimaanKasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function ajax(Request $request)
+    public function search()
     {
         return $this->penerimaanKasService->getDatatables($this->timeTrans->getStringDate());
     }
@@ -109,9 +113,58 @@ class PenerimaanKasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createKas()
     {
-        //
+        return view('modul-treasury.bukti-kas.create-kas');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $stringDate = !$this->timeTrans->getStringDate() ? date('Ym', strtotime(now())) : $this->timeTrans->getStringDate();
+        $bulan_buku = !$this->timeTrans->getCurrentMonth() ? date('m', strtotime(now())) : $this->timeTrans->getCurrentMonth();
+        $tahun_buku = !$this->timeTrans->getCurrentYear() ? date('Y', strtotime(now())) : $this->timeTrans->getCurrentYear();
+        $rawNoVer = $this->penerimaanKasService->getVerNumber($stringDate)->no_ver;
+        $noVer = $rawNoVer ? '2' . $rawNoVer + 1 : '0001';
+        $semuaBagian = SdmKDBag::all();
+
+        return view('modul-treasury.bukti-kas.create', compact('bulan_buku', 'tahun_buku', 'semuaBagian', 'noVer'));
+    }
+
+    public function ajaxBagian(Request $request)
+    {
+        $documentNumber = $this->penerimaanKasService->createDocumentNumber(
+            $request->bagian,
+            $request->bulanbuku,
+            $request->mp
+        );
+
+        return response()->json($documentNumber);
+    }
+
+    public function ajaxLocation(Request $request)
+    {
+        $locations = $this->penerimaanKasService->getLocations(
+            $request->jenis_kartu,
+            $request->currency_index,
+        );
+
+        return response()->json($locations);
+    }
+
+    public function ajaxBukti(Request $request)
+    {
+        $bukti = $this->penerimaanKasService->getNomorBukti(
+            $request->tahun,
+            $request->lokasi,
+            $request->mp,
+        )->no_bukti;
+
+        return response()->json(!$bukti ? '0001' : '2' . $bukti + 1);
     }
 
     /**

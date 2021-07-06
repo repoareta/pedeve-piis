@@ -10,7 +10,12 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "penerimaan_kas.index"...
     Route::name('penerimaan_kas.')->group(function () {
         Route::get('penerimaan-kas', [PenerimaanKasController::class, 'index'])->name('index');
-        Route::post('penerimaan-kas/search', [PenerimaanKasController::class, 'ajax'])->name('ajax');
+        Route::post('penerimaan-kas/search', [PenerimaanKasController::class, 'search'])->name('search');
+        Route::post('penerimaan-kas/create', [PenerimaanKasController::class, 'create'])->name('create');
+        Route::get('penerimaan-kas/create/jenis-kas', [PenerimaanKasController::class, 'createKas'])->name('create.kas');
+        Route::post('penerimaan-kas/ajax-bagian', [PenerimaanKasController::class, 'ajaxBagian'])->name('ajax-bagian');
+        Route::post('penerimaan-kas/ajax-lokasi', [PenerimaanKasController::class, 'ajaxLocation'])->name('ajax-lokasi');
+        Route::post('penerimaan-kas/ajax-bukti', [PenerimaanKasController::class, 'ajaxBukti'])->name('ajax-bukti');
         Route::get('penerimaan-kas/{documentId}/approval', [PenerimaanKasController::class, 'approval'])->name('approval');
         Route::post('penerimaan-kas/{documentId}/approve', [PenerimaanKasController::class, 'approve'])->name('approve');
         Route::get('penerimaan-kas/{documentId}/cancel-approval', [PenerimaanKasController::class, 'cancel'])->name('approval.cancel-form');
@@ -19,11 +24,6 @@ Route::prefix('perbendaharaan')->group(function () {
         Route::get('penerimaan-kas/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
         Route::get('penerimaan-kas/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
         Route::get('penerimaan-kas/search/cj', 'UangMukaKerjaController@searchCj')->name('search.cj');
-        Route::get('penerimaan-kas/createmp', 'PenerimaanKasController@createmp')->name('createmp');
-        Route::post('penerimaan-kas/create', 'PenerimaanKasController@create')->name('create');
-        Route::post('penerimaan-kas/create/json', 'PenerimaanKasController@createJson')->name('createJson');
-        Route::post('penerimaan-kas/lokasi/json', 'PenerimaanKasController@lokasiJson')->name('lokasiJson');
-        Route::post('penerimaan-kas/nobukti/json', 'PenerimaanKasController@nobuktiJson')->name('nobuktiJson');
         Route::post('penerimaan-kas/kepada/json', 'PenerimaanKasController@kepadaJson')->name('kepadaJson');
         Route::post('penerimaan-kas/store', 'PenerimaanKasController@store')->name('store');
         Route::post('penerimaan-kas/store-detail', 'PenerimaanKasController@storeDetail')->name('store.detail');
