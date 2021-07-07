@@ -43,7 +43,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Rencana Kerja</span>													
+                    <span class="menu-text">RKAP & Realisasi</span>													
                 </a>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">

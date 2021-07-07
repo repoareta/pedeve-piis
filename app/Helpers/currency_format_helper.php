@@ -6,7 +6,7 @@
  * @param [type] $angka
  * @return void
  */
-function currency_format(string $angka)
+function currency_format($angka)
 {
-    return str_replace(',', '', $angka);
+    return number_format((float) $angka, 2, ',', '.');
 }

@@ -51,7 +51,8 @@
             "app/Helpers/pajak_helper.php",
             "app/Helpers/pekerja_status_helper.php",
             "app/Helpers/aside_active_helper.php",
-            "app/Helpers/terbilang_helper.php"
+            "app/Helpers/terbilang_helper.php",
+            "app/Helpers/bulan_helper.php"
         ]
     },
     "autoload-dev": {

@@ -10,13 +10,13 @@ use App\Http\Controllers\CustomerManagement\PerusahaanAfiliasi\PemegangSahamCont
 use App\Http\Controllers\CustomerManagement\PerusahaanAfiliasi\PerizinanController;
 use App\Http\Controllers\CustomerManagement\PerusahaanAfiliasi\PerusahaanAfiliasiController;
 use App\Http\Controllers\CustomerManagement\RencanaKerjaController;
+use App\Http\Controllers\CustomerManagement\RkapRealisasiController;
 
 // Customer Management
-Route::prefix('customer_management')->group(function () {
-
+Route::prefix('customer_management')->name('modul_cm.')->group(function () {
     //data-perkara
     // Route assigned name "data-perkara.index"...
-    Route::name('data_erkara.')->group(function () {
+    Route::name('data_perkara.')->group(function () {
         Route::get('data-perkara', [DataPerkaraController::class, 'index'])->name('index');
         Route::post('data-perkara/index/search', [DataPerkaraController::class, 'searchIndex'])->name('search.index');
         Route::get('data-perkara/create', [DataPerkaraController::class, 'create'])->name('create');
@@ -59,15 +59,14 @@ Route::prefix('customer_management')->group(function () {
 
     //rencana-kerja
     // Route assigned name "rencana_kerja.index"...
-    Route::name('rencana_kerja.')->group(function () {
-        Route::get('rencana-kerja', [RencanaKerjaController::class, 'index'])->name('index');
-        Route::post('rencana-kerja/index/search', [RencanaKerjaController::class, 'indexJson'])->name('index.json');
-        Route::get('rencana-kerja/create', [RencanaKerjaController::class, 'create'])->name('create');
-        Route::post('rencana-kerja/store', [RencanaKerjaController::class, 'store'])->name('store');
-        Route::get('rencana-kerja/edit/{no}', [RencanaKerjaController::class, 'edit'])->name('edit');
-        Route::get('rencana-kerja/detail/{no}', [RencanaKerjaController::class, 'detail'])->name('detail');
-        Route::post('rencana-kerja/update', [RencanaKerjaController::class, 'update'])->name('update');
-        Route::delete('rencana-kerja/delete', [RencanaKerjaController::class, 'delete'])->name('delete');
+    Route::name('rkap_realisasi.')->group(function () {
+        Route::get('rkap-realisasi', [RkapRealisasiController::class, 'index'])->name('index');
+        Route::get('rkap-realisasi/index-json', [RkapRealisasiController::class, 'indexJson'])->name('index.json');
+        Route::get('rkap-realisasi/create', [RkapRealisasiController::class, 'create'])->name('create');
+        Route::post('rkap-realisasi/store', [RkapRealisasiController::class, 'store'])->name('store');
+        Route::get('rkap-realisasi/edit/{id}', [RkapRealisasiController::class, 'edit'])->name('edit');
+        Route::post('rkap-realisasi/update/{kd_rencana_kerja}', [RkapRealisasiController::class, 'update'])->name('update');
+        Route::delete('rkap-realisasi/delete', [RkapRealisasiController::class, 'delete'])->name('delete');
     });
     //end rencana-kerja
 

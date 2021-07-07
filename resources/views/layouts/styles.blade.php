@@ -44,7 +44,7 @@
         margin: 2rem 0 0 4.5rem;
     } */
     
-    td.no-wrap {
+    td.no-wrap, th.no-wrap {
         white-space: nowrap;
     }
 

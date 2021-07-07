@@ -6,7 +6,7 @@
     <div class="menu-submenu menu-submenu-classic menu-submenu-left">							
         <ul class="menu-subnav">
             <li class="menu-item" aria-haspopup="true">
-                <a href="#" class="menu-link">
+                <a href="{{ route('modul_cm.data_perkara.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
@@ -30,11 +30,11 @@
                 </a>
             </li>
             <li class="menu-item" aria-haspopup="true">
-                <a href="#" class="menu-link">
+                <a href="{{ route('modul_cm.rkap_realisasi.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Rencana Kerja</span>
+                    <span class="menu-text">RKAP & Realisasi</span>
                 </a>
             </li>
             <li class="menu-item" aria-haspopup="true">
