@@ -203,7 +203,7 @@
 
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
-							text: "No. Panjar : " + id,
+							text: "RKAP & Realisasi : " + id,
 							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
@@ -223,7 +223,7 @@
 									success: function () {
 										Swal.fire({
 											icon  : 'success',
-											title : 'Hapus No. Panjar ' + id,
+											title : 'Hapus RKAP & Realisasi ' + id,
 											title  : 'Berhasil',
 											timer : 2000
 										}).then(function() {
