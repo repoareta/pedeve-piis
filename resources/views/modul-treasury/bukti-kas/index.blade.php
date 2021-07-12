@@ -25,9 +25,16 @@
                 </a>
                 @endif
                 @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
-                <a href="#">
+                <a href="#" id="editRow">
                     <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+                        <i class="fas icon-2x fa-edit text-warning"></i>
+                    </span>
+                </a>
+                @endif
+                @if($userAbility->hapus)
+                <a href="#" id="deleteRow">
+                    <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                        <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </a>
                 @endif
@@ -141,7 +148,7 @@
                 { data: 'ci', name: 'ci' },
                 { data: 'rate', name: 'rate' },
                 { data: 'nilai_dokumen', name: 'nilai_dokumen' },
-                { data: 'status', name: 'status', orderable: false, searchable: false, },
+                { data: 'status', name: 'status', orderable: false, searchable: false, class: 'text-center' },
                 { data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-center' },
 			]
 			
@@ -162,7 +169,88 @@
                 }
                 $(this).addClass('selected');
             }
-        } );
+        });
+
+        $('#editRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function(){
+                    var nodok = $(this).val().split("/").join("-");
+                    // var nodok = $(this).attr('nodok');
+                    location.href = "{{url('perbendaharaan/penerimaan-kas')}}"+ '/' + nodok + '/edit';
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var nodok = $(this).val();
+                    // delete stuff
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-primary',
+                            cancelButton: 'btn btn-danger'
+                        },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire({
+                            title: "Data yang akan dihapus?",
+                            text: "No Dokumen: "+nodok,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            reverseButtons: true,
+                            confirmButtonText: 'Ya, hapus',
+                            cancelButtonText: 'Batalkan'
+                        })
+                        .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('penerimaan_kas.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "nodok": nodok,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function (data) {
+                                    if(data == 1){
+                                        Swal.fire({
+                                            icon  : 'success',
+                                            title : "No Dokumen: "+nodok,
+                                            text  : 'Berhasil',
+                                            timer : 2000
+                                        }).then(function() {
+                                            location.reload();
+                                        });
+                                    }else if(data == 2){
+                                        Swal.fire({
+                                            icon  : 'info',
+                                            title : 'Penghapusan gagal,data tidak dalam status Opening.',
+                                            text  : 'Failed',
+                                        });
+                                    }else{
+                                        Swal.fire({
+                                            icon  : 'info',
+                                            title : 'Sebelum dihapus,status bayar harus dibatalkan dulu.',
+                                            text  : 'Failed',
+                                        });
+                                    }
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
     });
 </script>
 @endpush

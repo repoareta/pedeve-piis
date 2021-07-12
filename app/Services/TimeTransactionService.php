@@ -10,13 +10,12 @@ class TimeTransactionService
 
     public function __construct()
     {
-        // $this->stringDate = DB::select("select max(thnbln) as string_date from timetrans where status='1' and length(thnbln)='6'")[0]->string_date;
         $this->stringDate = DB::table('timetrans')
-                                ->select(DB::raw('max(thnbln) as string_date'))
-                                ->where('status', 1)
-                                ->where(DB::raw('length(thnbln)'), 6)
-                                ->get()
-                                ->first()->string_date;
+            ->select(DB::raw('max(thnbln) as string_date'))
+            ->where('status', 1)
+            ->where(DB::raw('length(thnbln)'), 6)
+            ->get()
+            ->first()->string_date;
     }
 
     public function getCurrentYear()
@@ -50,5 +49,36 @@ class TimeTransactionService
     public function getStringDate()
     {
         return (string) $this->stringDate;
+    }
+
+    public function getTimeTransStatus(string $stringDate)
+    {
+        $resultStatus = '';
+
+        $status = DB::table('timetrans')
+            ->select('status')
+            ->where('thnbln', $stringDate)
+            ->where('suplesi', 0)
+            ->first()->status;
+
+        switch ($status) {
+            case '1':
+                $resultStatus = 'gtopening';
+                break;
+
+            case '2':
+                $resultStatus = 'gtstopping';
+                break;
+            
+            case '3':
+                $resultStatus = 'gtclosing';
+                break;
+            
+            default:
+                $resultStatus = 'gtnone';
+                break;
+        }
+
+        return $resultStatus;
     }
 }
