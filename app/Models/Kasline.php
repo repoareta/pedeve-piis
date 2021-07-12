@@ -12,6 +12,17 @@ class Kasline extends Model
     protected $table="kasline";
     protected $primaryKey = ['docno', 'lineno'];
     protected $keyType = 'string';
+    protected $fillable = [
+        'nodok',
+        'nourut',
+        'rincian',
+        'sanper',
+        'bagian',
+        'pk',
+        'jb',
+        'cj',
+        'nilai',
+    ];
     public $incrementing = false;
     public $timestamps = false;
 }

@@ -1,32 +1,43 @@
 <?php
 
 //PERBENDAHARAAN
+
+use App\Http\Controllers\Treasury\PenerimaanKasController;
+
 Route::prefix('perbendaharaan')->group(function () {
 
-    //Penerimaan kas
+    // Penerimaan kas
     // Route assigned name "penerimaan_kas.index"...
     Route::name('penerimaan_kas.')->group(function () {
-        Route::get('penerimaan-kas', 'PenerimaanKasController@index')->name('index');
-        Route::post('penerimaan-kas/search', 'PenerimaanKasController@searchIndex')->name('search.index');
+        Route::get('penerimaan-kas', [PenerimaanKasController::class, 'index'])->name('index');
+        Route::post('penerimaan-kas/search', [PenerimaanKasController::class, 'search'])->name('search');
+        Route::post('penerimaan-kas/create', [PenerimaanKasController::class, 'create'])->name('create');
+        Route::get('penerimaan-kas/create/jenis-kas', [PenerimaanKasController::class, 'createKas'])->name('create.kas');
+        Route::post('penerimaan-kas/store', [PenerimaanKasController::class, 'store'])->name('store');
+        Route::post('penerimaan-kas/ajax-document-number', [PenerimaanKasController::class, 'ajaxCreate'])->name('ajax-create');
+        Route::post('penerimaan-kas/ajax-bagian', [PenerimaanKasController::class, 'ajaxBagian'])->name('ajax-bagian');
+        Route::post('penerimaan-kas/ajax-lokasi', [PenerimaanKasController::class, 'ajaxLocation'])->name('ajax-lokasi');
+        Route::post('penerimaan-kas/ajax-bukti', [PenerimaanKasController::class, 'ajaxBukti'])->name('ajax-bukti');
+        Route::post('penerimaan-kas/ajax-kepada', [PenerimaanKasController::class, 'ajaxKepada'])->name('ajax-kepada');
+        Route::post('penerimaan-kas/ajax-account', [PenerimaanKasController::class, 'ajaxAccount'])->name('ajax-account');
+        Route::post('penerimaan-kas/ajax-jenis-biaya', [PenerimaanKasController::class, 'ajaxJenisBiaya'])->name('ajax-jenis-biaya');
+        Route::post('penerimaan-kas/ajax-cash-judex', [PenerimaanKasController::class, 'ajaxCashJudex'])->name('ajax-cash-judex');
+        Route::delete('penerimaan-kas/delete-detail', [PenerimaanKasController::class, 'deleteDetail'])->name('delete.detail');
+        Route::post('penerimaan-kas/update', [PenerimaanKasController::class, 'update'])->name('update');
+        Route::delete('penerimaan-kas/delete', [PenerimaanKasController::class, 'destroy'])->name('delete');
+        Route::get('penerimaan-kas/{documentId}/input-detail', [PenerimaanKasController::class, 'show'])->name('input-detail');
+        Route::post('penerimaan-kas/{documentId}/store-detail', [PenerimaanKasController::class, 'storeDetail'])->name('store.detail');
+        Route::get('penerimaan-kas/{documentId}/approval', [PenerimaanKasController::class, 'approval'])->name('approval');
+        Route::post('penerimaan-kas/{documentId}/approve', [PenerimaanKasController::class, 'approve'])->name('approve');
+        Route::get('penerimaan-kas/{documentId}/cancel-approval', [PenerimaanKasController::class, 'cancel'])->name('approval.cancel-form');
+        Route::post('penerimaan-kas/{documentId}/cancel-approval', [PenerimaanKasController::class, 'cancelApproval'])->name('approval.cancel');
+        Route::get('penerimaan-kas/{documentId}/{lineNumber}/get-detail', [PenerimaanKasController::class, 'getDetail'])->name('get.detail');
+        Route::get('penerimaan-kas/{documentId}/edit', [PenerimaanKasController::class, 'edit'])->name('edit');
         Route::get('penerimaan-kas/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
         Route::get('penerimaan-kas/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
         Route::get('penerimaan-kas/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');
         Route::get('penerimaan-kas/search/cj', 'UangMukaKerjaController@searchCj')->name('search.cj');
-        Route::get('penerimaan-kas/createmp', 'PenerimaanKasController@createmp')->name('createmp');
-        Route::post('penerimaan-kas/create', 'PenerimaanKasController@create')->name('create');
-        Route::post('penerimaan-kas/create/json', 'PenerimaanKasController@createJson')->name('createJson');
-        Route::post('penerimaan-kas/lokasi/json', 'PenerimaanKasController@lokasiJson')->name('lokasiJson');
-        Route::post('penerimaan-kas/nobukti/json', 'PenerimaanKasController@nobuktiJson')->name('nobuktiJson');
-        Route::post('penerimaan-kas/kepada/json', 'PenerimaanKasController@kepadaJson')->name('kepadaJson');
-        Route::post('penerimaan-kas/store', 'PenerimaanKasController@store')->name('store');
-        Route::post('penerimaan-kas/store-detail', 'PenerimaanKasController@storeDetail')->name('store.detail');
-        Route::post('penerimaan-kas/store_app', 'PenerimaanKasController@storeApp')->name('store.app');
-        Route::get('penerimaan-kas/edit/{no}', 'PenerimaanKasController@edit')->name('edit');
         Route::get('penerimaan-kas/editdetail/{id}/{no}', 'PenerimaanKasController@editDetail')->name('edit.detail');
-        Route::post('penerimaan-kas/update', 'PenerimaanKasController@update')->name('update');
-        Route::delete('penerimaan-kas/delete', 'PenerimaanKasController@delete')->name('delete');
-        Route::delete('penerimaan-kas/deletedetail', 'PenerimaanKasController@deleteDetail')->name('delete.detail');
-        Route::get('penerimaan-kas/approv/{id}/{status}', 'PenerimaanKasController@approv')->name('approv');
         Route::get('penerimaan-kas/export', 'PenerimaanKasController@export')->name('export');
     });
     //end penerimaan kas
