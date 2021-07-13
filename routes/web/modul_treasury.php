@@ -2,6 +2,7 @@
 
 //PERBENDAHARAAN
 
+use App\Http\Controllers\Treasury\InformasiSaldoController;
 use App\Http\Controllers\Treasury\PenerimaanKasController;
 
 Route::prefix('perbendaharaan')->group(function () {
@@ -45,13 +46,8 @@ Route::prefix('perbendaharaan')->group(function () {
     //informasi saldo
     // Route assigned name "informasi_saldo.index"...
     Route::name('informasi_saldo.')->group(function () {
-        Route::get('informasi-saldo', 'InformasiSaldoController@index')->name('index');
-        Route::post('informasi-saldo/index/json', 'InformasiSaldoController@indexJson')->name('index.json');
-        Route::get('informasi-saldo/create', 'InformasiSaldoController@create')->name('create');
-        Route::post('informasi-saldo/store', 'InformasiSaldoController@store')->name('store');
-        Route::get('informasi-saldo/edit/{bulan}/{tahun}/{nopek}', 'InformasiSaldoController@edit')->name('edit');
-        Route::post('informasi-saldo/update', 'InformasiSaldoController@update')->name('update');
-        Route::delete('informasi-saldo/delete', 'InformasiSaldoController@delete')->name('delete');
+        Route::get('informasi-saldo', [InformasiSaldoController::class, 'index'])->name('index');
+        Route::post('informasi-saldo/index/json', [InformasiSaldoController::class, 'indexJson'])->name('index.json');
     });
     //end informasi-saldo
 
