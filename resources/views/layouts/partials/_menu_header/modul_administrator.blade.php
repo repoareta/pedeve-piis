@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="menu-item {{ Route::is('modul_administrator.tabel_menu.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="#" class="menu-link">
+                <a href="{{ route('modul_administrator.tabel_menu.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="menu-item {{ Route::is('modul_administrator.log.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="#" class="menu-link">
+                <a href="{{ route('modul_administrator.log.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>

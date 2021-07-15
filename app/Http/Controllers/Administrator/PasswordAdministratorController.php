@@ -6,52 +6,34 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // load model
-use App\Models\Userpdv;
+use App\Models\UserPdv;
 
 // load plugin
 use Auth;
-use DB;
+use Alert;
 
 class PasswordAdministratorController extends Controller
 {
     public function index()
     {
-        return view('password_administrator.index');
-    }
-
-    public function passJson(Request $request)
-    {
-        $pass=$request->pass;
-        $uppercase = preg_match('@[A-Z]@', $pass);
-        $lowercase = preg_match('@[a-z]@', $pass);
-        $number    = preg_match('@[0-9]@', $pass);
-
-        if(!$lowercase || !$number || strlen($pass)<=8){
-            return response()->json(1);
-        }else{
-            return response()->json(2);
-        } 
+        return view('modul-administrator.password-administrator.index');
     }
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from userpdv where userpw='$request->userpw'");
-        if (!empty($data_cek)) {
-            $userid = Auth::user()->userid;
-            $data_tglexp = DB::select("select (date(now()) + INTERVAL  '4' month) as tglexp");
-            foreach ($data_tglexp as $data_tgl) {
-                $tglexp = $data_tgl->tglexp;
-            }
-            $tglupd = date('Y-m-d');
-            Userpdv::where('userid', $userid)
-            ->update([
-                'userpw' => $request->newpw,
-                'tglupd' => $tglupd,
-                'passexp' => $tglexp
-            ]);
-            return response()->json(1);
-        }else{
-            return response()->json(2);
+        $cek_user = UserPdv::where('userid', Auth::user()->userid)
+                            ->where('userpw', $request->password_lama)
+                            ->first();
+        
+        if(!$cek_user){
+            Alert::error('Gagal', 'Password lama tidak sama dengan user ini')->persistent(true)->autoClose(3000);
+            return redirect()->back();
         }
+
+        $cek_user->userpw = $request->password_baru;
+        $cek_user->save();
+
+        Alert::success('Sukses', 'Password sudah diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->back();
     }
 }
