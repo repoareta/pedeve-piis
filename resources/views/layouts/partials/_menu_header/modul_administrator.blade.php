@@ -46,7 +46,7 @@
                 </a>
             </li>
             <li class="menu-item {{ Route::is('modul_administrator.password_administrator.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="#" class="menu-link">
+                <a href="{{ route('modul_administrator.password_administrator.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
