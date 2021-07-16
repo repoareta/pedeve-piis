@@ -38,7 +38,7 @@
     <div class="card-body">
 
 		<div class="col-12">
-			<form class="kt-form" id="search-form" >
+			<form class="kt-form" id="search-form">
 				<div class="form-group row">
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
@@ -48,8 +48,17 @@
                             @endforeach
                         </select>
 					</div>
-					<div class="col-2">
-						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+					<div class="col-4">
+						<select name="perusahaan" class="form-control kt-select2" id="perusahaan">
+							<option value="">- Semua Perusahaan -</option>
+                            @foreach ($perusahaanList as $perusahaan)
+                                <option value="{{ $perusahaan->id }}" data-nama="{{ $perusahaan->nama }}">{{ $perusahaan->nama }}</option>
+                            @endforeach
+                        </select>
+					</div>
+					<div class="col-4">
+						<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>
+						<button type="button" class="btn btn-danger" id="cetak"><i class="fa fa-print"></i> Cetak .pdf</button>
 					</div>
 				</div>
 			</form>
@@ -113,6 +122,7 @@
                 url: "{{ route('modul_cm.rkap_realisasi.index.json') }}",
                 data: function (d) {
                     d.tahun = $('select[name=tahun]').val();
+                    d.perusahaan = $('select[name=perusahaan]').val();
                 }
             },
             columns: [
@@ -136,6 +146,40 @@
         $('#search-form').on('submit', function(e) {
 			t.draw();
 			e.preventDefault();
+		});
+
+		$('#cetak').on('click', function(e) {
+			e.preventDefault();
+			// get tahun
+			var tahun = $('#tahun').val();
+			// perusahaan
+			var perusahaan = $('#perusahaan').val();
+			var perusahaan_nama = $('#perusahaan').find(':selected').data('nama');
+			// akses url to generate pdf
+			$.ajax({
+			url: "{{ route('modul_cm.rkap_realisasi.export') }}",
+			type: 'GET',
+			xhrFields: {
+                responseType: 'blob'
+            },
+			data: {
+				"tahun": tahun,
+				"perusahaan": perusahaan,
+				"perusahaan_nama": perusahaan_nama,
+				"_token": "{{ csrf_token() }}",
+			},
+			success: function (response) {
+				var blob = new Blob([response], { type: 'application/pdf' });
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = "{{ 'report_rkap_realisasi_'.date('Y-m-d_H:i:s').'.pdf' }}";
+                link.click();
+			},
+			error: function () {
+				alert("Terjadi kesalahan, coba lagi nanti");
+			}
+		});
+
 		});
 
         $('#kt_table tbody').on( 'click', 'tr', function (event) {

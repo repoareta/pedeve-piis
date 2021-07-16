@@ -13,7 +13,7 @@ use App\Http\Controllers\CustomerManagement\RencanaKerjaController;
 use App\Http\Controllers\CustomerManagement\RkapRealisasiController;
 
 // Customer Management
-Route::prefix('customer_management')->name('modul_cm.')->group(function () {
+Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     //data-perkara
     // Route assigned name "data-perkara.index"...
     Route::name('data_perkara.')->group(function () {
@@ -67,6 +67,7 @@ Route::prefix('customer_management')->name('modul_cm.')->group(function () {
         Route::get('rkap-realisasi/edit/{id}', [RkapRealisasiController::class, 'edit'])->name('edit');
         Route::post('rkap-realisasi/update/{kd_rencana_kerja}', [RkapRealisasiController::class, 'update'])->name('update');
         Route::delete('rkap-realisasi/delete', [RkapRealisasiController::class, 'delete'])->name('delete');
+        Route::get('rkap-realisasi/export', [RkapRealisasiController::class, 'export'])->name('export');
     });
     //end rencana-kerja
 
