@@ -5,7 +5,7 @@
     </a>
     <div class="menu-submenu menu-submenu-classic menu-submenu-left">							
         <ul class="menu-subnav">
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ Route::is('modul_cm.data_perkara.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{ route('modul_cm.data_perkara.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -13,7 +13,7 @@
                     <span class="menu-text">Data Perkara</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ Route::is('modul_cm.perusahaan_afiliasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="#" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -21,7 +21,7 @@
                     <span class="menu-text">Perusahaan Afiliasi</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ Route::is('modul_cm.monitoring_pekerja.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="#" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -29,7 +29,7 @@
                     <span class="menu-text">Monitoring Pekerja</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ Route::is('modul_cm.rkap_realisasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="{{ route('modul_cm.rkap_realisasi.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -37,7 +37,7 @@
                     <span class="menu-text">RKAP & Realisasi</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
+            <li class="menu-item {{ Route::is('modul_cm.rkap_realisasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                 <a href="#" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
