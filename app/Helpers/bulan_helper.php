@@ -41,3 +41,23 @@ function bulan($bln)
             break;
     }
 }
+
+function stbbuku($sthnbln, $ssup)
+{
+    $data_rsbulan = DB::select("select * from timetrans where thnbln='$sthnbln' and suplesi='$ssup'");
+    if (!empty($data_rsbulan)) {
+        foreach ($data_rsbulan as $data_rs) {
+            if ($data_rs->status == 1) {
+                return $stbbuku = 1;
+            } elseif ($data_rs->status == 2) {
+                return $stbbuku = 2;
+            } elseif ($data_rs->status == 3) {
+                return $stbbuku = 3;
+            } else {
+                return $stbbuku = 0;
+            }
+        }
+    } else {
+        return $stbbuku = 0;
+    }
+}

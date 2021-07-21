@@ -12,11 +12,11 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Pembayaran Gaji
+                Tabel Pembayaran Permintaan Bayar
             </h3>
             <div class="text-right">
                 @if($data_akses->tambah == 1)
-                <a href="{{ route('pembayaran_gaji.create') }}" class="btn p-0">
+                <a href="{{ route('pembayaran_pbayar.create') }}" class="btn p-0">
                     <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
@@ -82,6 +82,7 @@
                 </div>
             </div>
         </form>
+
         <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
@@ -109,18 +110,16 @@
 <script>
     $(document).ready(function () {
 		var t = $('#kt_table').DataTable({
+			scrollX   : true,
 			processing: true,
 			serverSide: true,
 			searching: false,
 			lengthChange: false,
-			pageLength: 50,
-			scrollY: "500px",
-			scrollCollapse: true,
 			language: {
 				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
 			},
 			ajax      : {
-						url: "{{ route('pembayaran_gaji.search.index') }}",
+						url: "{{ route('pembayaran_pbayar.search.index') }}",
 						type : "POST",
 						dataType : "JSON",
 						headers: {
@@ -146,12 +145,10 @@
 				{data: 'nilai', name: 'nilai'},
 			]
 		});
-
 		$('#search-form').on('submit', function(e) {
 			t.draw();
 			e.preventDefault();
 		});
-
 		$('#kt_table tbody').on( 'click', 'tr', function (event) {
 			if ( $(this).hasClass('selected') ) {
 				$(this).removeClass('selected');
@@ -171,7 +168,7 @@
 					$("input[type=radio]:checked").each(function(){
 						var nodok = $(this).val().split("/").join("-");
 						// var nodok = $(this).attr('nodok');
-						location.href = "{{url('perbendaharaan/pembayaran-gaji/edit')}}"+ '/' +nodok;
+						location.href = "{{url('perbendaharaan/pembayaran-pbayar/edit')}}"+ '/' +nodok;
 					});
 				} else {
 					swalAlertInit('ubah');
@@ -203,7 +200,7 @@
 						.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('pembayaran_gaji.delete') }}",
+								url: "{{ route('pembayaran_pbayar.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {
@@ -251,7 +248,7 @@
 				if($('input[class=btn-radio]').is(':checked')) { 
 					$("input[class=btn-radio]:checked").each(function(){
 						var docno = $(this).attr('docno');
-						location.href = "{{url('perbendaharaan/pembayaran-gaji/rekap')}}"+ '/' +docno;
+						location.href = "{{url('perbendaharaan/pembayaran-pbayar/rekap')}}"+ '/' +docno;
 					});
 				} else {
 					swalAlertInit('cetak');

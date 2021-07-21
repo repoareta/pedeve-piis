@@ -31,10 +31,17 @@
                     </span>
                 </a>
                 @endif
-                @if($userAbility->hapus)
+                @if($userAbility->hapus == 1)
                 <a href="#" id="deleteRow">
                     <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
+                    </span>
+                </a>
+                @endif
+                @if($userAbility->cetak == 1)
+                <a href="#" id="exportRow">
+                    <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                        <i class="fas icon-2x fa-print text-secondary"></i>
                     </span>
                 </a>
                 @endif
@@ -104,7 +111,71 @@
         </div>
     </div>
 </div>
+
+<div class="modal" tabindex="-1" id="cetakModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="kt-form kt-form--label-right" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">No Dokumen</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" readonly name="no_dokumen" id="no_dokumen">
+                        </div>
+                    </div>
+
+                    <div class="form-group row" style="margin:0px;">
+                        <label for="" class="col-2 col-form-label"></label>
+                        <div class="col-5">Nama</div>
+                        <div class="col-5">Jabatan</div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">Pemeriksaan</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="pemeriksaan_nama" id="pemeriksaan_nama">
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="pemeriksaan_jabatan" id="pemeriksaan_jabatan">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">Membukukan</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="membukukan_nama" id="membukukan_nama">
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="membukukan_jabatan" id="membukukan_jabatan">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">Kas/Bank</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="kasbank_nama" id="kasbank_nama">
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="kasbank_jabatan" id="kasbank_jabatan">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Cetak Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
+
 @push('page-scripts')
 <script>
     function redirectToApproval(id, cancelation) {
@@ -249,6 +320,21 @@
                 });
             } else {
                 swalAlertInit('hapus');
+            }
+        });
+
+        $('#exportRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var id = $(this).val();
+                    // open modal
+                    $('#cetakModal').modal('show');
+                    // fill no_panjar to no_panjar field
+                    $('#no_dokumen').val(id);
+                });
+            } else {
+                swalAlertInit('cetak');
             }
         });
     });
