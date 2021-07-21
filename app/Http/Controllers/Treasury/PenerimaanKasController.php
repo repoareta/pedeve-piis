@@ -16,6 +16,7 @@ use App\Models\UserMenu;
 use App\Services\PenerimaanKasService;
 use App\Services\TimeTransactionService;
 use DB;
+use DomPDF;
 use Illuminate\Http\Request;
 
 class PenerimaanKasController extends Controller
@@ -428,6 +429,33 @@ class PenerimaanKasController extends Controller
                     }
                 }
             }
+        }
+    }
+
+    public function export(Request $request)
+    {
+        $kasdoc = Kasdoc::where('docno', $request->no_dokumen)
+            ->with(['kasline' => function ($query) {
+                $query->orderBy('lineno', 'ASC');
+            }])
+            ->firstOrFail();
+
+        // return $kasdoc;
+
+        if (substr(strtoupper($request->no_dokumen), 0, 1) == 'P') {
+            // return default PDF
+            $pdf = DomPDF::loadview('modul-treasury.bukti-kas.export_kas_putih_pdf', compact(
+                'kasdoc'
+            ))->setOptions(['isPhpEnabled' => true]);
+
+            return $pdf->stream('bkp_'.date('Y-m-d H:i:s').'.pdf');
+        } else {
+            // return default PDF
+            $pdf = DomPDF::loadview('modul-treasury.bukti-kas.export_kas_merah_pdf', compact(
+                'kasdoc'
+            ))->setOptions(['isPhpEnabled' => true]);
+
+            return $pdf->stream('bkm_'.date('Y-m-d H:i:s').'.pdf');
         }
     }
 }

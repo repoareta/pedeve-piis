@@ -145,8 +145,6 @@ class PenerimaanKasService
                     ->sum('totprice');
     }
 
-
-
     public function getTotalKasline($documentId)
     {
         return $this->kasLine->where([

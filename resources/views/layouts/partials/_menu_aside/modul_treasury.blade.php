@@ -34,7 +34,7 @@
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('pembayaran_gaji.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('pembayaran_umk.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('pembayaran_jumk.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('pembayaran_pbayar.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -102,7 +102,7 @@
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('bulan_perbendaharaan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('opening_balance.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -132,7 +132,7 @@
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('penempatan_deposito.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -140,7 +140,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('perhitungan_bagihasil.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -162,7 +162,7 @@
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('data_pajak.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -170,7 +170,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('proses_pajak.rekap') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -178,7 +178,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('laporan_pajak.rekap') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -200,7 +200,7 @@
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('rekap_harian_kas.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -208,7 +208,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('rekap_periode_kas.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
