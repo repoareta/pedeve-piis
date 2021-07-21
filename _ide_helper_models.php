@@ -911,6 +911,7 @@ namespace App\Models{
  * @property string|null $ket3
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Kasline[] $kasline
  * @property-read int|null $kasline_count
+ * @property-read \App\Models\StoreJK|null $storejk
  * @method static \Illuminate\Database\Eloquent\Builder|Kasdoc newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Kasdoc newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Kasdoc query()
@@ -1198,9 +1199,19 @@ namespace App\Models{
 /**
  * App\Models\Lokasi
  *
+ * @property string $kodelokasi
+ * @property string|null $nama
+ * @property string|null $area
+ * @property string|null $bag_nondept
+ * @property string|null $gruplokasi
  * @method static \Illuminate\Database\Eloquent\Builder|Lokasi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lokasi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lokasi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Lokasi whereArea($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lokasi whereBagNondept($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lokasi whereGruplokasi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lokasi whereKodelokasi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lokasi whereNama($value)
  */
 	class Lokasi extends \Eloquent {}
 }
@@ -1209,9 +1220,25 @@ namespace App\Models{
 /**
  * App\Models\MainAccount
  *
+ * @property string $jenis
+ * @property string|null $batas_awal
+ * @property string|null $batas_akhir
+ * @property string|null $urutan
+ * @property string|null $pengali
+ * @property string|null $pengali_tampil
+ * @property string|null $sub_akun
+ * @property string|null $lokasi
  * @method static \Illuminate\Database\Eloquent\Builder|MainAccount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MainAccount newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MainAccount query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount whereBatasAkhir($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount whereBatasAwal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount whereJenis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount whereLokasi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount wherePengali($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount wherePengaliTampil($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount whereSubAkun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MainAccount whereUrutan($value)
  */
 	class MainAccount extends \Eloquent {}
 }
@@ -1220,9 +1247,31 @@ namespace App\Models{
 /**
  * App\Models\MasterBebanPerusahaan
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $lastamount
+ * @property string|null $curramount
+ * @property string|null $userid
+ * @property string|null $statusver
+ * @property string|null $verifikator
+ * @property string|null $tglver
+ * @property-read \App\Models\AardPayroll $aard_payroll
+ * @property-read \App\Models\Pekerja $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereCurramount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereLastamount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereStatusver($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereTglver($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereUserid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan whereVerifikator($value)
  */
 	class MasterBebanPerusahaan extends \Eloquent {}
 }
@@ -1231,9 +1280,25 @@ namespace App\Models{
 /**
  * App\Models\MasterHutang
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $lastamount
+ * @property string|null $curramount
+ * @property string|null $userid
+ * @property-read \App\Models\AardPayroll $aard_payroll
+ * @property-read \App\Models\Pekerja $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereCurramount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereLastamount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang whereUserid($value)
  */
 	class MasterHutang extends \Eloquent {}
 }
@@ -1242,9 +1307,43 @@ namespace App\Models{
 /**
  * App\Models\MasterInsentif
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $jmlcc
+ * @property string|null $ccl
+ * @property string|null $nilai
+ * @property string|null $userid
+ * @property string|null $status
+ * @property string|null $tahunins
+ * @property string|null $pajakins
+ * @property string|null $pajakgaji
+ * @property string|null $pengali
+ * @property string|null $ut
+ * @property string|null $keterangan
+ * @property string|null $potongan
+ * @property-read \App\Models\AardPayroll $aard_payroll
+ * @property-read \App\Models\Pekerja $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif wherePajakgaji($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif wherePajakins($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif wherePengali($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif wherePotongan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereTahunins($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereUserid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif whereUt($value)
  */
 	class MasterInsentif extends \Eloquent {}
 }
@@ -1253,9 +1352,49 @@ namespace App\Models{
 /**
  * App\Models\MasterThr
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $jmlcc
+ * @property string|null $ccl
+ * @property string|null $nilai
+ * @property string|null $userid
+ * @property string|null $status
+ * @property string|null $tahunthr
+ * @property string|null $pajakthr
+ * @property string|null $pajakgaji
+ * @property string|null $pengali
+ * @property string|null $ut
+ * @property string|null $tbiayahidup
+ * @property string|null $tjabatan
+ * @property string|null $keterangan
+ * @property string|null $potongan
+ * @property string|null $koreksi
+ * @property-read \App\Models\AardPayroll $aard_payroll
+ * @property-read \App\Models\Pekerja $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterThr newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterThr newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterThr query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereKoreksi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr wherePajakgaji($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr wherePajakthr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr wherePengali($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr wherePotongan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereTahunthr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereTbiayahidup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereTjabatan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereUserid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterThr whereUt($value)
  */
 	class MasterThr extends \Eloquent {}
 }
@@ -1264,9 +1403,27 @@ namespace App\Models{
 /**
  * App\Models\MasterUpah
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $jmlcc
+ * @property string|null $ccl
+ * @property string|null $nilai
+ * @property string|null $userid
+ * @property-read \App\Models\AardPayroll $aard_payroll
+ * @property-read \App\Models\Pekerja $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah whereUserid($value)
  */
 	class MasterUpah extends \Eloquent {}
 }
@@ -1275,9 +1432,39 @@ namespace App\Models{
 /**
  * App\Models\MtrDeposito
  *
+ * @property string $docno
+ * @property int $lineno
+ * @property string|null $tgldep
+ * @property string|null $tgltempo
+ * @property string|null $bungatahun
+ * @property string|null $asal
+ * @property string|null $noseri
+ * @property string|null $nominal
+ * @property string|null $kdbank
+ * @property string|null $keterangan
+ * @property string|null $proses
+ * @property string|null $perpanjangan
+ * @property string|null $cair
+ * @property string|null $kurs
+ * @property string|null $status
  * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereAsal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereBungatahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereCair($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereDocno($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereKdbank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereKurs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereLineno($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereNominal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereNoseri($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito wherePerpanjangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereProses($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereTgldep($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MtrDeposito whereTgltempo($value)
  */
 	class MtrDeposito extends \Eloquent {}
 }
@@ -1426,9 +1613,21 @@ namespace App\Models{
 /**
  * App\Models\PajakInput
  *
+ * @property string|null $tahun
+ * @property string|null $bulan
+ * @property string|null $jenis
+ * @property string|null $nopek
+ * @property string|null $nilai
+ * @property string|null $pajak
  * @method static \Illuminate\Database\Eloquent\Builder|PajakInput newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PajakInput newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PajakInput query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PajakInput whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PajakInput whereJenis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PajakInput whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PajakInput whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PajakInput wherePajak($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PajakInput whereTahun($value)
  */
 	class PajakInput extends \Eloquent {}
 }
@@ -1542,9 +1741,29 @@ namespace App\Models{
 /**
  * App\Models\PayAard
  *
+ * @property string $kode
+ * @property string|null $nama
+ * @property string|null $jenis
+ * @property string|null $kenapajak
+ * @property string|null $lappajak
+ * @property string|null $sanper
+ * @property string|null $cj
+ * @property string|null $jb
+ * @property string|null $sanperpwt
+ * @property string|null $sanperdir
  * @method static \Illuminate\Database\Eloquent\Builder|PayAard newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayAard newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayAard query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereCj($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereJb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereJenis($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereKenapajak($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereKode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereLappajak($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereNama($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereSanper($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereSanperdir($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayAard whereSanperpwt($value)
  */
 	class PayAard extends \Eloquent {}
 }
@@ -1553,9 +1772,17 @@ namespace App\Models{
 /**
  * App\Models\PayDanaPensiun
  *
+ * @property string|null $pribadi
+ * @property string|null $perusahaan
+ * @property string|null $perusahaan2
+ * @property string|null $perusahaan3
  * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun wherePerusahaan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun wherePerusahaan2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun wherePerusahaan3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayDanaPensiun wherePribadi($value)
  */
 	class PayDanaPensiun extends \Eloquent {}
 }
@@ -1564,9 +1791,17 @@ namespace App\Models{
 /**
  * App\Models\PayGapokBulanan
  *
+ * @property string|null $tahun
+ * @property string|null $bulan
+ * @property string|null $nopek
+ * @property string|null $jumlah
  * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan whereJumlah($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayGapokBulanan whereTahun($value)
  */
 	class PayGapokBulanan extends \Eloquent {}
 }
@@ -1575,9 +1810,27 @@ namespace App\Models{
 /**
  * App\Models\PayHonor
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $jmlcc
+ * @property string|null $ccl
+ * @property string $nilai
+ * @property string $userid
+ * @property string $pajak
  * @method static \Illuminate\Database\Eloquent\Builder|PayHonor newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayHonor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayHonor query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor wherePajak($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayHonor whereUserid($value)
  */
 	class PayHonor extends \Eloquent {}
 }
@@ -1586,9 +1839,25 @@ namespace App\Models{
 /**
  * App\Models\PayKoreksi
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string $jmlcc
+ * @property string $ccl
+ * @property string $nilai
+ * @property string $userid
  * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayKoreksi whereUserid($value)
  */
 	class PayKoreksi extends \Eloquent {}
 }
@@ -1597,9 +1866,35 @@ namespace App\Models{
 /**
  * App\Models\PayLembur
  *
+ * @property string $tanggal
+ * @property string $nopek
+ * @property string|null $libur
+ * @property string|null $mulai
+ * @property string|null $sampai
+ * @property string|null $makanpg
+ * @property string|null $makansg
+ * @property string|null $makanml
+ * @property string|null $transport
+ * @property string|null $userid
+ * @property string|null $lembur
+ * @property string|null $bulan
+ * @property string|null $tahun
  * @method static \Illuminate\Database\Eloquent\Builder|PayLembur newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayLembur newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayLembur query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereLembur($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereLibur($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereMakanml($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereMakanpg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereMakansg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereSampai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereTanggal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereTransport($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayLembur whereUserid($value)
  */
 	class PayLembur extends \Eloquent {}
 }
@@ -1608,9 +1903,29 @@ namespace App\Models{
 /**
  * App\Models\PayMtrPkpp
  *
+ * @property string|null $id_pinjaman
+ * @property string|null $nopek
+ * @property string|null $jml_pinjaman
+ * @property string|null $tenor
+ * @property string|null $mulai
+ * @property string|null $sampai
+ * @property string|null $angsuran
+ * @property string|null $cair
+ * @property string|null $lunas
+ * @property string|null $no_kontrak
  * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereAngsuran($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereCair($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereIdPinjaman($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereJmlPinjaman($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereLunas($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereNoKontrak($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereSampai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayMtrPkpp whereTenor($value)
  */
 	class PayMtrPkpp extends \Eloquent {}
 }
@@ -1619,9 +1934,25 @@ namespace App\Models{
 /**
  * App\Models\PayPotongan
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aard
+ * @property string|null $jmlcc
+ * @property string|null $ccl
+ * @property string|null $nilai
+ * @property string|null $userid
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereAard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotongan whereUserid($value)
  */
 	class PayPotongan extends \Eloquent {}
 }
@@ -1630,9 +1961,19 @@ namespace App\Models{
 /**
  * App\Models\PayPotonganInsentif
  *
+ * @property string|null $tahun
+ * @property string|null $bulan
+ * @property string|null $nopek
+ * @property string|null $nilai
+ * @property string|null $userid
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganInsentif whereUserid($value)
  */
 	class PayPotonganInsentif extends \Eloquent {}
 }
@@ -1641,9 +1982,33 @@ namespace App\Models{
 /**
  * App\Models\PayPotonganRevo
  *
+ * @property string $tahun
+ * @property string $bulan
+ * @property string $nopek
+ * @property string $aardpot
+ * @property string|null $jmlcc
+ * @property string|null $ccl
+ * @property string|null $nilai
+ * @property string $aardhut
+ * @property string|null $awal
+ * @property string|null $akhir
+ * @property string|null $totalhut
+ * @property string|null $userid
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereAardhut($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereAardpot($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereAkhir($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereAwal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereCcl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereJmlcc($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereNopek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereTotalhut($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayPotonganRevo whereUserid($value)
  */
 	class PayPotonganRevo extends \Eloquent {}
 }
@@ -1652,9 +2017,11 @@ namespace App\Models{
 /**
  * App\Models\PayTabungan
  *
+ * @property string|null $perusahaan
  * @method static \Illuminate\Database\Eloquent\Builder|PayTabungan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayTabungan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayTabungan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayTabungan wherePerusahaan($value)
  */
 	class PayTabungan extends \Eloquent {}
 }
@@ -1663,9 +2030,13 @@ namespace App\Models{
 /**
  * App\Models\PayTunjangan
  *
+ * @property string $golongan
+ * @property string|null $nilai
  * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan whereGolongan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PayTunjangan whereNilai($value)
  */
 	class PayTunjangan extends \Eloquent {}
 }
@@ -1748,11 +2119,45 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\PekerjaPendidikan
+ *
+ * @property string|null $nopeg
+ * @property string|null $mulai
+ * @property string|null $tgllulus
+ * @property string|null $kodedidik
+ * @property string|null $tempatdidik
+ * @property string|null $kodept
+ * @property string|null $catatan
+ * @property string|null $userid
+ * @property string|null $tglentry
+ * @property-read \App\Models\PerguruanTinggi|null $perguruan_tinggi
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereCatatan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereKodedidik($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereKodept($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereNopeg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereTempatdidik($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereTglentry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereTgllulus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PekerjaPendidikan whereUserid($value)
+ */
+	class PekerjaPendidikan extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Pendidikan
  *
+ * @property string $kode
+ * @property string $nama
  * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan whereKode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Pendidikan whereNama($value)
  */
 	class Pendidikan extends \Eloquent {}
 }
@@ -1761,22 +2166,307 @@ namespace App\Models{
 /**
  * App\Models\PerguruanTinggi
  *
+ * @property string $kode
+ * @property string|null $nama
  * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi whereKode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerguruanTinggi whereNama($value)
  */
 	class PerguruanTinggi extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
+ * App\Models\Perizinan
+ *
+ * @property int $id
+ * @property int $perusahaan_afiliasi_id
+ * @property string $keterangan
+ * @property string $nomor
+ * @property string $masa_berlaku_akhir
+ * @property string $dokumen
+ * @property string $created_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereDokumen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereMasaBerlakuAkhir($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereNomor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan wherePerusahaanAfiliasiId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Perizinan whereUpdatedAt($value)
+ */
+	class Perizinan extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\PermintaanBayarDetail
+ *
+ * @property int $no
+ * @property string $no_bayar
+ * @property string|null $keterangan
+ * @property string|null $account
+ * @property string|null $nilai
+ * @property string|null $cj
+ * @property string|null $bagian
+ * @property string|null $jb
+ * @property string|null $pk
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereAccount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereBagian($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereCj($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereJb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereNilai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail whereNoBayar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarDetail wherePk($value)
+ */
+	class PermintaanBayarDetail extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\PermintaanBayarHeader
+ *
+ * @property string $no_bayar
+ * @property string|null $kepada
+ * @property string|null $dari
+ * @property string|null $pemohon
+ * @property string|null $menyetujui
+ * @property string|null $tgl_bayar
+ * @property string|null $app_sdm
+ * @property string|null $app_sdm_oleh
+ * @property string|null $app_sdm_tgl
+ * @property string|null $app_pbd_oleh
+ * @property string|null $app_pbd_tgl
+ * @property string|null $no_kas
+ * @property string|null $bulan_buku
+ * @property string|null $keterangan
+ * @property string|null $ci
+ * @property string|null $app_pbd
+ * @property string|null $rate
+ * @property string|null $lampiran
+ * @property string|null $mata_anggaran
+ * @property string|null $mulai
+ * @property string|null $sampai
+ * @property string|null $debet_tgl
+ * @property string|null $debet_no
+ * @property string|null $debet_dari
+ * @property string|null $rekyes
+ * @property string|null $norek
+ * @property string|null $namabank
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereAppPbd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereAppPbdOleh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereAppPbdTgl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereAppSdm($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereAppSdmOleh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereAppSdmTgl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereBulanBuku($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereCi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereDari($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereDebetDari($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereDebetNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereDebetTgl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereKepada($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereLampiran($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereMataAnggaran($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereMenyetujui($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereMulai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereNamabank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereNoBayar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereNoKas($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereNorek($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader wherePemohon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereRate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereRekyes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereSampai($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader whereTglBayar($value)
+ */
+	class PermintaanBayarHeader extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\PerusahaanAfiliasi
+ *
+ * @property int $id
+ * @property string $nama
+ * @property string $telepon
+ * @property string $alamat
+ * @property string $bidang_usaha
+ * @property string $modal_dasar
+ * @property string $modal_disetor
+ * @property int $jumlah_lembar_saham
+ * @property string $nilai_nominal_per_saham
+ * @property string $created_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi newQuery()
+ * @method static \Illuminate\Database\Query\Builder|PerusahaanAfiliasi onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereAlamat($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereBidangUsaha($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereJumlahLembarSaham($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereModalDasar($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereModalDisetor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereNama($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereNilaiNominalPerSaham($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereTelepon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PerusahaanAfiliasi whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|PerusahaanAfiliasi withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|PerusahaanAfiliasi withoutTrashed()
+ */
+	class PerusahaanAfiliasi extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Provinsi
  *
+ * @property string $kode
+ * @property string $nama
  * @method static \Illuminate\Database\Eloquent\Builder|Provinsi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Provinsi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Provinsi query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Provinsi whereKode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Provinsi whereNama($value)
  */
 	class Provinsi extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\RencanaKerja
+ *
+ * @property int $kd_rencana_kerja
+ * @property int $kd_perusahaan
+ * @property string $tahun
+ * @property string|null $bulan
+ * @property string|null $aset_r
+ * @property string|null $revenue_r
+ * @property string|null $beban_pokok_r
+ * @property string|null $biaya_operasi_r
+ * @property string|null $tkp_r
+ * @property string|null $kpi_r
+ * @property string|null $laba_bersih_r
+ * @property string|null $rate_r
+ * @property int $ci_r
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereAsetR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereBebanPokokR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereBiayaOperasiR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereBulan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereCiR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereKdPerusahaan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereKdRencanaKerja($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereKpiR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereLabaBersihR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereRateR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereRevenueR($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RencanaKerja whereTkpR($value)
+ */
+	class RencanaKerja extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\SaldoStore
+ *
+ * @property string $nokas
+ * @property string $saldoawal
+ * @property string|null $debet
+ * @property string|null $kredit
+ * @property string|null $saldoakhir
+ * @property string|null $updatedate
+ * @property string|null $inputdate
+ * @property string|null $inputpwd
+ * @property string|null $updatepwd
+ * @property string|null $jk
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereDebet($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereInputdate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereInputpwd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereJk($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereKredit($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereNokas($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereSaldoakhir($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereSaldoawal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereUpdatedate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SaldoStore whereUpdatepwd($value)
+ */
+	class SaldoStore extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\SdmKDBag
+ *
+ * @property string $kode
+ * @property string $nama
+ * @method static \Illuminate\Database\Eloquent\Builder|SdmKDBag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SdmKDBag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SdmKDBag query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SdmKDBag whereKode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SdmKDBag whereNama($value)
+ */
+	class SdmKDBag extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\StoreJK
+ *
+ * @property string $jeniskartu
+ * @property string $kodestore
+ * @property string|null $bagian
+ * @property string|null $account
+ * @property string|null $area
+ * @property string|null $lokasi
+ * @property string|null $jenisbiaya
+ * @property string|null $ci
+ * @property string|null $namabank
+ * @property string|null $norekening
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK query()
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereAccount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereArea($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereBagian($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereCi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereJenisbiaya($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereJeniskartu($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereKodestore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereLokasi($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereNamabank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StoreJK whereNorekening($value)
+ */
+	class StoreJK extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1908,6 +2598,21 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|UmkHeader whereTglPanjar($value)
  */
 	class UmkHeader extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\UmuDebetNota
+ *
+ * @property string $kode
+ * @property string|null $keterangan
+ * @method static \Illuminate\Database\Eloquent\Builder|UmuDebetNota newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UmuDebetNota newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|UmuDebetNota query()
+ * @method static \Illuminate\Database\Eloquent\Builder|UmuDebetNota whereKeterangan($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UmuDebetNota whereKode($value)
+ */
+	class UmuDebetNota extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -2052,23 +2757,27 @@ namespace App\Models{
 /**
  * App\Models\Vendor
  *
- * @property int $vendorid
+ * @property int $id
  * @property string $nama
  * @property string $alamat
- * @property string $telpon
- * @property string|null $norek
- * @property string|null $nama_bank
- * @property string|null $cabang_bank
+ * @property string $telepon
+ * @property string $no_rekening
+ * @property string $nama_bank
+ * @property string $cabang_bank
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor query()
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereAlamat($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereCabangBank($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereNama($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereNamaBank($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereNorek($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereTelpon($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereVendorid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereNoRekening($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereTelepon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vendor whereUpdatedAt($value)
  */
 	class Vendor extends \Eloquent {}
 }

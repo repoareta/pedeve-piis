@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="menu-item menu-item-submenu {{ Route::is('modul_administrator.tabel_menu.*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="#" class="menu-link menu-toggle">
+                <a href="{{ route('modul_administrator.tabel_menu.index') }}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
@@ -47,7 +47,7 @@
                 </a>
             </li>
             <li class="menu-item menu-item-submenu {{ Route::is('modul_administrator.log.*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="#" class="menu-link menu-toggle">
+                <a href="{{ route('modul_administrator.log.index') }}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li class="menu-item menu-item-submenu {{ Route::is('modul_administrator.password_administrator.*') ? 'menu-item-active' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="#" class="menu-link menu-toggle">
+                <a href="{{ route('modul_administrator.password_administrator.index') }}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
