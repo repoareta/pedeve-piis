@@ -26,12 +26,13 @@ class JurnalUmumController extends Controller
                 $bulan ='00';
                 $tahun ='0000';
             }
-        return view('jurnal_umum.index',compact('tahun','bulan'));
+        return view('modul-kontroler.jurnal-umum.index',compact('tahun','bulan'));
     }
 
     public function searchIndex(Request $request)
     {
         $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        
         if(!empty($rsbulan)){
             foreach($rsbulan as $dat)
             {
@@ -44,39 +45,23 @@ class JurnalUmumController extends Controller
         }else{
             $thnblopen2 = "";
         }
+
         if($request->bulan<>"" and $request->tahun<>""){
             $data = DB::select("select  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$request->tahun$request->bulan' order by voucher");
         }else{
             $data = DB::select("select  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$thnblopen2' order by voucher");
-        }	
+        }
+
         return datatables()->of($data)
-        ->addColumn('docno', function ($data) {
-            return $data->docno;
-       })
-        ->addColumn('keterangan', function ($data) {
-            return $data->keterangan;
-       })
-        ->addColumn('jk', function ($data) {
-            return $data->jk;
-       })
-        ->addColumn('store', function ($data) {
-            return $data->store;
-       })
-        ->addColumn('voucher', function ($data) {
-            return $data->voucher;
-       })
-        ->addColumn('posted', function ($data) {
-            return $data->posted;
-       })
         ->addColumn('radio', function ($data) {
             $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" docno="'. str_replace('/', '-', $data->docno).'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
         ->addColumn('action', function ($data) {
             if(Auth::user()->userid <> 'PWC'){
-                $action = '<p align="center"><a href="'. route('jurnal_umum.copy',['no' => str_replace('/', '-', $data->docno)]).'"><span style="font-size: 2em;" class="kt-font-primary pointer-link" data-toggle="kt-tooltip" data-placement="top" title="" style="cursor:hand"><i class="fas fa-paste" ></i></span></a></p>';
+                $action = '<a href="'. route('modul_kontroler.jurnal_umum.copy',['no' => str_replace('/', '-', $data->docno)]).'"><span><i class="fas fa-2x fa-paste text-primary"></i></span></a>';
             }else{
-                $action = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="" style="cursor:hand"><i class="fas fa-paste" ></i></span></p>';
+                $action = '<span><i class="fas fa-2x fa-paste text-success"></i></span>';
             }               
             return $action;
         })
@@ -104,7 +89,7 @@ class JurnalUmumController extends Controller
         $s = $thnblopen2;
         if($s == ""){
             Alert::info("Bulan buku tidak ada atau sudah di posting", 'Failed')->persistent(true);
-            return redirect()->route('jurnal_umum.create');
+            return redirect()->route('modul-kontroler.jurnal-umum.create');
         }else{  
             $thnbln = $s;
             $suplesi = 0; 
@@ -128,7 +113,7 @@ class JurnalUmumController extends Controller
                 $nobukti = "AA001";
                 $nomor = substr($tahun,2,2).''.$bulan.'001';
             }
-        return view('jurnal_umum.create',compact(
+        return view('modul-kontroler.jurnal-umum.create',compact(
         'mp',
         'rate',
         'nama_ci',
@@ -226,7 +211,7 @@ class JurnalUmumController extends Controller
                         $jumlahnya = 0;
                    }
 
-           return view('jurnal_umum.edit',compact('data_jur','data_detail','nu','data_lapang','data_sandi','data_bagian','data_jenis','jumlahnya','lab2'));
+           return view('modul-kontroler.jurnal-umum.edit',compact('data_jur','data_detail','nu','data_lapang','data_sandi','data_bagian','data_jenis','jumlahnya','lab2'));
     }
     public function update(Request $request)
     {
@@ -409,7 +394,7 @@ class JurnalUmumController extends Controller
 
     public function posting($no, $status)
     {
-        return view('jurnal_umum.posting',compact('no','status'));
+        return view('modul-kontroler.jurnal-umum.posting',compact('no','status'));
     }
     public function storePosting(Request $request)
     {
@@ -436,7 +421,7 @@ class JurnalUmumController extends Controller
         
         if($bulbuk <> $thnblopen3){
             Alert::info('Proses Posting Jurnal Gagal, Bulan Buku Aktif: '.$bulbuk, 'Info')->persistent(true);
-            return redirect()->route('jurnal_umum.edit', ['no' => $request->docno]);
+            return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
         }else{
             if($request->status =="N"){
                 $data_cekdetail = DB::select("select (sum(debet) - sum(kredit)) as total from jurumline where docno='$docno'");
@@ -508,10 +493,10 @@ class JurnalUmumController extends Controller
                         'postedid' => $request->userid,
                     ]);
                     Alert::success('Data Berhasil Diposting', 'Berhasil')->persistent(true);
-                    return redirect()->route('jurnal_umum.edit', ['no' => $request->docno]);
+                    return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
                 }else{
                     Alert::info('Posting Gagal, Debet Kredit Tidak Balance', 'Info')->persistent(true);
-                    return redirect()->route('jurnal_umum.edit', ['no' => $request->docno]);
+                    return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
                 }
             }else{
                 Fiosd201::where('docno', $docno)->delete();
@@ -523,7 +508,7 @@ class JurnalUmumController extends Controller
                         'posteddate' => null,
                     ]);
                     Alert::success('Data Posting Berhasil Dibatalkan', 'Berhasil')->persistent(true);
-                    return redirect()->route('jurnal_umum.edit', ['no' => $request->docno]);
+                    return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
             }
         }
     }
@@ -531,7 +516,7 @@ class JurnalUmumController extends Controller
     public function copy($no)
     {
         $docno = str_replace('-', '/', $no);
-        return view('jurnal_umum.copy',compact('docno'));
+        return view('modul-kontroler.jurnal-umum.copy',compact('docno'));
     }
     public function storeCopy(Request $request)
     {
@@ -608,7 +593,7 @@ class JurnalUmumController extends Controller
             }
         }
         Alert::success('Copy Jurnal', 'Berhasil')->persistent(true);
-        return redirect()->route('jurnal_umum.index');
+        return redirect()->route('modul-kontroler.jurnal-umum.index');
     }
 
     public function rekap($docno)
@@ -616,7 +601,7 @@ class JurnalUmumController extends Controller
         $dibuat ="WASONO H";
         $diperiksa="WASONO H";
         $disetujui="WASONO H";
-        return view('jurnal_umum.rekap',compact(
+        return view('modul-kontroler.jurnal-umum.rekap',compact(
             'docno',
             'dibuat',
             'diperiksa',
@@ -638,7 +623,7 @@ class JurnalUmumController extends Controller
                 $bulan = $dataa->bulan;
                 $tahun = $dataa->tahun;
             }
-            $pdf = GlobalDomPDF::loadview('jurnal_umum.export',compact('request','data_list','jk','ci','voucher','docno','bulan','tahun'))->setPaper('letter', 'landscape');
+            $pdf = GlobalDomPDF::loadview('modul-kontroler.jurnal-umum.export',compact('request','data_list','jk','ci','voucher','docno','bulan','tahun'))->setPaper('letter', 'landscape');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
         
@@ -648,7 +633,7 @@ class JurnalUmumController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data", 'Failed')->persistent(true);
-            return redirect()->route('jurnal_umum.index');
+            return redirect()->route('modul-kontroler.jurnal-umum.index');
         }
     }
 }
