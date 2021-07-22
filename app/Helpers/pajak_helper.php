@@ -29,3 +29,12 @@ function pph21ok($pokok)
         return $pajakbulanpt = 0;
     }
 }
+
+function vf($tf)
+{
+    if (is_null($tf)) {
+        return   $vf = "0";
+    } else {
+        return $vf = trim($tf);
+    }
+}
