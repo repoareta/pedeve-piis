@@ -70,7 +70,7 @@ class RekapHarianKasController extends Controller
             ->addColumn('radio', function ($data) {
                 $tglrek = date_create($data->stglrekap);
                 $tglrekap = date_format($tglrek, 'Y-m-d');
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" jk="' . $data->jk . '" nokas="' . $data->store . '"  tanggal="' . $tglrekap . '" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" jk="' . $data->jk . '" nokas="' . $data->store . '"  tanggal="' . $tglrekap . '" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])

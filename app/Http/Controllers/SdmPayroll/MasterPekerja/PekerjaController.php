@@ -58,7 +58,7 @@ class PekerjaController extends Controller
                 }
             })
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio1" value="'.$row->nopeg.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->nopeg.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('bagian', function ($row) {

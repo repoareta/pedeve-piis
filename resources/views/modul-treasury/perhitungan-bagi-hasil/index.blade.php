@@ -66,7 +66,7 @@
 			<tbody>
 			@foreach($data_list as $data)
 				<tr>
-					<td><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" class="btn-radio" name="btn-radio" nodok="{{$data->docno}}" lineno="{{$data->lineno}}"><span></span></label></td>
+					<td><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="{{$data->docno}}" lineno="{{$data->lineno}}"><span></span></label></td>
 					<td>{{ $data->nmbank }}</td>
 					<td>{{ $data->noseri }}</td>
 					<td>{{ $data->asal }}</td>
