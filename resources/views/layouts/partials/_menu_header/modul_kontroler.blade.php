@@ -1,4 +1,4 @@
-<li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+<li class="menu-item menu-item-submenu menu-item-rel {{ Route::is('modul_kontroler.*') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="menu-text">Kontroler</span>
         <i class="menu-arrow"></i>
@@ -16,7 +16,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.cash_judex.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.jenis_biaya.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.kas_bank_kontroler.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.lokasi_kontroler.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.sandi_perkiraan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.bulan_kontroler.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.main_account.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -85,7 +85,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.d2_perbulan.create_d2_perbulan') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -93,7 +93,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.d2_periode.create_d2_periode') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -101,7 +101,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.d5_report.create_d5_report') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -117,7 +117,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.neraca_detail.create_neraca_detail') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -125,7 +125,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.laba_rugi_konsolidasi.create_laba_rugi_konsolidasi') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -133,7 +133,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.laba_rugi_detail.create_laba_rugi_detail') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -141,15 +141,15 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.laporan_keuangan.create_laporan_keuangan') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Catatan Atas Lap.Keuangan</span>
+                                <span class="menu-text">Catatan Atas Lap. Keuangan</span>
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.biaya_pegawai.create_biaya_pegawai') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -170,7 +170,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.cetak_kas_bank.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -178,7 +178,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel_deposito.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -188,24 +188,24 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item" aria-haspopup="true">
-                <a href="#" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_kontroler.postingan_kas_bank.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_kontroler.postingan_kas_bank.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
                     <span class="menu-text">Posting Kas Bank</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
-                <a href="#" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_kontroler.postingan_kas_bank.verkass') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_kontroler.postingan_kas_bank.verkass') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
                     <span class="menu-text">Verifikasi Kas Bank</span>
                 </a>
             </li>
-            <li class="menu-item" aria-haspopup="true">
-                <a href="#" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_kontroler.jurnal_umum.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_kontroler.jurnal_umum.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>

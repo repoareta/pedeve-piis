@@ -1,7 +1,7 @@
 <?php
 
 //Kontroler
-Route::prefix('kontroler')->group(function () {
+Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
 
     //jurnam_umum
     // Route assigned name "jurnal_umum.index"...
@@ -106,10 +106,10 @@ Route::prefix('kontroler')->group(function () {
     //tabel_deposito
     // Route assigned name "tabel_deposito.index"...
     Route::name('tabel_deposito.')->group(function () {
-        Route::get('tabel_deposito', 'TabelDepositoController@index')->name('index');
-        Route::post('tabel_deposito/index/search', 'TabelDepositoController@searchIndex')->name('search.index');
-        Route::get('tabel_deposito/rekap/{no}/{id}', 'TabelDepositoController@rekap')->name('rekap');
-        Route::post('tabel_deposito/export', 'TabelDepositoController@export')->name('export');
+        Route::get('tabel-deposito', 'TabelDepositoController@index')->name('index');
+        Route::post('tabel-deposito/index/search', 'TabelDepositoController@searchIndex')->name('search.index');
+        Route::get('tabel-deposito/rekap/{no}/{id}', 'TabelDepositoController@rekap')->name('rekap');
+        Route::post('tabel-deposito/export', 'TabelDepositoController@export')->name('export');
     });
     //end tabel_deposito
 
@@ -117,13 +117,13 @@ Route::prefix('kontroler')->group(function () {
     //cash_judex
     // Route assigned name "cash_judex.index"...
     Route::name('cash_judex.')->group(function () {
-        Route::get('cash_judex', 'CashJudexController@index')->name('index');
-        Route::post('cash_judex/index/search', 'CashJudexController@searchIndex')->name('search.index');
-        Route::get('cash_judex/create', 'CashJudexController@create')->name('create');
-        Route::post('cash_judex/store', 'CashJudexController@store')->name('store');
-        Route::get('cash_judex/edit/{no}', 'CashJudexController@edit')->name('edit');
-        Route::post('cash_judex/update', 'CashJudexController@update')->name('update');
-        Route::delete('cash_judex/delete', 'CashJudexController@delete')->name('delete');
+        Route::get('cash-judex', 'CashJudexController@index')->name('index');
+        Route::post('cash-judex/index/search', 'CashJudexController@searchIndex')->name('search.index');
+        Route::get('cash-judex/create', 'CashJudexController@create')->name('create');
+        Route::post('cash-judex/store', 'CashJudexController@store')->name('store');
+        Route::get('cash-judex/edit/{no}', 'CashJudexController@edit')->name('edit');
+        Route::post('cash-judex/update', 'CashJudexController@update')->name('update');
+        Route::delete('cash-judex/delete', 'CashJudexController@delete')->name('delete');
     });
     //end cash_judex
 
@@ -131,39 +131,39 @@ Route::prefix('kontroler')->group(function () {
     //jenis_biaya
     // Route assigned name "jenis_biaya.index"...
     Route::name('jenis_biaya.')->group(function () {
-        Route::get('jenis_biaya', 'JenisBiayaController@index')->name('index');
-        Route::post('jenis_biaya/index/search', 'JenisBiayaController@searchIndex')->name('search.index');
-        Route::get('jenis_biaya/create', 'JenisBiayaController@create')->name('create');
-        Route::post('jenis_biaya/store', 'JenisBiayaController@store')->name('store');
-        Route::get('jenis_biaya/edit/{no}', 'JenisBiayaController@edit')->name('edit');
-        Route::post('jenis_biaya/update', 'JenisBiayaController@update')->name('update');
-        Route::delete('jenis_biaya/delete', 'JenisBiayaController@delete')->name('delete');
+        Route::get('jenis-biaya', 'JenisBiayaController@index')->name('index');
+        Route::post('jenis-biaya/index/search', 'JenisBiayaController@searchIndex')->name('search.index');
+        Route::get('jenis-biaya/create', 'JenisBiayaController@create')->name('create');
+        Route::post('jenis-biaya/store', 'JenisBiayaController@store')->name('store');
+        Route::get('jenis-biaya/edit/{no}', 'JenisBiayaController@edit')->name('edit');
+        Route::post('jenis-biaya/update', 'JenisBiayaController@update')->name('update');
+        Route::delete('jenis-biaya/delete', 'JenisBiayaController@delete')->name('delete');
     });
     //end jenis_biaya
     
     //kas_bank_kontroler
     // Route assigned name "kas_bank_kontroler.index"...
     Route::name('kas_bank_kontroler.')->group(function () {
-        Route::get('kas_bank_kontroler', 'KasBankKontrolerController@index')->name('index');
-        Route::post('kas_bank_kontroler/index/search', 'KasBankKontrolerController@searchIndex')->name('search.index');
-        Route::get('kas_bank_kontroler/create', 'KasBankKontrolerController@create')->name('create');
-        Route::post('kas_bank_kontroler/store', 'KasBankKontrolerController@store')->name('store');
-        Route::get('kas_bank_kontroler/edit/{no}', 'KasBankKontrolerController@edit')->name('edit');
-        Route::post('kas_bank_kontroler/update', 'KasBankKontrolerController@update')->name('update');
-        Route::delete('kas_bank_kontroler/delete', 'KasBankKontrolerController@delete')->name('delete');
+        Route::get('kas-bank-kontroler', 'KasBankKontrolerController@index')->name('index');
+        Route::post('kas-bank-kontroler/index/search', 'KasBankKontrolerController@searchIndex')->name('search.index');
+        Route::get('kas-bank-kontroler/create', 'KasBankKontrolerController@create')->name('create');
+        Route::post('kas-bank-kontroler/store', 'KasBankKontrolerController@store')->name('store');
+        Route::get('kas-bank-kontroler/edit/{no}', 'KasBankKontrolerController@edit')->name('edit');
+        Route::post('kas-bank-kontroler/update', 'KasBankKontrolerController@update')->name('update');
+        Route::delete('kas-bank-kontroler/delete', 'KasBankKontrolerController@delete')->name('delete');
     });
     //end kas_bank_kontroler
     
     //lokasi_kontroler
     // Route assigned name "lokasi_kontroler.index"...
     Route::name('lokasi_kontroler.')->group(function () {
-        Route::get('lokasi_kontroler', 'LokasiKontrolerController@index')->name('index');
-        Route::post('lokasi_kontroler/index/search', 'LokasiKontrolerController@searchIndex')->name('search.index');
-        Route::get('lokasi_kontroler/create', 'LokasiKontrolerController@create')->name('create');
-        Route::post('lokasi_kontroler/store', 'LokasiKontrolerController@store')->name('store');
-        Route::get('lokasi_kontroler/edit/{no}', 'LokasiKontrolerController@edit')->name('edit');
-        Route::post('lokasi_kontroler/update', 'LokasiKontrolerController@update')->name('update');
-        Route::delete('lokasi_kontroler/delete', 'LokasiKontrolerController@delete')->name('delete');
+        Route::get('lokasi-kontroler', 'LokasiKontrolerController@index')->name('index');
+        Route::post('lokasi-kontroler/index/search', 'LokasiKontrolerController@searchIndex')->name('search.index');
+        Route::get('lokasi-kontroler/create', 'LokasiKontrolerController@create')->name('create');
+        Route::post('lokasi-kontroler/store', 'LokasiKontrolerController@store')->name('store');
+        Route::get('lokasi-kontroler/edit/{no}', 'LokasiKontrolerController@edit')->name('edit');
+        Route::post('lokasi-kontroler/update', 'LokasiKontrolerController@update')->name('update');
+        Route::delete('lokasi-kontroler/delete', 'LokasiKontrolerController@delete')->name('delete');
     });
     //end lokasi_kontroler
 
@@ -171,26 +171,26 @@ Route::prefix('kontroler')->group(function () {
     //sandi_perkiraan
     // Route assigned name "sandi_perkiraan.index"...
     Route::name('sandi_perkiraan.')->group(function () {
-        Route::get('sandi_perkiraan', 'SandiPerkiraanController@index')->name('index');
-        Route::post('sandi_perkiraan/index/search', 'SandiPerkiraanController@searchIndex')->name('search.index');
-        Route::get('sandi_perkiraan/create', 'SandiPerkiraanController@create')->name('create');
-        Route::post('sandi_perkiraan/store', 'SandiPerkiraanController@store')->name('store');
-        Route::get('sandi_perkiraan/edit/{no}', 'SandiPerkiraanController@edit')->name('edit');
-        Route::post('sandi_perkiraan/update', 'SandiPerkiraanController@update')->name('update');
-        Route::delete('sandi_perkiraan/delete', 'SandiPerkiraanController@delete')->name('delete');
+        Route::get('sandi-perkiraan', 'SandiPerkiraanController@index')->name('index');
+        Route::post('sandi-perkiraan/index/search', 'SandiPerkiraanController@searchIndex')->name('search.index');
+        Route::get('sandi-perkiraan/create', 'SandiPerkiraanController@create')->name('create');
+        Route::post('sandi-perkiraan/store', 'SandiPerkiraanController@store')->name('store');
+        Route::get('sandi-perkiraan/edit/{no}', 'SandiPerkiraanController@edit')->name('edit');
+        Route::post('sandi-perkiraan/update', 'SandiPerkiraanController@update')->name('update');
+        Route::delete('sandi-perkiraan/delete', 'SandiPerkiraanController@delete')->name('delete');
     });
     //end sandi_perkiraan
 
     //bulan_kontroler
     // Route assigned name "bulan_kontroler.index"...
     Route::name('bulan_kontroler.')->group(function () {
-        Route::get('bulan_kontroler', 'BulanKontrolerController@index')->name('index');
-        Route::post('bulan_kontroler/index/search', 'BulanKontrolerController@searchIndex')->name('search.index');
-        Route::get('bulan_kontroler/create', 'BulanKontrolerController@create')->name('create');
-        Route::post('bulan_kontroler/store', 'BulanKontrolerController@store')->name('store');
-        Route::get('bulan_kontroler/edit/{no}', 'BulanKontrolerController@edit')->name('edit');
-        Route::post('bulan_kontroler/update', 'BulanKontrolerController@update')->name('update');
-        Route::delete('bulan_kontroler/delete', 'BulanKontrolerController@delete')->name('delete');
+        Route::get('bulan-kontroler', 'BulanKontrolerController@index')->name('index');
+        Route::post('bulan-kontroler/index/search', 'BulanKontrolerController@searchIndex')->name('search.index');
+        Route::get('bulan-kontroler/create', 'BulanKontrolerController@create')->name('create');
+        Route::post('bulan-kontroler/store', 'BulanKontrolerController@store')->name('store');
+        Route::get('bulan-kontroler/edit/{no}', 'BulanKontrolerController@edit')->name('edit');
+        Route::post('bulan-kontroler/update', 'BulanKontrolerController@update')->name('update');
+        Route::delete('bulan-kontroler/delete', 'BulanKontrolerController@delete')->name('delete');
     });
     //end bulan_kontroler
 
@@ -198,13 +198,13 @@ Route::prefix('kontroler')->group(function () {
     //main_account
     // Route assigned name "main_account.index"...
     Route::name('main_account.')->group(function () {
-        Route::get('main_account', 'MainAccountController@index')->name('index');
-        Route::post('main_account/index/search', 'MainAccountController@searchIndex')->name('search.index');
-        Route::get('main_account/create', 'MainAccountController@create')->name('create');
-        Route::post('main_account/store', 'MainAccountController@store')->name('store');
-        Route::get('main_account/edit/{no}', 'MainAccountController@edit')->name('edit');
-        Route::post('main_account/update', 'MainAccountController@update')->name('update');
-        Route::delete('main_account/delete', 'MainAccountController@delete')->name('delete');
+        Route::get('main-account', 'MainAccountController@index')->name('index');
+        Route::post('main-account/index/search', 'MainAccountController@searchIndex')->name('search.index');
+        Route::get('main-account/create', 'MainAccountController@create')->name('create');
+        Route::post('main-account/store', 'MainAccountController@store')->name('store');
+        Route::get('main-account/edit/{no}', 'MainAccountController@edit')->name('edit');
+        Route::post('main-account/update', 'MainAccountController@update')->name('update');
+        Route::delete('main-account/delete', 'MainAccountController@delete')->name('delete');
     });
     //end main_account
 
@@ -212,67 +212,67 @@ Route::prefix('kontroler')->group(function () {
     //d2_perbulan
     // Route assigned name "d2_perbulan.index"...
     Route::name('d2_perbulan.')->group(function () {
-        Route::get('d2_perbulan', 'ReportKontrolerController@create_d2_perbulan')->name('create_d2_perbulan');
-        Route::get('d2_perbulan/search/account', 'ReportKontrolerController@searchAccount')->name('search.account');
-        Route::get('d2_perbulan/export', 'ReportKontrolerController@d2PerBulanExport')->name('export');
+        Route::get('d2-perbulan', 'ReportKontrolerController@create_d2_perbulan')->name('create_d2_perbulan');
+        Route::get('d2-perbulan/search/account', 'ReportKontrolerController@searchAccount')->name('search.account');
+        Route::get('d2-perbulan/export', 'ReportKontrolerController@d2PerBulanExport')->name('export');
     });
     //end d2_perbulan
     
     //d2_periode
     // Route assigned name "d2_periode.index"...
     Route::name('d2_periode.')->group(function () {
-        Route::get('d2_periode', 'ReportKontrolerController@create_d2_periode')->name('create_d2_periode');
-        Route::get('d2_periode/search/account', 'ReportKontrolerController@searchAccount')->name('search.account');
-        Route::get('d2_periode/export', 'ReportKontrolerController@d2PerPeriodeExport')->name('export');
+        Route::get('d2-periode', 'ReportKontrolerController@create_d2_periode')->name('create_d2_periode');
+        Route::get('d2-periode/search/account', 'ReportKontrolerController@searchAccount')->name('search.account');
+        Route::get('d2-periode/export', 'ReportKontrolerController@d2PerPeriodeExport')->name('export');
     });
     //end d2_periode
     
     //d5_report
     // Route assigned name "d5_report.index"...
     Route::name('d5_report.')->group(function () {
-        Route::get('d5_report', 'ReportKontrolerController@create_d5_report')->name('create_d5_report');
-        Route::get('d5_report/search/account', 'ReportKontrolerController@searchAccount')->name('search.account');
-        Route::post('d5_report/export', 'ReportKontrolerController@exportD5')->name('export');
+        Route::get('d5-report', 'ReportKontrolerController@create_d5_report')->name('create_d5_report');
+        Route::get('d5-report/search/account', 'ReportKontrolerController@searchAccount')->name('search.account');
+        Route::post('d5-report/export', 'ReportKontrolerController@exportD5')->name('export');
     });
     //end d5_report
 
     //neraca_konsolidasi
     // Route assigned name "neraca_konsolidasi.index"...
     Route::name('neraca_konsolidasi.')->group(function () {
-        Route::get('neraca_konsolidasi', 'ReportKontrolerController@create_neraca_konsolidasi')->name('create_neraca_konsolidasi');
-        Route::post('neraca_konsolidasi/export', 'ReportKontrolerController@exportNeracaKonsolidasi')->name('export');
+        Route::get('neraca-konsolidasi', 'ReportKontrolerController@create_neraca_konsolidasi')->name('create_neraca_konsolidasi');
+        Route::post('neraca-konsolidasi/export', 'ReportKontrolerController@exportNeracaKonsolidasi')->name('export');
     });
     //end neraca_konsolidasi
     
     //neraca_detail
     // Route assigned name "neraca_detail.index"...
     Route::name('neraca_detail.')->group(function () {
-        Route::get('neraca_detail', 'ReportKontrolerController@create_neraca_detail')->name('create_neraca_detail');
-        Route::post('neraca_detail/export', 'ReportKontrolerController@exportNeracaDetail')->name('export');
+        Route::get('neraca-detail', 'ReportKontrolerController@create_neraca_detail')->name('create_neraca_detail');
+        Route::post('neraca-detail/export', 'ReportKontrolerController@exportNeracaDetail')->name('export');
     });
     //end neraca_detail
 
     //laba_rugi_konsolidasi
     // Route assigned name "laba_rugi_konsolidasi.index"...
     Route::name('laba_rugi_konsolidasi.')->group(function () {
-        Route::get('laba_rugi_konsolidasi', 'ReportKontrolerController@create_laba_rugi_konsolidasi')->name('create_laba_rugi_konsolidasi');
-        Route::post('laba_rugi_konsolidasi/export', 'ReportKontrolerController@exportLabaRugiKonsolidasi')->name('export.laba.rugi.konsolidasi');
+        Route::get('laba-rugi-konsolidasi', 'ReportKontrolerController@create_laba_rugi_konsolidasi')->name('create_laba_rugi_konsolidasi');
+        Route::post('laba-rugi-konsolidasi/export', 'ReportKontrolerController@exportLabaRugiKonsolidasi')->name('export.laba.rugi.konsolidasi');
     });
     //end laba_rugi_konsolidasi
     
     //laba_rugi_detail
     // Route assigned name "laba_rugi_detail.index"...
     Route::name('laba_rugi_detail.')->group(function () {
-        Route::get('laba_rugi_detail', 'ReportKontrolerController@create_laba_rugi_detail')->name('create_laba_rugi_detail');
-        Route::post('laba_rugi_detail/export', 'ReportKontrolerController@exportLabaRugiDetail')->name('export.laba.rugi.detail');
+        Route::get('laba-rugi-detail', 'ReportKontrolerController@create_laba_rugi_detail')->name('create_laba_rugi_detail');
+        Route::post('laba-rugi-detail/export', 'ReportKontrolerController@exportLabaRugiDetail')->name('export.laba.rugi.detail');
     });
 
     //end laporan_keuangan
     //laporan_keuangan
     // Route assigned name "laporan_keuangan.index"...
     Route::name('laporan_keuangan.')->group(function () {
-        Route::get('laporan_keuangan', 'ReportKontrolerController@create_laporan_keuangan')->name('create_laporan_keuangan');
-        Route::get('laporan_keuangan/export', 'ReportKontrolerController@laporanKeuanganExport')->name('export');
+        Route::get('laporan-keuangan', 'ReportKontrolerController@create_laporan_keuangan')->name('create_laporan_keuangan');
+        Route::get('laporan-keuangan/export', 'ReportKontrolerController@laporanKeuanganExport')->name('export');
     });
     //end laporan_keuangan
 
@@ -280,8 +280,8 @@ Route::prefix('kontroler')->group(function () {
     //biaya_pegawai
     // Route assigned name "biaya_pegawai.index"...
     Route::name('biaya_pegawai.')->group(function () {
-        Route::get('biaya_pegawai', 'ReportKontrolerController@create_biaya_pegawai')->name('create_biaya_pegawai');
-        Route::post('biaya_pegawai/export', 'ReportKontrolerController@exportBiayaPegawai')->name('export_biaya_pegawai');
+        Route::get('biaya-pegawai', 'ReportKontrolerController@create_biaya_pegawai')->name('create_biaya_pegawai');
+        Route::post('biaya-pegawai/export', 'ReportKontrolerController@exportBiayaPegawai')->name('export_biaya_pegawai');
     });
     //end biaya_pegawai
 });
