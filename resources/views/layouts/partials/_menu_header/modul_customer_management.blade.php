@@ -14,19 +14,19 @@
                 </a>
             </li>
             <li class="menu-item {{ Route::is('modul_cm.perusahaan_afiliasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="#" class="menu-link">
+                <a href="{{ route('modul_cm.perusahaan_afiliasi.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
                     <span class="menu-text">Perusahaan Afiliasi</span>
                 </a>
             </li>
-            <li class="menu-item {{ Route::is('modul_cm.monitoring_pekerja.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="#" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_cm.monitoring_kinerja.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_cm.monitoring_kinerja.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Monitoring Pekerja</span>
+                    <span class="menu-text">Monitoring Kinerja</span>
                 </a>
             </li>
             <li class="menu-item {{ Route::is('modul_cm.rkap_realisasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
@@ -37,8 +37,8 @@
                     <span class="menu-text">RKAP & Realisasi</span>
                 </a>
             </li>
-            <li class="menu-item {{ Route::is('modul_cm.rkap_realisasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a href="#" class="menu-link">
+            <li class="menu-item {{ Route::is('modul_cm.pencapaian_kinerja.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a href="{{ route('modul_cm.pencapaian_kinerja.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>

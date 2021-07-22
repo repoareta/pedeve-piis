@@ -82,7 +82,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
 
     // perusahaan afiliasi START
     // Route assigned name "perusahaan-afiliasi.index"...
-    Route::name('perusahaan-afiliasi.')->group(function () {
+    Route::name('perusahaan_afiliasi.')->group(function () {
         Route::get('perusahaan-afiliasi', [PerusahaanAfiliasiController::class, 'index'])->name('index');
         Route::get('perusahaan-afiliasi/index_json', [PerusahaanAfiliasiController::class, 'indexJson'])->name('index.json');
         Route::get('perusahaan-afiliasi/create', [PerusahaanAfiliasiController::class, 'create'])->name('create');
