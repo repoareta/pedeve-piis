@@ -38,3 +38,23 @@ function vf($tf)
         return $vf = trim($tf);
     }
 }
+
+function stbbuku2($sthnbln, $ssup)
+{
+    $data_rsbulan = DB::select("select * from bulankontroller where thnbln='$sthnbln' and suplesi='$ssup'");
+    if (!empty($data_rsbulan)) {
+        foreach ($data_rsbulan as $data) {
+            if ($data->status == 1) {
+                return 'gtopening';
+            } elseif ($data->status == 2) {
+                return 'gtstopping';
+            } elseif ($data->status == 3) {
+                return 'gtclosing';
+            } else {
+                return 'gtnone';
+            }
+        }
+    } else {
+        return 'gtnone';
+    }
+}
