@@ -11,7 +11,7 @@ class MainAccountController extends Controller
 {
     public function index()
     {
-        return view('main_account.index');
+        return view('modul-kontroler.main-account.index');
     }
 
     public function searchIndex(Request $request)
@@ -52,7 +52,7 @@ class MainAccountController extends Controller
 
     public function create()
     {
-        return view('main_account.create');
+        return view('modul-kontroler.main-account.create');
     }
     public function store(Request $request)
     {
@@ -99,7 +99,7 @@ class MainAccountController extends Controller
             $subakun = $data->sub_akun;
             $lokasi = $data->lokasi;
         }
-        return view('main_account.edit',compact('jenis','batasawal','batasakhir','urutan','pengali','pengalitampil','subakun','lokasi'));
+        return view('modul-kontroler.main-account.edit',compact('jenis','batasawal','batasakhir','urutan','pengali','pengalitampil','subakun','lokasi'));
     }
     public function update(Request $request)
     {

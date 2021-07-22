@@ -10,34 +10,44 @@ class MasterPekerjaController extends Controller
 {
     public function index()
     {
-        return view('master_pekerja.index');
+        return view('modul-kontroler.master-pekerja.index');
     }
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.*, a.status as statusnya from tab_view_pekerja a order by a.nopek");
+        $data = DB::select("
+            SELECT 
+                A.PERUSAHAAN, 
+                C.NAMA AS NAMAPRSHN, 
+                A.NOPEK, 
+                A.NAMA, 
+                A.UNIT, 
+                A.UNITLALU, 
+                B.NAMA AS NAMAUNIT, 
+                A.STATUS, 
+                A.TGLLAHIR, 
+                A.TGLDINAS, 
+                A.TGLPENSIUN, 
+                A.nopek_lokasi,
+                B.KODE
+            FROM 
+                TAB_TBL_PEKERJA A, 
+                TAB_TBL_UNIT B, 
+                TAB_TBL_PRSHN C 
+            WHERE 
+                A.PERUSAHAAN = C.KODE 
+            AND A.UNIT = B.KODE 
+        ");
         
         return datatables()->of($data)
-        ->addColumn('namaprshn', function ($data) {
-            return $data->namaprshn;
+        ->addColumn('tgllahir', function ($data) {
+            return date('d M Y', strtotime($data->tgllahir));
         })
-        ->addColumn('kode', function ($data) {
-            return $data->kode;
-        })
-        ->addColumn('nama', function ($data) {
-            return $data->nama;
-        })
-        ->addColumn('alamat', function ($data) {
-            return $data->alamat;
-        })       
-        ->addColumn('kota', function ($data) {
-            return $data->kota;
-        })
-        ->addColumn('telp', function ($data) {
-            return $data->telp;
+        ->addColumn('tglpensiun', function ($data) {
+            return date('d M Y', strtotime($data->tglpensiun));
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->nopek.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -47,7 +57,7 @@ class MasterPekerjaController extends Controller
     public function create()
     {
         $data_perusahaan = DB::select("select * from tab_tbl_prshn");
-        return view('master_pekerja.create',compact('data_perusahaan'));
+        return view('modul-kontroler.master-pekerja.create',compact('data_perusahaan'));
     }
 
     public function store(Request $request)
@@ -95,7 +105,7 @@ class MasterPekerjaController extends Controller
         $kepada = $dat->kepada;
         $bantu = $dat->bantu;
         }
-        return view('master_pekerja.edit',compact(
+        return view('modul-kontroler.master-pekerja.edit',compact(
             'data_perusahaan',
             'tembusan',
             'skdari',
