@@ -50,7 +50,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
                 return currency_idr($row->jmlpanjar);
             })
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio1" value="'.$row->no_ppanjar.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no_ppanjar.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['action'])
