@@ -43,7 +43,7 @@ class MainAccountController extends Controller
             return $data->lokasi;
        })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
         ->rawColumns(['radio'])

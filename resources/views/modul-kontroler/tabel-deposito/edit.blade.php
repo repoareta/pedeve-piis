@@ -232,7 +232,7 @@
 						<tbody>
 						@foreach($data_detail as $data_d)
 							<tr>
-								<td scope="row" align="center"><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{$data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{$data_d->lineno}}" class="btn-radio" ><span></span></label></td>
 								<td>{{$data_d->lineno}}</td>
 								<td>{{$data_d->lokasi}}</td>
 								<td>{{$data_d->account}}</td>

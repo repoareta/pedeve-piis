@@ -45,7 +45,7 @@ class KasBankKontrolerController extends Controller
             return $data->lokasi;
        })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.$data->kodestore.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kodestore.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -219,7 +219,7 @@ class KasBankKontrolerController extends Controller
             }
        })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.str_replace('/', '-', $data->docno).'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.str_replace('/', '-', $data->docno).'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
         ->rawColumns(['radio','action'])

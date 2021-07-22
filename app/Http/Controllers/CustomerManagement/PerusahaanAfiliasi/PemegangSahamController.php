@@ -22,7 +22,7 @@ class PemegangSahamController extends Controller
 
         return datatables()->of($pemegang_saham_list)
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio_pemegang_saham" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pemegang_saham" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['action'])

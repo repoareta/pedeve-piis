@@ -69,7 +69,7 @@ class JurnalUmumController extends Controller
             return $data->posted;
        })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" docno="'. str_replace('/', '-', $data->docno).'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" docno="'. str_replace('/', '-', $data->docno).'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
         ->addColumn('action', function ($data) {

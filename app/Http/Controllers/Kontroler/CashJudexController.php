@@ -11,21 +11,15 @@ class CashJudexController extends Controller
 {
     public function index()
     {
-        return view('cash_judex.index');
+        return view('modul-kontroler.cash-judex.index');
     }
 
     public function searchIndex(Request $request)
     {
         $data = DB::select("select a.* from cashjudex a order by a.kode");
         return datatables()->of($data)
-        ->addColumn('kode', function ($data) {
-            return $data->kode;
-       })
-        ->addColumn('nama', function ($data) {
-            return $data->nama;
-       })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -34,7 +28,7 @@ class CashJudexController extends Controller
 
     public function create()
     {
-        return view('cash_judex.create');
+        return view('modul-kontroler.cash-judex.create');
     }
 
     public function store(Request $request)
@@ -62,7 +56,7 @@ class CashJudexController extends Controller
             $kode = $data->kode;
             $nama = $data->nama;
         }
-        return view('cash_judex.edit',compact('kode','nama'));
+        return view('modul-kontroler.cash-judex.edit',compact('kode','nama'));
     }
     
     public function update(Request $request)

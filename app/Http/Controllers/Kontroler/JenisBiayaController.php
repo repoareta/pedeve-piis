@@ -11,7 +11,7 @@ class JenisBiayaController extends Controller
 {
     public function index()
     {
-        return view('jenis_biaya.index');
+        return view('modul-kontroler.jenis-biaya.index');
     }
 
     public function searchIndex(Request $request)
@@ -25,7 +25,7 @@ class JenisBiayaController extends Controller
             return $data->keterangan;
        })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -34,7 +34,7 @@ class JenisBiayaController extends Controller
 
     public function create()
     {
-        return view('jenis_biaya.create');
+        return view('modul-kontroler.jenis-biaya.create');
     }
     public function store(Request $request)
     {
@@ -61,7 +61,7 @@ class JenisBiayaController extends Controller
             $kode = $data->kode;
             $nama = $data->keterangan;
         }
-        return view('jenis_biaya.edit',compact('kode','nama'));
+        return view('modul-kontroler.jenis-biaya.edit',compact('kode','nama'));
     }
     public function update(Request $request)
     {

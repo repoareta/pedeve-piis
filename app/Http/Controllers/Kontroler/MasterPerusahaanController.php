@@ -24,7 +24,7 @@ class MasterPerusahaanController extends Controller
             return $data->nama;
        })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])

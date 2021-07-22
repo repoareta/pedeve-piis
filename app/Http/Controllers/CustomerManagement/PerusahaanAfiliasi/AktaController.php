@@ -23,7 +23,7 @@ class AktaController extends Controller
 
         return datatables()->of($akta_list)
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio_akta" nama="'.$row->jenis.'" value="'.$row->id.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_akta" nama="'.$row->jenis.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('dokumen', function ($row) {

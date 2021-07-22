@@ -23,7 +23,7 @@ class PerizinanController extends Controller
 
         return datatables()->of($perizinan_list)
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio_perizinan" nama="'.$row->keterangan.'" value="'.$row->id.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_perizinan" nama="'.$row->keterangan.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('dokumen', function ($row) {
