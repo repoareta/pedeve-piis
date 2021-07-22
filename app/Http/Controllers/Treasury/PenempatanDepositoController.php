@@ -119,7 +119,7 @@ class PenempatanDepositoController extends Controller
                     return number_format($data->accnetbulan,2,'.',',');
                 })
                 ->addColumn('radio', function ($data) {
-                    $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>'; 
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>'; 
                     return $radio;
                 })
                 ->rawColumns(['action','radio'])
