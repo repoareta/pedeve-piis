@@ -15,8 +15,6 @@ use App\Http\Requests\AnggaranSubmainDetailStore;
 use App\Http\Requests\AnggaranSubmainDetailUpdate;
 
 // Load Plugin
-use Carbon\Carbon;
-use Session;
 use Alert;
 use Auth;
 
@@ -35,7 +33,7 @@ class AnggaranSubmainDetailController extends Controller
         ->orderBy('tahun', 'DESC')
         ->get();
 
-        return view('anggaran_submain_detail.index', compact('tahun'));
+        return view('modul-umum.anggaran-submain-detail.index', compact('tahun'));
     }
 
     /**
@@ -72,7 +70,7 @@ class AnggaranSubmainDetailController extends Controller
         $anggaran_main_list = AnggaranMain::all();
         $anggaran_submain_list = AnggaranSubMain::all();
         
-        return view('anggaran_submain_detail.create', compact(
+        return view('modul-umum.anggaran-submain-detail.create', compact(
             'anggaran_main_list',
             'anggaran_submain_list',
         ));
@@ -111,7 +109,7 @@ class AnggaranSubmainDetailController extends Controller
     public function edit($kode_main, $kode_submain, $kode)
     {
         $anggaran = AnggaranDetail::find($kode);
-        return view('anggaran_submain_detail.edit', compact(
+        return view('modul-umum.anggaran-submain-detail.edit', compact(
             'kode_main',
             'kode_submain',
             'kode',

@@ -57,21 +57,6 @@ class PermintaanBayarController extends Controller
         }
 
         return datatables()->of($data)
-        ->addColumn('no_bayar', function ($data) {
-            return $data->no_bayar;
-        })
-        ->addColumn('no_kas', function ($data) {
-            return $data->no_kas;
-        })
-        ->addColumn('kepada', function ($data) {
-            return $data->kepada;
-        })
-        ->addColumn('keterangan', function ($data) {
-            return $data->keterangan;
-        })
-        ->addColumn('lampiran', function ($data) {
-            return $data->lampiran;
-        })
        ->addColumn('nilai', function ($data) {
            return number_format($data->nilai, 2, '.', ',');
        })
@@ -89,12 +74,12 @@ class PermintaanBayarController extends Controller
         })
         ->addColumn('action', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $action = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle" ></i></span></p>';
+                $action = '<span data-toggle="kt-tooltip" data-placement="top" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x text-success"></i></span></p>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $action = '<p align="center"><a href="'. route('permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Batalkan Approval"><i class="fas fa-check-circle" ></i></span></a></p>';
+                    $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span data-toggle="kt-tooltip" data-placement="top" title="Batalkan Approval"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
                 } else {
-                    $action = '<p align="center"><a href="'. route('permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Klik untuk Approval"><i class="fas fa-ban" ></i></span></a></p>';
+                    $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span data-toggle="kt-tooltip" data-placement="top" title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
                 }
             }
             return $action;

@@ -7,18 +7,17 @@
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-    <div class="card-header justify-content-start">
+    <div class="card-header justify-content-right">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Umum Panjar Dinas
+                Tabel Umum Anggaran
             </h3>
-        </div>
-        <div class="card-toolbar">
-            <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.create') }}">
+
+			<div class="float-left">
+                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
 					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -40,17 +39,57 @@
 				</a>
             </div>
         </div>
+        <div class="card-toolbar">
+			<div class="float-right">
+				<form action="{{ route('modul_umum.anggaran.rekap.export') }}" class="form-inline kt-form" method="POST" target="_blank">
+					@csrf
+					<div class="form-group">
+						<div class="input-group">
+							<select class="form-control select2" name="tahun_cetak" id="tahun_cetak">
+								<option value="">- Pilih Tahun -</option>
+								@foreach ($tahun as $key => $row)
+									<option value="{{ $row->tahun }}"
+										@if($key == 0)
+											selected
+										@endif
+									>{{ $row->tahun }}</option>
+								@endforeach
+							</select>
+							<div class="input-group-append">
+								<button class="btn btn-danger" type="submit">
+									<i class="fa fa-file-pdf" style="color: #ffffff;"></i> Cetak Anggaran .PDF
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+        </div>
     </div>
     <div class="card-body">
 
 		<div class="col-12">
 			<form class="kt-form" id="search-form" method="POST">
 				<div class="form-group row">
-					<label for="" class="col-form-label">NO. PANJAR</label>
-					<div class="col-4">
-						<input class="form-control" type="text" name="nopanjar" id="nopanjar">
+					<label for="" class="col-form-label">Kode Anggaran</label>
+					<div class="col-2">
+						<input class="form-control" type="text" name="kode_anggaran" id="kode_anggaran">
 					</div>
-
+	
+					<label for="" class="col-form-label">Tahun</label>
+					<div class="col-2">
+						<select class="form-control select2" name="tahun" id="tahun">
+							<option value="">- Pilih Tahun -</option>
+							@foreach ($tahun as $key => $row)
+								<option value="{{ $row->tahun }}"
+									@if($key == 0)
+										selected
+									@endif
+								>{{ $row->tahun }}</option>
+							@endforeach
+						</select>
+					</div>
 					<div class="col-2">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
 					</div>
@@ -63,17 +102,14 @@
                 <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
-                            <th></th>
-                            <th>NO. PANJAR</th>
-                            <th>JENIS</th>
-                            <th>MULAI</th>
-                            <th>SAMPAI</th>
-                            <th>DARI</th>
-                            <th>TUJUAN</th>
-                            <th>NOPEK</th>
-                            <th>KETERANGAN</th>
-                            <th>NILAI</th>
-                        </tr>
+							<th></th>
+							<th>Kode</th>
+							<th>Nama Master</th>
+							<th>Tahun</th>
+							<th>Nilai</th>
+							<th>Realisasi</th>
+							<th>Sisa</th>
+						</tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -87,198 +123,144 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-	$(document).ready(function () {
-		var t = $('#kt_table').DataTable({
-			scrollX   : true,
-			processing: true,
-			serverSide: true,
-			searching : false,
-			ajax      : {
-				url: "{{ route('perjalanan_dinas.index.json') }}",
-				data: function (d) {
-					d.nopanjar = $('input[name=nopanjar]').val();
-				}
-			},
-			columns: [
-				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
-				{data: 'no_panjar', name: 'no_panjar', class:'no-wrap'},
-				{data: 'jenis_dinas', name: 'jenis'},
-				{data: 'mulai', name: 'mulai', class:'no-wrap'},
-				{data: 'sampai', name: 'sampai', class:'no-wrap'},
-				{data: 'dari', name: 'dari', class:'no-wrap'},
-				{data: 'tujuan', name: 'tujuan', class:'no-wrap'},
-				{data: 'nopek', name: 'nopek', class:'no-wrap'},
-				{data: 'keterangan', name: 'keterangan'},
-				{data: 'nilai', name: 'nilai', class:'text-right no-wrap'}
-			]
-		});
+$(document).ready(function () {
+	$('.select2').select2().on('change', function() {
+		$(this).valid();
+	});
 
-		$('#kt_table tbody').on( 'click', 'tr', function (event) {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
+	var t = $('#kt_table').DataTable({
+		scrollX   : true,
+		processing: true,
+		serverSide: true,
+		ajax      : {
+			url: "{{ route('modul_umum.anggaran.index.json') }}",
+			data: function (d) {
+				d.kode_anggaran = $('input[name=kode_anggaran]').val();
+				d.tahun = $('select[name=tahun]').val();
 			}
-			else {
-				t.$('tr.selected').removeClass('selected');
-				// $(':radio', this).trigger('click');
+		},
+		columns: [
+			{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+			{data: 'kode_main', name: 'kode_main', class:'no-wrap'},
+			{data: 'nama_main', name: 'nama_main'},
+			{data: 'tahun', name: 'tahun'},
+			{data: 'nilai_real', name: 'nilai_real', class: 'no-wrap text-right'},
+			{data: 'realisasi', name: 'realisasi', class:'no-wrap text-right'},
+			{data: 'sisa', name: 'sisa', class:'no-wrap text-right'}
+		]
+	});
 
-				if (event.target.type !== 'radio') {
-					$(':radio', this).trigger('click');
-				}
+	$('#search-form').on('submit', function(e) {
+		t.draw();
+		e.preventDefault();
+	});
 
-				$(this).addClass('selected');
-			}
-		} );
+	$('#editRow').click(function(e) {
+		e.preventDefault();
+		if($('input[type=radio]').is(':checked')) { 
+			$("input[type=radio]:checked").each(function() {
+				var id = $(this).val().split("/").join("-");
+				var url = '{{ route("modul_umum.anggaran.edit", ":kode_main") }}';
+				// go to page edit
+				window.location.href = url.replace(':kode_main',id);
+			});
+		} else {
+			swalAlertInit('ubah');
+		}
+	});
 
-		$('#search-form').on('submit', function(e) {
-			t.draw();
-			e.preventDefault();
-		});
+	$('#deleteRow').click(function(e) {
+		e.preventDefault();
+		if($('input[type=radio]').is(':checked')) { 
+			$("input[type=radio]:checked").each(function() {
+				var id = $(this).val();
+				// delete stuff
+				const swalWithBootstrapButtons = Swal.mixin({
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					cancelButton: 'btn btn-danger'
+				},
+					buttonsStyling: false
+				})
 
-		$('#editRow').click(function(e) {
-			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function() {
-					var data_ppanjar = $(this).data('ppanjar');
-					if (data_ppanjar === true) {
-						Swal.fire({
-							icon: 'warning',
-							timer: 2000,
-							title: 'Oops...',
-							text: 'Data tidak bisa diubah'
-						});
-					} else {
-						var id = $(this).val().split("/").join("-");
-						var url = '{{ route("perjalanan_dinas.edit", ":no_panjar") }}';
-						// go to page edit
-						window.location.href = url.replace(':no_panjar',id);
-					}
-				});
-			} else {
-				swalAlertInit('ubah');
-			}
-		});
-
-		$('#deleteRow').click(function(e) {
-			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function() {
-					var data_ppanjar = $(this).data('ppanjar');
-					if (data_ppanjar === true) {
-						Swal.fire({
-							icon: 'warning',
-							timer: 2000,
-							title: 'Oops...',
-							text: 'Data tidak bisa dihapus'
-						});
-					} else {
-						var id = $(this).val();
-						// delete stuff
-						const swalWithBootstrapButtons = Swal.mixin({
-						customClass: {
-							confirmButton: 'btn btn-primary',
-							cancelButton: 'btn btn-danger'
-						},
-							buttonsStyling: false
-						})
-
-						swalWithBootstrapButtons.fire({
-							title: "Data yang akan dihapus?",
-							text: "No. Panjar : " + id,
-							icon: 'warning',
-							showCancelButton: true,
-							reverseButtons: true,
-							confirmButtonText: 'Ya, hapus',
-							cancelButtonText: 'Batalkan'
-						})
-						.then((result) => {
-							if (result.value) {
-								$.ajax({
-									url: "{{ route('perjalanan_dinas.delete') }}",
-									type: 'DELETE',
-									dataType: 'json',
-									data: {
-										"id": id,
-										"_token": "{{ csrf_token() }}",
-									},
-									success: function () {
-										Swal.fire({
-											icon  : 'success',
-											title : 'Hapus No. Panjar ' + id,
-											title  : 'Berhasil',
-											timer : 2000
-										}).then(function() {
-											t.ajax.reload();
-										});
-									},
-									error: function () {
-										alert("Terjadi kesalahan, coba lagi nanti");
-									}
+				swalWithBootstrapButtons.fire({
+					title: "Data yang akan dihapus?",
+					text: "Kode : " + id,
+					type: 'warning',
+					showCancelButton: true,
+					reverseButtons: true,
+					confirmButtonText: 'Ya, hapus',
+					cancelButtonText: 'Batalkan'
+				})
+				.then((result) => {
+					if (result.value) {
+						$.ajax({
+							url: "{{ route('modul_umum.anggaran.delete') }}",
+							type: 'DELETE',
+							dataType: 'json',
+							data: {
+								"id": id,
+								"_token": "{{ csrf_token() }}",
+							},
+							success: function () {
+								Swal.fire({
+									type  : 'success',
+									title : 'Hapus Anggaran ' + id,
+									text  : 'Berhasil',
+									timer : 2000
+								}).then(function() {
+									t.ajax.reload();
 								});
+							},
+							error: function () {
+								alert("Terjadi kesalahan, coba lagi nanti");
 							}
 						});
 					}
 				});
-			} else {
-				swalAlertInit('hapus');
-			}
-		});
-
-		$('#exportRow').click(function(e) {
-			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function() {
-					var id = $(this).val();
-					
-					const swalWithBootstrapButtons = Swal.mixin({
-					customClass: {
-						confirmButton: 'btn btn-primary',
-						cancelButton: 'btn btn-danger'
-					},
-						buttonsStyling: false
-					})
-
-					swalWithBootstrapButtons.fire({
-						title: "Data yang akan dicetak?",
-						text: "No. Panjar : " + id,
-						icon: 'warning',
-						showCancelButton: true,
-						reverseButtons: true,
-						confirmButtonText: 'Cetak',
-						cancelButtonText: 'Batalkan'
-					})
-					.then((result) => {
-						if (result.value) {
-							var id = $(this).val().split("/").join("-");
-							// go to page edit
-							var url = '{{ route("perjalanan_dinas.export", ":no_panjar") }}';
-							// go to page edit
-							window.open(url.replace(':no_panjar',id), '_blank');
-						}
-					});
-				});
-			} else {
-				swalAlertInit('cetak');
-			}
-		});
-
-		$('#exportRow').click(function(e) {
-			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function() {
-					var id = $(this).val();
-
-					// str.replace("Microsoft", "W3Schools");
-
-					// open modal
-					$('#cetakModal').modal('show');
-
-					// fill no_panjar to no_panjar field
-					$('#no_panjar_dinas').val(id);
-				});
-			} else {
-				swalAlertInit('cetak');
-			}
-		});
+			});
+		} else {
+			swalAlertInit('hapus');
+		}
 	});
-	</script>
+
+	$('#exportRow').click(function(e) {
+		e.preventDefault();
+		if($('input[type=radio]').is(':checked')) { 
+			$("input[type=radio]:checked").each(function() {
+				var id = $(this).val();
+				
+				const swalWithBootstrapButtons = Swal.mixin({
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					cancelButton: 'btn btn-danger'
+				},
+					buttonsStyling: false
+				})
+
+				swalWithBootstrapButtons.fire({
+					title: "Data yang akan dicetak?",
+					text: "No. Panjar : " + id,
+					type: 'warning',
+					showCancelButton: true,
+					reverseButtons: true,
+					confirmButtonText: 'Cetak',
+					cancelButtonText: 'Batalkan'
+				})
+				.then((result) => {
+					if (result.value) {
+						var id = $(this).val().split("/").join("-");
+						// go to page edit
+						var url = "{{ url('umum/perjalanan_dinas/export') }}" + '/' + id;
+						window.open(url, '_blank');
+					}
+				});
+			});
+		} else {
+			swalAlertInit('cetak');
+		}
+	});
+
+});
+</script>
 @endpush

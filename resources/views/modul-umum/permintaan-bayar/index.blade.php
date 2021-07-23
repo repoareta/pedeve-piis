@@ -19,7 +19,7 @@
 
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_umum.permintaan_bayar.create') }}">
 					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -104,169 +104,162 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-	$(document).ready(function () {
-		
-		var t = $('#table-permintaan').DataTable({
-			scrollX   : true,
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
-			pageLength: 200,
-			language: {
-            	processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
+$(document).ready(function () {
+	
+	var t = $('#table-permintaan').DataTable({
+		scrollX   : true,
+		processing: true,
+		serverSide: true,
+		searching: false,
+		lengthChange: false,
+		pageLength: 200,
+		language: {
+			processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
+		},
+		ajax: {
+			url: "{{route('modul_umum.permintaan_bayar.search.index')}}",
+			type : "POST",
+			dataType : "JSON",
+			headers: {
+			'X-CSRF-Token': '{{ csrf_token() }}',
 			},
-			ajax: {
-                url: "{{route('permintaan_bayar.search.index')}}",
-                type : "POST",
-                dataType : "JSON",
-                headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}',
-                },
-                data: function (d) {
-                    d.permintaan = $('input[name=permintaan]').val();
-                    d.bulan = $('select[name=bulan]').val();
-                    d.tahun = $('input[name=tahun]').val();
-                }
-            },
-			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false},
-				{data: 'no_bayar', name: 'no_bayar'},
-				{data: 'no_kas', name: 'no_kas'},
-				{data: 'kepada', name: 'kepada'},
-				{data: 'keterangan', name: 'keterangan'},
-				{data: 'lampiran', name: 'lampiran'},
-				{data: 'nilai', name: 'nilai'},
-				{data: 'action', name: 'action'}
-			]
-				
-			
-		});
-		$('#search-form').on('submit', function(e) {
-			t.draw();
-			e.preventDefault();
-		});
-
-		$('#table-permintaan tbody').on( 'click', 'tr', function (event) {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
-			} else {
-				t.$('tr.selected').removeClass('selected');
-				if (event.target.type !== 'radio') {
-					$(':radio', this).trigger('click');
-				}
-				$(this).addClass('selected');
+			data: function (d) {
+				d.permintaan = $('input[name=permintaan]').val();
+				d.bulan = $('select[name=bulan]').val();
+				d.tahun = $('input[name=tahun]').val();
 			}
-		} );
+		},
+		columns: [
+			{data: 'radio', name: 'aksi', orderable: false, searchable: false},
+			{data: 'no_bayar', name: 'no_bayar'},
+			{data: 'no_kas', name: 'no_kas'},
+			{data: 'kepada', name: 'kepada'},
+			{data: 'keterangan', name: 'keterangan'},
+			{data: 'lampiran', name: 'lampiran'},
+			{data: 'nilai', name: 'nilai', class: 'text-right'},
+			{data: 'action', name: 'action', class: 'text-center'}
+		]
+			
 		
+	});
+	$('#search-form').on('submit', function(e) {
+		t.draw();
+		e.preventDefault();
+	});
+
+	$('#table-permintaan tbody').on( 'click', 'tr', function (event) {
+		if ( $(this).hasClass('selected') ) {
+			$(this).removeClass('selected');
+		} else {
+			t.$('tr.selected').removeClass('selected');
+			if (event.target.type !== 'radio') {
+				$(':radio', this).trigger('click');
+			}
+			$(this).addClass('selected');
+		}
+	} );
+	
 	$('#show-data').on('click', function(e) {
 	e.preventDefault();
-		location.replace("{{ route('permintaan_bayar.index') }}");
+		location.replace("{{ route('modul_umum.permintaan_bayar.index') }}");
 
 	});
-		
-
-//report permintaan bayar
-$('#reportRow').on('click', function(e) {
-	e.preventDefault();
-
-	if($('input[class=btn-radio]').is(':checked')) { 
-		$("input[class=btn-radio]:checked").each(function() {  
-			e.preventDefault();
-			var dataid = $(this).attr('data-id');
-				location.replace("{{url('umum/permintaan-bayar/rekap')}}"+ '/' +dataid);
-		});
-	} else{
-		swalAlertInit('cetak');
-	}
 	
-});
 
-		//edit permintaan bayar
-		$('#editRow').click(function(e) {
-			e.preventDefault();
+	//report permintaan bayar
+	$('#reportRow').on('click', function(e) {
+		e.preventDefault();
 
-			if($('input[class=btn-radio]').is(':checked')) { 
-				$("input[class=btn-radio]:checked").each(function(){
-					var id = $(this).attr('data-id');
-					location.replace("{{url('umum/permintaan-bayar/edit')}}"+ '/' +id);
-				});
-			} else {
-				swalAlertInit('ubah');
-			}
-		});
-
-		//delete permintaan bayar
-		$('#deleteRow').click(function(e) {
-			e.preventDefault();
-			if($('input[class=btn-radio]').is(':checked')) { 
-				$("input[class=btn-radio]:checked").each(function() {
-					var id = $(this).attr('data-id');
-					var status = $(this).attr('data-s');
-					// delete stuff
-					if(status == 'Y'){
-						Swal.fire({
-									type  : 'info',
-									title : 'Data Tidak Bisa Dihapus, Data Sudah di Proses Perbendaharaan.',
-									text  : 'Failed',
-								});
-					}else{
-						const swalWithBootstrapButtons = Swal.mixin({
-							customClass: {
-								confirmButton: 'btn btn-primary',
-								cancelButton: 'btn btn-danger'
-							},
-								buttonsStyling: false
-							})
-							swalWithBootstrapButtons.fire({
-								title: "Data yang akan dihapus?",
-								text: "No. bayar : " + id,
-								type: 'warning',
-								showCancelButton: true,
-								reverseButtons: true,
-								confirmButtonText: 'Ya, hapus',
-								cancelButtonText: 'Batalkan'
-							})
-							.then((result) => {
-							if (result.value) {
-								$.ajax({
-									url: "{{ route('permintaan_bayar.delete') }}",
-									type: 'DELETE',
-									dataType: 'json',
-									data: {
-										"id": id,
-										"_token": "{{ csrf_token() }}",
-									},
-									success: function () {
-										Swal.fire({
-											type  : 'success',
-											title : 'Hapus No. Bayar ' + id,
-											text  : 'Berhasil',
-											timer : 2000
-										}).then(function() {
-											location.reload();
-										});
-									},
-									error: function () {
-										alert("Terjadi kesalahan, coba lagi nanti");
-									}
-								});
-							}
-						});
-					}
-				});
-			} else {
-				swalAlertInit('hapus');
-			}
-			
-		});
-	});
-	function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
+		if($('input[class=btn-radio]').is(':checked')) { 
+			$("input[class=btn-radio]:checked").each(function() {  
+				e.preventDefault();
+				var dataid = $(this).attr('data-id');
+					location.replace("{{url('umum/permintaan-bayar/rekap')}}"+ '/' +dataid);
+			});
+		} else{
+			swalAlertInit('cetak');
 		}
-	</script>
+		
+	});
+
+	//edit permintaan bayar
+	$('#editRow').click(function(e) {
+		e.preventDefault();
+
+		if($('input[class=btn-radio]').is(':checked')) { 
+			$("input[class=btn-radio]:checked").each(function(){
+				var id = $(this).attr('data-id');
+				location.replace("{{url('umum/permintaan-bayar/edit')}}"+ '/' +id);
+			});
+		} else {
+			swalAlertInit('ubah');
+		}
+	});
+
+	//delete permintaan bayar
+	$('#deleteRow').click(function(e) {
+		e.preventDefault();
+		if($('input[class=btn-radio]').is(':checked')) { 
+			$("input[class=btn-radio]:checked").each(function() {
+				var id = $(this).attr('data-id');
+				var status = $(this).attr('data-s');
+				// delete stuff
+				if(status == 'Y'){
+					Swal.fire({
+								type  : 'info',
+								title : 'Data Tidak Bisa Dihapus, Data Sudah di Proses Perbendaharaan.',
+								text  : 'Failed',
+							});
+				}else{
+					const swalWithBootstrapButtons = Swal.mixin({
+						customClass: {
+							confirmButton: 'btn btn-primary',
+							cancelButton: 'btn btn-danger'
+						},
+							buttonsStyling: false
+						})
+						swalWithBootstrapButtons.fire({
+							title: "Data yang akan dihapus?",
+							text: "No. bayar : " + id,
+							type: 'warning',
+							showCancelButton: true,
+							reverseButtons: true,
+							confirmButtonText: 'Ya, hapus',
+							cancelButtonText: 'Batalkan'
+						})
+						.then((result) => {
+						if (result.value) {
+							$.ajax({
+								url: "{{ route('modul_umum.permintaan_bayar.delete') }}",
+								type: 'DELETE',
+								dataType: 'json',
+								data: {
+									"id": id,
+									"_token": "{{ csrf_token() }}",
+								},
+								success: function () {
+									Swal.fire({
+										type  : 'success',
+										title : 'Hapus No. Bayar ' + id,
+										text  : 'Berhasil',
+										timer : 2000
+									}).then(function() {
+										location.reload();
+									});
+								},
+								error: function () {
+									alert("Terjadi kesalahan, coba lagi nanti");
+								}
+							});
+						}
+					});
+				}
+			});
+		} else {
+			swalAlertInit('hapus');
+		}
+		
+	});
+});
+</script>
 @endpush

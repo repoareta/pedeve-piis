@@ -35,7 +35,7 @@ class AnggaranSubmainController extends Controller
         ->orderBy('tahun', 'DESC')
         ->get();
 
-        return view('anggaran_submain.index', compact('tahun'));
+        return view('modul-umum.anggaran-submain.index', compact('tahun'));
     }
 
     /**
@@ -89,7 +89,7 @@ class AnggaranSubmainController extends Controller
     public function create()
     {
         $anggaran_main_list = AnggaranMain::where('tahun', date('Y'))->get();
-        return view('anggaran_submain.create', compact('anggaran_main_list'));
+        return view('modul-umum.anggaran-submain.create', compact('anggaran_main_list'));
     }
 
     /**
@@ -127,7 +127,7 @@ class AnggaranSubmainController extends Controller
     {
         $anggaran_main_list = AnggaranMain::all();
         $anggaran = AnggaranSubMain::find($kode_submain);
-        return view('anggaran_submain.edit', compact('anggaran', 'kode_main', 'kode_submain', 'anggaran_main_list'));
+        return view('modul-umum.anggaran-submain.edit', compact('anggaran', 'kode_main', 'kode_submain', 'anggaran_main_list'));
     }
 
     /**
