@@ -395,11 +395,8 @@ class PermintaanBayarController extends Controller
     //rekap permintaan bayar
     public function rekapRange()
     {
-        return view('modul-umum.permintaan-bayar.rekaprange');
+        return view('modul-umum.permintaan-bayar.rekap-range');
     }
-
-
-
 
     public function rekapExport(Request $request)
     {

@@ -138,7 +138,7 @@ class UangMukaKerjaController extends Controller
             $no_umk= sprintf("%03s", 1). '/' . $awal .'/' . date('d/m/Y');
         }
         $vendor = Vendor::all();
-        return view('umk.create', compact('no_umk', 'vendor', 'bulan_buku'));
+        return view('modul-umum.umk.create', compact('no_umk', 'vendor', 'bulan_buku'));
     }
 
     /**
@@ -365,7 +365,7 @@ class UangMukaKerjaController extends Controller
             $no_umk_details= 1;
         }
         
-        return view('umk.edit', compact(
+        return view('modul-umum.umk.edit', compact(
             'data_umks',
             'data_umk_details',
             'no_umk_details',
@@ -471,7 +471,7 @@ class UangMukaKerjaController extends Controller
     {
         $noumk=str_replace('-', '/', $id);
         $data_app = Umk::where('no_umk', $noumk)->select('*')->get();
-        return view('umk.approve', compact('data_app'));
+        return view('modul-umum.umk.approve', compact('data_app'));
     }
 
     public function rekap($id)
@@ -493,7 +493,7 @@ class UangMukaKerjaController extends Controller
             $pemohons = "CS & BS";
         }
         $data_report = Umk::where('no_umk', $noumk)->select('*')->get();
-        return view('umk.rekap', compact(
+        return view('modul-umum.umk.rekap', compact(
             'data_report',
             'setuju',
             'setujus',
@@ -504,7 +504,7 @@ class UangMukaKerjaController extends Controller
 
     public function rekapRange()
     {
-        return view('umk.rekaprange');
+        return view('modul-umum.umk.rekap-range');
     }
 
     public function rekapExport(Request $request)
@@ -516,7 +516,7 @@ class UangMukaKerjaController extends Controller
         }
         $detail_list = DetailUmk::where('no_umk', $noumk)->get();
         $list_acount =DetailUmk::where('no_umk', $noumk)->select('nilai')->sum('nilai');
-        $pdf = DomPDF::loadview('umk.export', compact(
+        $pdf = DomPDF::loadview('modul-umum.umk.export', compact(
             'list_acount',
             'data_report',
             'detail_list',
@@ -564,7 +564,7 @@ class UangMukaKerjaController extends Controller
                 // dd($umk_header_list);
                 $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
                 ->select('jumlah')->sum('jumlah');
-                $pdf = DomPDF::loadview('umk.exportrange', compact('umk_header_list', 'list_acount', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
+                $pdf = DomPDF::loadview('modul-umum.umk.exportrange', compact('umk_header_list', 'list_acount', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -598,7 +598,7 @@ class UangMukaKerjaController extends Controller
                 $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
                 ->select('jumlah')->sum('jumlah');
                 $excel=new Spreadsheet;
-                return view('umk.exportexcel', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
+                return view('modul-umum.umk.exportexcel', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
@@ -625,7 +625,7 @@ class UangMukaKerjaController extends Controller
                 $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
                 ->select('jumlah')->sum('jumlah');
                 $excel= new Spreadsheet;
-                return view('umk.exportcsv', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
+                return view('modul-umum.umk.exportcsv', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
             }
         }
     }
