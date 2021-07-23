@@ -75,7 +75,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     // Route assigned name "pencapaian_kerja.index"...
     Route::name('pencapaian_kinerja.')->group(function () {
         Route::get('pencapaian-kinerja', [PencapaianKinerjaController::class, 'index'])->name('index');
-        Route::post('pencapaian-kinerja/search', [PencapaianKinerjaController::class, 'search'])->name('search');
+        Route::get('pencapaian-kinerja/search', [PencapaianKinerjaController::class, 'search'])->name('search');
         Route::get('pencapaian-kinerja/export', [PencapaianKinerjaController::class, 'export'])->name('export');
     });
     //end pencapaian kinerja
