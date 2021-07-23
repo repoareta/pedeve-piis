@@ -19,7 +19,7 @@ class PerusahaanAfiliasiController extends Controller
      */
     public function index()
     {
-        return view('perusahaan_afiliasi.index');
+        return view('modul-customer-management.perusahaan-afiliasi.index');
     }
 
     /**
@@ -47,7 +47,7 @@ class PerusahaanAfiliasiController extends Controller
      */
     public function create()
     {
-        return view('perusahaan_afiliasi.create');
+        return view('modul-customer-management.perusahaan-afiliasi.create');
     }
 
     /**
@@ -71,11 +71,11 @@ class PerusahaanAfiliasiController extends Controller
         $perusahaan_afiliasi->save();
 
         if ($request->url == 'edit') {
-            return redirect()->route('perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi]);
+            return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi]);
         }
 
         Alert::success('Simpan Perusahaan Afiliasi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('perusahaan_afiliasi.index');
+        return redirect()->route('modul_cm.perusahaan_afiliasi.index');
     }
 
     /**
@@ -86,7 +86,7 @@ class PerusahaanAfiliasiController extends Controller
      */
     public function detail(PerusahaanAfiliasi $perusahaan_afiliasi)
     {
-        return view('perusahaan_afiliasi.detail', compact('perusahaan_afiliasi'));
+        return view('modul-customer-management.perusahaan-afiliasi.detail', compact('perusahaan_afiliasi'));
     }
 
     /**
@@ -97,7 +97,7 @@ class PerusahaanAfiliasiController extends Controller
      */
     public function edit(PerusahaanAfiliasi $perusahaan_afiliasi)
     {
-        return view('perusahaan_afiliasi.edit', compact('perusahaan_afiliasi'));
+        return view('modul-customer-management.perusahaan-afiliasi.edit', compact('perusahaan_afiliasi'));
     }
 
     /**
@@ -122,7 +122,7 @@ class PerusahaanAfiliasiController extends Controller
         $perusahaan_afiliasi->save();
 
         Alert::success('Update Perusahaan Afiliasi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('perusahaan_afiliasi.index');
+        return redirect()->route('modul_cm.perusahaan_afiliasi.index');
     }
 
     /**
