@@ -47,7 +47,7 @@ use App\Http\Controllers\SdmPayroll\TabelPayroll\TunjanganGolonganController;
 
 //MODUL SDM & Payroll
 
-Route::prefix('sdm')->group(function () {
+Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
     // Tabel data Master
     // Provinsi START
     // Route assigned name "provinsi.index"...

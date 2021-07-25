@@ -173,7 +173,7 @@
 
         $('#nopek').select2().on('change', function() {
             var id = $(this).val();
-            var url = '{{ route("pekerja.show.json", ":pekerja") }}';
+            var url = '{{ route("modul_sdm_payroll.pekerja.show.json", ":pekerja") }}';
             // go to page edit
             url = url.replace(':pekerja',id);
             $.ajax({
@@ -200,7 +200,7 @@
             // console.log($(this).val());
             var id = $(this).val().split('-')[0];
             // var id = $('#nopek_detail').val().split('-')[0];
-            var url = '{{ route("pekerja.show.json", ":pekerja") }}';
+            var url = '{{ route("modul_sdm_payroll.pekerja.show.json", ":pekerja") }}';
             // go to page edit
             url = url.replace(':pekerja',id);
             if(id != ''){

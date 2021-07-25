@@ -26,7 +26,7 @@
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('provinsi.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.provinsi.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -34,7 +34,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('perguruan_tinggi.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.perguruan_tinggi.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('kode_bagian.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.kode_bagian.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('kode_jabatan.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.kode_jabatan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('agama.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.agama.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -69,7 +69,7 @@
                 </div>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{ route('pekerja.index') }}" class="menu-link menu-toggle">
+                <a href="{{ route('modul_sdm_payroll.pekerja.index') }}" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
