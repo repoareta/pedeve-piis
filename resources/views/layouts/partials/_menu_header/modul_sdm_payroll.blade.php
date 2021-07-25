@@ -16,7 +16,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_gaji.daftar_upah') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.jamsostek.daftar_iuran') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.pensiun.daftar_iuran') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.lembur.rekap_lembur') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_gaji.rekap_gaji') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.thr.rekap_thr') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_insentif.rekap_insentif') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -72,7 +72,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.pensiun.rekap_iuran') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_gaji.slip_gaji') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_thr.slip_thr') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -96,7 +96,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_insentif.slip_insentif') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -117,7 +117,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_gaji.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -125,7 +125,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_thr.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -133,7 +133,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_insentif.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -154,7 +154,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.tunjangan_golongan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -162,7 +162,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.jenis_upah.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -170,7 +170,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.rekening_pekerja.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -178,7 +178,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.tabel_aard.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -186,7 +186,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_bank.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -194,7 +194,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_ptkp.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -202,7 +202,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.jamsostek.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -210,7 +210,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.pensiun.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -218,7 +218,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_tabungan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -239,7 +239,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.provinsi.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -247,7 +247,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.perguruan_tinggi.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -255,7 +255,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.kode_bagian.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -263,7 +263,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.kode_jabatan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -271,7 +271,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.agama.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

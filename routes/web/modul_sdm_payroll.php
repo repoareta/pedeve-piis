@@ -32,9 +32,9 @@ use App\Http\Controllers\SdmPayroll\Potongan\PotonganInsentifController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganKoreksiGajiController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganManualController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganOtomatisController;
+use App\Http\Controllers\SdmPayroll\ProsesPayroll\ProsesGajiController;
 use App\Http\Controllers\SdmPayroll\ProsesPayroll\ProsesInsentifController;
 use App\Http\Controllers\SdmPayroll\ProsesPayroll\ProsesThrController;
-use App\Http\Controllers\SdmPayroll\ProsesPayroll\ProsesUpahController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\JamsostekController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\JenisUpahController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\MasterBankController;
@@ -47,7 +47,7 @@ use App\Http\Controllers\SdmPayroll\TabelPayroll\TunjanganGolonganController;
 
 //MODUL SDM & Payroll
 
-Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
+Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Tabel data Master
     // Provinsi START
     // Route assigned name "provinsi.index"...
@@ -60,7 +60,6 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::post('provinsi/update/{provinsi}', [ProvinsiController::class, 'update'])->name('update');
         Route::delete('provinsi/delete', [ProvinsiController::class, 'delete'])->name('delete');
     });
-    
     // Provinsi END
 
     // Perguruan Tinggi START
@@ -74,7 +73,6 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::post('perguruan-tinggi/update/{perguruan-tinggi}', [PerguruanTinggiController::class, 'update'])->name('update');
         Route::delete('perguruan-tinggi/delete', [PerguruanTinggiController::class, 'delete'])->name('delete');
     });
-    
     // Perguruan Tinggi END
 
     // Kode Bagian START
@@ -103,7 +101,6 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::delete('kode-jabatan/delete', [KodeJabatanController::class, 'delete'])->name('delete');
     });
     // Kode Jabatan END
-
     
     // Agama START
     // Route assigned name "agama.index"...
@@ -116,7 +113,6 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::post('agama/update/{agama}', [AgamaController::class, 'update'])->name('update');
         Route::delete('agama/delete', [AgamaController::class, 'delete'])->name('delete');
     });
-    
     // Agama END
 
     // master pekerja START
@@ -390,8 +386,8 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::get('lembur/edit/{id}/{nopek}', [LemburController::class, 'edit'])->name('edit');
         Route::post('lembur/update', [LemburController::class, 'update'])->name('update');
         Route::delete('lembur/delete', [LemburController::class, 'delete'])->name('delete');
-        Route::get('lembur/ctkrekaplembur', [LemburController::class, 'ctkRekapLembur'])->name('ctkrekaplembur');
-        Route::post('lembur/rekap/export', [LemburController::class, 'rekapExport'])->name('rekap.export');
+        Route::get('lembur/rekap-lembur', [LemburController::class, 'rekapLembur'])->name('rekap_lembur');
+        Route::post('lembur/rekap-lembur/export', [LemburController::class, 'rekapLemburExport'])->name('rekap_lembur.export');
     });
     //end lembur
 
@@ -411,16 +407,16 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         
     //proses gaji
     // Route assigned name "proses_upah.index"...
-    Route::name('proses_upah.')->group(function () {
-        Route::get('proses-upah', [ProsesUpahController::class, 'index'])->name('index');
-        Route::post('proses-upah/store', [ProsesUpahController::class, 'store'])->name('store');
-        Route::get('proses-upah/edit', [ProsesUpahController::class, 'edit'])->name('edit');
-        Route::get('proses-upah/slip/gaji', [ProsesUpahController::class, 'slipGaji'])->name('slipGaji');
-        Route::post('proses-upah/cetak/slipgaji', [ProsesUpahController::class, 'cetak_slipgaji'])->name('cetak_slipgaji');
-        Route::get('proses-upah/ctkrekapgaji', [ProsesUpahController::class, 'ctkrekapgaji'])->name('ctkrekapgaji');
-        Route::post('proses-upah/rekap/export', [ProsesUpahController::class, 'rekapExport'])->name('rekap.export');
-        Route::get('proses-upah/daftar/upah', [ProsesUpahController::class, 'ctkdaftarupah'])->name('ctkdaftarupah');
-        Route::post('proses-upah/daftar/upah/export', [ProsesUpahController::class, 'daftarExport'])->name('daftar.export');
+    Route::name('proses_gaji.')->group(function () {
+        Route::get('proses-gaji', [ProsesGajiController::class, 'index'])->name('index');
+        Route::post('proses-gaji/store', [ProsesGajiController::class, 'store'])->name('store');
+        Route::get('proses-gaji/edit', [ProsesGajiController::class, 'edit'])->name('edit');
+        Route::get('proses-gaji/slip-gaji', [ProsesGajiController::class, 'slipGaji'])->name('slip_gaji');
+        Route::post('proses-gaji/slip-gaji/cetak', [ProsesGajiController::class, 'slipGajiExport'])->name('slip_gaji.export');
+        Route::get('proses-gaji/rekap-gaji', [ProsesGajiController::class, 'rekapGaji'])->name('rekap_gaji');
+        Route::post('proses-gaji/rekap-gaji/export', [ProsesGajiController::class, 'rekapGajiExport'])->name('rekap_gaji.export');
+        Route::get('proses-gaji/daftar-upah', [ProsesGajiController::class, 'daftarUpah'])->name('daftar_upah');
+        Route::post('proses-gaji/daftar-upah/export', [ProsesGajiController::class, 'daftarUpahExport'])->name('daftar_upah.export');
     });
     //end proses_upah
 
@@ -430,10 +426,10 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::get('proses-thr', [ProsesThrController::class, 'index'])->name('index');
         Route::post('proses-thr/store', [ProsesThrController::class, 'store'])->name('store');
         Route::get('proses-thr/edit', [ProsesThrController::class, 'edit'])->name('edit');
-        Route::get('proses-thr/ctkslipthr', [ProsesThrController::class, 'ctkslipthr'])->name('ctkslipthr');
-        Route::post('proses-thr/cetak/slipgaji', [ProsesThrController::class, 'cetak_slipthr'])->name('cetak_slipthr');
-        Route::get('proses-thr/ctkrekapthr', [ProsesThrController::class, 'ctkrekapthr'])->name('ctkrekapthr');
-        Route::post('proses-thr/rekap/export', [ProsesThrController::class, 'rekapExport'])->name('rekap.export');
+        Route::get('proses-thr/slip-thr', [ProsesThrController::class, 'slipThr'])->name('slip_thr');
+        Route::post('proses-thr/slip-thr/cetak', [ProsesThrController::class, 'slipThrExport'])->name('slip_thr.export');
+        Route::get('proses-thr/rekap-thr', [ProsesThrController::class, 'rekapThr'])->name('rekap_thr');
+        Route::post('proses-thr/rekap-thr/cetak', [ProsesThrController::class, 'rekapThrExport'])->name('rekap_thr.export');
     });
     //end proses_thr
 
@@ -443,10 +439,10 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::get('proses-insentif', [ProsesInsentifController::class, 'index'])->name('index');
         Route::post('proses-insentif/store', [ProsesInsentifController::class, 'store'])->name('store');
         Route::get('proses-insentif/edit', [ProsesInsentifController::class, 'edit'])->name('edit');
-        Route::get('proses-insentif/ctkslipinsentif', [ProsesInsentifController::class, 'ctkslipinsentif'])->name('ctkslipinsentif');
-        Route::post('proses-insentif/cetak/slipinsentif', [ProsesInsentifController::class, 'cetak_slipinsentif'])->name('cetak_slipinsentif');
-        Route::get('proses-insentif/ctkrekapinsentif', [ProsesInsentifController::class, 'ctkrekapinsentif'])->name('ctkrekapinsentif');
-        Route::post('proses-insentif/rekap/export', [ProsesInsentifController::class, 'rekapExport'])->name('rekap.export');
+        Route::get('proses-insentif/slip-insentif', [ProsesInsentifController::class, 'slipInsentif'])->name('slip_insentif');
+        Route::post('proses-insentif/slip-insentif/export', [ProsesInsentifController::class, 'slipInsentifExport'])->name('slip_insentif.export');
+        Route::get('proses-insentif/rekap-insentif/', [ProsesInsentifController::class, 'rekapInsentif'])->name('rekap_insentif');
+        Route::post('proses-insentif/rekap-insentif/export', [ProsesInsentifController::class, 'rekapInsentifExport'])->name('rekap_insentif.export');
     });
     //end proses_insentif
 
@@ -477,7 +473,6 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::delete('jenis-upah/delete', [JenisUpahController::class, 'delete'])->name('delete');
     });
     //end jenis-upah
-
 
     //Rekening Pekerja
     // Route assigned name "rekening-pekerja.index"...
@@ -537,7 +532,7 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
 
     //Master Tabungan
     // Route assigned name "master-tabungan.index"...
-    Route::name('master-tabungan.')->group(function () {
+    Route::name('master_tabungan.')->group(function () {
         Route::get('master-tabungan', [MasterTabunganController::class, 'index'])->name('index');
         Route::get('master-tabungan/index-json', [MasterTabunganController::class, 'indexJson'])->name('index.json');
         Route::get('master-tabungan/create', [MasterTabunganController::class, 'create'])->name('create');
@@ -560,8 +555,8 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::get('jamsostek/edit/{id}', [JamsostekController::class, 'edit'])->name('edit');
         Route::post('jamsostek/update', [JamsostekController::class, 'update'])->name('update');
         Route::delete('jamsostek/delete', [JamsostekController::class, 'delete'])->name('delete');
-        Route::get('jamsostek/ctkiuranjs', [JamsostekController::class, 'ctkiuranjs'])->name('ctkiuranjs');
-        Route::post('jamsostek/rekap/export', [JamsostekController::class, 'rekapExport'])->name('rekap.export');
+        Route::get('jamsostek/daftar-iuran', [JamsostekController::class, 'daftarIuran'])->name('daftar_iuran');
+        Route::post('jamsostek/rekap-iuran', [JamsostekController::class, 'rekapExport'])->name('rekap.export');
         Route::get('jamsostek/ctkrekapiuranjamsostek', [JamsostekController::class, 'ctkrekapiuranjamsostek'])->name('ctkrekapiuranjamsostek');
         Route::post('jamsostek/rekapiuran/export', [JamsostekController::class, 'rekapIuranExport'])->name('rekapiuran.export');
     });
@@ -578,7 +573,7 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::get('pensiun/edit/{id}', [PensiunController::class, 'edit'])->name('edit');
         Route::post('pensiun/update', [PensiunController::class, 'update'])->name('update');
         Route::delete('pensiun/delete', [PensiunController::class, 'delete'])->name('delete');
-        Route::get('pensiun/ctkiuranpensiun', [PensiunController::class, 'ctkiuranpensiun'])->name('ctkiuranpensiun');
+        Route::get('pensiun/daftar-iuran', [PensiunController::class, 'daftarIuran'])->name('daftar_iuran');
         Route::post('pensiun/rekap/export', [PensiunController::class, 'rekapExport'])->name('rekap.export');
         Route::get('pensiun/ctkrekapiuranpensiun', [PensiunController::class, 'ctkrekapiuranpensiun'])->name('ctkrekapiuranpensiun');
         Route::post('pensiun/rekapiuran/export', [PensiunController::class, 'rekapIuranExport'])->name('rekapiuran.export');
@@ -592,9 +587,7 @@ Route::prefix('sdm')->name('modul_sdm_payroll.')->group(function () {
         Route::get('absensi-karyawan/download', [AbsensiKaryawanController::class, 'download'])->name('download');
         Route::post('absensi-karyawan/mapping', [AbsensiKaryawanController::class, 'mapping'])->name('mapping');
     });
-    
     //absensi karyawan
-
 
     // GCG
     // Route assigned name "gcg.index"...
