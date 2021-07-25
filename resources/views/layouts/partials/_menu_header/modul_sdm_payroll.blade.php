@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.thr.rekap_thr') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.proses_thr.rekap_thr') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

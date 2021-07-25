@@ -127,7 +127,7 @@
 
 				$(this).addClass('selected');
 			}
-		} );
+		});
 
 		$('#search-form').on('submit', function(e) {
 			t.draw();

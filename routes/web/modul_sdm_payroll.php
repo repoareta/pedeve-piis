@@ -575,8 +575,8 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::delete('pensiun/delete', [PensiunController::class, 'delete'])->name('delete');
         Route::get('pensiun/daftar-iuran', [PensiunController::class, 'daftarIuran'])->name('daftar_iuran');
         Route::post('pensiun/rekap/export', [PensiunController::class, 'rekapExport'])->name('rekap.export');
-        Route::get('pensiun/ctkrekapiuranpensiun', [PensiunController::class, 'ctkrekapiuranpensiun'])->name('ctkrekapiuranpensiun');
-        Route::post('pensiun/rekapiuran/export', [PensiunController::class, 'rekapIuranExport'])->name('rekapiuran.export');
+        Route::get('pensiun/rekap-iuran', [PensiunController::class, 'rekapIuran'])->name('rekap_iuran');
+        Route::post('pensiun/rekap-iuran/export', [PensiunController::class, 'rekapIuranExport'])->name('rekap_iuran.export');
     });
     //end pensiun
     
