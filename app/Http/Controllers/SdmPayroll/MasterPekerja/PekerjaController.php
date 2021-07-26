@@ -34,7 +34,7 @@ class PekerjaController extends Controller
      */
     public function index()
     {
-        return view('pekerja.index');
+        return view('modul-sdm-payroll.master-pekerja.index');
     }
 
     /**

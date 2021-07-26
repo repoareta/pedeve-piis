@@ -105,48 +105,52 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-	$(document).ready(function () {
-		var t = $('#kt_table').DataTable({
-			scrollX   : true,
-			processing: true,
-			serverSide: true,
-			searching: false,
-			lengthChange: false,
-			ajax: {
-				url: "{{ route('modul_sdm_payroll.honor_komite.index.json') }}",
-				data: function (d) {
-					d.nopek = $('select[name=nopek]').val();
-					d.bulan = $('select[name=bulan]').val();
-					d.tahun = $('input[name=tahun]').val();
-				}
-			},
-			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
-				{data: 'tahun', name: 'tahun'},
-				{data: 'bulan', name: 'bulan'},
-				{data: 'nopek', name: 'nopek'},
-				{data: 'nilai', name: 'nilai'},
-				{data: 'pajak', name: 'pajak'},
-			]
-			
-	});
-	
-    $('#search-form').on('submit', function(e) {
-		t.draw();
-		e.preventDefault();
-	});
+$(document).ready(function () {
+    var t = $('#kt_table').DataTable({
+        scrollX   : true,
+        processing: true,
+        serverSide: true,
+        searching: false,
+        lengthChange: false,
+        ajax: {
+            url: "{{ route('modul_sdm_payroll.honor_komite.index.json') }}",
+            data: function (d) {
+                d.nopek = $('select[name=nopek]').val();
+                d.bulan = $('select[name=bulan]').val();
+                d.tahun = $('input[name=tahun]').val();
+            }
+        },
+        columns: [
+            {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+            {data: 'tahun', name: 'tahun'},
+            {data: 'bulan', name: 'bulan'},
+            {data: 'nopek', name: 'nopek'},
+            {data: 'nilai', name: 'nilai'},
+            {data: 'pajak', name: 'pajak'},
+        ]
+        
+    });
 
-	$('#kt_table tbody').on( 'click', 'tr', function (event) {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		} else {
-			t.$('tr.selected').removeClass('selected');
-			if (event.target.type !== 'radio') {
-				$(':radio', this).trigger('click');
-			}
-			$(this).addClass('selected');
-		}
-	});
+    $('.select2').select2().on('change', function() {
+        $(this).valid();
+    });
+    
+    $('#search-form').on('submit', function(e) {
+        t.draw();
+        e.preventDefault();
+    });
+
+    $('#kt_table tbody').on( 'click', 'tr', function (event) {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        } else {
+            t.$('tr.selected').removeClass('selected');
+            if (event.target.type !== 'radio') {
+                $(':radio', this).trigger('click');
+            }
+            $(this).addClass('selected');
+        }
+    });
 
     //edit potongan Manual
     $('#editRow').click(function(e) {
