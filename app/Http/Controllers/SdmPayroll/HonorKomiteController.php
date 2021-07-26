@@ -90,7 +90,7 @@ class HonorKomiteController extends Controller
        })
 
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
             return $radio;
         })
         ->rawColumns(['action','radio'])

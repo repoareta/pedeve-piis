@@ -20,7 +20,7 @@ class JenisUpahController extends Controller
         
         return datatables()->of($tunjangan_list)
         ->addColumn('radio', function ($row) {
-                return '<p align="center"><label  class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span></label></p>';
+                return '<p align="center"><label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span></label></p>';
         })
         ->addColumn('kode', function ($row) {
              return '<p align="center">'.$row->kode.'</p>';

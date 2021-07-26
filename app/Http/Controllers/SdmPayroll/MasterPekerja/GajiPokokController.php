@@ -22,7 +22,7 @@ class GajiPokokController extends Controller
 
         return datatables()->of($gaji_pokok_list)
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio_gaji_pokok" value="'.$row->nopeg.'-'.$row->gapok.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_gaji_pokok" value="'.$row->nopeg.'-'.$row->gapok.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('gapok', function ($row) {

@@ -111,7 +111,7 @@ class LemburController extends Controller
             ->addColumn('radio', function ($data) {
                 $tgl = date_create($data->tanggal);
                 $tanggal = date_format($tgl, 'd-m-Y');
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" data-tanggal="'.$tanggal.'"  data-nopek="'.$data->nopek.'" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-tanggal="'.$tanggal.'"  data-nopek="'.$data->nopek.'" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['action','radio'])

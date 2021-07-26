@@ -32,7 +32,7 @@ class AgamaController extends Controller
 
         return datatables()->of($agama_list)
             ->addColumn('action', function ($row) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="radio1" value="'.$row->kode.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['action'])

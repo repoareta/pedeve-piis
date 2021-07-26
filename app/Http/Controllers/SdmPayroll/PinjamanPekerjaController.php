@@ -45,7 +45,7 @@ class PinjamanPekerjaController extends Controller
             return number_format($data->curramount,2,'.',',');
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" id_pinjaman="'.$data->id_pinjaman.'" cair="'.$data->cair.'" class="btn-radio" name="id_pinjaman"><span></span></label>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" id_pinjaman="'.$data->id_pinjaman.'" cair="'.$data->cair.'" class="btn-radio" name="id_pinjaman"><span></span></label>'; 
             return $radio;
         })
         ->addColumn('cair', function ($data) {
