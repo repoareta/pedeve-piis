@@ -16,7 +16,7 @@ class PinjamanPekerjaController extends Controller
      */
     public function index()
     {
-        return view('pinjaman_pekerja.index');
+        return view('modul-sdm-payroll.pinjaman-pekerja.index');
     }
 
     public function searchIndex(Request $request)

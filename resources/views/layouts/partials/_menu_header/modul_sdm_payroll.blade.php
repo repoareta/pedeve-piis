@@ -1,4 +1,4 @@
-<li class="menu-item menu-item-submenu menu-item-rel {{ Route::is('modul_sdmpayroll.*') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
+<li class="menu-item menu-item-submenu menu-item-rel {{ Route::is('modul_sdm_payroll.*') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
     <a href="javascript:;" class="menu-link menu-toggle">
         <span class="menu-text">SDM & Payroll</span>
         <i class="menu-arrow"></i>

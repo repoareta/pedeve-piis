@@ -114,6 +114,10 @@
             reverse: true
         });
 
+        $('.tahun').mask('0000', {
+            reverse: true
+        });
+
         (function ($, DataTable) {
             // Datatable global configuration
             $.extend(true, DataTable.defaults, {

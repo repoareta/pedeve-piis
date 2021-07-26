@@ -380,7 +380,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Route assigned name "lembur.index"...
     Route::name('lembur.')->group(function () {
         Route::get('lembur', [LemburController::class, 'index'])->name('index');
-        Route::post('lembur/search', [LemburController::class, 'searchIndex'])->name('search.index');
+        Route::get('lembur/index-json', [LemburController::class, 'indexJson'])->name('index.json');
         Route::get('lembur/create', [LemburController::class, 'create'])->name('create');
         Route::post('lembur/store', [LemburController::class, 'store'])->name('store');
         Route::get('lembur/edit/{id}/{nopek}', [LemburController::class, 'edit'])->name('edit');
