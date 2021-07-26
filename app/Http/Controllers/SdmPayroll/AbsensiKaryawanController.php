@@ -18,17 +18,24 @@ class AbsensiKaryawanController extends Controller
     {
         $ip = "192.168.16.201";
         $key = "0";
+
         $data_absensi = DB::table('absensi as a')
         ->leftJoin('sdm_master_pegawai as b', 'a.userid', '=', 'b.noabsen')
         ->select('a.userid','b.nama','b.noabsen')
         ->orderBy('tanggal', 'desc')
         ->get();
 
-        $data_pegawai = DB::table('sdm_master_pegawai')
+        $pegawai_list = DB::table('sdm_master_pegawai')
         ->where('noabsen', null)
         ->orderBy('tglentry', 'desc')
         ->get();
-        return view('absensi_karyawan.index', compact('ip', 'key', 'data_absensi', 'data_pegawai'));
+
+        return view('modul-sdm-payroll.absensi-karyawan.index', compact(
+            'ip', 
+            'key', 
+            'data_absensi', 
+            'pegawai_list'
+        ));
     }
 
     /**
@@ -41,14 +48,13 @@ class AbsensiKaryawanController extends Controller
         $absensi_list = DB::table('absensi as a')
         ->leftJoin('sdm_master_pegawai as b', 'a.userid', '=', 'b.noabsen')
         ->select('a.*','b.nama','b.noabsen')
-        ->orderBy('tanggal', 'desc')
-        ->get();
+        ->orderBy('tanggal', 'desc');
         
         return datatables()->of($absensi_list)
         ->addColumn('pegawai', function ($absensi_list) {
-            if($absensi_list->noabsen == null){
+            if($absensi_list->noabsen == null) {
                 $radio = $absensi_list->userid;
-            }else{
+            } else {
                 $radio = $absensi_list->nama;
             }
             return $radio;

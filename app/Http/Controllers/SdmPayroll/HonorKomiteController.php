@@ -36,7 +36,7 @@ class HonorKomiteController extends Controller
         ->get();
         
         return view('modul-sdm-payroll.honor-komite.index',compact(
-            'data_pegawai',
+            'pegawai_list',
             'tahun',
             'bulan'
         ));
