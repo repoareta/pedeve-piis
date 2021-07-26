@@ -18,7 +18,7 @@ class PerguruanTinggiController extends Controller
      */
     public function index()
     {
-        return view('perguruan_tinggi.index');
+        return view('modul-sdm-payroll.master-data.perguruan-tinggi.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class PerguruanTinggiController extends Controller
      */
     public function create()
     {
-        return view('perguruan_tinggi.create');
+        return view('modul-sdm-payroll.master-data.perguruan-tinggi.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class PerguruanTinggiController extends Controller
         $perguruan_tinggi->save();
 
         Alert::success('Simpan Data Perguruan Tinggi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('perguruan_tinggi.index');
+        return redirect()->route('modul_sdm_payroll.perguruan_tinggi.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class PerguruanTinggiController extends Controller
      */
     public function edit(PerguruanTinggi $perguruan_tinggi)
     {
-        return view('perguruan_tinggi.edit', compact('perguruan_tinggi'));
+        return view('modul-sdm-payroll.master-data.perguruan_tinggi.edit', compact('perguruan_tinggi'));
     }
 
     /**
@@ -90,7 +90,7 @@ class PerguruanTinggiController extends Controller
         $perguruan_tinggi->save();
 
         Alert::success('Ubah Data Perguruan Tinggi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('perguruan_tinggi.index');
+        return redirect()->route('modul_sdm_payroll.perguruan_tinggi.index');
     }
 
     /**

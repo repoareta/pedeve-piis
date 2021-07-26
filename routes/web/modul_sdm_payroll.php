@@ -633,8 +633,8 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::get('gcg/lhkpn/create', 'GcgLhkpnController@create')->name('lhkpn.create');
         Route::post('gcg/lhkpn/store', 'GcgLhkpnController@store')->name('lhkpn.store');
         
-        Route::get('gcg/report_boundary', 'GcgReportBoundaryController@index')->name('report_boundary.index');
-        Route::get('gcg/report_boundary/export', 'GcgReportBoundaryController@export')->name('report_boundary.export');
+        Route::get('gcg/report-boundary', 'GcgReportBoundaryController@index')->name('report_boundary.index');
+        Route::get('gcg/report-boundary/export', 'GcgReportBoundaryController@export')->name('report_boundary.export');
     });
     //end GCG
 });

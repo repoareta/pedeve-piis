@@ -19,7 +19,7 @@ class KodeJabatanController extends Controller
      */
     public function index()
     {
-        return view('kode_jabatan.index');
+        return view('modul-sdm-payroll.master-data.kode-jabatan.index');
     }
 
     /**
@@ -58,7 +58,7 @@ class KodeJabatanController extends Controller
     public function create()
     {
         $kode_bagian_list = KodeBagian::all();
-        return view('kode_jabatan.create', compact('kode_bagian_list'));
+        return view('modul-sdm-payroll.master-data.kode-jabatan.create', compact('kode_bagian_list'));
     }
 
     /**

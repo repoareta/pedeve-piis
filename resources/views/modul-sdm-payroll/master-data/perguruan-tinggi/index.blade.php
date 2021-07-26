@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Master Data Kode Bagian
+                Tabel Master Data Perguruan Tinggi
             </h3>
         </div>
         <div class="card-toolbar">
@@ -64,7 +64,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : "{{ route('modul_sdm_payroll.kode_bagian.index.json') }}",
+			ajax      : "{{ route('modul_sdm_payroll.perguruan_tinggi.index.json') }}",
 			columns: [
 				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button', width: '10'},
 				{data: 'kode', name: 'kode', class:'no-wrap'},
@@ -83,14 +83,14 @@
 				}
 				$(this).addClass('selected');
 			}
-		} );
+		});
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
-					var url = '{{ route("modul_sdm_payroll.kode_bagian.edit", ":kode") }}';
+					var url = '{{ route("modul_sdm_payroll.perguruan_tinggi.edit", ":kode") }}';
 					// go to page edit
 					window.location.href = url.replace(':kode',id);
 				});
@@ -115,7 +115,7 @@
 
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
-						text: "Kode Bagian : " + id,
+						text: "Kode Perguruan Tinggi : " + id,
 						type: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
@@ -125,7 +125,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('modul_sdm_payroll.kode_bagian.delete') }}",
+								url: "{{ route('modul_sdm_payroll.perguruan_tinggi.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {
@@ -135,7 +135,7 @@
 								success: function () {
 									Swal.fire({
 										type  : 'success',
-										title : 'Hapus Kode Bagian: ' + id,
+										title : 'Hapus Kode Perguruan Tinggi: ' + id,
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {
@@ -154,5 +154,5 @@
 			}
 		});
 	});
-	</script>
+</script>
 @endpush

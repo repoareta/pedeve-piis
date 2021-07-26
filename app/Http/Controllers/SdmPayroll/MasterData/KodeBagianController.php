@@ -18,7 +18,7 @@ class KodeBagianController extends Controller
      */
     public function index()
     {
-        return view('kode_bagian.index');
+        return view('modul-sdm-payroll.master-data.kode-bagian.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class KodeBagianController extends Controller
      */
     public function create()
     {
-        return view('kode_bagian.create');
+        return view('modul-sdm-payroll.master-data.kode-bagian.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class KodeBagianController extends Controller
         $kode_bagian->save();
 
         Alert::success('Simpan Data Kode Bagian', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('kode_bagian.index');
+        return redirect()->route('modul_sdm_payroll.kode_bagian.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class KodeBagianController extends Controller
      */
     public function edit(KodeBagian $kode_bagian)
     {
-        return view('kode_bagian.edit', compact('kode_bagian'));
+        return view('modul-sdm-payroll.master-data.kode-bagian.edit', compact('kode_bagian'));
     }
 
     /**

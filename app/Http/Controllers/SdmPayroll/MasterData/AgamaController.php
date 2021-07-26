@@ -18,7 +18,7 @@ class AgamaController extends Controller
      */
     public function index()
     {
-        return view('agama.index');
+        return view('modul-sdm-payroll.master-data.agama.index');
     }
 
     /**
@@ -46,7 +46,7 @@ class AgamaController extends Controller
      */
     public function create()
     {
-        return view('agama.create');
+        return view('modul-sdm-payroll.master-data.agama.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class AgamaController extends Controller
         $agama->save();
 
         Alert::success('Simpan Data Agama', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('agama.index');
+        return redirect()->route('modul_sdm_payroll.agama.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class AgamaController extends Controller
      */
     public function edit(Agama $agama)
     {
-        return view('agama.edit', compact('agama'));
+        return view('modul-sdm-payroll.master-data.agama.edit', compact('agama'));
     }
 
     /**
@@ -90,7 +90,7 @@ class AgamaController extends Controller
         $agama->save();
 
         Alert::success('Ubah Data Agama', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('agama.index');
+        return redirect()->route('modul_sdm_payroll.agama.index');
     }
 
     /**
