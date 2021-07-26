@@ -13,7 +13,7 @@ class PendidikanStore extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
