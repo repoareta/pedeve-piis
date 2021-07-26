@@ -41,7 +41,7 @@ class UangMukaKerjaController extends Controller
         return view('modul-umum.umk.index', compact('bulan', 'tahun'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         if ($request->permintaan <>  null and $request->tahun == null and $request->bulan == null) {
             $data = DB::select("select a.no_umk,a.jenis_um,a.app_pbd,a.app_sdm,a.tgl_panjar,a.no_kas,a.keterangan,a.jumlah from kerja_header a where a.no_umk like '$request->permintaan%' order by a.bulan_buku desc,a.no_umk desc");

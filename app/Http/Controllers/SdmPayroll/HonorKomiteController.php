@@ -17,21 +17,32 @@ class HonorKomiteController extends Controller
      */
     public function index()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-            if(!empty($data_tahunbulan)) {
-                foreach ($data_tahunbulan as $data_bul) {
-                    $tahun = substr($data_bul->bulan_buku,0,-2); 
-                    $bulan = substr($data_bul->bulan_buku,4); 
-                }
-            }else{
-                $bulan ='00';
-                $tahun ='0000';
-            }
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('honor_komite.index',compact('data_pegawai','tahun','bulan'));
+        $tahunbulan = DB::select("SELECT 
+        max(thnbln) AS bulan_buku 
+        FROM timetrans 
+        WHERE status = '1' 
+        AND LENGTH(thnbln)='6'")[0];
+
+        if(!empty($tahunbulan)) {
+            $tahun = substr($tahunbulan->bulan_buku,0,-2); 
+            $bulan = substr($tahunbulan->bulan_buku,4); 
+        } else {
+            $bulan ='00';
+            $tahun ='0000';
+        }
+
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        ->orderBy('nopeg')
+        ->get();
+        
+        return view('modul-sdm-payroll.honor-komite.index',compact(
+            'data_pegawai',
+            'tahun',
+            'bulan'
+        ));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         foreach($data_tahunbulan as $data_bul)

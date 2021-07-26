@@ -37,7 +37,7 @@ class PermintaanBayarController extends Controller
         return view('modul-umum.permintaan-bayar.index', compact('bulan', 'tahun'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         if ($request->permintaan <>  null and $request->tahun == null and $request->bulan == null) {
             $data = DB::select("select a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' order by a.no_bayar desc");

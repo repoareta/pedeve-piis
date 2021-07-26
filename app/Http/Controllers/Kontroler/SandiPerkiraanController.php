@@ -15,7 +15,7 @@ class SandiPerkiraanController extends Controller
         return view('sandi_perkiraan.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select a.* from account a order by a.kodeacct");
         return datatables()->of($data)

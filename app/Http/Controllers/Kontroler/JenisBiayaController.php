@@ -14,7 +14,7 @@ class JenisBiayaController extends Controller
         return view('modul-kontroler.jenis-biaya.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select a.* from jenisbiaya a order by a.kode");
         return datatables()->of($data)

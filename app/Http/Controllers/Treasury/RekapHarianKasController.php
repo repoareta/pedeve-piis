@@ -24,7 +24,7 @@ class RekapHarianKasController extends Controller
         return view('modul-treasury.rekap-harian-kas.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {

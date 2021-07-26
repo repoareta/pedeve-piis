@@ -18,26 +18,26 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     // Route assigned name "data-perkara.index"...
     Route::name('data_perkara.')->group(function () {
         Route::get('data-perkara', [DataPerkaraController::class, 'index'])->name('index');
-        Route::post('data-perkara/index/search', [DataPerkaraController::class, 'searchIndex'])->name('search.index');
+        Route::post('data-perkara/index/index-json', [DataPerkaraController::class, 'indexJson'])->name('search.index');
         Route::get('data-perkara/create', [DataPerkaraController::class, 'create'])->name('create');
         Route::post('data-perkara/store', [DataPerkaraController::class, 'store'])->name('store');
         Route::get('data-perkara/edit/{no}', [DataPerkaraController::class, 'edit'])->name('edit');
         Route::get('data-perkara/detail/{no}', [DataPerkaraController::class, 'detail'])->name('detail');
         Route::post('data-perkara/update', [DataPerkaraController::class, 'update'])->name('update');
         Route::delete('data-perkara/delete', [DataPerkaraController::class, 'delete'])->name('delete');
-        Route::get('data-perkara/pihak/search', [DataPerkaraController::class, 'searchPihak'])->name('search.pihak');
+        Route::get('data-perkara/pihak/index-json', [DataPerkaraController::class, 'searchPihak'])->name('search.pihak');
         Route::post('data-perkara/show', [DataPerkaraController::class, 'showPihakJson'])->name('show.pihak.json');
         Route::post('data-perkara/pihak', [DataPerkaraController::class, 'pihak'])->name('store.pihak');
         Route::delete('data-perkara/delete/pihak', [DataPerkaraController::class, 'deletePihak'])->name('delete.pihak');
 
-        Route::get('data-perkara/hakim/search', [DataPerkaraController::class, 'searchHakim'])->name('search.hakim');
+        Route::get('data-perkara/hakim/index-json', [DataPerkaraController::class, 'searchHakim'])->name('search.hakim');
         Route::post('data-perkara/hakim/show', [DataPerkaraController::class, 'showHakim'])->name('show.json');
         Route::post('data-perkara/hakim', [DataPerkaraController::class, 'hakim'])->name('store.hakim');
         Route::post('data-perkara/hakim/pihak', [DataPerkaraController::class, 'pihakJson'])->name('pihakJson');
         Route::delete('data-perkara/hakim/delete', [DataPerkaraController::class, 'deleteHakim'])->name('delete.hakim');
         
         Route::post('data-perkara/dokumen', [DataPerkaraController::class, 'dokumen'])->name('store.dokumen');
-        Route::get('data-perkara/dokumen/search', [DataPerkaraController::class, 'searchDokumen'])->name('search.dokumen');
+        Route::get('data-perkara/dokumen/index-json', [DataPerkaraController::class, 'searchDokumen'])->name('search.dokumen');
         Route::post('data-perkara/dokumen/pihak', [DataPerkaraController::class, 'dokumenPihak'])->name('pihakJson');
         Route::delete('data-perkara/dokumen/delete', [DataPerkaraController::class, 'deleteDokumen'])->name('delete.dokumen');
     });
@@ -47,7 +47,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     // Route assigned name "monitoring-kinerja.index"...
     Route::name('monitoring_kinerja.')->group(function () {
         Route::get('monitoring-kinerja', [MonitoringKinerjaController::class, 'index'])->name('index');
-        Route::post('monitoring-kinerja/index/search', [MonitoringKinerjaController::class, 'indexJson'])->name('index.json');
+        Route::post('monitoring-kinerja/index/index-json', [MonitoringKinerjaController::class, 'indexJson'])->name('index.json');
         Route::get('monitoring-kinerja/create', [MonitoringKinerjaController::class, 'create'])->name('create');
         Route::post('monitoring-kinerja/store', [MonitoringKinerjaController::class, 'store'])->name('store');
         Route::get('monitoring-kinerja/edit/{no}', [MonitoringKinerjaController::class, 'edit'])->name('edit');
@@ -75,7 +75,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     // Route assigned name "pencapaian_kerja.index"...
     Route::name('pencapaian_kinerja.')->group(function () {
         Route::get('pencapaian-kinerja', [PencapaianKinerjaController::class, 'index'])->name('index');
-        Route::get('pencapaian-kinerja/search', [PencapaianKinerjaController::class, 'search'])->name('search');
+        Route::get('pencapaian-kinerja/index-json', [PencapaianKinerjaController::class, 'search'])->name('search');
         Route::get('pencapaian-kinerja/export', [PencapaianKinerjaController::class, 'export'])->name('export');
     });
     //end pencapaian kinerja

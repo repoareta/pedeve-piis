@@ -14,7 +14,7 @@ class MainAccountController extends Controller
         return view('modul-kontroler.main-account.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select a.* from main_account a order by a.jenis");
         return datatables()->of($data)

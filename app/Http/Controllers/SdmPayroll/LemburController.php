@@ -127,7 +127,9 @@ class LemburController extends Controller
      */
     public function create()
     {
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        $data_pegawai = Pekerja::where('status', '<>', 'P')
+        ->orderBy('nopeg')
+        ->get();	
         $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
         return view('lembur.create',compact('data_pegawai','data_potongan'));
     }
@@ -183,7 +185,9 @@ class LemburController extends Controller
     public function edit($tanggal, $nopek)
     {
         $data_list = DB::select("select bulan,tahun,tanggal,nopek,makanpg, makansg, makanml, transport,lembur, userid from pay_lembur where  to_char(tanggal, 'dd-mm-YYYY')= '$tanggal' and nopek = '$nopek'");
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        $data_pegawai = Pekerja::where('status', '<>', 'P')
+        ->orderBy('nopeg')
+        ->get();	
         $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
         return view('lembur.edit',compact('data_list','data_pegawai','data_potongan'));
     }

@@ -38,7 +38,7 @@ class PenempatanDepositoController extends Controller
         return view('modul-treasury.penempatan-deposito.index', compact('tahun', 'bulan', 'data_akses'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {        
             $bulan = ltrim($request->bulan, '0');
             $tahun = $request->tahun;

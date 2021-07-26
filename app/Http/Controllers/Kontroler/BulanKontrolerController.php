@@ -15,7 +15,7 @@ class BulanKontrolerController extends Controller
         return view('bulan_kontroler.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select thnbln,status,opendate,stopdate,closedate,description,suplesi from bulankontroller order by thnbln desc");
         return datatables()->of($data)

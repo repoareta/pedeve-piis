@@ -42,7 +42,7 @@ class PembayaranGajiController extends Controller
         return view('modul-treasury.pembayaran-gaji.index', compact('tahun', 'bulan', 'data_akses'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data_rsbulan = DB::select("select max(thnbln) as thnbln from timetrans where status='1' and length(thnbln)=6");
         if (!empty($data_rsbulan)) {

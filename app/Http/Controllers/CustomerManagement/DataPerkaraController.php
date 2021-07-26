@@ -20,7 +20,7 @@ class DataPerkaraController extends Controller
         return view('modul-customer-management.data-perkara.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select * from tbl_perkara");
 

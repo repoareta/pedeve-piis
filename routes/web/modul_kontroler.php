@@ -23,7 +23,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "jurnal_umum.index"...
     Route::name('jurnal_umum.')->group(function () {
         Route::get('jurnal-umum', [JurnalUmumController::class, 'index'])->name('index');
-        Route::post('jurnal-umum/search', [JurnalUmumController::class, 'searchIndex'])->name('search.index');
+        Route::post('jurnal-umum/index-json', [JurnalUmumController::class, 'indexJson'])->name('search.index');
         Route::get('jurnal-umum/create', [JurnalUmumController::class, 'create'])->name('create');
         Route::post('jurnal-umum/store', [JurnalUmumController::class, 'store'])->name('store');
         Route::get('jurnal-umum/edit/{no}', [JurnalUmumController::class, 'edit'])->name('edit');
@@ -54,7 +54,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
         Route::get('postingan-kas-bank/editdetail/{no}/{id}', [PostingKasBankController::class, 'editdetail'])->name('editdetail');
         Route::get('postingan-kas-bank/prsposting', [PostingKasBankController::class, 'prsposting'])->name('prsposting');
         Route::get('postingan-kas-bank/btlposting', [PostingKasBankController::class, 'btlposting'])->name('btlposting');
-        Route::post('postingan-kas-bank/search', [PostingKasBankController::class, 'searchIndex'])->name('search.index');
+        Route::post('postingan-kas-bank/index-json', [PostingKasBankController::class, 'indexJson'])->name('search.index');
         Route::post('postingan-kas-bank/store/verkas', [PostingKasBankController::class, 'store'])->name('store.verkas');
         Route::post('postingan-kas-bank/verifikasi', [PostingKasBankController::class, 'verifikasi'])->name('verifikasi');
         Route::post('postingan-kas-bank/store/detail', [PostingKasBankController::class, 'storeDetail'])->name('store.detail');
@@ -113,7 +113,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "cetak_kas_bank.index"...
     Route::name('cetak_kas_bank.')->group(function () {
         Route::get('cetak-kas-bank', [KasBankKontrolerController::class, 'indexCetak'])->name('index');
-        Route::post('cetak-kas-bank/index/search', [KasBankKontrolerController::class, 'searchIndexCetak'])->name('search.cetak.index');
+        Route::post('cetak-kas-bank/index/index-json', [KasBankKontrolerController::class, 'searchIndexCetak'])->name('search.cetak.index');
         Route::get('cetak-kas-bank/rekap/{id}', [KasBankKontrolerController::class, 'rekap'])->name('rekap');
         Route::post('cetak-kas-bank/export', [KasBankKontrolerController::class, 'export'])->name('export');
     });
@@ -123,7 +123,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "tabel_deposito.index"...
     Route::name('tabel_deposito.')->group(function () {
         Route::get('tabel-deposito', [TabelDepositoController::class, 'index'])->name('index');
-        Route::post('tabel-deposito/index/search', [TabelDepositoController::class, 'searchIndex'])->name('search.index');
+        Route::post('tabel-deposito/index/index-json', [TabelDepositoController::class, 'indexJson'])->name('search.index');
         Route::get('tabel-deposito/rekap/{no}/{id}', [TabelDepositoController::class, 'rekap'])->name('rekap');
         Route::post('tabel-deposito/export', [TabelDepositoController::class, 'export'])->name('export');
     });
@@ -134,7 +134,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "cash_judex.index"...
     Route::name('cash_judex.')->group(function () {
         Route::get('cash-judex', [CashJudexController::class, 'index'])->name('index');
-        Route::post('cash-judex/index/search', [CashJudexController::class, 'searchIndex'])->name('search.index');
+        Route::post('cash-judex/index/index-json', [CashJudexController::class, 'indexJson'])->name('search.index');
         Route::get('cash-judex/create', [CashJudexController::class, 'create'])->name('create');
         Route::post('cash-judex/store', [CashJudexController::class, 'store'])->name('store');
         Route::get('cash-judex/edit/{no}', [CashJudexController::class, 'edit'])->name('edit');
@@ -148,7 +148,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "jenis_biaya.index"...
     Route::name('jenis_biaya.')->group(function () {
         Route::get('jenis-biaya', [JenisBiayaController::class, 'index'])->name('index');
-        Route::post('jenis-biaya/index/search', [JenisBiayaController::class, 'searchIndex'])->name('search.index');
+        Route::post('jenis-biaya/index/index-json', [JenisBiayaController::class, 'indexJson'])->name('search.index');
         Route::get('jenis-biaya/create', [JenisBiayaController::class, 'create'])->name('create');
         Route::post('jenis-biaya/store', [JenisBiayaController::class, 'store'])->name('store');
         Route::get('jenis-biaya/edit/{no}', [JenisBiayaController::class, 'edit'])->name('edit');
@@ -161,7 +161,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "kas_bank_kontroler.index"...
     Route::name('kas_bank_kontroler.')->group(function () {
         Route::get('kas-bank-kontroler', [KasBankKontrolerController::class, 'index'])->name('index');
-        Route::post('kas-bank-kontroler/index/search', [KasBankKontrolerController::class, 'searchIndex'])->name('search.index');
+        Route::post('kas-bank-kontroler/index/index-json', [KasBankKontrolerController::class, 'indexJson'])->name('search.index');
         Route::get('kas-bank-kontroler/create', [KasBankKontrolerController::class, 'create'])->name('create');
         Route::post('kas-bank-kontroler/store', [KasBankKontrolerController::class, 'store'])->name('store');
         Route::get('kas-bank-kontroler/edit/{no}', [KasBankKontrolerController::class, 'edit'])->name('edit');
@@ -174,7 +174,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "lokasi_kontroler.index"...
     Route::name('lokasi_kontroler.')->group(function () {
         Route::get('lokasi-kontroler', [LokasiKontrolerController::class, 'index'])->name('index');
-        Route::post('lokasi-kontroler/index/search', [LokasiKontrolerController::class, 'searchIndex'])->name('search.index');
+        Route::post('lokasi-kontroler/index/index-json', [LokasiKontrolerController::class, 'indexJson'])->name('search.index');
         Route::get('lokasi-kontroler/create', [LokasiKontrolerController::class, 'create'])->name('create');
         Route::post('lokasi-kontroler/store', [LokasiKontrolerController::class, 'store'])->name('store');
         Route::get('lokasi-kontroler/edit/{no}', [LokasiKontrolerController::class, 'edit'])->name('edit');
@@ -187,7 +187,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "sandi_perkiraan.index"...
     Route::name('sandi_perkiraan.')->group(function () {
         Route::get('sandi-perkiraan', [SandiPerkiraanController::class, 'index'])->name('index');
-        Route::post('sandi-perkiraan/index/search', [SandiPerkiraanController::class, 'searchIndex'])->name('search.index');
+        Route::post('sandi-perkiraan/index/index-json', [SandiPerkiraanController::class, 'indexJson'])->name('search.index');
         Route::get('sandi-perkiraan/create', [SandiPerkiraanController::class, 'create'])->name('create');
         Route::post('sandi-perkiraan/store', [SandiPerkiraanController::class, 'store'])->name('store');
         Route::get('sandi-perkiraan/edit/{no}', [SandiPerkiraanController::class, 'edit'])->name('edit');
@@ -200,7 +200,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "bulan_kontroler.index"...
     Route::name('bulan_kontroler.')->group(function () {
         Route::get('bulan-kontroler', [BulanKontrolerController::class, 'index'])->name('index');
-        Route::post('bulan-kontroler/index/search', [BulanKontrolerController::class, 'searchIndex'])->name('search.index');
+        Route::post('bulan-kontroler/index/index-json', [BulanKontrolerController::class, 'indexJson'])->name('search.index');
         Route::get('bulan-kontroler/create', [BulanKontrolerController::class, 'create'])->name('create');
         Route::post('bulan-kontroler/store', [BulanKontrolerController::class, 'store'])->name('store');
         Route::get('bulan-kontroler/edit/{no}', [BulanKontrolerController::class, 'edit'])->name('edit');
@@ -213,7 +213,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "main_account.index"...
     Route::name('main_account.')->group(function () {
         Route::get('main-account', [MainAccountController::class, 'index'])->name('index');
-        Route::post('main-account/index/search', [MainAccountController::class, 'searchIndex'])->name('search.index');
+        Route::post('main-account/index/index-json', [MainAccountController::class, 'indexJson'])->name('search.index');
         Route::get('main-account/create', [MainAccountController::class, 'create'])->name('create');
         Route::post('main-account/store', [MainAccountController::class, 'store'])->name('store');
         Route::get('main-account/edit/{no}', [MainAccountController::class, 'edit'])->name('edit');

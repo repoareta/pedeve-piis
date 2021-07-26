@@ -71,7 +71,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
     // Route assigned name "uang-muka-kerja.index"...
     Route::name('uang_muka_kerja.')->group(function () {
         Route::get('uang-muka-kerja', [UangMukaKerjaController::class, 'index'])->name('index');
-        Route::post('uang-muka-kerja/search-json', [UangMukaKerjaController::class, 'searchIndex'])->name('search.index');
+        Route::post('uang-muka-kerja/search-json', [UangMukaKerjaController::class, 'indexJson'])->name('search.index');
         Route::get('uang-muka-kerja/search/account', [UangMukaKerjaController::class, 'searchAccount'])->name('search.account');
         Route::get('uang-muka-kerja/search/bagian', [UangMukaKerjaController::class, 'searchBagian'])->name('search.bagian');
         Route::get('uang-muka-kerja/search/jb', [UangMukaKerjaController::class, 'searchJb'])->name('search.jb');
@@ -125,7 +125,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
     // Route assigned name "permintaan-bayar.index"...
     Route::name('permintaan_bayar.')->group(function () {
         Route::get('permintaan-bayar', [PermintaanBayarController::class, 'index'])->name('index');
-        Route::post('permintaan-bayar/search-index', [PermintaanBayarController::class, 'searchIndex'])->name('search.index');
+        Route::post('permintaan-bayar/search-index', [PermintaanBayarController::class, 'indexJson'])->name('search.index');
         Route::get('permintaan-bayar/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
         Route::get('permintaan-bayar/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
         Route::get('permintaan-bayar/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');

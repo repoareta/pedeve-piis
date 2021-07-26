@@ -14,7 +14,7 @@ class LokasiKontrolerController extends Controller
         return view('modul-kontroler.lokasi-kontroler.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select a.* from lokasi a ORDER BY a.kodelokasi");
         return datatables()->of($data)

@@ -25,7 +25,7 @@ class TabelDepositoController extends Controller
         return view('tabel_deposito.index',compact('tahun','bulan'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
             $bulan = ltrim($request->bulan, '0');
             $tahun = $request->tahun;

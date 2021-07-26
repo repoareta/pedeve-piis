@@ -19,7 +19,7 @@ class KasBankKontrolerController extends Controller
         return view('kas_bank_kontroler.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select a.* from storejk a ORDER BY a.jeniskartu,a.kodestore");
         return datatables()->of($data)

@@ -14,7 +14,7 @@ class CashJudexController extends Controller
         return view('modul-kontroler.cash-judex.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $data = DB::select("select a.* from cashjudex a order by a.kode");
         return datatables()->of($data)

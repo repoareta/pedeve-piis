@@ -29,7 +29,7 @@ class JurnalUmumController extends Controller
         return view('modul-kontroler.jurnal-umum.index',compact('tahun','bulan'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
         $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         

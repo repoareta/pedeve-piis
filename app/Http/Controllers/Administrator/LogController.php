@@ -15,7 +15,7 @@ class LogController extends Controller
         return view('modul-administrator.log.index');
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {        
         $log = UserLog::orderBy('login', 'desc');
 

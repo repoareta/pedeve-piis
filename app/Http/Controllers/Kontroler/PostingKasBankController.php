@@ -26,7 +26,7 @@ class PostingKasBankController extends Controller
     }
     return view('posting_kas_bank.index',compact('tahun','bulan'));
  }
- public function searchIndex(Request $request)
+ public function indexJson(Request $request)
     {
         $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($rsbulan)){
