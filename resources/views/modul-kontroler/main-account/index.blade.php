@@ -76,7 +76,7 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
             },
             ajax      : {
-                        url: "{{ route('modul_kontroler.main_account.search.index') }}",
+                        url: "{{ route('modul_kontroler.main_account.index.json') }}",
                         type : "POST",
                         dataType : "JSON",
                         headers: {

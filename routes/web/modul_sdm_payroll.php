@@ -313,7 +313,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Route assigned name "potongan-koreksi-gaji.index"...
     Route::name('potongan_koreksi_gaji.')->group(function () {
         Route::get('potongan-koreksi-gaji', [PotonganKoreksiGajiController::class, 'index'])->name('index');
-        Route::post('potongan-koreksi-gaji/index-json', [PotonganKoreksiGajiController::class, 'indexJson'])->name('search.index');
+        Route::post('potongan-koreksi-gaji/index-json', [PotonganKoreksiGajiController::class, 'indexJson'])->name('index.json');
         Route::get('potongan-koreksi-gaji/create', [PotonganKoreksiGajiController::class, 'create'])->name('create');
         Route::post('potongan-koreksi-gaji/store', [PotonganKoreksiGajiController::class, 'store'])->name('store');
         Route::get('potongan-koreksi-gaji/edit/{bulan}/{tahun}/{arrd}/{nopek}', [PotonganKoreksiGajiController::class, 'edit'])->name('edit');
@@ -328,7 +328,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Route assigned name "potongan_manual.index"...
     Route::name('potongan_manual.')->group(function () {
         Route::get('potongan-manual', [PotonganManualController::class, 'index'])->name('index');
-        Route::post('potongan-manual/index-json', [PotonganManualController::class, 'indexJson'])->name('search.index');
+        Route::post('potongan-manual/index-json', [PotonganManualController::class, 'indexJson'])->name('index.json');
         Route::get('potongan-manual/create', [PotonganManualController::class, 'create'])->name('create');
         Route::post('potongan-manual/store', [PotonganManualController::class, 'store'])->name('store');
         Route::get('potongan-manual/edit/{bulan}/{tahun}/{arrd}/{nopek}', [PotonganManualController::class, 'edit'])->name('edit');
@@ -341,7 +341,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Route assigned name "potongan-otomatis.index"...
     Route::name('potongan_otomatis.')->group(function () {
         Route::get('potongan-otomatis', [PotonganOtomatisController::class, 'index'])->name('index');
-        Route::post('potongan-otomatis/index-json', [PotonganOtomatisController::class, 'indexJson'])->name('search.index');
+        Route::post('potongan-otomatis/index-json', [PotonganOtomatisController::class, 'indexJson'])->name('index.json');
         Route::get('potongan-otomatis/create', [PotonganOtomatisController::class, 'create'])->name('create');
         Route::post('potongan-otomatis/store', [PotonganOtomatisController::class, 'store'])->name('store');
         Route::get('potongan-otomatis/edit/{bulan}/{tahun}/{arrd}/{nopek}', [PotonganOtomatisController::class, 'edit'])->name('edit');
@@ -354,7 +354,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Route assigned name "potongan_insentif.index"...
     Route::name('potongan_insentif.')->group(function () {
         Route::get('potongan-insentif', [PotonganInsentifController::class, 'index'])->name('index');
-        Route::post('potongan-insentif/index-json', [PotonganInsentifController::class, 'indexJson'])->name('search.index');
+        Route::post('potongan-insentif/index-json', [PotonganInsentifController::class, 'indexJson'])->name('index.json');
         Route::get('potongan-insentif/create', [PotonganInsentifController::class, 'create'])->name('create');
         Route::post('potongan-insentif/store', [PotonganInsentifController::class, 'store'])->name('store');
         Route::get('potongan-insentif/edit/{bulan}/{tahun}/{nopek}', [PotonganInsentifController::class, 'edit'])->name('edit');
@@ -367,7 +367,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Route assigned name "honor-komite.index"...
     Route::name('honor_komite.')->group(function () {
         Route::get('honor-komite', [HonorKomiteController::class, 'index'])->name('index');
-        Route::post('honor-komite/index-json', [HonorKomiteController::class, 'indexJson'])->name('search.index');
+        Route::post('honor-komite/index-json', [HonorKomiteController::class, 'indexJson'])->name('index.json');
         Route::get('honor-komite/create', [HonorKomiteController::class, 'create'])->name('create');
         Route::post('honor-komite/store', [HonorKomiteController::class, 'store'])->name('store');
         Route::get('honor-komite/edit/{bulan}/{tahun}/{nopek}', [HonorKomiteController::class, 'edit'])->name('edit');
@@ -394,7 +394,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     //pinjaman pekerja
     Route::name('pinjaman_pekerja.')->group(function () {
         Route::get('pinjaman-pekerja', [PinjamanPekerjaController::class, 'index'])->name('index');
-        Route::post('pinjaman-pekerja/index-json', [PinjamanPekerjaController::class, 'indexJson'])->name('search.index');
+        Route::post('pinjaman-pekerja/index-json', [PinjamanPekerjaController::class, 'indexJson'])->name('index.json');
         Route::post('pinjaman-pekerja/idpinjaman/json', [PinjamanPekerjaController::class, 'IdpinjamanJson'])->name('idpinjaman.json');
         Route::get('pinjaman-pekerja/detail/json', [PinjamanPekerjaController::class, 'detailJson'])->name('detail.json');
         Route::get('pinjaman-pekerja/create', [PinjamanPekerjaController::class, 'create'])->name('create');

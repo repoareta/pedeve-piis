@@ -121,7 +121,7 @@ $(document).ready(function () {
 				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
 				},
 				ajax      : {
-					url: "{{route('tabel_deposito.search.index')}}",
+					url: "{{route('tabel_deposito.index.json')}}",
 					type : "POST",
 					dataType : "JSON",
 					headers: {

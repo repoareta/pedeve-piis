@@ -101,7 +101,7 @@
                     processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
                 },
                 ajax      : {
-                            url: "{{ route('modul_administrator.log.search.index') }}",
+                            url: "{{ route('modul_administrator.log.index.json') }}",
                             type : "POST",
                             dataType : "JSON",
                             headers: {

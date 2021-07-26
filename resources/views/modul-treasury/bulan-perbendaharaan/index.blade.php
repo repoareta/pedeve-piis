@@ -76,7 +76,7 @@
                     processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
                 },
                 ajax: {
-                    url: "{{ route('bulan_perbendaharaan.search.index') }}",
+                    url: "{{ route('bulan_perbendaharaan.index.json') }}",
                     type : "POST",
                     dataType : "JSON",
                     headers: {

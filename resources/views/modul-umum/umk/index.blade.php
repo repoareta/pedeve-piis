@@ -119,7 +119,7 @@
                     processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
                 },
                 ajax      : {
-                    url: "{{ route('uang_muka_kerja.search.index') }}",
+                    url: "{{ route('uang_muka_kerja.index.json') }}",
                     type : "POST",
                     dataType : "JSON",
                     headers: {

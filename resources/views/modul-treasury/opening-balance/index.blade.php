@@ -65,7 +65,7 @@
 				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
 			},
 			ajax: {
-                url: "{{ route('opening_balance.search.index') }}",
+                url: "{{ route('opening_balance.index.json') }}",
                 type : "POST",
                 dataType : "JSON",
                 headers: {
