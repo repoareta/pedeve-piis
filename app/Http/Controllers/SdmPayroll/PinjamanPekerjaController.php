@@ -24,25 +24,20 @@ class PinjamanPekerjaController extends Controller
         $data = DB::select("select a.id_pinjaman,a.nopek,a.jml_pinjaman,a.tenor,a.mulai,a.sampai,a.angsuran,a.cair,a.lunas,a.no_kontrak,b.nama as namapegawai,(select c.curramount from pay_master_hutang c where c.nopek=a.nopek and c.aard='20' and c.tahun||c.bulan = (select trim(max(tahun||bulan)) as bultah from pay_master_hutang where aard='20' and nopek=a.nopek)) as curramount from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg  where  a.lunas='N' order by a.id_pinjaman asc");
     
         return datatables()->of($data)
-        ->addColumn('id_pinjaman', function ($data) {
-            return $data->id_pinjaman;
-        })
         ->addColumn('mulai', function ($data) {
-            $tgl = date_create($data->mulai);
-            return date_format($tgl, 'd F Y');
+            return date_format(date_create($data->mulai), 'd F Y');
         })
         ->addColumn('sampai', function ($data) {
-            $tgl = date_create($data->sampai);
-            return date_format($tgl, 'd F Y');
+            return date_format(date_create($data->sampai), 'd F Y');
         })
         ->addColumn('angsuran', function ($data) {
-            return number_format($data->angsuran,2,'.',',');
+            return currency_format($data->angsuran);
         })
         ->addColumn('jml_pinjaman', function ($data) {
-            return number_format($data->jml_pinjaman,2,'.',',');
+            return currency_format($data->jml_pinjaman);
         })
         ->addColumn('curramount', function ($data) {
-            return number_format($data->curramount,2,'.',',');
+            return currency_format($data->curramount);
         })
         ->addColumn('radio', function ($data) {
             $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" id_pinjaman="'.$data->id_pinjaman.'" cair="'.$data->cair.'" class="btn-radio" name="id_pinjaman"><span></span></label>'; 
@@ -50,17 +45,17 @@ class PinjamanPekerjaController extends Controller
         })
         ->addColumn('cair', function ($data) {
             if($data->cair == 'Y'){
-                $cair = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Sudah Cair"><i class="fas fa-check-circle" ></i></span></p>'; 
+                $cair = '<span class="pointer-link" title="Sudah Cair"><i class="fas fa-check-circle fa-2x text-success"></i></span>'; 
             }else{
-                $cair = '<p align="center"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Belum Cair"><i class="fas fa-ban" ></i></span></p>';
+                $cair = '<span class="pointer-link" title="Belum Cair"><i class="fas fa-ban fa-2x text-danger"></i></span>';
             }
             return $cair;
         })
         ->addColumn('lunas', function ($data) {
             if($data->lunas == 'Y'){
-                $lunas = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Sudah Lunas"><i class="fas fa-check-circle" ></i></span></p>'; 
+                $lunas = '<span class="pointer-link" title="Sudah Lunas"><i class="fas fa-check-circle fa-2x text-success"></i></span>'; 
             }else{
-                $lunas = '<p align="center"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Belum Lunas"><i class="fas fa-ban" ></i></span></p>';
+                $lunas = '<span class="pointer-link" title="Belum Lunas"><i class="fas fa-ban fa-2x text-danger"></i></span>';
             }
             return $lunas;
         })
