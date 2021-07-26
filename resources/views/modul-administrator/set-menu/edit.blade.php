@@ -89,7 +89,7 @@
                     $(this).removeClass('selected');
                 } else {
                     t.$('tr.selected').removeClass('selected');
-                    // $(':radio', this).trigger('click');
+                    
                     if (event.target.type !== 'checkbox') {
                         $(':checkbox', this).trigger('click');
                     }

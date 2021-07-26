@@ -114,7 +114,7 @@
                     $(this).removeClass('selected');
                 } else {
                     t.$('tr.selected').removeClass('selected');
-                    // $(':radio', this).trigger('click');
+                    
                     if (event.target.type !== 'radio') {
                         $(':radio', this).trigger('click');
                     }

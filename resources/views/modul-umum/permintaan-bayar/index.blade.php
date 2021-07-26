@@ -151,8 +151,7 @@ $(document).ready(function () {
 		if ( $(this).hasClass('selected') ) {
 			$(this).removeClass('selected');
 		} else {
-			t.$('tr.selected').removeClass('selected');
-			if (event.target.type !== 'radio') {
+			t.$('tr.selected').removeClass('selected');if (event.target.type !== 'radio') {
 				$(':radio', this).trigger('click');
 			}
 			$(this).addClass('selected');

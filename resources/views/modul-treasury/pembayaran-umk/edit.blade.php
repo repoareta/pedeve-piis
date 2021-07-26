@@ -500,8 +500,7 @@ $(document).ready(function () {
 			if ( $(this).hasClass('selected') ) {
 				$(this).removeClass('selected');
 			} else {
-				t.$('tr.selected').removeClass('selected');
-				// $(':radio', this).trigger('click');
+				t.$('tr.selected').removeClass('selected');	
 				if (event.target.type !== 'radio') {
 					$(':radio', this).trigger('click');
 				}
