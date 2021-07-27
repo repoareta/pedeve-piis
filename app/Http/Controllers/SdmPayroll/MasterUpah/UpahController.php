@@ -25,9 +25,9 @@ class UpahController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pekerja_list = Pekerja::all();
+        $pegawai_list = Pekerja::all();
 
-        return view('upah_master.index', compact('tahun', 'pekerja_list'));
+        return view('modul-sdm-payroll.master-upah.index', compact('tahun', 'pegawai_list'));
     }
 
     /**
@@ -91,7 +91,7 @@ class UpahController extends Controller
         $pekerja_list = Pekerja::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('upah_master.create', compact('pekerja_list', 'aard_list'));
+        return view('modul-sdm-payroll.master-upah.create', compact('pekerja_list', 'aard_list'));
     }
 
     /**
@@ -114,7 +114,7 @@ class UpahController extends Controller
         $upah->save();
 
         Alert::success('Tambah Upah Master', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('upah.index');
+        return redirect()->route('modul_sdm_payroll.upah.index');
     }
 
     /**
@@ -137,7 +137,7 @@ class UpahController extends Controller
 
         $aard_list = AardPayroll::all();
 
-        return view('upah_master.edit', compact('pekerja_list', 'aard_list', 'upah'));
+        return view('modul-sdm-payroll.master-upah.edit', compact('pekerja_list', 'aard_list', 'upah'));
     }
 
     /**
@@ -167,7 +167,7 @@ class UpahController extends Controller
         $upah->save();
 
         Alert::success('Ubah Upah Master', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('upah.index');
+        return redirect()->route('modul_sdm_payroll.upah.index');
     }
 
     /**

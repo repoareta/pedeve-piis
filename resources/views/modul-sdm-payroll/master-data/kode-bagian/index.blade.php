@@ -72,18 +72,6 @@
 			]
 		});
 
-		$('#kt_table tbody').on( 'click', 'tr', function (event) {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
-			} else {
-				t.$('tr.selected').removeClass('selected');	
-				if (event.target.type !== 'radio') {
-					$(':radio', this).trigger('click');
-				}
-				$(this).addClass('selected');
-			}
-		} );
-
 		$('#editRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 

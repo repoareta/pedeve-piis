@@ -169,22 +169,7 @@ $(document).ready(function () {
 			t.draw();
 			e.preventDefault();
 		});
-		$('#kt_table tbody').on( 'click', 'tr', function (event) {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
-			} else {
-				t.$('tr.selected').removeClass('selected');	
-				if (event.target.type !== 'radio') {
-					$(':radio', this).trigger('click');
-				}
-				$(this).addClass('selected');
-			}
-		} );
-
-		$('.kt-select2').select2().on('change', function() {
-			// $(this).valid();
-		});
-
+		
 		//exportRow penempatan deposito
 		$('#exportRow').on('click', function(e) {
 			e.preventDefault();

@@ -132,19 +132,6 @@
 	$('#search-form').on('submit', function(e) {
 		
 	});
-
-	$('#kt_table tbody').on( 'click', 'tr', function (event) {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		} else {
-			t.$('tr.selected').removeClass('selected');
-			if (event.target.type !== 'radio') {
-				$(':radio', this).trigger('click');
-			}
-			$(this).addClass('selected');
-		}
-	});
-	
 		
     // minimum setup
     $('#tanggal').datepicker({

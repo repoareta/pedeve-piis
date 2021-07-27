@@ -135,27 +135,11 @@
                 {data: 'total', name: 'total', class:'text-right'},
             ] 
         });
-
-        $('.select2').select2().on('change', function() {
-            $(this).valid();
-        });
         
         $('#search-form').on('submit', function(e) {
             t.draw();
             e.preventDefault();
         });
-
-        $('#kt_table tbody').on( 'click', 'tr', function (event) {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-            } else {
-                t.$('tr.selected').removeClass('selected');
-                if (event.target.type !== 'radio') {
-                    $(':radio', this).trigger('click');
-                }
-                $(this).addClass('selected');
-            }
-        } );
     
         //edit lembur
         $('#editRow').click(function(e) {

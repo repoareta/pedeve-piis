@@ -81,7 +81,7 @@
                             $tahun = date_format($tgl, 'Y'); 
                             $bulan = date_format($tgl, 'n'); 
                         ?>
-                            <select class="form-control kt-select2"  name="bulan">
+                            <select class="form-control select2"  name="bulan">
                                 <option value="01" <?php if($bulan  == 1 ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan  == 2 ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan  == 3 ) echo 'selected' ; ?>>Maret</option>
@@ -132,9 +132,7 @@
 @push('page-scripts')
 <script>
     $(document).ready(function () {
-		$('.kt-select2').select2().on('change', function() {
-			$(this).valid();
-		});
+		
 
 		$('#form-create').submit(function(){
 			$('#loader').show();

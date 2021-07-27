@@ -46,7 +46,7 @@
                     <div class="form-group row">
 						<label for="userap-input" class="col-2 col-form-label">User Application</label>
 						<div class="col-10">
-							<select class="form-control kt-select2" name="userap" id="userap">
+							<select class="form-control select2" name="userap" id="userap">
 								<option value="">- Pilih Data -</option>
                                 <option value="UMU" {{ $dft_menu->userap == 'UMU' ? 'selected' : '' }}>UMUM</option>
                                 <option value="SDM" {{ $dft_menu->userap == 'SDM' ? 'selected' : '' }}>SDM & Payroll</option>
@@ -80,9 +80,7 @@
     $(document).ready(function () {
 
         // select2
-        $('.kt-select2').select2().on('change', function() {
-            $(this).valid();
-        });
+        
 
         // submit form
         $("#formTabelMenu").on('submit', function(e){            

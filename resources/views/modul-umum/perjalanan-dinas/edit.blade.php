@@ -41,7 +41,7 @@
                     <div class="form-group row">
                         <label for="nopek-input" class="col-2 col-form-label">Nopek</label>
                         <div class="col-10">
-                            <select class="form-control kt-select2" id="nopek" name="nopek">
+                            <select class="form-control select2" id="nopek" name="nopek">
                                 <option value="">- Pilih Nopek -</option>
                                 @foreach ($pegawai_list as $pegawai)
                                 <option value="{{ $pegawai->nopeg }}" @if($pegawai->nopeg == $panjar_header->nopek)
@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label for="example-email-input" class="col-2 col-form-label">Jabatan</label>
                         <div class="col-5">
-                            <select class="form-control kt-select2" name="jabatan" id="jabatan">
+                            <select class="form-control select2" name="jabatan" id="jabatan">
                                 <option value="">- Pilih Jabatan -</option>
                                 @foreach ($jabatan_list as $jabatan)
                                     <option value="{{ $jabatan->keterangan }}" @if($jabatan->keterangan == $panjar_header->jabatan)
@@ -126,7 +126,7 @@
                     <div class="form-group row">
                         <label for="biaya" class="col-2 col-form-label">Biaya</label>
                         <div class="col-10">
-                            <select class="form-control kt-select2" name="biaya" id="biaya">
+                            <select class="form-control select2" name="biaya" id="biaya">
                                 <option value="">- Pilih Biaya -</option>
                                 <option value="P" @if($panjar_header->ditanggung_oleh == 'P') selected @endif>Ditanggung Perusahaan</option>
                                 <option value="K" @if($panjar_header->ditanggung_oleh == 'K') selected @endif>Ditanggung Pribadi</option>
@@ -246,7 +246,7 @@
 					<div class="form-group row">
 						<label for="spd-input" class="col-2 col-form-label">Nopek</label>
 						<div class="col-10">
-							<select class="form-control kt-select2" id="nopek_detail" name="nopek_detail" style="width: 100% !important;">
+							<select class="form-control select2" id="nopek_detail" name="nopek_detail" style="width: 100% !important;">
 								<option value="">- Pilih Nopek -</option>
 								@foreach ($pegawai_list as $pegawai)
 									<option value="{{ $pegawai->nopeg.'-'.$pegawai->nama }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
@@ -259,7 +259,7 @@
 					<div class="form-group row">
 						<label for="spd-input" class="col-2 col-form-label">Jabatan</label>
 						<div class="col-10">
-							<select class="form-control kt-select2" name="jabatan_detail" readonly id="jabatan_detail" style="width: 100% !important;">
+							<select class="form-control select2" name="jabatan_detail" readonly id="jabatan_detail" style="width: 100% !important;">
 								<option value="">- Pilih Jabatan -</option>
 								@foreach ($jabatan_list as $jabatan)
 									<option value="{{ $jabatan->keterangan }}">{{ $jabatan->keterangan }}</option>
@@ -307,9 +307,7 @@
 
     $(document).ready(function () {
 
-        $('.kt-select2').select2().on('change', function() {
-            $(this).valid();
-        });
+        
 
         var t = $('#kt_table').DataTable({
 			scrollX   : true,
@@ -326,21 +324,6 @@
 				{data: 'keterangan', name: 'keterangan'}
 			],
 			order: [[ 0, "asc" ], [ 1, "asc" ]]
-		});
-
-        $('#kt_table tbody').on( 'click', 'tr', function (event) {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
-			}
-			else {
-				t.$('tr.selected').removeClass('selected');	
-
-				if (event.target.type !== 'radio') {
-					$(':radio', this).trigger('click');
-				}
-
-				$(this).addClass('selected');
-			}
 		});
 
         $('#openDetail').click(function(e) {

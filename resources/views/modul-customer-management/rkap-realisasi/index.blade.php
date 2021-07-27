@@ -42,14 +42,14 @@
 				<div class="form-group row">
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<select name="tahun" class="form-control kt-select2" id="tahun">
+						<select name="tahun" class="form-control select2" id="tahun">
                             @foreach ($rkapRealisasiTahunList as $tahun)
                                 <option value="{{ $tahun->tahun }}">{{ $tahun->tahun }}</option>
                             @endforeach
                         </select>
 					</div>
 					<div class="col-4">
-						<select name="perusahaan" class="form-control kt-select2" id="perusahaan">
+						<select name="perusahaan" class="form-control select2" id="perusahaan">
 							<option value="">- Semua Perusahaan -</option>
                             @foreach ($perusahaanList as $perusahaan)
                                 <option value="{{ $perusahaan->id }}" data-nama="{{ $perusahaan->nama }}">{{ $perusahaan->nama }}</option>
@@ -157,47 +157,32 @@
 			var perusahaan_nama = $('#perusahaan').find(':selected').data('nama');
 			// akses url to generate pdf
 			$.ajax({
-			url: "{{ route('modul_cm.rkap_realisasi.export') }}",
-			type: 'GET',
-			xhrFields: {
-                responseType: 'blob'
-            },
-			data: {
-				"tahun": tahun,
-				"perusahaan": perusahaan,
-				"perusahaan_nama": perusahaan_nama,
-				"_token": "{{ csrf_token() }}",
-			},
-			success: function (response) {
-				var blob = new Blob([response], { type: 'application/pdf' });
-                var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = "{{ 'report_rkap_realisasi_'.date('Y-m-d_H:i:s').'.pdf' }}";
-                link.click();
-			},
-			error: function () {
-				alert("Terjadi kesalahan, coba lagi nanti");
-			}
-		});
+				url: "{{ route('modul_cm.rkap_realisasi.export') }}",
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				data: {
+					"tahun": tahun,
+					"perusahaan": perusahaan,
+					"perusahaan_nama": perusahaan_nama,
+					"_token": "{{ csrf_token() }}",
+				},
+				success: function (response) {
+					var blob = new Blob([response], { type: 'application/pdf' });
+					var link = document.createElement('a');
+					link.href = window.URL.createObjectURL(blob);
+					link.download = "{{ 'report_rkap_realisasi_'.date('Y-m-d_H:i:s').'.pdf' }}";
+					link.click();
+				},
+				error: function () {
+					alert("Terjadi kesalahan, coba lagi nanti");
+				}
+			});
 
 		});
 
-        $('#kt_table tbody').on( 'click', 'tr', function (event) {
-            if ( $(this).hasClass('selected') ) {
-                $(this).removeClass('selected');
-            } else {
-                t.$('tr.selected').removeClass('selected');
-                
-                if (event.target.type !== 'radio') {
-                    $(':radio', this).trigger('click');
-                }
-                $(this).addClass('selected');
-            }
-        });
-
-        $('.kt-select2').select2().on('change', function() {
-            $(this).valid();
-        });
+        
 
         $('#editRow').click(function(e) {
 			e.preventDefault();

@@ -61,7 +61,7 @@
             <div class="form-group row col-12">
                 <label for="" class="col-form-label">Bulan</label>
                 <div class="col-2">
-                    <select name="bulan" class="form-control kt-select2" style="width: 100% !important;">
+                    <select name="bulan" class="form-control select2" style="width: 100% !important;">
                         <option value="" >-- Pilih --</option>
                         <option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
                         <option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
@@ -177,22 +177,7 @@
 	$('#search-form').on('submit', function(e) {
 		t.draw();
 		e.preventDefault();
-	});
-	$('#kt_table tbody').on( 'click', 'tr', function (event) {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		} else {
-			t.$('tr.selected').removeClass('selected');
-			if (event.target.type !== 'radio') {
-				$(':radio', this).trigger('click');
-			}
-			$(this).addClass('selected');
-		}
-	} );
-	$('.kt-select2').select2().on('change', function() {
-			// $(this).valid();
-	});
-		
+	});		
 //edit penempatan deposito
 $('#editRow').click(function(e) {
 	e.preventDefault();

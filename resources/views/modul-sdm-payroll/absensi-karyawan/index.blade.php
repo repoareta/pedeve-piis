@@ -132,10 +132,6 @@
                 {data: 'status', name: 'status', class:'no-wrap'}
             ]
         });
-
-        $('.select2').select2().on('change', function() {
-            $(this).valid();
-        });
     });
 </script>
 @endpush

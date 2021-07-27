@@ -369,7 +369,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.hutang.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.insentif.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

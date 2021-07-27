@@ -63,7 +63,7 @@
 							
 							$bulan_1 = ($array_bln[ltrim($bulan,0)]);
 						?>
-						<select class="form-control kt-select2" name="bulan">
+						<select class="form-control select2" name="bulan">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -169,23 +169,7 @@
                 var bulan = $('select[name=bulan]').val();
         $('#acc').val(bulan);
     });
-    $('#kt_table tbody').on( 'click', 'tr', function (event) {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-        } else {
-            t.$('tr.selected').removeClass('selected');
-            
-            if (event.target.type !== 'radio') {
-                $(':radio', this).trigger('click');
-            }
-            $(this).addClass('selected');
-        }
-    } );
-    $('.kt-select2').select2().on('change', function() {
-        $(this).valid();
-    });
-
-
+    
     //edit monitoring_kinerja
     $('#editRow').click(function(e) {
             e.preventDefault();

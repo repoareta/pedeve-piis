@@ -28,7 +28,7 @@
 	
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<select class="form-control kt-select2" name="tahun" id="tahun">
+						<select class="form-control select2" name="tahun" id="tahun">
 							<option value="">- Pilih Tahun -</option>
 							@foreach ($tahun as $key => $row)
 								<option value="{{ $row->tahun }}"
@@ -72,10 +72,6 @@
 @push('page-scripts')
 <script type="text/javascript">
 $(document).ready(function () {
-    $('.kt-select2').select2().on('change', function() {
-        $(this).valid();
-    });
-
     var t = $('#kt_table').DataTable({
         scrollX   : true,
         processing: true,

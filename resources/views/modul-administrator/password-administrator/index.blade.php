@@ -97,9 +97,7 @@
 {!! JsValidator::formRequest('App\Http\Requests\PasswordAdministratorStore', '#formPasswordAdministrator'); !!}
 <script>
     $(document).ready(function () {
-        $('.kt-select2').select2().on('change', function() {
-            $(this).valid();
-        });
+        
 
         $('span #eye1').click(function(){
             

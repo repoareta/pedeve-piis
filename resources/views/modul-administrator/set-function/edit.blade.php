@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label for="gcg-jabatan-input" class="col-2 col-form-label">Menu ID</label>
                         <div class="col-10">
-                            <select class="form-control kt-select2" name="menuid" id="menuid">	
+                            <select class="form-control select2" name="menuid" id="menuid">	
                                 <option value="">- Pilih Data -</option>							
                                 @foreach ($user_menus as $menu)
                                     <option value="{{ $menu->menuid }}">{{ $menu->menuid }} - {{ $menu->menunm }} - Tambah[{{ $menu->tambah }}] Ubah[{{ $menu->rubah }}] Hapus[{{ $menu->hapus }}] Cetak[{{ $menu->cetak }}] Lihat[{{ $menu->lihat }}]</option>
@@ -96,9 +96,7 @@
 {!! JsValidator::formRequest('App\Http\Requests\SetFunctionUpdate', '#formSetFunction'); !!}
 <script>
     $(document).ready(function () {
-        $('.kt-select2').select2().on('change', function() {
-            $(this).valid();
-        });
+        
 
         $("#formSetFunction").on('submit', function(e){            
                 e.preventDefault();

@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <select class="form-control kt-select2"  name="jk" id="jk" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select class="form-control select2"  name="jk" id="jk" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <select class="form-control kt-select2"  name="nokas" id="nokas" required oninvalid="this.setCustomValidity('No.Kas/Bank Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select class="form-control select2"  name="nokas" id="nokas" required oninvalid="this.setCustomValidity('No.Kas/Bank Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -77,9 +77,7 @@
 @push('page-scripts')
 <script>
     $(document).ready(function () {
-	$('.kt-select2').select2().on('change', function() {
-			$(this).valid();
-	});
+	
    
 	$('#date_range_picker').datepicker({
 		todayHighlight: true,

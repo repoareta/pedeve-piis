@@ -108,10 +108,7 @@
 @push('page-scripts')
 <script>
     $(document).ready(function () {
-		$('.kt-select2').select2().on('change', function() {
-			// $(this).valid();
-		});
-
+		
 		$('#form-edit').submit(function(){
 			$.ajax({
 				url  : "{{ route('bulan_perbendaharaan.update') }}",

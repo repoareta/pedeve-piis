@@ -53,7 +53,7 @@
 							
 							$bulan_1 = ($array_bln[ltrim($bulan,0)]);
 						?>
-						<select class="form-control kt-select2" name="bulan">
+						<select class="form-control select2" name="bulan">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -75,7 +75,7 @@
 					</div>
 					<label for="" class="col-form-label">Perusahaan</label>
 					<div class="col-4">
-						<select name="perusahaan" class="form-control kt-select2">
+						<select name="perusahaan" class="form-control select2">
 							<option value="">- Pilih -</option>
 							@foreach ($data_perusahaan as $row)
 							<option value="{{ $row->id }}">{{ $row->nama }}</option>

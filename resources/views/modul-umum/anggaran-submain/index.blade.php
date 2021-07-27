@@ -73,10 +73,6 @@
 @push('page-scripts')
 <script type="text/javascript">
 $(document).ready(function () {
-    $('.select2').select2().on('change', function() {
-        $(this).valid();
-    });
-
     var t = $('#kt_table').DataTable({
         scrollX   : true,
         processing: true,

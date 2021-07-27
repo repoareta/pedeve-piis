@@ -55,7 +55,7 @@
 							$suplesi = $data->suplesi;
 						}
 						?>
-						<select class="form-control kt-select2" name="bulan">
+						<select class="form-control select2" name="bulan">
 							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
@@ -100,9 +100,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
    
-	$('.kt-select2').select2().on('change', function() {
-			$(this).valid();
-		});
+	
 	$('#tanggal').datepicker({
 		todayHighlight: true,
 		orientation: "bottom left",

@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Nama Perusahaan<span class="text-danger">*</span></label>
                         <div class="col-8">
-                            <select name="nama" class="form-control kt-select2">
+                            <select name="nama" class="form-control select2">
                                 <option value="">- Pilih -</option>
                                 @foreach ($perusahaanList as $perusahaan)
                                 <option value="{{ $perusahaan->id }}" @if ($perusahaan->id == $rkapRealisasi->kd_perusahaan) selected @endif>{{ $perusahaan->nama }}</option>
@@ -54,7 +54,7 @@
                     <div class="form-group row" id="bulan-group" @if($rkapRealisasi->bulan === null) style="display: none;" @endif>
                         <label class="col-2 col-form-label">Bulan</label>
                         <div class="col-8" >
-                            <select class="form-control kt-select2" name="bulan" id="bulan" style="width: 100%">
+                            <select class="form-control select2" name="bulan" id="bulan" style="width: 100%">
                                 <option value="">- Pilih -</option>
                                 <option value="01" @if($rkapRealisasi->bulan == '01') selected @endif>Januari</option>
                                 <option value="02" @if($rkapRealisasi->bulan == '02') selected @endif>Februari</option>
@@ -153,9 +153,7 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.kt-select2').select2().on('change', function() {
-            $(this).valid();
-        });
+        
 
         $("input[name=kategori]").change(function(){
             if($("#realisasi").is(':checked')){

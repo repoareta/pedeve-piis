@@ -27,7 +27,7 @@ class InsentifController extends Controller
 
         $pekerja_list = Pekerja::all();
 
-        return view('insentif_master.index', compact('tahun', 'pekerja_list'));
+        return view('modul-sdm-payroll.master-insentif.index', compact('tahun', 'pekerja_list'));
     }
 
     /**
@@ -85,7 +85,7 @@ class InsentifController extends Controller
         $pekerja_list = Pekerja::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('insentif_master.create', compact('pekerja_list', 'aard_list'));
+        return view('modul-sdm-payroll.master-insentif.create', compact('pekerja_list', 'aard_list'));
     }
 
     /**
@@ -116,7 +116,7 @@ class InsentifController extends Controller
         $insentif->save();
 
         Alert::success('Tambah Master Insentif', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('insentif.index');
+        return redirect()->route('modul_sdm_payroll.insentif.index');
     }
 
     /**
@@ -139,7 +139,7 @@ class InsentifController extends Controller
 
         $aard_list = AardPayroll::all();
 
-        return view('insentif_master.edit', compact('pekerja_list', 'aard_list', 'insentif'));
+        return view('modul-sdm-payroll.master-insentif.edit', compact('pekerja_list', 'aard_list', 'insentif'));
     }
 
     /**
@@ -177,7 +177,7 @@ class InsentifController extends Controller
         $insentif->save();
 
         Alert::success('Ubah Master Insentif', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('insentif.index');
+        return redirect()->route('modul_sdm_payroll.insentif.index');
     }
 
     /**

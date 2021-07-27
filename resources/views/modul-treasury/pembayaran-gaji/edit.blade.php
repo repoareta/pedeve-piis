@@ -99,7 +99,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span style="color:red;">*</span></label>
                         <div class="col-4">
-                            <select name="lokasi" id="lokasi" class="form-control kt-select2" data-live-search="true">
+                            <select name="lokasi" id="lokasi" class="form-control select2" data-live-search="true">
                                 <option value="">- Pilih -</option>
                                 
                             </select>
@@ -482,20 +482,7 @@ $(document).ready(function () {
 			processing: true,
 			serverSide: false,
 		});
-		$('#kt_table tbody').on( 'click', 'tr', function (event) {
-			if ( $(this).hasClass('selected') ) {
-				$(this).removeClass('selected');
-			} else {
-				t.$('tr.selected').removeClass('selected');	
-				if (event.target.type !== 'radio') {
-					$(':radio', this).trigger('click');
-				}
-				$(this).addClass('selected');
-			}
-		} );
-	$('.kt-select2').select2().on('change', function() {
-		$(this).valid();
-	});
+		
 		var jk = $('#jk').val();
 	if(jk == '13'){
 		$("#ci").val('2');
