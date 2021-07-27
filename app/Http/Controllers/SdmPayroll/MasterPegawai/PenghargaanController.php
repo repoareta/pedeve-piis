@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\Penghargaan;
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class PenghargaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $penghargaan_list = Penghargaan::where('nopeg', $pegawai->nopeg)->get();
 
@@ -35,7 +35,7 @@ class PenghargaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $penghargaan = new Penghargaan;
         $penghargaan->nopeg = $pegawai->nopeg;
@@ -73,7 +73,7 @@ class PenghargaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $tanggal, $nama)
+    public function update(Request $request, MasterPegawai $pegawai, $tanggal, $nama)
     {
         $penghargaan = Penghargaan::where('nopeg', $pegawai->nopeg)
         ->where('tanggal', $request->tanggal)

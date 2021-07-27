@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\UpahTetapPensiun;
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class UpahTetapPensiunController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $upah_tetap_pensiun_list = UpahTetapPensiun::where('nopeg', $pegawai->nopeg)->get();
 
@@ -44,7 +44,7 @@ class UpahTetapPensiunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $upah             = new UpahTetapPensiun;
         $upah->nopeg      = $pegawai->nopeg;
@@ -82,7 +82,7 @@ class UpahTetapPensiunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $nilai)
+    public function update(Request $request, MasterPegawai $pegawai, $nilai)
     {
         $upah = UpahTetapPensiun::where('nopeg', $pegawai->nopeg)
         ->where('ut', $nilai)

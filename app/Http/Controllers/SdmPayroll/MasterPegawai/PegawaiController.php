@@ -2,30 +2,23 @@
 
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
+use Alert;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-// Load Model
-use App\Models\MasterPegawai;
-use App\Models\Jabatan;
-use App\Models\KodeJabatan;
-use App\Models\KodeBagian;
-use App\Models\Provinsi;
+use App\Http\Requests\MasterPegawaiStore;
+use App\Http\Requests\MasterPegawaiUpdate;
 use App\Models\Agama;
+use App\Models\KodeBagian;
+use App\Models\KodeJabatan;
+use App\Models\MasterPegawai;
+use App\Models\PayTunjangan;
 use App\Models\Pendidikan;
 use App\Models\PerguruanTinggi;
-use App\Models\PayTunjangan;
-
-//load form request (for validation)
-use App\Http\Requests\PekerjaStore;
-use App\Http\Requests\PekerjaUpdate;
-
-// Load Plugin
+use App\Models\Provinsi;
 use Carbon\Carbon;
-use Alert;
+use Illuminate\Http\Request;
 use Storage;
 
-class PekerjaController extends Controller
+class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.

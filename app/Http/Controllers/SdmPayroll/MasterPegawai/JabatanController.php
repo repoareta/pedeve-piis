@@ -5,7 +5,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 use App\Http\Controllers\Controller;
 use App\Models\Jabatan;
 use App\Models\KodeJabatan;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class JabatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $jabatan_list = Jabatan::where('nopeg', $pegawai->nopeg)->get();
 
@@ -55,7 +55,7 @@ class JabatanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai, Jabatan $jabatan)
+    public function store(Request $request, MasterPegawai $pegawai, Jabatan $jabatan)
     {
         $jabatan->nopeg    = $pegawai->nopeg;
         $jabatan->kdbag    = $request->bagian_pekerja;
@@ -97,7 +97,7 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $mulai)
+    public function update(Request $request, MasterPegawai $pegawai, $mulai)
     {
         //
     }

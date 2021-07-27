@@ -13,7 +13,7 @@ use App\Http\Requests\PerjalananDinasUpdate;
 use App\Models\KodeJabatan;
 use App\Models\PanjarDetail;
 use App\Models\PanjarHeader;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 
 // load pluggin
 use Carbon\Carbon;
@@ -75,7 +75,7 @@ class PerjalananDinasController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -118,7 +118,7 @@ class PerjalananDinasController extends Controller
      */
     public function store(PerjalananDinasStore $request)
     {
-        $pegawai = Pekerja::find($request->nopek);
+        $pegawai = MasterPegawai::find($request->nopek);
         
         $panjar_header = new PanjarHeader;
         $panjar_header->no_panjar = $request->no_spd;
@@ -173,7 +173,7 @@ class PerjalananDinasController extends Controller
             return redirect()->route('modul_umum.perjalanan_dinas.index');
         }
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -203,7 +203,7 @@ class PerjalananDinasController extends Controller
         $no_panjar = str_replace('-', '/', $no_panjar);
         $panjar_header = PanjarHeader::find($no_panjar);
 
-        $pegawai = Pekerja::find($request->nopek);
+        $pegawai = MasterPegawai::find($request->nopek);
 
         $panjar_header->no_panjar = $request->no_spd;
         $panjar_header->tgl_panjar = date('Y-m-d H:i:s', strtotime(date('H:i:s'), strtotime($request->tanggal)));

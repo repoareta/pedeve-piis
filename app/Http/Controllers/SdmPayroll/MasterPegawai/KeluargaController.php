@@ -5,7 +5,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KeluargaStore;
 use App\Models\Keluarga;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class KeluargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $keluarga_list = Keluarga::where('nopeg', $pegawai->nopeg)->get();
 
@@ -55,7 +55,7 @@ class KeluargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KeluargaStore $request, Pekerja $pegawai)
+    public function store(KeluargaStore $request, MasterPegawai $pegawai)
     {
         $keluarga                   = new Keluarga;
         $keluarga->nopeg            = $pegawai->nopeg;
@@ -113,7 +113,7 @@ class KeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $status, $nama)
+    public function update(Request $request, MasterPegawai $pegawai, $status, $nama)
     {
         $keluarga = Keluarga::where('nopeg', $pegawai->nopeg)
         ->where('status', $status)

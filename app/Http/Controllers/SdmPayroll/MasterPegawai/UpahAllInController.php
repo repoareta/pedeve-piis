@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\UpahAllIn;
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class UpahAllInController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $upah_all_in_list = UpahAllIn::where('nopek', $pegawai->nopeg)->get();
 
@@ -50,7 +50,7 @@ class UpahAllInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $upah           = new UpahAllIn;
         $upah->nopek    = $pegawai->nopeg;
@@ -90,7 +90,7 @@ class UpahAllInController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $nilai)
+    public function update(Request $request, MasterPegawai $pegawai, $nilai)
     {
         $upah = UpahAllIn::where('nopek', $pegawai->nopeg)
         ->where('nilai', $request->nilai)

@@ -8,7 +8,7 @@ use App\Http\Requests\MasterBebanPerusahaanStore;
 use App\Http\Requests\MasterBebanPerusahaanUpdate;
 use App\Models\AardPayroll;
 use App\Models\MasterBebanPerusahaan;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class BebanPerusahaanController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pegawai_list = Pekerja::all();
+        $pegawai_list = MasterPegawai::all();
 
         return view('modul-sdm-payroll.master-beban-perusahaan.index', compact('tahun', 'pegawai_list'));
     }
@@ -82,7 +82,7 @@ class BebanPerusahaanController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
         return view('modul-sdm-payroll.master-beban-perusahaan.create', compact('pegawai_list', 'aard_list'));
@@ -124,7 +124,7 @@ class BebanPerusahaanController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 

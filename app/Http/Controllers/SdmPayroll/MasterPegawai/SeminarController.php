@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\Seminar;
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class SeminarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $seminar_list = Seminar::where('nopeg', $pegawai->nopeg)->get();
 
@@ -41,7 +41,7 @@ class SeminarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $seminar = new Seminar;
         $seminar->nopeg         = $pegawai->nopeg;
@@ -82,7 +82,7 @@ class SeminarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $mulai)
+    public function update(Request $request, MasterPegawai $pegawai, $mulai)
     {
         $seminar = Seminar::where('nopeg', $pegawai->nopeg)
         ->where('mulai', $request->mulai)

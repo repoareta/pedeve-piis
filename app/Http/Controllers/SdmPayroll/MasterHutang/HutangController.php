@@ -8,7 +8,7 @@ use App\Http\Requests\MasterHutangStore;
 use App\Http\Requests\MasterHutangUpdate;
 use App\Models\AardPayroll;
 use App\Models\MasterHutang;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class HutangController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pegawai_list = Pekerja::all();
+        $pegawai_list = MasterPegawai::all();
 
         return view('modul-sdm-payroll.master-hutang.index', compact('tahun', 'pegawai_list'));
     }
@@ -85,7 +85,7 @@ class HutangController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
         return view('modul-sdm-payroll.master-hutang.create', compact('pegawai_list', 'aard_list'));
@@ -127,7 +127,7 @@ class HutangController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 

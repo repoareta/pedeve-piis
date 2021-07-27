@@ -35,7 +35,7 @@ class RekeningPekerjaController extends Controller
 
     public function create()
     {
-        $data_pegawai = Pekerja::where('status', '<>', 'P')
+        $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();
         $data_bank = DB::select("select kode, nama, alamat, kota from pay_tbl_bank");
@@ -64,7 +64,7 @@ class RekeningPekerjaController extends Controller
 
     public function edit($id)
     {
-        $data_pegawai = Pekerja::where('status', '<>', 'P')
+        $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();
         

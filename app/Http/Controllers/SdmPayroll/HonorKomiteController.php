@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll;
 
 use App\Http\Controllers\Controller;
 use App\Models\PayHonor;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use DB;
 use Illuminate\Http\Request;
 
@@ -31,7 +31,7 @@ class HonorKomiteController extends Controller
             $tahun ='0000';
         }
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();
         
@@ -115,7 +115,7 @@ class HonorKomiteController extends Controller
      */
     public function create()
     {
-        $data_pegawai = Pekerja::all();
+        $data_pegawai = MasterPegawai::all();
         return view('honor_komite.create', compact('data_pegawai'));
     }
 
@@ -184,7 +184,7 @@ class HonorKomiteController extends Controller
     public function edit($bulan,$tahun,$nopek)
     {
         $data_list = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where nopek='$nopek' and bulan='$bulan' and tahun='$tahun' order by a.tahun,a.bulan,a.nopek");
-        $data_pegawai = Pekerja::all();
+        $data_pegawai = MasterPegawai::all();
         return view('honor_komite.edit',compact('data_list','data_pegawai'));
     }
 

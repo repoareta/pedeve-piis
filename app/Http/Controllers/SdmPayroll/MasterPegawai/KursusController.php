@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kursus;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class KursusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $kursus_list = Kursus::where('nopeg', $pegawai->nopeg)->get();
 
@@ -41,7 +41,7 @@ class KursusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $kursus = new Kursus;
         $kursus->nopeg         = $pegawai->nopeg;
@@ -83,7 +83,7 @@ class KursusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $mulai, $nama)
+    public function update(Request $request, MasterPegawai $pegawai, $mulai, $nama)
     {
         $kursus = Kursus::where('nopeg', $pegawai->nopeg)
         ->where('mulai', $mulai)

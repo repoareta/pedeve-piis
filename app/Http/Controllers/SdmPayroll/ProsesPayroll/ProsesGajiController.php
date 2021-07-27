@@ -12,7 +12,7 @@ use App\Models\PayGapokBulanan;
 use App\Models\PayKoreksi;
 use App\Models\PayTabungan;
 use App\Models\PayTblJamsostek;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\StatusBayarGaji;
 use App\Models\TblPajak;
 use App\Models\UtBantu;
@@ -53,7 +53,7 @@ class ProsesGajiController extends Controller
             }else{
                     if($request->prosesupah == 'A'){
                             // PekerjaTetap()
-                            $data_pegawaic = Pekerja::where('status','C')->orderBy('nopeg', 'asc')->get();
+                            $data_pegawaic = MasterPegawai::where('status','C')->orderBy('nopeg', 'asc')->get();
                             foreach($data_pegawaic as $datapt)
                             {
                                 TblPajak::insert([
@@ -160,7 +160,7 @@ class ProsesGajiController extends Controller
                                     ]);
 
                                 // 4.FASILITAS CUTI AARD 06
-                                $data_sdmfcutipt = Pekerja::where('nopeg',$datapt->nopeg)->get();
+                                $data_sdmfcutipt = MasterPegawai::where('nopeg',$datapt->nopeg)->get();
                                     foreach($data_sdmfcutipt as $data_sdmpt)
                                     {   
                                         $tahunpt = date('Y', strtotime($data_sdmpt->fasilitas));
@@ -523,7 +523,7 @@ class ProsesGajiController extends Controller
                             }
 
                             // PekerjaKontrak()
-                        $data_pegawai_kontrakkt = Pekerja::where('status','K')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrakkt = MasterPegawai::where('status','K')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrakkt as $datakt)
                         {
                             TblPajak::insert([
@@ -981,7 +981,7 @@ class ProsesGajiController extends Controller
                         }
 
                         // PekerjaBantu()
-                        $data_pegawai_kontrakpb = Pekerja::where('status','B')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrakpb = MasterPegawai::where('status','B')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrakpb as $datapb)
                         {
                             TblPajak::insert([
@@ -1740,7 +1740,7 @@ class ProsesGajiController extends Controller
 
 
                             // Pengurus()
-                            $data_pegawai_kontraku = Pekerja::where('status','U')->orderBy('nopeg', 'asc')->get();
+                            $data_pegawai_kontraku = MasterPegawai::where('status','U')->orderBy('nopeg', 'asc')->get();
                             foreach($data_pegawai_kontraku as $dataps)
                             {
                                 TblPajak::insert([
@@ -1985,7 +1985,7 @@ class ProsesGajiController extends Controller
                             
 
                             // Komite()
-                        $data_pegawai_kontrako = Pekerja::where('status','O')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrako = MasterPegawai::where('status','O')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrako as $datakm)
                         {
                             TblPajak::insert([
@@ -2164,7 +2164,7 @@ class ProsesGajiController extends Controller
                         }
 
                             // PekerjaBaru()
-                            $data_pegawai_kontrakn = Pekerja::where('status','N')->orderBy('nopeg', 'asc')->get();
+                            $data_pegawai_kontrakn = MasterPegawai::where('status','N')->orderBy('nopeg', 'asc')->get();
                             foreach($data_pegawai_kontrakn as $datapj)
                             {
                                 $status1pj = $datapj->status;
@@ -2477,7 +2477,7 @@ class ProsesGajiController extends Controller
 
                             // PekerjaTetap()
                             // PekerjaTetap()
-                            $data_pegawaic = Pekerja::where('status','C')->orderBy('nopeg', 'asc')->get();
+                            $data_pegawaic = MasterPegawai::where('status','C')->orderBy('nopeg', 'asc')->get();
                             foreach($data_pegawaic as $datapt)
                             {
                                 TblPajak::insert([
@@ -2584,7 +2584,7 @@ class ProsesGajiController extends Controller
                                     ]);
 
                                 // 4.FASILITAS CUTI AARD 06
-                                $data_sdmfcutipt = Pekerja::where('nopeg',$datapt->nopeg)->get();
+                                $data_sdmfcutipt = MasterPegawai::where('nopeg',$datapt->nopeg)->get();
                                     foreach($data_sdmfcutipt as $data_sdmpt)
                                     {   
                                         $tahunpt = date('Y', strtotime($data_sdmpt->fasilitas));
@@ -2947,7 +2947,7 @@ class ProsesGajiController extends Controller
                     }elseif($request->prosesupah == 'K'){
 
                         // PekerjaKontrak()
-                        $data_pegawai_kontrakkt = Pekerja::where('status','K')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrakkt = MasterPegawai::where('status','K')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrakkt as $datakt)
                         {
                             TblPajak::insert([
@@ -3409,7 +3409,7 @@ class ProsesGajiController extends Controller
                     }elseif($request->prosesupah == 'B'){
                         
                         // PekerjaBantu()
-                        $data_pegawai_kontrakpb = Pekerja::where('status','B')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrakpb = MasterPegawai::where('status','B')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrakpb as $datapb)
                         {
                             TblPajak::insert([
@@ -4171,7 +4171,7 @@ class ProsesGajiController extends Controller
                     }elseif($request->prosesupah == 'N'){
                         
                         // PekerjaBaru()
-                        $data_pegawai_kontrakn = Pekerja::where('status','N')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrakn = MasterPegawai::where('status','N')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrakn as $datapj)
                         {
                             $status1pj = $datapj->status;
@@ -4482,7 +4482,7 @@ class ProsesGajiController extends Controller
                         
                         
                         // Pengurus()
-                        $data_pegawai_kontraku = Pekerja::where('status','U')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontraku = MasterPegawai::where('status','U')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontraku as $dataps)
                         {
                             TblPajak::insert([
@@ -4729,7 +4729,7 @@ class ProsesGajiController extends Controller
 
                         
                         // Komite()
-                        $data_pegawai_kontrako = Pekerja::where('status','O')->orderBy('nopeg', 'asc')->get();
+                        $data_pegawai_kontrako = MasterPegawai::where('status','O')->orderBy('nopeg', 'asc')->get();
                         foreach($data_pegawai_kontrako as $datakm)
                         {
                             TblPajak::insert([

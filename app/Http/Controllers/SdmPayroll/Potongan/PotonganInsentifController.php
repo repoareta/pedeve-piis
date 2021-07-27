@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\Potongan;
 
 use App\Http\Controllers\Controller;
 use App\Models\PayPotonganInsentif;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use DB;
 use Illuminate\Http\Request;
 
@@ -101,7 +101,7 @@ class PotonganInsentifController extends Controller
      */
     public function create()
     {
-        $data_pegawai = Pekerja::whereNotIn('status',['P'])->get();
+        $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
         return view('potongan_insentif.create',compact('data_pegawai'));
     }
 

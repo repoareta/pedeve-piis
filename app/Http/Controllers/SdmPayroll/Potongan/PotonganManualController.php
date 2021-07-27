@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\Potongan;
 
 use App\Http\Controllers\Controller;
 use App\Models\PayPotongan;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use DB;
 use Illuminate\Http\Request;
 
@@ -111,7 +111,7 @@ class PotonganManualController extends Controller
      */
     public function create()
     {
-        $data_pegawai = Pekerja::whereNotIn('status',['P'])->get();
+        $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
         $pay_aard = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
         return view('potongan_manual.create', compact('data_pegawai','pay_aard'));
     }

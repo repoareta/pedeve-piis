@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PPerjalananDinasStore;
 use App\Models\KodeJabatan;
 use App\Models\PanjarHeader;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\PPanjarDetail;
 use App\Models\PPanjarHeader;
 use Carbon\Carbon;
@@ -64,7 +64,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -108,7 +108,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
      */
     public function store(PPerjalananDinasStore $request)
     {
-        $pegawai = Pekerja::find($request->nopek);
+        $pegawai = MasterPegawai::find($request->nopek);
         
         $ppanjar_header = new PPanjarHeader;
         $ppanjar_header->no_ppanjar = $request->no_pj_panjar;
@@ -155,7 +155,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         $no_ppanjar = str_replace('-', '/', $no_ppanjar);
         $ppanjar_header = PPanjarHeader::find($no_ppanjar);
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -192,7 +192,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
      */
     public function update(Request $request, $no_ppanjar)
     {
-        $pegawai = Pekerja::find($request->nopek);
+        $pegawai = MasterPegawai::find($request->nopek);
 
         $no_ppanjar = str_replace('-', '/', $no_ppanjar);
         $ppanjar_header = PPanjarHeader::find($no_ppanjar);

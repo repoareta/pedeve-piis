@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\GolonganGaji;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class GolonganGajiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $golongan_gaji_list = GolonganGaji::where('nopeg', $pegawai->nopeg)->get();
 
@@ -38,7 +38,7 @@ class GolonganGajiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $golongan_gaji = new GolonganGaji;
         $golongan_gaji->nopeg = $pegawai->nopeg;
@@ -75,7 +75,7 @@ class GolonganGajiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $golongan_gaji, $tanggal)
+    public function update(Request $request, MasterPegawai $pegawai, $golongan_gaji, $tanggal)
     {
         $golongan_gaji = GolonganGaji::where('nopeg', $pegawai->nopeg)
         ->where('golgaji', $golongan_gaji)

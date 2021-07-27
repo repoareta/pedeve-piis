@@ -5,7 +5,7 @@ namespace App\Http\Controllers\SdmPayroll\Potongan;
 use App\Http\Controllers\Controller;
 use App\Models\PayAard;
 use App\Models\PayPotongan;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use DB;
 use Illuminate\Http\Request;
 
@@ -111,7 +111,7 @@ class PotonganOtomatisController extends Controller
 
     public function create()
     {
-        $data_pegawai = Pekerja::whereNotIn('status',['P'])->get();
+        $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
         $pay_aard = PayAard::whereIn('kode',['18','28','19','44'])->get();
         return view('potongan_otomatis.create', compact('data_pegawai','pay_aard'));
     }

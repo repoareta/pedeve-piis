@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\PUmkHeader;
 use App\Models\PUmkDetail;
 use App\Models\UmkHeader;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\KodeBagian;
 use App\Models\KodeJabatan;
 
@@ -97,7 +97,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -138,7 +138,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
      */
     public function store(Request $request)
     {
-        $pegawai = Pekerja::find($request->nopek);
+        $pegawai = MasterPegawai::find($request->nopek);
         
         $pumk_header = new PUmkHeader;
         $pumk_header->no_pumk = $request->no_pumk;
@@ -193,7 +193,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
         ->first();
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -239,7 +239,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
      */
     public function update(Request $request, $no_pumk)
     {
-        $pegawai = Pekerja::find($request->nopek);
+        $pegawai = MasterPegawai::find($request->nopek);
 
         $no_pumk = str_replace('-', '/', $no_pumk);
         

@@ -8,7 +8,7 @@ use App\Http\Requests\MasterInsentifStore;
 use App\Http\Requests\MasterInsentifUpdate;
 use App\Models\AardPayroll;
 use App\Models\MasterInsentif;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class InsentifController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pegawai_list = Pekerja::all();
+        $pegawai_list = MasterPegawai::all();
 
         return view('modul-sdm-payroll.master-insentif.index', compact('tahun', 'pegawai_list'));
     }
@@ -82,7 +82,7 @@ class InsentifController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
         return view('modul-sdm-payroll.master-insentif.create', compact('pegawai_list', 'aard_list'));
@@ -104,7 +104,7 @@ class InsentifController extends Controller
         $insentif->ccl        = 0;
         $insentif->nilai      = $request->nilai;
         $insentif->userid     = Auth::user()->userid;
-        $insentif->status     = Pekerja::find($request->pegawai)->status;
+        $insentif->status     = MasterPegawai::find($request->pegawai)->status;
         $insentif->tahunins   = $request->tahun_insentif;
         $insentif->pajakins   = null;
         $insentif->pajakgaji  = null;
@@ -133,7 +133,7 @@ class InsentifController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 
@@ -165,7 +165,7 @@ class InsentifController extends Controller
         $insentif->ccl        = 0;
         $insentif->nilai      = $request->nilai;
         $insentif->userid     = Auth::user()->userid;
-        $insentif->status     = Pekerja::find($request->pegawai)->status;
+        $insentif->status     = MasterPegawai::find($request->pegawai)->status;
         $insentif->tahunins   = $request->tahun_insentif;
         $insentif->pajakins   = null;
         $insentif->pajakgaji  = null;

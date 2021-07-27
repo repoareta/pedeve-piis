@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll;
 
 use Alert;
 use App\Http\Controllers\Controller;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use DB;
 use DomPDF;
 use Illuminate\Http\Request;
@@ -128,7 +128,7 @@ class LemburController extends Controller
      */
     public function create()
     {
-        $data_pegawai = Pekerja::where('status', '<>', 'P')
+        $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();	
         $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
@@ -186,7 +186,7 @@ class LemburController extends Controller
     public function edit($tanggal, $nopek)
     {
         $data_list = DB::select("select bulan,tahun,tanggal,nopek,makanpg, makansg, makanml, transport,lembur, userid from pay_lembur where  to_char(tanggal, 'dd-mm-YYYY')= '$tanggal' and nopek = '$nopek'");
-        $data_pegawai = Pekerja::where('status', '<>', 'P')
+        $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();	
         $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	

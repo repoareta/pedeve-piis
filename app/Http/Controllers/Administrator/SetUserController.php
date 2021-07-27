@@ -16,7 +16,7 @@ use App\Models\UserMenu;
 // load model for GCG Implementation
 use App\Models\GcgFungsi;
 use App\Models\GcgJabatan;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 
 // load plugin
 use Auth;
@@ -99,7 +99,7 @@ class SetUserController extends Controller
     {
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
-        $pegawai_list = Pekerja::all();
+        $pegawai_list = MasterPegawai::all();
         return view('modul-administrator.set-user.create', compact(
                         'gcg_fungsi_list',
                         'gcg_jabatan_list',
@@ -179,7 +179,7 @@ class SetUserController extends Controller
 
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
-        $pegawai_list = Pekerja::all();
+        $pegawai_list = MasterPegawai::all();
 
         return view('modul-administrator.set-user.edit', compact(
             'data',

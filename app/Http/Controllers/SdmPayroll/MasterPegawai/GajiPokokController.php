@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\GajiPokok;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class GajiPokokController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $gaji_pokok_list = GajiPokok::where('nopeg', $pegawai->nopeg)->get();
 
@@ -44,7 +44,7 @@ class GajiPokokController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $gaji_pokok = new GajiPokok;
         $gaji_pokok->nopeg = $pegawai->nopeg;
@@ -82,7 +82,7 @@ class GajiPokokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $nilai)
+    public function update(Request $request, MasterPegawai $pegawai, $nilai)
     {
         $gaji_pokok = GajiPokok::where('nopeg', $pegawai->nopeg)
         ->where('gapok', $nilai)

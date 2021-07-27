@@ -8,7 +8,7 @@ use App\Http\Requests\MasterThrStore;
 use App\Http\Requests\MasterThrUpdate;
 use App\Models\AardPayroll;
 use App\Models\MasterThr;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class ThrController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pegawai_list = Pekerja::all();
+        $pegawai_list = MasterPegawai::all();
 
         return view('thr_master.index', compact('tahun', 'pegawai_list'));
     }
@@ -88,7 +88,7 @@ class ThrController extends Controller
      */
     public function create()
     {
-        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
         return view('thr_master.create', compact('pegawai_list', 'aard_list'));
@@ -131,7 +131,7 @@ class ThrController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pegawai_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pekerja;
+use App\Models\MasterPegawai;
 use App\Models\SMK;
 use Auth;
 use Carbon\Carbon;
@@ -16,7 +16,7 @@ class SmkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pegawai)
+    public function indexJson(MasterPegawai $pegawai)
     {
         $smk_list = SMK::where('nopeg', $pegawai->nopeg)->get();
 
@@ -35,7 +35,7 @@ class SmkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai)
     {
         $smk           = new SMK;
         $smk->nopeg    = $pegawai->nopeg;
@@ -71,7 +71,7 @@ class SmkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pegawai, $tahun)
+    public function update(Request $request, MasterPegawai $pegawai, $tahun)
     {
         $smk = SMK::where('nopeg', $pegawai->nopeg)
         ->where('tahun', $request->tahun)
