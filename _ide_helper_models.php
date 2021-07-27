@@ -554,7 +554,7 @@ namespace App\Models{
  * @property string $jenis_gratifikasi
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Pekerja|null $pekerja
+ * @property-read \App\Models\MasterPegawai|null $pekerja
  * @property-read \App\Models\UserPdv|null $userpdv
  * @method static \Illuminate\Database\Eloquent\Builder|GcgGratifikasi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgGratifikasi newQuery()
@@ -609,7 +609,7 @@ namespace App\Models{
  * @property string $nopeg
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn query()
@@ -634,7 +634,7 @@ namespace App\Models{
  * @property string $nopeg
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi query()
@@ -1258,7 +1258,7 @@ namespace App\Models{
  * @property string|null $verifikator
  * @property string|null $tglver
  * @property-read \App\Models\AardPayroll $aard_payroll
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterBebanPerusahaan query()
@@ -1288,7 +1288,7 @@ namespace App\Models{
  * @property string|null $curramount
  * @property string|null $userid
  * @property-read \App\Models\AardPayroll $aard_payroll
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterHutang query()
@@ -1324,7 +1324,7 @@ namespace App\Models{
  * @property string|null $keterangan
  * @property string|null $potongan
  * @property-read \App\Models\AardPayroll $aard_payroll
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterInsentif query()
@@ -1448,7 +1448,7 @@ namespace App\Models{
  * @property string|null $potongan
  * @property string|null $koreksi
  * @property-read \App\Models\AardPayroll $aard_payroll
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterThr newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterThr newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterThr query()
@@ -1488,7 +1488,7 @@ namespace App\Models{
  * @property string|null $nilai
  * @property string|null $userid
  * @property-read \App\Models\AardPayroll $aard_payroll
- * @property-read \App\Models\Pekerja $pekerja
+ * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MasterUpah query()
@@ -1659,7 +1659,7 @@ namespace App\Models{
  * @property string|null $nopek
  * @property string|null $nama
  * @property string|null $eselon
- * @property-read \App\Models\Pekerja|null $pekerja
+ * @property-read \App\Models\MasterPegawai|null $pekerja
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PUmkDetail[] $pumk_detail
  * @property-read int|null $pumk_detail_count
  * @property-read \App\Models\UmkHeader $umk_header
@@ -2207,82 +2207,6 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Pekerja
- *
- * @property string $nopeg
- * @property string|null $nama
- * @property string|null $status
- * @property string|null $tgllahir
- * @property string|null $tempatlhr
- * @property string|null $proplhr
- * @property string|null $agama
- * @property string|null $goldarah
- * @property string|null $notlp
- * @property string|null $kodekeluarga
- * @property string|null $noydp
- * @property string|null $noastek
- * @property string|null $tglaktifdns
- * @property string|null $alamat1
- * @property string|null $alamat2
- * @property string|null $alamat3
- * @property string|null $gelar1
- * @property string|null $gelar2
- * @property string|null $gelar3
- * @property string|null $nohp
- * @property string|null $gender
- * @property string|null $npwp
- * @property string|null $photo
- * @property string|null $userid
- * @property string|null $tglentry
- * @property string|null $fasilitas
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $noktp
- * @property string|null $noabsen
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Jabatan[] $jabatan
- * @property-read int|null $jabatan_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Jabatan[] $jabatan_latest
- * @property-read int|null $jabatan_latest_count
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja newQuery()
- * @method static \Illuminate\Database\Query\Builder|Pekerja onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja query()
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereAgama($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereAlamat1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereAlamat2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereAlamat3($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereFasilitas($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereGelar1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereGelar2($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereGelar3($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereGender($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereGoldarah($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereKodekeluarga($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNama($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNoabsen($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNoastek($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNohp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNoktp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNopeg($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNotlp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNoydp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereNpwp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereProplhr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereTempatlhr($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereTglaktifdns($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereTglentry($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereTgllahir($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Pekerja whereUserid($value)
- * @method static \Illuminate\Database\Query\Builder|Pekerja withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Pekerja withoutTrashed()
- */
-	class Pekerja extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\PekerjaPendidikan
  *
  * @property string|null $nopeg
@@ -2518,6 +2442,8 @@ namespace App\Models{
  * @property string|null $rekyes
  * @property string|null $norek
  * @property string|null $namabank
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\PermintaanBayarDetail[] $permintaandetail
+ * @property-read int|null $permintaandetail_count
  * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PermintaanBayarHeader query()
@@ -3193,7 +3119,7 @@ namespace App\Models{
  * @property string|null $file
  * @property-read \App\Models\GcgFungsi|null $fungsi
  * @property-read \App\Models\GcgJabatan|null $fungsi_jabatan
- * @property-read \App\Models\Pekerja|null $pekerja
+ * @property-read \App\Models\MasterPegawai|null $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|UserPdv newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserPdv newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserPdv query()
