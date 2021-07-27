@@ -159,7 +159,7 @@ class PensiunController extends Controller
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
-            $canvas = $dom_pdf ->get_canvas();
+            $canvas = $dom_pdf->getCanvas();
             $canvas->page_text(730, 100, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //iuran pensiun landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
@@ -216,7 +216,7 @@ class PensiunController extends Controller
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
 
-        $canvas = $dom_pdf ->get_canvas();
+        $canvas = $dom_pdf->getCanvas();
         // $canvas->page_text(735, 100, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //iuran pensiun landscape
         // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();

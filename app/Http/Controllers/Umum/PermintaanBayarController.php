@@ -456,7 +456,7 @@ class PermintaanBayarController extends Controller
                 $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.exportrange', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
-                $canvas = $dom_pdf ->get_canvas();
+                $canvas = $dom_pdf->getCanvas();
                 $canvas->page_text(700, 120, "Page {PAGE_NUM} of {PAGE_COUNT}", null, 10, array(0, 0, 0));
                 // return $pdf->download('rekap_permint_'.date('Y-m-d H:i:s').'.pdf');
                 return $pdf->stream('my.pdf', array('Attachment'=>true));

@@ -236,7 +236,7 @@ class LemburController extends Controller
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
-            $canvas = $dom_pdf ->get_canvas();
+            $canvas = $dom_pdf->getCanvas();
             $canvas->page_text(740, 115, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();

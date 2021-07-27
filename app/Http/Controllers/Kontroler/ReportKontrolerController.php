@@ -66,7 +66,7 @@ class ReportKontrolerController extends Controller
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
-            $canvas = $dom_pdf ->get_canvas();
+            $canvas = $dom_pdf->getCanvas();
             $canvas->page_text(485, 100, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
@@ -178,7 +178,7 @@ class ReportKontrolerController extends Controller
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
-                $canvas = $dom_pdf ->get_canvas();
+                $canvas = $dom_pdf->getCanvas();
                 $canvas->page_text(485, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
                 // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
                 return $pdf->stream();
@@ -230,7 +230,7 @@ class ReportKontrolerController extends Controller
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
-                $canvas = $dom_pdf ->get_canvas();
+                $canvas = $dom_pdf->getCanvas();
                 $canvas->page_text(485, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
                 // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
                 return $pdf->stream();
@@ -282,7 +282,7 @@ class ReportKontrolerController extends Controller
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             
-                $canvas = $dom_pdf ->get_canvas();
+                $canvas = $dom_pdf->getCanvas();
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
@@ -332,7 +332,7 @@ class ReportKontrolerController extends Controller
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             
-                $canvas = $dom_pdf ->get_canvas();
+                $canvas = $dom_pdf->getCanvas();
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
@@ -376,7 +376,7 @@ class ReportKontrolerController extends Controller
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
         
-            $canvas = $dom_pdf ->get_canvas();
+            $canvas = $dom_pdf->getCanvas();
             $canvas->page_text(485, 100, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();

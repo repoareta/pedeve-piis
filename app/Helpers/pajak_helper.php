@@ -1,5 +1,42 @@
 <?php
 
+
+function pajak($nilai)
+{
+    $nilai2 = 0;
+    $nilai1 = 0;
+    $tunjangan = 0;
+    $pajakbulan=1;
+    $nilaikenapajak = $nilai;
+    $sisapokok = $nilaikenapajak;
+    $data_sdmprogresif = DB::select("select * from sdm_tbl_progressif order by awal asc");
+    // SdmTblProgressif::orderBy('awal','asc');
+    $pph21ok = 0;
+    if ($sisapokok > 0) {
+        $sisapokok1 = $sisapokok;
+        if (($sisapokok1 > 0) and ($sisapokok1 < 50000000)) {
+            $pph21r = $sisapokok1 * (5/100);
+            return $pajakbulanpt = ($pph21r/12);
+        } elseif (($sisapokok1 > 0) and ($sisapokok1 < 250000000)) {
+            $pph21r = $sisapokok1 * (15/100);
+            return $pajakbulanpt = ($pph21r/12);
+        } elseif (($sisapokok1 > 0) and ($sisapokok1 < 500000000)) {
+            $pph21r = $sisapokok1 * (25/100);
+            return $pajakbulanpt = ($pph21r/12);
+        } elseif (($sisapokok1 > 0) and ($sisapokok1 >= 500000000)) {
+            $pph21r = $sisapokok1 * (30/100);
+            return $pajakbulanpt = ($pph21r/12);
+        } elseif($sisapokok1 < 0) {
+            $pph21r = 0;
+            return $pajakbulanpt = ($pph21r);
+        }
+    } else {
+        $sisapokok1 = $sisapokok;
+        $pph21r = 0;
+        return $pajakbulanpt = 0;
+    }
+}
+
 function pph21ok($pokok)
 {
     $pphrss=DB::select("select * from sdm_tbl_progressif order by awal asc");
