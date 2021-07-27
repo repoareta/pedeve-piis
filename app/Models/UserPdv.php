@@ -43,7 +43,7 @@ class UserPdv extends Authenticatable
 
     public function pekerja()
     {
-        return $this->belongsTo('App\Models\Pekerja', 'nopeg', 'nopeg');
+        return $this->belongsTo('App\Models\MasterPegawai', 'nopeg', 'nopeg');
     }
 
     public function jabatan_latest()

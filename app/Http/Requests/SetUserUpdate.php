@@ -27,7 +27,7 @@ class SetUserUpdate extends FormRequest
             'usernm'      => 'required',
             'kode'        => 'required',
             'userlv'      => 'required',
-            'nopeg'       => 'required|exists:App\Models\Pekerja,nopeg',
+            'nopeg'       => 'required|exists:App\Models\MasterPegawai,nopeg',
             'gcg_jabatan_id' => 'required|exists:App\Models\GcgJabatan,id',
             'gcg_fungsi_id' => 'required|exists:App\Models\GcgFungsi,id',
         ];

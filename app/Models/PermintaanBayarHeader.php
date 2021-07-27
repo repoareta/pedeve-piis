@@ -16,6 +16,6 @@ class PermintaanBayarHeader extends Model
 
     public function permintaandetail()
     {
-        return $this->hasMany('App\Models\PermintaanDetail', 'no_bayar');
+        return $this->hasMany('App\Models\PermintaanBayarDetail', 'no_bayar');
     }
 }

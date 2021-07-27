@@ -13,6 +13,6 @@ class GcgLhkpn extends Model
 
     public function pekerja()
     {
-        return $this->belongsTo('App\Models\Pekerja', 'nopeg', 'nopeg');
+        return $this->belongsTo('App\Models\MasterPegawai', 'nopeg', 'nopeg');
     }
 }

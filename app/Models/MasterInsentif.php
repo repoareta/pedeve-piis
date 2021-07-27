@@ -20,7 +20,7 @@ class MasterInsentif extends Model
 
     public function pekerja()
     {
-        return $this->belongsTo('App\Models\Pekerja', 'nopek');
+        return $this->belongsTo('App\Models\MasterPegawai', 'nopek');
     }
 
     public function aard_payroll()

@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Master Data Pekerja
+                Tabel Master Pegawai
             </h3>
         </div>
         <div class="card-toolbar">
@@ -74,7 +74,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th>MOPEG</th>
+                            <th>NOPEG</th>
                             <th>NAMA</th>
                             <th>STATUS</th>
                             <th>KODE & NAMA BAGIAN</th>

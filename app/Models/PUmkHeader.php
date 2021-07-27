@@ -26,6 +26,6 @@ class PUmkHeader extends Model
 
     public function pekerja()
     {
-        return $this->belongsTo('App\Models\Pekerja', 'nopek');
+        return $this->belongsTo('App\Models\MasterPegawai', 'nopek');
     }
 }
