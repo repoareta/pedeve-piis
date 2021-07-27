@@ -19,21 +19,38 @@ class PotonganKoreksiGajiController extends Controller
      */
     public function index()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-            if(!empty($data_tahunbulan)) {
-                foreach ($data_tahunbulan as $data_bul) {
-                    $tahun = substr($data_bul->bulan_buku,0,-2); 
-                    $bulan = substr($data_bul->bulan_buku,4); 
-                }
-            }else{
-                $bulan ='00';
-                $tahun ='0000';
-            }
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");
-        return view('potongan_koreksi_gaji.index',compact('data_pegawai','tahun','bulan'));
+        $data_tahunbulan = DB::select("SELECT 
+            max(thnbln) AS bulan_buku 
+            FROM timetrans 
+            WHERE status ='1' 
+            AND length(thnbln)='6'")[0];
+
+        if(!empty($data_tahunbulan)) {
+            $tahun = substr($data_tahunbulan->bulan_buku,0,-2); 
+            $bulan = substr($data_tahunbulan->bulan_buku,4); 
+        } else {
+            $bulan ='00';
+            $tahun ='0000';
+        }
+
+        $pegawai_list = DB::select("SELECT 
+            nopeg,
+            nama, 
+            status,
+            nama 
+            FROM sdm_master_pegawai 
+            WHERE status <> 'P' 
+            ORDER BY nopeg
+        ");
+
+        return view('modul-sdm-payroll.potongan-koreksi-gaji.index',compact(
+            'pegawai_list',
+            'tahun',
+            'bulan'
+        ));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
             $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             foreach($data_tahunbulan as $data_bul)
@@ -93,7 +110,7 @@ class PotonganKoreksiGajiController extends Controller
        })
 
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>'; 
             return $radio;
         })
         ->rawColumns(['action','radio'])
@@ -109,7 +126,7 @@ class PotonganKoreksiGajiController extends Controller
     {
         $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");
         $pay_aard = PayAard::where('jenis', 10)->get();
-        return view('potongan_koreksi_gaji.create', compact('pay_aard','data_pegawai'));
+        return view('modul-sdm-payroll.potongan-koreksi-gaji.create', compact('pay_aard','data_pegawai'));
     }
 
     /**
@@ -147,8 +164,9 @@ class PotonganKoreksiGajiController extends Controller
     public function edit($bulan,$tahun,$aard,$nopek)
     {
         $data_list = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'");
-        return view('potongan_koreksi_gaji.edit',compact('data_list'));
+        return view('modul-sdm-payroll.potongan-koreksi-gaji.edit',compact('data_list'));
     }
+
     public function update(Request $request)
     {
             KoreksiGaji::where('tahun', $request->tahun)
@@ -181,13 +199,13 @@ class PotonganKoreksiGajiController extends Controller
     }
     public function ctkkoreksi()
     {
-        return view('potongan_koreksi_gaji.rekapkoreksi');
+        return view('modul-sdm-payroll.potongan-koreksi-gaji.rekapkoreksi');
     }
     public function koreksiExport(Request $request)
     {
         $data_list = DB::select("select a.aard,a.nopek,a.nilai,b.nama from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard in ('32','34') and a.tahun='$request->tahun' and a.bulan='$request->bulan' and b.status='$request->prosesupah' order by b.nama asc");
         if(!empty($data_list)){
-            $pdf = DomPDF::loadview('potongan_koreksi_gaji.export_koreksigaji',compact('request','data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.potongan-koreksi-gaji.export_koreksigaji',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 

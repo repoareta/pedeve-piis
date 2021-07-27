@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll;
 
 use Alert;
 use App\Http\Controllers\Controller;
+use App\Models\Pekerja;
 use DB;
 use DomPDF;
 use Illuminate\Http\Request;

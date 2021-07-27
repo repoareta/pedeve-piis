@@ -31,7 +31,7 @@ class PotonganManualController extends Controller
         return view('potongan_manual.index',compact('data_pegawai','tahun','bulan'));
     }
 
-    public function searchIndex(Request $request)
+    public function indexJson(Request $request)
     {
             $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             foreach($data_tahunbulan as $data_bul)
@@ -97,7 +97,7 @@ class PotonganManualController extends Controller
            })
     
             ->addColumn('radio', function ($data) {
-                $radio = '<label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>'; 
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>'; 
                 return $radio;
             })
             ->rawColumns(['action','radio'])
