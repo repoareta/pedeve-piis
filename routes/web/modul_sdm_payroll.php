@@ -16,7 +16,7 @@ use App\Http\Controllers\SdmPayroll\MasterPegawai\GolonganGajiController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\JabatanController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\KeluargaController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\KursusController;
-use App\Http\Controllers\SdmPayroll\MasterPegawai\PekerjaController;
+use App\Http\Controllers\SdmPayroll\MasterPegawai\PegawaiController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\PendidikanController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\PengalamanKerjaController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\PenghargaanController;
@@ -27,7 +27,7 @@ use App\Http\Controllers\SdmPayroll\MasterPegawai\UpahTetapController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\UpahTetapPensiunController;
 use App\Http\Controllers\SdmPayroll\MasterThr\ThrController;
 use App\Http\Controllers\SdmPayroll\MasterUpah\UpahController;
-use App\Http\Controllers\SdmPayroll\PinjamanPekerjaController;
+use App\Http\Controllers\SdmPayroll\PinjamanPegawaiController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganInsentifController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganKoreksiGajiController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganManualController;
@@ -41,7 +41,7 @@ use App\Http\Controllers\SdmPayroll\TabelPayroll\MasterBankController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\MasterTabunganController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\PensiunController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\PtkpController;
-use App\Http\Controllers\SdmPayroll\TabelPayroll\RekeningPekerjaController;
+use App\Http\Controllers\SdmPayroll\TabelPayroll\RekeningPegawaiController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\TabelAardController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\TunjanganGolonganController;
 
@@ -117,131 +117,131 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
 
     // master pekerja START
     // Route assigned name "pekerja.index"...
-    Route::name('pekerja.')->group(function () {
-        Route::get('pekerja', [PekerjaController::class, 'index'])->name('index');
-        Route::get('pekerja/index-json', [PekerjaController::class, 'indexJson'])->name('index.json');
-        Route::get('pekerja/show-json/{pekerja}', [PekerjaController::class, 'showJson'])->name('show.json');
-        Route::get('pekerja/create', [PekerjaController::class, 'create'])->name('create');
-        Route::post('pekerja/store', [PekerjaController::class, 'store'])->name('store');
-        Route::get('pekerja/edit/{pekerja}', [PekerjaController::class, 'edit'])->name('edit');
-        Route::post('pekerja/update/{pekerja}', [PekerjaController::class, 'update'])->name('update');
-        Route::delete('pekerja/delete', [PekerjaController::class, 'delete'])->name('delete');
+    Route::name('master_pegawai.')->group(function () {
+        Route::get('master-pegawai', [PegawaiController::class, 'index'])->name('index');
+        Route::get('master-pegawai/index-json', [PegawaiController::class, 'indexJson'])->name('index.json');
+        Route::get('master-pegawai/show-json/{pekerja}', [PegawaiController::class, 'showJson'])->name('show.json');
+        Route::get('master-pegawai/create', [PegawaiController::class, 'create'])->name('create');
+        Route::post('master-pegawai/store', [PegawaiController::class, 'store'])->name('store');
+        Route::get('master-pegawai/edit/{pekerja}', [PegawaiController::class, 'edit'])->name('edit');
+        Route::post('master-pegawai/update/{pekerja}', [PegawaiController::class, 'update'])->name('update');
+        Route::delete('master-pegawai/delete', [PegawaiController::class, 'delete'])->name('delete');
         
         // Route assigned name "pekerja.keluarga.index"...
         Route::name('keluarga.')->group(function () {
-            Route::get('pekerja/keluarga/index-json/{pekerja}', [KeluargaController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/keluarga/store/{pekerja}', [KeluargaController::class, 'store'])->name('store');
-            Route::get('pekerja/keluarga/show-json', [KeluargaController::class, 'showJson'])->name('show.json'); // get issue when combine with prefix pekerja
-            Route::post('pekerja/keluarga/update/{pekerja}/{status}/{nama}', [KeluargaController::class, 'update'])->name('update');
-            Route::delete('pekerja/keluarga/delete', [KeluargaController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/keluarga/index-json/{pekerja}', [KeluargaController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/keluarga/store/{pekerja}', [KeluargaController::class, 'store'])->name('store');
+            Route::get('master-pegawai/keluarga/show-json', [KeluargaController::class, 'showJson'])->name('show.json'); // get issue when combine with prefix pekerja
+            Route::post('master-pegawai/keluarga/update/{pekerja}/{status}/{nama}', [KeluargaController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/keluarga/delete', [KeluargaController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.keluarga.index"...
         Route::name('jabatan.')->group(function () {
-            Route::get('pekerja/jabatan/index-json/{pekerja}', [JabatanController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/jabatan/store/{pekerja}', [JabatanController::class, 'store'])->name('store');
-            Route::get('pekerja/jabatan/show-json', [JabatanController::class, 'showJson'])->name('show.json'); // get issue when combine with prefix pekerja
-            Route::post('pekerja/jabatan/update/{pekerja}/{status}/{nama}', [JabatanController::class, 'update'])->name('update');
-            Route::delete('pekerja/jabatan/delete', [JabatanController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/jabatan/index-json/{pekerja}', [JabatanController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/jabatan/store/{pekerja}', [JabatanController::class, 'store'])->name('store');
+            Route::get('master-pegawai/jabatan/show-json', [JabatanController::class, 'showJson'])->name('show.json'); // get issue when combine with prefix pekerja
+            Route::post('master-pegawai/jabatan/update/{pekerja}/{status}/{nama}', [JabatanController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/jabatan/delete', [JabatanController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.gaji-pokok.index"...
         Route::name('gaji_pokok.')->group(function () {
-            Route::get('pekerja/gaji-pokok/index-json/{pekerja}', [GajiPokokController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/gaji-pokok/store/{pekerja}', [GajiPokokController::class, 'store'])->name('store');
-            Route::get('pekerja/gaji-pokok/show-json', [GajiPokokController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/gaji-pokok/update/{pekerja}/{nilai}', [GajiPokokController::class, 'udpate'])->name('update');
-            Route::delete('pekerja/gaji-pokok/delete', [GajiPokokController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/gaji-pokok/index-json/{pekerja}', [GajiPokokController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/gaji-pokok/store/{pekerja}', [GajiPokokController::class, 'store'])->name('store');
+            Route::get('master-pegawai/gaji-pokok/show-json', [GajiPokokController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/gaji-pokok/update/{pekerja}/{nilai}', [GajiPokokController::class, 'udpate'])->name('update');
+            Route::delete('master-pegawai/gaji-pokok/delete', [GajiPokokController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.golongan_gaji.index"...
         Route::name('golongan_gaji.')->group(function () {
-            Route::get('pekerja/golongan_gaji/index-json/{pekerja}', [GolonganGajiController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/golongan_gaji/store/{pekerja}', [GolonganGajiController::class, 'store'])->name('store');
+            Route::get('master-pegawai/golongan_gaji/index-json/{pekerja}', [GolonganGajiController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/golongan_gaji/store/{pekerja}', [GolonganGajiController::class, 'store'])->name('store');
             Route::get('golongan_gaji/show-json', [GolonganGajiController::class, 'showJson'])->name('show.json'); // get issue when combine with prefix pekerja
-            Route::post('pekerja/golongan_gaji/update/{pekerja}/{golongan_gaji}/{tanggal}', [GolonganGajiController::class, 'update'])->name('update');
-            Route::delete('pekerja/golongan_gaji/delete', [GolonganGajiController::class, 'delete'])->name('delete');
+            Route::post('master-pegawai/golongan_gaji/update/{pekerja}/{golongan_gaji}/{tanggal}', [GolonganGajiController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/golongan_gaji/delete', [GolonganGajiController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.kursus.index"...
         Route::name('kursus.')->group(function () {
-            Route::get('pekerja/kursus/index-json/{pekerja}', [KursusController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/kursus/store/{pekerja}', [KursusController::class, 'store'])->name('store');
-            Route::get('pekerja/kursus/show-json', [KursusController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/kursus/update/{pekerja}/{mulai}/{nama}', [KursusController::class, 'update'])->name('update');
-            Route::delete('pekerja/kursus/delete', [KursusController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/kursus/index-json/{pekerja}', [KursusController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/kursus/store/{pekerja}', [KursusController::class, 'store'])->name('store');
+            Route::get('master-pegawai/kursus/show-json', [KursusController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/kursus/update/{pekerja}/{mulai}/{nama}', [KursusController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/kursus/delete', [KursusController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.pendidikan.index"...
         Route::name('pendidikan.')->group(function () {
-            Route::get('pekerja/pendidikan/index-json/{pekerja}', [PendidikanController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/pendidikan/store/{pekerja}', [PendidikanController::class, 'store'])->name('store');
-            Route::get('pekerja/pendidikan/show-json', [PendidikanController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/pendidikan/update/{pekerja}/{mulai}/{tempatdidik}/{kodedidik}', [PendidikanController::class, 'update'])->name('update');
-            Route::delete('pekerja/pendidikan/delete', [PendidikanController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/pendidikan/index-json/{pekerja}', [PendidikanController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/pendidikan/store/{pekerja}', [PendidikanController::class, 'store'])->name('store');
+            Route::get('master-pegawai/pendidikan/show-json', [PendidikanController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/pendidikan/update/{pekerja}/{mulai}/{tempatdidik}/{kodedidik}', [PendidikanController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/pendidikan/delete', [PendidikanController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.penghargaan.index"...
         Route::name('penghargaan.')->group(function () {
-            Route::get('pekerja/penghargaan/index-json/{pekerja}', [PenghargaanController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/penghargaan/store/{pekerja}', [PenghargaanController::class, 'store'])->name('store');
-            Route::get('pekerja/penghargaan/show-json', [PenghargaanController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/penghargaan/update/{pekerja}/{tanggal}/{nama}', [PenghargaanController::class, 'update'])->name('update');
-            Route::delete('pekerja/penghargaan/delete', [PenghargaanController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/penghargaan/index-json/{pekerja}', [PenghargaanController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/penghargaan/store/{pekerja}', [PenghargaanController::class, 'store'])->name('store');
+            Route::get('master-pegawai/penghargaan/show-json', [PenghargaanController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/penghargaan/update/{pekerja}/{tanggal}/{nama}', [PenghargaanController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/penghargaan/delete', [PenghargaanController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.pengalaman_kerja.index"...
         Route::name('pengalaman_kerja.')->group(function () {
-            Route::get('pekerja/pengalaman_kerja/index-json/{pekerja}', [PengalamanKerjaController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/pengalaman_kerja/store/{pekerja}', [PengalamanKerjaController::class, 'store'])->name('store');
-            Route::get('pekerja/pengalaman_kerja/show-json', [PengalamanKerjaController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/pengalaman_kerja/update/{pekerja}/{mulai}/{pangkat}', [PengalamanKerjaController::class, 'update'])->name('update');
-            Route::delete('pekerja/pengalaman_kerja/delete', [PengalamanKerjaController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/pengalaman_kerja/index-json/{pekerja}', [PengalamanKerjaController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/pengalaman_kerja/store/{pekerja}', [PengalamanKerjaController::class, 'store'])->name('store');
+            Route::get('master-pegawai/pengalaman_kerja/show-json', [PengalamanKerjaController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/pengalaman_kerja/update/{pekerja}/{mulai}/{pangkat}', [PengalamanKerjaController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/pengalaman_kerja/delete', [PengalamanKerjaController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.seminar.index"...
         Route::name('seminar.')->group(function () {
-            Route::get('pekerja/seminar/index-json/{pekerja}', [SeminarController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/seminar/store/{pekerja}', [SeminarController::class, 'store'])->name('store');
-            Route::get('pekerja/seminar/show-json', [SeminarController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/seminar/update/{pekerja}/{mulai}', [SeminarController::class, 'update'])->name('update');
-            Route::delete('pekerja/seminar/delete', [SeminarController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/seminar/index-json/{pekerja}', [SeminarController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/seminar/store/{pekerja}', [SeminarController::class, 'store'])->name('store');
+            Route::get('master-pegawai/seminar/show-json', [SeminarController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/seminar/update/{pekerja}/{mulai}', [SeminarController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/seminar/delete', [SeminarController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.smk.index"...
         Route::name('smk.')->group(function () {
-            Route::get('pekerja/smk/index-json/{pekerja}', [SmkController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/smk/store/{pekerja}', [SmkController::class, 'store'])->name('store');
-            Route::get('pekerja/smk/show-json', [SmkController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/smk/update/{pekerja}/{tahun}', [SmkController::class, 'update'])->name('update');
-            Route::delete('pekerja/smk/delete', [SmkController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/smk/index-json/{pekerja}', [SmkController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/smk/store/{pekerja}', [SmkController::class, 'store'])->name('store');
+            Route::get('master-pegawai/smk/show-json', [SmkController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/smk/update/{pekerja}/{tahun}', [SmkController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/smk/delete', [SmkController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.upah_tetap.index"...
         Route::name('upah_tetap.')->group(function () {
-            Route::get('pekerja/upah-tetap/index-json/{pekerja}', [UpahTetapController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/upah-tetap/store/{pekerja}', [UpahTetapController::class, 'store'])->name('store');
-            Route::get('pekerja/upah-tetap/show-json', [UpahTetapController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/upah-tetap/update/{pekerja}/{nilai}', [UpahTetapController::class, 'update'])->name('update');
-            Route::delete('pekerja/upah-tetap/delete', [UpahTetapController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/upah-tetap/index-json/{pekerja}', [UpahTetapController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/upah-tetap/store/{pekerja}', [UpahTetapController::class, 'store'])->name('store');
+            Route::get('master-pegawai/upah-tetap/show-json', [UpahTetapController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/upah-tetap/update/{pekerja}/{nilai}', [UpahTetapController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/upah-tetap/delete', [UpahTetapController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.upah_tetap_pensiun.index"...
         Route::name('upah_tetap_pensiun.')->group(function () {
-            Route::get('pekerja/upah-tetap-pensiun/index-json/{pekerja}', [UpahTetapPensiunController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/upah-tetap-pensiun/store/{pekerja}', [UpahTetapPensiunController::class, 'store'])->name('store');
-            Route::get('pekerja/upah-tetap-pensiun/show-json', [UpahTetapPensiunController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/upah-tetap-pensiun/update/{pekerja}/{nilai}', [UpahTetapPensiunController::class, 'update'])->name('update');
-            Route::delete('pekerja/upah-tetap-pensiun/delete', [UpahTetapPensiunController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/upah-tetap-pensiun/index-json/{pekerja}', [UpahTetapPensiunController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/upah-tetap-pensiun/store/{pekerja}', [UpahTetapPensiunController::class, 'store'])->name('store');
+            Route::get('master-pegawai/upah-tetap-pensiun/show-json', [UpahTetapPensiunController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/upah-tetap-pensiun/update/{pekerja}/{nilai}', [UpahTetapPensiunController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/upah-tetap-pensiun/delete', [UpahTetapPensiunController::class, 'delete'])->name('delete');
         });
 
         // Route assigned name "pekerja.upah_all_in.index"...
         Route::name('upah_all_in.')->group(function () {
-            Route::get('pekerja/upah-all-in/index-json/{pekerja}', [UpahAllInController::class, 'indexJson'])->name('index.json');
-            Route::post('pekerja/upah-all-in/store/{pekerja}', [UpahAllInController::class, 'store'])->name('store');
-            Route::get('pekerja/upah-all-in/show-json', [UpahAllInController::class, 'showJson'])->name('show.json');
-            Route::post('pekerja/upah-all-in/update/{pekerja}/{nilai}', [UpahAllInController::class, 'update'])->name('update');
-            Route::delete('pekerja/upah-all-in/delete', [UpahAllInController::class, 'delete'])->name('delete');
+            Route::get('master-pegawai/upah-all-in/index-json/{pekerja}', [UpahAllInController::class, 'indexJson'])->name('index.json');
+            Route::post('master-pegawai/upah-all-in/store/{pekerja}', [UpahAllInController::class, 'store'])->name('store');
+            Route::get('master-pegawai/upah-all-in/show-json', [UpahAllInController::class, 'showJson'])->name('show.json');
+            Route::post('master-pegawai/upah-all-in/update/{pekerja}/{nilai}', [UpahAllInController::class, 'update'])->name('update');
+            Route::delete('master-pegawai/upah-all-in/delete', [UpahAllInController::class, 'delete'])->name('delete');
         });
     });
     // Master Pekerja END
@@ -393,15 +393,15 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
 
     //pinjaman pekerja
     Route::name('pinjaman_pekerja.')->group(function () {
-        Route::get('pinjaman-pekerja', [PinjamanPekerjaController::class, 'index'])->name('index');
-        Route::get('pinjaman-pekerja/index-json', [PinjamanPekerjaController::class, 'indexJson'])->name('index.json');
-        Route::post('pinjaman-pekerja/idpinjaman/json', [PinjamanPekerjaController::class, 'IdpinjamanJson'])->name('idpinjaman.json');
-        Route::get('pinjaman-pekerja/detail/json', [PinjamanPekerjaController::class, 'detailJson'])->name('detail.json');
-        Route::get('pinjaman-pekerja/create', [PinjamanPekerjaController::class, 'create'])->name('create');
-        Route::post('pinjaman-pekerja/store', [PinjamanPekerjaController::class, 'store'])->name('store');
-        Route::get('pinjaman-pekerja/edit/{no}', [PinjamanPekerjaController::class, 'edit'])->name('edit');
-        Route::post('pinjaman-pekerja/update', [PinjamanPekerjaController::class, 'update'])->name('update');
-        Route::delete('pinjaman-pekerja/delete', [PinjamanPekerjaController::class, 'delete'])->name('delete');
+        Route::get('pinjaman-pekerja', [PinjamanPegawaiController::class, 'index'])->name('index');
+        Route::get('pinjaman-pekerja/index-json', [PinjamanPegawaiController::class, 'indexJson'])->name('index.json');
+        Route::post('pinjaman-pekerja/idpinjaman/json', [PinjamanPegawaiController::class, 'IdpinjamanJson'])->name('idpinjaman.json');
+        Route::get('pinjaman-pekerja/detail/json', [PinjamanPegawaiController::class, 'detailJson'])->name('detail.json');
+        Route::get('pinjaman-pekerja/create', [PinjamanPegawaiController::class, 'create'])->name('create');
+        Route::post('pinjaman-pekerja/store', [PinjamanPegawaiController::class, 'store'])->name('store');
+        Route::get('pinjaman-pekerja/edit/{no}', [PinjamanPegawaiController::class, 'edit'])->name('edit');
+        Route::post('pinjaman-pekerja/update', [PinjamanPegawaiController::class, 'update'])->name('update');
+        Route::delete('pinjaman-pekerja/delete', [PinjamanPegawaiController::class, 'delete'])->name('delete');
     });
     //end Pinjaman Pekerja
         
@@ -477,14 +477,14 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     //Rekening Pekerja
     // Route assigned name "rekening-pekerja.index"...
     Route::name('rekening_pekerja.')->group(function () {
-        Route::get('rekening-pekerja', [RekeningPekerjaController::class, 'index'])->name('index');
-        Route::get('rekening-pekerja/index-json', [RekeningPekerjaController::class, 'indexJson'])->name('index.json');
-        Route::get('rekening-pekerja/create', [RekeningPekerjaController::class, 'create'])->name('create');
-        Route::post('rekening-pekerja/cek-golongan/json', [RekeningPekerjaController::class, 'cekGolonganJson'])->name('golongan.json');
-        Route::post('rekening-pekerja/store', [RekeningPekerjaController::class, 'store'])->name('store');
-        Route::get('rekening-pekerja/edit/{id}', [RekeningPekerjaController::class, 'edit'])->name('edit');
-        Route::post('rekening-pekerja/update', [RekeningPekerjaController::class, 'update'])->name('update');
-        Route::delete('rekening-pekerja/delete', [RekeningPekerjaController::class, 'delete'])->name('delete');
+        Route::get('rekening-pekerja', [RekeningPegawaiController::class, 'index'])->name('index');
+        Route::get('rekening-pekerja/index-json', [RekeningPegawaiController::class, 'indexJson'])->name('index.json');
+        Route::get('rekening-pekerja/create', [RekeningPegawaiController::class, 'create'])->name('create');
+        Route::post('rekening-pekerja/cek-golongan/json', [RekeningPegawaiController::class, 'cekGolonganJson'])->name('golongan.json');
+        Route::post('rekening-pekerja/store', [RekeningPegawaiController::class, 'store'])->name('store');
+        Route::get('rekening-pekerja/edit/{id}', [RekeningPegawaiController::class, 'edit'])->name('edit');
+        Route::post('rekening-pekerja/update', [RekeningPegawaiController::class, 'update'])->name('update');
+        Route::delete('rekening-pekerja/delete', [RekeningPegawaiController::class, 'delete'])->name('delete');
     });
     //end rekening-pekerja
 

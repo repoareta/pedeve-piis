@@ -27,7 +27,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        return view('modul-sdm-payroll.master-pekerja.index');
+        return view('modul-sdm-payroll.master-pegawai.index');
     }
 
     /**

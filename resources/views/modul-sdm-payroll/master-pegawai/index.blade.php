@@ -99,7 +99,7 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-				url: "{{ route('modul_sdm_payroll.pekerja.index.json') }}",
+				url: "{{ route('modul_sdm_payroll.master_pegawai.index.json') }}",
 				data: function (d) {
 					d.nopeg = $('input[name=nopeg]').val();
 					d.status = $('select[name=status]').val();
@@ -125,7 +125,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
-					var url = '{{ route("modul_sdm_payroll.pekerja.edit", ":kode") }}';
+					var url = '{{ route("modul_sdm_payroll.master_pegawai.edit", ":kode") }}';
 					// go to page edit
 					window.location.href = url.replace(':kode',id);
 				});
@@ -160,7 +160,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('modul_sdm_payroll.pekerja.delete') }}",
+								url: "{{ route('modul_sdm_payroll.master_pegawai.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {

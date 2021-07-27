@@ -441,7 +441,7 @@
                 </div>
             </li>
             <li class="menu-item" aria-haspopup="true">
-                <a href="{{ route('modul_sdm_payroll.pekerja.index') }}" class="menu-link">
+                <a href="{{ route('modul_sdm_payroll.master_pegawai.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
