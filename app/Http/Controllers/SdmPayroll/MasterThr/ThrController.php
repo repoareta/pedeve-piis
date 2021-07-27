@@ -25,9 +25,9 @@ class ThrController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pekerja_list = Pekerja::all();
+        $pegawai_list = Pekerja::all();
 
-        return view('thr_master.index', compact('tahun', 'pekerja_list'));
+        return view('thr_master.index', compact('tahun', 'pegawai_list'));
     }
 
     /**
@@ -88,10 +88,10 @@ class ThrController extends Controller
      */
     public function create()
     {
-        $pekerja_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('thr_master.create', compact('pekerja_list', 'aard_list'));
+        return view('thr_master.create', compact('pegawai_list', 'aard_list'));
     }
 
     /**
@@ -131,13 +131,13 @@ class ThrController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pekerja_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 
         $aard_list = AardPayroll::all();
 
-        return view('thr_master.edit', compact('pekerja_list', 'aard_list', 'thr'));
+        return view('thr_master.edit', compact('pegawai_list', 'aard_list', 'thr'));
     }
 
     /**

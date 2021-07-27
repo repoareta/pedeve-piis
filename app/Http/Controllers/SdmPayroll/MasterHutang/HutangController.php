@@ -25,9 +25,9 @@ class HutangController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pekerja_list = Pekerja::all();
+        $pegawai_list = Pekerja::all();
 
-        return view('hutang_master.index', compact('tahun', 'pekerja_list'));
+        return view('modul-sdm-payroll.master-hutang.index', compact('tahun', 'pegawai_list'));
     }
 
     /**
@@ -85,10 +85,10 @@ class HutangController extends Controller
      */
     public function create()
     {
-        $pekerja_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('hutang_master.create', compact('pekerja_list', 'aard_list'));
+        return view('modul-sdm-payroll.master-hutang.create', compact('pegawai_list', 'aard_list'));
     }
 
     /**
@@ -110,7 +110,7 @@ class HutangController extends Controller
         $hutang->save();
 
         Alert::success('Tambah Master Hutang', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('hutang.index');
+        return redirect()->route('modul_sdm_payroll.hutang.index');
     }
 
     /**
@@ -127,13 +127,13 @@ class HutangController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pekerja_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 
         $aard_list = AardPayroll::all();
 
-        return view('hutang_master.edit', compact('pekerja_list', 'aard_list', 'hutang'));
+        return view('modul-sdm-payroll.master-hutang.edit', compact('pegawai_list', 'aard_list', 'hutang'));
     }
 
     /**
@@ -162,7 +162,7 @@ class HutangController extends Controller
         $hutang->save();
 
         Alert::success('Ubah Master Hutang', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('hutang.index');
+        return redirect()->route('modul_sdm_payroll.hutang.index');
     }
 
     /**

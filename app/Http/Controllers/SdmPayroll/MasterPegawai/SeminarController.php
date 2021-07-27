@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerja;
@@ -16,9 +16,9 @@ class SeminarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $seminar_list = Seminar::where('nopeg', $pekerja->nopeg)->get();
+        $seminar_list = Seminar::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($seminar_list)
             ->addColumn('action', function ($row) {
@@ -41,10 +41,10 @@ class SeminarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $seminar = new Seminar;
-        $seminar->nopeg         = $pekerja->nopeg;
+        $seminar->nopeg         = $pegawai->nopeg;
         $seminar->mulai         = $request->mulai_seminar;
         $seminar->sampai        = $request->sampai_seminar;
         $seminar->nama          = $request->nama_seminar;
@@ -82,13 +82,13 @@ class SeminarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $mulai)
+    public function update(Request $request, Pekerja $pegawai, $mulai)
     {
-        $seminar = Seminar::where('nopeg', $pekerja->nopeg)
+        $seminar = Seminar::where('nopeg', $pegawai->nopeg)
         ->where('mulai', $request->mulai)
         ->first();
 
-        $seminar->nopeg         = $pekerja->nopeg;
+        $seminar->nopeg         = $pegawai->nopeg;
         $seminar->mulai         = $request->mulai_seminar;
         $seminar->sampai        = $request->sampai_seminar;
         $seminar->nama          = $request->nama_seminar;

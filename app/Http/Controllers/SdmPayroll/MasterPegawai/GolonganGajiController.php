@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\GolonganGaji;
@@ -16,9 +16,9 @@ class GolonganGajiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $golongan_gaji_list = GolonganGaji::where('nopeg', $pekerja->nopeg)->get();
+        $golongan_gaji_list = GolonganGaji::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($golongan_gaji_list)
             ->addColumn('action', function ($row) {
@@ -38,10 +38,10 @@ class GolonganGajiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $golongan_gaji = new GolonganGaji;
-        $golongan_gaji->nopeg = $pekerja->nopeg;
+        $golongan_gaji->nopeg = $pegawai->nopeg;
         $golongan_gaji->tanggal = $request->tanggal_golongan_gaji;
         $golongan_gaji->golgaji = $request->golongan_gaji;
         $golongan_gaji->userid = Auth::user()->userid;
@@ -75,14 +75,14 @@ class GolonganGajiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $golongan_gaji, $tanggal)
+    public function update(Request $request, Pekerja $pegawai, $golongan_gaji, $tanggal)
     {
-        $golongan_gaji = GolonganGaji::where('nopeg', $pekerja->nopeg)
+        $golongan_gaji = GolonganGaji::where('nopeg', $pegawai->nopeg)
         ->where('golgaji', $golongan_gaji)
         ->where('tanggal', $tanggal)
         ->first();
         
-        $golongan_gaji->nopeg = $pekerja->nopeg;
+        $golongan_gaji->nopeg = $pegawai->nopeg;
         $golongan_gaji->tanggal = $request->tanggal_golongan_gaji;
         $golongan_gaji->golgaji = $request->golongan_gaji;
         $golongan_gaji->userid = Auth::user()->userid;

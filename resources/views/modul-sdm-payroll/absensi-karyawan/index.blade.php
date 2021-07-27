@@ -31,12 +31,12 @@
 		<div class="col-12">
 			<form class="kt-form" action="{{ route('modul_sdm_payroll.absensi_karyawan.download') }}" id="search-form" method="GET">
                 <div class="form-group row">
-                    <label for="spd-input" class="col-1 col-form-label">IP Address</label>
+                    <label for="" class="col-1 col-form-label">IP Address</label>
                     <div class="col-2">
                         <input class="form-control" type="text" name="ip_address" value="{{ $ip }}">
                     </div>
     
-                    <label for="spd-input" class="col-form-label">Comm Key</label>
+                    <label for="" class="col-form-label">Comm Key</label>
                     <div class="col-2">
                         <input class="form-control" type="text" name="comm_key" value="{{ $key }}">
                     </div>

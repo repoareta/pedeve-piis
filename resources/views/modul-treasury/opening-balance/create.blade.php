@@ -74,7 +74,7 @@
             <div class="kt-portlet__body">
                 <div class="form-group form-group-last">
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label text-right">Bulan<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Bulan<span style="color:red;">*</span></label>
                         <div class="col-10">
                         <?php 
                             $tgl = date_create(now());
@@ -98,13 +98,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
                             <div class="col-10" >
                                 <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required oninvalid="this.setCustomValidity('Tahun Harus Diisi...')" oninput="setCustomValidity('')">
                             </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label text-right">Suplesi<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Suplesi<span style="color:red;">*</span></label>
                             <div class="col-10" >
                                 <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2" onkeypress="return hanyaAngka(event)" autocomplete='off' required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
                             </div>

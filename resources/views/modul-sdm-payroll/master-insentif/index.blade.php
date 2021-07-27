@@ -45,13 +45,13 @@
 					<div class="col-3">
 						<select class="form-control select2" name="no_pekerja" id="no_pekerja">
 							<option value="">- Pilih Pegawai -</option>
-							@foreach ($pekerja_list as $pekerja)
-								<option value="{{ $pekerja->nopeg }}">{{ $pekerja->nopeg.' - '.$pekerja->nama }}</option>
+							@foreach ($pegawai_list as $pegawai)
+								<option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
 							@endforeach
 						</select>
 					</div>
 
-					<label for="spd-input" class="col-form-label">Bulan</label>
+					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
 						<select class="form-control select2" name="bulan" id="bulan">
 							<option value="">- Pilih Bulan -</option>

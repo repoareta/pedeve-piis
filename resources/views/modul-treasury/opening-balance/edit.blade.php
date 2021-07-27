@@ -20,7 +20,7 @@
     <div class="card-body">
         <form method="post" id="form-batal">
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
                 <div class="col-8" >
                     <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
                 </div>

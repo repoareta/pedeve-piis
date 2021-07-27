@@ -62,7 +62,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-				<label for="spd-input" class="col-2 col-form-label">Bulan<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan<span style="color:red;">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 
@@ -86,7 +86,7 @@
 							<option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
 						</select>
 				</div>
-				<label for="spd-input" class="col-1 col-form-label">S/D</label>
+				<label for="" class="col-1 col-form-label">S/D</label>
 				<div class="col-5">
 						<select class="form-control select2" name="bulan_sampai">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
@@ -105,7 +105,7 @@
 				</div>
 				</div>
 				<div class="form-group row">
-				<label for="spd-input" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
 					<div class="col-10" >
 						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required> 
 					</div>

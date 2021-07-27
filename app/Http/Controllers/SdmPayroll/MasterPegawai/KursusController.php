@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kursus;
@@ -16,9 +16,9 @@ class KursusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $kursus_list = Kursus::where('nopeg', $pekerja->nopeg)->get();
+        $kursus_list = Kursus::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($kursus_list)
             ->addColumn('action', function ($row) {
@@ -41,10 +41,10 @@ class KursusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $kursus = new Kursus;
-        $kursus->nopeg         = $pekerja->nopeg;
+        $kursus->nopeg         = $pegawai->nopeg;
         $kursus->mulai         = $request->mulai_kursus;
         $kursus->sampai        = $request->sampai_kursus;
         $kursus->nama          = $request->nama_kursus;
@@ -83,14 +83,14 @@ class KursusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $mulai, $nama)
+    public function update(Request $request, Pekerja $pegawai, $mulai, $nama)
     {
-        $kursus = Kursus::where('nopeg', $pekerja->nopeg)
+        $kursus = Kursus::where('nopeg', $pegawai->nopeg)
         ->where('mulai', $mulai)
         ->where('nama', $nama)
         ->first();
 
-        $kursus->nopeg         = $pekerja->nopeg;
+        $kursus->nopeg         = $pegawai->nopeg;
         $kursus->mulai         = $request->mulai_kursus;
         $kursus->sampai        = $request->sampai_kursus;
         $kursus->nama          = $request->nama_kursus;

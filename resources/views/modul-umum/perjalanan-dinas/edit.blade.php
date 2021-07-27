@@ -28,12 +28,12 @@
                 <form class="form" id="formPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.update', ['no_panjar' => Request::segment(4)]) }}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">No. SPD</label>
+                        <label for="" class="col-2 col-form-label">No. SPD</label>
                         <div class="col-5">
                             <input class="form-control" type="text" name="no_spd" value="{{ $panjar_header->no_panjar }}" id="no_spd">
                         </div>
     
-                        <label for="spd-input" class="col-2 col-form-label">Tanggal Panjar</label>
+                        <label for="" class="col-2 col-form-label">Tanggal Panjar</label>
                         <div class="col-3">
                             <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('d-m-Y', strtotime($panjar_header->tgl_panjar)) }}">
                         </div>
@@ -230,21 +230,21 @@
 			<form class="kt-form kt-form--label-right" action="" method="POST" id="formPanjarDinasDetail">
 				<div class="modal-body">
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">No. Urut</label>
+						<label for="" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-10">
 							<input class="form-control" type="number" name="no_urut" id="no_urut">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+						<label for="" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
 							<textarea class="form-control" name="keterangan_detail" id="keterangan_detail"></textarea>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Nopek</label>
+						<label for="" class="col-2 col-form-label">Nopek</label>
 						<div class="col-10">
 							<select class="form-control select2" id="nopek_detail" name="nopek_detail" style="width: 100% !important;">
 								<option value="">- Pilih Nopek -</option>
@@ -257,7 +257,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Jabatan</label>
+						<label for="" class="col-2 col-form-label">Jabatan</label>
 						<div class="col-10">
 							<select class="form-control select2" name="jabatan_detail" readonly id="jabatan_detail" style="width: 100% !important;">
 								<option value="">- Pilih Jabatan -</option>
@@ -270,7 +270,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Golongan</label>
+						<label for="" class="col-2 col-form-label">Golongan</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="golongan_detail" id="golongan_detail" readonly>
 						</div>

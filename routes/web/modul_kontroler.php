@@ -9,7 +9,7 @@ use App\Http\Controllers\Kontroler\JurnalUmumController;
 use App\Http\Controllers\Kontroler\KasBankKontrolerController;
 use App\Http\Controllers\Kontroler\LokasiKontrolerController;
 use App\Http\Controllers\Kontroler\MainAccountController;
-use App\Http\Controllers\Kontroler\MasterPekerjaController;
+use App\Http\Controllers\Kontroler\MasterPegawaiController;
 use App\Http\Controllers\Kontroler\MasterPerusahaanController;
 use App\Http\Controllers\Kontroler\MasterUnitController;
 use App\Http\Controllers\Kontroler\PostingKasBankController;
@@ -97,13 +97,13 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     //Master Pekerja
     // Route assigned name "master_pekerja.index"...
     Route::name('master_pekerja.')->group(function () {
-        Route::get('master-pekerja', [MasterPekerjaController::class, 'index'])->name('index');
-        Route::get('master-pekerja/index/json', [MasterPekerjaController::class, 'indexJson'])->name('index.json');
-        Route::get('master-pekerja/create', [MasterPekerjaController::class, 'create'])->name('create');
-        Route::post('master-pekerja/store', [MasterPekerjaController::class, 'store'])->name('store');
-        Route::get('master-pekerja/edit/{kode}', [MasterPekerjaController::class, 'edit'])->name('edit');
-        Route::post('master-pekerja/update', [MasterPekerjaController::class, 'update'])->name('update');
-        Route::delete('master-pekerja/delete', [MasterPekerjaController::class, 'delete'])->name('delete');
+        Route::get('master-pekerja', [MasterPegawaiController::class, 'index'])->name('index');
+        Route::get('master-pekerja/index/json', [MasterPegawaiController::class, 'indexJson'])->name('index.json');
+        Route::get('master-pekerja/create', [MasterPegawaiController::class, 'create'])->name('create');
+        Route::post('master-pekerja/store', [MasterPegawaiController::class, 'store'])->name('store');
+        Route::get('master-pekerja/edit/{kode}', [MasterPegawaiController::class, 'edit'])->name('edit');
+        Route::post('master-pekerja/update', [MasterPegawaiController::class, 'update'])->name('update');
+        Route::delete('master-pekerja/delete', [MasterPegawaiController::class, 'delete'])->name('delete');
     });
     //end Master Pekerja
 

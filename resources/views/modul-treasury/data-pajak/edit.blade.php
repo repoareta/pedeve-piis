@@ -30,7 +30,7 @@
                     </div>
                 
                     <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                    <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
                     <div class="col-4">
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>

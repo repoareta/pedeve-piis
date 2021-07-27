@@ -97,8 +97,8 @@
 							<div class="col-10">
 								<select class="form-control select2" name="nopeg" id="nopeg">	
                                     <option value="">- Pilih Data -</option>								
-									@foreach ($pekerja_list as $pekerja)
-									    <option value="{{ $pekerja->nopeg }}">{{ $pekerja->nopeg." - ".$pekerja->nama }}</option>
+									@foreach ($pegawai_list as $pegawai)
+									    <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg." - ".$pegawai->nama }}</option>
 									@endforeach
 								</select>
 							</div>

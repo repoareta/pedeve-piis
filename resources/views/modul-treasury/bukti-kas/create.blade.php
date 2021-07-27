@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label text-right">Bulan/Tahun <span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Bulan/Tahun <span style="color:red;">*</span></label>
                         <div class="col-4">
                             <input class="form-control" type="text" value="{{ $bulan_buku }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label text-right">Bagian <span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Bagian <span style="color:red;">*</span></label>
                         <div class="col-10">
                             <select name="bagian" id="bagian" class="form-control">
                                 <option>- Pilih -</option>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label text-right">Jenis Kartu <span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Jenis Kartu <span style="color:red;">*</span></label>
                         <div class="col-3">
                             <select name="jenis_kartu" id="jenis_kartu" class="form-control">
                                 <option value="">- Pilih -</option>

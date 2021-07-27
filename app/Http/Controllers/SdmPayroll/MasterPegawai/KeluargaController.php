@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KeluargaStore;
@@ -18,9 +18,9 @@ class KeluargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $keluarga_list = Keluarga::where('nopeg', $pekerja->nopeg)->get();
+        $keluarga_list = Keluarga::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($keluarga_list)
             ->addColumn('action', function ($row) {
@@ -55,10 +55,10 @@ class KeluargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KeluargaStore $request, Pekerja $pekerja)
+    public function store(KeluargaStore $request, Pekerja $pegawai)
     {
         $keluarga                   = new Keluarga;
-        $keluarga->nopeg            = $pekerja->nopeg;
+        $keluarga->nopeg            = $pegawai->nopeg;
         $keluarga->status           = $request->status_keluarga;
         $keluarga->nama             = $request->nama_keluarga;
         $keluarga->tempatlahir      = $request->tempat_lahir_keluarga;
@@ -79,7 +79,7 @@ class KeluargaController extends Controller
             $extension = $photo_keluarga->getClientOriginalExtension();
             $keluarga->photo = str_replace(
                 $photo,
-                $pekerja->nopeg."_".$keluarga->status."_".$nama_keluarga.".".$extension,
+                $pegawai->nopeg."_".$keluarga->status."_".$nama_keluarga.".".$extension,
                 $photo
             );
             $photo_path = $photo_keluarga->storeAs('pekerja_img', $keluarga->photo, 'public');
@@ -113,14 +113,14 @@ class KeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $status, $nama)
+    public function update(Request $request, Pekerja $pegawai, $status, $nama)
     {
-        $keluarga = Keluarga::where('nopeg', $pekerja->nopeg)
+        $keluarga = Keluarga::where('nopeg', $pegawai->nopeg)
         ->where('status', $status)
         ->where('nama', $nama)
         ->first();
 
-        $keluarga->nopeg            = $pekerja->nopeg;
+        $keluarga->nopeg            = $pegawai->nopeg;
         $keluarga->status           = $request->status_keluarga;
         $keluarga->nama             = $request->nama_keluarga;
         $keluarga->tempatlahir      = $request->tempat_lahir_keluarga;
@@ -141,7 +141,7 @@ class KeluargaController extends Controller
             $extension = $photo_keluarga->getClientOriginalExtension();
             $keluarga->photo = str_replace(
                 $photo,
-                $pekerja->nopeg."_".$keluarga->status."_".$nama_keluarga.".".$extension,
+                $pegawai->nopeg."_".$keluarga->status."_".$nama_keluarga.".".$extension,
                 $photo
             );
             $photo_path = $photo_keluarga->storeAs('pekerja_img', $keluarga->photo, 'public');

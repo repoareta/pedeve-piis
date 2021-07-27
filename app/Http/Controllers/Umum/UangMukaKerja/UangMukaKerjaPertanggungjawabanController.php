@@ -189,7 +189,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
 
         $no_umk = $pumk_header->umk_header->no_umk;
 
-        $pekerja_jabatan = KodeJabatan::where('kdbag', $pumk_header->pekerja->jabatan_latest()->kdbag)
+        $pegawai_jabatan = KodeJabatan::where('kdbag', $pumk_header->pekerja->jabatan_latest()->kdbag)
         ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
         ->first();
 
@@ -276,13 +276,13 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         
         $pumk_header = PUmkHeader::where('no_pumk', $no_pumk)->first();
 
-        $pekerja_jabatan = KodeJabatan::where('kdbag', $pumk_header->pekerja->jabatan_latest()->kdbag)
+        $pegawai_jabatan = KodeJabatan::where('kdbag', $pumk_header->pekerja->jabatan_latest()->kdbag)
         ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
         ->first();
 
         $pdf = DomPDF::loadview('modul-umum.umk_pertanggungjawaban.export_row', [
             'pumk_header' => $pumk_header,
-            'pekerja_jabatan' => $pekerja_jabatan
+            'pekerja_jabatan' => $pegawai_jabatan
         ]);
         return $pdf->stream('rekap_umk_pertanggungjawaban_'.date('Y-m-d H:i:s').'.pdf');
     }

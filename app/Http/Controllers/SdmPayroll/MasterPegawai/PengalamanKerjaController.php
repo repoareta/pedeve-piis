@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerja;
@@ -16,9 +16,9 @@ class PengalamanKerjaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $pengalaman_kerja_list = PengalamanKerja::where('nopeg', $pekerja->nopeg)->get();
+        $pengalaman_kerja_list = PengalamanKerja::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($pengalaman_kerja_list)
             ->addColumn('action', function ($row) {
@@ -41,10 +41,10 @@ class PengalamanKerjaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $pengalaman_kerja = new PengalamanKerja;
-        $pengalaman_kerja->nopeg    = $pekerja->nopeg;
+        $pengalaman_kerja->nopeg    = $pegawai->nopeg;
         $pengalaman_kerja->mulai    = $request->mulai_pengalaman_kerja;
         $pengalaman_kerja->sampai   = $request->sampai_pengalaman_kerja;
         $pengalaman_kerja->status   = $request->status_pengalaman_kerja;
@@ -83,14 +83,14 @@ class PengalamanKerjaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $mulai)
+    public function update(Request $request, Pekerja $pegawai, $mulai)
     {
-        $pengalaman_kerja = PengalamanKerja::where('nopeg', $pekerja->nopeg)
+        $pengalaman_kerja = PengalamanKerja::where('nopeg', $pegawai->nopeg)
         ->where('mulai', $request->mulai)
         ->where('pangkat', $request->pangkat)
         ->first();
 
-        $pengalaman_kerja->nopeg    = $pekerja->nopeg;
+        $pengalaman_kerja->nopeg    = $pegawai->nopeg;
         $pengalaman_kerja->mulai    = $request->mulai_pengalaman_kerja;
         $pengalaman_kerja->sampai   = $request->sampai_pengalaman_kerja;
         $pengalaman_kerja->status   = $request->status_pengalaman_kerja;

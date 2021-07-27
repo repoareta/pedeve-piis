@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerja;
@@ -16,9 +16,9 @@ class PenghargaanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $penghargaan_list = Penghargaan::where('nopeg', $pekerja->nopeg)->get();
+        $penghargaan_list = Penghargaan::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($penghargaan_list)
             ->addColumn('action', function ($row) {
@@ -35,10 +35,10 @@ class PenghargaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $penghargaan = new Penghargaan;
-        $penghargaan->nopeg = $pekerja->nopeg;
+        $penghargaan->nopeg = $pegawai->nopeg;
         $penghargaan->tanggal = $request->tanggal_penghargaan;
         $penghargaan->nama = $request->nama_penghargaan;
         $penghargaan->pemberi = $request->pemberi_penghargaan;
@@ -73,14 +73,14 @@ class PenghargaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $tanggal, $nama)
+    public function update(Request $request, Pekerja $pegawai, $tanggal, $nama)
     {
-        $penghargaan = Penghargaan::where('nopeg', $pekerja->nopeg)
+        $penghargaan = Penghargaan::where('nopeg', $pegawai->nopeg)
         ->where('tanggal', $request->tanggal)
         ->where('nama', $request->nama)
         ->first();
 
-        $penghargaan->nopeg = $pekerja->nopeg;
+        $penghargaan->nopeg = $pegawai->nopeg;
         $penghargaan->tanggal = $request->tanggal_penghargaan;
         $penghargaan->nama = $request->nama_penghargaan;
         $penghargaan->pemberi = $request->pemberi_penghargaan;

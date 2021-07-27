@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerja;
-use App\Models\UpahTetap;
+use App\Models\UpahTetapPensiun;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class UpahTetapController extends Controller
+class UpahTetapPensiunController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $upah_tetap_list = UpahTetap::where('nopeg', $pekerja->nopeg)->get();
+        $upah_tetap_pensiun_list = UpahTetapPensiun::where('nopeg', $pegawai->nopeg)->get();
 
-        return datatables()->of($upah_tetap_list)
+        return datatables()->of($upah_tetap_pensiun_list)
             ->addColumn('action', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap" value="'.$row->nopeg.'-'.$row->ut.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap_pensiun" value="'.$row->nopeg.'-'.$row->ut.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('ut', function ($row) {
@@ -44,14 +44,14 @@ class UpahTetapController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
-        $upah             = new UpahTetap;
-        $upah->nopeg      = $pekerja->nopeg;
-        $upah->ut         = $request->nilai_upah_tetap;
-        $upah->mulai      = $request->mulai_upah_tetap;
-        $upah->sampai     = $request->sampai_upah_tetap;
-        $upah->keterangan = $request->keterangan_upah_tetap;
+        $upah             = new UpahTetapPensiun;
+        $upah->nopeg      = $pegawai->nopeg;
+        $upah->ut         = $request->nilai_upah_tetap_pensiun;
+        $upah->mulai      = $request->mulai_upah_tetap_pensiun;
+        $upah->sampai     = $request->sampai_upah_tetap_pensiun;
+        $upah->keterangan = $request->keterangan_upah_tetap_pensiun;
         $upah->userid     = Auth::user()->userid;
         $upah->tglentry   = Carbon::now();
 
@@ -68,7 +68,7 @@ class UpahTetapController extends Controller
      */
     public function showJson(Request $request)
     {
-        $upah = UpahTetap::where('nopeg', $request->nopeg)
+        $upah = UpahTetapPensiun::where('nopeg', $request->nopeg)
         ->where('ut', $request->ut)
         ->first();
 
@@ -82,18 +82,19 @@ class UpahTetapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $nilai)
+    public function update(Request $request, Pekerja $pegawai, $nilai)
     {
-        $upah = UpahTetap::where('nopeg', $pekerja->nopeg)
+        $upah = UpahTetapPensiun::where('nopeg', $pegawai->nopeg)
         ->where('ut', $nilai)
         ->first();
 
-        $upah->nopeg      = $pekerja->nopeg;
-        $upah->ut         = $request->nilai_upah_tetap;
-        $upah->mulai      = $request->mulai_upah_tetap;
-        $upah->sampai     = $request->sampai_upah_tetap;
-        $upah->keterangan = $request->keterangan_upah_tetap;
+        $upah->nopeg      = $pegawai->nopeg;
+        $upah->ut         = $request->nilai_upah_tetap_pensiun;
+        $upah->mulai      = $request->mulai_upah_tetap_pensiun;
+        $upah->sampai     = $request->sampai_upah_tetap_pensiun;
+        $upah->keterangan = $request->keterangan_upah_tetap_pensiun;
         $upah->userid     = Auth::user()->userid;
+        $upah->tglentry   = Carbon::now();
 
         $upah->save();
 
@@ -108,7 +109,7 @@ class UpahTetapController extends Controller
      */
     public function delete(Request $request)
     {
-        $upah = UpahTetap::where('nopeg', $request->nopeg)
+        $upah = UpahTetapPensiun::where('nopeg', $request->nopeg)
         ->where('ut', $request->ut)
         ->delete();
 

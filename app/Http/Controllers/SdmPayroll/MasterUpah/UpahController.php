@@ -88,10 +88,10 @@ class UpahController extends Controller
      */
     public function create()
     {
-        $pekerja_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('modul-sdm-payroll.master-upah.create', compact('pekerja_list', 'aard_list'));
+        return view('modul-sdm-payroll.master-upah.create', compact('pegawai_list', 'aard_list'));
     }
 
     /**
@@ -131,13 +131,13 @@ class UpahController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pekerja_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 
         $aard_list = AardPayroll::all();
 
-        return view('modul-sdm-payroll.master-upah.edit', compact('pekerja_list', 'aard_list', 'upah'));
+        return view('modul-sdm-payroll.master-upah.edit', compact('pegawai_list', 'aard_list', 'upah'));
     }
 
     /**

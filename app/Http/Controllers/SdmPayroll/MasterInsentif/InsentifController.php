@@ -25,9 +25,9 @@ class InsentifController extends Controller
         ->orderBy('tahun', 'desc')
         ->get();
 
-        $pekerja_list = Pekerja::all();
+        $pegawai_list = Pekerja::all();
 
-        return view('modul-sdm-payroll.master-insentif.index', compact('tahun', 'pekerja_list'));
+        return view('modul-sdm-payroll.master-insentif.index', compact('tahun', 'pegawai_list'));
     }
 
     /**
@@ -82,10 +82,10 @@ class InsentifController extends Controller
      */
     public function create()
     {
-        $pekerja_list = Pekerja::where('status', '<>', 'P')->get();
+        $pegawai_list = Pekerja::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('modul-sdm-payroll.master-insentif.create', compact('pekerja_list', 'aard_list'));
+        return view('modul-sdm-payroll.master-insentif.create', compact('pegawai_list', 'aard_list'));
     }
 
     /**
@@ -133,13 +133,13 @@ class InsentifController extends Controller
         ->where('aard', $aard)
         ->first();
 
-        $pekerja_list = Pekerja::where('status', '<>', 'P')
+        $pegawai_list = Pekerja::where('status', '<>', 'P')
         ->orWhere('nopeg', $nopek)
         ->get();
 
         $aard_list = AardPayroll::all();
 
-        return view('modul-sdm-payroll.master-insentif.edit', compact('pekerja_list', 'aard_list', 'insentif'));
+        return view('modul-sdm-payroll.master-insentif.edit', compact('pegawai_list', 'aard_list', 'insentif'));
     }
 
     /**

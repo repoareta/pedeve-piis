@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Jabatan;
@@ -17,9 +17,9 @@ class JabatanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $jabatan_list = Jabatan::where('nopeg', $pekerja->nopeg)->get();
+        $jabatan_list = Jabatan::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($jabatan_list)
             ->addColumn('action', function ($row) {
@@ -55,9 +55,9 @@ class JabatanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja, Jabatan $jabatan)
+    public function store(Request $request, Pekerja $pegawai, Jabatan $jabatan)
     {
-        $jabatan->nopeg    = $pekerja->nopeg;
+        $jabatan->nopeg    = $pegawai->nopeg;
         $jabatan->kdbag    = $request->bagian_pekerja;
         $jabatan->kdjab    = $request->jabatan_pekerja;
         $jabatan->mulai    = $request->mulai;
@@ -97,7 +97,7 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $mulai)
+    public function update(Request $request, Pekerja $pegawai, $mulai)
     {
         //
     }

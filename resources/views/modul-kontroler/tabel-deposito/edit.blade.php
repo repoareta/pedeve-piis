@@ -75,7 +75,7 @@
 							$nama_bagian = $data->nama_bagian;
 						?>
 						<div class="form-group row">
-							<label for="spd-input" class="col-2 col-form-label">No.Dokumen</label>
+							<label for="" class="col-2 col-form-label">No.Dokumen</label>
 							<div class="col-5">
 								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{$mp}}" id="mp" readonly>
 								<input  type="hidden" name="docno" value="{{$docno}}" >
@@ -85,22 +85,22 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="spd-input" class="col-2 col-form-label">Bulan</label>
+							<label for="" class="col-2 col-form-label">Bulan</label>
 							<div class="col-3">
 								<input class="form-control" type="text" value="{{$bulan}}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
-							<label for="spd-input" class="col-1 col-form-label">Tahun</label>
+							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
 								<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 								<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
 							</div>
-							<label for="spd-input" class="col-1 col-form-label">suplesi</label>
+							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
 								<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="spd-input" class="col-2 col-form-label">Bagian</label>
+							<label for="" class="col-2 col-form-label">Bagian</label>
 							<div class="col-5">
 								<input class="form-control" type="text" name="bagian" value="{{$bagian}}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>

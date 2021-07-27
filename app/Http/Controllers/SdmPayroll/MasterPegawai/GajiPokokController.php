@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\GajiPokok;
@@ -16,9 +16,9 @@ class GajiPokokController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $gaji_pokok_list = GajiPokok::where('nopeg', $pekerja->nopeg)->get();
+        $gaji_pokok_list = GajiPokok::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($gaji_pokok_list)
             ->addColumn('action', function ($row) {
@@ -44,10 +44,10 @@ class GajiPokokController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $gaji_pokok = new GajiPokok;
-        $gaji_pokok->nopeg = $pekerja->nopeg;
+        $gaji_pokok->nopeg = $pegawai->nopeg;
         $gaji_pokok->mulai = $request->mulai_gaji_pokok;
         $gaji_pokok->sampai = $request->sampai_gaji_pokok;
         $gaji_pokok->gapok = $request->nilai_gaji_pokok;
@@ -82,13 +82,13 @@ class GajiPokokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $nilai)
+    public function update(Request $request, Pekerja $pegawai, $nilai)
     {
-        $gaji_pokok = GajiPokok::where('nopeg', $pekerja->nopeg)
+        $gaji_pokok = GajiPokok::where('nopeg', $pegawai->nopeg)
         ->where('gapok', $nilai)
         ->first();
 
-        $gaji_pokok->nopeg = $pekerja->nopeg;
+        $gaji_pokok->nopeg = $pegawai->nopeg;
         $gaji_pokok->mulai = $request->mulai_gaji_pokok;
         $gaji_pokok->sampai = $request->sampai_gaji_pokok;
         $gaji_pokok->gapok = $request->nilai_gaji_pokok;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerja;
@@ -16,9 +16,9 @@ class UpahAllInController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $upah_all_in_list = UpahAllIn::where('nopek', $pekerja->nopeg)->get();
+        $upah_all_in_list = UpahAllIn::where('nopek', $pegawai->nopeg)->get();
 
         return datatables()->of($upah_all_in_list)
             ->addColumn('action', function ($row) {
@@ -50,10 +50,10 @@ class UpahAllInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $upah           = new UpahAllIn;
-        $upah->nopek    = $pekerja->nopeg;
+        $upah->nopek    = $pegawai->nopeg;
         $upah->nilai    = $request->nilai_upah_all_in;
         $upah->mulai    = $request->mulai_upah_all_in;
         $upah->sampai   = $request->sampai_upah_all_in;
@@ -90,13 +90,13 @@ class UpahAllInController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $nilai)
+    public function update(Request $request, Pekerja $pegawai, $nilai)
     {
-        $upah = UpahAllIn::where('nopek', $pekerja->nopeg)
+        $upah = UpahAllIn::where('nopek', $pegawai->nopeg)
         ->where('nilai', $request->nilai)
         ->first();
 
-        $upah->nopek    = $pekerja->nopeg;
+        $upah->nopek    = $pegawai->nopeg;
         $upah->nilai    = $request->nilai_upah_all_in;
         $upah->mulai    = $request->mulai_upah_all_in;
         $upah->sampai   = $request->sampai_upah_all_in;

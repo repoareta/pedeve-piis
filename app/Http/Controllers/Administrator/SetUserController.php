@@ -99,11 +99,11 @@ class SetUserController extends Controller
     {
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
-        $pekerja_list = Pekerja::all();
+        $pegawai_list = Pekerja::all();
         return view('modul-administrator.set-user.create', compact(
                         'gcg_fungsi_list',
                         'gcg_jabatan_list',
-                        'pekerja_list'
+                        'pegawai_list'
                     ));
     }
 
@@ -179,13 +179,13 @@ class SetUserController extends Controller
 
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
-        $pekerja_list = Pekerja::all();
+        $pegawai_list = Pekerja::all();
 
         return view('modul-administrator.set-user.edit', compact(
             'data',
             'gcg_fungsi_list',
             'gcg_jabatan_list',
-            'pekerja_list'
+            'pegawai_list'
         ));
     }
     public function update(SetUserUpdate $request, $id)

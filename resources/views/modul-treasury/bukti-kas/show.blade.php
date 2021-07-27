@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label text-right">Bulan/Tahun</label>
+                    <label for="" class="col-2 col-form-label text-right">Bulan/Tahun</label>
                     <div class="col-4">
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label text-right">Jenis Kartu</label>
+                    <label for="" class="col-2 col-form-label text-right">Jenis Kartu</label>
                     <div class="col-3">
                         <input type="text" class="form-control" value="{{ $document->jk == '10' ? 'Kas(Rupiah)' : ($document->jk == '11' ? 'Bank(Rupiah)' : 'Bank(Dollar)') }}" name="jenis_kartu" id="jenis_kartu" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>

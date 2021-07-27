@@ -22,7 +22,7 @@
         <form  class="kt-form kt-form--label-right" id="form-edit">
             {{csrf_field()}}
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
                 <div class="col-4">
                 <?php 
                     $tgl = date_create(now());

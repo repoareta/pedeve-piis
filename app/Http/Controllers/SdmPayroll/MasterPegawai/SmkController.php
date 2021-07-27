@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\MasterPekerja;
+namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pekerja;
@@ -16,9 +16,9 @@ class SmkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson(Pekerja $pekerja)
+    public function indexJson(Pekerja $pegawai)
     {
-        $smk_list = SMK::where('nopeg', $pekerja->nopeg)->get();
+        $smk_list = SMK::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($smk_list)
             ->addColumn('action', function ($row) {
@@ -35,10 +35,10 @@ class SmkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Pekerja $pekerja)
+    public function store(Request $request, Pekerja $pegawai)
     {
         $smk           = new SMK;
-        $smk->nopeg    = $pekerja->nopeg;
+        $smk->nopeg    = $pegawai->nopeg;
         $smk->tahun    = $request->tahun_smk;
         $smk->nilai    = $request->nilai_smk;
         $smk->userid   = Auth::user()->userid;
@@ -71,13 +71,13 @@ class SmkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pekerja $pekerja, $tahun)
+    public function update(Request $request, Pekerja $pegawai, $tahun)
     {
-        $smk = SMK::where('nopeg', $pekerja->nopeg)
+        $smk = SMK::where('nopeg', $pegawai->nopeg)
         ->where('tahun', $request->tahun)
         ->first();
 
-        $smk->nopeg    = $pekerja->nopeg;
+        $smk->nopeg    = $pegawai->nopeg;
         $smk->tahun    = $request->tahun_smk;
         $smk->nilai    = $request->nilai_smk;
         $smk->userid   = Auth::user()->userid;

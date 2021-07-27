@@ -22,7 +22,7 @@
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{ auth()->user()->userid }}">
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
                 <div class="col-5">
                     <?php 
 					foreach($data_tahun as $data){ 

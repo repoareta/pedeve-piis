@@ -212,7 +212,7 @@
                 <br>
               </td>
               <td class="text-center" valign="top">
-                <b>{{ $pekerja_jabatan }}</b>
+                <b>{{ $pegawai_jabatan }}</b>
               </td>
               <td></td>
             </tr>

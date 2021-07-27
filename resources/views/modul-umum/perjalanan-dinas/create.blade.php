@@ -28,12 +28,12 @@
                 <form class="form" id="formPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">No. SPD</label>
+						<label for="" class="col-2 col-form-label">No. SPD</label>
 						<div class="col-5">
 							<input class="form-control" type="text" name="no_spd" value="{{ $no_spd }}" id="no_spd" readonly>
 						</div>
 
-						<label for="spd-input" class="col-2 col-form-label">Tanggal Panjar</label>
+						<label for="" class="col-2 col-form-label">Tanggal Panjar</label>
 						<div class="col-3">
 							<input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('d-m-Y') }}">
 						</div>
