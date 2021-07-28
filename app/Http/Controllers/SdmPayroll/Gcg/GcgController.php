@@ -38,6 +38,6 @@ class GcgController extends Controller
         ->orderBy('year', 'desc')
         ->get();
 
-        return view('gcg.index', compact('gratifikasi_list', 'jabatan'));
+        return view('modul-sdm-payroll.gcg.index', compact('gratifikasi_list', 'jabatan'));
     }
 }

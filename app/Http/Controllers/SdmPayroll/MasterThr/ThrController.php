@@ -27,7 +27,7 @@ class ThrController extends Controller
 
         $pegawai_list = MasterPegawai::all();
 
-        return view('thr_master.index', compact('tahun', 'pegawai_list'));
+        return view('modul-sdm-payroll.master-thr.index', compact('tahun', 'pegawai_list'));
     }
 
     /**
@@ -91,7 +91,7 @@ class ThrController extends Controller
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')->get();
         $aard_list = AardPayroll::all();
 
-        return view('thr_master.create', compact('pegawai_list', 'aard_list'));
+        return view('modul-sdm-payroll.master-thr.create', compact('pegawai_list', 'aard_list'));
     }
 
     /**
@@ -114,7 +114,7 @@ class ThrController extends Controller
         $thr->save();
 
         Alert::success('Tambah Master THR', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('thr.index');
+        return redirect()->route('modul_sdm_payroll.thr.index');
     }
 
     /**
@@ -137,7 +137,7 @@ class ThrController extends Controller
 
         $aard_list = AardPayroll::all();
 
-        return view('thr_master.edit', compact('pegawai_list', 'aard_list', 'thr'));
+        return view('modul-sdm-payroll.master-thr.edit', compact('pegawai_list', 'aard_list', 'thr'));
     }
 
     /**
@@ -167,7 +167,7 @@ class ThrController extends Controller
         $thr->save();
 
         Alert::success('Ubah Master THR', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('thr.index');
+        return redirect()->route('modul_sdm_payroll.thr.index');
     }
 
     /**

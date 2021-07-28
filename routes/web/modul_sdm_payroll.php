@@ -1,6 +1,13 @@
 <?php
 
 use App\Http\Controllers\SdmPayroll\AbsensiKaryawanController;
+use App\Http\Controllers\SdmPayroll\Gcg\CocController;
+use App\Http\Controllers\SdmPayroll\Gcg\CoiController;
+use App\Http\Controllers\SdmPayroll\Gcg\GcgController;
+use App\Http\Controllers\SdmPayroll\Gcg\GratifikasiController;
+use App\Http\Controllers\SdmPayroll\Gcg\LhkpnController;
+use App\Http\Controllers\SdmPayroll\Gcg\ReportBoundaryController;
+use App\Http\Controllers\SdmPayroll\Gcg\SosialisasiController;
 use App\Http\Controllers\SdmPayroll\HonorKomiteController;
 use App\Http\Controllers\SdmPayroll\LemburController;
 use App\Http\Controllers\SdmPayroll\MasterBebanPerusahaan\BebanPerusahaanController;
@@ -592,49 +599,49 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // GCG
     // Route assigned name "gcg.index"...
     Route::name('gcg.')->group(function () {
-        Route::get('gcg', 'GcgController@index')->name('index');
+        Route::get('gcg', [GcgController::class, 'index'])->name('index');
 
-        Route::get('gcg/coc', 'GcgCocController@index')->name('coc.lampiran_satu');
-        Route::post('gcg/coc/lampiran_satu_print', 'GcgCocController@lampiranSatuPrint')->name('coc.lampiran_satu.print');
-        Route::get('gcg/coc/lampiran_dua', 'GcgCocController@lampiranDua')->name('coc.lampiran_dua');
-        Route::post('gcg/coc/lampiran_dua_print', 'GcgCocController@lampiranDuaPrint')->name('coc.lampiran_dua.print');
+        Route::get('gcg/coc/lampiran-satu', [CocController::class, 'index'])->name('coc.lampiran_satu');
+        Route::post('gcg/coc/lampiran-satu/print', [CocController::class, 'lampiranSatuPrint'])->name('coc.lampiran_satu.print');
+        Route::get('gcg/coc/lampiran-dua', [CocController::class, 'lampiranDua'])->name('coc.lampiran_dua');
+        Route::post('gcg/coc/lampiran-dua/print', [CocController::class, 'lampiranDuaPrint'])->name('coc.lampiran_dua.print');
         
-        Route::get('gcg/coi', 'GcgCoiController@index')->name('coi.lampiran_satu');
-        Route::post('gcg/coi/lampiran_satu_print', 'GcgCoiController@lampiranSatuPrint')->name('coi.lampiran_satu.print');
-        Route::get('gcg/coi/lampiran_dua', 'GcgCoiController@lampiranDua')->name('coi.lampiran_dua');
-        Route::post('gcg/coi/lampiran_dua_print', 'GcgCoiController@lampiranDuaPrint')->name('coi.lampiran_dua.print');
+        Route::get('gcg/coi/lampiran-satu', [CoiController::class, 'index'])->name('coi.lampiran_satu');
+        Route::post('gcg/coi/lampiran-satu/print', [CoiController::class, 'lampiranSatuPrint'])->name('coi.lampiran_satu.print');
+        Route::get('gcg/coi/lampiran-dua', [CoiController::class, 'lampiranDua'])->name('coi.lampiran_dua');
+        Route::post('gcg/coi/lampiran-dua/print', [CoiController::class, 'lampiranDuaPrint'])->name('coi.lampiran_dua.print');
 
-        Route::get('gcg/gratifikasi', 'GcgGratifikasiController@index')->name('gratifikasi.index');
-        Route::get('gcg/gratifikasi/penerimaan', 'GcgGratifikasiController@penerimaan')->name('gratifikasi.penerimaan');
-        Route::post('gcg/gratifikasi/penerimaan/store', 'GcgGratifikasiController@penerimaanStore')->name('gratifikasi.penerimaan.store');
+        Route::get('gcg/gratifikasi', [GratifikasiController::class, 'index'])->name('gratifikasi.index');
+        Route::get('gcg/gratifikasi/penerimaan', [GratifikasiController::class, 'penerimaan'])->name('gratifikasi.penerimaan');
+        Route::post('gcg/gratifikasi/penerimaan/store', [GratifikasiController::class, 'penerimaanStore'])->name('gratifikasi.penerimaan.store');
 
-        Route::get('gcg/gratifikasi/pemberian', 'GcgGratifikasiController@pemberian')->name('gratifikasi.pemberian');
-        Route::post('gcg/gratifikasi/pemberian/store', 'GcgGratifikasiController@pemberianStore')->name('gratifikasi.pemberian.store');
+        Route::get('gcg/gratifikasi/pemberian', [GratifikasiController::class, 'pemberian'])->name('gratifikasi.pemberian');
+        Route::post('gcg/gratifikasi/pemberian/store', [GratifikasiController::class, 'pemberianStore'])->name('gratifikasi.pemberian.store');
 
-        Route::get('gcg/gratifikasi/permintaan', 'GcgGratifikasiController@permintaan')->name('gratifikasi.permintaan');
-        Route::post('gcg/gratifikasi/permintaan/store', 'GcgGratifikasiController@permintaanStore')->name('gratifikasi.permintaan.store');
+        Route::get('gcg/gratifikasi/permintaan', [GratifikasiController::class, 'permintaan'])->name('gratifikasi.permintaan');
+        Route::post('gcg/gratifikasi/permintaan/store', [GratifikasiController::class, 'permintaanStore'])->name('gratifikasi.permintaan.store');
 
-        Route::get('gcg/gratifikasi/report/personal', 'GcgGratifikasiController@reportPersonal')->name('gratifikasi.report.personal');
-        Route::get('gcg/gratifikasi/report/personal/index-json', 'GcgGratifikasiController@reportPersonalIndexJson')->name('gratifikasi.report.personal.json');
-        Route::post('gcg/gratifikasi/report/personal/export', 'GcgGratifikasiController@reportPersonalExport')->name('gratifikasi.report.personal.export');
+        Route::get('gcg/gratifikasi/report/personal', [GratifikasiController::class, 'reportPersonal'])->name('gratifikasi.report.personal');
+        Route::get('gcg/gratifikasi/report/personal/index-json', [GratifikasiController::class, 'reportPersonalIndexJson'])->name('gratifikasi.report.personal.json');
+        Route::post('gcg/gratifikasi/report/personal/export', [GratifikasiController::class, 'reportPersonalExport'])->name('gratifikasi.report.personal.export');
 
-        Route::get('gcg/gratifikasi/report/management', 'GcgGratifikasiController@reportManagement')->name('gratifikasi.report.management');
-        Route::get('gcg/gratifikasi/report/management/index-json', 'GcgGratifikasiController@reportManagementIndexJson')->name('gratifikasi.report.management.json');
-        Route::get('gcg/gratifikasi/report/management/export', 'GcgGratifikasiController@reportManagementExport')->name('gratifikasi.report.management.export');
+        Route::get('gcg/gratifikasi/report/management', [GratifikasiController::class, 'reportManagement'])->name('gratifikasi.report.management');
+        Route::get('gcg/gratifikasi/report/management/index-json', [GratifikasiController::class, 'reportManagementIndexJson'])->name('gratifikasi.report.management.json');
+        Route::get('gcg/gratifikasi/report/management/export', [GratifikasiController::class, 'reportManagementExport'])->name('gratifikasi.report.management.export');
 
-        Route::get('gcg/gratifikasi/edit/{gratifikasi}', 'GcgGratifikasiController@edit')->name('gratifikasi.edit');
-        Route::post('gcg/gratifikasi/update/{gratifikasi}', 'GcgGratifikasiController@update')->name('gratifikasi.update');
+        Route::get('gcg/gratifikasi/edit/{gratifikasi}', [GratifikasiController::class, 'edit'])->name('gratifikasi.edit');
+        Route::post('gcg/gratifikasi/update/{gratifikasi}', [GratifikasiController::class, 'update'])->name('gratifikasi.update');
 
-        Route::get('gcg/sosialisasi', 'GcgSosialisasiController@index')->name('sosialisasi.index');
-        Route::get('gcg/sosialisasi/create', 'GcgSosialisasiController@create')->name('sosialisasi.create');
-        Route::post('gcg/sosialisasi/store', 'GcgSosialisasiController@store')->name('sosialisasi.store');
+        Route::get('gcg/sosialisasi', [SosialisasiController::class, 'index'])->name('sosialisasi.index');
+        Route::get('gcg/sosialisasi/create', [SosialisasiController::class, 'create'])->name('sosialisasi.create');
+        Route::post('gcg/sosialisasi/store', [SosialisasiController::class, 'store'])->name('sosialisasi.store');
 
-        Route::get('gcg/lhkpn', 'GcgLhkpnController@index')->name('lhkpn.index');
-        Route::get('gcg/lhkpn/create', 'GcgLhkpnController@create')->name('lhkpn.create');
-        Route::post('gcg/lhkpn/store', 'GcgLhkpnController@store')->name('lhkpn.store');
+        Route::get('gcg/lhkpn', [LhkpnController::class, 'index'])->name('lhkpn.index');
+        Route::get('gcg/lhkpn/create', [LhkpnController::class, 'create'])->name('lhkpn.create');
+        Route::post('gcg/lhkpn/store', [LhkpnController::class, 'store'])->name('lhkpn.store');
         
-        Route::get('gcg/report-boundary', 'GcgReportBoundaryController@index')->name('report_boundary.index');
-        Route::get('gcg/report-boundary/export', 'GcgReportBoundaryController@export')->name('report_boundary.export');
+        Route::get('gcg/report-boundary', [ReportBoundaryController::class, 'index'])->name('report_boundary.index');
+        Route::get('gcg/report-boundary/export', [ReportBoundaryController::class, 'export'])->name('report_boundary.export');
     });
     //end GCG
 });

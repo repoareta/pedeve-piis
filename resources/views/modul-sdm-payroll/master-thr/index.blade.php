@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Master Beban Perusahaan
+                Tabel Master THR
             </h3>
         </div>
         <div class="card-toolbar">
@@ -97,9 +97,12 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
+                            <th>TAHUN</th>
                             <th>BULAN</th>
                             <th>PEGAWAI</th>
                             <th>AARD</th>
+                            <th>JUMLAH CICILAN</th>
+                            <th>CICILAN</th>
                             <th>NILAI</th>
                         </tr>
                     </thead>
@@ -121,7 +124,7 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-				url: "{{ route('modul_sdm_payroll.beban_perusahaan.index.json') }}",
+				url: "{{ route('modul_sdm_payroll.thr.index.json') }}",
 				data: function (d) {
 					d.no_pekerja = $('select[name=no_pekerja]').val();
 					d.bulan = $('select[name=bulan]').val();
@@ -130,9 +133,12 @@
 			},
 			columns: [
 				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
-				{data: 'bulan_tahun', name: 'bulan_tahun'},
+				{data: 'tahun', name: 'tahun'},
+				{data: 'bulan', name: 'bulan'},
 				{data: 'pekerja', name: 'pekerja'},
 				{data: 'aard', name: 'aard'},
+				{data: 'jmlcc', name: 'jmlcc', class: 'text-right'},
+				{data: 'ccl', name: 'ccl', class: 'text-right'},
 				{data: 'nilai', name: 'nilai', class: 'text-right'}
 			]
 		});
@@ -151,12 +157,7 @@
 					var nopek = $(this).val().split("-")[2];
 					var aard = $(this).val().split("-")[3];
 
-					var url = '{{ route("modul_sdm_payroll.beban_perusahaan.edit", [
-						":tahun",
-						":bulan",
-						":nopek",
-						":aard"
-					]) }}';
+					var url = '{{ route("modul_sdm_payroll.thr.edit", [":tahun", ":bulan", ":nopek", ":aard"]) }}';
 					// go to page edit
 					window.location.href = url
 					.replace(':tahun', tahun)
@@ -198,7 +199,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('modul_sdm_payroll.beban_perusahaan.delete') }}",
+								url: "{{ route('modul_sdm_payroll.thr.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {
@@ -229,7 +230,6 @@
 				swalAlertInit('hapus');
 			}
 		});
-
 	});
 </script>
 @endpush
