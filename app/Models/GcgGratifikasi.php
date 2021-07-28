@@ -18,6 +18,6 @@ class GcgGratifikasi extends Model
 
     public function userpdv()
     {
-        return $this->belongsTo('App\Models\Userpdv', 'nopeg', 'nopeg');
+        return $this->belongsTo('App\Models\UserPdv', 'nopeg', 'nopeg');
     }
 }
