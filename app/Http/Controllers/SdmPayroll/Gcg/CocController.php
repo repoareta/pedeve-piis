@@ -17,7 +17,7 @@ class CocController extends Controller
      */
     public function index()
     {
-        return view('modul-sdm-payroll.gcg.coc.lampiran_satu');
+        return view('modul-sdm-payroll.gcg.coc.lampiran-satu');
     }
 
     /**
@@ -27,7 +27,7 @@ class CocController extends Controller
      */
     public function lampiranDua()
     {
-        return view('modul-sdm-payroll.gcg.coc.lampiran_dua');
+        return view('modul-sdm-payroll.gcg.coc.lampiran-dua');
     }
 
     public function lampiranSatuPrint(Request $request, GcgCoc $gcgCoc)
@@ -42,7 +42,7 @@ class CocController extends Controller
 
         $pdf = DomPDF::loadview('modul-sdm-payroll.gcg.coc.lampiran-satu-print', compact('tempat', 'tanggal_efektif'));
 
-        return $pdf->stream('coc_lampiran_satu'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->stream('coc_lampiran_satu_'.date('Y-m-d H:i:s').'.pdf');
     }
 
     public function lampiranDuaPrint(Request $request, GcgCoc $gcgCoc)
@@ -58,6 +58,6 @@ class CocController extends Controller
 
         $pdf = DomPDF::loadview('modul-sdm-payroll.gcg.coc.lampiran-dua-print', compact('orang', 'tanggal_efektif'));
 
-        return $pdf->stream('coc_lampiran_dua'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->stream('coc_lampiran_dua_'.date('Y-m-d H:i:s').'.pdf');
     }
 }
