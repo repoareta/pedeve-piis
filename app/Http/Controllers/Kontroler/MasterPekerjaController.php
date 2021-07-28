@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Http\Request;
 
-class MasterPegawaiController extends Controller
+class MasterPekerjaController extends Controller
 {
     public function index()
     {

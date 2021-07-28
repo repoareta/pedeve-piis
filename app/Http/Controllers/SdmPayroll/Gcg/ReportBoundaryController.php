@@ -17,7 +17,7 @@ class ReportBoundaryController extends Controller
      */
     public function index()
     {
-        return view('gcg.report_boundary.index');
+        return view('modul-sdm-payroll.gcg.report_boundary.index');
     }
 
     public function export(Request $request)

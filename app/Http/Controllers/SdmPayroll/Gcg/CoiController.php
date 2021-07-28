@@ -24,7 +24,7 @@ class CoiController extends Controller
         ->where('kdjab', $jabatan_latest->kdjab)
         ->first();
 
-        return view('gcg.coi.lampiran_satu', compact('jabatan'));
+        return view('modul-sdm-payroll.gcg.coi.lampiran-satu', compact('jabatan'));
     }
 
     /**
@@ -39,7 +39,7 @@ class CoiController extends Controller
         ->where('kdjab', $jabatan_latest->kdjab)
         ->first();
 
-        return view('gcg.coi.lampiran_dua', compact('jabatan'));
+        return view('modul-sdm-payroll.gcg.coi.lampiran-dua', compact('jabatan'));
     }
 
     public function lampiranSatuPrint(Request $request, GcgCoi $gcgCoi)
@@ -58,7 +58,7 @@ class CoiController extends Controller
         $gcgCoi->nopeg = Auth::user()->nopeg;
         $gcgCoi->save();
 
-        $pdf = DomPDF::loadview('gcg.coi.lampiran_satu_print', compact(
+        $pdf = DomPDF::loadview('modul-sdm-payroll.gcg.coi.lampiran-satu-print', compact(
             'konflik',
             'tempat',
             'tanggal_efektif',
@@ -82,7 +82,7 @@ class CoiController extends Controller
         $gcgCoi->nopeg = Auth::user()->nopeg;
         $gcgCoi->save();
 
-        $pdf = DomPDF::loadview('gcg.coi.lampiran_dua_print', compact(
+        $pdf = DomPDF::loadview('modul-sdm-payroll.gcg.coi.lampiran-dua-print', compact(
             'tempat',
             'tanggal_efektif',
             'jabatan'

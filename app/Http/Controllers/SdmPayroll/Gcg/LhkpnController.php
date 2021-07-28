@@ -18,12 +18,12 @@ class LhkpnController extends Controller
     public function index()
     {
         $lhkpn_list = GcgLhkpn::all();
-        return view('gcg.lhkpn.index', compact('lhkpn_list'));
+        return view('modul-sdm-payroll.gcg.lhkpn.index', compact('lhkpn_list'));
     }
 
     public function create()
     {
-        return view('gcg.lhkpn.create');
+        return view('modul-sdm-payroll.gcg.lhkpn.create');
     }
 
     public function store(GcgLHKPNStore $request, GcgLhkpn $lhkpn)
@@ -44,6 +44,6 @@ class LhkpnController extends Controller
         $lhkpn->save();
 
         Alert::success('Tambah Laporan LHKPN', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('gcg.lhkpn.index');
+        return redirect()->route('modul_sdm_payroll.gcg.lhkpn.index');
     }
 }

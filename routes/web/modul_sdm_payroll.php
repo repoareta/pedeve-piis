@@ -34,7 +34,7 @@ use App\Http\Controllers\SdmPayroll\MasterPegawai\UpahTetapController;
 use App\Http\Controllers\SdmPayroll\MasterPegawai\UpahTetapPensiunController;
 use App\Http\Controllers\SdmPayroll\MasterThr\ThrController;
 use App\Http\Controllers\SdmPayroll\MasterUpah\UpahController;
-use App\Http\Controllers\SdmPayroll\PinjamanPegawaiController;
+use App\Http\Controllers\SdmPayroll\PinjamanPekerjaController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganInsentifController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganKoreksiGajiController;
 use App\Http\Controllers\SdmPayroll\Potongan\PotonganManualController;
@@ -400,15 +400,15 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
 
     //pinjaman pekerja
     Route::name('pinjaman_pekerja.')->group(function () {
-        Route::get('pinjaman-pekerja', [PinjamanPegawaiController::class, 'index'])->name('index');
-        Route::get('pinjaman-pekerja/index-json', [PinjamanPegawaiController::class, 'indexJson'])->name('index.json');
-        Route::post('pinjaman-pekerja/idpinjaman/json', [PinjamanPegawaiController::class, 'IdpinjamanJson'])->name('idpinjaman.json');
-        Route::get('pinjaman-pekerja/detail/json', [PinjamanPegawaiController::class, 'detailJson'])->name('detail.json');
-        Route::get('pinjaman-pekerja/create', [PinjamanPegawaiController::class, 'create'])->name('create');
-        Route::post('pinjaman-pekerja/store', [PinjamanPegawaiController::class, 'store'])->name('store');
-        Route::get('pinjaman-pekerja/edit/{no}', [PinjamanPegawaiController::class, 'edit'])->name('edit');
-        Route::post('pinjaman-pekerja/update', [PinjamanPegawaiController::class, 'update'])->name('update');
-        Route::delete('pinjaman-pekerja/delete', [PinjamanPegawaiController::class, 'delete'])->name('delete');
+        Route::get('pinjaman-pekerja', [PinjamanPekerjaController::class, 'index'])->name('index');
+        Route::get('pinjaman-pekerja/index-json', [PinjamanPekerjaController::class, 'indexJson'])->name('index.json');
+        Route::post('pinjaman-pekerja/idpinjaman/json', [PinjamanPekerjaController::class, 'IdpinjamanJson'])->name('idpinjaman.json');
+        Route::get('pinjaman-pekerja/detail/json', [PinjamanPekerjaController::class, 'detailJson'])->name('detail.json');
+        Route::get('pinjaman-pekerja/create', [PinjamanPekerjaController::class, 'create'])->name('create');
+        Route::post('pinjaman-pekerja/store', [PinjamanPekerjaController::class, 'store'])->name('store');
+        Route::get('pinjaman-pekerja/edit/{no}', [PinjamanPekerjaController::class, 'edit'])->name('edit');
+        Route::post('pinjaman-pekerja/update', [PinjamanPekerjaController::class, 'update'])->name('update');
+        Route::delete('pinjaman-pekerja/delete', [PinjamanPekerjaController::class, 'delete'])->name('delete');
     });
     //end Pinjaman Pekerja
         
