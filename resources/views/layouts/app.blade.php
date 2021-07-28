@@ -54,7 +54,11 @@
 					{{-- edit here start --}}
 					<div class="d-flex flex-column-fluid">
 						<!--begin::Container-->
-						<div class="container-fluid">
+						<div class="container-fluid" 
+							style="background-image: url({{ asset('images/logo-login.png') }});
+							background-size: 90% 100%;
+							background-repeat: no-repeat;
+							background-position: center center;">
 							@yield('content')
 						</div>
 					</div>
