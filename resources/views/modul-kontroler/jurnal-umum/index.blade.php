@@ -62,7 +62,7 @@
 
                     <label for="" class="col-form-label">TAHUN</label>
 					<div class="col-2">
-						<input class="form-control" type="text" name="tahun" id="tahun" value="{{ date('Y') }}">
+						<input class="form-control tahun" type="text" name="tahun" id="tahun" value="{{ date('Y') }}">
 					</div>
 
 					<div class="col-2">

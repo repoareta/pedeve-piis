@@ -61,7 +61,7 @@
                         
                     </div>
                         <div class="col-6" >
-                            <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                             <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                         </div>
                     </div>

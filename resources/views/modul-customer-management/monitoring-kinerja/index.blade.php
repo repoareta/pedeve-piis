@@ -81,7 +81,7 @@
 	
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<input class="form-control" type="text" name="tahun" value="{{$tahun}}" autocomplete="off">
+						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off">
 					</div>
 					<div class="col-2">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>

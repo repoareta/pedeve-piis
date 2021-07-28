@@ -91,7 +91,7 @@
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
-								<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 								<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>

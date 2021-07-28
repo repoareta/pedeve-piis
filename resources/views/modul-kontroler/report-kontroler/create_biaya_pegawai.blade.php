@@ -91,7 +91,7 @@
 				<div class="form-group row">
 				<label for="" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
 					<div class="col-10" >
-						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" autocomplete="off" required> 
+						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required> 
 					</div>
 					<div class="col-3" >
 						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
