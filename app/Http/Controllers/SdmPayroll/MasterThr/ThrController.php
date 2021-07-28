@@ -114,7 +114,7 @@ class ThrController extends Controller
         $thr->save();
 
         Alert::success('Tambah Master THR', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.thr.index');
+        return redirect()->route('modul_sdm_payroll.master_thr.index');
     }
 
     /**
@@ -167,7 +167,7 @@ class ThrController extends Controller
         $thr->save();
 
         Alert::success('Ubah Master THR', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.thr.index');
+        return redirect()->route('modul_sdm_payroll.master_thr.index');
     }
 
     /**

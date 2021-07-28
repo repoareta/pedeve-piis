@@ -114,7 +114,7 @@ class UpahController extends Controller
         $upah->save();
 
         Alert::success('Tambah Upah Master', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.upah.index');
+        return redirect()->route('modul_sdm_payroll.master_upah.index');
     }
 
     /**
@@ -167,7 +167,7 @@ class UpahController extends Controller
         $upah->save();
 
         Alert::success('Ubah Upah Master', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.upah.index');
+        return redirect()->route('modul_sdm_payroll.master_upah.index');
     }
 
     /**

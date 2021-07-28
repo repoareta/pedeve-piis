@@ -107,7 +107,7 @@ class BebanPerusahaanController extends Controller
         $beban_perusahaan->save();
 
         Alert::success('Tambah Master Beban Perusahaan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('beban_perusahaan.index');
+        return redirect()->route('modul_sdm_payroll.master_beban_perusahaan.index');
     }
 
     /**
@@ -159,7 +159,7 @@ class BebanPerusahaanController extends Controller
         $beban_perusahaan->save();
 
         Alert::success('Ubah Master Beban Perusahaan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('beban_perusahaan.index');
+        return redirect()->route('modul_sdm_payroll.master_beban_perusahaan.index');
     }
 
     /**

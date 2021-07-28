@@ -110,7 +110,7 @@ class HutangController extends Controller
         $hutang->save();
 
         Alert::success('Tambah Master Hutang', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.hutang.index');
+        return redirect()->route('modul_sdm_payroll.master_hutang.index');
     }
 
     /**
@@ -162,7 +162,7 @@ class HutangController extends Controller
         $hutang->save();
 
         Alert::success('Ubah Master Hutang', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.hutang.index');
+        return redirect()->route('modul_sdm_payroll.master_hutang.index');
     }
 
     /**

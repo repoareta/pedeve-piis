@@ -120,7 +120,7 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-				url: "{{ route('modul_sdm_payroll.upah.index.json') }}",
+				url: "{{ route('modul_sdm_payroll.master_upah.index.json') }}",
 				data: function (d) {
 					d.no_pekerja = $('select[name=no_pekerja]').val();
 					d.bulan = $('select[name=bulan]').val();
@@ -152,7 +152,7 @@
 					var nopek = $(this).val().split("-")[2];
 					var aard = $(this).val().split("-")[3];
 
-					var url = '{{ route("modul_sdm_payroll.upah.edit", [":tahun", ":bulan", ":nopek", ":aard"]) }}';
+					var url = '{{ route("modul_sdm_payroll.master_upah.edit", [":tahun", ":bulan", ":nopek", ":aard"]) }}';
 					// go to page edit
 					window.location.href = url
 					.replace(':tahun', tahun)
@@ -194,7 +194,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('modul_sdm_payroll.upah.delete') }}",
+								url: "{{ route('modul_sdm_payroll.master_upah.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {

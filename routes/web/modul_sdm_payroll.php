@@ -256,62 +256,62 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     // Master Payroll START
     // Master Upah START
     // Route assigned name "upah.index"...
-    Route::name('upah.')->group(function () {
-        Route::get('upah', [UpahController::class, 'index'])->name('index');
-        Route::get('upah/index-json', [UpahController::class, 'indexJson'])->name('index.json');
-        Route::get('upah/create', [UpahController::class, 'create'])->name('create');
-        Route::post('upah/store', [UpahController::class, 'store'])->name('store');
-        Route::get('upah/edit/{tahun}/{bulan}/{nopek}/{aard}', [UpahController::class, 'edit'])->name('edit');
-        Route::post('upah/update/{tahun}/{bulan}/{nopek}/{aard}', [UpahController::class, 'update'])->name('update');
-        Route::delete('upah/delete', [UpahController::class, 'delete'])->name('delete');
+    Route::name('master_upah.')->group(function () {
+        Route::get('master-upah', [UpahController::class, 'index'])->name('index');
+        Route::get('master-upah/index-json', [UpahController::class, 'indexJson'])->name('index.json');
+        Route::get('master-upah/create', [UpahController::class, 'create'])->name('create');
+        Route::post('master-upah/store', [UpahController::class, 'store'])->name('store');
+        Route::get('master-upah/edit/{tahun}/{bulan}/{nopek}/{aard}', [UpahController::class, 'edit'])->name('edit');
+        Route::post('master-upah/update/{tahun}/{bulan}/{nopek}/{aard}', [UpahController::class, 'update'])->name('update');
+        Route::delete('master-upah/delete', [UpahController::class, 'delete'])->name('delete');
     });
     // Master Upah END
     
     // Master Insentif START
-    Route::name('insentif.')->group(function () {
-        Route::get('insentif', [InsentifController::class, 'index'])->name('index');
-        Route::get('insentif/index-json', [InsentifController::class, 'indexJson'])->name('index.json');
-        Route::get('insentif/create', [InsentifController::class, 'create'])->name('create');
-        Route::post('insentif/store', [InsentifController::class, 'store'])->name('store');
-        Route::get('insentif/edit/{tahun}/{bulan}/{nopek}/{aard}', [InsentifController::class, 'edit'])->name('edit');
-        Route::post('insentif/update/{tahun}/{bulan}/{nopek}/{aard}', [InsentifController::class, 'update'])->name('update');
-        Route::delete('insentif/delete', [InsentifController::class, 'delete'])->name('delete');
+    Route::name('master_insentif.')->group(function () {
+        Route::get('master-insentif', [InsentifController::class, 'index'])->name('index');
+        Route::get('master-insentif/index-json', [InsentifController::class, 'indexJson'])->name('index.json');
+        Route::get('master-insentif/create', [InsentifController::class, 'create'])->name('create');
+        Route::post('master-insentif/store', [InsentifController::class, 'store'])->name('store');
+        Route::get('master-insentif/edit/{tahun}/{bulan}/{nopek}/{aard}', [InsentifController::class, 'edit'])->name('edit');
+        Route::post('master-insentif/update/{tahun}/{bulan}/{nopek}/{aard}', [InsentifController::class, 'update'])->name('update');
+        Route::delete('master-insentif/delete', [InsentifController::class, 'delete'])->name('delete');
     });
     // Master Insentif END
 
     // Master Hutang START
-    Route::name('hutang.')->group(function () {
-        Route::get('hutang', [HutangController::class, 'index'])->name('index');
-        Route::get('hutang/index-json', [HutangController::class, 'indexJson'])->name('index.json');
-        Route::get('hutang/create', [HutangController::class, 'create'])->name('create');
-        Route::post('hutang/store', [HutangController::class, 'store'])->name('store');
-        Route::get('hutang/edit/{tahun}/{bulan}/{nopek}/{aard}', [HutangController::class, 'edit'])->name('edit');
-        Route::post('hutang/update/{tahun}/{bulan}/{nopek}/{aard}', [HutangController::class, 'update'])->name('update');
-        Route::delete('hutang/delete', [HutangController::class, 'delete'])->name('delete');
+    Route::name('master_hutang.')->group(function () {
+        Route::get('master-hutang', [HutangController::class, 'index'])->name('index');
+        Route::get('master-hutang/index-json', [HutangController::class, 'indexJson'])->name('index.json');
+        Route::get('master-hutang/create', [HutangController::class, 'create'])->name('create');
+        Route::post('master-hutang/store', [HutangController::class, 'store'])->name('store');
+        Route::get('master-hutang/edit/{tahun}/{bulan}/{nopek}/{aard}', [HutangController::class, 'edit'])->name('edit');
+        Route::post('master-hutang/update/{tahun}/{bulan}/{nopek}/{aard}', [HutangController::class, 'update'])->name('update');
+        Route::delete('master-hutang/delete', [HutangController::class, 'delete'])->name('delete');
     });
     // Master Hutang END
 
     // Master Beban Perusahaan START
-    Route::name('beban_perusahaan.')->group(function () {
-        Route::get('beban-perusahaan', [BebanPerusahaanController::class, 'index'])->name('index');
-        Route::get('beban-perusahaan/index-json', [BebanPerusahaanController::class, 'indexJson'])->name('index.json');
-        Route::get('beban-perusahaan/create', [BebanPerusahaanController::class, 'create'])->name('create');
-        Route::post('beban-perusahaan/store', [BebanPerusahaanController::class, 'store'])->name('store');
-        Route::get('beban-perusahaan/edit/{tahun}/{bulan}/{nopek}/{aard}', [BebanPerusahaanController::class, 'edit'])->name('edit');
-        Route::post('beban-perusahaan/update/{tahun}/{bulan}/{nopek}/{aard}', [BebanPerusahaanController::class, 'update'])->name('update');
-        Route::delete('beban-perusahaan/delete', [BebanPerusahaanController::class, 'delete'])->name('delete');
+    Route::name('master_beban_perusahaan.')->group(function () {
+        Route::get('master-beban-perusahaan', [BebanPerusahaanController::class, 'index'])->name('index');
+        Route::get('master-beban-perusahaan/index-json', [BebanPerusahaanController::class, 'indexJson'])->name('index.json');
+        Route::get('master-beban-perusahaan/create', [BebanPerusahaanController::class, 'create'])->name('create');
+        Route::post('master-beban-perusahaan/store', [BebanPerusahaanController::class, 'store'])->name('store');
+        Route::get('master-beban-perusahaan/edit/{tahun}/{bulan}/{nopek}/{aard}', [BebanPerusahaanController::class, 'edit'])->name('edit');
+        Route::post('master-beban-perusahaan/update/{tahun}/{bulan}/{nopek}/{aard}', [BebanPerusahaanController::class, 'update'])->name('update');
+        Route::delete('master-beban-perusahaan/delete', [BebanPerusahaanController::class, 'delete'])->name('delete');
     });
     // Master Beban Perusahaan END
 
     // Master THR START
-    Route::name('thr.')->group(function () {
-        Route::get('thr', [ThrController::class, 'index'])->name('index');
-        Route::get('thr/index-json', [ThrController::class, 'indexJson'])->name('index.json');
-        Route::get('thr/create', [ThrController::class, 'create'])->name('create');
-        Route::post('thr/store', [ThrController::class, 'store'])->name('store');
-        Route::get('thr/edit/{tahun}/{bulan}/{nopek}/{aard}', [ThrController::class, 'edit'])->name('edit');
-        Route::post('thr/update/{tahun}/{bulan}/{nopek}/{aard}', [ThrController::class, 'update'])->name('update');
-        Route::delete('thr/delete', [ThrController::class, 'delete'])->name('delete');
+    Route::name('master_thr.')->group(function () {
+        Route::get('master-thr', [ThrController::class, 'index'])->name('index');
+        Route::get('master-thr/index-json', [ThrController::class, 'indexJson'])->name('index.json');
+        Route::get('master-thr/create', [ThrController::class, 'create'])->name('create');
+        Route::post('master-thr/store', [ThrController::class, 'store'])->name('store');
+        Route::get('master-thr/edit/{tahun}/{bulan}/{nopek}/{aard}', [ThrController::class, 'edit'])->name('edit');
+        Route::post('master-thr/update/{tahun}/{bulan}/{nopek}/{aard}', [ThrController::class, 'update'])->name('update');
+        Route::delete('master-thr/delete', [ThrController::class, 'delete'])->name('delete');
     });
     // Master THR END
     // Master Payroll END

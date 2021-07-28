@@ -116,7 +116,7 @@ class InsentifController extends Controller
         $insentif->save();
 
         Alert::success('Tambah Master Insentif', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.insentif.index');
+        return redirect()->route('modul_sdm_payroll.master_insentif.index');
     }
 
     /**
@@ -177,7 +177,7 @@ class InsentifController extends Controller
         $insentif->save();
 
         Alert::success('Ubah Master Insentif', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.insentif.index');
+        return redirect()->route('modul_sdm_payroll.master_insentif.index');
     }
 
     /**

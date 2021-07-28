@@ -361,7 +361,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.upah.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_upah.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -369,7 +369,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.insentif.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_insentif.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -377,7 +377,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.hutang.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_hutang.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -385,7 +385,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.beban_perusahaan.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_beban_perusahaan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -393,7 +393,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_sdm_payroll.thr.index') }}" class="menu-link">
+                            <a href="{{ route('modul_sdm_payroll.master_thr.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

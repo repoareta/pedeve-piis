@@ -122,7 +122,7 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-				url: "{{ route('modul_sdm_payroll.insentif.index.json') }}",
+				url: "{{ route('modul_sdm_payroll.master_insentif.index.json') }}",
 				data: function (d) {
 					d.no_pekerja = $('select[name=no_pekerja]').val();
 					d.bulan = $('select[name=bulan]').val();
@@ -153,7 +153,7 @@
 					var nopek = $(this).val().split("-")[2];
 					var aard = $(this).val().split("-")[3];
 
-					var url = '{{ route("modul_sdm_payroll.insentif.edit", [
+					var url = '{{ route("modul_sdm_payroll.master_insentif.edit", [
 						":tahun",
 						":bulan",
 						":nopek",
@@ -200,7 +200,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('modul_sdm_payroll.insentif.delete') }}",
+								url: "{{ route('modul_sdm_payroll.master_insentif.delete') }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {

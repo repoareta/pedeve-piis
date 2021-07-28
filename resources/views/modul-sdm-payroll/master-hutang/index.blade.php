@@ -122,7 +122,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ajax      : {
-            url: "{{ route('modul_sdm_payroll.hutang.index.json') }}",
+            url: "{{ route('modul_sdm_payroll.master_hutang.index.json') }}",
             data: function (d) {
                 d.no_pekerja = $('select[name=no_pekerja]').val();
                 d.bulan = $('select[name=bulan]').val();
@@ -153,7 +153,7 @@ $(document).ready(function () {
                 var nopek = $(this).val().split("-")[2];
                 var aard = $(this).val().split("-")[3];
 
-                var url = '{{ route("modul_sdm_payroll.hutang.edit", [
+                var url = '{{ route("modul_sdm_payroll.master_hutang.edit", [
                     ":tahun",
                     ":bulan",
                     ":nopek",
@@ -200,7 +200,7 @@ $(document).ready(function () {
                 .then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: "{{ route('modul_sdm_payroll.hutang.delete') }}",
+                            url: "{{ route('modul_sdm_payroll.master_hutang.delete') }}",
                             type: 'DELETE',
                             dataType: 'json',
                             data: {
