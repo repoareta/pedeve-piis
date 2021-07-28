@@ -132,9 +132,9 @@
 				{data: 'bulan_tahun', name: 'bulan_tahun', class:'no-wrap'},
 				{data: 'pekerja', name: 'pekerja'},
 				{data: 'aard', name: 'aard'},
-				{data: 'ccl', name: 'ccl'},
-				{data: 'jmlcc', name: 'jmlcc', class:'no-wrap'},
-				{data: 'nilai', name: 'nilai', class:'no-wrap'}
+				{data: 'ccl', name: 'ccl', class:'text-right'},
+				{data: 'jmlcc', name: 'jmlcc', class:'no-wrap text-right'},
+				{data: 'nilai', name: 'nilai', class:'no-wrap text-right'}
 			]
 		});
 
