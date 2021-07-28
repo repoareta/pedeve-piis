@@ -67,10 +67,10 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="1" type="radio" name="status" checked> Opening
-                            <span></span>
+                    <div class="radio-inline">
+                        <label class="radio">
+                            <input value="1" type="radio" name="status" checked>
+                            <span></span> Opening
                         </label>
                     </div>
                 </div>
@@ -83,10 +83,10 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="2" type="radio" name="status"> Stoping
-                            <span></span>
+                    <div class="radio-inline">
+                        <label class="radio">
+                            <input value="2" type="radio" name="status">
+                            <span></span> Stoping
                         </label>
                     </div>
                 </div>
@@ -99,10 +99,10 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="3" type="radio" name="status"> Closing
-                            <span></span>
+                    <div class="radio-inline">
+                        <label class="radio">
+                            <input value="3" type="radio" name="status">
+                            <span></span> Closing
                         </label>
                     </div>
                 </div>

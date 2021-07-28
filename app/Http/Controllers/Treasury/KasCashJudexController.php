@@ -7,7 +7,6 @@ use App\Models\ViewCashFlowPerCJReport;
 use App\Models\ViewD2KasBank;
 use App\Models\ViewReportCashFlow;
 use App\Models\VKas;
-use Barryvdh\Snappy\Facades\SnappyPdf;
 use DomPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -70,21 +69,22 @@ class KasCashJudexController extends Controller
                 $bulan = $data->bulan;
                 $tahun = $data->tahun;
             }
-            $pdf = PDF::loadview("kas_bank.$export_d2_kas_bank", compact(
+            
+            $pdf = PDF::loadview("modul-treasury.kas-bank.$export_d2_kas_bank", compact(
                 'data_list',
                 'tahun'
             ))
                 ->setPaper('a4', 'landscape')
                 ->setOption('footer-right', 'Halaman [page] dari [toPage]')
                 ->setOption('footer-font-size', 7)
-                ->setOption('header-html', view("kas_bank.$export_d2_kas_bank_header", compact('bulan', 'tahun')))
+                ->setOption('header-html', view("modul-treasury.kas-bank.$export_d2_kas_bank_header", compact('bulan', 'tahun')))
                 ->setOption('margin-top', 30)
                 ->setOption('margin-bottom', 10);
 
             return $pdf->stream('rekap_d2_kas_bank_' . date('Y-m-d H:i:s') . '.pdf');
         } else {
             Alert::info("Tidak ditemukan data yang di cari", 'Failed')->persistent(true);
-            return redirect()->route('kas_bank.create1');
+            return redirect()->route('modul-treasury.kas-bank.create1');
         }
     }
 
@@ -98,7 +98,7 @@ class KasCashJudexController extends Controller
     {
         $data_list = DB::select("select a.docno ,a.voucher ,a.rekapdate ,substring(a.thnbln from 1  for 4 ) as tahun,substring(a.thnbln  from 5  for 2 ) as bulan,b.lineno ,b.keterangan ,a.jk ,a.store ,a.ci ,a.rate ,a.voucher ,b.account ,coalesce(b.totprice,1)*CASE WHEN a.rate=0 THEN 1 WHEN a.rate IS NULL THEN 1  ELSE a.rate END as totprice ,b.area,b.lokasi ,b.bagian ,b.jb ,b.pk ,b.cj,a.rekap from kasdoc a join kasline b on a.docno=b.docno where  a.thnbln='202001' AND (coalesce(a.paid,'N') = 'Y' ) and coalesce(b.penutup,'N')<>'Y'");
         if (!empty($data_list)) {
-            $pdf = DomPDF::loadview('modul-treasury.kas-bank.export_report2', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            $pdf = PDF::loadview('modul-treasury.kas-bank.export_report2', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -108,7 +108,7 @@ class KasCashJudexController extends Controller
             return $pdf->stream();
         } else {
             Alert::info("Tidak ditemukan data yang di cari ", 'Failed')->persistent(true);
-            return redirect()->route('kas_bank.cetak2');
+            return redirect()->route('kas_bank.create2');
         }
     }
 
@@ -121,19 +121,18 @@ class KasCashJudexController extends Controller
     public function cetak3(Request $request)
     {
         $data_list = DB::select("select a.* from vkas a join kasdoc b on a.docno=b.docno where a.tahun='$request->tahun' and bulan='$request->bulan'");
-
         if (!empty($data_list)) {
-            $pdf = SnappyPdf::loadview('modul-treasury.kas-bank.export_report3', compact('request', 'data_list'))
+            $pdf = PDF::loadview('modul-treasury.kas-bank.export_report3',compact('request', 'data_list'))
                 ->setPaper('a4', 'portrait')
                 ->setOption('footer-right', 'Halaman [page] dari [toPage]')
                 ->setOption('footer-font-size', 10)
-                ->setOption('header-html', view('modul-treasury.kas-bank.export_report3_pdf_header', compact('request')))
+                ->setOption('header-html', view('modul-treasury.kas-bank.export_report3_pdf_header',compact('request')))
                 ->setOption('margin-top', 30)
                 ->setOption('margin-left', 5)
                 ->setOption('margin-right', 5)
                 ->setOption('margin-bottom', 10);
 
-            return $pdf->stream('Rincian Kas Bank Per Cash Judex_' . date('Y-m-d H:i:s') . '.pdf');
+            return $pdf->stream('Rincian Kas Bank Per Cash Judex_'.date('Y-m-d H:i:s').'.pdf');
         } else {
             Alert::info("Tidak ditemukan data yang di cari", 'Failed')->persistent(true);
             return redirect()->route('kas_bank.create3');
@@ -152,7 +151,7 @@ class KasCashJudexController extends Controller
         $thnbln = $request->tahun . '' . $request->bulan;
         $data_list = DB::select("select a.docno ,a.voucher ,a.rekapdate ,substring(a.thnbln from 1  for 4 ) as tahun,substring(a.thnbln  from 5  for 2 ) as bulan,b.lineno ,b.keterangan ,a.jk ,a.store ,a.ci ,a.rate ,a.voucher ,b.account ,coalesce(b.totprice,1)*CASE WHEN a.rate=0 THEN 1 WHEN a.rate IS NULL THEN 1  ELSE a.rate END as totprice ,b.area,b.lokasi ,b.bagian ,b.jb ,b.pk ,b.cj,a.rekap from kasdoc a join kasline b on a.docno=b.docno where  a.thnbln='$thnbln' and b.cj='$request->cj' AND (coalesce(a.paid,'N') = 'Y' ) and coalesce(b.penutup,'N')<>'Y'");
         if (!empty($data_list)) {
-            $pdf = DomPDF::loadview('modul-treasury.kas-bank.export_report4', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            $pdf = PDF::loadview('modul-treasury.kas-bank.export_report4', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -178,7 +177,7 @@ class KasCashJudexController extends Controller
 
         $data_list = VKas::where('cj', $request->cj)->where('tahun', $request->tahun)->where('bulan', $request->bulan)->get();
         if ($data_list->count() > 0) {
-            $pdf = DomPDF::loadview('modul-treasury.kas-bank.export_report5', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            $pdf = PDF::loadview('modul-treasury.kas-bank.export_report5', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -202,7 +201,7 @@ class KasCashJudexController extends Controller
     {
         $data_list = Vkas::where('cj', $request->cj)->where('tahun', $request->tahun)->where('bulan', $request->bulan)->get();
         if ($data_list->count() > 0) {
-            $pdf = DomPDF::loadview('modul-treasury.kas-bank.export_report6', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            $pdf = PDF::loadview('modul-treasury.kas-bank.export_report6', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -357,7 +356,7 @@ class KasCashJudexController extends Controller
         }
 
         // return default PDF
-        $pdf = DomPDF::loadview('modul-treasury.kas-bank.export_report7', compact(
+        $pdf = PDF::loadview('modul-treasury.kas-bank.export_report7', compact(
             'data_list',
             'tahun',
             'bulan',
@@ -393,7 +392,7 @@ class KasCashJudexController extends Controller
 
         $data_list = null;
 
-        $pdf = DomPDF::loadview('modul-treasury.kas-bank.export_report8', compact(
+        $pdf = PDF::loadview('modul-treasury.kas-bank.export_report8', compact(
             'data_list',
             'tahun',
             'mulai',
@@ -471,7 +470,7 @@ class KasCashJudexController extends Controller
         }
         $data_list = DB::select("select * from v_repcashjudex where $yyy order by docno asc");
         if (!empty($data_list)) {
-            $pdf = SnappyPdf::loadview('modul-treasury.kas-bank.export_cash_judex_pdf', compact('data_list', 'request'))
+            $pdf = PDF::loadview('modul-treasury.kas-bank.export_cash_judex_pdf', compact('data_list', 'request'))
                 ->setPaper('a4', 'portrait')
                 ->setOption('footer-right', 'Halaman [page] dari [toPage]')
                 ->setOption('footer-font-size', 10)

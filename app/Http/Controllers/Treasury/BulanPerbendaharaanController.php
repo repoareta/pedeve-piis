@@ -54,15 +54,6 @@ class BulanPerbendaharaanController extends Controller
                 }
                 return $data_buka;
             })
-            ->addColumn('data_stop', function ($data) {
-                if ($data->stopdate <> "") {
-                    $tgl = date_create($data->stopdate);
-                    $data_stop = date_format($tgl, 'd/m/Y');
-                } else {
-                    $data_stop = "";
-                }
-                return $data_stop;
-            })
             ->addColumn('data_tutup', function ($data) {
                 if ($data->closedate <> "") {
                     $tgl = date_create($data->closedate);

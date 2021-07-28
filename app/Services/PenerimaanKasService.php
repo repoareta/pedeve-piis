@@ -231,6 +231,7 @@ class PenerimaanKasService
                 DB::raw('kodestore as kode_store'),
                 DB::raw('namabank as nama_bank'),
                 DB::raw('norekening as nomor_rekening'),
+                '*'
             ])
             ->orderBy('kodestore', 'asc')
             ->get();

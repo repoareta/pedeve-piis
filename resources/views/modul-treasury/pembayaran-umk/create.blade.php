@@ -12,7 +12,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Pembayaran UMK
+                Tambah Permintaan Pembayaran UMK
             </h3>
         </div>
     </div>
