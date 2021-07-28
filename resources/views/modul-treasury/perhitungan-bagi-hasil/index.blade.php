@@ -36,7 +36,7 @@
     <div class="card-body">
         <form class="kt-form" method="post" action="{{ route('perhitungan_bagihasil.index.search')}}" >
 			{{csrf_field()}}
-            <div class="form-group row col-12">	
+            <div class="form-group row">	
                 <label for="" class="col-form-label">Tanggal</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{$date}}" size="10" maxlength="10" onkeypress="return hanyaAngka(event)" autocomplete='off'>

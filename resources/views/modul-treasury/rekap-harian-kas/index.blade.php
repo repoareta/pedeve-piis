@@ -41,7 +41,7 @@
 
     <div class="card-body">
         <form class="kt-form" id="search-form" >
-            <div class="form-group row col-12">
+            <div class="form-group row">
                 <label for="" class="col-form-label">No. Kas</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="nokas" value="" size="6" maxlength="6" onkeypress="return hanyaAngka(event)" autocomplete='off'>

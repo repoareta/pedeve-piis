@@ -117,9 +117,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
             // P UANG MUKA KERJA DETAIL END
         });
     });
-    //END UANG MUKA KERJA
-    
-    
+    //END UANG MUKA KERJA    
 
     // Permintaan Bayar
     // Route assigned name "permintaan-bayar.index"...

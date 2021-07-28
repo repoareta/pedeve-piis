@@ -29,7 +29,7 @@
     <div class="card-body">
         <div class="col-12">
 			<form class="kt-form" action="{{ route('modul_cm.pencapaian_kinerja.search') }}" method="GET">
-				<div class="form-group row col-12">
+				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
 						<?php 

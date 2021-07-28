@@ -44,7 +44,7 @@
     </div>
     <div class="card-body">
         <form class="kt-form" id="search-form" >
-            <div class="form-group row col-12">
+            <div class="form-group row">
                 <label for="" class="col-form-label">No. Permintaan</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="permintaan" value="" size="18" maxlength="18">

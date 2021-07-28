@@ -42,7 +42,7 @@
 			<form class="kt-form" id="search-form" method="POST">
 				<div class="form-group row">
 					<label for="" class="col-form-label">No. Pegawai</label>
-					<div class="col-3">
+					<div class="col-4">
 						<select class="form-control select2" name="no_pekerja" id="no_pekerja">
 							<option value="">- Pilih Pegawai -</option>
 							@foreach ($pegawai_list as $pegawai)

@@ -118,10 +118,28 @@
             reverse: true
         });
 
+        $('.select2').select2().on('change', function() {
+            $(this).valid();
+        });
+
+        $('#kt_table tbody').on( 'click', 'tr', function (event) {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            } else {
+                $('#kt_table tbody tr.selected').removeClass('selected');
+                // $(':radio', this).trigger('click');
+                if (event.target.type !== 'radio') {
+                    $(':radio', this).trigger('click');
+                }
+                $(this).addClass('selected');
+            }
+        });
+
         (function ($, DataTable) {
             // Datatable global configuration
             $.extend(true, DataTable.defaults, {
                 ordering: false,
+                searching : false,
                 language: {
                     // url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Indonesian.json",
                     "sEmptyTable":	 "Tidak ada data yang tersedia pada tabel ini",
@@ -286,24 +304,3 @@
 </script>
 
 @stack('page-scripts')
-
-<script type="text/javascript">
-$(document).ready(function () {
-    $('.select2').select2().on('change', function() {
-        $(this).valid();
-    });
-
-    $('#kt_table tbody').on( 'click', 'tr', function (event) {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-        } else {
-            $('#kt_table tbody tr.selected').removeClass('selected');
-            // $(':radio', this).trigger('click');
-            if (event.target.type !== 'radio') {
-                $(':radio', this).trigger('click');
-            }
-            $(this).addClass('selected');
-        }
-    });
-});
-</script>

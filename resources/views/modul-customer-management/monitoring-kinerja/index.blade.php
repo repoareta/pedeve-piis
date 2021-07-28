@@ -39,7 +39,7 @@
     <div class="card-body">
         <div class="col-12">
 			<form class="kt-form" id="search-form" >
-				<div class="form-group row col-12">
+				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
 						<?php 

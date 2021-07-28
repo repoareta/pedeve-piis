@@ -45,7 +45,7 @@
 	<div class="kt-portlet__body">
 		<div class="">
 			<form class="kt-form" id="search-form" >
-				<div class="form-group row col-12">
+				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
 						<select name="bulan" class="form-control selectpicker" data-live-search="true">
