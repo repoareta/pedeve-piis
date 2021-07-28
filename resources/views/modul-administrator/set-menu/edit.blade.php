@@ -67,14 +67,8 @@
                 scrollX   : true,
                 processing: true,
                 serverSide: true,
-                searching: true,
-                lengthChange: true,
-                pageLength: 200,                
                 ajax: {
                     url : '{!! url()->current() !!}'
-                },
-                language: {
-                    processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},

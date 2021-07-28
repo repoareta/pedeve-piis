@@ -53,11 +53,11 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label text-right">Setuju<span style="color:red;">*</span></label>
                 <div class="col-4">
-                    <input class="form-control" type="text" value="" name="setuju" id="setuju" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Setuju Harus Diisi..')" oninput="setCustomValidity('')" autocomplete='off'>
+                    <input class="form-control" type="text" value="" name="setuju" id="setuju" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Setuju Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>
                 <label class="col-2 col-form-label text-right">Dibuat Oleh<span style="color:red;">*</span></label>
                 <div class="col-4" >
-                    <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Dibuat Oleh Harus Diisi..')" oninput="setCustomValidity('')" autocomplete='off'>
+                    <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Dibuat Oleh Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -175,13 +175,5 @@
 		})
 	});
 });
-
-function hanyaAngka(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-
-    return true;
-}
 </script>
 @endpush

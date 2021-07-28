@@ -59,11 +59,6 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			searching: true,
-			lengthChange: true,
-			language: {
-				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-			},
 			ajax: {
                 url: "{{ route('opening_balance.index.json') }}",
                 type : "POST",
@@ -101,12 +96,5 @@
 			}
 		});
     });
-
-    function hanyaAngka(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-        return true;
-    }
 </script>
 @endpush

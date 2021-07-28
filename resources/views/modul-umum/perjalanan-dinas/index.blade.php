@@ -92,7 +92,6 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			searching : false,
 			ajax      : {
 				url: "{{ route('modul_umum.perjalanan_dinas.index.json') }}",
 				data: function (d) {

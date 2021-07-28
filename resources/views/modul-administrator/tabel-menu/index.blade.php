@@ -72,12 +72,6 @@
                 scrollX   : true,
                 processing: true,
                 serverSide: true,
-                searching: true,
-                lengthChange: true,
-                pageLength: 200,
-                language: {
-                    processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-                },
                 ajax      : {
                             url: "{{ route('modul_administrator.tabel_menu.index.json') }}",
                             type : "POST",

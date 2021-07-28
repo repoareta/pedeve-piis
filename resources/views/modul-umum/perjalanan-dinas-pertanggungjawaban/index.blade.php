@@ -89,10 +89,6 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			searching : false,
-			language: {
-            	processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-			},
 			ajax      : {
 				url: "{{ route('perjalanan_dinas.pertanggungjawaban.index.json') }}",
 				data: function (d) {

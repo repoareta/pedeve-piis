@@ -105,19 +105,8 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            searching: false,
-            lengthChange: false,
             pageLength: 100,
-            ordering: false,
             'rowsGroup': [1],
-            language: {
-                processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-            },
-            // createdRow: function(row, data, dataIndex) {
-            //     if(data.bulan === null){
-            //         $(row).addClass('table-light');
-            //     }
-            // },
             ajax: {
                 url: "{{ route('modul_cm.rkap_realisasi.index.json') }}",
                 data: function (d) {

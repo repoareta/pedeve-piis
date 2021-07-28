@@ -91,12 +91,12 @@
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
-								<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-								<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+								<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
+								<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -282,7 +282,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value=""  name="rincian" autocomplete='off' required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')">
+							<input  class="form-control" type="text" value=""  name="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')">
 						</div>
 					</div>
 									
@@ -342,19 +342,19 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Debet</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="debet" size="16" maxlength="16" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+							<input  class="form-control" type="text" value="" name="debet" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kredit</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="kredit" size="16" maxlength="16" onkeypress="return hanyaAngka(event)"  autocomplete='off'>
+							<input  class="form-control" type="text" value="" name="kredit" size="16" maxlength="16"  autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete='off' onkeypress="return hanyaAngka(event)" >
+							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off" >
 						</div>
 					</div>
 
@@ -399,7 +399,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value=""  name="rincian" id="rincian" autocomplete='off' required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')">
+							<input  class="form-control" type="text" value=""  name="rincian" id="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')">
 						</div>
 					</div>
 									
@@ -459,19 +459,19 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Debet</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="debet" id="debet" size="16" maxlength="16" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+							<input  class="form-control" type="text" value="" name="debet" id="debet" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kredit</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="kredit" id="kredit" size="16" maxlength="16" onkeypress="return hanyaAngka(event)"  autocomplete='off'>
+							<input  class="form-control" type="text" value="" name="kredit" id="kredit" size="16" maxlength="16"  autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete='off' onkeypress="return hanyaAngka(event)" >
+							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off" >
 						</div>
 					</div>
 
@@ -736,16 +736,6 @@ $('#editRow').on('click', function(e) {
 			swalAlertInit('hapus');
 		}
 	});
-
-
-		
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
 </script>
 
 @endsection

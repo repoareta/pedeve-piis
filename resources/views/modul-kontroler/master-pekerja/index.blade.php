@@ -70,11 +70,6 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			searching: true,
-			lengthChange: true,
-			language: {
-			processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-			},
 			ajax      : "{{ route('modul_kontroler.master_pekerja.index.json') }}",
 			columns: [
 				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},

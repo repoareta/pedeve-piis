@@ -64,11 +64,6 @@ $(document).ready(function () {
         scrollX   : true,
         processing: true,
         serverSide: true,
-        searching: true,
-        lengthChange: true,
-        language: {
-            processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-        },
         ajax: {
             url: "{{ route('modul_kontroler.cash_judex.index.json') }}",
             type : "POST",

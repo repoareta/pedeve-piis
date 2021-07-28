@@ -91,10 +91,10 @@
 						</select>
 				</div>
 					<div class="col-4" >
-						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required> 
+						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" autocomplete="off" required> 
 					</div>
 					<div class="col-2" >
-						<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
+						<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" autocomplete="off" required>
 					</div>
 				</div>
 				
@@ -156,12 +156,5 @@ $(document).ready(function () {
 		format   : 'dd MM yyyy'
 	});
 });
-		function hanyaAngka(evt) {
-			  var charCode = (evt.which) ? evt.which : event.keyCode
-			   if (charCode > 31 && (charCode < 48 || charCode > 57))
-	 
-				return false;
-			  return true;
-			}
 </script>
 @endsection

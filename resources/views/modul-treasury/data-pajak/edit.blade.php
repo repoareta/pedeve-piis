@@ -35,8 +35,8 @@
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                         <div class="col-6" >
-                            <input class="form-control" type="text" name="tahun" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed" value="{{ $tahun }}">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                            <input class="form-control" type="text" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed" value="{{ $tahun }}">
+                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                         </div>
                     </div>
     
@@ -71,13 +71,13 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Nilai</label>
                         <div class="col-10">
-                            <input class="form-control" name="nilai" type="text" value="{{ number_format($nilai ,2 ,'.' ,'') }}" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete='off'>
+                            <input class="form-control" name="nilai" type="text" value="{{ number_format($nilai ,2 ,'.' ,'') }}" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pajak</label>
                         <div class="col-10">
-                            <input class="form-control" name="pajak" type="text" value="{{ number_format($pajak, 2,'.' ,'') }}" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete='off'>
+                            <input class="form-control" name="pajak" type="text" value="{{ number_format($pajak, 2,'.' ,'') }}" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
                         </div>
                     </div>
                     <div class="kt-form__actions">
@@ -128,14 +128,5 @@
             return false;
         });
     });
-    
-    function hanyaAngka(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            return false;
-        }
-
-        return true;
-    }
 </script>
 @endpush

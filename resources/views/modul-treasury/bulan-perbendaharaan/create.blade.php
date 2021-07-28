@@ -46,12 +46,12 @@
                 </div>
                 <div class="col-4">
                     <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4"
-                        onkeypress="return hanyaAngka(event)" autocomplete='off' required
+                        autocomplete="off" required
                         oninvalid="this.setCustomValidity('Tahun Harus Diisi...')" oninput="setCustomValidity('')">
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2"
-                        onkeypress="return hanyaAngka(event)" autocomplete='off' required
+                        autocomplete="off" required
                         oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <label for="" class="col-2 col-form-label text-right">Keterangan<span style="color:red;">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="" name="keterangan" size="35" maxlength="35"
-                        title="Keterangan" autocomplete='off' required
+                        title="Keterangan" autocomplete="off" required
                         oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <label for="" class="col-2 col-form-label text-right">Tanggal Opening</label>
                 <div class="col-5">
                     <input class="form-control" type="text" value="" name="tanggal" id="tanggal" size="11" maxlength="11"
-                        title="Tanggal Opening" autocomplete='off'>
+                        title="Tanggal Opening" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -93,7 +93,7 @@
                 <label for="" class="col-2 col-form-label text-right">Tanggal Stoping</label>
                 <div class="col-5">
                     <input class="form-control" type="text" value="" name="tanggal2" id="tanggal2" size="11" maxlength="11"
-                        title="Tanggal Stoping" autocomplete='off'>
+                        title="Tanggal Stoping" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -109,7 +109,7 @@
                 <label for="" class="col-2 col-form-label text-right">Tanggal Closing</label>
                 <div class="col-5">
                     <input class="form-control" type="text" value="" name="tanggal3" id="tanggal3" size="11" maxlength="11"
-                        title="Tanggal Closing" autocomplete='off'>
+                        title="Tanggal Closing" autocomplete="off">
                 </div>
             </div>
 
@@ -189,13 +189,5 @@
 			format   : 'dd-mm-yyyy'
 		});
 	});
-		
-    function hanyaAngka(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-
-        return true;
-    }
 </script>
 @endpush

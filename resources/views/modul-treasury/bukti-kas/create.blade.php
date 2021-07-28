@@ -91,11 +91,11 @@
                         </div>
                         <label class="col-1 col-form-label text-right">No Bukti</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="no_bukti" id="no_bukti" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="no_bukti" id="no_bukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label text-right">No Ver</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}"  id="nover" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -110,7 +110,7 @@
                         <label class="col-2 col-form-label text-right">Sejumlah</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="nilai" id="nilai" value="0" size="16" maxlength="16" autocomplete="off" readonly>
-                            <input class="form-control" type="hidden" name="iklan" id="iklan" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="hidden" name="iklan" id="iklan" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>
                     <div class="form-group row">

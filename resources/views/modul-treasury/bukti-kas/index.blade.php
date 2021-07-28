@@ -57,7 +57,7 @@
                     <div class="form-group row">
                         <label for="" class="col-form-label">No. Bukti</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="bukti" value="" size="18" maxlength="18" autocomplete='off'>
+                            <input class="form-control" type="text" name="bukti" value="" size="18" maxlength="18" autocomplete="off">
                         </div>
                         <label for="" class="col-form-label">Bulan</label>
                         <div class="col-2">
@@ -74,7 +74,7 @@
 
                         <label for="" class="col-form-label">Tahun</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" size="4" maxlength="4" autocomplete='off'>
+                            <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
                         </div>
                         <div class="col-2">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -186,15 +186,10 @@
 
     $(document).ready(function () {
         var keenTable = $('#kt_table').DataTable({
-                processing: true,
-                serverSide: true,
-                searching: false,
-                lengthChange: false,
-                pageLength: 50,
-                scrollX: true,
-                language: {
-                processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-			},
+            processing: true,
+            serverSide: true,
+            pageLength: 50,
+            scrollX: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.search') }}",
 				type : "POST",

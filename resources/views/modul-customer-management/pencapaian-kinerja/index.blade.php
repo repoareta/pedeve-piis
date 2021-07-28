@@ -71,7 +71,7 @@
 	
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<input class="form-control" type="text" name="tahun" value="{{$tahun}}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+						<input class="form-control" type="text" name="tahun" value="{{$tahun}}" autocomplete="off">
 					</div>
 					<label for="" class="col-form-label">Perusahaan</label>
 					<div class="col-4">

@@ -56,7 +56,7 @@
                 </div>
                 <label class="col-xl-1 col-lg-1 col-form-label">Tahun</label>
                 <div class="col-lg-3 col-xl-3">                    
-                    <input class="form-control" type="text" name="tahun" value="{{ date('Y') }}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>                    
+                    <input class="form-control" type="text" name="tahun" value="{{ date('Y') }}" autocomplete="off">                    
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -89,52 +89,31 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-            
-            var t = $('#kt_table').DataTable({
-                scrollX   : true,
-                processing: true,
-                serverSide: true,
-                searching: true,
-                lengthChange: true,
-                pageLength: 200,
-                language: {
-                    processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-                },
-                ajax      : {
-                            url: "{{ route('modul_administrator.log.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            data: function (d) {
-                                d.login_month = $('select[name=bulan]').val();
-                                d.login_year = $('input[name=tahun]').val();
-                            }
-                        },
-                columns: [
-                    {data: 'userid', name: 'userid'},
-                    {data: 'usernm', name: 'usernm'},
-                    {data: 'login', name: 'login'},
-                    {data: 'logout', name: 'logout'},
-                    {data: 'terminal', name: 'terminal'},
-                ]
-            });
-
-            $('#search-form').on('submit', function(e) {
-                t.draw();
-                e.preventDefault();
-            });
-
-            function hanyaAngka(evt) {
-                var charCode = (evt.which) ? evt.which : event.keyCode
-                if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-                return false;
-                return true;
-            }
-    
+        var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('modul_administrator.log.index.json') }}",
+                data: function (d) {
+                    d.login_month = $('select[name=bulan]').val();
+                    d.login_year = $('input[name=tahun]').val();
+                }
+            },
+            columns: [
+                {data: 'userid', name: 'userid'},
+                {data: 'usernm', name: 'usernm'},
+                {data: 'login', name: 'login'},
+                {data: 'logout', name: 'logout'},
+                {data: 'terminal', name: 'terminal'},
+            ]
         });
-    
-    </script>
+
+        $('#search-form').on('submit', function(e) {
+            t.draw();
+            e.preventDefault();
+        });
+    });
+
+</script>
 @endpush

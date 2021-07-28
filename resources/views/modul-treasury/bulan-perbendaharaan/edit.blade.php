@@ -32,16 +32,16 @@
                         <input class="form-control" type="text" value="{{$bulan}}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                         <div class="col-4" >
-                            <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <div class="col-2" >
-                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" onkeypress="return hanyaAngka(event)" autocomplete='off' required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
+                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
                         </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete='off' required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
+                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                 </div>
                 <label for="" class="col-2 col-form-label">Tanggal Opening</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tanggal}}" name="tanggal" id="tanggal"  size="11" maxlength="11" title="Tanggal Opening" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{$tanggal}}" name="tanggal" id="tanggal"  size="11" maxlength="11" title="Tanggal Opening" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -72,7 +72,7 @@
                 </div>
                 <label for="" class="col-2 col-form-label">Tanggal Stoping</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tanggal2}}" name="tanggal2" id="tanggal2" size="11" maxlength="11" title="Tanggal Stoping" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{$tanggal2}}" name="tanggal2" id="tanggal2" size="11" maxlength="11" title="Tanggal Stoping" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -87,7 +87,7 @@
                 </div>
                 <label for="" class="col-2 col-form-label">Tanggal Closing</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tanggal3}}" name="tanggal3" id="tanggal3"  size="11" maxlength="11" title="Tanggal Closing" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{$tanggal3}}" name="tanggal3" id="tanggal3"  size="11" maxlength="11" title="Tanggal Closing" autocomplete="off">
                 </div>
             </div>
             
@@ -157,13 +157,5 @@
 			format   : 'dd-mm-yyyy'
 		});
 	});
-		
-    function hanyaAngka(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-
-        return true;
-    }
 </script>
 @endpush

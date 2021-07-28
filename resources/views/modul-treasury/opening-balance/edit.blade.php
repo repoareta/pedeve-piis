@@ -22,7 +22,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
                 <div class="col-8" >
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
+                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
                 </div>
             </div>
             
@@ -102,13 +102,5 @@
                 format   : 'yyyy-mm-dd'
             });
         });
-            
-        function hanyaAngka(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-            return false;
-            return true;
-        }
     </script>
 @endpush

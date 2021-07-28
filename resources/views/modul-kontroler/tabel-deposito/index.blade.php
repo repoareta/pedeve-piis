@@ -67,7 +67,7 @@
 	
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<input class="form-control" type="text" name="tahun" value="{{$tahun}}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+						<input class="form-control" type="text" name="tahun" value="{{$tahun}}" autocomplete="off">
 					</div>
 					<div class="col-2">
 						<button type="submit" class="btn btn-brand"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -112,14 +112,8 @@ $(document).ready(function () {
 				scrollX   : true,
 				processing: true,
 				serverSide: true,
-				searching: false,
-				lengthChange: false,
-				pageLength: 200,
 				scrollY:        "500px",
 				scrollCollapse: true,
-				language: {
-				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-				},
 				ajax      : {
 					url: "{{route('tabel_deposito.index.json')}}",
 					type : "POST",
@@ -187,14 +181,6 @@ $(document).ready(function () {
 			
 		});
 });
-
-function hanyaAngka(evt) {
-	var charCode = (evt.which) ? evt.which : event.keyCode
-	if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-	return false;
-	return true;
-}
 
 </script>
 @endsection

@@ -49,8 +49,8 @@
                 
             </div>
                 <div class="col-6" >
-                    <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" id="tahun" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                 </div>
             </div>
 
@@ -100,19 +100,19 @@
                 @if($mp == 'P')
                 <label class="col-1 col-form-label">No Bukti</label>
                 <div class="col-2" >
-                    <input class="form-control" type="text" name="nobukti" value="{{$data->voucher}}"  id="nobukti" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nobukti" value="{{$data->voucher}}"  id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 <label class="col-1 col-form-label">No Ver</label>
                 <div class="col-2" >
-                    <input class="form-control" type="text" name="nover" value="{{$data->mrs_no}}"  id="nover" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nover" value="{{$data->mrs_no}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 @else
                 <label class="col-1 col-form-label">No Bukti</label>
                 <div class="col-5" >
-                    <input class="form-control" type="text" name="nobukti" value="{{$data->voucher}}"  id="nobukti" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nobukti" value="{{$data->voucher}}"  id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 <div class="col-1" >
-                    <input class="form-control" type="hidden" name="nover" value="{{$data->mrs_no}}"  id="nover" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" name="nover" value="{{$data->mrs_no}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 @endif
             </div>
@@ -121,32 +121,32 @@
                 <label class="col-2 col-form-label">
                 @if($mp == "M") Dari @else Kepada @endif<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php } else { ?> Kepada <?php } ?> Harus Diisi..')" oninput="setCustomValidity('')" autocomplete='off'>
+                    <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php } else { ?> Kepada <?php } ?> Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Sejumlah<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text"  value="{{number_format($data->nilai_dok,0,',','.')}}" size="16" maxlength="16" readonly required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" oninput="setCustomValidity('')" autocomplete='off' onkeypress="return hanyaAngka(event)">
-                    <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{number_format($count,0,'','')}}" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" oninput="setCustomValidity('')" autocomplete='off' onkeypress="return hanyaAngka(event)">
+                    <input class="form-control" type="text"  value="{{number_format($data->nilai_dok,0,',','.')}}" size="16" maxlength="16" readonly required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
+                    <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{number_format($count,0,'','')}}" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Catatan 1</label>
                 <div class="col-10">
-                    <textarea class="form-control" type="text" name="ket1" id="ket1" autocomplete='off'>{{$data->ket1}}</textarea>
+                    <textarea class="form-control" type="text" name="ket1" id="ket1" autocomplete="off">{{$data->ket1}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Catatan 2</label>
                 <div class="col-10">
-                    <textarea class="form-control" type="text" name="ket2" id="ket2" autocomplete='off'>{{$data->ket2}}</textarea>
+                    <textarea class="form-control" type="text" name="ket2" id="ket2" autocomplete="off">{{$data->ket2}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Catatan 3</label>
                 <div class="col-10">
-                    <textarea class="form-control" type="text" name="ket3" id="ket3" autocomplete='off'>{{$data->ket3}}</textarea>
+                    <textarea class="form-control" type="text" name="ket3" id="ket3" autocomplete="off">{{$data->ket3}}</textarea>
                 </div>
             </div>
             @endforeach
@@ -339,7 +339,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span style="color:red;">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="number" value="" name="nilai" size="25" maxlength="25"  required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete='off'>
+							<input  class="form-control" type="number" value="" name="nilai" size="25" maxlength="25"  required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete="off">
 						</div>
 					</div>
 
@@ -467,7 +467,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span style="color:red;">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete='off'>
+							<input  class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete="off">
 						</div>
 					</div>
 
@@ -944,13 +944,5 @@ $('#form-edit-detail').submit(function(){
 		format   : 'yyyymm'
 	});
 });
-
-function hanyaAngka(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-
-    return true;
-}
 </script>
 @endpush

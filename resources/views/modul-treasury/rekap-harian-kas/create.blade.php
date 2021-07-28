@@ -25,7 +25,7 @@
                 <label class="col-2 col-form-label">Tanggal Rekap</label>
                 <div class="col-10">
                     <input class="form-control" type="hidden" name="add" value="add">
-                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d'))}}" size="11" maxlength="11"  autocomplete='off' required oninvalid="this.setCustomValidity('Tanggal Rekap Harus Diisi..')" onchange="setCustomValidity('')">
+                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d'))}}" size="11" maxlength="11"  autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Rekap Harus Diisi..')" onchange="setCustomValidity('')">
                 </div>
             </div>
             <div class="form-group row">
@@ -47,7 +47,7 @@
                         
                         
                     </select>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -186,12 +186,5 @@ var jk = $('#jk').val();
         format   : 'yyyy-mm-dd'
     });
 });
-function hanyaAngka(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57))
-        return false;
-
-    return true;
-}
 </script>
 @endpush

@@ -113,8 +113,8 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            searching: false,
-            lengthChange: false,
+            
+            
             ajax: {
                 url: "{{ route('modul_sdm_payroll.lembur.index.json') }}",
                 data: function (d) {

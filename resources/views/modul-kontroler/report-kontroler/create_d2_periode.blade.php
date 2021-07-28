@@ -107,7 +107,7 @@
 				<div class="form-group row">
 				<label for="" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
 					<div class="col-10" >
-						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required> 
+						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" autocomplete="off" required> 
 					</div>
 				</div>
 				
@@ -169,12 +169,5 @@ $(document).ready(function () {
 		format   : 'dd MM yyyy'
 	});
 });
-		function hanyaAngka(evt) {
-			  var charCode = (evt.which) ? evt.which : event.keyCode
-			   if (charCode > 31 && (charCode < 48 || charCode > 57))
-	 
-				return false;
-			  return true;
-			}
 </script>
 @endsection

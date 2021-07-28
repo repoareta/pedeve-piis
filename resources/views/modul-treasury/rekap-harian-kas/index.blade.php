@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="" class="col-form-label">No. Kas</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="nokas" value="" size="6" maxlength="6" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+                    <input class="form-control" type="text" name="nokas" value="" size="6" maxlength="6" autocomplete="off">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -80,11 +80,6 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			searching: false,
-			lengthChange: false,
-			language: {
-				processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
-			},
 			ajax      : {
 						url: "{{ route('rekap_harian_kas.index.json') }}",
 						type : "POST",
@@ -199,12 +194,5 @@
 			}
 		});
 });
-function hanyaAngka(evt) {
-	var charCode = (evt.which) ? evt.which : event.keyCode
-	if (charCode > 31 && (charCode < 48 || charCode > 57))
-	    return false;
-
-	return true;
-}
 </script>
 @endpush

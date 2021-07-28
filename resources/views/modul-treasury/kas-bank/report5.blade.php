@@ -55,9 +55,9 @@
                     </select>
                 </div>
                 <div class="col-5" >
-                    <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
-                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}"  id="tanggal" size="15" maxlength="15" autocomplete='off'>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" autocomplete="off" required>
+                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}"  id="tanggal" size="15" maxlength="15" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -86,12 +86,5 @@ $(document).ready(function () {
 		format   : 'dd MM yyyy'
 	});
 });
-		function hanyaAngka(evt) {
-			  var charCode = (evt.which) ? evt.which : event.keyCode
-			   if (charCode > 31 && (charCode < 48 || charCode > 57))
-	 
-				return false;
-			  return true;
-			}
 </script>
 @endpush

@@ -69,119 +69,117 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-	$(document).ready(function () {
-        var t = $('#kt_table').DataTable({
-                scrollX   : true,
-                processing: true,
-                serverSide: true,
-                lengthChange: true,
-                ordering: false,
-                ajax: {
-                    url: "{{ route('modul_sdm_payroll.pinjaman_pekerja.index.json') }}",
-                    data: function (d) {
-                        d.nopek = $('input[name=nopek]').val();
-                    }
-                },
-                columns: [
-                    {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
-                    {data: 'id_pinjaman', name: 'id_pinjaman'},
-                    {data: 'nopek', name: 'nopek'},
-                    {data: 'namapegawai', name: 'namapegawai'},
-                    {data: 'mulai', name: 'mulai'},
-                    {data: 'sampai', name: 'sampai'},
-                    {data: 'tenor', name: 'tenor'},
-                    {data: 'angsuran', name: 'angsuran', class: 'text-right'},
-                    {data: 'jml_pinjaman', name: 'jml_pinjaman', class: 'text-right'},
-                    {data: 'curramount', name: 'curramount', class: 'text-right'},
-                    {data: 'no_kontrak', name: 'no_kontrak'},
-                    {data: 'cair', name: 'cair', class: 'text-center'},
-                    {data: 'lunas', name: 'lunas', class: 'text-center'},
-                ]
-                
-        });
-
-        $('#search-form').on('submit', function(e) {
-            t.draw();
-            e.preventDefault();
-        });
-
-        //edit 
-        $('#editRow').click(function(e) {
-            e.preventDefault();
-
-            if($('input[class=btn-radio]').is(':checked')) { 
-                $("input[class=btn-radio]:checked").each(function(){
-                    var id = $(this).attr('id_pinjaman');
-                    location.replace("{{url('sdm/pinjaman_pekerja/edit')}}"+ '/' +id);
-                });
-            } else {
-                swalAlertInit('ubah');
-            }
-        });
-
-        //delete
-        $('#deleteRow').click(function(e) {
-			e.preventDefault();
-			if($('input[class=btn-radio]').is(':checked')) { 
-				$("input[class=btn-radio]:checked").each(function() {
-					var id_pinjaman = $(this).attr('id_pinjaman');
-					var cair = $(this).attr('cair');
-					// delete stuff
-					if(cair == 'Y'){
-						Swal.fire({
-									type  : 'info',
-									title : 'Status cair tidak bisa dihapus.',
-									text  : 'Info',
-								});
-					}else{
-						const swalWithBootstrapButtons = Swal.mixin({
-							customClass: {
-								confirmButton: 'btn btn-primary',
-								cancelButton: 'btn btn-danger'
-							},
-								buttonsStyling: false
-							})
-							swalWithBootstrapButtons.fire({
-								title: "Data yang akan dihapus?",
-								text: "ID Pinjaman : " + id_pinjaman,
-								type: 'warning',
-								showCancelButton: true,
-								reverseButtons: true,
-								confirmButtonText: 'Ya, hapus',
-								cancelButtonText: 'Batalkan'
-							})
-							.then((result) => {
-							if (result.value) {
-								$.ajax({
-									url: "{{ route('modul_sdm_payroll.pinjaman_pekerja.delete') }}",
-									type: 'DELETE',
-									dataType: 'json',
-									data: {
-										"id_pinjaman": id_pinjaman,
-										"_token": "{{ csrf_token() }}",
-									},
-									success: function () {
-										Swal.fire({
-											type  : 'success',
-											title : 'Hapus ID Pinjaman ' + id_pinjaman,
-											text  : 'Berhasil',
-											timer : 2000
-										}).then(function() {
-											location.reload();
-										});
-									},
-									error: function () {
-										alert("Terjadi kesalahan, coba lagi nanti");
-									}
-								});
-							}
-						});
-					}
-				});
-			} else {
-				swalAlertInit('hapus');
-			}
-		});
+$(document).ready(function () {
+    var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('modul_sdm_payroll.pinjaman_pekerja.index.json') }}",
+                data: function (d) {
+                    d.nopek = $('input[name=nopek]').val();
+                }
+            },
+            columns: [
+                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'id_pinjaman', name: 'id_pinjaman'},
+                {data: 'nopek', name: 'nopek'},
+                {data: 'namapegawai', name: 'namapegawai'},
+                {data: 'mulai', name: 'mulai'},
+                {data: 'sampai', name: 'sampai'},
+                {data: 'tenor', name: 'tenor'},
+                {data: 'angsuran', name: 'angsuran', class: 'text-right'},
+                {data: 'jml_pinjaman', name: 'jml_pinjaman', class: 'text-right'},
+                {data: 'curramount', name: 'curramount', class: 'text-right'},
+                {data: 'no_kontrak', name: 'no_kontrak'},
+                {data: 'cair', name: 'cair', class: 'text-center'},
+                {data: 'lunas', name: 'lunas', class: 'text-center'},
+            ]
+            
     });
+
+    $('#search-form').on('submit', function(e) {
+        t.draw();
+        e.preventDefault();
+    });
+
+    //edit 
+    $('#editRow').click(function(e) {
+        e.preventDefault();
+
+        if($('input[class=btn-radio]').is(':checked')) { 
+            $("input[class=btn-radio]:checked").each(function(){
+                var id = $(this).attr('id_pinjaman');
+                location.replace("{{url('sdm/pinjaman_pekerja/edit')}}"+ '/' +id);
+            });
+        } else {
+            swalAlertInit('ubah');
+        }
+    });
+
+    //delete
+    $('#deleteRow').click(function(e) {
+        e.preventDefault();
+        if($('input[class=btn-radio]').is(':checked')) { 
+            $("input[class=btn-radio]:checked").each(function() {
+                var id_pinjaman = $(this).attr('id_pinjaman');
+                var cair = $(this).attr('cair');
+                // delete stuff
+                if(cair == 'Y'){
+                    Swal.fire({
+                                type  : 'info',
+                                title : 'Status cair tidak bisa dihapus.',
+                                text  : 'Info',
+                            });
+                }else{
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-primary',
+                            cancelButton: 'btn btn-danger'
+                        },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire({
+                            title: "Data yang akan dihapus?",
+                            text: "ID Pinjaman : " + id_pinjaman,
+                            type: 'warning',
+                            showCancelButton: true,
+                            reverseButtons: true,
+                            confirmButtonText: 'Ya, hapus',
+                            cancelButtonText: 'Batalkan'
+                        })
+                        .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_sdm_payroll.pinjaman_pekerja.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "id_pinjaman": id_pinjaman,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : 'Hapus ID Pinjaman ' + id_pinjaman,
+                                        text  : 'Berhasil',
+                                        timer : 2000
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        } else {
+            swalAlertInit('hapus');
+        }
+    });
+});
 </script>
 @endpush

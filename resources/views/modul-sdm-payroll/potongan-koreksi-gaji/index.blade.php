@@ -115,8 +115,8 @@ $(document).ready(function () {
         scrollX: true,
         processing: true,
         serverSide: true,
-        searching: false,
-        lengthChange: false,
+        
+        
         ajax: {
             url: "{{ route('modul_sdm_payroll.potongan_koreksi_gaji.index.json') }}",
             data: function (d) {

@@ -79,16 +79,16 @@
 						</select>
 				</div>
 					<div class="col-5" >
-						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required> 
+						<input class="form-control" type="text" value="{{$tahun}}"   name="tahun" autocomplete="off" required> 
 					</div>
 					<div class="col-2" >
-						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete='off'>
+						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="dari-input" class="col-2 col-form-label">Kurs<span style="color:red;">*</span></label>
 					<div class="col-10">
-						<input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15" autocomplete='off' onkeypress="return hanyaAngka(event)" required oninvalid="this.setCustomValidity('Kurs Harus Diisi..')" oninput="setCustomValidity('')">				
+						<input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Kurs Harus Diisi..')" oninput="setCustomValidity('')">				
 					</div>
 				</div>
 				{{-- <div class="form-group row">
@@ -131,12 +131,5 @@ $(document).ready(function () {
 		format   : 'dd MM yyyy'
 	});
 });
-		function hanyaAngka(evt) {
-			  var charCode = (evt.which) ? evt.which : event.keyCode
-			   if (charCode > 31 && (charCode < 48 || charCode > 57))
-	 
-				return false;
-			  return true;
-			}
 </script>
 @endsection

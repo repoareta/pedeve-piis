@@ -46,8 +46,8 @@
                         
                     </div>
                         <div class="col-6" >
-                            <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" id="tahun" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                            <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                         </div>
                     </div>
 
@@ -95,11 +95,11 @@
                         </div>
                         <label class="col-1 col-form-label">No Bukti</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="nobukti" value=""  id="nobukti" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="nobukti" value=""  id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label">No Ver</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="nover" value="{{$nover}}"  id="nover" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="nover" value="{{$nover}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>
 
@@ -113,8 +113,8 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Sejumlah</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="nilai" id="nilai" value="0" size="16" maxlength="16" autocomplete='off' readonly>
-                            <input class="form-control" type="hidden" name="iklan" value=""  id="iklan" size="4" maxlength="4" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="nilai" id="nilai" value="0" size="16" maxlength="16" autocomplete="off" readonly>
+                            <input class="form-control" type="hidden" name="iklan" value=""  id="iklan" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -385,13 +385,6 @@ $('#nilai').keyup(function(){
 		}
 	});
 });
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
 		var nilai = document.getElementById('nilai');
 		nilai.addEventListener('keyup', function(e){
 			// tambahkan 'Rp.' pada saat form di ketik

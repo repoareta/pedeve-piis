@@ -69,11 +69,11 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
+                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" autocomplete="off" required>
                 </div>
                 <div class="col-2">
-                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete='off'>
-                    <input class="form-control" type="hidden" value="" name="suplesi" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
+                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
+                    <input class="form-control" type="hidden" value="" name="suplesi" autocomplete="off" required>
                 </div>
             </div>
 
@@ -133,12 +133,5 @@
        format   : 'dd MM yyyy'
    });
 });
-       function hanyaAngka(evt) {
-             var charCode = (evt.which) ? evt.which : event.keyCode
-              if (charCode > 31 && (charCode < 48 || charCode > 57))
-    
-               return false;
-             return true;
-           }
 </script>
 @endpush
