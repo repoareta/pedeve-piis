@@ -57,9 +57,9 @@ class PermintaanBayarController extends Controller
         }
 
         return datatables()->of($data)
-       ->addColumn('nilai', function ($data) {
-           return number_format($data->nilai, 2, '.', ',');
-       })
+        ->addColumn('nilai', function ($data) {
+            return currency_format($data->nilai);
+        })
         ->addColumn('radio', function ($data) {
             if ($data->app_pbd == 'Y') {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio" ><span></span></label>';

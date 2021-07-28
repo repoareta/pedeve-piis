@@ -43,43 +43,45 @@
         </div>
     </div>
     <div class="card-body">
-        <form class="kt-form" id="search-form" >
-            <div class="form-group row">
-                <label for="" class="col-form-label">No. Permintaan</label>
-                <div class="col-2">
-                    <input class="form-control" type="text" name="permintaan" value="" size="18" maxlength="18">
-                </div>
-                <label for="" class="col-form-label">Bulan</label>
-                <div class="col-2">
-                    <select name="bulan" class="form-control selectpicker" data-live-search="true">
-                        <option value="" >-- Pilih --</option>
-                        <option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
-                        <option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
-                        <option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
-                        <option value="04" <?php if($bulan  == '04' ) echo 'selected' ; ?>>April</option>
-                        <option value="05" <?php if($bulan  == '05' ) echo 'selected' ; ?>>Mei</option>
-                        <option value="06" <?php if($bulan  == '06' ) echo 'selected' ; ?>>Juni</option>
-                        <option value="07" <?php if($bulan  == '07' ) echo 'selected' ; ?>>Juli</option>
-                        <option value="08" <?php if($bulan  == '08' ) echo 'selected' ; ?>>Agustus</option>
-                        <option value="09" <?php if($bulan  == '09' ) echo 'selected' ; ?>>September</option>
-                        <option value="10" <?php if($bulan  == '10' ) echo 'selected' ; ?>>Oktober</option>
-                        <option value="11" <?php if($bulan  == '11' ) echo 'selected' ; ?>>November</option>
-                        <option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
-                    </select>
-                </div>
-
-                <label for="" class="col-form-label">Tahun</label>
-                <div class="col-2">
-                    <input class="form-control" type="text" name="tahun" value="{{$tahun}}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
-                </div>
-            </div>
-        </form>
+        <div class="col-12">
+			<form class="kt-form" id="search-form" >
+				<div class="form-group row">
+					<label for="" class="col-form-label">No. Permintaan</label>
+					<div class="col-2">
+						<input class="form-control" type="text" name="permintaan" value="" size="18" maxlength="18">
+					</div>
+					<label for="" class="col-form-label">Bulan</label>
+					<div class="col-2">
+						<select name="bulan" class="form-control selectpicker" data-live-search="true">
+							<option value="" >-- Pilih --</option>
+							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
+							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
+							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
+							<option value="04" <?php if($bulan  == '04' ) echo 'selected' ; ?>>April</option>
+							<option value="05" <?php if($bulan  == '05' ) echo 'selected' ; ?>>Mei</option>
+							<option value="06" <?php if($bulan  == '06' ) echo 'selected' ; ?>>Juni</option>
+							<option value="07" <?php if($bulan  == '07' ) echo 'selected' ; ?>>Juli</option>
+							<option value="08" <?php if($bulan  == '08' ) echo 'selected' ; ?>>Agustus</option>
+							<option value="09" <?php if($bulan  == '09' ) echo 'selected' ; ?>>September</option>
+							<option value="10" <?php if($bulan  == '10' ) echo 'selected' ; ?>>Oktober</option>
+							<option value="11" <?php if($bulan  == '11' ) echo 'selected' ; ?>>November</option>
+							<option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
+						</select>
+					</div>
+	
+					<label for="" class="col-form-label">Tahun</label>
+					<div class="col-2">
+						<input class="form-control" type="text" name="tahun" value="{{$tahun}}" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off'>
+					</div>
+					<div class="col-2">
+						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+					</div>
+				</div>
+			</form>
+		</div>
 
         <!--begin: Datatable -->
-		<table class="table table-bordered" id="table-permintaan" width="100%">
+		<table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th></th>
@@ -106,7 +108,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	
-	var t = $('#table-permintaan').DataTable({
+	var t = $('#kt_table').DataTable({
 		scrollX   : true,
 		processing: true,
 		serverSide: true,
@@ -117,12 +119,7 @@ $(document).ready(function () {
 			processing: '<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i> <br> Loading...'
 		},
 		ajax: {
-			url: "{{route('modul_umum.permintaan_bayar.index.json')}}",
-			type : "POST",
-			dataType : "JSON",
-			headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
+			url: "{{ route('modul_umum.permintaan_bayar.index.json') }}",
 			data: function (d) {
 				d.permintaan = $('input[name=permintaan]').val();
 				d.bulan = $('select[name=bulan]').val();
@@ -142,29 +139,12 @@ $(document).ready(function () {
 			
 		
 	});
+
 	$('#search-form').on('submit', function(e) {
 		t.draw();
 		e.preventDefault();
 	});
-
-	$('#table-permintaan tbody').on( 'click', 'tr', function (event) {
-		if ( $(this).hasClass('selected') ) {
-			$(this).removeClass('selected');
-		} else {
-			t.$('tr.selected').removeClass('selected');if (event.target.type !== 'radio') {
-				$(':radio', this).trigger('click');
-			}
-			$(this).addClass('selected');
-		}
-	} );
 	
-	$('#show-data').on('click', function(e) {
-	e.preventDefault();
-		location.replace("{{ route('modul_umum.permintaan_bayar.index') }}");
-
-	});
-	
-
 	//report permintaan bayar
 	$('#reportRow').on('click', function(e) {
 		e.preventDefault();

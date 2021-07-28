@@ -123,7 +123,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
     // Route assigned name "permintaan-bayar.index"...
     Route::name('permintaan_bayar.')->group(function () {
         Route::get('permintaan-bayar', [PermintaanBayarController::class, 'index'])->name('index');
-        Route::post('permintaan-bayar/search-index', [PermintaanBayarController::class, 'indexJson'])->name('index.json');
+        Route::get('permintaan-bayar/index-json', [PermintaanBayarController::class, 'indexJson'])->name('index.json');
         Route::get('permintaan-bayar/search/account', 'UangMukaKerjaController@searchAccount')->name('search.account');
         Route::get('permintaan-bayar/search/bagian', 'UangMukaKerjaController@searchBagian')->name('search.bagian');
         Route::get('permintaan-bayar/search/jb', 'UangMukaKerjaController@searchJb')->name('search.jb');

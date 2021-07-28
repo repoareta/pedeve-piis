@@ -13,7 +13,7 @@
 				<!--begin::Header Nav-->
 				<ul class="menu-nav">
 					<div class="header-logo menu-item mr-5">
-						<a href="#">
+						<a href="{{ route('dashboard.index') }}">
 							<img alt="Logo" height="40px" src="{{ asset('images/pertamina.png') }}">
 						</a>
 					</div>
