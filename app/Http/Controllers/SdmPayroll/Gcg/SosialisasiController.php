@@ -18,12 +18,12 @@ class SosialisasiController extends Controller
     public function index()
     {
         $sosialisasi_list = GcgSosialisasi::all();
-        return view('gcg.sosialisasi.index', compact('sosialisasi_list'));
+        return view('modul-sdm-payroll.gcg.sosialisasi.index', compact('sosialisasi_list'));
     }
 
     public function create()
     {
-        return view('gcg.sosialisasi.create');
+        return view('modul-sdm-payroll.gcg.sosialisasi.create');
     }
 
     public function store(GcgSosialisasiStore $request, GcgSosialisasi $sosialisasi)
@@ -43,6 +43,6 @@ class SosialisasiController extends Controller
         $sosialisasi->save();
 
         Alert::success('Tambah Sosialisasi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('gcg.sosialisasi.index');
+        return redirect()->route('modul_sdm_payroll.gcg.sosialisasi.index');
     }
 }

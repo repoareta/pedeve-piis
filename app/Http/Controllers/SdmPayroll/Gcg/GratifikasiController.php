@@ -25,12 +25,12 @@ class GratifikasiController extends Controller
     public function index()
     {
         $gratifikasi_list = GcgGratifikasi::all();
-        return view('gcg.gratifikasi.index', compact('gratifikasi_list'));
+        return view('modul-sdm-payroll.gcg.gratifikasi.index', compact('gratifikasi_list'));
     }
 
     public function penerimaan()
     {
-        return view('gcg.gratifikasi.penerimaan');
+        return view('modul-sdm-payroll.gcg.gratifikasi.penerimaan');
     }
 
     public function penerimaanStore(GcgPenerimaanStore $request, GcgGratifikasi $penerimaan)
@@ -48,12 +48,12 @@ class GratifikasiController extends Controller
         $penerimaan->save();
 
         Alert::success('Simpan Data Penerimaan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('gcg.gratifikasi.index');
+        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
     }
 
     public function pemberian()
     {
-        return view('gcg.gratifikasi.pemberian');
+        return view('modul-sdm-payroll.gcg.gratifikasi.pemberian');
     }
 
     public function pemberianStore(GcgPemberianStore $request, GcgGratifikasi $pemberian)
@@ -71,12 +71,12 @@ class GratifikasiController extends Controller
         $pemberian->save();
 
         Alert::success('Simpan Data Pemberian', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('gcg.gratifikasi.index');
+        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
     }
 
     public function permintaan()
     {
-        return view('gcg.gratifikasi.permintaan');
+        return view('modul-sdm-payroll.gcg.gratifikasi.permintaan');
     }
 
     public function permintaanStore(GcgPermintaanStore $request, GcgGratifikasi $permintaan)
@@ -94,7 +94,7 @@ class GratifikasiController extends Controller
         $permintaan->save();
 
         Alert::success('Simpan Data Permintaan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('gcg.gratifikasi.index');
+        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
     }
 
     public function reportPersonal()
@@ -104,7 +104,7 @@ class GratifikasiController extends Controller
         ->orderBy('year', 'desc')
         ->get();
 
-        return view('gcg.gratifikasi.report_personal', compact('gratifikasi_tahun'));
+        return view('modul-sdm-payroll.gcg.gratifikasi.report-personal', compact('gratifikasi_tahun'));
     }
 
     public function reportPersonalExport(Request $request)
@@ -121,7 +121,7 @@ class GratifikasiController extends Controller
         ->get();
         
         // return default PDF
-        $pdf = DomPDF::loadview('gcg.gratifikasi.report_personal_export_pdf', compact('gratifikasi_list'))->setOptions(['isPhpEnabled' => true]);
+        $pdf = DomPDF::loadview('modul-sdm-payroll.gcg.gratifikasi.report-personal-export-pdf', compact('gratifikasi_list'))->setOptions(['isPhpEnabled' => true]);
 
         return $pdf->stream('gcg_report_personal_'.date('Y-m-d H:i:s').'.pdf');
     }
@@ -163,7 +163,7 @@ class GratifikasiController extends Controller
 
         $fungsi_list = GcgFungsi::all();
 
-        return view('gcg.gratifikasi.report_management', compact('gratifikasi_tahun', 'fungsi_list'));
+        return view('modul-sdm-payroll.gcg.gratifikasi.report-management', compact('gratifikasi_tahun', 'fungsi_list'));
     }
 
     public function reportManagementExport(Request $request)
@@ -188,7 +188,7 @@ class GratifikasiController extends Controller
         ->get();
         
         // return default PDF
-        $pdf = DomPDF::loadview('gcg.gratifikasi.report_management_export_pdf', compact('gratifikasi_list'));
+        $pdf = DomPDF::loadview('modul-sdm-payroll.gcg.gratifikasi.report-management-export-pdf', compact('gratifikasi_list'));
 
         return $pdf->stream('gcg_report_management_'.date('Y-m-d H:i:s').'.pdf');
     }
@@ -237,7 +237,7 @@ class GratifikasiController extends Controller
 
     public function edit(GcgGratifikasi $gratifikasi)
     {
-        return view('gcg.gratifikasi.edit', compact('gratifikasi'));
+        return view('modul-sdm-payroll.gcg.gratifikasi.edit', compact('gratifikasi'));
     }
 
     public function update(GcgGratifikasi $gratifikasi, Request $request)
@@ -248,6 +248,6 @@ class GratifikasiController extends Controller
         $gratifikasi->save();
 
         Alert::success('Update Data Gratifikasi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('gcg.gratifikasi.index');
+        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
     }
 }
