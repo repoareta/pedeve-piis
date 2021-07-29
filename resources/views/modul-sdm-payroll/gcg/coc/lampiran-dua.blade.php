@@ -61,7 +61,7 @@
 						@if (Request::get('orang'))
 							{{ Request::get('orang') }}
 						@else
-						<input class="form-control col-1" style="display:inline" type="text" name="orang" placeholder="jumlah" required> 
+						<input class="form-control col-1" style="display:inline" type="text" name="orang" placeholder="jumlah"> 
 						@endif
 						(orang) insan PERTAMINA PEDEVE INDONESIA dengan daftar terlampir;
 
@@ -92,11 +92,11 @@
 						<br>
 
 						@if (Request::get('orang'))
-							<input type="hidden" name="orang" value="{{ Request::get('orang') }}" required>
-							<input type="hidden" name="tanggal_efektif" value="{{ Request::get('tanggal_efektif') }}" required>
-							<button type="submit" onclick="printPDF()" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+							<input type="hidden" name="orang" value="{{ Request::get('orang') }}">
+							<input type="hidden" name="tanggal_efektif" value="{{ Request::get('tanggal_efektif') }}">
+							<button type="submit" onclick="printPDF()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
 						@else
-							<input type="hidden" name="tanggal_efektif" value="{{ date('Y-m-d H:i:s') }}" required>
+							<input type="hidden" name="tanggal_efektif" value="{{ date('Y-m-d H:i:s') }}">
 							<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 						@endif
 					</p>

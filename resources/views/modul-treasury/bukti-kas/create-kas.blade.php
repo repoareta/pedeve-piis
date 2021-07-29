@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a  href="{{ route('penerimaan_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                                 <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check"></i>Proses</button>
                             </div>
                         </div>

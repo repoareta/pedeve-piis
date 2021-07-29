@@ -50,7 +50,7 @@
 							$tahun = date_format($tgl, 'Y'); 
 							$bulan = date_format($tgl, 'm'); 
 						?>
-						<select class="form-control " name="bulan" required>
+						<select class="form-control select2" name="bulan">
 							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -66,7 +66,7 @@
 						</select>
 					</div>
 						<div class="col-5" >
-							<input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"  autocomplete="off" required>
+							<input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"  autocomplete="off">
 						</div>
                 </div>
 
@@ -75,7 +75,7 @@
 						<div class="col-2"></div>
 						<div class="col-10">
 							<a href="#" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>
 				</div>

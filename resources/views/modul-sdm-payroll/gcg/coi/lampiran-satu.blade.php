@@ -104,9 +104,9 @@
 						(Tempat)
 						<br>
 						
-						<input class="form-control col-2" style="display:inline" type="text" name="tempat" placeholder="lokasi kerja anda" required>
+						<input class="form-control col-2" style="display:inline" type="text" name="tempat" placeholder="lokasi kerja anda">
 						
-						<input type="hidden" name="tanggal_efektif" value="{{ date('Y-m-d H:i:s') }}" required>
+						<input type="hidden" name="tanggal_efektif" value="{{ date('Y-m-d H:i:s') }}">
 					@endif
 					, 
 					@if(Request::get('tanggal_efektif'))
@@ -123,9 +123,9 @@
 					<br>
 					<br>
 					@if (Request::get('tempat'))
-						<input type="hidden" name="tempat" value="{{ Request::get('tempat') }}" required>
-						<input type="hidden" name="tanggal_efektif" value="{{ Request::get('tanggal_efektif') }}" required>
-						<button type="submit" onclick="printPDF()" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+						<input type="hidden" name="tempat" value="{{ Request::get('tempat') }}">
+						<input type="hidden" name="tanggal_efektif" value="{{ Request::get('tanggal_efektif') }}">
+						<button type="submit" onclick="printPDF()" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
 					@else
 						<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 					@endif

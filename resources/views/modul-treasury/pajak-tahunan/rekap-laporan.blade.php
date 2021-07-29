@@ -40,8 +40,8 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Kembali</a>
-                            <button type="submit" class="btn btn-primary" onclick="$('form').attr('target', '_blank')"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+                            <a href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Kembali</a>
+                            <button type="submit" class="btn btn-primary" onclick="$('form').attr('target', '_blank')"><i class="fa fa-print"></i>Cetak</button>
                         </div>
                     </div>
                 </div>

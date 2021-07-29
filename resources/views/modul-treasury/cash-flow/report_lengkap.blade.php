@@ -30,7 +30,7 @@
                             $bulan = date('m');
                             $tahun = date('Y');
                             @endphp
-                            <select class="form-control select2" name="bulan_mulai" required>
+                            <select class="form-control select2" name="bulan_mulai">
                                 <option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -47,7 +47,7 @@
                             <div class="input-group-append">
                                 <span class="input-group-text">Bulan Sampai</span>
                             </div>
-                            <select class="form-control select2" name="bulan_sampai" required>
+                            <select class="form-control select2" name="bulan_sampai">
                                 <option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -71,7 +71,7 @@
                             style="color:red;">*</span></label>
                     <div class="col-5">
                         <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" 
-                            autocomplete="off" required>
+                            autocomplete="off">
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                         <div class="col-10">
                             <a href="#" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                             <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')"
-                                class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+                                class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
                         </div>
                     </div>
                 </div>

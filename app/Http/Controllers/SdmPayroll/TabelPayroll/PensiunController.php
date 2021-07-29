@@ -138,9 +138,9 @@ class PensiunController extends Controller
         $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
         if(!empty($data_cek) and !empty($data_cek1)) {
             $data_list = DB::select("SELECT nopek, nama, 
-                                    SUM(CASE WHEN aard ='15'  THEN curramount ELSE '0' END) as aard15,
-                                    SUM(CASE WHEN aard ='46'  THEN curramount ELSE '0' END) as aard46,
-                                    SUM(CASE WHEN aard ='14'  THEN curramount*-1 ELSE '0' END) as aard14
+                                    SUM(CASE WHEN aard ='15' THEN curramount ELSE '0' END) as aard15,
+                                    SUM(CASE WHEN aard ='46' THEN curramount ELSE '0' END) as aard46,
+                                    SUM(CASE WHEN aard ='14' THEN curramount*-1 ELSE '0' END) as aard14
                                     from (select a.nopek,b.nama,a.aard,a.curramount
                                     from pay_master_bebanprshn a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard in ('15','46') and a.tahun='$request->tahun' and a.bulan='$request->bulan' union all
                                     select c.nopek,d.nama, c.aard, c.nilai as curramount
@@ -172,12 +172,12 @@ class PensiunController extends Controller
             if($request->dp == 'BK'){        
                 $data_list = DB::select("SELECT 
                 count(a.bulan),a.nopek,b.nama as namapegawai, SUM(a.nilai),
-                SUM(CASE WHEN a.bulan ='1'  THEN round(a.nilai,0)* -1 ELSE '0' END) as jan, 
-                SUM(CASE WHEN a.bulan ='2'  THEN round(a.nilai,0)* -1 ELSE '0' END) as feb,
-                SUM(CASE WHEN a.bulan ='3'  THEN round(a.nilai,0)* -1 ELSE '0' END) as mar,
-                SUM(CASE WHEN a.bulan ='4'  THEN round(a.nilai,0)* -1 ELSE '0' END) as apr,
-                SUM(CASE WHEN a.bulan ='5'  THEN round(a.nilai,0)* -1 ELSE '0' END) as mei,
-                SUM(CASE WHEN a.bulan ='6'  THEN round(a.nilai,0)* -1 ELSE '0' END) as jun,
+                SUM(CASE WHEN a.bulan ='1' THEN round(a.nilai,0)* -1 ELSE '0' END) as jan, 
+                SUM(CASE WHEN a.bulan ='2' THEN round(a.nilai,0)* -1 ELSE '0' END) as feb,
+                SUM(CASE WHEN a.bulan ='3' THEN round(a.nilai,0)* -1 ELSE '0' END) as mar,
+                SUM(CASE WHEN a.bulan ='4' THEN round(a.nilai,0)* -1 ELSE '0' END) as apr,
+                SUM(CASE WHEN a.bulan ='5' THEN round(a.nilai,0)* -1 ELSE '0' END) as mei,
+                SUM(CASE WHEN a.bulan ='6' THEN round(a.nilai,0)* -1 ELSE '0' END) as jun,
                 SUM(CASE WHEN a.bulan ='7' THEN round(a.nilai,0)* -1 ELSE '0' END) as jul,
                 SUM(CASE WHEN a.bulan ='8' THEN round(a.nilai,0)* -1 ELSE '0' END) as agu,
                 SUM(CASE WHEN a.bulan ='9' THEN round(a.nilai,0)* -1 ELSE '0' END) as sep,
@@ -189,11 +189,11 @@ class PensiunController extends Controller
                 $data_list = DB::select("SELECT 
                     b.nopeg AS nopek,b.nama AS namapegawai, SUM(a.CURRAMOUNT),
                     SUM(CASE WHEN a.bulan ='1' and a.aard in('15','46')  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as jan, 
-                    SUM(CASE WHEN a.bulan ='2'  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as feb,
-                    SUM(CASE WHEN a.bulan ='3'  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as mar,
-                    SUM(CASE WHEN a.bulan ='4'  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as apr,
-                    SUM(CASE WHEN a.bulan ='5'  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as mei,
-                    SUM(CASE WHEN a.bulan ='6'  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as jun,
+                    SUM(CASE WHEN a.bulan ='2' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as feb,
+                    SUM(CASE WHEN a.bulan ='3' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as mar,
+                    SUM(CASE WHEN a.bulan ='4' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as apr,
+                    SUM(CASE WHEN a.bulan ='5' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as mei,
+                    SUM(CASE WHEN a.bulan ='6' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as jun,
                     SUM(CASE WHEN a.bulan ='7' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as jul,
                     SUM(CASE WHEN a.bulan ='8' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as agu,
                     SUM(CASE WHEN a.bulan ='9' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as sep,

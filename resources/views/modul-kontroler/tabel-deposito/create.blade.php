@@ -72,7 +72,7 @@
 									$jabatan = "Sekretaris Perseroan";
 									$nama = "Silahkan Isi";
 									?>
-								<select class="form-control" name="bulan" required>
+								<select class="form-control" name="bulan">
 									<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
 									<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
 									<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -89,18 +89,18 @@
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
-								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off" required>
+								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
 								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
+								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Bagian</label>
 							<div class="col-5">
-								<input class="form-control" type="text" name="bagian" value="{{ $bagian}}" id="bagian" required>
+								<input class="form-control" type="text" name="bagian" value="{{ $bagian}}" id="bagian">
 							</div>
 							<div class="col-5">
 								<input class="form-control" type="text" name="nama_bagian" value="{{ $nama_bagian}}" id="nama_bagian" readonly style="background-color:#DCDCDC; cursor:not-allowed">
@@ -148,7 +148,7 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+									<a href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 								</div>
 							</div>

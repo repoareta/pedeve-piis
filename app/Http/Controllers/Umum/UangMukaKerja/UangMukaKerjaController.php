@@ -525,7 +525,7 @@ class UangMukaKerjaController extends Controller
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
 
-        $canvas = $dom_pdf->getcanvas();
+        $canvas = $dom_pdf->getCanvas();
         $canvas->page_text(690, 100, "Page {PAGE_NUM} of {PAGE_COUNT}", null, 10, array(0, 0, 0));
         // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();
@@ -568,7 +568,7 @@ class UangMukaKerjaController extends Controller
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
-                $canvas = $dom_pdf->getcanvas();
+                $canvas = $dom_pdf->getCanvas();
                 $canvas->page_text(690, 100, "Page {PAGE_NUM} of {PAGE_COUNT}", null, 10, array(0, 0, 0));
                 // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
                 return $pdf->stream();

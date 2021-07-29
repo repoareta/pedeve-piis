@@ -66,11 +66,11 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
-                    <input class="form-control" type="hidden" value="" name="suplesi" autocomplete="off" required>
+                    <input class="form-control" type="hidden" value="" name="suplesi" autocomplete="off">
                 </div>
             </div>
 
@@ -85,7 +85,7 @@
                     <div class="col-2"></div>
                     <div class="col-10">
                         <a href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-                        <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+                        <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
                     </div>
                 </div>
             </div>

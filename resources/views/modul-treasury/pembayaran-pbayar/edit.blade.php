@@ -70,7 +70,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-3">
-                    <select name="jk" id="jk" class="form-control select2" style="width: 100%;" required>
+                    <select name="jk" id="jk" class="form-control select2" style="width: 100%;">
                         <option value="">- Pilih -</option>
                         <option value="10" <?php if($data->jk == '10' ) echo 'selected' ; ?>>Kas(Rupiah)</option>
                         <option value="11" <?php if($data->jk == '11' ) echo 'selected' ; ?>>Bank(Rupiah)</option>
@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>

@@ -138,7 +138,7 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{ route('modul_cm.rkap_realisasi.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                            <a href="{{ route('modul_cm.rkap_realisasi.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
                         </div>
                     </div>

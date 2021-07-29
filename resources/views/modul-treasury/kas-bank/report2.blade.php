@@ -30,7 +30,7 @@
 						$bulan = substr($data->thnbln, 4, 2);
 					}
 					?>
-                    <select class="form-control" name="bulan" required>
+                    <select class="form-control" name="bulan">
                         <option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
                         <option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
                         <option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -46,7 +46,7 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" autocomplete="off">
                 </div>
@@ -55,8 +55,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-                        <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+                        <a href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
                     </div>
                 </div>
             </div>

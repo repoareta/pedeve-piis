@@ -80,7 +80,7 @@
 						<div class="row">
 							<div class="col-3"></div>
 							<div class="col-9">
-								<a  href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+								<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
 								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 							</div>
 						</div>

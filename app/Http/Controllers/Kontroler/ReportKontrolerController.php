@@ -167,8 +167,8 @@ class ReportKontrolerController extends Controller
                             ");
             $data_list = DB::select("
                     select a.jenis,a.sub_akun,
-                    sum(CASE WHEN a.lapangan ='MD'  THEN c.pengali_tampil*a.cum_rp ELSE '0' END) as mmd,
-                    sum(CASE WHEN a.lapangan ='MS'  THEN c.pengali_tampil*a.cum_rp ELSE '0' END) as mms,
+                    sum(CASE WHEN a.lapangan ='MD' THEN c.pengali_tampil*a.cum_rp ELSE '0' END) as mmd,
+                    sum(CASE WHEN a.lapangan ='MS' THEN c.pengali_tampil*a.cum_rp ELSE '0' END) as mms,
                     sum(c.pengali_tampil*a.cum_rp) as kons
                     from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc  group by a.jenis, a.sub_akun order by a.sub_akun asc
                     ");

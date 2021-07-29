@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-5">
                     <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"
-                        autocomplete="off" required>
+                        autocomplete="off">
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15"
@@ -77,7 +77,7 @@
                     <div class="col-2"></div>
                     <div class="col-10">
                         <a href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-                        <button type="submit" id="btn-save" onclick="$('form-create').attr('target', '_blank');" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+                        <button type="submit" id="btn-save" onclick="$('form-create').attr('target', '_blank');" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
                     </div>
                 </div>
             </div>

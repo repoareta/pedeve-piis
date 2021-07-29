@@ -73,7 +73,7 @@
                     <div class="col-2"></div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Tampilkan</button>
-                        <button type="button" onclick="this.form.submit()" class="btn btn-danger"><i class="fa fa-print" aria-hidden="true"></i> Cetak .PDF</button>
+                        <button type="button" onclick="this.form.submit()" class="btn btn-danger"><i class="fa fa-print"></i> Cetak .PDF</button>
                     </div>
                 </div>
             </form>
