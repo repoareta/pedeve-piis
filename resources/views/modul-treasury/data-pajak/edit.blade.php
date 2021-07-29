@@ -100,7 +100,7 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.kt-select2').select2();
+        
 
         $('#form-edit').submit(function(){
             $.ajax({

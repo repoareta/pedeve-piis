@@ -30,7 +30,7 @@
                             $bulan = date('m');
                             $tahun = date('Y');
                             @endphp
-                            <select class="form-control kt-select2" name="bulan_mulai" required>
+                            <select class="form-control select2" name="bulan_mulai" required>
                                 <option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -47,7 +47,7 @@
                             <div class="input-group-append">
                                 <span class="input-group-text">Bulan Sampai</span>
                             </div>
-                            <select class="form-control kt-select2" name="bulan_sampai" required>
+                            <select class="form-control select2" name="bulan_sampai" required>
                                 <option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -102,7 +102,7 @@
     }
 
     $(document).ready(function () {
-        $('.kt-select2').select2().on('change', function() {
+        $('.select2').select2().on('change', function() {
 			$(this).valid();
 		});
     });
