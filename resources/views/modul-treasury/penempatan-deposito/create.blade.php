@@ -183,7 +183,7 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 
@@ -191,7 +191,7 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
     });

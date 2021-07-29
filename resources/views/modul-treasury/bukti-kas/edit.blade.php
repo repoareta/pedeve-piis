@@ -779,7 +779,7 @@ var demos = function () {
 		orientation: "bottom left",
 		templates: arrows,
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'yyyy-mm-dd'
 	});
 	
@@ -789,7 +789,7 @@ var demos = function () {
 		orientation: "bottom left",
 		templates: arrows,
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'yyyymm'
 	});
 };

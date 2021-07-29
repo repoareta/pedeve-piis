@@ -335,7 +335,7 @@ $('#nilai').keyup(function(){
 		orientation: "bottom left",
 		templates: arrows,
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'dd-mm-yyyy'
 	});
 	
@@ -345,7 +345,7 @@ $('#nilai').keyup(function(){
 		orientation: "bottom left",
 		templates: arrows,
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'yyyymm'
 	});
 });

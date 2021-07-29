@@ -84,21 +84,21 @@
                 todayHighlight: true,
                 orientation: "bottom left",
                 autoclose: true,
-                // language : 'id',
+                language : 'id',
                 format   : 'yyyy-mm-dd'
             });
             $('#tanggal2').datepicker({
                 todayHighlight: true,
                 orientation: "bottom left",
                 autoclose: true,
-                // language : 'id',
+                language : 'id',
                 format   : 'yyyy-mm-dd'
             });
             $('#tanggal3').datepicker({
                 todayHighlight: true,
                 orientation: "bottom left",
                 autoclose: true,
-                // language : 'id',
+                language : 'id',
                 format   : 'yyyy-mm-dd'
             });
         });

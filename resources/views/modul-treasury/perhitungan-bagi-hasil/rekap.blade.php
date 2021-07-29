@@ -49,7 +49,7 @@ $(document).ready(function () {
 		todayHighlight: true,
 		orientation: "bottom left",
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'yyyy-mm-dd'
 	});
 });

@@ -225,7 +225,7 @@
 		$('#date_range_picker').datepicker({
 			todayHighlight: true,
 			// autoclose: true,
-			// language : 'id',
+			language : 'id',
 			// format   : 'yyyy-mm-dd'
 			format   : 'dd-mm-yyyy'
 		});
@@ -235,7 +235,7 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			// format   : 'yyyy-mm-dd'
 			format   : 'dd-mm-yyyy'
 		});

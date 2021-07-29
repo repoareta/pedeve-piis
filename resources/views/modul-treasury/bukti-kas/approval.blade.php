@@ -63,7 +63,7 @@
         $('#tanggal_approval').datepicker({
             todayHighlight: true,
             autoclose: true,
-            // language : 'id',
+            language : 'id',
             format   : 'dd-mm-yyyy',
             orientation: 'bottom'
         });

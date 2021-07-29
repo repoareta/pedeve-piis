@@ -932,7 +932,7 @@ $('#form-edit-detail').submit(function(){
 		todayHighlight: true,
 		orientation: "bottom left",
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'dd-mm-yyyy'
 	});
 	
@@ -940,7 +940,7 @@ $('#form-edit-detail').submit(function(){
 		todayHighlight: true,
 		orientation: "bottom left",
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'yyyymm'
 	});
 });

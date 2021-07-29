@@ -76,7 +76,7 @@
             todayHighlight: true,
             templates: arrows,
             autoclose: true,
-            // language : 'id',
+            language : 'id',
             format   : 'yyyy-mm-dd',
             orientation: 'bottom'
         });
