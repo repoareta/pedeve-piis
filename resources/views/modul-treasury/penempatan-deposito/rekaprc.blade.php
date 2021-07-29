@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
                     <?php 
                     $tahun = date('Y');
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label">Kurs<span style="color:red;">*</span></label>
+                <label for="dari-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15"
                         autocomplete="off" required

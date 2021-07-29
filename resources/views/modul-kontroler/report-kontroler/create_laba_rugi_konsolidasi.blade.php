@@ -40,13 +40,13 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('laba_rugi_konsolidasi.export.laba.rugi.konsolidasi')}}" method="post">
+		<form class="kt-form" action="{{route('laba_rugi_konsolidasi.export.laba.rugi.konsolidasi')}}" method="post">
 			{{csrf_field()}}
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
 
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 

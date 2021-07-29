@@ -23,7 +23,7 @@
             {{csrf_field()}}
             <div class="form-group form-group-last">
                 <div class="form-group row">
-                    <label for="jenis-dinas-input" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
+                    <label for="jenis-dinas-input" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                     <div class="col-8">
                         <select name="tahun" class="form-control select2" required oninvalid="this.setCustomValidity('Tahun Harus Diisi..')" onchange="setCustomValidity('')">
                             <option value="">- Pilih -</option>

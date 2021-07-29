@@ -30,7 +30,7 @@
                     </div>
                 
                     <div class="form-group row">
-                    <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                    <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
                         <input class="form-control" type="text" value="{{date('m')}}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">						
                     </div>
@@ -41,7 +41,7 @@
                     </div>
     
                     <div class="form-group row">
-                        <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span style="color:red;">*</span></label>
+                        <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
                             <select name="nopek" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" onchange="setCustomValidity('')">
                                 <option value="">- Pilih -</option>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span style="color:red;">*</span></label>
+                        <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
                             <select name="jenis" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')" onchange="setCustomValidity('')">
                                 <option value="">-Pilih Jenis-</option>

@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('tabel_deposito.export')}}" method="post">
+		<form class="kt-form" action="{{route('tabel_deposito.export')}}" method="post">
 			{{csrf_field()}}
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-5">
 						<?php 
 							$tahun = date('Y');
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="dari-input" class="col-2 col-form-label">Kurs<span style="color:red;">*</span></label>
+					<label for="dari-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
 					<div class="col-10">
 						<input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Kurs Harus Diisi..')" oninput="setCustomValidity('')">				
 					</div>

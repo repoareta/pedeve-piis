@@ -29,9 +29,9 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" action="{{ route('modul_sdm_payroll.gcg.report_boundary.export') }}" method="GET" target="_blank">
+                <form class="kt-form" action="{{ route('modul_sdm_payroll.gcg.report_boundary.export') }}" method="GET" target="_blank">
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Bulan<span style="color:red;">*</span></label>
+                        <label for="spd-input" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
                         <div class="col-4">
                                 <select class="form-control select2" name="bulan_mulai">
                                     <option value="01">Januari</option>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
+                    <label for="spd-input" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                         <div class="col-10" >
                             <input class="form-control tahun" type="text" value="{{ date('Y') }}" name="tahun"> 
                         </div>

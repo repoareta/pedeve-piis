@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
 		<div class="col-12">
-			<form class="kt-form kt-form--label-right" action="{{ route('modul_umum.anggaran.report.export') }}" method="post">
+			<form class="kt-form" action="{{ route('modul_umum.anggaran.report.export') }}" method="post">
                 @csrf
                 <div class="form-group row">
                     <label for="mulai-input" class="col-2 col-form-label">Tahun</label>

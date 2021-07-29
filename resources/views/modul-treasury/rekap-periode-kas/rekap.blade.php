@@ -18,10 +18,10 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('rekap_periode_kas.exportperiode')}}" method="post">
+        <form class="kt-form" action="{{route('rekap_periode_kas.exportperiode')}}" method="post">
             @csrf
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label text-right">Mulai Tanggal<span style="color:red;">*</span></label>
+                <label for="dari-input" class="col-2 col-form-label text-right">Mulai Tanggal<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <div class="input-daterange input-group" id="date_range_picker">
                         <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off" required oninvalid="this.setCustomValidity('Mulai Harus Diisi..')" onchange="setCustomValidity('')"/>
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span style="color:red;">*</span></label>
+                <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select class="form-control select2"  name="jk" id="jk" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
@@ -42,7 +42,7 @@
             </div>
             
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span style="color:red;">*</span></label>
+                <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select class="form-control select2"  name="nokas" id="nokas" required oninvalid="this.setCustomValidity('No.Kas/Bank Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
@@ -51,11 +51,11 @@
             </div>
             
             <div class="form-group row">
-                <label class="col-2 col-form-label text-right">Setuju<span style="color:red;">*</span></label>
+                <label class="col-2 col-form-label text-right">Setuju<span class="text-danger">*</span></label>
                 <div class="col-4">
                     <input class="form-control" type="text" value="" name="setuju" id="setuju" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Setuju Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>
-                <label class="col-2 col-form-label text-right">Dibuat Oleh<span style="color:red;">*</span></label>
+                <label class="col-2 col-form-label text-right">Dibuat Oleh<span class="text-danger">*</span></label>
                 <div class="col-4" >
                     <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Dibuat Oleh Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>

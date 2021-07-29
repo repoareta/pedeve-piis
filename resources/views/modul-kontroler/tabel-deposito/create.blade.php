@@ -41,7 +41,7 @@
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form  class="kt-form kt-form--label-right" id="form-create">
+			<form  class="kt-form" id="form-create">
 				{{csrf_field()}}
 				<div class="kt-portlet__body">
 					<div class="form-group form-group-last">
@@ -137,7 +137,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
+							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
 								<textarea class="form-control" type="text" value=""  id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')" oninput="setCustomValidity('')"></textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">

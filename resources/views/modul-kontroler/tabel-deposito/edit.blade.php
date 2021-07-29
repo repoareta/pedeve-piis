@@ -41,7 +41,7 @@
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form  class="kt-form kt-form--label-right" id="form-edit">
+			<form  class="kt-form" id="form-edit">
 				{{csrf_field()}}
 				<div class="kt-portlet__body">
 					<div class="form-group form-group-last">
@@ -139,7 +139,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
+							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
 								<textarea class="form-control" type="text" value=""  id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')" oninput="setCustomValidity('')">{{$keterangan}}</textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
@@ -268,7 +268,7 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="kt-form " id="form-tambah-detail"  enctype="multipart/form-data">
+                <form  class="" id="form-tambah-detail"  enctype="multipart/form-data">
 					{{csrf_field()}}
 					<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
                     <div class="form-group row">
@@ -280,7 +280,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<div class="col-8">
 							<input  class="form-control" type="text" value=""  name="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')">
 						</div>
@@ -288,7 +288,7 @@
 									
 																					
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Kd.Lapangan<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Kd.Lapangan<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="lapangan"  class="form-control select2" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -299,7 +299,7 @@
 						</div>
 					</div>			
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="sanper"  class="form-control select2" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -310,7 +310,7 @@
 						</div>
 					</div>			
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="bagian"  class="form-control select2" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -322,13 +322,13 @@
 					</div>		
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja<span class="text-danger">*</span></label>
 						<div class="col-8">
 							<input  class="form-control" type="text" value="000000"  name="wo" required oninvalid="this.setCustomValidity('Wo Harus Diisi..')" oninput="setCustomValidity('')">
 						</div>
 					</div>	
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="jnsbiaya" class="form-control select2" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -385,7 +385,7 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-			<form  class="kt-form " id="form-edit-detail"  enctype="multipart/form-data">
+			<form  class="" id="form-edit-detail"  enctype="multipart/form-data">
 					{{csrf_field()}}
 					<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
                     <div class="form-group row">
@@ -397,7 +397,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<div class="col-8">
 							<input  class="form-control" type="text" value=""  name="rincian" id="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')">
 						</div>
@@ -405,7 +405,7 @@
 									
 																					
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Kd.Lapangan<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Kd.Lapangan<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="lapangan" id="lapangan"  class="form-control select2" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -416,7 +416,7 @@
 						</div>
 					</div>			
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="sanper" id="sanper" class="form-control select2" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -427,7 +427,7 @@
 						</div>
 					</div>			
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="bagian" id="bagian" class="form-control select2" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
@@ -439,13 +439,13 @@
 					</div>		
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja<span class="text-danger">*</span></label>
 						<div class="col-8">
 							<input  class="form-control" type="text" value="" id="wo"  name="wo" required oninvalid="this.setCustomValidity('Wo Harus Diisi..')" oninput="setCustomValidity('')">
 						</div>
 					</div>	
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
 						<div  class="col-8" >
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control select2" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>

@@ -18,13 +18,13 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('kas_bank.cetak1')}}" method="post">
+        <form class="kt-form" action="{{route('kas_bank.cetak1')}}" method="post">
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">JK<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">JK<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
                             <input value="1" type="radio" name="status">[10,11,13]
                             <span></span>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
                     <?php 
                     foreach($data_tahun as $data){ 

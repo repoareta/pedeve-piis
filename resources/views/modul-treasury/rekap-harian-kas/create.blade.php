@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-create">
+        <form  class="kt-form" id="form-create">
             @csrf
 
             <div class="form-group row">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 col-form-label">Jenis Kartu<span style="color:red;">*</span></label>
+                <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select name="jk" id="jk" class="form-control select2" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="jenis-dinas-input" class="col-2 col-form-label">No. Kas/Bank<span style="color:red;">*</span></label>
+                <label for="jenis-dinas-input" class="col-2 col-form-label">No. Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select name="nokas" id="nokas" class="form-control" required oninvalid="this.setCustomValidity('No. Kas/Bank Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>

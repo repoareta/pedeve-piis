@@ -19,10 +19,10 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-edit">
+        <form  class="kt-form" id="form-edit">
             {{csrf_field()}}
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
                 <?php 
                     $tgl = date_create(now());
@@ -39,7 +39,7 @@
                         </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
                 </div>
@@ -48,9 +48,9 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
-                            <input value="1" <?php if ($status == '1' )  echo 'checked' ; ?> type="radio"  name="status"> Opening 
+                            <input value="1" <?php if ($status == '1' )  echo 'checked' ; ?> type="radio" name="status"> Opening 
                             <span></span>
                         </label>
                     </div>
@@ -63,9 +63,9 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
-                            <input value="2" <?php if ($status == '2' )  echo 'checked' ; ?> type="radio"    name="status"> Stoping
+                            <input value="2" <?php if ($status == '2' )  echo 'checked' ; ?> type="radio"   name="status"> Stoping
                             <span></span>
                         </label>
                     </div>
@@ -78,9 +78,9 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
-                            <input value="3" <?php if ($status == '3' )  echo 'checked' ; ?> type="radio"    name="status"> Closing
+                            <input value="3" <?php if ($status == '3' )  echo 'checked' ; ?> type="radio"   name="status"> Closing
                             <span></span>
                         </label>
                     </div>

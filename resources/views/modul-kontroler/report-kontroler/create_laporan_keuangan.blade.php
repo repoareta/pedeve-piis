@@ -40,10 +40,10 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('laporan_keuangan.export')}}" method="GET" target="_blank">
+		<form class="kt-form" action="{{route('laporan_keuangan.export')}}" method="GET" target="_blank">
 			<div class="kt-portlet__body">
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 

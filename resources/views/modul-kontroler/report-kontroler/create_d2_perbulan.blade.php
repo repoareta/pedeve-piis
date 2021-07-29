@@ -40,22 +40,22 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('d2_perbulan.export')}}" method="GET" target="_blank">
+		<form class="kt-form" action="{{route('d2_perbulan.export')}}" method="GET" target="_blank">
 			<div class="kt-portlet__body">
 				<div class="form-group row">
-					<label for="" class="col-2 col-form-label">JK<span style="color:red;">*</span></label>
+					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
 					<div class="col-10">
-						<div class="kt-radio-inline">
+						<div class="radio-inline">
 							<label class="kt-radio kt-radio--solid">
-								<input value="1" type="radio"  name="jk" >[10,11,13]
+								<input value="1" type="radio" name="jk" >[10,11,13]
 								<span></span>
 							</label>
 							<label class="kt-radio kt-radio--solid">
-								<input value="2" type="radio"    name="jk">[15,18]
+								<input value="2" type="radio"   name="jk">[15,18]
 								<span></span>
 							</label>
 							<label class="kt-radio kt-radio--solid">
-								<input value="3" type="radio"    name="jk" checked>All
+								<input value="3" type="radio"   name="jk" checked>All
 								<span></span>
 							</label>
 						</div>
@@ -64,7 +64,7 @@
 
 
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 

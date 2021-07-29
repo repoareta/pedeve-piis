@@ -18,10 +18,10 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('kas_bank.cetak6')}}" method="POST" target="_blank">
+        <form class="kt-form" action="{{route('kas_bank.cetak6')}}" method="POST" target="_blank">
             @csrf
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label">C.Judex<span style="color:red;">*</span></label>
+                <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select name="cj" id="select-debetdari" class="form-control select2" required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
                     <?php 
                         $tgl = date_create(now());

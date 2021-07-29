@@ -19,10 +19,10 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-create">
+        <form  class="kt-form" id="form-create">
             {{csrf_field()}}
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
                     <?php 
                     $tgl = date_create(now());
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Keterangan<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="" name="keterangan" size="35" maxlength="35"
                         title="Keterangan" autocomplete="off" required
@@ -67,7 +67,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
                             <input value="1" type="radio" name="status" checked> Opening
                             <span></span>
@@ -83,7 +83,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
                             <input value="2" type="radio" name="status"> Stoping
                             <span></span>
@@ -99,7 +99,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
+                    <div class="radio-inline">
                         <label class="kt-radio kt-radio--solid">
                             <input value="3" type="radio" name="status"> Closing
                             <span></span>

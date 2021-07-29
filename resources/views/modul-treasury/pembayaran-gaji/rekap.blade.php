@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('pembayaran_gaji.export')}}" method="post">
+        <form class="kt-form" action="{{route('pembayaran_gaji.export')}}" method="post">
 			{{csrf_field()}}
 			<div class="kt-portlet__body">
 				<div class="form-group row">

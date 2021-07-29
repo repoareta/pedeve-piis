@@ -121,7 +121,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form kt-form--label-right" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
+            <form class="kt-form" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">No Dokumen</label>

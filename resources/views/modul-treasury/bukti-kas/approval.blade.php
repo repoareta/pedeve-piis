@@ -20,7 +20,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{ route(($kasDocument->paid == 'N' ? 'penerimaan_kas.approve' : 'penerimaan_kas.approval.cancel'), [request()->documentId]) }}" method="post">
+        <form class="kt-form" action="{{ route(($kasDocument->paid == 'N' ? 'penerimaan_kas.approve' : 'penerimaan_kas.approval.cancel'), [request()->documentId]) }}" method="post">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">No. Dokumen</label>
