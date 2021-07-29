@@ -56,7 +56,7 @@
                     <div class="col-2"></div>
                     <div class="col-10">
                         <a  href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+                        <button type="submit" id="btn-save" class="btn btn-primary" onclick="$('form').attr('target', '_blank')"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
                     </div>
                 </div>
             </div>
