@@ -12,7 +12,7 @@ class TabelDepositoController extends Controller
 {
     public function index()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
             if(!empty($data_tahunbulan)) {
                 foreach ($data_tahunbulan as $data_bul) {
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
@@ -30,11 +30,11 @@ class TabelDepositoController extends Controller
             $bulan = ltrim($request->bulan, '0');
             $tahun = $request->tahun;
             if($bulan <> "" and $tahun <> ""){
-                $data = DB::select("select a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulan' and b.tahun='$tahun' order by a.tgltempo asc");
+                $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulan' and b.tahun='$tahun' order by a.tgltempo asc");
             }elseif($bulan == "" and $tahun <> ""){ 
-                $data = DB::select("select a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.tahun='$tahun' order by a.tgltempo asc" );				    
+                $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.tahun='$tahun' order by a.tgltempo asc" );				    
             }else{
-                $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)=6");
+                $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)=6");
                 if(!empty($data_tahunbulan)){
                     foreach($data_tahunbulan as $data_bul)
                     {
@@ -48,7 +48,7 @@ class TabelDepositoController extends Controller
                 $tahuns = substr($bulan_buku,0,-2);
                 $bulans = ltrim(substr($bulan_buku,4), '0');
 
-                $data = DB::select("select a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulans' and b.tahun='$tahuns' order by a.tgltempo asc");
+                $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulans' and b.tahun='$tahuns' order by a.tgltempo asc");
             }
             return datatables()->of($data)
                 
@@ -115,8 +115,8 @@ class TabelDepositoController extends Controller
 
     public function rekap()
     {
-        $data_bank = DB::select("select distinct(a.kdbank),b.descacct from mtrdeposito a, account b where b.kodeacct=a.kdbank");
-        $data_lapang = DB::select("select kodelokasi,nama from lokasi");
+        $data_bank = DB::select("SELECT distinct(a.kdbank),b.descacct from mtrdeposito a, account b where b.kodeacct=a.kdbank");
+        $data_lapang = DB::select("SELECT kodelokasi,nama from lokasi");
         return view('tabel_deposito.rekap',compact('data_bank','data_lapang'));
     }
 
@@ -140,7 +140,7 @@ class TabelDepositoController extends Controller
                 $tahun = $request->tahun;
                 $data = "a.kdbank $sanper and d.bulan='$bulan' and d.tahun='$tahun'";
             }
-            $data_list = DB::select("select a.*,b.ci,c.descacct,d.haribunga,d.bungabulan,d.pph20,d.netbulan,d.accharibunga,d.accnetbulan from mtrdeposito a join kasdoc b on a.docno=b.docno join account c on a.kdbank=c.kodeacct, dtldepositotest d where d.docno=a.docno and d.lineno=a.lineno and d.perpanjangan=a.perpanjangan and $data and $lp");
+            $data_list = DB::select("SELECT a.*,b.ci,c.descacct,d.haribunga,d.bungabulan,d.pph20,d.netbulan,d.accharibunga,d.accnetbulan from mtrdeposito a join kasdoc b on a.docno=b.docno join account c on a.kdbank=c.kodeacct, dtldepositotest d where d.docno=a.docno and d.lineno=a.lineno and d.perpanjangan=a.perpanjangan and $data and $lp");
         if(!empty($data_list)){
             $pdf = PDF::loadview('tabel_deposito.export_penemdep_pdf', compact(
                 'data_list',

@@ -110,13 +110,13 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
 
         $pumk_header_count = PUmkHeader::all()->count();
 
-        $account_list = DB::select("select kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' ORDER BY kodeacct DESC");
+        $account_list = DB::select("SELECT kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' ORDER BY kodeacct DESC");
 
         $bagian_list = DB::select("SELECT A.kode,A.nama FROM sdm_tbl_kdbag A ORDER BY A.kode");
 
-        $jenis_biaya_list = DB::select("select kode,keterangan from jenisbiaya order by kode");
+        $jenis_biaya_list = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
         
-        $c_judex_list = DB::select("select kode,nama from cashjudex order by kode");
+        $c_judex_list = DB::select("SELECT kode,nama from cashjudex order by kode");
 
         return view('modul-umum.umk_pertanggungjawaban.create', compact(
             'pegawai_list',
@@ -209,13 +209,13 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
 
         $umk_header_list = UmkHeader::whereNotIn('no_umk', $pumk_header_list)->get();
 
-        $account_list = DB::select("select kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' ORDER BY kodeacct DESC");
+        $account_list = DB::select("SELECT kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' ORDER BY kodeacct DESC");
 
         $bagian_list = DB::select("SELECT A.kode,A.nama FROM sdm_tbl_kdbag A ORDER BY A.kode");
 
-        $jenis_biaya_list = DB::select("select kode,keterangan from jenisbiaya order by kode");
+        $jenis_biaya_list = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
         
-        $c_judex_list = DB::select("select kode,nama from cashjudex order by kode");
+        $c_judex_list = DB::select("SELECT kode,nama from cashjudex order by kode");
 
         return view('modul-umum.umk_pertanggungjawaban.edit', compact(
             'pegawai_list',

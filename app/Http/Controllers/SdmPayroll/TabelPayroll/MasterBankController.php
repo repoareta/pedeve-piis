@@ -16,7 +16,7 @@ class MasterBankController extends Controller
 
     public function indexJson()
     {
-        $data = DB::select("select kode, nama, alamat, kota from pay_tbl_bank order by kode asc");
+        $data = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank order by kode asc");
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
@@ -33,7 +33,7 @@ class MasterBankController extends Controller
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_bank where kode = '$request->kode'" ); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_bank where kode = '$request->kode'" ); 			
         if(!empty($data_cek)){
             $data=2;
             return response()->json($data);

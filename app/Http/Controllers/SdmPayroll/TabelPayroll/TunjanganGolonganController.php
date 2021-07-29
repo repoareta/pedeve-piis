@@ -41,7 +41,7 @@ class TunjanganGolonganController extends Controller
      */
     public function create()
     {
-        // dd(DB::select("select golongan from pay_tbl_tunjangan where golongan = 'P2'"));
+        // dd(DB::select("SELECT golongan from pay_tbl_tunjangan where golongan = 'P2'"));
         return view('modul-sdm-payroll.tunjangan-golongan.create');
     }
 
@@ -60,7 +60,7 @@ class TunjanganGolonganController extends Controller
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_tunjangan where golongan='$request->golongan'"); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_tunjangan where golongan='$request->golongan'"); 			
         if(!empty($data_cek)) {
             $data=0;
             return response()->json($data);

@@ -22,7 +22,7 @@ class DataPerkaraController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select * from tbl_perkara");
+        $data = DB::select("SELECT * from tbl_perkara");
 
         return datatables()->of($data)
         ->addColumn('no_perkara', function ($data) {
@@ -58,9 +58,9 @@ class DataPerkaraController extends Controller
     public function detail($no)
     {
         $noperkara = str_replace('--', '/', $no);
-        $data_list = DB::select("select * from tbl_perkara where no_perkara='$noperkara'");
-        $data_ = DB::select("select a.*, b.nama nama_hakim from tbl_pihak a join tbl_hakim b on a.kd_pihak=b.kd_pihak  where a.no_perkara='$noperkara'");
-        $data_p = DB::select("select a.* from tbl_pihak a where a.no_perkara='$noperkara'");
+        $data_list = DB::select("SELECT * from tbl_perkara where no_perkara='$noperkara'");
+        $data_ = DB::select("SELECT a.*, b.nama nama_hakim from tbl_pihak a join tbl_hakim b on a.kd_pihak=b.kd_pihak  where a.no_perkara='$noperkara'");
+        $data_p = DB::select("SELECT a.* from tbl_pihak a where a.no_perkara='$noperkara'");
 
         return view('modul-customer-management.data-perkara.detail-perkara', compact('data_list', 'data_', 'data_p'));
     }
@@ -94,7 +94,7 @@ class DataPerkaraController extends Controller
     //pihak
     public function searchpihak(Request $request)
     {
-        $data = DB::select("select * from tbl_pihak where no_perkara='$request->no_perkara'");
+        $data = DB::select("SELECT * from tbl_pihak where no_perkara='$request->no_perkara'");
         return datatables()->of($data)
         ->addColumn('nama', function ($data) {
             return $data->nama;
@@ -157,7 +157,7 @@ class DataPerkaraController extends Controller
 
     public function showpihak(Request $request)
     {
-        $data = DB::select("select * from tbl_pihak where kd_pihak='$request->kd'");
+        $data = DB::select("SELECT * from tbl_pihak where kd_pihak='$request->kd'");
         return response()->json($data[0]);
     }
 
@@ -170,7 +170,7 @@ class DataPerkaraController extends Controller
     //hakim
     public function searchhakim(Request $request)
     {
-        $data = DB::select("select a.*,b.nama nama_p from tbl_hakim a join tbl_pihak b on a.kd_pihak=b.kd_pihak where b.no_perkara='$request->no_perkara'");
+        $data = DB::select("SELECT a.*,b.nama nama_p from tbl_hakim a join tbl_pihak b on a.kd_pihak=b.kd_pihak where b.no_perkara='$request->no_perkara'");
         return datatables()->of($data)
         ->addColumn('nama_p', function ($data) {
             return $data->nama_p;
@@ -210,7 +210,7 @@ class DataPerkaraController extends Controller
 
     public function pihakJson(Request $request)
     {
-        $data = DB::select("select a.* from tbl_pihak a  where a.status='$request->status' and a.no_perkara='$request->no_perkara'");
+        $data = DB::select("SELECT a.* from tbl_pihak a  where a.status='$request->status' and a.no_perkara='$request->no_perkara'");
         return response()->json($data);
     }
     
@@ -242,7 +242,7 @@ class DataPerkaraController extends Controller
 
     public function showhakim(Request $request)
     {
-        $data = DB::select("select * from tbl_hakim where kd_hakim='$request->kd'");
+        $data = DB::select("SELECT * from tbl_hakim where kd_hakim='$request->kd'");
         return response()->json($data[0]);
     }
 
@@ -255,7 +255,7 @@ class DataPerkaraController extends Controller
     public function edit($no)
     {
         $noperkara=str_replace('--', '/', $no);
-        $data_list = DB::select("select * from tbl_perkara where no_perkara='$noperkara'");
+        $data_list = DB::select("SELECT * from tbl_perkara where no_perkara='$noperkara'");
 
         return view('modul-customer-management.data-perkara.edit', compact('data_list'));
     }
@@ -300,7 +300,7 @@ class DataPerkaraController extends Controller
 
     public function delete(Request $request)
     {
-        $data_pihak = DB::select("select * from tbl_pihak where no_perkara='$request->kode'");
+        $data_pihak = DB::select("SELECT * from tbl_pihak where no_perkara='$request->kode'");
         foreach ($data_pihak as $data) {
             $data_p = $data->kd_pihak;
             DB::table('tbl_hakim')->where('kd_pihak', $data_p)->delete();
@@ -316,7 +316,7 @@ class DataPerkaraController extends Controller
 
     public function Reset(Request $request)
     {
-        $data_tglexp = DB::select("select (date(now()) + INTERVAL  '4' month) as tglexp");
+        $data_tglexp = DB::select("SELECT (date(now()) + INTERVAL  '4' month) as tglexp");
         foreach ($data_tglexp as $data_tgl) {
             $tglexp = $data_tgl->tglexp;
         }
@@ -334,7 +334,7 @@ class DataPerkaraController extends Controller
 
     public function searchdokumen(Request $request)
     {
-        $data = DB::select("select *  from tbl_dokumen_perkara where no_perkara='$request->no_perkara'");
+        $data = DB::select("SELECT *  from tbl_dokumen_perkara where no_perkara='$request->no_perkara'");
         return datatables()->of($data)
         ->addColumn('nama', function ($data) {
             $dat= '<embed align="center"  width="800" height="400" src="'.asset('/data_perkara/'.$data->no_perkara.'/'.$data->file).'" type="application/pdf"></embed>';

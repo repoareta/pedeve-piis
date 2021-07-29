@@ -33,7 +33,7 @@ class DataPajakController extends Controller
         } else {
             $pencarian = date('Y');
         }
-        $data = DB::select("select tahun,bulan,nopek,jenis,nilai,pajak,(select nama from sdm_master_pegawai where nopeg=nopek) as nm_pegawai,(select nama from pay_tbl_aard where kode=jenis) as nm_jenis from pajak_input where tahun like '%$pencarian%' or nopek like '%$pencarian%' order by nopek");
+        $data = DB::select("SELECT tahun,bulan,nopek,jenis,nilai,pajak,(select nama from sdm_master_pegawai where nopeg=nopek) as nm_pegawai,(select nama from pay_tbl_aard where kode=jenis) as nm_jenis from pajak_input where tahun like '%$pencarian%' or nopek like '%$pencarian%' order by nopek");
         return datatables()->of($data)
             ->addColumn('tahun', function ($data) {
                 return $data->tahun;
@@ -68,7 +68,7 @@ class DataPajakController extends Controller
      */
     public function create()
     {
-        $data_pegawai = DB::select("select nopeg, nama, status, nama from sdm_master_pegawai order by nopeg");
+        $data_pegawai = DB::select("SELECT nopeg, nama, status, nama from sdm_master_pegawai order by nopeg");
 
         return view('modul-treasury.data-pajak.create', compact('data_pegawai'));
     }
@@ -81,7 +81,7 @@ class DataPajakController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pajak_input where tahun='$request->tahun' and bulan='$request->bulan' and nopek='$request->nopek' and jenis='$request->jenis'");
+        $data_cek = DB::select("SELECT * from pajak_input where tahun='$request->tahun' and bulan='$request->bulan' and nopek='$request->nopek' and jenis='$request->jenis'");
 
         if (!empty($data_cek)) {
             $data = 2;
@@ -109,7 +109,7 @@ class DataPajakController extends Controller
      */
     public function edit($tahun, $bulan, $nopek, $jenis)
     {
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai order by nopeg");
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai order by nopeg");
 
         $data = DB::table('pajak_input')->where('tahun', '=', $tahun)
             ->where('bulan', '=', $bulan)

@@ -44,7 +44,7 @@ class JenisUpahController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_jenisupah where kode = '$request->kode'" ); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_jenisupah where kode = '$request->kode'" ); 			
         if(!empty($data_cek)) {
             $data = 2;
             return response()->json($data);

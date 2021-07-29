@@ -36,7 +36,7 @@ class PtkpController extends Controller
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_ptkp where kdkel = '$request->kdkel'" ); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_ptkp where kdkel = '$request->kdkel'" ); 			
         if(!empty($data_cek)) {
             $data = 2;
             

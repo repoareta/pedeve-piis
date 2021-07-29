@@ -14,7 +14,7 @@ class PostingKasBankController extends Controller
 {
     public function index()
  {
-    $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
+    $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
     if(!empty($data_tahunbulan)) {
         foreach ($data_tahunbulan as $data_bul) {
             $tahun = substr($data_bul->bulan_buku,0,-2); 
@@ -28,7 +28,7 @@ class PostingKasBankController extends Controller
  }
  public function indexJson(Request $request)
     {
-        $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($rsbulan)){
             foreach($rsbulan as $dat)
             {
@@ -42,9 +42,9 @@ class PostingKasBankController extends Controller
             $thnblopen2 = "";
         }
         if($request->bulan <>"" and $request->tahun<>""){
-            $data = DB::select("select a.* from kasdoc a where a.thnbln ='$request->tahun$request->bulan' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
+            $data = DB::select("SELECT a.* from kasdoc a where a.thnbln ='$request->tahun$request->bulan' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
         }else{
-            $data = DB::select("select a.* from kasdoc a where a.thnbln ='$thnblopen2' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
+            $data = DB::select("SELECT a.* from kasdoc a where a.thnbln ='$thnblopen2' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
         }		
         return datatables()->of($data)
         ->addColumn('paiddate', function ($data) {
@@ -91,7 +91,7 @@ class PostingKasBankController extends Controller
     public function verkas($no)
     {
         $docno = str_replace('-', '/', $no);
-            $data_objrs = DB::select("select * from kasdoc where docno='$docno'");
+            $data_objrs = DB::select("SELECT * from kasdoc where docno='$docno'");
             foreach($data_objrs as $objrs )
             {
                 $docno = $objrs->docno;
@@ -128,7 +128,7 @@ class PostingKasBankController extends Controller
                     $namaci = "1.Rp";
                 }
 
-                    $data_rsbagian = DB::select("select nama from sdm_tbl_kdbag where kode ='$bagian'");
+                    $data_rsbagian = DB::select("SELECT nama from sdm_tbl_kdbag where kode ='$bagian'");
                     if(!empty($data_rsbagian)){
                         foreach($data_rsbagian as $rsbagian)
                         {
@@ -138,7 +138,7 @@ class PostingKasBankController extends Controller
                         $nama_bagian = "";
                     }
 
-                    $data_rskas = DB::select("select namabank from storejk where kodestore ='$nokas'");
+                    $data_rskas = DB::select("SELECT namabank from storejk where kodestore ='$nokas'");
                     if(!empty($data_rskas)){
                         foreach($data_rskas as $rskas)
                         {
@@ -148,7 +148,7 @@ class PostingKasBankController extends Controller
                         $nama_kas = "-";
                     }
             }
-            $data_no = DB::select("select max(lineno) as nu from kasline where docno='$docno'");
+            $data_no = DB::select("SELECT max(lineno) as nu from kasline where docno='$docno'");
             if(!empty($data_no)){
                 foreach($data_no as $no)
                 {
@@ -157,18 +157,18 @@ class PostingKasBankController extends Controller
             }else{
                 $nu=1;
             }  
-            $data_detail = DB::select("select a.* from kasline a where a.docno='$docno' order by a.lineno");
-            $data_lapang = DB::select("select kodelokasi,nama from lokasi");
-            $data_sandi = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
-            $data_bagian = DB::select("select kode,nama from sdm_tbl_kdbag order by kode");
-            $data_jenis = DB::select("select kode,keterangan from jenisbiaya order by kode");
-            $data_cjudex = DB::select("select kode,nama from cashjudex order by kode");
-            $verifieds = DB::select("select verified from kasdoc where docno='$docno'");
+            $data_detail = DB::select("SELECT a.* from kasline a where a.docno='$docno' order by a.lineno");
+            $data_lapang = DB::select("SELECT kodelokasi,nama from lokasi");
+            $data_sandi = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+            $data_bagian = DB::select("SELECT kode,nama from sdm_tbl_kdbag order by kode");
+            $data_jenis = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
+            $data_cjudex = DB::select("SELECT kode,nama from cashjudex order by kode");
+            $verifieds = DB::select("SELECT verified from kasdoc where docno='$docno'");
             foreach($verifieds as $dat)
             {
                 $verified = $dat->verified;
             }
-            $sum = DB::select("select sum(totprice) as tot from kasline where docno='$docno'");
+            $sum = DB::select("SELECT sum(totprice) as tot from kasline where docno='$docno'");
             foreach($sum as $sums)
             {
                 if($sums->tot <> ""){
@@ -177,7 +177,7 @@ class PostingKasBankController extends Controller
                     $jumlahnya = 0;
                 }
             }
-            $data_rsjurnal = DB::select("select distinct(store) from kasdoc where paid='Y' and verified='N'");
+            $data_rsjurnal = DB::select("SELECT distinct(store) from kasdoc where paid='Y' and verified='N'");
             return view('posting_kas_bank.verkas',compact(
                                                         'jumlahnya',
                                                         'verified',
@@ -241,18 +241,18 @@ class PostingKasBankController extends Controller
                 $nama_bagian = "";
                 $nama_kas = "-";
                 $nu='';
-            $data_detail = DB::select("select a.* from kasline a where a.docno='$docno' order by a.lineno");
-            $data_lapang = DB::select("select kodelokasi,nama from lokasi");
-            $data_sandi = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
-            $data_bagian = DB::select("select kode,nama from sdm_tbl_kdbag order by kode");
-            $data_jenis = DB::select("select kode,keterangan from jenisbiaya order by kode");
-            $data_cjudex = DB::select("select kode,nama from cashjudex order by kode");
-            $verifieds = DB::select("select verified from kasdoc where docno='$docno'");
+            $data_detail = DB::select("SELECT a.* from kasline a where a.docno='$docno' order by a.lineno");
+            $data_lapang = DB::select("SELECT kodelokasi,nama from lokasi");
+            $data_sandi = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+            $data_bagian = DB::select("SELECT kode,nama from sdm_tbl_kdbag order by kode");
+            $data_jenis = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
+            $data_cjudex = DB::select("SELECT kode,nama from cashjudex order by kode");
+            $verifieds = DB::select("SELECT verified from kasdoc where docno='$docno'");
             foreach($verifieds as $dat)
             {
                 $verified = $dat->verified;
             }
-            $sum = DB::select("select sum(totprice) as tot from kasline where docno='$docno'");
+            $sum = DB::select("SELECT sum(totprice) as tot from kasline where docno='$docno'");
             foreach($sum as $sums)
             {
                 if($sums->tot <> ""){
@@ -262,7 +262,7 @@ class PostingKasBankController extends Controller
                 }
             }
         
-            $data_rsjurnal = DB::select("select distinct(store) from kasdoc where paid='Y' and verified='N'");
+            $data_rsjurnal = DB::select("SELECT distinct(store) from kasdoc where paid='Y' and verified='N'");
 
         return view('posting_kas_bank.verkas',compact(
                                                         'jumlahnya',
@@ -302,10 +302,10 @@ class PostingKasBankController extends Controller
     }
     public function verkasJson(Request $request)
     {
-        $data_rsjurnal = DB::select("select distinct(store) from kasdoc where paid='Y' and verified='N'");
+        $data_rsjurnal = DB::select("SELECT distinct(store) from kasdoc where paid='Y' and verified='N'");
         foreach($data_rsjurnal as $sjurnal)
         {
-            $data = DB::select("select docno,verified, store from kasdoc where store='$sjurnal->store' and paid='Y' and verified='N' order by docno asc");
+            $data = DB::select("SELECT docno,verified, store from kasdoc where store='$sjurnal->store' and paid='Y' and verified='N' order by docno asc");
         }
 
         return datatables()->of($data)
@@ -336,7 +336,7 @@ class PostingKasBankController extends Controller
             $jumlah = str_replace(',', '.', $request->jumlah);
             $cjudex = $request->cjudex;
             
-        $data_objrs = DB::select("select * from kasdoc a where a.docno='$docno'");
+        $data_objrs = DB::select("SELECT * from kasdoc a where a.docno='$docno'");
         if(!empty($data_objrs)){
             foreach($data_objrs as $objrs)
             {
@@ -376,7 +376,7 @@ class PostingKasBankController extends Controller
             $jumlah = str_replace(',', '.', $request->jumlah);
             $cjudex = $request->cjudex;
             
-        $data_objrs = DB::select("select * from kasdoc a where a.docno='$docno'");
+        $data_objrs = DB::select("SELECT * from kasdoc a where a.docno='$docno'");
         if(!empty($data_objrs)){
             foreach($data_objrs as $objrs)
             {
@@ -412,12 +412,12 @@ class PostingKasBankController extends Controller
 
     public function prsposting()
     {
-        $data_kas = DB::select("select distinct(store) as store,(select namabank from storejk where kodestore=store) as bank,(select jeniskartu from storejk where kodestore=store) as jk from kasdoc where verified='Y' and posted='N'");
+        $data_kas = DB::select("SELECT distinct(store) as store,(select namabank from storejk where kodestore=store) as bank,(select jeniskartu from storejk where kodestore=store) as jk from kasdoc where verified='Y' and posted='N'");
         return view('posting_kas_bank.prsposting',compact('data_kas'));
     }
     public function storePrsposting(Request $request)
     {
-        $data_rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $data_rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($data_rsbulan)){
             foreach($data_rsbulan as $data)
             {
@@ -439,15 +439,15 @@ class PostingKasBankController extends Controller
             $data = 2;
             return response()->json($data);
         }else{
-            $data_cekposting = DB::select("select * from kasdoc where paiddate between '$tanggal' and '$tanggal2' and posted <>'Y' and verified='Y' and store='$nokas'");
+            $data_cekposting = DB::select("SELECT * from kasdoc where paiddate between '$tanggal' and '$tanggal2' and posted <>'Y' and verified='Y' and store='$nokas'");
             if(!empty($data_cekposting)){
-                $data_kitaposting = DB::select("select * from kasdoc where store='$nokas' and verified='Y' and posted <> 'Y' and paiddate between '$tanggal' and '$tanggal2'");
+                $data_kitaposting = DB::select("SELECT * from kasdoc where store='$nokas' and verified='Y' and posted <> 'Y' and paiddate between '$tanggal' and '$tanggal2'");
                 foreach($data_kitaposting as $data_kit)
                 { 
                     $docno = $data_kit->docno;
                     $verifieddate = date('Y-m-d H:i:s');
                     $pk = date('mY');
-                    $data_kas = DB::select("select ltrim(to_char(paiddate,'yyyymm')) as v_thnbln,thnbln as v_thnbln_b from kasdoc where docno='$docno'");
+                    $data_kas = DB::select("SELECT ltrim(to_char(paiddate,'yyyymm')) as v_thnbln,thnbln as v_thnbln_b from kasdoc where docno='$docno'");
                     foreach($data_kas as $data_ka)
                     {
                         if($data_ka->v_thnbln<>$data_ka->v_thnbln_b){
@@ -455,15 +455,15 @@ class PostingKasBankController extends Controller
                             return response()->json($data);
                         }else{
                             
-                            $data_crdoc = DB::select("select * from kasdoc where docno='$docno'");
+                            $data_crdoc = DB::select("SELECT * from kasdoc where docno='$docno'");
                             $ada = false;
                             foreach($data_crdoc as $d)
                             {
-                                $crstore_jk = DB::select("select * from storejk s where s.kodestore='$d->store' and  s.jeniskartu='$d->jk'");
+                                $crstore_jk = DB::select("SELECT * from storejk s where s.kodestore='$d->store' and  s.jeniskartu='$d->jk'");
                                 foreach($crstore_jk as $j)
                                 {
                                     $ada = true;
-                                    $data_crline = DB::select("select max(lineno) as jum,coalesce(sum(totprice),0) as total from kasline where docno='$docno'");
+                                    $data_crline = DB::select("SELECT max(lineno) as jum,coalesce(sum(totprice),0) as total from kasline where docno='$docno'");
                                     if(!empty($data_crline)){
                                         foreach($data_crline as $n)
                                         {
@@ -503,7 +503,7 @@ class PostingKasBankController extends Controller
                             }
 
 
-                        $dat_crdoc = DB::select("select * from kasdoc where docno='$docno'");
+                        $dat_crdoc = DB::select("SELECT * from kasdoc where docno='$docno'");
                             foreach($dat_crdoc as $dd)
                             {
                                 $tahun = substr($dd->thnbln,0,4);
@@ -513,7 +513,7 @@ class PostingKasBankController extends Controller
                                 ->where('tahun',$tahun)
                                 ->where('bulan', $bulan)->delete();
                                 
-                                $dat_crline = DB::select("select * from kasline where docno='$docno'");
+                                $dat_crline = DB::select("SELECT * from kasline where docno='$docno'");
                                 foreach($dat_crline as $ll)
                                 {
                                     $account = substr($ll->account,0,3);
@@ -579,12 +579,12 @@ class PostingKasBankController extends Controller
 
     public function btlposting()
     {
-        $data_kas = DB::select("select distinct(store),(select namabank from storejk where kodestore=store) as bank,(select jeniskartu from storejk where kodestore = store) as jk from kasdoc where verified='Y' and posted='Y'");
+        $data_kas = DB::select("SELECT distinct(store),(select namabank from storejk where kodestore=store) as bank,(select jeniskartu from storejk where kodestore = store) as jk from kasdoc where verified='Y' and posted='Y'");
         return view('posting_kas_bank.btlposting',compact('data_kas'));
     }
     public function storeBtlposting(Request $request)
     {
-        $data_rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $data_rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($data_rsbulan)){
             foreach($data_rsbulan as $data)
             {
@@ -606,12 +606,12 @@ class PostingKasBankController extends Controller
             $data = 2;
             return response()->json($data);
         }else{
-            $data_kitabatal = DB::select("select * from kasdoc where store='$nokas' and posted='Y' and paiddate between '$tanggal' and '$tanggal2'");
+            $data_kitabatal = DB::select("SELECT * from kasdoc where store='$nokas' and posted='Y' and paiddate between '$tanggal' and '$tanggal2'");
             if(!empty($data_kitabatal)){ 
                 foreach($data_kitabatal as $kitabatal)
                 {
                     $docno = $kitabatal->docno;
-                    $data_cr = DB::select("select thnbln from kasdoc where docno='$docno'");
+                    $data_cr = DB::select("SELECT thnbln from kasdoc where docno='$docno'");
                         foreach($data_cr as $t)
                         {
                             $tahun = substr($t->thnbln,0,4);
@@ -658,7 +658,7 @@ class PostingKasBankController extends Controller
             $status1 = $request->status1;
             $docno = $request->mp.'/'.$request->bagian.'/'.$request->nomor;
         
-            $datacek = DB::select("select * from kasdoc a where a.docno='$docno'");
+            $datacek = DB::select("SELECT * from kasdoc a where a.docno='$docno'");
             if(!empty($datacek)){
                 foreach($datacek as $datac)
                 {

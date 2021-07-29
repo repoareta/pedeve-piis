@@ -15,7 +15,7 @@ class MasterPerusahaanController extends Controller
 
    public function indexJson(Request $request)
     {
-        $data = DB::select("select * from tab_tbl_prshn");
+        $data = DB::select("SELECT * from tab_tbl_prshn");
         return datatables()->of($data)
         ->addColumn('kode', function ($data) {
             return $data->kode;
@@ -38,7 +38,7 @@ class MasterPerusahaanController extends Controller
 
     public function store(Request $request)
     {
-        $data = DB::select("select * from tab_tbl_prshn where kode='$request->kode'");
+        $data = DB::select("SELECT * from tab_tbl_prshn where kode='$request->kode'");
         if(!empty($data)){
             $data = 2;
             return response()->json($data);
@@ -54,7 +54,7 @@ class MasterPerusahaanController extends Controller
 
     public function edit($kode)
     {
-        $data = DB::select("select * from tab_tbl_prshn where kode='$kode'");
+        $data = DB::select("SELECT * from tab_tbl_prshn where kode='$kode'");
         foreach($data as $dat)
         {
             $kode = $dat->kode;

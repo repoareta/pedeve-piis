@@ -26,7 +26,7 @@ class RekapHarianKasController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 $bulan_buku = $data_bul->bulan_buku;
@@ -36,9 +36,9 @@ class RekapHarianKasController extends Controller
         }
 
         if ($request->nama == "") {
-            $data = DB::select("select a.jk, a.store, ltrim(to_char(a.rekap,'000')) as no, to_date(trim(to_char(a.tglrekap,'dd/mm/yyyy')),'dd/mm/yyyy') as stglrekap, a.saldoawal*-1 as saldoawal, a.debet*-1 as debet, kredit, a.saldoakhir*-1 as saldoakhir, b.namabank as nama_store   from rekapkas a join storejk b on a.store=b.kodestore where to_char(a.tglrekap,'yyyymm') = '$bulan_buku' order by a.tglrekap desc");
+            $data = DB::select("SELECT a.jk, a.store, ltrim(to_char(a.rekap,'000')) as no, to_date(trim(to_char(a.tglrekap,'dd/mm/yyyy')),'dd/mm/yyyy') as stglrekap, a.saldoawal*-1 as saldoawal, a.debet*-1 as debet, kredit, a.saldoakhir*-1 as saldoakhir, b.namabank as nama_store   from rekapkas a join storejk b on a.store=b.kodestore where to_char(a.tglrekap,'yyyymm') = '$bulan_buku' order by a.tglrekap desc");
         } elseif ($request->nama <> "") {
-            $data = DB::select("select a.jk, a.store, ltrim(to_char(a.rekap,'000')) as no, to_date(trim(to_char(a.tglrekap,'dd/mm/yyyy')),'dd/mm/yyyy') as stglrekap, a.saldoawal*-1 as saldoawal, a.debet*-1 as debet, kredit, a.saldoakhir*-1 as saldoakhir, b.namabank as nama_store   from rekapkas a join storejk b on a.store=b.kodestore where a.store='$request->nama' order by a.tglrekap desc");
+            $data = DB::select("SELECT a.jk, a.store, ltrim(to_char(a.rekap,'000')) as no, to_date(trim(to_char(a.tglrekap,'dd/mm/yyyy')),'dd/mm/yyyy') as stglrekap, a.saldoawal*-1 as saldoawal, a.debet*-1 as debet, kredit, a.saldoakhir*-1 as saldoakhir, b.namabank as nama_store   from rekapkas a join storejk b on a.store=b.kodestore where a.store='$request->nama' order by a.tglrekap desc");
         }
         return datatables()->of($data)
             ->addColumn('jk', function ($data) {
@@ -84,7 +84,7 @@ class RekapHarianKasController extends Controller
 
     public function JeniskaruJson(Request $request)
     {
-        $datas = DB::select("select distinct jk from kasdoc where paid='Y' and to_char(paiddate,'yyyy-mm-dd') ='$request->tanggal' order by jk");
+        $datas = DB::select("SELECT distinct jk from kasdoc where paid='Y' and to_char(paiddate,'yyyy-mm-dd') ='$request->tanggal' order by jk");
         if (!empty($datas)) {
             return response()->json($datas[0]);
         } else {
@@ -94,7 +94,7 @@ class RekapHarianKasController extends Controller
     }
     public function NokasJson(Request $request)
     {
-        $datas = DB::select("select distinct a.store,b.namabank,b.norekening from kasdoc a,storejk b where a.store=b.kodestore and b.jeniskartu='$request->jk' and a.PAID='Y' and to_char(a.paiddate,'yyyy-mm-dd') = '$request->tanggal' order by a.store");
+        $datas = DB::select("SELECT distinct a.store,b.namabank,b.norekening from kasdoc a,storejk b where a.store=b.kodestore and b.jeniskartu='$request->jk' and a.PAID='Y' and to_char(a.paiddate,'yyyy-mm-dd') = '$request->tanggal' order by a.store");
         if (!empty($datas)) {
             $html = '';
             foreach ($datas as $data) {
@@ -113,19 +113,19 @@ class RekapHarianKasController extends Controller
         $nokas = $request->nokas;
         $tanggal = $request->tanggal;
 
-        $data_tabl = DB::select("select * from t_table");
+        $data_tabl = DB::select("SELECT * from t_table");
         foreach ($data_tabl as $data_tab) {
             Ttable::where("t_date", $data_tab->t_date)->update([
                 't_date' => $tanggal
             ]);
         }
-        $data_rsrekapkas = DB::select("select * from rekapkas where jk='$jk' and store='$nokas' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
+        $data_rsrekapkas = DB::select("SELECT * from rekapkas where jk='$jk' and store='$nokas' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
         if (!empty($data_rsrekapkas)) {
             $data = 5;
             return response()->json($data);
             // response.write("<script>alert('rekap kas sudah dilakukan!')</script>")  
         } else {
-            $data_cekbulbuk = DB::select("select h.docno,to_char(h.paiddate,'yyyy-mm-dd') as stglrekap,h.voucher,h.thnbln,h.paiddate, h.store, d.keterangan, d.cj , -d.totprice totprice,posted,rate, h.jk 
+            $data_cekbulbuk = DB::select("SELECT h.docno,to_char(h.paiddate,'yyyy-mm-dd') as stglrekap,h.voucher,h.thnbln,h.paiddate, h.store, d.keterangan, d.cj , -d.totprice totprice,posted,rate, h.jk 
                                 from kasdoc h, kasline d 
                                 where h.docno=d.docno and 
                                         h.store='$nokas' and 
@@ -144,7 +144,7 @@ class RekapHarianKasController extends Controller
                 }
             }
 
-            $data_rsdatemin = DB::select("select min(paiddate) as datemin from kasdoc h where paiddate not in (select tglrekap from rekapkas where store='$nokas' and jk='$jk') and store='$nokas' and jk='$jk'");
+            $data_rsdatemin = DB::select("SELECT min(paiddate) as datemin from kasdoc h where paiddate not in (select tglrekap from rekapkas where store='$nokas' and jk='$jk') and store='$nokas' and jk='$jk'");
             foreach ($data_rsdatemin as $data_rsadm) {
                 if ($data_rsadm->datemin <> "") {
                 } else {
@@ -155,7 +155,7 @@ class RekapHarianKasController extends Controller
             }
         }
 
-        $data_rs = DB::select("select tglrekap as datemax, rekap as norekap from rekapkas where store='$nokas' and jk='$jk' order by tglrekap desc");
+        $data_rs = DB::select("SELECT tglrekap as datemax, rekap as norekap from rekapkas where store='$nokas' and jk='$jk' order by tglrekap desc");
         if (!empty($data_rs)) {
             foreach ($data_rs as $data_r) {
                 if ($data_r->norekap == "999") {
@@ -174,20 +174,20 @@ class RekapHarianKasController extends Controller
         }
 
         foreach ($data_cekbulbuk as $data_cekbull) {
-            $datars_rs = DB::select("select * from rekapkas where store='$data_cekbull->store' and jk='$data_cekbull->jk' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
+            $datars_rs = DB::select("SELECT * from rekapkas where store='$data_cekbull->store' and jk='$data_cekbull->jk' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
         }
         if (!empty($datars_rs)) {
             $data = 4;
             return response()->json($data);
             // response.write("<script>alert('rekap harian ini sudah ada!')</script>") 
         } else {
-            $datatrs_rs = DB::select("select saldoakhir from rekapkas where store='$nokas' and jk='$jk' and tglrekap= (select max(tglrekap) from rekapkas where store='$nokas' and jk='$jk')");
+            $datatrs_rs = DB::select("SELECT saldoakhir from rekapkas where store='$nokas' and jk='$jk' and tglrekap= (select max(tglrekap) from rekapkas where store='$nokas' and jk='$jk')");
             if (!empty($datatrs_rs)) {
                 foreach ($datatrs_rs as $datatrs_r) {
                     $saldoawal = round(vbildb($datatrs_r->saldoakhir));
                 }
             } else {
-                $datasaldo_rs = DB::select("select saldoakhir from saldostore where nokas='$nokas' and jk='$jk'");
+                $datasaldo_rs = DB::select("SELECT saldoakhir from saldostore where nokas='$nokas' and jk='$jk'");
                 if (!empty($datasaldo_rs)) {
                     foreach ($datasaldo_rs as $datasaldo_r) {
                         $storeak = $datasaldo_r->saldoakhir;
@@ -198,7 +198,7 @@ class RekapHarianKasController extends Controller
                 $saldoawal = round(vbildb($storeak));
             }
 
-            $datajuml_rs = DB::select("select sum(d.totprice) as jumlah from kasdoc h, kasline d where h.docno=d.docno and h.store='$nokas' and h.jk='$jk' and to_char(h.paiddate,'yyyy-mm-dd')='$tanggal' and d.penutup<>'Y' and h.paid='Y' group by d.docno,h.ci,sign(d.totprice)");
+            $datajuml_rs = DB::select("SELECT sum(d.totprice) as jumlah from kasdoc h, kasline d where h.docno=d.docno and h.store='$nokas' and h.jk='$jk' and to_char(h.paiddate,'yyyy-mm-dd')='$tanggal' and d.penutup<>'Y' and h.paid='Y' group by d.docno,h.ci,sign(d.totprice)");
             if (!empty($datajuml_rs)) {
                 foreach ($datajuml_rs as $datajuml_r) {
                     if ($datajuml_r->jumlah <= 0) {
@@ -228,9 +228,9 @@ class RekapHarianKasController extends Controller
                 'tahun_rekap' => $rekapyear
             ]);
 
-            // $data_rsrekapkas = DB::select("select * from rekapkas where store='$nokas' and jk='$jk' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
+            // $data_rsrekapkas = DB::select("SELECT * from rekapkas where store='$nokas' and jk='$jk' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
 
-            $data_rskasdoc = DB::select("select docno, rekap, rekapdate from kasdoc where to_char(paiddate,'yyyy-mm-dd')='$tanggal'");
+            $data_rskasdoc = DB::select("SELECT docno, rekap, rekapdate from kasdoc where to_char(paiddate,'yyyy-mm-dd')='$tanggal'");
             if (!empty($data_rskasdoc)) {
                 foreach ($data_rskasdoc as $data_rsk) {
                     Kasdoc::where('docno', $data_rsk->docno)
@@ -249,7 +249,7 @@ class RekapHarianKasController extends Controller
 
     public function edit($id, $no, $tgl)
     {
-        $data_list = DB::select("select * from rekapkas where jk='$id' and store='$no' and tglrekap='$tgl'");
+        $data_list = DB::select("SELECT * from rekapkas where jk='$id' and store='$no' and tglrekap='$tgl'");
         return view('modul-treasury.rekap-harian-kas.edit', compact('data_list'));
     }
 
@@ -258,14 +258,14 @@ class RekapHarianKasController extends Controller
         $jk = $request->jk;
         $nokas = $request->nokas;
         $tanggal = $request->tanggal;
-        $data_tabl = DB::select("select * from t_table");
+        $data_tabl = DB::select("SELECT * from t_table");
         foreach ($data_tabl as $data_tab) {
             Ttable::where('t_date', $data_tab->t_date)->update([
                 't_date' => $tanggal
             ]);
         }
 
-        $data_srekapkas = DB::select("select * from rekapkas where store='$nokas' and jk='$jk' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
+        $data_srekapkas = DB::select("SELECT * from rekapkas where store='$nokas' and jk='$jk' and to_char(tglrekap,'yyyy-mm-dd')='$tanggal'");
 
         if (!empty($data_srekapkas)) {
             $data = 2;
@@ -273,7 +273,7 @@ class RekapHarianKasController extends Controller
             // response.write("<script>alert('belum dilakukan rekap')</script>")  
         }
 
-        $data_cekbulbuk = DB::select("select h.docno,to_char(h.paiddate,'yyyy-mm-dd') as stglrekap,h.voucher,h.thnbln,h.paiddate, h.store, d.keterangan, d.cj , -d.totprice totprice,posted,rate, h.jk  from kasdoc h, kasline d where h.docno=d.docno and h.store='$nokas' and h.jk='$jk' and to_char(h.paiddate,'yyyy-mm-dd')='$tanggal' and d.penutup<>'Y' order by h.voucher");
+        $data_cekbulbuk = DB::select("SELECT h.docno,to_char(h.paiddate,'yyyy-mm-dd') as stglrekap,h.voucher,h.thnbln,h.paiddate, h.store, d.keterangan, d.cj , -d.totprice totprice,posted,rate, h.jk  from kasdoc h, kasline d where h.docno=d.docno and h.store='$nokas' and h.jk='$jk' and to_char(h.paiddate,'yyyy-mm-dd')='$tanggal' and d.penutup<>'Y' order by h.voucher");
         if (!empty($data_cekbulbuk)) {
             foreach ($data_cekbulbuk as $data_cekbul) {
                 if ($data_cekbul->thnbln <> "") {
@@ -286,15 +286,15 @@ class RekapHarianKasController extends Controller
             }
         }
 
-        $data_rs = DB::select("select tglrekap from rekapkas where (tglrekap > (select t_date from t_table)) and store='$nokas' and jk='$jk'");
+        $data_rs = DB::select("SELECT tglrekap from rekapkas where (tglrekap > (select t_date from t_table)) and store='$nokas' and jk='$jk'");
         if (!empty($data_rs)) {
             $data = 4;
             return response()->json($data);
             // response.write("<script>alert('sudah ada rekap harian pada tanggal $rs("tglrekap"), cancel rekap tanggal tersebut terlebih dahulu')</script>")  
         }
 
-        $data_cr1 = DB::select("select left(docno,1) dok,docno from kasdoc where paiddate=(select t_date from t_table) and store='$nokas' and jk='$jk'");
-        $data_tdate = DB::select("select t_date as vdate from t_table");
+        $data_cr1 = DB::select("SELECT left(docno,1) dok,docno from kasdoc where paiddate=(select t_date from t_table) and store='$nokas' and jk='$jk'");
+        $data_tdate = DB::select("SELECT t_date as vdate from t_table");
         foreach ($data_cr1 as $t) {
             if ($t->dok == 'P') {
                 Kasdoc::where('docno', $t->docno)

@@ -103,7 +103,7 @@ class MonitoringKinerjaController extends Controller
    
     public function edit($id)
     {
-        $data_list =  DB::select("select a.*, b.nama from tbl_monitoring a join cm_perusahaan_afiliasi b on a.kd_perusahaan=b.id where kd_monitoring='$id'");
+        $data_list =  DB::select("SELECT a.*, b.nama from tbl_monitoring a join cm_perusahaan_afiliasi b on a.kd_perusahaan=b.id where kd_monitoring='$id'");
         return view('monitoring_kinerja.edit', compact('data_list'));
     }
 

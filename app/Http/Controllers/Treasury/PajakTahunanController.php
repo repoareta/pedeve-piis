@@ -75,7 +75,7 @@ class PajakTahunanController extends Controller
         DB::table('report_pajak')->delete();
         $tanggal = $request->tanggal;
         // 'CARI PEGAWAI YANG STATUS PEKERJA TETAP
-        $rsproses = DB::select("select nopeg,status,kodekeluarga,trim(to_char(tglaktifdns,'YYYY')) as tahun,trim(to_char(tglaktifdns,'MM')) as bulan from sdm_master_pegawai where status in ('C','B','K') order by nopeg asc");
+        $rsproses = DB::select("SELECT nopeg,status,kodekeluarga,trim(to_char(tglaktifdns,'YYYY')) as tahun,trim(to_char(tglaktifdns,'MM')) as bulan from sdm_master_pegawai where status in ('C','B','K') order by nopeg asc");
         foreach ($rsproses as $data_rsproses) {
             $nopeg = $data_rsproses->nopeg;
             $status1 = $data_rsproses->status;
@@ -84,7 +84,7 @@ class PajakTahunanController extends Controller
             $bulandns = $data_rsproses->bulan;
 
             // 'CARI NILAI YANG KENA PAJAK (BRUTO 1-6)
-            $rskenapajak = DB::select("select coalesce(sum(nilai),0) as nilaipajak from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard in ('01','02','04','03','06','05','32','42','43','41','10','12','45')");
+            $rskenapajak = DB::select("SELECT coalesce(sum(nilai),0) as nilaipajak from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard in ('01','02','04','03','06','05','32','42','43','41','10','12','45')");
             if (!empty($rskenapajak)) {
                 foreach ($rskenapajak as $data_rskenapajak) {
                     $totkenapajak = $data_rskenapajak->nilaipajak;
@@ -93,7 +93,7 @@ class PajakTahunanController extends Controller
                 $totkenapajak = 0;
             }
 
-            $rskenapajak2 = DB::select("select coalesce(sum(nilai),0) as nilaipajak from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard in ('24','25','39','40')");
+            $rskenapajak2 = DB::select("SELECT coalesce(sum(nilai),0) as nilaipajak from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard in ('24','25','39','40')");
             if (!empty($rskenapajak2)) {
                 foreach ($rskenapajak2 as $data_rskenapajak2) {
                     $totkenapajak2 = $data_rskenapajak2->nilaipajak;
@@ -140,7 +140,7 @@ class PajakTahunanController extends Controller
                 $biayajabatan4 = $biayajabatan4;
             }
 
-            $rspensiun = DB::select("select coalesce(sum(nilai),0) as nilaipensiun from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard in ('09','14')");
+            $rspensiun = DB::select("SELECT coalesce(sum(nilai),0) as nilaipensiun from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard in ('09','14')");
             if (!empty($rspensiun)) {
                 foreach ($rspensiun as $data_rspensiun) {
                     $totpensiun = $data_rspensiun->nilaipensiun;
@@ -151,7 +151,7 @@ class PajakTahunanController extends Controller
             $neto1tahun =  $totkenapajak + $totkenapajak2 + $totpensiun - ($biayajabatan + $biayajabatan4);
 
             // 'CARI NILAI TIDAK KENA PAJAK
-            $nilaiptkp1 = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopeg'");
+            $nilaiptkp1 = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopeg'");
             if (!empty($nilaiptkp1)) {
                 foreach ($nilaiptkp1 as $data_nilaiptkp1) {
                     $nilaiptkp1 = $data_nilaiptkp1->nilai;
@@ -264,7 +264,7 @@ class PajakTahunanController extends Controller
         }
 
         // 'CARI PEGAWAI YANG STATUS PEKERJA TETAP
-        $rsproses = DB::select("select nopeg,status,kodekeluarga from sdm_master_pegawai where status='U' order by nopeg asc");
+        $rsproses = DB::select("SELECT nopeg,status,kodekeluarga from sdm_master_pegawai where status='U' order by nopeg asc");
         foreach ($rsproses as $data_rsproses) {
             $nopeg = $data_rsproses->nopeg;
             $status1 = $data_rsproses->status;
@@ -272,7 +272,7 @@ class PajakTahunanController extends Controller
 
             // 'HITUNG PAJAK PPH21
             // 'CARI NILAI YANG KENA PAJAK (BRUTO)
-            $rskenapajak = DB::select("select coalesce(sum(nilai),0) as nilaipajak from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard not in ('26','27')");
+            $rskenapajak = DB::select("SELECT coalesce(sum(nilai),0) as nilaipajak from v_parampajakreport where tahun='$tanggal' and nopek='$nopeg' and length(aard)='2' and aard not in ('26','27')");
             if (!empty($rskenapajak)) {
                 foreach ($rskenapajak as $data_rskenapajak) {
                     $totkenapajak = $data_rskenapajak->nilaipajak;

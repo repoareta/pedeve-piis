@@ -37,7 +37,7 @@ class MasterTabunganController extends Controller
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_tabungan"); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_tabungan"); 			
         if(!empty($data_cek)) {
             $data = 2;
             return response()->json($data);

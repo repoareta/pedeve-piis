@@ -28,7 +28,7 @@ class AuthController extends Controller
         $GetTerminalName=substr(gethostbyaddr($_SERVER['REMOTE_ADDR']), 0, 15);
         $UserIPAddress =substr($_SERVER['REMOTE_ADDR'], 0, 3);
         if (Auth::attempt($request->only('userid', 'userpw'))) {
-            $data_user = DB::select("select userid,usernm,kode,userpw,userlv,userap,coalesce(host,'192') host from userpdv where userid='$loginid'");
+            $data_user = DB::select("SELECT userid,usernm,kode,userpw,userlv,userap,coalesce(host,'192') host from userpdv where userid='$loginid'");
             foreach ($data_user as $rsuser) {
                 $sUserId = $rsuser->userid;
                 $sUserName = $rsuser->usernm;
@@ -43,7 +43,7 @@ class AuthController extends Controller
                     if (($sUserHost<>"%") and ('192' <> $sUserHost)) {
                         return redirect('/error')->with('notif', "You are not allowed to access from there...");
                     } else {
-                        $rsUserLogin = DB::select("select userid from userlogin where terminal='$GetTerminalName' and userid='$loginid'");
+                        $rsUserLogin = DB::select("SELECT userid from userlogin where terminal='$GetTerminalName' and userid='$loginid'");
                         UserLogin::where('terminal', $GetTerminalName)->where('userid', $loginid)->delete();
                         if (!empty($rsUserLogin)) {
                             $userid = Auth::user()->userid;
@@ -83,7 +83,7 @@ class AuthController extends Controller
                         
                             $request->session()->put('log', $dLogin);
                             $request->session()->put('tgltrans', $dLogin);
-                            $data_objRs = DB::select("select u.userid, u.usernm, 
+                            $data_objRs = DB::select("SELECT u.userid, u.usernm, 
                                                         case when u.passexp > localtimestamp then 
                                                         case when u.passexp <= localtimestamp + interval '7 days' then 'ganti' 
                                                         when u.passexp >localtimestamp + interval '7 days' then 'ok' end 

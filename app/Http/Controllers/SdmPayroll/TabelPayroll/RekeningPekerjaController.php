@@ -17,7 +17,7 @@ class RekeningPekerjaController extends Controller
 
     public function indexJson()
     {
-        $tunjangan_list = DB::select("select a.nopek,a.kdbank,a.rekening,a.atasnama,(select nama from pay_tbl_bank where kode=a.kdbank) as namabank, (select nama from sdm_master_pegawai where nopeg=a.nopek) as namapekerja from pay_tbl_rekening a order by nopek");
+        $tunjangan_list = DB::select("SELECT a.nopek,a.kdbank,a.rekening,a.atasnama,(select nama from pay_tbl_bank where kode=a.kdbank) as namabank, (select nama from sdm_master_pegawai where nopeg=a.nopek) as namapekerja from pay_tbl_rekening a order by nopek");
         
         return datatables()->of($tunjangan_list)
         ->addColumn('radio', function ($row) {
@@ -39,14 +39,14 @@ class RekeningPekerjaController extends Controller
         $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();
-        $data_bank = DB::select("select kode, nama, alamat, kota from pay_tbl_bank");
+        $data_bank = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank");
         return view('modul-sdm-payroll.rekening-pekerja.create',compact('data_pegawai','data_bank'));
     }
 
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_rekening where nopek = '$request->nopek'" ); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_rekening where nopek = '$request->nopek'" ); 			
         if(!empty($data_cek)) {
             $data = 2;
             return response()->json($data);
@@ -69,7 +69,7 @@ class RekeningPekerjaController extends Controller
         ->orderBy('nopeg')
         ->get();
         
-        $data_bank = DB::select("select kode, nama, alamat, kota from pay_tbl_bank");
+        $data_bank = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank");
         
         $rekening = PayTblRekening::where('nopek', $id)->first();
 

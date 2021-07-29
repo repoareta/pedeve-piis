@@ -134,10 +134,10 @@ class PensiunController extends Controller
 
     public function rekapExport(Request $request)
     {
-        $data_cek = DB::select("select * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
-        $data_cek1 = DB::select("select * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
+        $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
+        $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
         if(!empty($data_cek) and !empty($data_cek1)) {
-            $data_list = DB::select("select nopek, nama, 
+            $data_list = DB::select("SELECT nopek, nama, 
                                     SUM(CASE WHEN aard ='15'  THEN curramount ELSE '0' END) as aard15,
                                     SUM(CASE WHEN aard ='46'  THEN curramount ELSE '0' END) as aard46,
                                     SUM(CASE WHEN aard ='14'  THEN curramount*-1 ELSE '0' END) as aard14
@@ -166,8 +166,8 @@ class PensiunController extends Controller
 
     public function rekapIuranExport(Request $request)
     {
-        $data_cek = DB::select("select * from pay_master_upah where tahun='$request->tahun'");
-        $data_cek1 = DB::select("select * from pay_master_bebanprshn where tahun='$request->tahun'");
+        $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun'");
+        $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun'");
         if(!empty($data_cek) and !empty($data_cek1)) {
             if($request->dp == 'BK'){        
                 $data_list = DB::select("SELECT 
