@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" action="{{ route('modul_sdm_payroll.proses_thr.store') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_thr.store') }}" method="post">
                     @csrf
                     <div class="kt-portlet__body">
                         <div class="form-group form-group-last">
@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <label for="dari-input" class="col-2 col-form-label">Status Pekerja<span class="text-danger">*</span></label>
                             <div class="col-10">
-                                <select name="prosesthr" id="select-debetdari" class="form-control selectpicker" data-live-search="true">
+                                <select name="prosesthr" id="select-debetdari" class="form-control select2">
                                     <option value="A">Semua</option>
                                     <option value="C">Pekerja Tetap</option>
                                     <option value="K">Kontrak</option>
@@ -49,13 +49,13 @@
                             ?>
                             <label for="nopek-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                             <div class="col-10">
-                                <input class="form-control" type="text" name="tanggal" value="{{ $bulantahun }}" id="tanggal" required  autocomplete='off'">
+                                <input class="form-control" type="text" name="tanggal" value="{{ $bulantahun }}" id="tanggal" required autocomplete="off"">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="nopek-input" class="col-2 col-form-label">Keterangan</label>
                             <div class="col-10">
-                                <input class="form-control" type="text" name="keterangan" value=""  size="30" maxlength="30"   autocomplete='off' >
+                                <input class="form-control" type="text" name="keterangan" value="" size="30" maxlength="30"  autocomplete="off">
                             </div>
                         </div>
         

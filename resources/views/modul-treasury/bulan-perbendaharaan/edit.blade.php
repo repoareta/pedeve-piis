@@ -29,19 +29,19 @@
                     $tahun = substr($thnbln,0,-2); 
                     $bulan = substr($thnbln,4); 
                 ?>
-                        <input class="form-control" type="text" value="{{$bulan}}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                         <div class="col-4" >
-                            <input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <div class="col-2" >
-                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
+                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')">
                         </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
+                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')">
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
                     <div class="radio-inline">
-                        <label class="kt-radio kt-radio--solid">
+                        <label class="radio">
                             <input value="1" <?php if ($status == '1' )  echo 'checked' ; ?> type="radio" name="status"> Opening 
                             <span></span>
                         </label>
@@ -64,7 +64,7 @@
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
                     <div class="radio-inline">
-                        <label class="kt-radio kt-radio--solid">
+                        <label class="radio">
                             <input value="2" <?php if ($status == '2' )  echo 'checked' ; ?> type="radio"   name="status"> Stoping
                             <span></span>
                         </label>
@@ -79,7 +79,7 @@
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
                     <div class="radio-inline">
-                        <label class="kt-radio kt-radio--solid">
+                        <label class="radio">
                             <input value="3" <?php if ($status == '3' )  echo 'checked' ; ?> type="radio"   name="status"> Closing
                             <span></span>
                         </label>

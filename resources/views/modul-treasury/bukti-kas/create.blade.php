@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label text-right">Lokasi <span class="text-danger">*</span></label>
                         <div class="col-4">
-                            <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Lokasi Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Lokasi Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                             </select>
                         </div>

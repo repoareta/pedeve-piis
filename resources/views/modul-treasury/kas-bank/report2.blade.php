@@ -20,7 +20,7 @@
     <div class="card-body">
         <form class="kt-form" action="{{route('kas_bank.cetak2')}}" method="post">
             @csrf
-            <input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
+            <input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
@@ -46,9 +46,9 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" autocomplete="off" required>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete="off">
-                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off">
+                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">

@@ -46,15 +46,15 @@
 					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
 					<div class="col-10">
 						<div class="radio-inline">
-							<label class="kt-radio kt-radio--solid">
+							<label class="radio">
 								<input value="1" type="radio" name="jk" >[10,11,13]
 								<span></span>
 							</label>
-							<label class="kt-radio kt-radio--solid">
+							<label class="radio">
 								<input value="2" type="radio"   name="jk">[15,18]
 								<span></span>
 							</label>
-							<label class="kt-radio kt-radio--solid">
+							<label class="radio">
 								<input value="3" type="radio"   name="jk" checked>All
 								<span></span>
 							</label>
@@ -91,7 +91,7 @@
 						</select>
 				</div>
 					<div class="col-4" >
-						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required> 
+						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off" required> 
 					</div>
 					<div class="col-2" >
 						<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" autocomplete="off" required>

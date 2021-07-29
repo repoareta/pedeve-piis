@@ -32,8 +32,8 @@
 					<div class="col-3">
 						<input size="3" maxlength="3"  class="form-control" type="text" value="{{$lampiran}}" name="lampiran" autocomplete="off">
 						<input size="30" maxlength="30" type="hidden" value="{{$total}}" name="total" >
-						<input size="30" maxlength="30" type="hidden" value="{{$bulan}}" name="bulan" >
-						<input size="30" maxlength="30" type="hidden" value="{{$tahun}}" name="tahun" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $bulan }}" name="bulan" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $tahun }}" name="tahun" >
 						<input size="30" maxlength="30" type="hidden" value="{{$ci}}" name="ci" >
 					</div>
 					<label class="col-2 col-form-label">No.Bilyet Giro</label>

@@ -67,7 +67,7 @@
                     $bulan = ($array_bln[ltrim(date('m'),0)]);
             ?>
                     <td colspan="3" style="padding-top:-5%;padding-bottom:2%;">Jakarta, <font style="padding-left:5%;">
-                            {{$bulan}} {{date('Y')}}</font>
+                            {{ $bulan }} {{date('Y')}}</font>
                     </td>
                 </tr>
                 <tr>

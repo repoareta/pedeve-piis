@@ -36,14 +36,14 @@
                     </div>
                         <div class="col-6" >
                             <input class="form-control tahun" type="text" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed" value="{{ $tahun }}">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
                         </div>
                     </div>
     
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" onchange="setCustomValidity('')" disabled>
+                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" disabled>
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}" {{ $nopek == $data->nopeg ? 'selected' : null }}>{{ $data->nopeg }} -- {{ $data->nama }}</option>
@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')" onchange="setCustomValidity('')" disabled>
+                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')" disabled>
                                 <option value="">-Pilih Jenis-</option>
                                 <option value="24" @if ($jenis == 24) selected @endif>Bonus</option>
                                 <option value="25" @if ($jenis == 25) selected @endif>THR</option>

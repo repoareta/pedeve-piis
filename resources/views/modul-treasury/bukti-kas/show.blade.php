@@ -218,7 +218,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian</label>
 						<label for="example-text-input" class="col-1 col-form-label">:</label>
 						<div class="col-9">
-							<textarea  class="form-control" type="text" value=""  name="rincian" size="50" maxlength="250"  onkeyup="this.value = this.value.toUpperCase()">-</textarea>
+							<textarea  class="form-control" type="text" value="" name="rincian" size="50" maxlength="250"  onkeyup="this.value = this.value.toUpperCase()">-</textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -291,8 +291,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value=""  name="nourut" id="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value=""  name="nodok" id="nodok" readonly>
+							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
+							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
 
@@ -300,7 +300,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')" onkeyup="this.value = this.value.toUpperCase()"></textarea>
+							<textarea  class="form-control" type="text" value="" name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" onkeyup="this.value = this.value.toUpperCase()"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">

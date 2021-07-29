@@ -18,10 +18,10 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('kas_bank.cetak9')}}" method="POST" target="_blank">
+        <form class="form" action="{{route('kas_bank.cetak9')}}" method="POST" target="_blank">
             @csrf
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
                     <?php 
                         $tgl = date_create(now());
@@ -44,7 +44,7 @@
                     </select>
                 </div>
                     <div class="col-5" >
-                        <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
+                        <input class="form-control" type="text" value="{{ $tahun }}"   name="tahun" size="4" maxlength="4" autocomplete="off" required>
                     </div>
             </div>
             <div class="kt-form__actions">

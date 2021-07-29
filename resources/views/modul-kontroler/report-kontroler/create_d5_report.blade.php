@@ -42,7 +42,7 @@
 		<form class="kt-form" action="{{route('d5_report.export')}}" method="post">
 			@csrf
 			<div class="kt-portlet__body">
-				<input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
+				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
 
 				<div class="form-group row">
 				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
@@ -71,7 +71,7 @@
 						</select>
 				</div>
 					<div class="col-4" >
-						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required> 
+						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off" required> 
 					</div>
 					<div class="col-2" >
 						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">

@@ -36,14 +36,14 @@
                     </div>
                         <div class="col-6" >
                             <input class="form-control" type="text" value="{{date('Y')}}"   name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
                         </div>
                     </div>
     
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{$data->nopeg}}">{{$data->nopeg}} -- {{$data->nama}}</option>
@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="jenis" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="jenis" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')">
                                 <option value="">-Pilih Jenis-</option>
                                 <option value="24">Bonus</option>
                                 <option value="25">THR</option>

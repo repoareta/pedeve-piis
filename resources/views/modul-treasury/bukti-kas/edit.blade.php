@@ -56,20 +56,20 @@
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{$bulan}}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         <input class="form-control" type="hidden" value="{{$data->thnbln}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         
                     </div>
                         <div class="col-6" >
-                            <input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                            <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="bagian" id="bagian" style="width: 100%;" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="bagian" id="bagian" style="width: 100%;" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_bagian as $row)
                                 <option value="{{$row->kode}}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{$row->kode}} - {{$row->nama}}</option>
@@ -133,7 +133,7 @@
                         <label class="col-2 col-form-label">
                         @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php }else{ ?> Kepada <?php } ?> Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
+                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php }else{ ?> Kepada <?php } ?> Harus Diisi..')" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">

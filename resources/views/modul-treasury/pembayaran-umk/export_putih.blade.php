@@ -101,7 +101,7 @@
                         <tr>
                             <td width="45%">BLN/THN </td>
                             <td>: </td>
-                            <td>{{$bulan}}/{{$tahun}}</td>
+                            <td>{{ $bulan }}/{{ $tahun }}</td>
                         </tr>
                         <tr>
                             <td width="45%">NO. KAS/BANK </td>
@@ -226,7 +226,7 @@
                                         <td width="25%">Verifikasi Pbd,</td>
                                     </tr>
                                     <tr>
-                                        <td width="25%">{{$mrs_no}}/VER/{{$tahun}}</td>
+                                        <td width="25%">{{$mrs_no}}/VER/{{ $tahun }}</td>
                                     </tr>
                                     <tr>
                                         <td style="padding-top:3%;padding-bottom:2%;" width="25%">

@@ -61,7 +61,7 @@
                         </div>
                         <label for="" class="col-form-label">Bulan</label>
                         <div class="col-2">
-                            <select name="bulan" class="form-control selectpicker" data-live-search="true">
+                            <select name="bulan" class="form-control select2">
                                 <option value="">-- Pilih --</option>
                                 <option value="">Periode (Jan - Des)</option>
                                 @foreach ($daftarBulan as $month)

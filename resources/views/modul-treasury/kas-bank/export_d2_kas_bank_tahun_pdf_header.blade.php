@@ -42,7 +42,7 @@
                         <br>
                         LAPORAN D2 KAS/BANK
                         <br>
-                            TAHUN {{$tahun}}
+                            TAHUN {{ $tahun }}
                         </b>
                     </p>
                 </td>

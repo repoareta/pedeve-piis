@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="cj" class="form-control select2" style="width: 100%;"  required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="cj" class="form-control select2" style="width: 100%;"  required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')">
                         <option value="">- Pilih -</option>
                         @foreach($data_judex as $data)
                         <option value="{{$data->kode}}">{{$data->kode}} -- {{$data->nama}}</option>
@@ -55,9 +55,9 @@
                     </select>
                 </div>
                 <div class="col-5" >
-                    <input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required>
+                    <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off" required>
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}"  id="tanggal" size="15" maxlength="15" autocomplete="off">
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">

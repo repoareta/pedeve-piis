@@ -89,8 +89,8 @@
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
-								<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required>
-								<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off" required>
+								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
@@ -139,7 +139,7 @@
 						<div class="form-group row">
 							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
-								<textarea class="form-control" type="text" value=""  id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')" oninput="setCustomValidity('')"></textarea>
+								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')"></textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
 							</div>
 						</div>

@@ -96,7 +96,7 @@
                         <tr>
                             <td width="45%">BLN/THN </td>
                             <td>: </td>
-                            <td>{{$bulan}}/{{$tahun}}</td>
+                            <td>{{ $bulan }}/{{ $tahun }}</td>
                         </tr>
                         <tr>
                             <td width="45%">NO. KAS/BANK </td>

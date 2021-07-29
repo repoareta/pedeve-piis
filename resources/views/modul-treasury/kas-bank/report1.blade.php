@@ -20,7 +20,7 @@
     <div class="card-body">
         <form class="kt-form" action="{{route('kas_bank.cetak1')}}" method="post">
             @csrf
-            <input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
+            <input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
             <div class="form-group row">
                 <label class="col-2 col-form-label text-right">Jenis Kartu <span class="text-danger">*</span></label>
                 <div class="col-8 col-form-label">
@@ -66,7 +66,7 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" autocomplete="off" required>
+                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">

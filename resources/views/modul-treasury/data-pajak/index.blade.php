@@ -46,7 +46,7 @@
             <div class="form-group row">
                 <label for="" class="col-form-label">Pencarian</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="pencarian" value=""  autocomplete="off">
+                    <input class="form-control" type="text" name="pencarian" value="" autocomplete="off">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>

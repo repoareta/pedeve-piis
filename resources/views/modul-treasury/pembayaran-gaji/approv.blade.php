@@ -34,7 +34,7 @@
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">Tanggal Approval</label>
                 <div class="col-10">
-                    <input type="text" class="form-control" name="tgl_app" id="date_range_picker" value="" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Approval Harus Diisi..')" onchange="setCustomValidity('')"/>
+                    <input type="text" class="form-control" name="tgl_app" id="date_range_picker" value="" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Approval Harus Diisi..')"/>
                 </div>
             </div>
             <div class="kt-form__actions">
