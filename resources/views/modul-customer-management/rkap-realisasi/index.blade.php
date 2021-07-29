@@ -42,14 +42,14 @@
 				<div class="form-group row">
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<select name="tahun" class="form-control select2" style="width: 100%;" id="tahun">
+						<select name="tahun" class="form-control select2" style="width: 100% !important;" id="tahun">
                             @foreach ($rkapRealisasiTahunList as $tahun)
                                 <option value="{{ $tahun->tahun }}">{{ $tahun->tahun }}</option>
                             @endforeach
                         </select>
 					</div>
 					<div class="col-4">
-						<select name="perusahaan" class="form-control select2" style="width: 100%;" id="perusahaan">
+						<select name="perusahaan" class="form-control select2" style="width: 100% !important;" id="perusahaan">
 							<option value="">- Semua Perusahaan -</option>
                             @foreach ($perusahaanList as $perusahaan)
                                 <option value="{{ $perusahaan->id }}" data-nama="{{ $perusahaan->nama }}">{{ $perusahaan->nama }}</option>

@@ -43,7 +43,7 @@
 				<div class="form-group row">
 					<label for="" class="col-form-label">No. Pegawai</label>
 					<div class="col-4">
-						<select class="form-control select2" style="width: 100%;" name="no_pekerja" id="no_pekerja">
+						<select class="form-control select2" style="width: 100% !important;" name="no_pekerja" id="no_pekerja">
 							<option value="">- Pilih Pegawai -</option>
 							@foreach ($pegawai_list as $pegawai)
 								<option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
@@ -53,7 +53,7 @@
 
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
-						<select class="form-control select2" style="width: 100%;" name="bulan" id="bulan">
+						<select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan">
 							<option value="">- Pilih Bulan -</option>
 							<option value="1">Januari</option>
 							<option value="2">Februari</option>
@@ -72,7 +72,7 @@
 	
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<select class="form-control select2" style="width: 100%;" name="tahun" id="tahun">
+						<select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
 							<option value="">- Pilih Tahun -</option>
 							@foreach ($tahun as $key => $row)
 								<option value="{{ $row->tahun }}"

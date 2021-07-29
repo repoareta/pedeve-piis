@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form method="post" id="form-edit">
+        <form method="POST" id="form-edit">
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen<span class="text-danger">*</span></label>
                 <div class="col-10">

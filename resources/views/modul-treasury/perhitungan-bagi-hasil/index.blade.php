@@ -34,7 +34,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" method="post" action="{{ route('perhitungan_bagihasil.index.search')}}" >
+        <form class="kt-form" method="POST" action="{{ route('perhitungan_bagihasil.index.search')}}" >
 			@csrf
             <div class="form-group row">	
                 <label for="" class="col-form-label">Tanggal</label>

@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{route('rekap_periode_kas.exportperiode')}}" method="post">
+        <form class="kt-form" action="{{route('rekap_periode_kas.exportperiode')}}" method="POST">
             @csrf
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Mulai Tanggal<span class="text-danger">*</span></label>
@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="form-control select2" style="width: 100%;"  name="jk" id="jk" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')">
+                    <select class="form-control select2" style="width: 100% !important;"  name="jk" id="jk" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="form-control select2" style="width: 100%;"  name="nokas" id="nokas" required oninvalid="this.setCustomValidity('No.Kas/Bank Harus Diisi..')">
+                    <select class="form-control select2" style="width: 100% !important;"  name="nokas" id="nokas" required oninvalid="this.setCustomValidity('No.Kas/Bank Harus Diisi..')">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>

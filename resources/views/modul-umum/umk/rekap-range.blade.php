@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form class="kt-form" action="{{ route('modul_umum.perjalanan_dinas.rekap.export') }}" method="post" id="formRekapSPD">
+        <form class="kt-form" action="{{ route('modul_umum.perjalanan_dinas.rekap.export') }}" method="POST" id="formRekapSPD">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">Mulai</label>

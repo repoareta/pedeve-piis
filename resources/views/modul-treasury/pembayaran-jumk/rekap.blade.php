@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{ route('pembayaran_jumk.export') }}" method="post">
+        <form class="kt-form" action="{{ route('pembayaran_jumk.export') }}" method="POST">
 			@csrf
 			<div class="kt-portlet__body">
 			@if($mp == "P")

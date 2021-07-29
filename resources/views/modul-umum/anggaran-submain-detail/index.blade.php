@@ -28,7 +28,7 @@
 	
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<select class="form-control select2" style="width: 100%;" name="tahun" id="tahun">
+						<select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
 							<option value="">- Pilih Tahun -</option>
 							@foreach ($tahun as $key => $row)
 								<option value="{{ $row->tahun }}"

@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form method="post" id="form-create">
+        <form method="POST" id="form-create">
             <div class="kt-portlet__body">
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">

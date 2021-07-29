@@ -33,7 +33,7 @@
                     <div class="form-group row">
                         <label for="spd-input" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
                         <div class="col-4">
-                                <select class="form-control select2" style="width: 100%;" name="bulan_mulai">
+                                <select class="form-control select2" style="width: 100% !important;" name="bulan_mulai">
                                     <option value="01">Januari</option>
                                     <option value="02">Februari</option>
                                     <option value="03">Maret</option>
@@ -50,7 +50,7 @@
                         </div>
                         <label for="spd-input" class="col-2 col-form-label text-center">Sampai Dengan</label>
                         <div class="col-4">
-                                <select class="form-control select2" style="width: 100%;" name="bulan_sampai">
+                                <select class="form-control select2" style="width: 100% !important;" name="bulan_sampai">
                                     <option value="01">Januari</option>
                                     <option value="02">Februari</option>
                                     <option value="03">Maret</option>

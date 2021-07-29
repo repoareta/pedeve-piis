@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" action="{{ route('modul_sdm_payroll.proses_gaji.daftar_upah.export') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_gaji.daftar_upah.export') }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>

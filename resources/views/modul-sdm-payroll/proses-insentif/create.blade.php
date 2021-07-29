@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.proses_insentif.store') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_insentif.store') }}" method="POST">
                     @csrf
                     <div class="form-group form-group-last">
                         <div class="alert alert-secondary" role="alert">
@@ -33,7 +33,7 @@
                     <div class="form-group row">
                         <label for="dari-input" class="col-2 col-form-label">Status Pekerja<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="prosesupah" id="select-debetdari" class="form-control select2" style="width: 100%;">
+                            <select name="prosesupah" id="select-debetdari" class="form-control select2" style="width: 100% !important;">
                                 <option value="A">Semua</option>
                                 <option value="C">Pekerja Tetap</option>
                                 <option value="K">Kontrak</option>

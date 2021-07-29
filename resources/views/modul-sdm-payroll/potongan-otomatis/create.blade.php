@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form  class="kt-form kt-form--label-right" id="form-create">
+                <form class="form" id="form-create">
                     @csrf
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">

@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form" action="{{route('biaya_pegawai.export_biaya_pegawai')}}" method="post">
+		<form class="kt-form" action="{{route('biaya_pegawai.export_biaya_pegawai')}}" method="POST">
 			@csrf
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -55,7 +55,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" style="width: 100%;" name="bulan1">
+						<select class="form-control select2" style="width: 100% !important;" name="bulan1">
 							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -72,7 +72,7 @@
 				</div>
 				<label for="" class="col-1 col-form-label">S/D</label>
 				<div class="col-5">
-						<select class="form-control select2" style="width: 100%;" name="bulan2">
+						<select class="form-control select2" style="width: 100% !important;" name="bulan2">
 							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>

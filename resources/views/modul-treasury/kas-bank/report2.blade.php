@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{route('kas_bank.cetak2')}}" method="post">
+        <form class="kt-form" action="{{route('kas_bank.cetak2')}}" method="POST">
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
             <div class="form-group row">

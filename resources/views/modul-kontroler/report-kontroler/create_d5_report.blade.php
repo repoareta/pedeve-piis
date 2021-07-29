@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form" action="{{route('d5_report.export')}}" method="post">
+		<form class="kt-form" action="{{route('d5_report.export')}}" method="POST">
 			@csrf
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -54,7 +54,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" style="width: 100%;" name="bulan">
+						<select class="form-control select2" style="width: 100% !important;" name="bulan">
 							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>

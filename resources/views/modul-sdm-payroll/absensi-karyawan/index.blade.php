@@ -83,7 +83,7 @@
 					<div class="form-group row">
 						<label for="kode_main" class="col-2 col-form-label">Pegawai</label>
 						<div class="col-10">
-							<select class="form-control select2" style="width: 100%;" name="nopeg" style="width: 100%;">
+							<select class="form-control select2" style="width: 100% !important;" name="nopeg" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach ($pegawai_list as $pegawai)
 									<option value="{{ $pegawai->nopeg }}">{{ $pegawai->nama }}</option>
@@ -94,7 +94,7 @@
 					<div class="form-group row">
 						<label for="kode_main" class="col-2 col-form-label">No Absen</label>
 						<div class="col-10">
-							<select class="form-control select2" style="width: 100%;" name="noabsen" style="width: 100%;">
+							<select class="form-control select2" style="width: 100% !important;" name="noabsen" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach ($data_absensi->unique('userid')  as $item)
 									@if ($item->noabsen == null)

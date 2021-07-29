@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form" action="{{route('neraca_detail.export')}}" method="post">
+		<form class="kt-form" action="{{route('neraca_detail.export')}}" method="POST">
 			@csrf
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -55,7 +55,7 @@
 							$suplesi = $data->suplesi;
 						}
 						?>
-						<select class="form-control select2" style="width: 100%;" name="bulan">
+						<select class="form-control select2" style="width: 100% !important;" name="bulan">
 							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>

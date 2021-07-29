@@ -33,7 +33,7 @@
                     <div class="form-group row">
                         <label for="dari-input" class="col-2 col-form-label">Status Pekerja<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="prosesupah" id="select-debetdari" class="form-control select2" style="width: 100%;">
+                            <select name="prosesupah" id="select-debetdari" class="form-control select2" style="width: 100% !important;">
                                 <option value="A">Semua</option>
                                 <option value="C">Pekerja Tetap</option>
                                 <option value="K">Kontrak</option>

@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.proses_thr.store') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_thr.store') }}" method="POST">
                     @csrf
                     <div class="kt-portlet__body">
                         <div class="form-group form-group-last">

@@ -55,7 +55,7 @@
 								@endif
 							</div>
                             
-							<form class="form" action="{{ route('login_user.postlogin') }}" method="post" id="kt_login_signin_form">
+							<form class="form" action="{{ route('login_user.postlogin') }}" method="POST" id="kt_login_signin_form">
                                 @csrf
 								<div class="form-group mb-5">
 									<input class="form-control h-auto form-control-solid py-4 px-8" type="text" placeholder="Username" name="userid" autocomplete="off" />

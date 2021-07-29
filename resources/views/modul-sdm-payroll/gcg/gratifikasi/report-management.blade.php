@@ -26,7 +26,7 @@
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Bentuk Gratifikasi</label>
                     <div class="col-4">
-                        <select class="form-control select2" style="width: 100%;" name="bentuk_gratifikasi" id="bentuk_gratifikasi">
+                        <select class="form-control select2" style="width: 100% !important;" name="bentuk_gratifikasi" id="bentuk_gratifikasi">
                             <option value="">- Pilih -</option>
                             <option value="penerimaan" @if (request('bentuk_gratifikasi') == 'penerimaan') {{ 'selected' }} @endif>Penerimaan</option>
                             <option value="pemberian" @if (request('bentuk_gratifikasi') == 'pemberian') {{ 'selected' }} @endif>Pemberian</option>
@@ -38,7 +38,7 @@
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Pilih Fungsi</label>
                     <div class="col-4">
-                        <select class="form-control select2" style="width: 100%;" name="fungsi" id="fungsi">
+                        <select class="form-control select2" style="width: 100% !important;" name="fungsi" id="fungsi">
                             <option value="">- Pilih -</option>
                             @foreach ($fungsi_list as $fungsi)
                             <option value="{{ $fungsi->id }}" @if (request('fungsi') == $fungsi->id) {{ 'selected' }} @endif>{{ $fungsi->nama }}</option>
@@ -50,7 +50,7 @@
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Bulan</label>
                     <div class="col-4">
-                        <select class="form-control select2" style="width: 100%;" name="bulan" id="bulan">
+                        <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan">
                             <option value="">- Pilih Bulan -</option>
                             <option value="01" @if (request('bulan') == '01') {{ 'selected' }} @endif>Januari</option>
                             <option value="02" @if (request('bulan') == '02') {{ 'selected' }} @endif>Februari</option>
@@ -71,7 +71,7 @@
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Tahun</label>
                     <div class="col-4">
-                        <select class="form-control select2" style="width: 100%;" name="tahun" id="tahun">
+                        <select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
                             <option value="">- Pilih Tahun -</option>
                             @foreach ($gratifikasi_tahun as $tahun)
                             <option value="{{ $tahun->year }}" @if (request('tahun') == $tahun->year) {{ 'selected' }} @endif>{{ $tahun->year }}</option>

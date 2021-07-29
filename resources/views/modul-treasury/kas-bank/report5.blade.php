@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="cj" class="form-control select2" style="width: 100%;"  required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')">
+                    <select name="cj" class="form-control select2" style="width: 100% !important;"  required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')">
                         <option value="">- Pilih -</option>
                         @foreach($data_judex as $data)
                         <option value="{{ $data->kode }}">{{ $data->kode }} -- {{ $data->nama }}</option>
@@ -39,7 +39,7 @@
                         $tahun = date_format($tgl, 'Y'); 
                         $bulan = date_format($tgl, 'm'); 
                     ?>
-                    <select class="form-control select2" style="width: 100%;" name="bulan">
+                    <select class="form-control select2" style="width: 100% !important;" name="bulan">
                         <option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
                         <option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
                         <option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>

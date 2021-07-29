@@ -29,7 +29,7 @@
 						</div>
 					</div>
 				</div>
-                <form action="{{ route('penerimaan_kas.create') }}" method="post">
+                <form action="{{ route('penerimaan_kas.create') }}" method="POST">
                     @csrf
                     <input class="form-control" type="hidden" name="userid" value="{{ auth()->user()->userid }}">
                     <div class="form-group row">
