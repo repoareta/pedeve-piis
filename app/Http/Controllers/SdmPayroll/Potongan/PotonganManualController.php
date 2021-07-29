@@ -28,7 +28,7 @@ class PotonganManualController extends Controller
                 $tahun ='0000';
             }
         $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('potongan_manual.index',compact('data_pegawai','tahun','bulan'));
+        return view('modul-sdm-payroll.potongan-manual.index',compact('data_pegawai','tahun','bulan'));
     }
 
     public function indexJson(Request $request)
@@ -87,13 +87,13 @@ class PotonganManualController extends Controller
                 return $data->aard.' -- '.$data->nama_aard;
            })
             ->addColumn('ccl', function ($data) {
-                 return number_format($data->ccl,0,'.',',');
+                 return abs($data->ccl);
            })
             ->addColumn('jmlcc', function ($data) {
-                 return number_format($data->jmlcc,0,'.',',');
+                 return currency_format($data->jmlcc);
            })
             ->addColumn('nilai', function ($data) {
-                 return number_format($data->nilai,2,'.',',');
+                 return currency_format($data->nilai);
            })
     
             ->addColumn('radio', function ($data) {
@@ -113,7 +113,7 @@ class PotonganManualController extends Controller
     {
         $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
         $pay_aard = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
-        return view('potongan_manual.create', compact('data_pegawai','pay_aard'));
+        return view('modul-sdm-payroll.potongan-manual.create', compact('data_pegawai','pay_aard'));
     }
 
     /**
@@ -166,7 +166,7 @@ class PotonganManualController extends Controller
     public function edit($bulan,$tahun,$aard,$nopek)
     {
         $data_list = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
-        return view('potongan_manual.edit',compact('data_list'));
+        return view('modul-sdm-payroll.potongan-manual.edit',compact('data_list'));
     }
 
     /**

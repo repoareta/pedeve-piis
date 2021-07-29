@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Koreksi Gaji
+                Tabel Potongan
             </h3>
         </div>
         <div class="card-toolbar">
@@ -33,57 +33,53 @@
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
-                <a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
-						<i class="fas icon-2x fa-print text-info" id="exportRow"></i>
-					</span>
-				</a>
             </div>
         </div>
     </div>
     <div class="card-body">
-
-		<div class="col-12">
-			<form class="kt-form" id="search-form" >
-				<div class="form-group row">
-					<label for="" class="col-form-label">Pegawai</label>
-					<div class="col-4">
-						<select name="nopek" class="form-control select2" id="nopek">
-						<option>- Pilih -</option>
-							@foreach($pegawai_list as $pegawai)
-							    <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg }} - {{ $pegawai->nama }}</option>
-							@endforeach
-						</select>
-					</div>
-					<label for="" class="col-form-label">Bulan</label>
-					<div class="col-2">
-						<select name="bulan" class="form-control select2" id="bulan">
-							<option>- Pilih -</option>
-							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
-							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
-							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
-							<option value="04" <?php if($bulan  == '04' ) echo 'selected' ; ?>>April</option>
-							<option value="05" <?php if($bulan  == '05' ) echo 'selected' ; ?>>Mei</option>
-							<option value="06" <?php if($bulan  == '06' ) echo 'selected' ; ?>>Juni</option>
-							<option value="07" <?php if($bulan  == '07' ) echo 'selected' ; ?>>Juli</option>
-							<option value="08" <?php if($bulan  == '08' ) echo 'selected' ; ?>>Agustus</option>
-							<option value="09" <?php if($bulan  == '09' ) echo 'selected' ; ?>>September</option>
-							<option value="10" <?php if($bulan  == '10' ) echo 'selected' ; ?>>Oktober</option>
-							<option value="11" <?php if($bulan  == '11' ) echo 'selected' ; ?>>November</option>
-							<option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
-						</select>
-					</div>
-	
-					<label for="" class="col-form-label">Tahun</label>
-					<div class="col-2">
-						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun">
-					</div>
-					<div class="col-2">
-						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
-					</div>
-				</div>
-			</form>
-		</div>
+        <div class="row">
+            <div class="col-12">
+                <form class="kt-form" id="search-form" >
+                    <div class="form-group row col-12">
+                        <label for="" class="col-form-label">Pegawai</label>
+                        <div class="col-4">
+                            <select name="nopek" class="form-control select2">
+                            <option value="">- Pilih -</option>
+                                @foreach($data_pegawai as $data)
+                                <option value="{{$data->nopeg}}">{{$data->nopeg}} - {{$data->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <label for="" class="col-form-label">Bulan</label>
+                        <div class="col-2">
+                            <select name="bulan" class="form-control select2">
+                                <option value="">- Pilih -</option>
+                                <option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
+                                <option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
+                                <option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
+                                <option value="04" <?php if($bulan  == '04' ) echo 'selected' ; ?>>April</option>
+                                <option value="05" <?php if($bulan  == '05' ) echo 'selected' ; ?>>Mei</option>
+                                <option value="06" <?php if($bulan  == '06' ) echo 'selected' ; ?>>Juni</option>
+                                <option value="07" <?php if($bulan  == '07' ) echo 'selected' ; ?>>Juli</option>
+                                <option value="08" <?php if($bulan  == '08' ) echo 'selected' ; ?>>Agustus</option>
+                                <option value="09" <?php if($bulan  == '09' ) echo 'selected' ; ?>>September</option>
+                                <option value="10" <?php if($bulan  == '10' ) echo 'selected' ; ?>>Oktober</option>
+                                <option value="11" <?php if($bulan  == '11' ) echo 'selected' ; ?>>November</option>
+                                <option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
+                            </select>
+                        </div>
+        
+                        <label for="" class="col-form-label">Tahun</label>
+                        <div class="col-2">
+                            <input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete='off'>
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-xl-12">
@@ -91,11 +87,13 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th>Tahun</th>
-                            <th>Bulan</th>
-                            <th>Pegawai</th>
+                            <th>TAHUN</th>
+                            <th>BULAN</th>
+                            <th>PEGAWAI</th>
                             <th>AARD</th>
-                            <th>Nilai</th>
+                            <th>CICILAN KE-</th>
+                            <th>JUMLAH CICILAN</th>
+                            <th>NILAI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,13 +110,11 @@
 <script type="text/javascript">
 $(document).ready(function () {
     var t = $('#kt_table').DataTable({
-        scrollX: true,
+        scrollX   : true,
         processing: true,
         serverSide: true,
-        
-        
-        ajax: {
-            url: "{{ route('modul_sdm_payroll.potongan_koreksi_gaji.index.json') }}",
+        ajax      : {
+            url: "{{ route('modul_sdm_payroll.potongan_manual.index.json') }}",
             data: function (d) {
                 d.nopek = $('select[name=nopek]').val();
                 d.bulan = $('select[name=bulan]').val();
@@ -131,18 +127,22 @@ $(document).ready(function () {
             {data: 'bulan', name: 'bulan'},
             {data: 'nopek', name: 'nopek'},
             {data: 'aard', name: 'aard'},
-            {data: 'nilai', name: 'nilai'},
+            {data: 'ccl', name: 'ccl', class: 'text-right'},
+            {data: 'jmlcc', name: 'jmlcc', class: 'text-right no-wrap'},
+            {data: 'nilai', name: 'nilai', class: 'text-right no-wrap'},
         ]
+            
     });
 
-	$('#search-form').on('submit', function(e) {
-		t.draw();
-		e.preventDefault();
-	});
+    $('#search-form').on('submit', function(e) {
+        t.draw();
+        e.preventDefault();
+    });
 
-    //edit koreksi gaji
+    // edit potongan Otomatis
     $('#editRow').click(function(e) {
         e.preventDefault();
+    
         if($('input[type=radio]').is(':checked')) { 
             $("input[type=radio]:checked").each(function(){
                 var tahun = $(this).attr('tahun');
@@ -150,14 +150,14 @@ $(document).ready(function () {
                 var nopek = $(this).attr('nopek');
                 var aard  = $(this).attr('aard');
                 var nama  = $(this).attr('nama');
-                location.replace("{{url('sdm/potongan_koreksi_gaji/edit')}}"+ '/' +bulan+'/' +tahun+'/'+aard+ '/' +nopek);
+                location.replace("{{ url('sdm-payroll/potongan-manual/edit') }}"+ '/' +bulan+'/' +tahun+'/'+aard+ '/' +nopek);
             });
         } else {
             swalAlertInit('ubah');
         }
     });
-
-    //delete koreksi gaji
+    
+    // delete potongan otomatis
     $('#deleteRow').click(function(e) {
         e.preventDefault();
         if($('input[type=radio]').is(':checked')) { 
@@ -177,7 +177,7 @@ $(document).ready(function () {
                     })
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
-                        text: "Detail data : "+bulan+ '-'  + tahun+'-' +nama,
+                        text: "Detail data Bulan: "+bulan+ ' Tahun '  + tahun+' Nama ' +nama,
                         type: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
@@ -187,7 +187,7 @@ $(document).ready(function () {
                     .then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: "{{ route('modul_sdm_payroll.potongan_koreksi_gaji.delete') }}",
+                            url: "{{ route('modul_sdm_payroll.potongan_manual.delete') }}",
                             type: 'DELETE',
                             dataType: 'json',
                             data: {
@@ -201,7 +201,7 @@ $(document).ready(function () {
                             success: function () {
                                 Swal.fire({
                                     type  : 'success',
-                                    title : "Detail data : "+ bulan + '-'  + tahun +'-' + nama,
+                                    title : "Detail data Bulan: "+bulan+ ' Tahun '  + tahun+' Nama ' +nama,
                                     text  : 'Berhasil',
                                     timer : 2000
                                 }).then(function() {
@@ -217,7 +217,7 @@ $(document).ready(function () {
             });
         } else {
             swalAlertInit('hapus');
-        } 
+        }
     });
 });
 </script>

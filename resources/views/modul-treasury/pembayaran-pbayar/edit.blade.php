@@ -57,7 +57,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="bagian" id="bagian" class="form-control select2" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $row)
                         <option value="{{$row->kode}}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{$row->kode}} - {{$row->nama}}</option>
@@ -70,7 +70,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span style="color:red;">*</span></label>
                 <div class="col-3">
-                    <select name="jk" id="jk" class="form-control selectpicker" data-live-search="true" required>
+                    <select name="jk" id="jk" class="form-control select2" required>
                         <option value="">- Pilih -</option>
                         <option value="10" <?php if($data->jk == '10' ) echo 'selected' ; ?>>Kas(Rupiah)</option>
                         <option value="11" <?php if($data->jk == '11' ) echo 'selected' ; ?>>Bank(Rupiah)</option>
@@ -90,7 +90,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span style="color:red;">*</span></label>
                 <div class="col-4">
-                    <select name="lokasi" id="lokasi" class="form-control" data-live-search="true">
+                    <select name="lokasi" id="lokasi" class="form-control">
                         <option value="">- Pilih -</option>
                         
                     </select>
@@ -257,7 +257,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
-							<select name="status"  class="form-control selectpicker" data-live-search="true" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" onchange="setCustomValidity('')">
+							<select name="status"  class="form-control select2" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
 								@foreach($data_rincian as $rincian)
 								<option value="{{$rincian->no_bayar}}">{{$rincian->no_bayar}} -- {{$rincian->keterangan}}</option>
@@ -357,7 +357,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">KD. Lapang</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
-							<select name="lapangan"  id="select-lapangan" class="form-control selectpicker" data-live-search="true" >
+							<select name="lapangan"  id="select-lapangan" class="form-control select2" >
 								<option value="">-Pilih-</option>
 								@foreach($lokasi as $data_lok)
 								<option value="{{$data_lok->kodelokasi}}">{{$data_lok->kodelokasi}} - {{$data_lok->nama}}</option>
@@ -369,7 +369,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  id="select-sanper" class="form-control selectpicker" data-live-search="true" >
+							<select name="sanper"  id="select-sanper" class="form-control select2" >
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{$data_acc->kodeacct}}">{{$data_acc->kodeacct}} - {{$data_acc->descacct}}</option>
@@ -382,7 +382,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian" id="select-bagian" class="form-control selectpicker" data-live-search="true" >
+							<select name="bagian" id="select-bagian" class="form-control select2" >
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
@@ -404,7 +404,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb" id="select-jb"  class="form-control selectpicker" data-live-search="true" >
+							<select name="jb" id="select-jb"  class="form-control select2" >
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
@@ -418,7 +418,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" id="select-cj" class="form-control selectpicker" data-live-search="true" >
+							<select name="cj" id="select-cj" class="form-control select2" >
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{$data_cas->kode}}">{{$data_cas->kode}} - {{$data_cas->nama}}</option>
