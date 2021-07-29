@@ -22,21 +22,18 @@
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">JK<span class="text-danger">*</span></label>
-                <div class="col-10">
+                <label class="col-2 col-form-label text-right">Jenis Kartu <span class="text-danger">*</span></label>
+                <div class="col-8 col-form-label">
                     <div class="radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="1" type="radio" name="status">[10,11,13]
-                            <span></span>
-                        </label>
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="2" type="radio" name="status">[15,18]
-                            <span></span>
-                        </label>
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="3" type="radio" name="status" checked>All
-                            <span></span>
-                        </label>
+                        <label class="radio">
+                            <input type="radio" value="1" name="status" checked>
+                        <span></span>10, 11, 13</label>
+                        <label class="radio">
+                            <input type="radio" value="2" name="status">
+                        <span></span>15, 18</label>
+                        <label class="radio">
+                            <input type="radio" value="3" name="status">
+                        <span></span>Semua</label>
                     </div>
                 </div>
             </div>

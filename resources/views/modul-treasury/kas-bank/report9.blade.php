@@ -12,25 +12,23 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Balancing Kas Bank Per Nobukti
+                Cetak Proyeksi Cashflow
             </h3>
         </div>
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{route('kas_bank.cetak2')}}" method="post">
+        <form class="kt-form kt-form--label-right" action="{{route('kas_bank.cetak9')}}" method="POST" target="_blank">
             @csrf
-            <input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
                 <div class="col-5">
                     <?php 
-					foreach($data_tahun as $data){ 
-						$tahun = substr($data->thnbln, 0, 4);
-						$bulan = substr($data->thnbln, 4, 2);
-					}
-					?>
-                    <select class="form-control" name="bulan" required>
+                        $tgl = date_create(now());
+                        $tahun = date_format($tgl, 'Y'); 
+                        $bulan = date_format($tgl, 'm'); 
+                    ?>
+                    <select class="form-control kt-select2" name="bulan" required>
                         <option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
                         <option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
                         <option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -45,17 +43,15 @@
                         <option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
                     </select>
                 </div>
-                <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" autocomplete="off" required>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete="off">
-                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off">
-                </div>
+                    <div class="col-5" >
+                        <input class="form-control" type="text" value="{{$tahun}}"   name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
+                    </div>
             </div>
             <div class="kt-form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <a  href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
                         <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
                     </div>
                 </div>
@@ -65,3 +61,23 @@
 </div>
 @endsection
 
+@push('page-scripts')
+<script type="text/javascript">
+$(document).ready(function () {
+   
+	$('#tanggal').datepicker({
+		todayHighlight: true,
+		orientation: "bottom left",
+		autoclose: true,
+		// language : 'id',
+		format   : 'dd MM yyyy'
+	});
+
+    $('#date_range_picker').datepicker({
+        todayHighlight: true,
+        format   : 'yyyy-mm-dd',
+        orientation: "bottom left",
+    });
+});
+</script>
+@endpush

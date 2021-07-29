@@ -12,7 +12,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Menu Edit Pembayaran UMK
+                Menu Edit Permintaan Pembayaran UMK
             </h3>
         </div>
     </div>
@@ -168,7 +168,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Detail Pembayaran UMK
+                Detail Permintaan Pembayaran UMK
             </h3>
             <div class="text-right">
                 <button id="btn-create" class="btn p-0">

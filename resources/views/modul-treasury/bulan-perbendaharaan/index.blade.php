@@ -49,7 +49,6 @@
 					<th>TAHUN-BULAN</th>
 					<th>STATUS</th>
 					<th>OPENDATE</th>
-					<th>STOPDATE</th>
 					<th>CLOSEDATE</th>
 					<th>KETERANGAN</th>
 					<th>SUPLESI</th>
@@ -86,7 +85,6 @@
                     {data: 'thnbln', name: 'thnbln'},
                     {data: 'nama_status', name: 'nama_status'},
                     {data: 'data_buka', name: 'data_buka'},
-                    {data: 'data_stop', name: 'data_stop'},
                     {data: 'data_tutup', name: 'data_tutup'},
                     {data: 'description', name: 'description'},
                     {data: 'suplesi', name: 'suplesi'},

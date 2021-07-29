@@ -293,7 +293,7 @@
 
                     for(i = 0; i < data.length; i++){
 
-                        html += '<option value="'+data[i].kode_store+'">'+data[i].nama_bank+'-'+data[i].nomor_rekening+'</option>';
+                        html += '<option value="' + data[i].kode_store + '">' + data[i].kode_store + ' - ' + data[i].nama_bank +' - '+ data[i].nomor_rekening + '</option>';
                     }
 
                     $('#lokasi').html(html);		

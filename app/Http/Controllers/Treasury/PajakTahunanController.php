@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Treasury;
 
 use App\Http\Controllers\Controller;
 use App\Models\VParamPajak;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use DB;
 use Illuminate\Http\Request;
+use PDF;
 
 class PajakTahunanController extends Controller
 {
@@ -53,16 +55,15 @@ class PajakTahunanController extends Controller
                             from v_parampajakreport where tahun='$request->tahun' group by tahun,nopek ORDER BY nopek asc
                             ");
         $data_list = VParamPajak::all();
+        
+        $pdf = PDF::loadview('modul-treasury.pajak-tahunan.export_proses_pajak_pdf', compact('data_list'))
+        ->setPaper('A4', 'landscape')
+        ->setOption('footer-right', 'Halaman [page] dari [toPage]')
+        ->setOption('footer-font-size', 7)
+        ->setOption('margin-top', 10)
+        ->setOption('margin-bottom', 10);
 
-        return $data_list;
-        // $pdf = PDF::loadview('pajak_tahunan.export_proses_pajak_pdf', compact('data_list'))
-        // ->setPaper('A4', 'landscape')
-        // ->setOption('footer-right', 'Halaman [page] dari [toPage]')
-        // ->setOption('footer-font-size', 7)
-        // ->setOption('margin-top', 10)
-        // ->setOption('margin-bottom', 10);
-
-        // return $pdf->stream('Form Cetak 1721-A1_' . date('Y-m-d H:i:s') . '.pdf');
+        return $pdf->stream('Form Cetak 1721-A1_' . date('Y-m-d H:i:s') . '.pdf');
     }
 
     public function rekapLaporan()
@@ -322,16 +323,15 @@ class PajakTahunanController extends Controller
                              from v_parampajakreport where tahun='$request->tahun' group by nopek,tahun ORDER BY nopek asc
                              ");
         $data_list = VParampajak::all();
+        
+        $pdf = SnappyPdf::loadview('modul-treasury.pajak-tahunan.export_laporan_pajak_pdf', compact('data_list'))
+        ->setPaper('legal', 'portrait')
+        ->setOption('footer-font-size', 7)
+        ->setOption('margin-left', 1)
+        ->setOption('margin-right', 1)
+        ->setOption('margin-top', 1)
+        ->setOption('margin-bottom', 1);
 
-        return $data_list;
-        // $pdf = PDF::loadview('pajak_tahunan.export_laporan_pajak_pdf', compact('data_list'))
-        // ->setPaper('legal', 'portrait')
-        // ->setOption('footer-font-size', 7)
-        // ->setOption('margin-left', 1)
-        // ->setOption('margin-right', 1)
-        // ->setOption('margin-top', 1)
-        // ->setOption('margin-bottom', 1);
-
-        // return $pdf->stream('Form Cetak 1721-A1 Tahunan_' . date('Y-m-d H:i:s') . '.pdf');
+        return $pdf->stream('Form Cetak 1721-A1 Tahunan_' . date('Y-m-d H:i:s') . '.pdf');
     }
 }

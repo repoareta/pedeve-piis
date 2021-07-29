@@ -3,6 +3,7 @@
 //PERBENDAHARAAN
 
 use App\Http\Controllers\Treasury\BulanPerbendaharaanController;
+use App\Http\Controllers\Treasury\CashFlowController;
 use App\Http\Controllers\Treasury\DataPajakController;
 use App\Http\Controllers\Treasury\InformasiSaldoController;
 use App\Http\Controllers\Treasury\KasCashJudexController;
@@ -310,30 +311,30 @@ Route::prefix('perbendaharaan')->group(function () {
         Route::get('kas_bank/report/create6', [KasCashJudexController::class, 'create6'])->name('create6');
         Route::post('kas_bank/report/cetak6', [KasCashJudexController::class, 'cetak6'])->name('cetak6');
         Route::get('kas_bank/report/create7', [KasCashJudexController::class, 'create7'])->name('create7');
-        Route::get('kas_bank/report/cetak7', [KasCashJudexController::class, 'cetak7'])->name('cetak7');
+        Route::post('kas_bank/report/cetak7', [KasCashJudexController::class, 'cetak7'])->name('cetak7');
         Route::get('kas_bank/report/create8', [KasCashJudexController::class, 'create8'])->name('create8');
-        Route::get('kas_bank/report/cetak8', [KasCashJudexController::class, 'cetak8'])->name('cetak8');
+        Route::post('kas_bank/report/cetak8', [KasCashJudexController::class, 'cetak8'])->name('cetak8');
         Route::get('kas_bank/report/create9', [KasCashJudexController::class, 'create9'])->name('create9');
-        Route::get('kas_bank/report/cetak9', [KasCashJudexController::class, 'cetak9'])->name('cetak9');
+        Route::post('kas_bank/report/cetak9', [KasCashJudexController::class, 'cetak9'])->name('cetak9');
         Route::get('kas_bank/report/create10', [KasCashJudexController::class, 'create10'])->name('create10');
         Route::get('kas_bank/search/cj', [KasCashJudexController::class, 'searchCj'])->name('search.cj');
-        Route::get('kas_bank/report/cetak10', [KasCashJudexController::class, 'cetak10'])->name('cetak10');
+        Route::post('kas_bank/report/cetak10', [KasCashJudexController::class, 'cetak10'])->name('cetak10');
     });
     //end report_kas_bank
 
     // Report CashFlow START
     // Route assigned name "cash_flow.index"...
     Route::name('cash_flow.')->group(function () {
-        Route::get('cash_flow/report/internal', 'CashFlowController@internal')->name('internal');
-        Route::get('cash_flow/report/internal/export', 'CashFlowController@internalExport')->name('internal.export');
-        Route::get('cash_flow/report/perperiode', 'CashFlowController@perPeriode')->name('perperiode');
-        Route::get('cash_flow/report/perperiode/export', 'CashFlowController@perPeriode')->name('perperiode.export');
-        Route::get('cash_flow/report/mutasi', 'CashFlowController@mutasi')->name('mutasi');
-        Route::get('cash_flow/report/mutasi/export', 'CashFlowController@mutasiExport')->name('mutasi.export');
-        Route::get('cash_flow/report/permatauang', 'CashFlowController@perMataUang')->name('permatauang');
-        Route::get('cash_flow/report/permatauang/export', 'CashFlowController@perMataUangExport')->name('permatauang.export');
-        Route::get('cash_flow/report/lengkap', 'CashFlowController@lengkap')->name('lengkap');
-        Route::get('cash_flow/report/lengkap/export', 'CashFlowController@lengkapExport')->name('lengkap.export');
+        Route::get('cash_flow/report/internal', [CashFlowController::class, 'internal'])->name('internal');
+        Route::get('cash_flow/report/internal/export', [CashFlowController::class, 'internalExport'])->name('internal.export');
+        Route::get('cash_flow/report/perperiode', [CashFlowController::class, 'perPeriode'])->name('perperiode');
+        Route::get('cash_flow/report/perperiode/export', [CashFlowController::class, 'perPeriode'])->name('perperiode.export');
+        Route::get('cash_flow/report/mutasi', [CashFlowController::class, 'mutasi'])->name('mutasi');
+        Route::get('cash_flow/report/mutasi/export', [CashFlowController::class, 'mutasiExport'])->name('mutasi.export');
+        Route::get('cash_flow/report/permatauang', [CashFlowController::class, 'perMataUang'])->name('permatauang');
+        Route::get('cash_flow/report/permatauang/export', [CashFlowController::class, 'perMataUangExport'])->name('permatauang.export');
+        Route::get('cash_flow/report/lengkap', [CashFlowController::class, 'lengkap'])->name('lengkap');
+        Route::get('cash_flow/report/lengkap/export', [CashFlowController::class, 'lengkapExport'])->name('lengkap.export');
     });
     // Report CashFlow END
 });
