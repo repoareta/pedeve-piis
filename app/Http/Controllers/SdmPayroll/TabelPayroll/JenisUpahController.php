@@ -22,15 +22,6 @@ class JenisUpahController extends Controller
         ->addColumn('radio', function ($row) {
                 return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
         })
-        ->addColumn('kode', function ($row) {
-             return $row->kode;
-        })
-        ->addColumn('nama', function ($row) {
-             return $row->nama;
-        })
-        ->addColumn('cetak', function ($row) {
-             return $row->cetak;
-        })
         ->rawColumns(['radio'])
         ->make(true);
     }
