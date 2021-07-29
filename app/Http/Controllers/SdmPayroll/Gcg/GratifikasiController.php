@@ -198,7 +198,7 @@ class GratifikasiController extends Controller
         $gratifikasi_list = GcgGratifikasi::with('userpdv')
         ->with('userpdv.fungsi')
         ->with('userpdv.fungsi_jabatan')
-        ->orderBy('created_at', 'desc');
+        ->orderBy('created_at', 'desc')->get();
 
         return datatables()->of($gratifikasi_list)
             ->filter(function ($query) use ($request) {
@@ -224,7 +224,13 @@ class GratifikasiController extends Controller
                 return $row->pekerja->nama;
             })
             ->addColumn('fungsi_jabatan', function ($row) {
-                return $row->userpdv->fungsi_jabatan->nama;
+                if($row->userpdv === null) {
+                    $fungsi_jabatan = '';
+                } else {
+                    $fungsi_jabatan =  $row->userpdv->fungsi_jabatan->nama;
+                }
+                
+                return $fungsi_jabatan;
             })
             ->addColumn('tanggal_gratifikasi', function ($row) {
                 return Carbon::parse($row->tgl_gratifikasi)->translatedFormat('d F Y');
