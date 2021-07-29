@@ -11,7 +11,7 @@ class PtkpController extends Controller
 {
     public function index()
     {
-        return view('master_ptkp.index');
+        return view('modul-sdm-payroll.master-ptkp.index');
     }
 
     public function indexJson()
@@ -23,15 +23,15 @@ class PtkpController extends Controller
                 return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kdkel.'" name="btn-radio"><span></span><label>';
         })
         ->addColumn('nilai', function ($row) {
-             return number_format($row->nilai,2,'.',',');
+             return currency_format($row->nilai);
         })
         ->rawColumns(['radio'])
-            ->make(true);
+        ->make(true);
     }
 
     public function create()
     {
-        return view('master_ptkp.create');
+        return view('modul-sdm-payroll.master-ptkp.create');
     }
 
     public function store(Request $request)
@@ -61,7 +61,7 @@ class PtkpController extends Controller
             $kdkel = $data->kdkel;
             $nilai = $data->nilai;
         }
-        return view('master_ptkp.edit',compact('kdkel','nilai'));
+        return view('modul-sdm-payroll.master-ptkp.edit',compact('kdkel','nilai'));
     }
 
     /**

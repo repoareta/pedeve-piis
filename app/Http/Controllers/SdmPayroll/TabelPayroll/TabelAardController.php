@@ -11,7 +11,7 @@ class TabelAardController extends Controller
 {
     public function index()
     {
-        return view('tabel_aard.index');
+        return view('modul-sdm-payroll.tabel-aard.index');
     }
 
     public function indexJson()
@@ -23,14 +23,14 @@ class TabelAardController extends Controller
                 return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
         })
         ->rawColumns(['radio'])
-            ->make(true);
+        ->make(true);
     }
 
 
     public function create()
     {
         $data_jenisupah = DB::select("select kode,nama,cetak from pay_tbl_jenisupah order by kode");
-        return view('tabel_aard.create',compact('data_jenisupah'));
+        return view('modul-sdm-payroll.tabel-aard.create',compact('data_jenisupah'));
     }
 
 
@@ -66,7 +66,7 @@ class TabelAardController extends Controller
             $kenapajak = $data->kenapajak;
             $lappajak = $data->lappajak;
         }
-        return view('tabel_aard.edit',compact('kode','nama','jenis','kenapajak','lappajak','data_jenisupah'));
+        return view('modul-sdm-payroll.tabel-aard.edit',compact('kode','nama','jenis','kenapajak','lappajak','data_jenisupah'));
     }
 
 

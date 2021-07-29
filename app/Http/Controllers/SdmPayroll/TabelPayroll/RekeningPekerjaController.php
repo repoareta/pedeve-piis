@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterPegawai;
 use App\Models\PayTblRekening;
 use DB;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class RekeningPekerjaController extends Controller
 {
     public function index()
     {
-        return view('rekening_pekerja.index');
+        return view('modul-sdm-payroll.rekening-pekerja.index');
     }
 
     public function indexJson()
@@ -39,7 +40,7 @@ class RekeningPekerjaController extends Controller
         ->orderBy('nopeg')
         ->get();
         $data_bank = DB::select("select kode, nama, alamat, kota from pay_tbl_bank");
-        return view('rekening_pekerja.create',compact('data_pegawai','data_bank'));
+        return view('modul-sdm-payroll.rekening-pekerja.create',compact('data_pegawai','data_bank'));
     }
 
 
@@ -72,7 +73,7 @@ class RekeningPekerjaController extends Controller
         
         $rekening = PayTblRekening::where('nopek', $id)->first();
 
-        return view('rekening_pekerja.edit',compact('data_pegawai','data_bank', 'rekening'));
+        return view('modul-sdm-payroll.rekening-pekerja.edit',compact('data_pegawai','data_bank', 'rekening'));
     }
 
 

@@ -11,7 +11,7 @@ class MasterBankController extends Controller
 {
     public function index()
     {
-        return view('master_bank.index');
+        return view('modul-sdm-payroll.master-bank.index');
     }
 
     public function indexJson()
@@ -23,12 +23,12 @@ class MasterBankController extends Controller
                 return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
         })
         ->rawColumns(['radio'])
-            ->make(true);
+        ->make(true);
     }
 
     public function create()
     {
-        return view('master_bank.create');
+        return view('modul-sdm-payroll.master-bank.create');
     }
 
     public function store(Request $request)
@@ -59,7 +59,7 @@ class MasterBankController extends Controller
             $alamat = $data->alamat;
             $kota = $data->kota;
         }
-        return view('master_bank.edit',compact('kode','nama','alamat','kota'));
+        return view('modul-sdm-payroll.master-bank.edit',compact('kode','nama','alamat','kota'));
     }
 
     public function update(Request $request)
