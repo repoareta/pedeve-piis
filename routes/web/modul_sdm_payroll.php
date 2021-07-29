@@ -456,7 +456,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     //tunjangan golongan
     // Route assigned name "tunjangan_golongan.index"...
     Route::name('tunjangan_golongan.')->group(function () {
-        Route::get('tunjangan_golongan', [TunjanganGolonganController::class, 'index'])->name('index');
+        Route::get('tunjangan-golongan', [TunjanganGolonganController::class, 'index'])->name('index');
         Route::get('tunjangan-golongan/index-json', [TunjanganGolonganController::class, 'indexJson'])->name('index.json');
         Route::get('tunjangan-golongan/create', [TunjanganGolonganController::class, 'create'])->name('create');
         Route::post('tunjangan-golongan/cek-golongan/json', [TunjanganGolonganController::class, 'cekGolonganJson'])->name('golongan.json');

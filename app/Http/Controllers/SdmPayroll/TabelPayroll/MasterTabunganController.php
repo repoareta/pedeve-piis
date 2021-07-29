@@ -20,7 +20,7 @@ class MasterTabunganController extends Controller
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
-                return '<p align="center"><label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan,0).'" name="btn-radio"><span></span></label></p>';
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan,0).'" name="btn-radio"><span></span><label>';
         })
         ->addColumn('perusahaan', function ($row) {
              return number_format($row->perusahaan,0);

@@ -25,7 +25,7 @@ class RencanaKerjaController extends Controller
         $data =DB::select("select a.*, b.nama from tbl_rencana_kerja a join cm_perusahaan_afiliasi b on a.kd_perusahaan=b.id where a.tahun='$request->tahun'");
         return datatables()->of($data)
         ->addColumn('action', function ($data) {
-                $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_rencana_kerja.'" value="'.$data->kd_rencana_kerja.'" name="btn-radio"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_rencana_kerja.'" value="'.$data->kd_rencana_kerja.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
         ->addColumn('nama', function ($data) {

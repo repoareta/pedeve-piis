@@ -47,7 +47,7 @@ class DataPerkaraController extends Controller
             return  '<a href="'.route('modul_cm.data_perkara.detail', ['no' => str_replace('/', '--', $data->no_perkara)]).'">Detail</a>';
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.str_replace('/', '--', $data->no_perkara).'" value="'.str_replace('/', '--', $data->no_perkara).'" name="btn-radio"><span></span></label>';
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.str_replace('/', '--', $data->no_perkara).'" value="'.str_replace('/', '--', $data->no_perkara).'" name="btn-radio"><span></span></label>';
             return $radio;
         })
         ->rawColumns(['radio','view','detail'])
@@ -120,7 +120,7 @@ class DataPerkaraController extends Controller
             }
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_pihak.'" value="'.$data->kd_pihak.'" name="btn-radio"><span></span></label>';
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_pihak.'" value="'.$data->kd_pihak.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
         
@@ -199,7 +199,7 @@ class DataPerkaraController extends Controller
             }
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_hakim.'" value="'.$data->kd_hakim.'" name="btn-radio"><span></span></label>';
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_hakim.'" value="'.$data->kd_hakim.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
         
@@ -344,7 +344,7 @@ class DataPerkaraController extends Controller
             return $data->file;
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" no-perkara="'.$data->no_perkara.'" data-id="'.$data->kd_dok.'" file-id="'.$data->file.'" name="btn-radio"><span></span></label>';
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" no-perkara="'.$data->no_perkara.'" data-id="'.$data->kd_dok.'" file-id="'.$data->file.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
         

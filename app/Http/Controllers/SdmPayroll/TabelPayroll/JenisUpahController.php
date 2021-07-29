@@ -11,37 +11,46 @@ class JenisUpahController extends Controller
 {
     public function index()
     {
-        return view('jenis_upah.index');
+        return view('modul-sdm-payroll.jenis-upah.index');
     }
 
     public function indexJson()
     {
-        $tunjangan_list = PayTblJenisUpah::all();
+        $jenisUpah = PayTblJenisUpah::all();
         
-        return datatables()->of($tunjangan_list)
+        return datatables()->of($jenisUpah)
         ->addColumn('radio', function ($row) {
-                return '<p align="center"><label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span></label></p>';
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
         })
         ->addColumn('kode', function ($row) {
-             return '<p align="center">'.$row->kode.'</p>';
+             return $row->kode;
         })
         ->addColumn('nama', function ($row) {
-             return '<p align="left">'.$row->nama.'</p>';
+             return $row->nama;
         })
         ->addColumn('cetak', function ($row) {
-             return '<p align="center">'.$row->cetak.'</p>';
+             return $row->cetak;
         })
-        ->rawColumns(['radio','kode','nama','cetak'])
-            ->make(true);
+        ->rawColumns(['radio'])
+        ->make(true);
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function create()
     {
-        return view('jenis_upah.create');
+        return view('modul-sdm-payroll.jenis-upah.create');
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function store(Request $request)
     {
         $data_cek = DB::select("select * from pay_tbl_jenisupah where kode = '$request->kode'" ); 			
@@ -59,7 +68,12 @@ class JenisUpahController extends Controller
         }
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function edit($id)
     {
         $data_list = PayTblJenisUpah::where('kode', $id)->get();
@@ -69,10 +83,15 @@ class JenisUpahController extends Controller
             $nama = $data->nama;
             $cetak = $data->cetak;
         }
-        return view('jenis_upah.edit',compact('kode','nama','cetak'));
+        return view('modul-sdm-payroll.jenis-upah.edit',compact('kode','nama','cetak'));
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function update(Request $request)
     {
         PayTblJenisUpah::where('kode', $request->kode)
@@ -84,7 +103,12 @@ class JenisUpahController extends Controller
         return response()->json();
     }
 
-
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function delete(Request $request)
     {
         PayTblJenisUpah::where('kode', $request->kode)

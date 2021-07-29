@@ -16,7 +16,7 @@ class TunjanganGolonganController extends Controller
      */
     public function index()
     {
-        return view('tunjangan_golongan.index');
+        return view('modul-sdm-payroll.tunjangan-golongan.index');
     }
 
     public function indexJson()
@@ -25,7 +25,7 @@ class TunjanganGolonganController extends Controller
         
         return datatables()->of($tunjangan_list)
         ->addColumn('action', function ($row) {
-                return '<p align="center"><label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" golongan="'.$row->golongan.'" name="btn-radio"><span></span></label></p>';
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" golongan="'.$row->golongan.'" name="btn-radio"><span></span></label>';
         })
         ->addColumn('nilai', function ($row) {
             return currency_idr($row->nilai);
@@ -42,7 +42,7 @@ class TunjanganGolonganController extends Controller
     public function create()
     {
         // dd(DB::select("select golongan from pay_tbl_tunjangan where golongan = 'P2'"));
-        return view('tunjangan_golongan.create');
+        return view('modul-sdm-payroll.tunjangan-golongan.create');
     }
 
     /**
@@ -53,13 +53,14 @@ class TunjanganGolonganController extends Controller
      */
     public function cekGolonganJson(Request $request)
     {
-        $data=PayTunjangan::where('golongan', $request->golongan)->count();
-            return response()->json($data);
+        $data = PayTunjangan::where('golongan', $request->golongan)->count();
+
+        return response()->json($data);
     }
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_tunjangan   where golongan='$request->golongan'" ); 			
+        $data_cek = DB::select("select * from pay_tbl_tunjangan where golongan='$request->golongan'"); 			
         if(!empty($data_cek)) {
             $data=0;
             return response()->json($data);
@@ -74,17 +75,6 @@ class TunjanganGolonganController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -93,7 +83,7 @@ class TunjanganGolonganController extends Controller
     public function edit($id)
     {
         $data_list = PayTunjangan::where('golongan', $id)->get();
-        return view('tunjangan_golongan.edit',compact('data_list'));
+        return view('modul-sdm-payroll.tunjangan-golongan.edit',compact('data_list'));
     }
 
     /**

@@ -29,7 +29,7 @@ class PensiunController extends Controller
 
             return datatables()->of($data)
             ->addColumn('action', function ($data) {
-                    $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->pribadi.'" name="btn-radio"><span></span></label>';
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->pribadi.'" name="btn-radio"><span></span></label>';
                 return $radio;
             })
             ->addColumn('pribadi', function ($data) {
