@@ -38,7 +38,7 @@
             <div class="form-group row">
                 <label class="col-xl-1 col-lg-1 col-form-label">Bulan</label>
                 <div class="col-lg-3 col-xl-3">
-                    <select class="form-control select2" name="bulan" id="bulan">	
+                    <select class="form-control select2" style="width: 100%;" name="bulan" id="bulan">	
                         <option value="">- Pilih Data -</option>								                        
                         <option value="1" {{ date('m')  == '01' ? 'selected' : '' }}>Januari</option>
                         <option value="2" {{ date('m')  == '02' ? 'selected' : '' }}>Februari</option>

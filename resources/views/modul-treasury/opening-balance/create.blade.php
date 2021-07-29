@@ -81,7 +81,7 @@
                             $tahun = date_format($tgl, 'Y'); 
                             $bulan = date_format($tgl, 'n'); 
                         ?>
-                            <select class="form-control select2"  name="bulan">
+                            <select class="form-control select2" style="width: 100%;"  name="bulan">
                                 <option value="01" <?php if($bulan  == 1 ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan  == 2 ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan  == 3 ) echo 'selected' ; ?>>Maret</option>

@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="nodok" id="nodok" class="form-control select2" required oninvalid="this.setCustomValidity('No. Dokumen Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="nodok" id="nodok" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('No. Dokumen Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         @foreach($data_dok as $data)
                         <option data-lineno="{{$data->lineno}}" value="{{$data->docno}}">{{$data->docno}} - {{$data->keterangan}}</option>

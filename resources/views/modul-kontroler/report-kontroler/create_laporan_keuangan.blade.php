@@ -52,7 +52,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" name="bulan">
+						<select class="form-control select2" style="width: 100%;" name="bulan">
 							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>

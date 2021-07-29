@@ -71,7 +71,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" name="bulan_mulai">
+						<select class="form-control select2" style="width: 100%;" name="bulan_mulai">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -88,7 +88,7 @@
 				</div>
 				<label for="" class="col-1 col-form-label">S/D</label>
 				<div class="col-5">
-						<select class="form-control select2" name="bulan_sampai">
+						<select class="form-control select2" style="width: 100%;" name="bulan_sampai">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>

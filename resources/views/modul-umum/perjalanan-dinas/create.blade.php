@@ -41,7 +41,7 @@
 					<div class="form-group row">
 						<label for="nopek-input" class="col-2 col-form-label">Nopek</label>
 						<div class="col-10">
-							<select class="form-control select2" id="nopek" name="nopek">
+							<select class="form-control select2" style="width: 100%;" id="nopek" name="nopek">
 								<option value="">- Pilih Nopek -</option>
 								@foreach ($pegawai_list as $pegawai)
 								<option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
@@ -53,7 +53,7 @@
 					<div class="form-group row">
 						<label for="example-email-input" class="col-2 col-form-label">Jabatan</label>
 						<div class="col-5">
-							<select class="form-control select2" name="jabatan" id="jabatan" readonly>
+							<select class="form-control select2" style="width: 100%;" name="jabatan" id="jabatan" readonly>
 								<option value="">- Pilih Jabatan -</option>
 								@foreach ($jabatan_list as $jabatan)
 									<option value="{{ $jabatan->keterangan }}">{{ $jabatan->keterangan }}</option>
@@ -76,7 +76,7 @@
 					<div class="form-group row">
 						<label for="jenis-dinas-input" class="col-2 col-form-label">Jenis Dinas</label>
 						<div class="col-10">
-							<select class="form-control select2" name="jenis_dinas" id="jenis_dinas">
+							<select class="form-control select2" style="width: 100%;" name="jenis_dinas" id="jenis_dinas">
 								<option value="DN">PDN-DN</option>
 								<option value="LN">PDN-LN</option>
 								<option value="SIJ">SIJ</option>
@@ -121,7 +121,7 @@
 					<div class="form-group row">
 						<label for="biaya" class="col-2 col-form-label">Biaya</label>
 						<div class="col-10">
-							<select class="form-control select2" name="biaya" id="biaya">
+							<select class="form-control select2" style="width: 100%;" name="biaya" id="biaya">
 								<option value="P">Ditanggung Perusahaan</option>
 								<option value="K">Ditanggung Pribadi</option>
 								<option value="U">Ditanggung PPU</option>

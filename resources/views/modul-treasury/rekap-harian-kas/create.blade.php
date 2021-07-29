@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="jk" id="jk" class="form-control select2" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="jk" id="jk" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>

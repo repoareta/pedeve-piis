@@ -47,7 +47,7 @@
 				<div class="form-group row">
 					<label for="dari-input" class="col-2 col-form-label">Bank</label>
 					<div class="col-10">
-						<select name="sanper" class="form-control select2"  oninvalid="this.setCustomValidity('Bank Harus Diisi..')" onchange="setCustomValidity('')">
+						<select name="sanper" class="form-control select2" style="width: 100%;"  oninvalid="this.setCustomValidity('Bank Harus Diisi..')" onchange="setCustomValidity('')">
 							<option value="">- All -</option>
 							@foreach($data_bank as $data)
 							<option value="{{$data->kdbank}}">{{$data->kdbank}} -- {{$data->descacct}}</option>
@@ -63,7 +63,7 @@
 							$bulan = date('m');
 							$kurs = 1;
 						?>
-						<select class="form-control select2" name="bulan">
+						<select class="form-control select2" style="width: 100%;" name="bulan">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
