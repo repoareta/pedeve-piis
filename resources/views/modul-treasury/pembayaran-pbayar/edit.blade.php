@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <a  href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -274,7 +274,7 @@
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
 								@if($data_akses->rubah == 1)
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 								@endif
 								@endforeach
 							</div>
@@ -314,7 +314,7 @@
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
 								@if($data_akses->rubah == 1)
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 								@endif
 								@endforeach
 							</div>
@@ -444,7 +444,7 @@
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
 								@if($data_akses->rubah == 1)
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 								@endif
 								@endforeach
 							</div>

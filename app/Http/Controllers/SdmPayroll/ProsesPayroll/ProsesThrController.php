@@ -19,7 +19,7 @@ class ProsesThrController extends Controller
      */
     public function index()
     {
-        return view('proses_thr.create');
+        return view('modul-sdm-payroll.proses-thr.create');
     }
 
     /**
@@ -29,7 +29,7 @@ class ProsesThrController extends Controller
      */
     public function create()
     {
-        return view('proses_thr.create');
+        return view('modul-sdm-payroll.proses-thr.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class ProsesThrController extends Controller
             // Cek THR
             if(!empty($data_Cekthr)){
                 Alert::Info("Data THR bulan $bulan dan tahun $tahun sudah pernah di proses", 'Info')->persistent(true);
-                return redirect()->route('proses_thr.index');
+                return redirect()->route('modul_sdm_payroll.proses_thr.index');
             }else {
                
                 if($prosesupah == 'A'){
@@ -1696,7 +1696,7 @@ class ProsesThrController extends Controller
                                 ]); 
                         }
                 Alert::success("Data THR bulan $bulan dan tahun $tahun berhasil di proses ", 'Berhasil')->persistent(true);
-                return redirect()->route('proses_thr.index');
+                return redirect()->route('modul_sdm_payroll.proses_thr.index');
                 
             }
 
@@ -1726,19 +1726,19 @@ class ProsesThrController extends Controller
                                         MasterThr::where('tahun', $tahun)->where('bulan',$bulan)->where('status',$prosesupah)->delete();
                                     }
                                     Alert::success("Proses pembatalan proses THR selesai", 'Berhasil')->persistent(true);
-                                    return redirect()->route('proses_thr.index');
+                                    return redirect()->route('modul_sdm_payroll.proses_thr.index');
                             }else {
                                     Alert::Info("Tidak ditemukan data THR bulan $bulan dan tahun $tahun", 'Info')->persistent(true);
-                                    return redirect()->route('proses_thr.index');
+                                    return redirect()->route('modul_sdm_payroll.proses_thr.index');
                             }
 
                     }else {
                         Alert::Info("Tidak bisa dibatalkan Data THR bulan $bulan tahun $tahun sudah di proses perbendaharaan", 'Info')->persistent(true);
-                        return redirect()->route('proses_thr.index');
+                        return redirect()->route('modul_sdm_payroll.proses_thr.index');
                     }
             }else{
                     Alert::Info("Tidak ditemukan data THR bulan $bulan dan tahun $tahun", 'Info')->persistent(true);
-                    return redirect()->route('proses_thr.index');
+                    return redirect()->route('modul_sdm_payroll.proses_thr.index');
             }
 
         }
@@ -1748,14 +1748,14 @@ class ProsesThrController extends Controller
     public function ctkslipthr()
     {
         $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('proses_thr.rekap',compact('data_pegawai'));
+        return view('modul-sdm-payroll.proses-thr.rekap',compact('data_pegawai'));
     }
     public function cetak_slipthr(Request $request)
     {
         $data_list = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
         $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('07','03')");
         if(!empty($data_list) and !empty($data_detail)) {
-            $pdf = DomPDF::loadview('proses_thr.export_slipthr',compact('request','data_list','data_detail'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-thr.export_slipthr',compact('request','data_list','data_detail'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
             
@@ -1765,20 +1765,20 @@ class ProsesThrController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('proses_thr.ctkslipthr');
+            return redirect()->route('modul_sdm_payroll.proses_thr.ctkslipthr');
         }
     }
 
     public function ctkrekapthr()
     {
-        return view('proses_thr.rekapthr');
+        return view('modul-sdm-payroll.proses-thr.rekapthr');
     }
 
     public function rekapExport(Request $request)
     {
         $data_list = DB::select("SELECT a.aard,a.bulan,a.tahun,a.nopek,a.koreksi,a.nilai,a.pengali,a.pajakthr,a.tbiayahidup,a.ut,a.tjabatan,a.status,a.potongan,b.nama as namapegawai from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard='25' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
         if(!empty($data_list)){
-            $pdf = DomPDF::loadview('proses_thr.export_rekapthr',compact('request','data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-thr.export_rekapthr',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -1788,7 +1788,7 @@ class ProsesThrController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('proses_thr.ctkrekapthr');
+            return redirect()->route('modul_sdm_payroll.proses_thr.ctkrekapthr');
         }
     }
 }

@@ -76,7 +76,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <a  href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>

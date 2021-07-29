@@ -106,8 +106,8 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{route('tabel_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
-							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-brand"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+							<a  href="{{route('tabel_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 							{{--<a  href="{{url('perbendaharaan/tabel_deposito/rekap_rc')}}/{{$no}}/{{$id}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak RC</a>--}}
 						</div>
 					</div>

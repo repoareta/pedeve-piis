@@ -70,7 +70,7 @@
 						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off">
 					</div>
 					<div class="col-2">
-						<button type="submit" class="btn btn-brand"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
 					</div>
 				</div>
 			</form>
