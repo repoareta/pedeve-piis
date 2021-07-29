@@ -420,6 +420,7 @@ class KasCashJudexController extends Controller
         SUM((case when status = 1 then nilai end)) - SUM((case when status = 2 then nilai end)) AS status_1,
         SUM((case when status = 1 then totreal end)) - SUM((case when status = 2 then totreal end)) AS totreal_1
         from v_cashflowpercjreport where tahun='$request->tahun' and bulan='$request->bulan'");
+        
         if ($data_list->count() > 0) {
             $pdf = PDF::loadview('modul-treasury.kas-bank.export_proyeksi_cashflow_pajak_pdf', compact('data_list', 'data_total', 'request'))
                 ->setPaper('A4', 'portrait')
