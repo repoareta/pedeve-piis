@@ -43,7 +43,7 @@
                                 @if($data_peng->status == '1')
                                     <tr>
                                         <td style="text-align:center">{{ $no++}}</td>
-                                        <td>{{ $data_peng->nama}}</td>
+                                        <td>{{ $data_peng->nama }}</td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -69,7 +69,7 @@
                                     @if($data_peng->status == '1')
                                         <td style="text-align:center">{{ $no++}}</td>
                                         <td>{{ $data_peng->nama_hakim == null ? '-': $data_peng->nama_hakim }}</td>
-                                        <td>{{ $data_peng->nama}}</td>
+                                        <td>{{ $data_peng->nama }}</td>
                                     
                                     @endif
                                     </tr>
@@ -94,7 +94,7 @@
                                     <tr>
                                     @if($data_ter->status == '2')
                                         <td style="text-align:center">{{ $no++}}</td>
-                                        <td>{{ $data_ter->nama}}</td>
+                                        <td>{{ $data_ter->nama }}</td>
                                     @endif
                                     </tr>
                                     @endforeach
@@ -120,7 +120,7 @@
                                     @if($data_ter->status == '2')
                                         <td style="text-align:center">{{ $no++}}</td>
                                         <td>{{ $data_ter->nama_hakim == null ? '-': $data_ter->nama_hakim }}</td>
-                                        <td>{{ $data_ter->nama}}</td>
+                                        <td>{{ $data_ter->nama }}</td>
                                     @endif
                                 </tr>
                                 @endforeach
@@ -144,7 +144,7 @@
                                 <tr>
                                 @if($data_turut->status == '3')
                                     <td style="text-align:center">{{ $no++}}</td>
-                                    <td>{{ $data_turut->nama}}</td>
+                                    <td>{{ $data_turut->nama }}</td>
                                 @endif
                                 </tr>
                                 @endforeach
@@ -170,7 +170,7 @@
                                     @if($data_turut->status == '3')
                                         <td style="text-align:center">{{ $no}}</td>
                                         <td>{{ $data_turut->nama_hakim == null ? '-': $data_turut->nama_hakim }}</td>
-                                        <td>{{ $data_turut->nama}}</td>
+                                        <td>{{ $data_turut->nama }}</td>
                                     @endif
                                 </tr>
                                 @endforeach

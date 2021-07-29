@@ -143,7 +143,7 @@
                         <tr>
                             <td><b>Nama Pegawai</b></td>
                             <td>:</td>
-                            <td>{{ $data_peg->nama}}</td>
+                            <td>{{ $data_peg->nama }}</td>
                         </tr>
                         <tr>
                             <td><b>NPWP Pegawai</b></td>

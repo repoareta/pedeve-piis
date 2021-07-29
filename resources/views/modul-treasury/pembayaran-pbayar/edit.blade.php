@@ -50,7 +50,7 @@
             </div>
                 <div class="col-6" >
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                     <select name="bagian" id="bagian" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $row)
-                        <option value="{{ $row->kode}}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode}} - {{ $row->nama}}</option>
+                        <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
                         @endforeach
                         
                     </select>
@@ -360,7 +360,7 @@
 							<select name="lapangan"  id="select-lapangan" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($lokasi as $data_lok)
-								<option value="{{ $data_lok->kodelokasi}}">{{ $data_lok->kodelokasi}} - {{ $data_lok->nama}}</option>
+								<option value="{{ $data_lok->kodelokasi}}">{{ $data_lok->kodelokasi}} - {{ $data_lok->nama }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -385,7 +385,7 @@
 							<select name="bagian" id="select-bagian" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
-								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
 								
 							</select>
@@ -407,7 +407,7 @@
 							<select name="jb" id="select-jb"  class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode}}">{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 								@endforeach
 							
 							</select>
@@ -421,7 +421,7 @@
 							<select name="cj" id="select-cj" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
-								<option value="{{ $data_cas->kode}}">{{ $data_cas->kode}} - {{ $data_cas->nama}}</option>
+								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
 								@endforeach
 							</select>
 						</div>

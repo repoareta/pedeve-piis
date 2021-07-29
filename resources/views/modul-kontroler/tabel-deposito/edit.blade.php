@@ -92,7 +92,7 @@
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
 								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
+								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
@@ -293,7 +293,7 @@
 							<select name="lapangan"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_lapang as $data_lap)
-								<option value="{{ $data_lap->kodelokasi}}">{{ $data_lap->kodelokasi}} - {{ $data_lap->nama}}</option>
+								<option value="{{ $data_lap->kodelokasi}}">{{ $data_lap->kodelokasi}} - {{ $data_lap->nama }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -315,7 +315,7 @@
 							<select name="bagian"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_bagian as $data_bag)
-								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -333,7 +333,7 @@
 							<select name="jnsbiaya" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode}}" <?php if($data_jen->kode  == '000000' ) echo 'selected' ; ?>>{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000' ) echo 'selected' ; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -410,7 +410,7 @@
 							<select name="lapangan" id="lapangan"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_lapang as $data_lap)
-								<option value="{{ $data_lap->kodelokasi}}">{{ $data_lap->kodelokasi}} - {{ $data_lap->nama}}</option>
+								<option value="{{ $data_lap->kodelokasi}}">{{ $data_lap->kodelokasi}} - {{ $data_lap->nama }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -432,7 +432,7 @@
 							<select name="bagian" id="bagian" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_bagian as $data_bag)
-								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -450,7 +450,7 @@
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode}}">{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 									@endforeach
 							</select>
 						</div>

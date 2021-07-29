@@ -47,7 +47,7 @@
                         
                         
                     </select>
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">

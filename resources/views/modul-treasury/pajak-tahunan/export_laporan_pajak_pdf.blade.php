@@ -185,7 +185,7 @@ foreach($data_list as $key=>$row){
                             <tr style="font-size: 11pt;">
                                 <td>NAMA PEGAWAI ATAU PENERIMA PENSIUN/THT/JHT</td>
                                 <td>:</td>
-                                <td>{{ $nama}}{{ $row->nopek}}</td>
+                                <td>{{ $nama }}{{ $row->nopek}}</td>
                             </tr>
                             <tr style="font-size: 11pt;">
                                 <td>NPWP PEGAWAI ATAU PENERIMA PENSIUN/THT/JHT</td>

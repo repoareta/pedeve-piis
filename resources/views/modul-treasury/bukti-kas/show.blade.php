@@ -323,7 +323,7 @@
 							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
-								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -342,7 +342,7 @@
 							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode}}">{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -354,7 +354,7 @@
 							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
-								<option value="{{ $data_cas->kode}}">{{ $data_cas->kode}} - {{ $data_cas->nama}}</option>
+								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
 								@endforeach
 							</select>
 						</div>
