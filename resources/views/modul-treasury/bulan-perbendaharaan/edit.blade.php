@@ -19,8 +19,8 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form" id="form-edit">
-            {{csrf_field()}}
+        <form class="kt-form" id="form-edit">
+            @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
@@ -95,8 +95,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{ route('bulan_perbendaharaan.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a href="{{ route('bulan_perbendaharaan.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>

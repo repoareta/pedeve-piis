@@ -153,8 +153,8 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -277,8 +277,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
-					<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply"></i> Batal</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 				</div>
 			</form>
 		</div>

@@ -41,8 +41,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{ route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
+                        <a  href="{{ route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submit</button>
                     </div>
                 </div>
             </div>

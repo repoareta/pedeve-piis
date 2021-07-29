@@ -41,8 +41,8 @@
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form  class="kt-form" id="form-create">
-				{{csrf_field()}}
+			<form class="kt-form" id="form-create">
+				@csrf
 				<div class="kt-portlet__body">
 					<div class="form-group form-group-last">
 						<div class="alert alert-secondary" role="alert">
@@ -148,8 +148,8 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-									<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+									<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 								</div>
 							</div>
 						</div>

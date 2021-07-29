@@ -41,8 +41,8 @@
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form  class="kt-form" id="form-edit">
-				{{csrf_field()}}
+			<form class="kt-form" id="form-edit">
+				@csrf
 				<div class="kt-portlet__body">
 					<div class="form-group form-group-last">
 						<div class="alert alert-secondary" role="alert">
@@ -150,11 +150,11 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 									@if($status2 <> "Y")
-									<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+									<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 									@else
-									<button type="submit" disabled style="cursor:not-allowed" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+									<button type="submit" disabled style="cursor:not-allowed" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 									@endif
 								</div>
 							</div>
@@ -260,7 +260,7 @@
 
 
 <!--begin::Modal-->
-<div class="modal fade" id="kt_modal_4"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -268,8 +268,8 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="" id="form-tambah-detail"  enctype="multipart/form-data">
-					{{csrf_field()}}
+                <form class="form" id="form-tambah-detail"  enctype="multipart/form-data">
+					@csrf
 					<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
@@ -363,8 +363,8 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-								<button type="submit" class="btn btn-brand"><i class="fa fa-reply" aria-hidden="true"></i>Save</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+								<button type="submit" class="btn btn-brand"><i class="fa fa-reply"></i>Save</button>
 							</div>
 						</div>
 					</div>
@@ -377,7 +377,7 @@
 
 <!--begin::Modal Edit-->
 <!--end::Modal-->
-<div class="modal fade modal-edit-detail" id="kt_modal_4"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-edit-detail" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -385,8 +385,8 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-			<form  class="" id="form-edit-detail"  enctype="multipart/form-data">
-					{{csrf_field()}}
+			<form class="form" id="form-edit-detail"  enctype="multipart/form-data">
+					@csrf
 					<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
@@ -480,8 +480,8 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-								<button type="submit" class="btn btn-brand"><i class="fa fa-reply" aria-hidden="true"></i>Save</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+								<button type="submit" class="btn btn-brand"><i class="fa fa-reply"></i>Save</button>
 							</div>
 						</div>
 					</div>

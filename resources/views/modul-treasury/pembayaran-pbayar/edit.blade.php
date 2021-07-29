@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form" id="form-edit">
+        <form class="kt-form" id="form-edit">
             @csrf
             @foreach($data_list as $data)
             <?php
@@ -154,8 +154,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>
@@ -241,8 +241,8 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="" id="form-create-detail"  enctype="multipart/form-data">
-					{{csrf_field()}}
+                <form class="form" id="form-create-detail"  enctype="multipart/form-data">
+					@csrf
                         
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
@@ -271,10 +271,10 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
 								@if($data_akses->rubah == 1)
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+								<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 								@endif
 								@endforeach
 							</div>
@@ -295,8 +295,8 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="" id="form-delete-all"  enctype="multipart/form-data">
-					{{csrf_field()}}
+                <form class="form" id="form-delete-all"  enctype="multipart/form-data">
+					@csrf
                         
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Dokumen<span class="text-danger">*</span></label>
@@ -311,10 +311,10 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
 								@if($data_akses->rubah == 1)
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+								<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 								@endif
 								@endforeach
 							</div>
@@ -327,7 +327,7 @@
 </div>
 
 <!--begin::Modal Edit--> 
-<div class="modal fade modal-edit" id="kt_modal_4"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-edit" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -335,8 +335,8 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="" id="form-edit-detail"  enctype="multipart/form-data">
-					{{csrf_field()}}
+                <form class="form" id="form-edit-detail"  enctype="multipart/form-data">
+					@csrf
                         
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
@@ -441,10 +441,10 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
 								@if($data_akses->rubah == 1)
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+								<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 								@endif
 								@endforeach
 							</div>

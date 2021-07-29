@@ -117,7 +117,7 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label"></label>
                     <div class="col-10">
-                        <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i>Save & Back</a>
+                        <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-primary"><i class="fa fa-reply"></i>Save & Back</a>
                     </div>
                 </div>
             </div>
@@ -265,8 +265,8 @@
 					</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Save</button>
                 </div>
             </form>
         </div>
@@ -368,8 +368,8 @@
 					</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Save</button>
                 </div>
             </form>
         </div>

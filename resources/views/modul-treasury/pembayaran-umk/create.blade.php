@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form" id="form-create">
+        <form class="kt-form" id="form-create">
             @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">No.Dokumen</label>
@@ -129,8 +129,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('pembayaran_umk.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('pembayaran_umk.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>

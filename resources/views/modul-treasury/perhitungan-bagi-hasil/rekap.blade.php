@@ -19,7 +19,7 @@
 
     <div class="card-body">
         <form class="kt-form" action="{{route('perhitungan_bagihasil.export')}}" method="post">
-			{{csrf_field()}}
+			@csrf
 			<div class="kt-portlet__body">
 				<div class="form-group row">
 					<label for="dari-input" class="col-2 col-form-label">Per Tanggal<span class="text-danger">*</span></label>
@@ -31,7 +31,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{ route('perhitungan_bagihasil.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+							<a  href="{{ route('perhitungan_bagihasil.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 						</div>
 					</div>

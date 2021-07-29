@@ -19,8 +19,8 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form" id="form-create">
-            {{csrf_field()}}
+        <form class="kt-form" id="form-create">
+            @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">

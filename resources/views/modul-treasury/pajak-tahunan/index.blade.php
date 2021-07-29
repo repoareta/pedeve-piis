@@ -20,7 +20,7 @@
 
     <div class="card-body">
         <form action="{{route('proses_pajak.export.proses')}}" method="post">
-            {{csrf_field()}}
+            @csrf
             <div class="form-group form-group-last">
                 <div class="form-group row">
                     <label for="jenis-dinas-input" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Kembali</a>
+                            <a  href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Kembali</a>
                             <button type="submit" class="btn btn-primary" onclick="$('form').attr('target', '_blank')"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
                         </div>
                     </div>
