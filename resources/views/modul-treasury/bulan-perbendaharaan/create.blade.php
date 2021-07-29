@@ -45,7 +45,7 @@
                     </select>
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun"
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"
                         autocomplete="off" required
                         oninvalid="this.setCustomValidity('Tahun Harus Diisi...')">
                 </div>

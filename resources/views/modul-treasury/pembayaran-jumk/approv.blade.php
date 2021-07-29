@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-10">
-                    <input style="background-color:#DCDCDC; cursor:not-allowed" type="text" class="form-control" name="nodok" value="{{$data->docno}}" readonly />
+                    <input style="background-color:#DCDCDC; cursor:not-allowed" type="text" class="form-control" name="nodok" value="{{ $data->docno}}" readonly />
                     <input type="text" class="form-control" hidden name="userid" value="{{ auth()->user()->userid }}" readonly />
                 </div>
             </div>

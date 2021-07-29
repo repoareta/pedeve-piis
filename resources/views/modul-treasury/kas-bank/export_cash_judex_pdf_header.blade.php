@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="font: normal 14px Verdana, Arial, sans-serif;padding-left:20px">
-                    <b>Periode</b> : {{$thn1}} <b>s/d</b> {{$thn2}}
+                    <b>Periode</b> : {{ $thn1}} <b>s/d</b> {{ $thn2}}
                 </td>
             </tr>
         </thead>

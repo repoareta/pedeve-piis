@@ -66,7 +66,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">LAPORAN RUGI LABA</font><br>
-                   <font style="font-size: 10pt;"> BULAN BUKU : {{strtoupper($bulan)}} {{$request->tahun}} </font><br>
+                   <font style="font-size: 10pt;"> BULAN BUKU : {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>
@@ -83,7 +83,7 @@
                 <tr>
                     <td>TANGGAL REPORT</td>
                     <td>:</td>
-                    <td>{{$request->tanggal}}</td>
+                    <td>{{ $request->tanggal}}</td>
                 </tr>
             </table>
             <table width="100%" style="font-family: sans-serif;table-layout: fixed;width: 100%; border-collapse: collapse;border: 1px solid black;">
@@ -179,9 +179,9 @@
                         ?>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold; border:1px solid black;padding-left:10px;"><u>JUMLAH</u></td>
                         <td width="15%" style="text-align:right;border:1px solid black;" ></td>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$subtotalmd < 0 ? "(".number_format($subtotalmd*-1,2).")" : number_format($subtotalmd,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$subtotalms < 0 ? "(".number_format($subtotalms*-1,2).")" : number_format($subtotalms,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$subtotalmd+$subtotalms < 0 ? "(".number_format($subtotalmd+$subtotalms*-1,2).")" : number_format($subtotalmd+$subtotalms,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd < 0 ? "(".number_format($subtotalmd*-1,2).")" : number_format($subtotalmd,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalms < 0 ? "(".number_format($subtotalms*-1,2).")" : number_format($subtotalms,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd+$subtotalms < 0 ? "(".number_format($subtotalmd+$subtotalms*-1,2).")" : number_format($subtotalmd+$subtotalms,2)}}</th>
                     </tr>
 
                     <?php $a=0; ?>
@@ -341,9 +341,9 @@
                         ?>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold; border:1px solid black;padding-left:10px;"><u>JUMLAH</u></td>
                         <td width="15%" style="text-align:right;border:1px solid black;" ></td>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$subtotalmd1 >= 0 ? number_format($subtotalmd1,2) : "(".number_format($subtotalmd1*-1,2).")"}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$subtotalms1 >= 0 ? number_format($subtotalms1,2) : "(".number_format($subtotalms1*-1,2).")"}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$subtotalmd1+$subtotalms1 >= 0 ? number_format($subtotalmd1+$subtotalms1,2) : "(".number_format(($subtotalmd1+$subtotalms1)*-1,2).")"}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd1 >= 0 ? number_format($subtotalmd1,2) : "(".number_format($subtotalmd1*-1,2).")"}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalms1 >= 0 ? number_format($subtotalms1,2) : "(".number_format($subtotalms1*-1,2).")"}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd1+$subtotalms1 >= 0 ? number_format($subtotalmd1+$subtotalms1,2) : "(".number_format(($subtotalmd1+$subtotalms1)*-1,2).")"}}</th>
                     </tr>
                     <tr >
                     <?php
@@ -352,9 +352,9 @@
                         ?>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold; border:1px solid black;">JUMLAH</td>
                         <td width="15%" style="text-align:right;border:1px solid black;" ></td>
-                        <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$totalmd >= 0 ? number_format($totalmd,2) : "(".number_format($totalmd*-1,2).")"}}</td>
-                        <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$totalms >= 0 ? number_format($totalms,2) : "(".number_format($totalms*-1,2).")"}}</td>
-                        <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{$totalmd+$totalms >= 0 ?  number_format($totalmd+$totalms,2) : "(".number_format(($totalmd+$totalms)*-1,2).")"}}</td>
+                        <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $totalmd >= 0 ? number_format($totalmd,2) : "(".number_format($totalmd*-1,2).")"}}</td>
+                        <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $totalms >= 0 ? number_format($totalms,2) : "(".number_format($totalms*-1,2).")"}}</td>
+                        <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $totalmd+$totalms >= 0 ?  number_format($totalmd+$totalms,2) : "(".number_format(($totalmd+$totalms)*-1,2).")"}}</td>
                     </tr>
                 </tbody>
             </table>

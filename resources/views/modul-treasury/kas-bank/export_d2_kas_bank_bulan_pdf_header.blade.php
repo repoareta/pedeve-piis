@@ -42,7 +42,7 @@
                         <br>
                         LAPORAN D2 KAS/BANK
                         <br>
-                            BULAN {{$bln}}
+                            BULAN {{ $bln}}
                         </b>
                     </p>
                 </td>

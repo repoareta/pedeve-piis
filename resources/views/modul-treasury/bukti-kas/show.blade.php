@@ -45,7 +45,7 @@
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                     <div class="col-6">
-                        <input class="form-control" type="text" value="{{ $tahun }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -310,7 +310,7 @@
 							<select name="sanper"  id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
-								<option value="{{$data_acc->kodeacct}}">{{$data_acc->kodeacct}} - {{$data_acc->descacct}}</option>
+								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
 								@endforeach
 								
 							</select>
@@ -323,7 +323,7 @@
 							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
-								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -342,7 +342,7 @@
 							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
-								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode}}">{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -354,7 +354,7 @@
 							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
-								<option value="{{$data_cas->kode}}">{{$data_cas->kode}} - {{$data_cas->nama}}</option>
+								<option value="{{ $data_cas->kode}}">{{ $data_cas->kode}} - {{ $data_cas->nama}}</option>
 								@endforeach
 							</select>
 						</div>

@@ -32,10 +32,10 @@
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{date('m')}}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">						
+                        <input class="form-control" type="text" value="{{ date('m') }}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">						
                     </div>
                         <div class="col-6" >
-                            <input class="form-control" type="text" value="{{date('Y')}}"   name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" value="{{ date('Y') }}" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete="off">
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <select name="nopek" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
-                                <option value="{{$data->nopeg}}">{{$data->nopeg}} -- {{$data->nama}}</option>
+                                <option value="{{ $data->nopeg}}">{{ $data->nopeg}} -- {{ $data->nama}}</option>
                                 @endforeach
                             </select>
                         </div>

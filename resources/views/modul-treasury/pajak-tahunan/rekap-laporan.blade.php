@@ -28,7 +28,7 @@
                         <select name="tahun" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Tahun Harus Diisi..')">
                             <option value="">- Pilih -</option>
                             @for ($i = 2004; $i <= date('Y'); $i++)
-                            <option value="{{$i}}" <?php if($i == date('Y')) echo 'selected'; ?>>{{$i}}</option>
+                            <option value="{{ $i}}" <?php if($i == date('Y')) echo 'selected'; ?>>{{ $i}}</option>
                             @endfor
                             
                             

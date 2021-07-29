@@ -46,7 +46,7 @@
                             <select name="nopek" class="form-control select2">
                             <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
-                                <option value="{{$data->nopeg}}">{{$data->nopeg}} - {{$data->nama}}</option>
+                                <option value="{{ $data->nopeg}}">{{ $data->nopeg}} - {{ $data->nama}}</option>
                                 @endforeach
                             </select>
                         </div>

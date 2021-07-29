@@ -93,15 +93,15 @@ tr {
                     @foreach($data_list as $data)
                     <?php $a++ ?>
                     <tr style="text-align:center;font-size: 8pt;">
-                        <td>{{$data->jk}}</td>
-                        <td>{{$data->bulan.''.$data->tahun}}</td>
-                        <td>{{$data->store}}</td>
-                        <td>{{$data->bagian}}</td>
-                        <td>{{$data->account}}</td>
-                        <td>{{$data->lokasi}}</td>
-                        <td>{{$data->pk}}</td>
-                        <td>{{$data->cj}}</td>
-                        <td style="text-align:right;">{{$data->totprice <= 0 ? '('.number_format($data->totprice*-1,0).')' : number_format($data->totprice,0)}}</td>
+                        <td>{{ $data->jk}}</td>
+                        <td>{{ $data->bulan.''.$data->tahun }}</td>
+                        <td>{{ $data->store}}</td>
+                        <td>{{ $data->bagian}}</td>
+                        <td>{{ $data->account}}</td>
+                        <td>{{ $data->lokasi}}</td>
+                        <td>{{ $data->pk}}</td>
+                        <td>{{ $data->cj}}</td>
+                        <td style="text-align:right;">{{ $data->totprice <= 0 ? '('.number_format($data->totprice*-1,0).')' : number_format($data->totprice,0)}}</td>
                     </tr>
                     <?php 
                         $lokasi[$a] = $data->lokasi;
@@ -123,23 +123,23 @@ tr {
                         $cr_total = array_sum($cr); 
                      ?>
                         <td colspan="8"></td>
-                        <td style="font-size: 10pt;text-align:right;">{{$cr_jk < 0 ? '('.number_format($cr_jk*-1,0).')'  : number_format($cr_jk,0)}}-{{$cr_jk < 0 ? 'CR'  : ''}}</td>
+                        <td style="font-size: 10pt;text-align:right;">{{ $cr_jk < 0 ? '('.number_format($cr_jk*-1,0).')'  : number_format($cr_jk,0)}}-{{ $cr_jk < 0 ? 'CR'  : ''}}</td>
                     </tr>
                     <tr>
                         <td colspan="8"></td>
-                        <td style="font-size: 10pt;text-align:right;">{{$cr_lokasi < 0 ? '('.number_format($cr_lokasi*-1,0).')'  : number_format($cr_lokasi,0)}}-{{$cr_lokasi < 0 ? 'CR'  : ''}}<span class="text-danger">**</span></td>
+                        <td style="font-size: 10pt;text-align:right;">{{ $cr_lokasi < 0 ? '('.number_format($cr_lokasi*-1,0).')'  : number_format($cr_lokasi,0)}}-{{ $cr_lokasi < 0 ? 'CR'  : ''}}<span class="text-danger">**</span></td>
                     </tr>
                     <tr>
                         <td colspan="8"></td>
-                        <td style="font-size: 10pt;text-align:right;">{{$cr_store < 0 ? '('.number_format($cr_store*-1,0).')'  : number_format($cr_store,0)}}-{{$cr_store < 0 ? 'CR'  : ''}}<span class="text-danger">**</span></td>
+                        <td style="font-size: 10pt;text-align:right;">{{ $cr_store < 0 ? '('.number_format($cr_store*-1,0).')'  : number_format($cr_store,0)}}-{{ $cr_store < 0 ? 'CR'  : ''}}<span class="text-danger">**</span></td>
                     </tr>
                     <tr>
                         <td colspan="8" style="font-size: 10pt;text-align:right;">Total Per Cash Judex</td>
-                        <td style="font-size: 10pt;text-align:right;">{{$cr_cj < 0 ? '('.number_format($cr_cj*-1,0).')'  : number_format($cr_cj,0)}}-{{$cr_cj < 0 ? 'CR'  : ''}}<span class="text-danger">***</span></td>
+                        <td style="font-size: 10pt;text-align:right;">{{ $cr_cj < 0 ? '('.number_format($cr_cj*-1,0).')'  : number_format($cr_cj,0)}}-{{ $cr_cj < 0 ? 'CR'  : ''}}<span class="text-danger">***</span></td>
                     </tr>
                     <tr>
                         <td colspan="8" style="font-size: 10pt;text-align:right;">Total</td>
-                        <td style="font-size: 10pt;text-align:right;">{{$cr_total < 0 ? '('.number_format($cr_total*-1,0).')'  : number_format($cr_total,0)}}-{{$cr_total < 0 ? 'CR'  : ''}}<span class="text-danger">**** </span> <span class="text-danger"> **</span></td>
+                        <td style="font-size: 10pt;text-align:right;">{{ $cr_total < 0 ? '('.number_format($cr_total*-1,0).')'  : number_format($cr_total,0)}}-{{ $cr_total < 0 ? 'CR'  : ''}}<span class="text-danger">**** </span> <span class="text-danger"> **</span></td>
                     </tr>
                 </tbody>
             </table>

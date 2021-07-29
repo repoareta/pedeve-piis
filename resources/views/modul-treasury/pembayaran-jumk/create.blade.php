@@ -24,7 +24,7 @@
                 <label for="" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-10">
                     <input type="hidden" class="form-control"  value="{{date('Y-m-d')}}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
-                    <input type="text" class="form-control"  value="{{$mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                    <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
                 </div>
             </div>
     
@@ -32,7 +32,7 @@
             <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
             <div class="col-4">
                 <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                <input class="form-control" type="hidden" value="{{$bulan_buku}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                <input class="form-control" type="hidden" value="{{ $bulan_buku}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 
             </div>
                 <div class="col-6" >
@@ -47,7 +47,7 @@
                     <select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $data)
-                        <option value="{{$data->kode}}">{{$data->kode}} - {{$data->nama}}</option>
+                        <option value="{{ $data->kode}}">{{ $data->kode}} - {{ $data->nama}}</option>
                         @endforeach
                         
                     </select>
@@ -89,13 +89,13 @@
                 </div>
                 <label class="col-1 col-form-label">No Ver</label>
                 <div class="col-2" >
-                    <input class="form-control" type="text" name="nover" value="{{$nover}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nover" value="{{ $nover}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
             </div>
     
             <div class="form-group row">
                 <label class="col-2 col-form-label">
-                @if($mp == "M") {{$darkep}} @else {{$darkep}} @endif<span class="text-danger">*</span></label>
+                @if($mp == "M") {{ $darkep}} @else {{ $darkep}} @endif<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select class="kepada form-control" style="width: 100% !important;" name="kepada" ></select>
                 </div>

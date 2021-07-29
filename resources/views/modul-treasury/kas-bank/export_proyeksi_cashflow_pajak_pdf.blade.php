@@ -93,7 +93,7 @@ tr {
                         <b>
                         PT PERTAMINA PEDEVE INDONESIA
                         <br>
-                        PROYEKSI CASH FLOW BULAN {{$bln}} VS REALISASI 
+                        PROYEKSI CASH FLOW BULAN {{ $bln}} VS REALISASI 
                     </p>
                 </td>
                 <td>

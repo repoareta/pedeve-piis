@@ -30,9 +30,9 @@
                     <tbody>
                         @foreach($data_list as $data)
                             <tr>
-                                <td>{{$data->no_perkara}}</td>
-                                <td>{{$data->jenis_perkara}}</td>
-                                <td>{{$data->status_perkara}}</td>
+                                <td>{{ $data->no_perkara}}</td>
+                                <td>{{ $data->jenis_perkara}}</td>
+                                <td>{{ $data->status_perkara}}</td>
                             </tr>
                         @endforeach
                     </tbody>

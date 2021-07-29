@@ -76,7 +76,7 @@
 					</div>
 					<div class="col-2" >
 						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
-						<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" autocomplete="off" required>
+						<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" autocomplete="off" required>
 					</div>
 				</div>
 				

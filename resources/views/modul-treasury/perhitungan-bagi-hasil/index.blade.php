@@ -39,7 +39,7 @@
             <div class="form-group row">	
                 <label for="" class="col-form-label">Tanggal</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{$date}}" size="10" maxlength="10" autocomplete="off">
+                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ $date}}" size="10" maxlength="10" autocomplete="off">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -66,7 +66,7 @@
 			<tbody>
 			@foreach($data_list as $data)
 				<tr>
-					<td><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="{{$data->docno}}" lineno="{{$data->lineno}}"><span></span></label></td>
+					<td><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="{{ $data->docno}}" lineno="{{ $data->lineno}}"><span></span></label></td>
 					<td>{{ $data->nmbank }}</td>
 					<td>{{ $data->noseri }}</td>
 					<td>{{ $data->asal }}</td>

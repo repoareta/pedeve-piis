@@ -21,7 +21,7 @@ class PotonganOtomatisController extends Controller
         $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
         $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in('18','28','19','44') order by kode");
 
-        return view('potongan_otomatis.index',compact('data_pegawai','data_potongan'));
+        return view('modul-sdm-payroll.potongan-otomatis.index',compact('data_pegawai','data_potongan'));
     }
 
     public function indexJson(Request $request)
@@ -76,9 +76,6 @@ class PotonganOtomatisController extends Controller
             $bulan= strtoupper($array_bln[$data->bulan]);
             return $bulan;
        })
-        ->addColumn('tahun', function ($data) {
-            return $data->tahun;
-       })
         ->addColumn('nopek', function ($data) {
             return $data->nopek.' -- '.$data->nama_nopek;
        })
@@ -86,19 +83,19 @@ class PotonganOtomatisController extends Controller
             return $data->aardpot.' -- '.$data->nama_aardpot;
        })
         ->addColumn('nilai', function ($data) {
-             return 'Rp. '.number_format($data->nilai,2,'.',',');
+             return currency_idr($data->nilai);
        })
         ->addColumn('akhir', function ($data) {
-             return 'Rp. '.number_format($data->akhir,2,'.',',');
+             return currency_idr($data->akhir);
        })
         ->addColumn('totalhut', function ($data) {
-             return 'Rp. '.number_format($data->totalhut,2,'.',',');
+             return currency_idr($data->totalhut);
        })
         ->addColumn('jmlcc', function ($data) {
-             return number_format($data->jmlcc,0,'.',',');
+             return abs($data->jmlcc);
        })
         ->addColumn('ccl', function ($data) {
-             return number_format($data->ccl,0,'.',',');
+             return abs($data->ccl);
        })
 
         ->addColumn('radio', function ($data) {
@@ -113,7 +110,7 @@ class PotonganOtomatisController extends Controller
     {
         $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
         $pay_aard = PayAard::whereIn('kode',['18','28','19','44'])->get();
-        return view('potongan_otomatis.create', compact('data_pegawai','pay_aard'));
+        return view('modul-sdm-payroll.potongan-otomatis.create', compact('data_pegawai','pay_aard'));
     }
 
     public function store(Request $request)
@@ -191,7 +188,7 @@ class PotonganOtomatisController extends Controller
             $data_aardhut = $data->aardhut;
         }
         $pay_hutang = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where jenis='09' order by kode");
-        return view('potongan_otomatis.edit',compact('data_list','pay_hutang'));
+        return view('modul-sdm-payroll.potongan-otomatis.edit',compact('data_list','pay_hutang'));
     }
 
     /**

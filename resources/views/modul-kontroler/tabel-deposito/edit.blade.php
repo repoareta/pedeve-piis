@@ -77,11 +77,11 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">No.Dokumen</label>
 							<div class="col-5">
-								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{$mp}}" id="mp" readonly>
-								<input  type="hidden" name="docno" value="{{$docno}}" >
+								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{ $mp}}" id="mp" readonly>
+								<input  type="hidden" name="docno" value="{{ $docno}}" >
 							</div>
 							<div class="col-5">
-								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{$nomor}}" id="nomor" readonly>
+								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{ $nomor}}" id="nomor" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -96,16 +96,16 @@
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
+								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Bagian</label>
 							<div class="col-5">
-								<input class="form-control" type="text" name="bagian" value="{{$bagian}}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" name="bagian" value="{{ $bagian}}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 							<div class="col-5">
-								<input class="form-control" type="text" name="nama_bagian" value="{{$nama_bagian}}" id="nama_bagian" readonly readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" name="nama_bagian" value="{{ $nama_bagian}}" id="nama_bagian" readonly readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -116,11 +116,11 @@
 									<option value="18" <?php if($jk  == '18' ) echo 'selected' ; ?>>Dollar</option>
 
 								</select>
-								<input name="kurs" type="hidden" value="{{$rate}}"></td>
+								<input name="kurs" type="hidden" value="{{ $rate}}"></td>
 							</div>
 							<label for="nopek-input" class="col-2 col-form-label">Currency Index</label>
 							<div class="col-3">
-								<input class="form-control" type="text" name="ci" value="{{$ci}}"  id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php }else{ }?>>
+								<input class="form-control" type="text" name="ci" value="{{ $ci}}"  id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php }else{ }?>>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -135,13 +135,13 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">No. Bukti</label>
 							<div class="col-10">
-								<input class="form-control" type="text" value="{{$nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="{{ $nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
-								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')">{{$keterangan}}</textarea>
+								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')">{{ $keterangan}}</textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
 							</div>
 						</div>
@@ -232,17 +232,17 @@
 						<tbody>
 						@foreach($data_detail as $data_d)
 							<tr>
-								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{$data_d->lineno}}" class="btn-radio" ><span></span></label></td>
-								<td>{{$data_d->lineno}}</td>
-								<td>{{$data_d->lokasi}}</td>
-								<td>{{$data_d->account}}</td>
-								<td>{{$data_d->bagian}}</td>
-								<td>{{$data_d->pk}}</td>
-								<td>{{$data_d->jb}}</td>
+								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+								<td>{{ $data_d->lineno}}</td>
+								<td>{{ $data_d->lokasi}}</td>
+								<td>{{ $data_d->account}}</td>
+								<td>{{ $data_d->bagian}}</td>
+								<td>{{ $data_d->pk}}</td>
+								<td>{{ $data_d->jb}}</td>
 								<td>{{number_format($data_d->debet,2,'.',',')}}</td>
 								<td>{{number_format($data_d->kredit,2,'.',',')}}</td>
 								<td>{{number_format($data_d->rate,0)}}</td>
-								<td>{{$data_d->keterangan}}</td>
+								<td>{{ $data_d->keterangan}}</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -270,12 +270,12 @@
 			<span id="form_result"></span>
                 <form class="form" id="form-tambah-detail"  enctype="multipart/form-data">
 					@csrf
-					<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
+					<input  class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-8">
 							<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{$nu}}"  name="nourut" readonly>
+							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{ $nu}}"  name="nourut" readonly>
 						</div>
 					</div>
 
@@ -293,7 +293,7 @@
 							<select name="lapangan"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_lapang as $data_lap)
-								<option value="{{$data_lap->kodelokasi}}">{{$data_lap->kodelokasi}} - {{$data_lap->nama}}</option>
+								<option value="{{ $data_lap->kodelokasi}}">{{ $data_lap->kodelokasi}} - {{ $data_lap->nama}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -304,7 +304,7 @@
 							<select name="sanper"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_sandi as $data_san)
-								<option value="{{$data_san->kodeacct}}">{{$data_san->kodeacct}} - {{$data_san->descacct}}</option>
+								<option value="{{ $data_san->kodeacct}}">{{ $data_san->kodeacct}} - {{ $data_san->descacct}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -315,7 +315,7 @@
 							<select name="bagian"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_bagian as $data_bag)
-								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -333,7 +333,7 @@
 							<select name="jnsbiaya" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{$data_jen->kode}}" <?php if($data_jen->kode  == '000000' ) echo 'selected' ; ?>>{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode}}" <?php if($data_jen->kode  == '000000' ) echo 'selected' ; ?>>{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -387,7 +387,7 @@
 			<span id="form_result"></span>
 			<form class="form" id="form-edit-detail"  enctype="multipart/form-data">
 					@csrf
-					<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
+					<input  class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-8">
@@ -410,7 +410,7 @@
 							<select name="lapangan" id="lapangan"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_lapang as $data_lap)
-								<option value="{{$data_lap->kodelokasi}}">{{$data_lap->kodelokasi}} - {{$data_lap->nama}}</option>
+								<option value="{{ $data_lap->kodelokasi}}">{{ $data_lap->kodelokasi}} - {{ $data_lap->nama}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -421,7 +421,7 @@
 							<select name="sanper" id="sanper" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_sandi as $data_san)
-								<option value="{{$data_san->kodeacct}}">{{$data_san->kodeacct}} - {{$data_san->descacct}}</option>
+								<option value="{{ $data_san->kodeacct}}">{{ $data_san->kodeacct}} - {{ $data_san->descacct}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -432,7 +432,7 @@
 							<select name="bagian" id="bagian" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_bagian as $data_bag)
-								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode}}">{{ $data_bag->kode}} - {{ $data_bag->nama}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -450,7 +450,7 @@
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode}}">{{ $data_jen->kode}} - {{ $data_jen->keterangan}}</option>
 									@endforeach
 							</select>
 						</div>

@@ -26,7 +26,7 @@
                     <select name="nodok" id="nodok" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('No. Dokumen Harus Diisi..')">
                         <option value="">- Pilih -</option>
                         @foreach($data_dok as $data)
-                        <option data-lineno="{{$data->lineno}}" value="{{$data->docno}}">{{$data->docno}} - {{$data->keterangan}}</option>
+                        <option data-lineno="{{ $data->lineno}}" value="{{ $data->docno}}">{{ $data->docno}} - {{ $data->keterangan}}</option>
                         @endforeach
                     </select>
                     <input class="form-control" type="hidden" value="0" name="perpanjangan" id="perpanjangan" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">

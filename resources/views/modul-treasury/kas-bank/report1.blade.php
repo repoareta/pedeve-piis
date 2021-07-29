@@ -66,7 +66,7 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">

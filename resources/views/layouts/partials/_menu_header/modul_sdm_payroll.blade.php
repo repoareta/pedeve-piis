@@ -106,7 +106,10 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ 
+                Route::is('modul_sdm_payroll.proses_gaji.index') || 
+                Route::is('modul_sdm_payroll.proses_thr.index') ||
+                Route::is('modul_sdm_payroll.proses_insentif.index') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -116,7 +119,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_sdm_payroll.proses_gaji.index') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_sdm_payroll.proses_gaji.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -124,7 +127,7 @@
                                 <span class="menu-text">Upah</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_sdm_payroll.proses_thr.index') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_sdm_payroll.proses_thr.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -132,7 +135,7 @@
                                 <span class="menu-text">THR</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_sdm_payroll.proses_insentif.index') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_sdm_payroll.proses_insentif.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -423,7 +426,10 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ 
+            Route::is('modul_sdm_payroll.potongan_manual.*') ||
+            Route::is('modul_sdm_payroll.potongan_otomatis.*') ||
+            Route::is('modul_sdm_payroll.potongan_insentif.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -433,7 +439,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_sdm_payroll.potongan_manual.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_sdm_payroll.potongan_manual.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -441,7 +447,7 @@
                                 <span class="menu-text">Manual Gaji</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_sdm_payroll.potongan_otomatis.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_sdm_payroll.potongan_otomatis.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -449,7 +455,7 @@
                                 <span class="menu-text">Potongan Otomatis</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_sdm_payroll.potongan_insentif.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_sdm_payroll.potongan_insentif.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>

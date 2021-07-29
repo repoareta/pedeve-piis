@@ -105,7 +105,7 @@ foreach($data_list as $key=>$row){
                             <td></td>
                         </tr>
                         <tr>
-                            <td style="font-size: 18pt;font-weight: bold;padding-top:25%">{{$row->tahun}}</td>
+                            <td style="font-size: 18pt;font-weight: bold;padding-top:25%">{{ $row->tahun }}</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -185,17 +185,17 @@ foreach($data_list as $key=>$row){
                             <tr style="font-size: 11pt;">
                                 <td>NAMA PEGAWAI ATAU PENERIMA PENSIUN/THT/JHT</td>
                                 <td>:</td>
-                                <td>{{$nama}}{{$row->nopek}}</td>
+                                <td>{{ $nama}}{{ $row->nopek}}</td>
                             </tr>
                             <tr style="font-size: 11pt;">
                                 <td>NPWP PEGAWAI ATAU PENERIMA PENSIUN/THT/JHT</td>
                                 <td>:</td>
-                                <td>{{$npwp}}</td>
+                                <td>{{ $npwp}}</td>
                             </tr>
                             <tr style="font-size: 11pt;">
                                 <td>ALAMAT PEGAWAI ATAU PENERIMA </td>
                                 <td>:</td>
-                                <td>{{$alamat}}</td>
+                                <td>{{ $alamat}}</td>
                             </tr>
                             <tr style="font-size: 11pt;">
                                 <td>JENIS KELAMIN</td>
@@ -235,7 +235,7 @@ foreach($data_list as $key=>$row){
                             <tr style="font-size: 11pt;">
                                 <td>MASA PEROLEHAN PENGHASILAN</td>
                                 <td>:</td>
-                                <td>{{$mulai}}/{{$sampai}}</td>
+                                <td>{{ $mulai}}/{{ $sampai}}</td>
                             </tr>
                         </table>
                     </td>

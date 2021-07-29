@@ -50,7 +50,7 @@
 						<select name="sanper" class="form-control select2" style="width: 100%;"  oninvalid="this.setCustomValidity('Bank Harus Diisi..')">
 							<option value="">- All -</option>
 							@foreach($data_bank as $data)
-							<option value="{{$data->kdbank}}">{{$data->kdbank}} -- {{$data->descacct}}</option>
+							<option value="{{ $data->kdbank}}">{{ $data->kdbank}} -- {{ $data->descacct}}</option>
 							@endforeach
 						</select>								
 					</div>
@@ -88,7 +88,7 @@
 				<div class="form-group row">
 					<label for="dari-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
 					<div class="col-10">
-						<input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Kurs Harus Diisi..')">				
+						<input class="form-control" type="text" name="kurs" value="{{ $kurs}}" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Kurs Harus Diisi..')">				
 					</div>
 				</div>
 				{{-- <div class="form-group row">
@@ -97,7 +97,7 @@
 						<select name="lapangan" id="select-debetdari" class="form-control select2">
 							<option value="">- All -</option>
 							@foreach($data_lapang as $data_l)
-							<option value="{{$data_l->kodelokasi}}">{{$data_l->kodelokasi}} -- {{$data_l->nama}}</option>
+							<option value="{{ $data_l->kodelokasi}}">{{ $data_l->kodelokasi}} -- {{ $data_l->nama}}</option>
 							@endforeach
 						</select>								
 					</div>
@@ -108,7 +108,7 @@
 						<div class="col-10">
 							<a  href="{{route('tabel_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
-							{{--<a  href="{{url('perbendaharaan/tabel_deposito/rekap_rc')}}/{{$no}}/{{$id}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak RC</a>--}}
+							{{--<a  href="{{url('perbendaharaan/tabel_deposito/rekap_rc')}}/{{ $no}}/{{ $id}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak RC</a>--}}
 						</div>
 					</div>
 				</div>

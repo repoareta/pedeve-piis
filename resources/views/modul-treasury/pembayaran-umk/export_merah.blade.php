@@ -60,7 +60,7 @@
                         <tr>
                             <td>HARAP DIBAYAR KEPADA</td>
                             <td>:</td>
-                            <td>{{$kepada}}</td>
+                            <td>{{ $kepada}}</td>
                         </tr>
                         <tr>
                             <td>UANG SEJUMLAH </td>
@@ -91,7 +91,7 @@
                         <tr>
                             <td width="45%">JENIS KARTU</td>
                             <td>: </td>
-                            <td>{{$jk}}</td>
+                            <td>{{ $jk}}</td>
                         </tr>
                         <tr>
                             <td width="45%">BLN/THN </td>
@@ -101,12 +101,12 @@
                         <tr>
                             <td width="45%">NO. KAS/BANK </td>
                             <td>: </td>
-                            <td>{{$store}}</td>
+                            <td>{{ $store}}</td>
                         </tr>
                         <tr>
                             <td width="45%">NO. BUKTI </td>
                             <td>: </td>
-                            <td>{{$voucher}}</td>
+                            <td>{{ $voucher}}</td>
                         </tr>
                         <tr>
                             <td width="45%">CURRENCY IDX </td>
@@ -148,14 +148,14 @@
                         $total[$no] = $data->totprice;
                         ?>
                         <tr>
-                            <td>{{$data->keterangan}}</td>
-                            <td style="text-align:center;">{{$data->lokasi}}</td>
-                            <td style="text-align:center;">{{$data->account}}</td>
-                            <td style="text-align:center;">{{$data->bagian}}</td>
-                            <td style="text-align:center;">{{$data->pk}}</td>
-                            <td style="text-align:center;">{{$data->jb}}</td>
+                            <td>{{ $data->keterangan}}</td>
+                            <td style="text-align:center;">{{ $data->lokasi}}</td>
+                            <td style="text-align:center;">{{ $data->account}}</td>
+                            <td style="text-align:center;">{{ $data->bagian}}</td>
+                            <td style="text-align:center;">{{ $data->pk}}</td>
+                            <td style="text-align:center;">{{ $data->jb}}</td>
                             <td style="text-align:right;">{{number_format($data->totprice,2) < 0 ? number_format($data->totprice*-1,2)." CR" : number_format($data->totprice,2)}}</td>
-                            <td style="text-align:center;">{{$data->cj}}</td>
+                            <td style="text-align:center;">{{ $data->cj}}</td>
                         </tr>
                         @endforeach
                         <tr>
@@ -165,13 +165,13 @@
                                         <td><b><u>KETERANGAN</u></b></td>
                                     </tr>
                                     <tr>
-                                        <td>{{$ket1}}</td>
+                                        <td>{{ $ket1}}</td>
                                     </tr>
                                     <tr>
-                                        <td>{{$ket2}}</td>
+                                        <td>{{ $ket2}}</td>
                                     </tr>
                                     <tr>
-                                        <td>{{$ket3}}</td>
+                                        <td>{{ $ket3}}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -197,10 +197,10 @@
                                         <td width="25%">Pemeriksaan kas,</td>
                                     </tr>
                                     <tr>
-                                        <td width="25%">{{$request->nsetuju2}}</td>
+                                        <td width="25%">{{ $request->nsetuju2}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-top:3%;padding-bottom:2%;" width="25%">{{$request->setuju2}}</td>
+                                        <td style="padding-top:3%;padding-bottom:2%;" width="25%">{{ $request->setuju2}}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -216,10 +216,10 @@
                                         <td width="25%">Pembukuan,</td>
                                     </tr>
                                     <tr>
-                                        <td width="25%">{{$request->nbuku2}}</td>
+                                        <td width="25%">{{ $request->nbuku2}}</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-top:3%;padding-bottom:2%;" width="25%">{{$request->buku2}}</td>
+                                        <td style="padding-top:3%;padding-bottom:2%;" width="25%">{{ $request->buku2}}</td>
                                     </tr>
                                 </table>
                             </td>
@@ -236,13 +236,13 @@
                                     $tgl_k = date_format($tgl, 'd-m-Y');
                                     ?>
                                     <tr>
-                                        <td width="25%">Jakarta, {{$tgl_k}}</td>
+                                        <td width="25%">Jakarta, {{ $tgl_k}}</td>
                                     </tr>
                                     <tr>
-                                        <td width="25%">{{$request->nkas2}} </td>
+                                        <td width="25%">{{ $request->nkas2}} </td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-top:3%;padding-bottom:2%;" width="25%">{{$request->kas2}}</td>
+                                        <td style="padding-top:3%;padding-bottom:2%;" width="25%">{{ $request->kas2}}</td>
                                     </tr>
                                 </table>
                             </td>

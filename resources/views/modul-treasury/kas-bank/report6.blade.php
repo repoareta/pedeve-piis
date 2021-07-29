@@ -26,7 +26,7 @@
                     <select name="cj" id="select-debetdari" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')">
                         <option value="">- Pilih -</option>
                         @foreach($data_judex as $data)
-                        <option value="{{$data->kode}}">{{$data->kode}} -- {{$data->nama}}</option>
+                        <option value="{{ $data->kode}}">{{ $data->kode}} -- {{ $data->nama}}</option>
                         @endforeach
                     </select>								
                 </div>

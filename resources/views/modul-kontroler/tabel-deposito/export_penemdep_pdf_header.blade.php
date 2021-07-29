@@ -38,7 +38,7 @@
                         <br>
                         DAFTAR DEPOSITO 
                         <br>
-                        BULAN {{$bln}}
+                        BULAN {{ $bln}}
                         </b>
                     </p>
                 </td>

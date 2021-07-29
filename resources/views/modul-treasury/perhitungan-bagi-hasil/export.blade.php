@@ -77,9 +77,9 @@
                 @foreach($data_list as $data)
                 <?php $no++; ?>
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
-                        <td width="20%" style="text-align:left;border:1px solid black;">{{$data->namabank}}</td>
-                        <td style="text-align:left;border:1px solid black;">{{$data->noseri}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->lokasi}}</td>
+                        <td width="20%" style="text-align:left;border:1px solid black;">{{ $data->namabank}}</td>
+                        <td style="text-align:left;border:1px solid black;">{{ $data->noseri}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->lokasi}}</td>
                         <td style="text-align:center;border:1px solid black;">
                         @if($data->kurs > 1 )
                             <?php echo "Dollar"; ?>

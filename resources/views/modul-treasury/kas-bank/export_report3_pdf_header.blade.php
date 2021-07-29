@@ -37,7 +37,7 @@
                         <br>
                             RINCIAN KAS/BANK PER CASH JUDEX
                         <br>
-                            BULAN {{strtoupper($bulan)}} {{$request->tahun}}
+                            BULAN {{strtoupper($bulan)}} {{ $request->tahun }}
                         <br>
                     </p>
                 </td>
@@ -47,7 +47,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+                    <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
                 </td>
             </tr>
         </thead>

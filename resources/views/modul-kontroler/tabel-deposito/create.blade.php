@@ -59,10 +59,10 @@
 							<?php 
 								$docno = $mp.'-'.$bagian.'-'.$nomor;
 							?>
-								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{$mp}}" id="mp" readonly>
+								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{ $mp}}" id="mp" readonly>
 							</div>
 							<div class="col-5">
-								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{$nomor}}" id="nomor" readonly>
+								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{ $nomor}}" id="nomor" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -94,16 +94,16 @@
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
+								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Bagian</label>
 							<div class="col-5">
-								<input class="form-control" type="text" name="bagian" value="{{$bagian}}" id="bagian" required>
+								<input class="form-control" type="text" name="bagian" value="{{ $bagian}}" id="bagian" required>
 							</div>
 							<div class="col-5">
-								<input class="form-control" type="text" name="nama_bagian" value="{{$nama_bagian}}" id="nama_bagian" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" name="nama_bagian" value="{{ $nama_bagian}}" id="nama_bagian" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -114,7 +114,7 @@
 									<option value="18">Dollar</option>
 
 								</select>
-								<input name="kurs" type="hidden" value="{{$rate}}"></td>
+								<input name="kurs" type="hidden" value="{{ $rate}}"></td>
 							</div>
 							<label for="nopek-input" class="col-2 col-form-label">Currency Index</label>
 							<div class="col-3">
@@ -133,7 +133,7 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">No. Bukti</label>
 							<div class="col-10">
-								<input class="form-control" type="text" value="{{$nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="{{ $nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">

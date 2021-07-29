@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 10pt;font-weight: bold ">DAFTAR RINCIAN PER NO. BUKTI</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{$request->tahun}}</font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -87,7 +87,7 @@
             <table width="100%"  style="padding-top:6%;font-family: sans-serif">
                 <tr>
                     <td>
-                        <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+                        <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
                     </td>
                 </tr>
                 <tr>
@@ -106,14 +106,14 @@
                             </tr>
                             @foreach($data_list as $data)
                             <tr>
-                                <td>{{$data->bulan}}</td>
-                                <td>{{$data->jk}}</td>
-                                <td>{{$data->store}}</td>
-                                <td>{{$data->ci}}</td>
-                                <td>{{$data->voucher}}</td>
-                                <td>{{$data->rekap}}</td>
-                                <td>{{$data->totprice > 0 ? number_format($data->totprice,0) : '0'}}</td>
-                                <td>{{$data->totprice < 0 ? number_format($data->totprice,0) : '0'}}</td>
+                                <td>{{ $data->bulan}}</td>
+                                <td>{{ $data->jk}}</td>
+                                <td>{{ $data->store}}</td>
+                                <td>{{ $data->ci}}</td>
+                                <td>{{ $data->voucher}}</td>
+                                <td>{{ $data->rekap}}</td>
+                                <td>{{ $data->totprice > 0 ? number_format($data->totprice,0) : '0'}}</td>
+                                <td>{{ $data->totprice < 0 ? number_format($data->totprice,0) : '0'}}</td>
                                 
                             </tr>
                             @endforeach

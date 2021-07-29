@@ -572,12 +572,12 @@ tr {
                     <tr>
                     
                         <th colspan="5" class="th-small text-center">SALDO</th>
-                        <th class="th-medium text-right">{{$sub_total_saldo_1_3_rp}}</th>
-                        <th class="th-medium text-right">{{$sub_total_saldo_4_3_rp}}</th>
-                        <th class="th-medium text-right">{{$sub_total_saldo_2_3_rp}}</th>
-                        <th class="th-medium text-right">{{$sub_total_saldo_5_3_rp}}</th>
-                        <th class="th-medium text-right">{{$sub_total_saldo_3_3_rp}}</th>
-                        <th class="th-medium text-right">{{$sub_total_saldo_6_3_rp}}</th>
+                        <th class="th-medium text-right">{{ $sub_total_saldo_1_3_rp}}</th>
+                        <th class="th-medium text-right">{{ $sub_total_saldo_4_3_rp}}</th>
+                        <th class="th-medium text-right">{{ $sub_total_saldo_2_3_rp}}</th>
+                        <th class="th-medium text-right">{{ $sub_total_saldo_5_3_rp}}</th>
+                        <th class="th-medium text-right">{{ $sub_total_saldo_3_3_rp}}</th>
+                        <th class="th-medium text-right">{{ $sub_total_saldo_6_3_rp}}</th>
                     </tr>
                 </thead>
             </table>

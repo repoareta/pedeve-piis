@@ -44,7 +44,7 @@
                     </select>
                 </div>
                     <div class="col-5" >
-                        <input class="form-control" type="text" value="{{ $tahun }}"   name="tahun" size="4" maxlength="4" autocomplete="off" required>
+                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"  autocomplete="off" required>
                     </div>
             </div>
             <div class="kt-form__actions">

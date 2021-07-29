@@ -46,7 +46,7 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
                     <input class="form-control" type="hidden" value="{{ auth()->user()->userid }}" name="userid" autocomplete="off">
                     <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" autocomplete="off">
                 </div>

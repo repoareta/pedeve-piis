@@ -22,24 +22,24 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$data->docno}}"   name="nodok" id="nodok" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{$data->kurs}}"   name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{$data->lineno}}"   name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{$data->keterangan}}"   name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" value="{{ $data->docno}}"   name="nodok" id="nodok" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="{{ $data->kurs}}"   name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="{{ $data->lineno}}"   name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="{{ $data->keterangan}}"   name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
             </div>
             <div class="form-group row">
             {{--<label for="" class="col-2 col-form-label text-right">Asal<span class="text-danger">*</span></label>--}}
                 <div class="col-10">
-                    <input  class="form-control" type="hidden" value="{{$data->asal}}" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
-                    <input  class="form-control" type="hidden" value="{{$data->perpanjangan}}" id="perpanjangan" name="perpanjangan" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
+                    <input  class="form-control" type="hidden" value="{{ $data->asal}}" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
+                    <input  class="form-control" type="hidden" value="{{ $data->perpanjangan}}" id="perpanjangan" name="perpanjangan" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value="{{$data->namabank}}" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
-                    <input  class="form-control" type="hidden" value="{{$data->kdbank}}" id="kdbank" name="kdbank" size="30" maxlength="30" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
+                    <input  class="form-control" type="text" value="{{ $data->namabank}}" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
+                    <input  class="form-control" type="hidden" value="{{ $data->kdbank}}" id="kdbank" name="kdbank" size="30" maxlength="30" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
@@ -69,7 +69,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">No. Seri<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value="{{$data->noseri}}" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('No. Seri Harus Diisi..')" autocomplete="off" >
+                    <input  class="form-control" type="text" value="{{ $data->noseri}}" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('No. Seri Harus Diisi..')" autocomplete="off" >
                 </div>
             </div>
             <div class="kt-form__actions">

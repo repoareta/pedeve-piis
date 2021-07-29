@@ -66,14 +66,14 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">DAFTAR RINCIAN PER CASH JUDEX</font><br>
-                   <font style="font-size: 10pt;font-weight: bold "> PERIODE  {{strtoupper($bulan)}} {{$request->tahun}} </font><br>
+                   <font style="font-size: 10pt;font-weight: bold "> PERIODE  {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-            <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+            <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
             <table width="100%" style="font-family: sans-serif;border-collapse: collapse;" border="1">
                 <thead>
                     <tr style="text-align:center;font-size: 8pt;">
@@ -108,19 +108,19 @@
                         }
                     ?>
                     <tr style="text-align:center;font-size: 8pt;">
-                        <td>{{$data->jk}}</td>
-                        <td>{{$data->bulan}}</td>
-                        <td>{{$data->cj}}</td>
-                        <td>{{$data->voucher}}</td>
-                        <td>{{$data->pk}}</td>
-                        <td>{{$data->store}}</td>
-                        <td>{{$data->account}}</td>
-                        <td>{{$data->jb}}</td>
-                        <td>{{$data->lokasi}}</td>
-                        <td>{{$data->bagian}}</td>
-                        <td>{{$data->lineno}}</td>
-                        <td style="text-align:right;">{{$rupiah < 0 ? '('.number_format($rupiah*-1,2).')' : number_format($rupiah,2)}}</td>
-                        <td style="text-align:right;">{{$dolar < 0 ? '('.number_format($dolar*-1,2).')' : number_format($dolar,2)}}</td>
+                        <td>{{ $data->jk}}</td>
+                        <td>{{ $data->bulan}}</td>
+                        <td>{{ $data->cj}}</td>
+                        <td>{{ $data->voucher}}</td>
+                        <td>{{ $data->pk}}</td>
+                        <td>{{ $data->store}}</td>
+                        <td>{{ $data->account}}</td>
+                        <td>{{ $data->jb}}</td>
+                        <td>{{ $data->lokasi}}</td>
+                        <td>{{ $data->bagian}}</td>
+                        <td>{{ $data->lineno}}</td>
+                        <td style="text-align:right;">{{ $rupiah < 0 ? '('.number_format($rupiah*-1,2).')' : number_format($rupiah,2)}}</td>
+                        <td style="text-align:right;">{{ $dolar < 0 ? '('.number_format($dolar*-1,2).')' : number_format($dolar,2)}}</td>
                     </tr>
                     <?php 
                         $rup[$a] = $rupiah;
@@ -133,18 +133,18 @@
                         $total_dol= array_sum($dol);  
                      ?>
                         <td colspan="11" style="font-size: 8pt;text-align:right;">TOTAL PER SANPER</td>
-                        <td style="font-size: 8pt;text-align:right;">{{$total_rup < 0 ? '('.number_format($total_rup*-1,2).')' : number_format($total_rup,2)}}</td>
-                        <td style="font-size: 8pt;text-align:right;">{{$total_dol < 0 ? '('.number_format($total_dol*-1,2).')' : number_format($total_dol,2)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ $total_rup < 0 ? '('.number_format($total_rup*-1,2).')' : number_format($total_rup,2)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ $total_dol < 0 ? '('.number_format($total_dol*-1,2).')' : number_format($total_dol,2)}}</td>
                     </tr>
                     <tr>
                         <td colspan="11" style="font-size: 8pt;text-align:right;">TOTAL PER CJ</td>
-                        <td style="font-size: 8pt;text-align:right;">{{$total_rup < 0 ? '('.number_format($total_rup*-1,2).')' : number_format($total_rup,2)}}</td>
-                        <td style="font-size: 8pt;text-align:right;">{{$total_dol < 0 ? '('.number_format($total_dol*-1,2).')' : number_format($total_dol,2)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ $total_rup < 0 ? '('.number_format($total_rup*-1,2).')' : number_format($total_rup,2)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ $total_dol < 0 ? '('.number_format($total_dol*-1,2).')' : number_format($total_dol,2)}}</td>
                     </tr>
                     <tr>
                         <td colspan="11" style="font-size: 8pt;text-align:right;">GRAND TOTAL</td>
-                        <td style="font-size: 8pt;text-align:right;">{{$total_rup < 0 ? '('.number_format($total_rup*-1,2).')' : number_format($total_rup,2)}}</td>
-                        <td style="font-size: 8pt;text-align:right;">{{$total_dol < 0 ? '('.number_format($total_dol*-1,2).')' : number_format($total_dol,2)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ $total_rup < 0 ? '('.number_format($total_rup*-1,2).')' : number_format($total_rup,2)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ $total_dol < 0 ? '('.number_format($total_dol*-1,2).')' : number_format($total_dol,2)}}</td>
                     </tr>
                 <tbody>
 
