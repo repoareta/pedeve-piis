@@ -38,7 +38,7 @@
                         <option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
                         <option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
                         <option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
-                        <option value="10" <?php if($bulan =='10'  ) echo 'selected' ; ?>>Oktober</option>
+                        <option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
                         <option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
                         <option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
                     </select>
