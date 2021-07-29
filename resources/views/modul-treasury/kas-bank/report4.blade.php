@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <select name="cj" id="select-debetdari" class="form-control selectpicker" data-live-search="true" required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="cj" id="select-debetdari" class="form-control select2" required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         @foreach($data_judex as $data)
                         <option value="{{$data->kode}}">{{$data->kode}} -- {{$data->nama}}</option>

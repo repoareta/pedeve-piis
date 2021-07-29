@@ -48,7 +48,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Tahun</label>
                         <div class="col-8" >
-                            <input class="form-control" type="text" value="{{ $rkapRealisasi->tahun }}" name="tahun" size="4" maxlength="4"> 
+                            <input class="form-control" type="text" value="{{ $rkapRealisasi->tahun }}" name="tahun"> 
                         </div>
                     </div>
                     <div class="form-group row" id="bulan-group" @if($rkapRealisasi->bulan === null) style="display: none;" @endif>

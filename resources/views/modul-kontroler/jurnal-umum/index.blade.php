@@ -44,7 +44,7 @@
 					<label for="" class="col-form-label">BULAN</label>
 					<div class="col-3">
 						<select class="form-control select2" name="bulan" id="bulan">
-							<option value="" >-- Pilih --</option>
+							<option value="">- Pilih -</option>
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>

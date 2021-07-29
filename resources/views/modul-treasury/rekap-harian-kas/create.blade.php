@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <select name="jk" id="jk" class="form-control selectpicker" data-live-search="true" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="jk" id="jk" class="form-control select2" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">No. Kas/Bank<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <select name="nokas" id="nokas" class="form-control" data-live-search="true" required oninvalid="this.setCustomValidity('No. Kas/Bank Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="nokas" id="nokas" class="form-control" required oninvalid="this.setCustomValidity('No. Kas/Bank Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         
                         

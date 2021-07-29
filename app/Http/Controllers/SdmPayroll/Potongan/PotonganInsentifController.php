@@ -28,7 +28,7 @@ class PotonganInsentifController extends Controller
                 $tahun ='0000';
             }
         $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('potongan_insentif.index',compact('data_pegawai','tahun','bulan'));
+        return view('modul-sdm-payroll.potongan-insentif.index',compact('data_pegawai','tahun','bulan'));
     }
 
     public function indexJson(Request $request)
@@ -102,7 +102,7 @@ class PotonganInsentifController extends Controller
     public function create()
     {
         $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
-        return view('potongan_insentif.create',compact('data_pegawai'));
+        return view('modul-sdm-payroll.potongan-insentif.create',compact('data_pegawai'));
     }
 
     /**
@@ -152,7 +152,7 @@ class PotonganInsentifController extends Controller
     public function edit($bulan,$tahun,$nopek)
     {
         $data_list = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
-        return view('potongan_insentif.edit',compact('data_list'));
+        return view('modul-sdm-payroll.potongan-insentif.edit',compact('data_list'));
     }
 
     /**

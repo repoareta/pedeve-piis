@@ -56,7 +56,7 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4"
+                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun"
                         autocomplete="off" required>
                 </div>
                 <div class="col-2">

@@ -109,7 +109,7 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Jenis Kartu</label>
 							<div class="col-5">
-								<select name="jk" id="jk" class="form-control selectpicker" data-live-search="true">
+								<select name="jk" id="jk" class="form-control select2">
 									<option value="15">Rupiah</option>
 									<option value="18">Dollar</option>
 
