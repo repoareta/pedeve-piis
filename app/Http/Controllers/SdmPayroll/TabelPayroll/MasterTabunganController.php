@@ -11,7 +11,7 @@ class MasterTabunganController extends Controller
 {
     public function index()
     {
-        return view('master_tabungan.index');
+        return view('modul-sdm-payroll.master-tabungan.index');
     }
 
     public function indexJson()
@@ -31,7 +31,7 @@ class MasterTabunganController extends Controller
 
     public function create()
     {
-        return view('master_tabungan.create');
+        return view('modul-sdm-payroll.master-tabungan.create');
     }
 
 
@@ -60,7 +60,7 @@ class MasterTabunganController extends Controller
     {
         $data_list = PayTblTabungan::where('perusahaan', $id)->first();
         
-        return view('master_tabungan.edit',compact('perusahaan'));
+        return view('modul-sdm-payroll.master-tabungan.edit',compact('perusahaan'));
     }
 
     /**
