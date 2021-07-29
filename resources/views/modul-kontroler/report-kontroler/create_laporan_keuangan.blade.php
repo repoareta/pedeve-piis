@@ -40,10 +40,10 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('laporan_keuangan.export')}}" method="GET" target="_blank">
+		<form class="kt-form" action="{{route('laporan_keuangan.export')}}" method="GET" target="_blank">
 			<div class="kt-portlet__body">
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 
@@ -52,7 +52,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" name="bulan">
+						<select class="form-control select2" style="width: 100%;" name="bulan">
 							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
@@ -80,7 +80,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+							<a  href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-brand"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 						</div>
 					</div>

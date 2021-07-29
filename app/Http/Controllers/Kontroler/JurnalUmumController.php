@@ -16,7 +16,7 @@ class JurnalUmumController extends Controller
 {
     public function index()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
             if(!empty($data_tahunbulan)) {
                 foreach ($data_tahunbulan as $data_bul) {
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
@@ -31,7 +31,7 @@ class JurnalUmumController extends Controller
 
     public function indexJson(Request $request)
     {
-        $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         
         if(!empty($rsbulan)){
             foreach($rsbulan as $dat)
@@ -47,9 +47,9 @@ class JurnalUmumController extends Controller
         }
 
         if($request->bulan<>"" and $request->tahun<>""){
-            $data = DB::select("select  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$request->tahun$request->bulan' order by voucher");
+            $data = DB::select("SELECT  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$request->tahun$request->bulan' order by voucher");
         }else{
-            $data = DB::select("select  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$thnblopen2' order by voucher");
+            $data = DB::select("SELECT  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$thnblopen2' order by voucher");
         }
 
         return datatables()->of($data)
@@ -71,7 +71,7 @@ class JurnalUmumController extends Controller
 
     public function create()
     {
-        $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($rsbulan)){
             foreach($rsbulan as $dat)
             {
@@ -101,7 +101,7 @@ class JurnalUmumController extends Controller
         $nama_ci = "1.Rp";
         $bagian = "B3000";
         $nama_bagian = "KONTROLER";
-            $carinomor = DB::select("select max(substr(docno,13,3)) as id from jurumdoc where substr(docno,3,5)='B3000' and thnbln='$thnbln' and substr(docno,1,1)='J'");
+            $carinomor = DB::select("SELECT max(substr(docno,13,3)) as id from jurumdoc where substr(docno,3,5)='B3000' and thnbln='$thnbln' and substr(docno,1,1)='J'");
             if(!empty($carinomor)){
                 foreach($carinomor as $cari)
                 {
@@ -147,7 +147,7 @@ class JurnalUmumController extends Controller
         $thnbln = $tahun.''.$bulan;
         $tanggal = $request->tanggal;
         
-        $data_cek = DB::select("select a.* from jurumdoc a where a.docno='$docno'");	 
+        $data_cek = DB::select("SELECT a.* from jurumdoc a where a.docno='$docno'");	 
         if(!empty($data_cek)){
             $data = 0;
             return response()->json($data);
@@ -175,12 +175,12 @@ class JurnalUmumController extends Controller
     public function edit($no)
     {
             $docno = str_replace('-', '/', $no);
-            $data_jur =  DB::select("select docno, left(docno,1) mp, substr(docno, 3, 5) bagian, substr(docno,9) nomor, 
+            $data_jur =  DB::select("SELECT docno, left(docno,1) mp, substr(docno, 3, 5) bagian, substr(docno,9) nomor, 
                                     thnbln, right(thnbln,2) bulan,  left(thnbln, 4) tahun,jk,suplesi,store,keterangan,ci,rate,
                                     debet,kredit,voucher,posted, (select a.nama from sdm_tbl_kdbag a where a.kode=substr(docno, 3, 5)) nama_bagian
                                     from jurumdoc where docno='$docno'");        
-            $data_detail = DB::select("select * from jurumline where docno= '$docno' order by lineno");
-            $data_no = DB::select("select max(lineno) as nu from jurumline where docno='$docno'");
+            $data_detail = DB::select("SELECT * from jurumline where docno= '$docno' order by lineno");
+            $data_no = DB::select("SELECT max(lineno) as nu from jurumline where docno='$docno'");
             if(!empty($data_no)){
                 foreach($data_no as $no)
                 {
@@ -189,11 +189,11 @@ class JurnalUmumController extends Controller
             }else{
                 $nu=1;
             }  
-            $data_lapang = DB::select("select kodelokasi,nama from lokasi");
-            $data_sandi = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
-            $data_bagian = DB::select("select kode,nama from sdm_tbl_kdbag order by kode");
-            $data_jenis = DB::select("select kode,keterangan from jenisbiaya order by kode");
-            $sum = DB::select("select sum(debet - kredit) as tot from jurumline where docno='$docno'");
+            $data_lapang = DB::select("SELECT kodelokasi,nama from lokasi");
+            $data_sandi = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+            $data_bagian = DB::select("SELECT kode,nama from sdm_tbl_kdbag order by kode");
+            $data_jenis = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
+            $sum = DB::select("SELECT sum(debet - kredit) as tot from jurumline where docno='$docno'");
                
                    if(!empty($sum)){
                         foreach($sum as $data_sum)
@@ -230,7 +230,7 @@ class JurnalUmumController extends Controller
             $data = 2;
             return response()->json($data);
         }else{
-            $data_rscekjurnal = DB::select("select a.thnbln,a.posted from jurumdoc a where a.docno='$docno'");
+            $data_rscekjurnal = DB::select("SELECT a.thnbln,a.posted from jurumdoc a where a.docno='$docno'");
             foreach($data_rscekjurnal as $data_cekjur)
             {
                 if($data_cekjur->posted == "Y"){
@@ -259,7 +259,7 @@ class JurnalUmumController extends Controller
     public function delete(Request $request)
     {
         $docno = str_replace('-', '/', $request->docno);
-        $data_rscekjurnal = DB::select("select a.thnbln,a.posted from jurumdoc a where a.docno='$docno'");
+        $data_rscekjurnal = DB::select("SELECT a.thnbln,a.posted from jurumdoc a where a.docno='$docno'");
         foreach($data_rscekjurnal as $data_cekjur)
         {
             if(stbbuku2($data_cekjur->thnbln,"0") > 'gtopening'){
@@ -292,7 +292,7 @@ class JurnalUmumController extends Controller
         $rincian =$request->rincian;
 
         if($request->rate == ""){
-            $data_carirate = DB::select("select rate from jurumdoc where docno='$docno'");
+            $data_carirate = DB::select("SELECT rate from jurumdoc where docno='$docno'");
             if(!empty($data_carirate)){
                 foreach($data_carirate as $data_car)
                 {
@@ -316,12 +316,12 @@ class JurnalUmumController extends Controller
             $kredit= $request->kredit; 
         }
 
-        $data_jurum = DB::select("select * from jurumline where docno='$docno' and lineno='$nourut'");
+        $data_jurum = DB::select("SELECT * from jurumline where docno='$docno' and lineno='$nourut'");
 	  if(!empty($data_jurum)){
         $data = 2;
         return response()->json($data);
       }else{ 
-            $data_coun = DB::select("select * from account where kodeacct='$sanper'");
+            $data_coun = DB::select("SELECT * from account where kodeacct='$sanper'");
             if(!empty($data_coun)){
 
                 Jurumline::insert([
@@ -398,7 +398,7 @@ class JurnalUmumController extends Controller
     }
     public function storePosting(Request $request)
     {
-        $data_rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $data_rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($data_rsbulan)){
             foreach($data_rsbulan as $data_rs)
             {
@@ -413,7 +413,7 @@ class JurnalUmumController extends Controller
         }
         $docno = str_replace('-', '/', $request->docno);
         
-        $data_cekbulbuk = DB::select("select * from jurumdoc where docno='$docno'");
+        $data_cekbulbuk = DB::select("SELECT * from jurumdoc where docno='$docno'");
         foreach($data_cekbulbuk as $data_cekbuk)
         {
             $bulbuk = $data_cekbuk->thnbln;
@@ -424,14 +424,14 @@ class JurnalUmumController extends Controller
             return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
         }else{
             if($request->status =="N"){
-                $data_cekdetail = DB::select("select (sum(debet) - sum(kredit)) as total from jurumline where docno='$docno'");
+                $data_cekdetail = DB::select("SELECT (sum(debet) - sum(kredit)) as total from jurumline where docno='$docno'");
                 foreach($data_cekdetail as $data_cekde)
                 {
                     $cekdetail = $data_cekde->total;
                 }
                 if($cekdetail == "0"){
-                    $data_crdoc = DB::select("select * from jurumdoc where docno='$docno'");
-                    $data_crline = DB::select("select * from jurumline where docno='$docno'");
+                    $data_crdoc = DB::select("SELECT * from jurumdoc where docno='$docno'");
+                    $data_crline = DB::select("SELECT * from jurumline where docno='$docno'");
 
                     foreach($data_crdoc as $d)
                     {
@@ -520,7 +520,7 @@ class JurnalUmumController extends Controller
     }
     public function storeCopy(Request $request)
     {
-        $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($rsbulan)){
             foreach($rsbulan as $dat)
             {
@@ -541,7 +541,7 @@ class JurnalUmumController extends Controller
         $nama_ci = "1.Rp";
         $bagian = "B3000";
         $nama_bagian = "KONTROLER";
-        $carinomor = DB::select("select max(substr(docno,13,3)) as id from jurumdoc where substr(docno,3,5)='B3000' and thnbln='$thnblopen2' and substr(docno,1,1)='J'");
+        $carinomor = DB::select("SELECT max(substr(docno,13,3)) as id from jurumdoc where substr(docno,3,5)='B3000' and thnbln='$thnblopen2' and substr(docno,1,1)='J'");
             if(!empty($carinomor)){
                 foreach($carinomor as $cari)
                 {
@@ -557,8 +557,8 @@ class JurnalUmumController extends Controller
         $docno = $request->docno;
         $inputdate = date('Y-m-d H:i:s');
 
-        $data_crawal = DB::select("select * from jurumdoc where docno='$docno'");
-        $data_crawaldet = DB::select("select * from jurumline where docno='$docno' order by lineno");
+        $data_crawal = DB::select("SELECT * from jurumdoc where docno='$docno'");
+        $data_crawaldet = DB::select("SELECT * from jurumline where docno='$docno' order by lineno");
         foreach($data_crawal as $t)
         {
             Jurumdoc::insert([
@@ -612,7 +612,7 @@ class JurnalUmumController extends Controller
     public function export(Request $request)
     {
             $docno = str_replace('-', '/', $request->docno);   
-            $data_list= DB::select("select right(a.thnbln,2) bulan,  left(a.thnbln, 4) tahun,a.jk as jka,a.ci as cia,a.voucher as vouchera,a.keterangan, b.* from jurumdoc a join jurumline b on a.docno=b.docno where a.docno='$docno'");
+            $data_list= DB::select("SELECT right(a.thnbln,2) bulan,  left(a.thnbln, 4) tahun,a.jk as jka,a.ci as cia,a.voucher as vouchera,a.keterangan, b.* from jurumdoc a join jurumline b on a.docno=b.docno where a.docno='$docno'");
         if(!empty($data_list)){
             foreach($data_list as $dataa)
             {

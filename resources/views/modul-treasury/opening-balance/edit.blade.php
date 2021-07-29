@@ -20,7 +20,7 @@
     <div class="card-body">
         <form method="post" id="form-batal">
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Tahun<span class="text-danger">*</span></label>
                 <div class="col-8" >
                     <input class="form-control" type="text" value="{{$tahun}}" name="tahun" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
                 </div>
@@ -30,8 +30,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('opening_balance.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Process</button>
+                        <a  href="{{route('opening_balance.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Process</button>
                     </div>
                 </div>
             </div>

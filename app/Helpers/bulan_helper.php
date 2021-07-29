@@ -44,7 +44,7 @@ function bulan($bln)
 
 function stbbuku($sthnbln, $ssup)
 {
-    $data_rsbulan = DB::select("select * from timetrans where thnbln='$sthnbln' and suplesi='$ssup'");
+    $data_rsbulan = DB::select("SELECT * from timetrans where thnbln='$sthnbln' and suplesi='$ssup'");
     if (!empty($data_rsbulan)) {
         foreach ($data_rsbulan as $data_rs) {
             if ($data_rs->status == 1) {

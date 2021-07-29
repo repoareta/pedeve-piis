@@ -48,7 +48,7 @@ use App\Http\Controllers\SdmPayroll\TabelPayroll\MasterBankController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\MasterTabunganController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\PensiunController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\PtkpController;
-use App\Http\Controllers\SdmPayroll\TabelPayroll\RekeningPegawaiController;
+use App\Http\Controllers\SdmPayroll\TabelPayroll\RekeningPekerjaController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\TabelAardController;
 use App\Http\Controllers\SdmPayroll\TabelPayroll\TunjanganGolonganController;
 
@@ -456,7 +456,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     //tunjangan golongan
     // Route assigned name "tunjangan_golongan.index"...
     Route::name('tunjangan_golongan.')->group(function () {
-        Route::get('tunjangan_golongan', [TunjanganGolonganController::class, 'index'])->name('index');
+        Route::get('tunjangan-golongan', [TunjanganGolonganController::class, 'index'])->name('index');
         Route::get('tunjangan-golongan/index-json', [TunjanganGolonganController::class, 'indexJson'])->name('index.json');
         Route::get('tunjangan-golongan/create', [TunjanganGolonganController::class, 'create'])->name('create');
         Route::post('tunjangan-golongan/cek-golongan/json', [TunjanganGolonganController::class, 'cekGolonganJson'])->name('golongan.json');
@@ -484,14 +484,14 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     //Rekening Pekerja
     // Route assigned name "rekening-pekerja.index"...
     Route::name('rekening_pekerja.')->group(function () {
-        Route::get('rekening-pekerja', [RekeningPegawaiController::class, 'index'])->name('index');
-        Route::get('rekening-pekerja/index-json', [RekeningPegawaiController::class, 'indexJson'])->name('index.json');
-        Route::get('rekening-pekerja/create', [RekeningPegawaiController::class, 'create'])->name('create');
-        Route::post('rekening-pekerja/cek-golongan/json', [RekeningPegawaiController::class, 'cekGolonganJson'])->name('golongan.json');
-        Route::post('rekening-pekerja/store', [RekeningPegawaiController::class, 'store'])->name('store');
-        Route::get('rekening-pekerja/edit/{id}', [RekeningPegawaiController::class, 'edit'])->name('edit');
-        Route::post('rekening-pekerja/update', [RekeningPegawaiController::class, 'update'])->name('update');
-        Route::delete('rekening-pekerja/delete', [RekeningPegawaiController::class, 'delete'])->name('delete');
+        Route::get('rekening-pekerja', [RekeningPekerjaController::class, 'index'])->name('index');
+        Route::get('rekening-pekerja/index-json', [RekeningPekerjaController::class, 'indexJson'])->name('index.json');
+        Route::get('rekening-pekerja/create', [RekeningPekerjaController::class, 'create'])->name('create');
+        Route::post('rekening-pekerja/cek-golongan/json', [RekeningPekerjaController::class, 'cekGolonganJson'])->name('golongan.json');
+        Route::post('rekening-pekerja/store', [RekeningPekerjaController::class, 'store'])->name('store');
+        Route::get('rekening-pekerja/edit/{id}', [RekeningPekerjaController::class, 'edit'])->name('edit');
+        Route::post('rekening-pekerja/update', [RekeningPekerjaController::class, 'update'])->name('update');
+        Route::delete('rekening-pekerja/delete', [RekeningPekerjaController::class, 'delete'])->name('delete');
     });
     //end rekening-pekerja
 

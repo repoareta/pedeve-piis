@@ -16,7 +16,7 @@ class MainAccountController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.* from main_account a order by a.jenis");
+        $data = DB::select("SELECT a.* from main_account a order by a.jenis");
         return datatables()->of($data)
         ->addColumn('jenis', function ($data) {
             return $data->jenis;
@@ -56,7 +56,7 @@ class MainAccountController extends Controller
     }
     public function store(Request $request)
     {
-        $data_objRs = DB::select("select jenis from main_account where jenis='$request->jenis'");
+        $data_objRs = DB::select("SELECT jenis from main_account where jenis='$request->jenis'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -87,7 +87,7 @@ class MainAccountController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from main_account where jenis='$no'");
+        $data_cash = DB::select("SELECT * from main_account where jenis='$no'");
         foreach($data_cash as $data)
         {
             $jenis = $data->jenis;

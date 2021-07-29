@@ -41,8 +41,8 @@
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form  class="kt-form kt-form--label-right" id="form-create">
-				{{csrf_field()}}
+			<form class="kt-form" id="form-create">
+				@csrf
 				<div class="kt-portlet__body">
 					<div class="form-group form-group-last">
 						<div class="alert alert-secondary" role="alert">
@@ -137,7 +137,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
+							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
 								<textarea class="form-control" type="text" value=""  id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')" oninput="setCustomValidity('')"></textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
@@ -148,8 +148,8 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-									<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+									<button type="submit" class="btn btn-brand"><i class="fa fa-check"></i>Save</button>
 								</div>
 							</div>
 						</div>

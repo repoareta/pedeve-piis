@@ -11,32 +11,32 @@ class TabelAardController extends Controller
 {
     public function index()
     {
-        return view('tabel_aard.index');
+        return view('modul-sdm-payroll.tabel-aard.index');
     }
 
     public function indexJson()
     {
-        $data = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard order by kode");
+        $data = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard order by kode");
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
-                return '<p align="center"><label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span></label></p>';
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
         })
         ->rawColumns(['radio'])
-            ->make(true);
+        ->make(true);
     }
 
 
     public function create()
     {
-        $data_jenisupah = DB::select("select kode,nama,cetak from pay_tbl_jenisupah order by kode");
-        return view('tabel_aard.create',compact('data_jenisupah'));
+        $data_jenisupah = DB::select("SELECT kode,nama,cetak from pay_tbl_jenisupah order by kode");
+        return view('modul-sdm-payroll.tabel-aard.create',compact('data_jenisupah'));
     }
 
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_aard where kode = '$request->kode'" ); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_aard where kode = '$request->kode'" ); 			
         if(!empty($data_cek)) {
             $data = 2;
             return response()->json($data);
@@ -56,7 +56,7 @@ class TabelAardController extends Controller
 
     public function edit($id)
     {
-        $data_jenisupah = DB::select("select kode,nama,cetak from pay_tbl_jenisupah order by kode");
+        $data_jenisupah = DB::select("SELECT kode,nama,cetak from pay_tbl_jenisupah order by kode");
         $data_list = PayTblAard::where('kode', $id)->get();
         foreach($data_list as $data)
         {
@@ -66,7 +66,7 @@ class TabelAardController extends Controller
             $kenapajak = $data->kenapajak;
             $lappajak = $data->lappajak;
         }
-        return view('tabel_aard.edit',compact('kode','nama','jenis','kenapajak','lappajak','data_jenisupah'));
+        return view('modul-sdm-payroll.tabel-aard.edit',compact('kode','nama','jenis','kenapajak','lappajak','data_jenisupah'));
     }
 
 

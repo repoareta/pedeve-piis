@@ -131,7 +131,7 @@ class LemburController extends Controller
         $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();	
-        $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
+        $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
         return view('lembur.create',compact('data_pegawai','data_potongan'));
     }
 
@@ -143,7 +143,7 @@ class LemburController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_lembur where to_char(tanggal, 'dd/mm/YYYY') = '$request->tanggal' and nopek='$request->nopek'");
+        $data_cek = DB::select("SELECT * from pay_lembur where to_char(tanggal, 'dd/mm/YYYY') = '$request->tanggal' and nopek='$request->nopek'");
         if(!empty($data_cek)){
             $data=0;
             return response()->json($data);
@@ -185,11 +185,11 @@ class LemburController extends Controller
      */
     public function edit($tanggal, $nopek)
     {
-        $data_list = DB::select("select bulan,tahun,tanggal,nopek,makanpg, makansg, makanml, transport,lembur, userid from pay_lembur where  to_char(tanggal, 'dd-mm-YYYY')= '$tanggal' and nopek = '$nopek'");
+        $data_list = DB::select("SELECT bulan,tahun,tanggal,nopek,makanpg, makansg, makanml, transport,lembur, userid from pay_lembur where  to_char(tanggal, 'dd-mm-YYYY')= '$tanggal' and nopek = '$nopek'");
         $data_pegawai = MasterPegawai::where('status', '<>', 'P')
         ->orderBy('nopeg')
         ->get();	
-        $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
+        $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");	
         return view('lembur.edit',compact('data_list','data_pegawai','data_potongan'));
     }
 
@@ -231,7 +231,7 @@ class LemburController extends Controller
     }
     public function rekapExport(Request $request)
     {
-        $data_list = DB::select("select a.*, b.* from pay_lembur a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun='$request->tahun' and a.bulan='$request->bulan'");
+        $data_list = DB::select("SELECT a.*, b.* from pay_lembur a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun='$request->tahun' and a.bulan='$request->bulan'");
         if (!empty($data_list)) {
             $pdf = DomPDF::loadview('lembur.export_lembur', compact('request', 'data_list'))->setPaper('a4', 'landscape');
             $pdf->output();

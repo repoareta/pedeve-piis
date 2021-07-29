@@ -127,7 +127,7 @@
 						<input type="hidden" name="tanggal_efektif" value="{{ Request::get('tanggal_efektif') }}" required>
 						<button type="submit" onclick="printPDF()" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
 					@else
-						<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 					@endif
 				</div>
 			</form>

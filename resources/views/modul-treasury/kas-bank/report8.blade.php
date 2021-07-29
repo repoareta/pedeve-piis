@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('kas_bank.cetak8')}}" method="GET" target="_blank">
+        <form class="kt-form" action="{{route('kas_bank.cetak8')}}" method="GET" target="_blank">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">Mulai</label>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label">Kurs<span style="color:red;">*</span></label>
+                <label for="dari-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input type="text" class="form-control" name="kurs">							
                 </div>
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+                        <a  href="{{ route('dashboard.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
                         <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
                     </div>
                 </div>

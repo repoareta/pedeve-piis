@@ -97,7 +97,7 @@
 							<button type="submit" onclick="printPDF()" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
 						@else
 							<input type="hidden" name="tanggal_efektif" value="{{ date('Y-m-d H:i:s') }}" required>
-							<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 						@endif
 					</p>
 				</div>

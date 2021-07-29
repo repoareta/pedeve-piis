@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PayTblJenisUpah extends Model
 {
     use HasFactory;
+
+    protected $table="pay_tbl_jenisupah";
+    protected $primaryKey = null;
+    public $incrementing = false;
+    public $timestamps = false;
 }

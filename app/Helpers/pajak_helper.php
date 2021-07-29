@@ -9,7 +9,7 @@ function pajak($nilai)
     $pajakbulan=1;
     $nilaikenapajak = $nilai;
     $sisapokok = $nilaikenapajak;
-    $data_sdmprogresif = DB::select("select * from sdm_tbl_progressif order by awal asc");
+    $data_sdmprogresif = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
     // SdmTblProgressif::orderBy('awal','asc');
     $pph21ok = 0;
     if ($sisapokok > 0) {
@@ -39,7 +39,7 @@ function pajak($nilai)
 
 function pph21ok($pokok)
 {
-    $pphrss=DB::select("select * from sdm_tbl_progressif order by awal asc");
+    $pphrss=DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
     $pph21ok = 0;
     $sisapokok = $pokok; 
     if ($sisapokok > 0) {
@@ -78,7 +78,7 @@ function vf($tf)
 
 function stbbuku2($sthnbln, $ssup)
 {
-    $data_rsbulan = DB::select("select * from bulankontroller where thnbln='$sthnbln' and suplesi='$ssup'");
+    $data_rsbulan = DB::select("SELECT * from bulankontroller where thnbln='$sthnbln' and suplesi='$ssup'");
     if (!empty($data_rsbulan)) {
         foreach ($data_rsbulan as $data) {
             if ($data->status == 1) {

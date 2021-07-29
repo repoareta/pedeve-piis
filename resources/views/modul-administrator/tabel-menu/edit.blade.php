@@ -46,7 +46,7 @@
                     <div class="form-group row">
 						<label for="userap-input" class="col-2 col-form-label">User Application</label>
 						<div class="col-10">
-							<select class="form-control select2" name="userap" id="userap">
+							<select class="form-control select2" style="width: 100%;" name="userap" id="userap">
 								<option value="">- Pilih Data -</option>
                                 <option value="UMU" {{ $dft_menu->userap == 'UMU' ? 'selected' : '' }}>UMUM</option>
                                 <option value="SDM" {{ $dft_menu->userap == 'SDM' ? 'selected' : '' }}>SDM & Payroll</option>
@@ -62,8 +62,8 @@
 					<div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
                         </div>
                     </div>
 				</form>

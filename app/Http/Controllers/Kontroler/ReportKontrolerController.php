@@ -17,16 +17,16 @@ class ReportKontrolerController extends Controller
 
     public function create_d2_perbulan()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_d2_perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function searchAccount(Request $request)
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
+            $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
             return response()->json($data_account);
         }
     }
@@ -49,12 +49,12 @@ class ReportKontrolerController extends Controller
             }
 
             if ($request->sanper == "") {
-                $data_list = DB::select("select b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
+                $data_list = DB::select("SELECT b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
                                         from kasline a join kasdoc b on b.docno=a.docno 
                                         where b.jk $jk and substring(b.thnbln from 1 for 4)='$tahun' and substring(b.thnbln from 5 for 2) $bulan and a.keterangan <> 'penutup'");
             } else {
                 $sanper = "like '$request->sanper'";
-                $data_list = DB::select("select b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
+                $data_list = DB::select("SELECT b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
                                         from kasline a join kasdoc b on b.docno=a.docno 
                                         where b.jk $jk and substring(b.thnbln from 1 for 4)='$tahun' and substring(b.thnbln from 5 for 2) $bulan and a.account $sanper and a.keterangan <> 'penutup'");
             }
@@ -78,16 +78,16 @@ class ReportKontrolerController extends Controller
 
     public function create_d2_periode()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_d2_periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function create_d5_report()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_d5_report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportD5(Request $request)
@@ -98,7 +98,7 @@ class ReportKontrolerController extends Controller
             $thnbln = "2019$request->bulan$request->suplesi";
             $obpsi  = "obpsi_$request->tahun";
         
-        $data_cek = DB::select("select a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
+        $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
             DB::statement("CREATE OR REPLACE VIEW v_report_d5 AS
@@ -142,8 +142,8 @@ class ReportKontrolerController extends Controller
     }
     public function create_neraca_konsolidasi()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         return view('report_kontroler.create_neraca_konsolidasi', compact('data_tahun', 'data_kodelok'));
     }
     public function exportNeracaKonsolidasi(Request $request)
@@ -154,7 +154,7 @@ class ReportKontrolerController extends Controller
             $thnbln = "2019$request->bulan$request->suplesi";
             $obpsi  = "obpsi_$request->tahun";
            
-        $data_cek = DB::select("select a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
+        $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
             DB::statement("CREATE OR REPLACE VIEW v_report_d5 AS
@@ -195,8 +195,8 @@ class ReportKontrolerController extends Controller
     
     public function create_neraca_detail()
     {
-        $data_tahun = DB::select("Select Tahun, Bulan, Suplesi from bulansuplesi where KodeReport='D5'");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
+        $data_tahun = DB::select("SELECT Tahun, Bulan, Suplesi from bulansuplesi where KodeReport='D5'");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         return view('report_kontroler.create_neraca_detail', compact('data_tahun', 'data_kodelok'));
     }
     public function exportNeracaDetail(Request $request)
@@ -207,7 +207,7 @@ class ReportKontrolerController extends Controller
             $thnbln = "2019$request->bulan$request->suplesi";
             $obpsi  = "obpsi_$request->tahun";
        
-        $data_cek = DB::select("select a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
+        $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
             DB::statement("CREATE OR REPLACE VIEW v_report_d5 AS
@@ -247,9 +247,9 @@ class ReportKontrolerController extends Controller
 
     public function create_laba_rugi_konsolidasi()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_laba_rugi_konsolidasi', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportLabaRugiKonsolidasi(Request $request)
@@ -261,7 +261,7 @@ class ReportKontrolerController extends Controller
             $thnbln = "2019$request->bulan$request->suplesi";
             $obpsi  = "obpsi_$request->tahun";
         
-        $data_cek = DB::select("select a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
+        $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
             DB::statement("CREATE OR REPLACE VIEW v_report_d5 AS
@@ -296,9 +296,9 @@ class ReportKontrolerController extends Controller
 
     public function create_laba_rugi_detail()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_laba_rugi_detail', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportLabaRugiDetail(Request $request)
@@ -310,7 +310,7 @@ class ReportKontrolerController extends Controller
             $thnbln = "2019$request->bulan$request->suplesi";
             $obpsi  = "obpsi_$request->tahun";
         
-        $data_cek = DB::select("select a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
+        $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
             DB::statement("CREATE OR REPLACE VIEW v_report_d5 AS
@@ -346,16 +346,16 @@ class ReportKontrolerController extends Controller
 
     public function create_laporan_keuangan()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_laporan_keuangan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function create_biaya_pegawai()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('report_kontroler.create_biaya_pegawai', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportBiayaPegawai(Request $request)
@@ -370,7 +370,7 @@ class ReportKontrolerController extends Controller
             $sss = "bulan <= '$request->bulan2' and bulan >= '$request->bulan1'";
             $zzz = ("$bbb and $yyy and $sss");
         }
-        $data_list = DB::select("select *, substr(sandi,1,2) as duadigit,substr(sandi,1,3) as tigadigit from v_rincibiayakontroler where substr(sandi,1,3) between '500' and '519' and $zzz");
+        $data_list = DB::select("SELECT *, substr(sandi,1,2) as duadigit,substr(sandi,1,3) as tigadigit from v_rincibiayakontroler where substr(sandi,1,3) between '500' and '519' and $zzz");
         if (!empty($data_list)) {
             $pdf = DomPDF::loadview('report_kontroler.export_biaya_pegawai', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();

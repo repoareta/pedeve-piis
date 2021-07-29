@@ -39,13 +39,13 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('d5_report.export')}}" method="post">
-			{{csrf_field()}}
+		<form class="kt-form" action="{{route('d5_report.export')}}" method="post">
+			@csrf
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
 
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 
@@ -54,7 +54,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" name="bulan">
+						<select class="form-control select2" style="width: 100%;" name="bulan">
 							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
@@ -89,7 +89,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+							<a  href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-brand"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 						</div>
 					</div>

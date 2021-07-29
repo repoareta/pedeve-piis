@@ -280,7 +280,7 @@ class PenerimaanKasController extends Controller
         $data_jenis = JenisBiaya::all();
         $data_casj = CashJudex::all();
         $data_bagian = SdmKdbag::all();
-        $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
+        $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
         
         return view('modul-treasury.bukti-kas.show', compact(
             'document',
@@ -333,9 +333,9 @@ class PenerimaanKasController extends Controller
         $data_jenis = JenisBiaya::all();
         $data_casj = Cashjudex::all();
         $data_bagian = SdmKdbag::all();
-        $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
+        $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
         $count= Kasline::where('docno', $nodoc)->where('keterangan','<>','PENUTUP')->sum('totprice');
-        $data_detail = DB::select("select * from kasline where docno ='$nodoc' and keterangan <> 'PENUTUP' order by lineno");
+        $data_detail = DB::select("SELECT * from kasline where docno ='$nodoc' and keterangan <> 'PENUTUP' order by lineno");
         $no_detail = Kasline::where('docno', $nodoc)->max('lineno');
 
         if ($no_detail <> null) {
@@ -392,9 +392,9 @@ class PenerimaanKasController extends Controller
      */
     public function destroy(Request $request)
     {
-        $data_rskas = DB::select("select thnbln from kasdoc a where a.docno='$request->nodok'");
+        $data_rskas = DB::select("SELECT thnbln from kasdoc a where a.docno='$request->nodok'");
         foreach ($data_rskas as $data_kas) {
-            $data_rsbulan = DB::select("select * from timetrans where thnbln='$data_kas->thnbln' and suplesi='0'");
+            $data_rsbulan = DB::select("SELECT * from timetrans where thnbln='$data_kas->thnbln' and suplesi='0'");
             if (!empty($data_rsbulan)) {
                 foreach ($data_rsbulan as $data_bulan) {
                     if ($data_bulan->status == '1') {
@@ -414,7 +414,7 @@ class PenerimaanKasController extends Controller
                 $data = 2;
                 return response()->json($data);
             } else {
-                $data_rscekbayar = DB::select("select paid from kasdoc where docno='$request->nodok'");
+                $data_rscekbayar = DB::select("SELECT paid from kasdoc where docno='$request->nodok'");
                 foreach ($data_rscekbayar as $data_cekbayar) {
                     if ($data_cekbayar->paid == 'Y') {
                         $data = 3;

@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-edit">
+        <form class="kt-form" id="form-edit">
             @csrf
             @foreach($data_list as $data)
             <?php
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row">
-            <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+            <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
             <div class="col-4">
                 <input class="form-control" type="text" value="{{$bulan}}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 <input class="form-control" type="hidden" value="{{$data->thnbln}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
@@ -55,9 +55,9 @@
             </div>
 
             <div class="form-group row">
-                <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span style="color:red;">*</span></label>
+                <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="bagian" id="bagian" class="form-control select2" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="bagian" id="bagian" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $row)
                         <option value="{{$row->kode}}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{$row->kode}} - {{$row->nama}}</option>
@@ -68,9 +68,9 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-2 col-form-label">Jenis Kartu<span style="color:red;">*</span></label>
+                <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-3">
-                    <select name="jk" id="jk" class="form-control select2" required>
+                    <select name="jk" id="jk" class="form-control select2" style="width: 100%;" required>
                         <option value="">- Pilih -</option>
                         <option value="10" <?php if($data->jk == '10' ) echo 'selected' ; ?>>Kas(Rupiah)</option>
                         <option value="11" <?php if($data->jk == '11' ) echo 'selected' ; ?>>Bank(Rupiah)</option>
@@ -81,14 +81,14 @@
                 <div class="col-2" >
                     <input class="form-control" type="text" name="ci" value="{{$data->ci}}"  id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
-                <label class="col-1 col-form-label">Kurs<span style="color:red;">*</span></label>
+                <label class="col-1 col-form-label">Kurs<span class="text-danger">*</span></label>
                 <div class="col-2" >
                     <input class="form-control" type="text" name="kurs" value="{{number_format($data->rate,0)}}"  id="kurs" size="7" maxlength="7" >
                 </div>
             </div>
             
             <div class="form-group row">
-                <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span style="color:red;">*</span></label>
+                <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
                 <div class="col-4">
                     <select name="lokasi" id="lokasi" class="form-control">
                         <option value="">- Pilih -</option>
@@ -119,13 +119,13 @@
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">
-                @if($mp == "M") Dari @else Kepada @endif<span style="color:red;">*</span></label>
+                @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php } else { ?> Kepada <?php } ?> Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 col-form-label">Sejumlah<span style="color:red;">*</span></label>
+                <label class="col-2 col-form-label">Sejumlah<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text"  value="{{number_format($data->nilai_dok,0,',','.')}}" size="16" maxlength="16" readonly required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
                     <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{number_format($count,0,'','')}}" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off">
@@ -154,8 +154,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('pembayaran_umk.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('pembayaran_umk.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>
@@ -241,11 +241,11 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-				<form  class="kt-form " id="form-create-detail"  enctype="multipart/form-data">
-					{{csrf_field()}}
+				<form class="form" id="form-create-detail"  enctype="multipart/form-data">
+					@csrf
                         
                     <div class="form-group row ">
-						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{$no_urut}}"  name="nourut" readonly>
@@ -254,17 +254,17 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<textarea  class="form-control" type="text" value=""  name="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')"></textarea>
 						</div>
 					</div>
 					{{-- <div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">KD. Lapang<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">KD. Lapang<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="lapangan"  class="form-control select2" required oninvalid="this.setCustomValidity('KD. Lapang Harus Diisi..')" onchange="setCustomValidity('')">
+							<select name="lapangan"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('KD. Lapang Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
 								@foreach($lokasi as $data_lok)
 								<option value="{{$data_lok->kodelokasi}}">{{$data_lok->kodelokasi}} - {{$data_lok->nama}}</option>
@@ -273,10 +273,10 @@
 						</div>
 					</div> --}}
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  class="form-control select2" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')" onchange="setCustomValidity('')">
+							<select name="sanper"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{$data_acc->kodeacct}}">{{$data_acc->kodeacct}} - {{$data_acc->descacct}}</option>
@@ -286,10 +286,10 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian"  class="form-control select2" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')" onchange="setCustomValidity('')">
+							<select name="bagian"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
@@ -308,10 +308,10 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb"  class="form-control select2" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')" onchange="setCustomValidity('')">
+							<select name="jb"  class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
@@ -322,10 +322,10 @@
 					</div>
 									
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">C. Judex<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">C. Judex<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" class="form-control select2" required oninvalid="this.setCustomValidity('C. Judex Harus Diisi..')" onchange="setCustomValidity('')">
+							<select name="cj" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('C. Judex Harus Diisi..')" onchange="setCustomValidity('')">
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{$data_cas->kode}}">{{$data_cas->kode}} - {{$data_cas->nama}}</option>
@@ -336,7 +336,7 @@
 									
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<input  class="form-control" type="number" value="" name="nilai" size="25" maxlength="25"  required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete="off">
@@ -348,8 +348,8 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 							</div>
 						</div>
 					</div>
@@ -362,7 +362,7 @@
 
 
 <!--begin::Modal Edit--> 
-<div class="modal fade modal-edit" id="kt_modal_4"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-edit" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -370,11 +370,11 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="kt-form " id="form-edit-detail"  enctype="multipart/form-data">
-					{{csrf_field()}}
+                <form class="form" id="form-edit-detail"  enctype="multipart/form-data">
+					@csrf
                         
                     <div class="form-group row ">
-						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value=""  name="nourut" id="nourut" readonly>
@@ -382,7 +382,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')"></textarea>
@@ -392,7 +392,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">KD. Lapang</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
-							<select name="lapangan"  id="select-lapangan" class="form-control select2" >
+							<select name="lapangan"  id="select-lapangan" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($lokasi as $data_lok)
 								<option value="{{$data_lok->kodelokasi}}">{{$data_lok->kodelokasi}} - {{$data_lok->nama}}</option>
@@ -404,7 +404,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  id="select-sanper" class="form-control select2" >
+							<select name="sanper"  id="select-sanper" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{$data_acc->kodeacct}}">{{$data_acc->kodeacct}} - {{$data_acc->descacct}}</option>
@@ -417,7 +417,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian" id="select-bagian" class="form-control select2" >
+							<select name="bagian" id="select-bagian" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
@@ -439,7 +439,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb" id="select-jb"  class="form-control select2" >
+							<select name="jb" id="select-jb"  class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
@@ -453,7 +453,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" id="select-cj" class="form-control select2" >
+							<select name="cj" id="select-cj" class="form-control select2" style="width: 100%;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{$data_cas->kode}}">{{$data_cas->kode}} - {{$data_cas->nama}}</option>
@@ -464,7 +464,7 @@
 									
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<input  class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete="off">
@@ -476,8 +476,8 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 							</div>
 						</div>
 					</div>

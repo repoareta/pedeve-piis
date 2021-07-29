@@ -54,7 +54,7 @@
                     <div class="form-group row" id="bulan-group" style="display: none;">
                         <label class="col-2 col-form-label">Bulan</label>
                         <div class="col-8" >
-                            <select class="form-control select2" name="bulan" id="bulan" style="width: 100%">
+                            <select class="form-control select2" style="width: 100%;" name="bulan" id="bulan" style="width: 100%">
                                 <option value="">- Pilih -</option>
                                 <option value="01">Januari</option>
                                 <option value="02">Februari</option>

@@ -69,19 +69,19 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-create">
+        <form class="kt-form" id="form-create">
             @csrf
             <div class="kt-portlet__body">
                 <div class="form-group form-group-last">
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label text-right">Bulan<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Bulan<span class="text-danger">*</span></label>
                         <div class="col-10">
                         <?php 
                             $tgl = date_create(now());
                             $tahun = date_format($tgl, 'Y'); 
                             $bulan = date_format($tgl, 'n'); 
                         ?>
-                            <select class="form-control select2"  name="bulan">
+                            <select class="form-control select2" style="width: 100%;"  name="bulan">
                                 <option value="01" <?php if($bulan  == 1 ) echo 'selected' ; ?>>Januari</option>
                                 <option value="02" <?php if($bulan  == 2 ) echo 'selected' ; ?>>Februari</option>
                                 <option value="03" <?php if($bulan  == 3 ) echo 'selected' ; ?>>Maret</option>
@@ -98,13 +98,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label text-right">Tahun<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Tahun<span class="text-danger">*</span></label>
                             <div class="col-10" >
                                 <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required oninvalid="this.setCustomValidity('Tahun Harus Diisi...')" oninput="setCustomValidity('')">
                             </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label text-right">Suplesi<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Suplesi<span class="text-danger">*</span></label>
                             <div class="col-10" >
                                 <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
                             </div>
@@ -114,8 +114,8 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a  href="{{ route('opening_balance.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Process</button>
+                                <a  href="{{ route('opening_balance.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Process</button>
                             </div>
                         </div>
                     </div>

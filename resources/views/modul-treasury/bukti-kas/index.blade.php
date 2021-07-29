@@ -122,7 +122,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form kt-form--label-right" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
+            <form class="kt-form" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">No Dokumen</label>
@@ -168,8 +168,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Cetak Data</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply"></i> Batal</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cetak Data</button>
                 </div>
             </form>
         </div>

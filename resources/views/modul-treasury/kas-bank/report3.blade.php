@@ -18,11 +18,11 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('kas_bank.cetak3')}}" method="POST">
+        <form class="kt-form" action="{{route('kas_bank.cetak3')}}" method="POST" target="_blank">
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{ auth()->user()->userid }}">
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
                     <?php 
 					foreach($data_tahun as $data){ 

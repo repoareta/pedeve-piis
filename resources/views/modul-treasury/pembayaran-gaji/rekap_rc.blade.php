@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('pembayaran_gaji.export_rc')}}" method="post">
+        <form class="kt-form" action="{{route('pembayaran_gaji.export_rc')}}" method="post">
 			@csrf
 			<div class="kt-portlet__body">
 				<div class="form-group row">
@@ -113,7 +113,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{route('pembayaran_gaji.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+							<a  href="{{route('pembayaran_gaji.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 						</div>
 					</div>

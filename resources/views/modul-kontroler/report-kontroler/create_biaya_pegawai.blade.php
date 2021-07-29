@@ -40,13 +40,13 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('biaya_pegawai.export_biaya_pegawai')}}" method="post">
-			{{csrf_field()}}
+		<form class="kt-form" action="{{route('biaya_pegawai.export_biaya_pegawai')}}" method="post">
+			@csrf
 			<div class="kt-portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{Auth::user()->userid}}">
 
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 
@@ -55,7 +55,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" name="bulan1">
+						<select class="form-control select2" style="width: 100%;" name="bulan1">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -72,7 +72,7 @@
 				</div>
 				<label for="" class="col-1 col-form-label">S/D</label>
 				<div class="col-5">
-						<select class="form-control select2" name="bulan2">
+						<select class="form-control select2" style="width: 100%;" name="bulan2">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -89,7 +89,7 @@
 				</div>
 				</div>
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
 					<div class="col-10" >
 						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required> 
 					</div>
@@ -102,7 +102,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+							<a  href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-brand"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 						</div>
 					</div>

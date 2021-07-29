@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" id="formPermintaan" action="{{ route('modul_sdm_payroll.gcg.gratifikasi.permintaan.store') }}" method="POST">
+                <form class="kt-form" id="formPermintaan" action="{{ route('modul_sdm_payroll.gcg.gratifikasi.permintaan.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="permintaan_bulan_lalu" class="col-3 col-form-label">Tidak ada permintaan bulan lalu</label>
@@ -80,8 +80,8 @@
 						<div class="row">
 							<div class="col-3"></div>
 							<div class="col-9">
-								<a  href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+								<a  href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 							</div>
 						</div>
 					</div>

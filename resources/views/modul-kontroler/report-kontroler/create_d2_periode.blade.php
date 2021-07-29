@@ -40,12 +40,12 @@
 		</div>
 	</div>
 	<div class="kt-portlet__body">
-		<form class="kt-form kt-form--label-right" action="{{route('d2_periode.export')}}" method="GET" target="_blank">
+		<form class="kt-form" action="{{route('d2_periode.export')}}" method="GET" target="_blank">
 			<div class="kt-portlet__body">
 				<div class="form-group row">
-					<label for="" class="col-2 col-form-label">JK<span style="color:red;">*</span></label>
+					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
 					<div class="col-10">
-						<div class="kt-radio-inline">
+						<div class="radio-inline">
 							<label class="kt-radio kt-radio--solid">
 								<input value="1" type="radio" name="jk" >[10,11,13]
 								<span></span>
@@ -62,7 +62,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 
@@ -71,7 +71,7 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" name="bulan_mulai">
+						<select class="form-control select2" style="width: 100%;" name="bulan_mulai">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -88,7 +88,7 @@
 				</div>
 				<label for="" class="col-1 col-form-label">S/D</label>
 				<div class="col-5">
-						<select class="form-control select2" name="bulan_sampai">
+						<select class="form-control select2" style="width: 100%;" name="bulan_sampai">
 							<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
 							<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
 							<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
@@ -105,7 +105,7 @@
 				</div>
 				</div>
 				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Tahun<span style="color:red;">*</span></label>
+				<label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
 					<div class="col-10" >
 						<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required> 
 					</div>
@@ -121,7 +121,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+							<a href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
 							<button type="submit" id="btn-save" class="btn btn-brand"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
 						</div>
 					</div>

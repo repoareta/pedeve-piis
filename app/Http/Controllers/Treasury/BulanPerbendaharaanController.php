@@ -120,7 +120,7 @@ class BulanPerbendaharaanController extends Controller
         } else {
             $closedate1 = null;
         }
-        $data_objRs = DB::select("select * from timetrans where thnbln='$thnbln'");
+        $data_objRs = DB::select("SELECT * from timetrans where thnbln='$thnbln'");
         if (!empty($data_objRs)) {
             $data = 2;
             return response()->json($data);

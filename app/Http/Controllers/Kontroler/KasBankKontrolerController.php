@@ -21,7 +21,7 @@ class KasBankKontrolerController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.* from storejk a ORDER BY a.jeniskartu,a.kodestore");
+        $data = DB::select("SELECT a.* from storejk a ORDER BY a.jeniskartu,a.kodestore");
         return datatables()->of($data)
         ->addColumn('jeniskartu', function ($data) {
             return $data->jeniskartu;
@@ -54,12 +54,12 @@ class KasBankKontrolerController extends Controller
 
     public function create()
     {
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
         return view('kas_bank_kontroler.create',compact('data_sanper'));
     }
     public function store(Request $request)
     {
-        $data_objRs = DB::select("select * from storejk where kodestore='$request->kode'");
+        $data_objRs = DB::select("SELECT * from storejk where kodestore='$request->kode'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -83,7 +83,7 @@ class KasBankKontrolerController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from storejk where kodestore='$no'");
+        $data_cash = DB::select("SELECT * from storejk where kodestore='$no'");
         foreach($data_cash as $data)
         {
             $kode = $data->kodestore;
@@ -94,7 +94,7 @@ class KasBankKontrolerController extends Controller
             $norek = $data->norekening;
             $lokasi = $data->lokasi;
         }
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
         return view('kas_bank_kontroler.edit',compact(
                                                         'data_sanper',
                                                         'kode',
@@ -122,7 +122,7 @@ class KasBankKontrolerController extends Controller
 
     public function delete(Request $request)
     {
-        $data_objrs1 = DB::select("select account from storejk where kodestore='$request->kode'"); 
+        $data_objrs1 = DB::select("SELECT account from storejk where kodestore='$request->kode'"); 
         foreach($data_objrs1 as $objrs1)
         {
             Account::where('kodeacct',$objrs1->account)->delete();
@@ -134,7 +134,7 @@ class KasBankKontrolerController extends Controller
 
     public function indexCetak()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
         if(!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 $tahun = substr($data_bul->bulan_buku,0,-2); 
@@ -149,7 +149,7 @@ class KasBankKontrolerController extends Controller
 
     public function searchIndexCetak(Request $request)
     {
-        $rsbulan = DB::select("select max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
+        $rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
         if(!empty($rsbulan)){
             foreach($rsbulan as $dat)
             {
@@ -166,17 +166,17 @@ class KasBankKontrolerController extends Controller
         $bulan = $request->bulan;
         $nodok = $request->nodok;
         if ($nodok == null and $tahun == null and $bulan == null) {
-            $data = DB::select("select a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.thnbln='$bulan' and a.kd_kepada is null  order by a.store,a.voucher asc");
+            $data = DB::select("SELECT a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.thnbln='$bulan' and a.kd_kepada is null  order by a.store,a.voucher asc");
         } elseif ($nodok == null and $tahun <> null and $bulan == null) {
-            $data = DB::select("select a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where left(a.thnbln, 4)='$tahun' and a.kd_kepada is null  order by a.store,a.voucher asc");
+            $data = DB::select("SELECT a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where left(a.thnbln, 4)='$tahun' and a.kd_kepada is null  order by a.store,a.voucher asc");
         } elseif ($nodok <> null and $tahun == null and $bulan == null) {
-            $data = DB::select("select a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.voucher='$nodok' and a.kd_kepada is null  order by a.store,a.voucher asc");
+            $data = DB::select("SELECT a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.voucher='$nodok' and a.kd_kepada is null  order by a.store,a.voucher asc");
         } elseif ($nodok <> null and $tahun <> null and $bulan == null) {
-            $data = DB::select("select a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.voucher='$nodok' and left(a.thnbln, 4)='$tahun' and a.kd_kepada is null  order by a.store,a.voucher asc");
+            $data = DB::select("SELECT a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.voucher='$nodok' and left(a.thnbln, 4)='$tahun' and a.kd_kepada is null  order by a.store,a.voucher asc");
         } elseif ($nodok == null and $tahun <> null and $bulan <> null) {
-            $data = DB::select("select a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where left(thnbln, 4)='$tahun' and right(thnbln,2)='$bulan' and a.kd_kepada is null  order by a.store,a.voucher asc");
+            $data = DB::select("SELECT a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where left(thnbln, 4)='$tahun' and right(thnbln,2)='$bulan' and a.kd_kepada is null  order by a.store,a.voucher asc");
         } elseif ($nodok <> null and $tahun <> null and $bulan <> null) {
-            $data = DB::select("select a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.voucher='$nodok' and left(thnbln, 4)='$tahun' and right(thnbln, 2)='$bulan' and a.kd_kepada is null  order by a.store,a.voucher asc");
+            $data = DB::select("SELECT a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.paid,a.verified,b.namabank from kasdoc a join storejk b on a.store=b.kodestore where a.voucher='$nodok' and left(thnbln, 4)='$tahun' and right(thnbln, 2)='$bulan' and a.kd_kepada is null  order by a.store,a.voucher asc");
         }
         
         return datatables()->of($data)
@@ -229,7 +229,7 @@ class KasBankKontrolerController extends Controller
     public function rekap($docs)
     {
         $doc = str_replace('-', '/', $docs);   
-        $data_list = DB::select("select * from kasdoc where docno='$doc'");
+        $data_list = DB::select("SELECT * from kasdoc where docno='$doc'");
         foreach($data_list as $data_kasd)
         {
             $docno = $data_kasd->docno;
@@ -259,7 +259,7 @@ class KasBankKontrolerController extends Controller
             }
 
             
-            $data_pbd = DB::select("select * from ttdakt");
+            $data_pbd = DB::select("SELECT * from ttdakt");
             foreach($data_pbd as $rsparam)
             {            
                 if ($mp == "P" or $mp == "p") {
@@ -326,7 +326,7 @@ class KasBankKontrolerController extends Controller
             ->update([
                 'tgl_kurs' =>  $request->tanggal,
             ]);
-            $data_list= DB::select("select a.docno,a.nilai_dok,a.mrs_no,a.kepada,a.tgl_kurs,a.jk,right(a.thnbln,2) bulan, left(a.thnbln, 4) tahun,a.store,a.ci,a.rate,a.ket1,a.ket2,a.ket3, b.*,a.voucher from kasdoc a join kasline b on a.docno=b.docno where a.docno='$docno' and b.cj not in ('99') ");    
+            $data_list= DB::select("SELECT a.docno,a.nilai_dok,a.mrs_no,a.kepada,a.tgl_kurs,a.jk,right(a.thnbln,2) bulan, left(a.thnbln, 4) tahun,a.store,a.ci,a.rate,a.ket1,a.ket2,a.ket3, b.*,a.voucher from kasdoc a join kasline b on a.docno=b.docno where a.docno='$docno' and b.cj not in ('99') ");    
     
         if(!empty($data_list)){
             foreach($data_list as $data){

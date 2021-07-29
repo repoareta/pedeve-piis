@@ -11,7 +11,7 @@ class MasterTabunganController extends Controller
 {
     public function index()
     {
-        return view('master_tabungan.index');
+        return view('modul-sdm-payroll.master-tabungan.index');
     }
 
     public function indexJson()
@@ -20,7 +20,7 @@ class MasterTabunganController extends Controller
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
-                return '<p align="center"><label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan,0).'" name="btn-radio"><span></span></label></p>';
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan,0).'" name="btn-radio"><span></span><label>';
         })
         ->addColumn('perusahaan', function ($row) {
              return number_format($row->perusahaan,0);
@@ -31,13 +31,13 @@ class MasterTabunganController extends Controller
 
     public function create()
     {
-        return view('master_tabungan.create');
+        return view('modul-sdm-payroll.master-tabungan.create');
     }
 
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_tabungan"); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_tabungan"); 			
         if(!empty($data_cek)) {
             $data = 2;
             return response()->json($data);
@@ -60,7 +60,7 @@ class MasterTabunganController extends Controller
     {
         $data_list = PayTblTabungan::where('perusahaan', $id)->first();
         
-        return view('master_tabungan.edit',compact('perusahaan'));
+        return view('modul-sdm-payroll.master-tabungan.edit',compact('perusahaan'));
     }
 
     /**

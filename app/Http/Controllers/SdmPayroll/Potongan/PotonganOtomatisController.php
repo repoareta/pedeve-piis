@@ -18,15 +18,15 @@ class PotonganOtomatisController extends Controller
      */
     public function index()
     {
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        $data_potongan = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in('18','28','19','44') order by kode");
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in('18','28','19','44') order by kode");
 
         return view('potongan_otomatis.index',compact('data_pegawai','data_potongan'));
     }
 
     public function indexJson(Request $request)
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         foreach($data_tahunbulan as $data_bul)
         {
             $bulan_buku = $data_bul->bulan_buku;
@@ -39,23 +39,23 @@ class PotonganOtomatisController extends Controller
         $aardpot = $request->aard;
 
         if($nopek ==  null and $aardpot == null and $bulan == null and $tahun == null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
         }elseif($nopek == null and $aardpot == null and $bulan == null and $tahun <> null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahun'  order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahun'  order by a.ccl");
         }elseif($nopek == null and $aardpot == null and $bulan <> null and $tahun <> null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahun' and a.bulan='$bulan' order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahun' and a.bulan='$bulan' order by a.ccl");
         }elseif($nopek <> null and $aardpot == null and $bulan == null and $tahun == null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' order by a.ccl");
         }elseif($nopek <> null and $aardpot <> null and $bulan == null and $tahun == null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' order by a.ccl");
         }elseif($nopek <> null and $aardpot <> null and $bulan <> null and $tahun == null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.bulan='$bulan' order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.bulan='$bulan' order by a.ccl");
         }elseif($nopek <> null and $aardpot <> null and $bulan <> null and $tahun <> null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.bulan='$bulan' and a.tahun='$tahun' order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.bulan='$bulan' and a.tahun='$tahun' order by a.ccl");
         }elseif($nopek <> null and $aardpot <> null and $bulan == null and $tahun <> null){
-                $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.tahun='$tahun' order by a.ccl");
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.tahun='$tahun' order by a.ccl");
         }else{
-            $data = DB::select("select a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
+            $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
         }
         return datatables()->of($data)
         ->addColumn('bulan', function ($data) {
@@ -102,7 +102,7 @@ class PotonganOtomatisController extends Controller
        })
 
         ->addColumn('radio', function ($data) {
-            $radio = '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'" nopek="'.$data->nopek.'" aard="'.$data->aardpot.'" nama="'.$data->nama_nopek.'" name="btn-radio"><span></span></label>';
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'" nopek="'.$data->nopek.'" aard="'.$data->aardpot.'" nama="'.$data->nama_nopek.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
         ->rawColumns(['action','radio'])
@@ -118,7 +118,7 @@ class PotonganOtomatisController extends Controller
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_potongan_revo   where nopek='$request->nopek' and aardpot='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
+        $data_cek = DB::select("SELECT * from pay_potongan_revo   where nopek='$request->nopek' and aardpot='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
         if(!empty($data_cek)){
             $data=0;
             return response()->json($data);
@@ -190,7 +190,7 @@ class PotonganOtomatisController extends Controller
         {
             $data_aardhut = $data->aardhut;
         }
-        $pay_hutang = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where jenis='09' order by kode");
+        $pay_hutang = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where jenis='09' order by kode");
         return view('potongan_otomatis.edit',compact('data_list','pay_hutang'));
     }
 

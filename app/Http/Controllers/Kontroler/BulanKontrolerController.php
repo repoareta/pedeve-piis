@@ -17,7 +17,7 @@ class BulanKontrolerController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select thnbln,status,opendate,stopdate,closedate,description,suplesi from bulankontroller order by thnbln desc");
+        $data = DB::select("SELECT thnbln,status,opendate,stopdate,closedate,description,suplesi from bulankontroller order by thnbln desc");
         return datatables()->of($data)
         ->addColumn('thnbln', function ($data) {
             return $data->thnbln;
@@ -104,7 +104,7 @@ class BulanKontrolerController extends Controller
         }else{
 		  $closedate1 = null;
         }
-        $data_objRs = DB::select("select * from bulankontroller where thnbln='$thnbln'");
+        $data_objRs = DB::select("SELECT * from bulankontroller where thnbln='$thnbln'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -128,7 +128,7 @@ class BulanKontrolerController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from bulankontroller where thnbln='$no'");
+        $data_cash = DB::select("SELECT * from bulankontroller where thnbln='$no'");
         foreach($data_cash as $data)
         {
                     $thnbln =     $data->thnbln;

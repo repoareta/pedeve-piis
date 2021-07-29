@@ -21,9 +21,9 @@
         <form method="post" id="form-create">
             @csrf
             <div class="form-group row">
-                <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen <span style="color:red;">*</span></label>
+                <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="nodok" id="nodok" class="form-control select2" required oninvalid="this.setCustomValidity('No. Dokumen Harus Diisi..')" onchange="setCustomValidity('')">
+                    <select name="nodok" id="nodok" class="form-control select2" style="width: 100%;" required oninvalid="this.setCustomValidity('No. Dokumen Harus Diisi..')" onchange="setCustomValidity('')">
                         <option value="">- Pilih -</option>
                         @foreach($data_dok as $data)
                         <option data-lineno="{{$data->lineno}}" value="{{$data->docno}}">{{$data->docno}} - {{$data->keterangan}}</option>
@@ -37,38 +37,38 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bank <span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bank <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                     <input  class="form-control" type="hidden" value="" id="kdbank" name="kdbank" size="30" maxlength="30" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Nominal <span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value=""  name="nominal" size="25" maxlength="25" required oninvalid="this.setCustomValidity('Nominal Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Tgl Deposito <span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Tgl Deposito <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="" id="tanggal" name="tanggal" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Tgl Deposito Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Jatuh Tempo <span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Jatuh Tempo <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="" id="tanggal2" name="tanggal2" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Jatuh Tempo Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bunga % Tahun <span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bunga % Tahun <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="" name="tahunbunga" size="15" maxlength="15"  required oninvalid="this.setCustomValidity('Bungan % Tahun Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">No. Seri <span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">No. Seri <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('No. Seri Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                 </div>
@@ -79,8 +79,8 @@
                     <div class="col"></div>
                     <div class="col"></div>
                     <div class="col-10">
-                        <a  href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>

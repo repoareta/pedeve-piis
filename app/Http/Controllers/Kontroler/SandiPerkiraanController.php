@@ -17,7 +17,7 @@ class SandiPerkiraanController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.* from account a order by a.kodeacct");
+        $data = DB::select("SELECT a.* from account a order by a.kodeacct");
         return datatables()->of($data)
         ->addColumn('kode', function ($data) {
             return $data->kodeacct;
@@ -39,7 +39,7 @@ class SandiPerkiraanController extends Controller
     }
     public function store(Request $request)
     {
-        $data_objRs = DB::select("select kodeacct from account where kodeacct='$request->kode'");
+        $data_objRs = DB::select("SELECT kodeacct from account where kodeacct='$request->kode'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -58,7 +58,7 @@ class SandiPerkiraanController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from account where kodeacct='$no'");
+        $data_cash = DB::select("SELECT * from account where kodeacct='$no'");
         foreach($data_cash as $data)
         {
             $kode = $data->kodeacct;

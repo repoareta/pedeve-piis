@@ -22,12 +22,12 @@
     <div class="card-body">
 
         <div class="col-12">
-            <form action="{{ route('modul_sdm_payroll.gcg.gratifikasi.report.personal.export') }}" target="_blank" class="kt-form col-12 kt-form--label-right" id="search-form" method="POST">
+            <form action="{{ route('modul_sdm_payroll.gcg.gratifikasi.report.personal.export') }}" target="_blank" class="col-12 kt-form" id="search-form" method="POST">
                 @csrf
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Bentuk Gratifikasi</label>
                     <div class="col-4">
-                        <select class="form-control select2" name="bentuk_gratifikasi" id="bentuk_gratifikasi">
+                        <select class="form-control select2" style="width: 100%;" name="bentuk_gratifikasi" id="bentuk_gratifikasi">
                             <option value="">- Pilih -</option>
                             <option value="penerimaan">Penerimaan</option>
                             <option value="pemberian">Pemberian</option>
@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Bulan</label>
                     <div class="col-4">
-                        <select class="form-control select2" name="bulan" id="bulan">
+                        <select class="form-control select2" style="width: 100%;" name="bulan" id="bulan">
                             <option value="">- Pilih Bulan -</option>
                             <option value="01">Januari</option>
                             <option value="02">Februari</option>
@@ -60,7 +60,7 @@
                 <div class="form-group row">
                     <label for="spd-input" class="col-2 col-form-label">Tahun</label>
                     <div class="col-4">
-                        <select class="form-control select2" name="tahun" id="tahun">
+                        <select class="form-control select2" style="width: 100%;" name="tahun" id="tahun">
                             <option value="">- Pilih Tahun -</option>
                             @foreach ($gratifikasi_tahun as $tahun)
                             <option value="{{ $tahun->year }}">{{ $tahun->year }}</option>

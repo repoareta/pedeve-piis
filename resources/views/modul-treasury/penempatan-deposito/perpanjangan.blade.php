@@ -20,7 +20,7 @@
     <div class="card-body">
         <form method="post" id="form-edit">
             <div class="form-group row">
-                <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen<span style="color:red;">*</span></label>
+                <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="{{$data->docno}}"   name="nodok" id="nodok" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="{{$data->kurs}}"   name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
@@ -29,45 +29,45 @@
                 </div>
             </div>
             <div class="form-group row">
-            {{--<label for="" class="col-2 col-form-label text-right">Asal<span style="color:red;">*</span></label>--}}
+            {{--<label for="" class="col-2 col-form-label text-right">Asal<span class="text-danger">*</span></label>--}}
                 <div class="col-10">
                     <input  class="form-control" type="hidden" value="{{$data->asal}}" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                     <input  class="form-control" type="hidden" value="{{$data->perpanjangan}}" id="perpanjangan" name="perpanjangan" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bank<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="{{$data->namabank}}" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                     <input  class="form-control" type="hidden" value="{{$data->kdbank}}" id="kdbank" name="kdbank" size="30" maxlength="30" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Nominal<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Nominal<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="{{number_format($data->nominal,2,'.','')}}"  name="nominal" size="25" maxlength="25" required oninvalid="this.setCustomValidity('Nominal Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Tgl Deposito<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Tgl Deposito<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="<?php $tgl= date_create($data->tgldep); echo date_format($tgl, 'd-m-Y') ?>" id="tanggal" name="tanggal" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Tgl Deposito Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Jatuh Tempo<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Jatuh Tempo<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="<?php $tgl= date_create($data->tgltempo); echo date_format($tgl, 'd-m-Y') ?>" id="tanggal2" name="tanggal2" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Jatuh Tempo Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bunga % Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bunga % Tahun<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="number" value="{{number_format($data->bungatahun,2,'.','')}}" name="tahunbunga" size="25" required oninvalid="this.setCustomValidity('Bungan % Tahun Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off" >
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">No. Seri<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">No. Seri<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" value="{{$data->noseri}}" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('No. Seri Harus Diisi..')" oninput="setCustomValidity('')" autocomplete="off" >
                 </div>
@@ -76,8 +76,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('penempatan_deposito.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>
