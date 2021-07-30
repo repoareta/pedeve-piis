@@ -25,7 +25,11 @@
                 <div class="form-group row">
                     <label for="jenis-dinas-input" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                     <div class="col-8">
+<<<<<<< Updated upstream
                         <select name="tahun" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Tahun Harus Diisi..')">
+=======
+                        <select name="tahun" class="form-control select2" required>
+>>>>>>> Stashed changes
                             <option value="">- Pilih -</option>
                             @for ($i = 2004; $i <= date('Y'); $i++)
                             <option value="{{ $i}}" <?php if($i == date('Y')) echo 'selected'; ?>>{{ $i}}</option>

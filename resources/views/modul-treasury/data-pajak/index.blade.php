@@ -44,7 +44,7 @@
     <div class="card-body">
         <form class="kt-form" id="search-form">
             <div class="form-group row">
-                <label for="" class="col-form-label">Pencarian</label>
+                <label for="" class="col-1 col-form-label">Pencarian</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="pencarian" value="" autocomplete="off">
                 </div>

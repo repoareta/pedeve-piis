@@ -22,9 +22,12 @@
     </div>
 
     <div class="card-body">
+        <div class="col-12">
+
+        </div>
         <form class="kt-form" id="search-form">
             <div class="form-group row">
-                <label for="" class="col-form-label">Tanggal</label>
+                <label for="" class="col-1 col-form-label">Tanggal</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="tanggal" value="" id="tanggal" autocomplete="off">
                 </div>
