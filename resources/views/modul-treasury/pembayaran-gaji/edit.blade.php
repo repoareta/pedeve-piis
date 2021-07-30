@@ -66,7 +66,11 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                         <div class="col-10">
+<<<<<<< Updated upstream
                             <select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')">
+=======
+                            <select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" required>
+>>>>>>> Stashed changes
                                 <option value="">- Pilih -</option>
                                 @foreach($data_bagian as $row)
                                 <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
@@ -130,14 +134,23 @@
                         <label class="col-2 col-form-label">
                         @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                         <div class="col-10">
+<<<<<<< Updated upstream
                             <input class="form-control" type="text" name="kepada" id="kepada" value="{{ $data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php }else{ ?> Kepada <?php } ?> Harus Diisi..')" autocomplete="off">
+=======
+                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required autocomplete="off">
+>>>>>>> Stashed changes
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Sejumlah<span class="text-danger">*</span></label>
                         <div class="col-10">
+<<<<<<< Updated upstream
                             <input class="form-control" type="text"  value="{{number_format($data->nilai_dok,2,'.',',')}}" size="16" maxlength="16" readonly required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" autocomplete="off">
                             <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{number_format($count,2,'.','')}}" size="16" maxlength="16" required oninvalid="this.setCustomValidity('Sejumlah Harus Diisi..')" autocomplete="off">
+=======
+                            <input class="form-control" type="text"  value="{{number_format($data->nilai_dok,2,'.',',')}}" size="16" maxlength="16" readonly required autocomplete="off">
+                            <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{number_format($count,2,'.','')}}" size="16" maxlength="16" required autocomplete="off">
+>>>>>>> Stashed changes
                         </div>
                     </div>
                     <div class="form-group row">
@@ -273,7 +286,11 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
+<<<<<<< Updated upstream
 							<select name="status"  class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')">
+=======
+							<select name="status"  class="form-control selectpicker" data-live-search="true" required>
+>>>>>>> Stashed changes
 								<option value="">-Pilih-</option>
 								@foreach($data_rincian as $rincian)
 								<option value="{{ $rincian->status}}">{{ $rincian->status}}</option>
@@ -367,7 +384,11 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
+<<<<<<< Updated upstream
 							<textarea  class="form-control" type="text" value="" name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')"></textarea>
+=======
+							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required></textarea>
+>>>>>>> Stashed changes
 						</div>
 					</div>
 					<div class="form-group row">
@@ -449,7 +470,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16"  required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
+							<input  class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
 						</div>
 					</div>
 

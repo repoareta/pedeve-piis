@@ -55,7 +55,7 @@
             <div class="col-xl-12">
                 <form class="kt-form" id="search-form">
                     <div class="form-group row">
-                        <label for="" class="col-form-label">No. Bukti</label>
+                        <label for="" class="col-1 col-form-label">No. Bukti</label>
                         <div class="col-2">
                             <input class="form-control" type="text" name="bukti" value="" size="18" maxlength="18" autocomplete="off">
                         </div>
@@ -87,7 +87,7 @@
 
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table"
+                <table class="table table-bordered table-checkable" id="kt_table"
                     width="100%">
                     <thead class="thead-light">
                         <tr>
