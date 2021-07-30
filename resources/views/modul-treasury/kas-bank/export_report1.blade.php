@@ -66,14 +66,14 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">LAPORAN D2 KAS/BANK</font><br>
-                   <font style="font-size: 10pt;font-weight: bold "> BULAN  {{strtoupper($bulan)}} {{$request->tahun}} </font><br>
+                   <font style="font-size: 10pt;font-weight: bold "> BULAN  {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-            <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+            <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
             <table width="100%" style="font-family: sans-serif;border-collapse: collapse;" border="1">
                 <thead>
                     <tr style="text-align:center;font-size: 8pt;">
@@ -98,15 +98,15 @@
                     @foreach($data_list as $data)
                     <?php $a++ ?>
                     <tr style="text-align:center;font-size: 8pt;">
-                        <td>{{$data->tglbayar}}</td>
-                        <td>{{$data->docno}}</td>
-                        <td>{{$data->jk}}</td>
-                        <td>{{$data->store}}</td>
-                        <td>{{$data->voucher}}</td>
-                        <td>{{$data->ci}}</td>
-                        <td>{{$data->lokasi}}</td>
-                        <td>{{$data->account}}</td>
-                        <td>{{$data->cj}}</td>
+                        <td>{{ $data->tglbayar}}</td>
+                        <td>{{ $data->docno}}</td>
+                        <td>{{ $data->jk}}</td>
+                        <td>{{ $data->store}}</td>
+                        <td>{{ $data->voucher}}</td>
+                        <td>{{ $data->ci}}</td>
+                        <td>{{ $data->lokasi}}</td>
+                        <td>{{ $data->account}}</td>
+                        <td>{{ $data->cj}}</td>
                         <?php
                             if($data->ci == 1){ 
                                  $jmlrp = number_format($data->totprice,0); 
@@ -121,11 +121,11 @@
                                 $jmldl = '0'; 
                             }
                         ?>
-                        <td style="text-align:right;">{{$jmlrp < 0 ? $jmlrp : $jmlrp}}</td>
-                        <td style="text-align:right;">{{$jmldl < 0 ? $jmldl : $jmldl}}</td>
-                        <td style="text-align:right;">{{$data->ci == 1 ? '' : $data->rate}}</td>
-                        <td>{{$data->keterangan}}</td>
-                        <td>{{$data->tglbayar}}</td>
+                        <td style="text-align:right;">{{ $jmlrp < 0 ? $jmlrp : $jmlrp}}</td>
+                        <td style="text-align:right;">{{ $jmldl < 0 ? $jmldl : $jmldl}}</td>
+                        <td style="text-align:right;">{{ $data->ci == 1 ? '' : $data->rate}}</td>
+                        <td>{{ $data->keterangan}}</td>
+                        <td>{{ $data->tglbayar}}</td>
 
                     </tr>
                     <?php 

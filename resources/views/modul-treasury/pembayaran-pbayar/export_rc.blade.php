@@ -67,24 +67,24 @@
                     $bulan = ($array_bln[ltrim(date('m'),0)]);
             ?>
                     <td colspan="3" style="padding-top:-5%;padding-bottom:2%;">Jakarta, <font style="padding-left:5%;">
-                            {{$bulan}} {{date('Y')}}</font>
+                            {{ $bulan }} {{ date('Y') }}</font>
                     </td>
                 </tr>
                 <tr>
                     <td width="10%">No</td>
                     <td width="3%">:</td>
-                    <td>RC <font style="padding-left:5%;">/{{date('m')}}/PEDEVE/{{date('Y')}}</font>
+                    <td>RC <font style="padding-left:5%;">/{{ date('m') }}/PEDEVE/{{ date('Y') }}</font>
                     </td>
                 </tr>
                 <tr>
                     <td width="10%">Lampiran</td>
                     <td width="3%">:</td>
-                    <td>{{$request->lampiran}}</td>
+                    <td>{{ $request->lampiran }}</td>
                 </tr>
                 <tr>
                     <td width="10%">Perihal</td>
                     <td width="3%">:</td>
-                    <td>{{$request->perihal}}</td>
+                    <td>{{ $request->perihal }}</td>
                 </tr>
                 <tr>
                     <td colspan="3">Kepada Yth.</td>
@@ -100,7 +100,7 @@
             </tr>
             <tr>
                 <td style="text-align: justify;">Mohon bantuan Saudara agar dari rekening PT. Pertamina Pedeve Indonesia
-                    No. {{$request->norek}} di Bank Saudara dapat dilaksanakan transfer/ Pemindahbukuan kepada : </td>
+                    No. {{ $request->norek }} di Bank Saudara dapat dilaksanakan transfer/ Pemindahbukuan kepada : </td>
             </tr>
         </table>
         <table width="100%">
@@ -137,7 +137,7 @@
             <tr>
                 <td width="10%" style="padding-bottom:3%;">No. Cek</td>
                 <td width="3%">:</td>
-                <td>{{$request->reg}}</td>
+                <td>{{ $request->reg}}</td>
             </tr>
             <tr>
                 <td colspan="3" style="padding-bottom:3%;">Atas perhatian dan kerjasama Saudara kami ucapkan terima
@@ -152,14 +152,14 @@
         </table>
         <table width="100%">
             <tr>
-                <td style="text-align:center;">{{$request->jabkir}}</td>
+                <td style="text-align:center;">{{ $request->jabkir }}</td>
                 <td></td>
-                <td style="text-align:center;">{{$request->jabkan}}</td>
+                <td style="text-align:center;">{{ $request->jabkan }}</td>
             </tr>
             <tr>
-                <td style="text-align:center;padding-top:5%;">{{$request->namkir}}</td>
+                <td style="text-align:center;padding-top:5%;">{{ $request->namkir }}</td>
                 <td></td>
-                <td style="text-align:center;padding-top:5%;">{{$request->namkan}}</td>
+                <td style="text-align:center;padding-top:5%;">{{ $request->namkan }}</td>
             </tr>
         </table>
 

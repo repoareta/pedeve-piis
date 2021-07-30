@@ -22,7 +22,7 @@ class PembayaranUMKController extends Controller
     {
         $data_akses = DB::table('usermenu')->where('userid', auth()->user()->userid)->where('menuid', 502)->limit(1)->first();
 
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 $tahun = substr($data_bul->bulan_buku, 0, -2);
@@ -38,7 +38,7 @@ class PembayaranUMKController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data_rsbulan = DB::select("select max(thnbln) as thnbln from timetrans where status='1' and length(thnbln)=6");
+        $data_rsbulan = DB::select("SELECT max(thnbln) as thnbln from timetrans where status='1' and length(thnbln)=6");
         if (!empty($data_rsbulan)) {
             foreach ($data_rsbulan as $rsbulan) {
                 if (is_null($rsbulan->thnbln)) {
@@ -55,8 +55,8 @@ class PembayaranUMKController extends Controller
         $tahun = $request->tahun;
         $bulan = $request->bulan;
         if ($nodok == "" and $tahun == "" and $bulan == "") {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where thnbln='$s' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where thnbln='$s' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where thnbln='$s' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where thnbln='$s' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -65,8 +65,8 @@ class PembayaranUMKController extends Controller
                 $jumlahnya = 0;
             }
         } elseif ($nodok <> "" and $tahun == "" and $bulan == "") {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where a.voucher='$nodok' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where voucher='$nodok' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where a.voucher='$nodok' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where voucher='$nodok' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -75,8 +75,8 @@ class PembayaranUMKController extends Controller
                 $jumlahnya = 0;
             }
         } elseif ($nodok <> "" and $tahun <> "" and $bulan == "") {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where a.voucher='$nodok' and left(a.thnbln, 4)='$tahun' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where voucher='$nodok' and left(thnbln, 4)='$tahun' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where a.voucher='$nodok' and left(a.thnbln, 4)='$tahun' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where voucher='$nodok' and left(thnbln, 4)='$tahun' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -85,8 +85,8 @@ class PembayaranUMKController extends Controller
                 $jumlahnya = 0;
             }
         } elseif ($nodok == "" and $tahun <> "" and $bulan == "") {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.verified,a.paid from kasdoc a where left(thnbln, 4)='$tahun'  and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc ");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where left(thnbln, 4)='$tahun' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.verified,a.paid from kasdoc a where left(thnbln, 4)='$tahun'  and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc ");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where left(thnbln, 4)='$tahun' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -95,8 +95,8 @@ class PembayaranUMKController extends Controller
                 $jumlahnya = 0;
             }
         } elseif ($nodok == "" and $tahun <> "" and $bulan <> "") {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.verified,a.paid from kasdoc a where left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc ");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.verified,a.paid from kasdoc a where left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc ");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -105,8 +105,8 @@ class PembayaranUMKController extends Controller
                 $jumlahnya = 0;
             }
         } elseif ($nodok == "" and $tahun == "" and $bulan <> "") {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.verified,a.paid from kasdoc a where SUBSTRING(thnbln, 5, 2)='$bulan' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc ");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where  SUBSTRING(thnbln, 5, 2)='$bulan' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.nilai_dok as nilai_dok,a.verified,a.paid from kasdoc a where SUBSTRING(thnbln, 5, 2)='$bulan' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc ");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where  SUBSTRING(thnbln, 5, 2)='$bulan' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -115,8 +115,8 @@ class PembayaranUMKController extends Controller
                 $jumlahnya = 0;
             }
         } else {
-            $data = DB::select("select (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where a.voucher='$nodok' and left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
-            $data_objrs2 = DB::select("select sum(nilai_dok) as jml from kasdoc where voucher='$nodok' and left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and kd_kepada='PUMK'");
+            $data = DB::select("SELECT (select namabank from storejk where kodestore=a.store and ci=a.ci) as namastore, a.docno,a.originaldate,a.thnbln,a.jk,a.store,a.ci,a.voucher,a.kepada,a.rate,a.verified,a.nilai_dok,a.paid from kasdoc a where a.voucher='$nodok' and left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and a.kd_kepada LIKE 'PUMK%' order by a.store,a.voucher asc");
+            $data_objrs2 = DB::select("SELECT sum(nilai_dok) as jml from kasdoc where voucher='$nodok' and left(thnbln, 4)='$tahun' and SUBSTRING(thnbln, 5, 2)='$bulan' and kd_kepada='PUMK'");
             if (!empty($data_objrs2)) {
                 foreach ($data_objrs2 as $objrs2) {
                     $jumlahnya = $objrs2->jml;
@@ -181,7 +181,7 @@ class PembayaranUMKController extends Controller
 
     public function create()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 if ($data_bul->bulan_buku <> null) {
@@ -196,7 +196,7 @@ class PembayaranUMKController extends Controller
         $mp = 'P';
         if ($mp == "P") {
             $darkep = "Kepada";
-            $datas = DB::select("Select Max(left(mrs_no,4)) as nover from Kasdoc Where substr(DocNo,1,1)='P' and left(THNBLN,4)='$bulan_buku'");
+            $datas = DB::select("SELECT Max(left(mrs_no,4)) as nover from Kasdoc Where substr(DocNo,1,1)='P' and left(THNBLN,4)='$bulan_buku'");
             foreach ($datas as $data) {
                 if ($data->nover <> null) {
                     $da = '2' . ($data->nover + 1);
@@ -209,7 +209,7 @@ class PembayaranUMKController extends Controller
             $darkep = "Dari";
             $nover = '0';
         }
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 if ($data_bul->bulan_buku <> null) {
@@ -229,7 +229,7 @@ class PembayaranUMKController extends Controller
 
     public function createJson(Request $request)
     {
-        $datas = DB::select("Select MAX(SUBSTR(docno,13,3)) as id from Kasdoc where SUBSTR(docno,3,5)='$request->bagian' and thnbln='$request->bulanbuku' and SUBSTR(docno,1,1)='$request->mp'");
+        $datas = DB::select("SELECT MAX(SUBSTR(docno,13,3)) as id from Kasdoc where SUBSTR(docno,3,5)='$request->bagian' and thnbln='$request->bulanbuku' and SUBSTR(docno,1,1)='$request->mp'");
         if (!empty($datas)) {
             foreach ($datas as $dataa) {
                 if ($dataa->id <> null) {
@@ -245,13 +245,13 @@ class PembayaranUMKController extends Controller
     }
     public function lokasiJson(Request $request)
     {
-        $data = DB::select("select a.kodestore,a.namabank,a.norekening from storejk a where a.jeniskartu ='$request->jk' and a.ci='$request->ci' order by a.kodestore");
+        $data = DB::select("SELECT a.kodestore,a.namabank,a.norekening from storejk a where a.jeniskartu ='$request->jk' and a.ci='$request->ci' order by a.kodestore");
         return response()->json($data);
     }
 
     public function nobuktiJson(Request $request)
     {
-        $datas = DB::select("select max(voucher) as nb from kasdoc where SUBSTR(thnbln,1,4)='$request->tahun' and store='$request->lokasi' and SUBSTR(docno,1,1)='$request->mp'");
+        $datas = DB::select("SELECT max(voucher) as nb from kasdoc where SUBSTR(thnbln,1,4)='$request->tahun' and store='$request->lokasi' and SUBSTR(docno,1,1)='$request->mp'");
         if (!empty($datas)) {
             foreach ($datas as $dataa) {
                 if ($dataa->nb <> null) {
@@ -269,7 +269,7 @@ class PembayaranUMKController extends Controller
 
     public function store(Request $request)
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 if ($data_bul->bulan_buku <> null) {
@@ -281,7 +281,7 @@ class PembayaranUMKController extends Controller
         } else {
             $bulan_buku = '0';
         }
-        $data_status = DB::select("select * from timetrans where thnbln='$bulan_buku' and suplesi='0'");
+        $data_status = DB::select("SELECT * from timetrans where thnbln='$bulan_buku' and suplesi='0'");
         if (!empty($data_status)) {
             foreach ($data_status as $data_st) {
                 if ($data_st->status == '1') {
@@ -330,7 +330,7 @@ class PembayaranUMKController extends Controller
         $nover = $request->nover;
         if ($stbbuku == 'gtopening') {
 
-            $data_cek = DB::select("select * from kasdoc where docno='$docno'");
+            $data_cek = DB::select("SELECT * from kasdoc where docno='$docno'");
             if (!empty($data_cek)) {
                 $data = 0;
                 return response()->json($data);
@@ -388,8 +388,8 @@ class PembayaranUMKController extends Controller
         $data_jenis = JenisBiaya::all();
         $data_casj = CashJudex::all();
         $data_bagian = SdmKdbag::all();
-        $data_rincian = DB::select("select tahun,bulan,tahunthr,case when status = 'C' then 'THR PEKERJA PWTT' when status = 'K' then 'THR PEKERJA PWT' else 'THR PEKERJA PERBANTUAN' end as namastatus, status,sum(nilai) as nilai from pay_master_thr p where tahun='$tahuns' and bulan='$bulans' group by tahun,bulan,tahunthr,status");
-        $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%'");
+        $data_rincian = DB::select("SELECT tahun,bulan,tahunthr,case when status = 'C' then 'THR PEKERJA PWTT' when status = 'K' then 'THR PEKERJA PWT' else 'THR PEKERJA PERBANTUAN' end as namastatus, status,sum(nilai) as nilai from pay_master_thr p where tahun='$tahuns' and bulan='$bulans' group by tahun,bulan,tahunthr,status");
+        $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%'");
         $count = Kasline::where('docno', $nodoc)->sum('totprice');
         $data_detail = Kasline::where('docno', $nodoc)->get();
         $no_detail = Kasline::where('docno', $nodoc)->max('lineno');
@@ -440,7 +440,7 @@ class PembayaranUMKController extends Controller
         $bulan = ltrim($request->bulan, 0);
         $thnbln = $tahun . '' . $bulans;
         $docno = $request->nodok;
-        $data_cek = DB::select("select * from kasline where docno='$request->nodok' and lineno='$request->nourut'");
+        $data_cek = DB::select("SELECT * from kasline where docno='$request->nodok' and lineno='$request->nourut'");
         if (!empty($data_cek)) {
             $data = 2;
             return response()->json($data);
@@ -458,7 +458,7 @@ class PembayaranUMKController extends Controller
                 'totprice'  =>  str_replace(',', '.', $request->nilai),
                 'keterangan'  =>  $request->rincian
             ]);
-            $data_sum = DB::select("select sum(totprice) as v_total from kasline where docno='$docno'");
+            $data_sum = DB::select("SELECT sum(totprice) as v_total from kasline where docno='$docno'");
             foreach ($data_sum as $data_s) {
                 Kasdoc::where('docno', $docno)
                     ->update([
@@ -491,7 +491,7 @@ class PembayaranUMKController extends Controller
                 'keterangan' =>  $request->rincian,
             ]);
 
-        $data_sum = DB::select("select sum(totprice) as total from kasline where docno='$request->nodok'");
+        $data_sum = DB::select("SELECT sum(totprice) as total from kasline where docno='$request->nodok'");
         foreach ($data_sum as $data_s) {
             Kasdoc::where('docno', $request->nodok)
                 ->update([
@@ -503,9 +503,9 @@ class PembayaranUMKController extends Controller
 
     public function delete(Request $request)
     {
-        $data_rskas = DB::select("select thnbln from kasdoc a where a.docno='$request->nodok'");
+        $data_rskas = DB::select("SELECT thnbln from kasdoc a where a.docno='$request->nodok'");
         foreach ($data_rskas as $data_kas) {
-            $data_rsbulan = DB::select("select * from timetrans where thnbln='$data_kas->thnbln' and suplesi='0'");
+            $data_rsbulan = DB::select("SELECT * from timetrans where thnbln='$data_kas->thnbln' and suplesi='0'");
             if (!empty($data_rsbulan)) {
                 foreach ($data_rsbulan as $data_bulan) {
                     if ($data_bulan->status == '1') {
@@ -525,13 +525,13 @@ class PembayaranUMKController extends Controller
                 $data = 2;
                 return response()->json($data);
             } else {
-                $data_rscekbayar = DB::select("select paid from kasdoc where docno='$request->nodok'");
+                $data_rscekbayar = DB::select("SELECT paid from kasdoc where docno='$request->nodok'");
                 foreach ($data_rscekbayar as $data_cekbayar) {
                     if ($data_cekbayar->paid == 'Y') {
                         $data = 3;
                         return response()->json($data);
                     } else {
-                        $data_cekumum = DB::select("select distinct(ref_no) as nomor from kasdoc where docno='$request->nodok'");
+                        $data_cekumum = DB::select("SELECT distinct(ref_no) as nomor from kasdoc where docno='$request->nodok'");
                         foreach ($data_cekumum as $cekumum) {
                             $tgl_app = date('Y-m-d');
                             $userid = auth()->user()->userid;
@@ -556,7 +556,7 @@ class PembayaranUMKController extends Controller
     public function deleteDetail(Request $request)
     {
         Kasline::where('docno', $request->nodok)->where('lineno', $request->nourut)->delete();
-        $data_sum = DB::select("select sum(totprice) as total from kasline where docno='$request->nodok'");
+        $data_sum = DB::select("SELECT sum(totprice) as total from kasline where docno='$request->nodok'");
         foreach ($data_sum as $data_s) {
             Kasdoc::where('docno', $request->nodok)
                 ->update([
@@ -593,10 +593,10 @@ class PembayaranUMKController extends Controller
         }
         if ($check_data == 'Y') {
             $bi_bayar = -1;  //Mengembalikan pembayaran
-            $data_cr = DB::select("select * from kasdoc h where h.docno='$nodok'");
+            $data_cr = DB::select("SELECT * from kasdoc h where h.docno='$nodok'");
             foreach ($data_cr as $t) {
                 $v_akhir = -9999999999999999;
-                $data_tglrekap = DB::select("select max(tglrekap) as stglrekap from rekapkas where store = '$t->store' and jk =  '$t->jk'");
+                $data_tglrekap = DB::select("SELECT max(tglrekap) as stglrekap from rekapkas where store = '$t->store' and jk =  '$t->jk'");
                 if (!empty($data_tglrekap)) {
                     foreach ($data_tglrekap as $data_tgl) {
                         $stglrekap  = $data_tgl->stglrekap;
@@ -605,7 +605,7 @@ class PembayaranUMKController extends Controller
                     $stglrekap = date(now());
                 }
 
-                $data_juml = DB::select("select count(*),sum(totprice) as jumlah from kasline where penutup='N' and docno = '$nodok'");
+                $data_juml = DB::select("SELECT count(*),sum(totprice) as jumlah from kasline where penutup='N' and docno = '$nodok'");
                 foreach ($data_juml as $data_jum) {
                     $selisih = round($data_jum->jumlah, 0) * $bi_bayar;
                     if ($selisih + $v_akhir > 0) {
@@ -629,7 +629,7 @@ class PembayaranUMKController extends Controller
                                 $v_kredit = 0;
                             }
                         }
-                        $data_saldo = DB::select("select *  from saldostore where jk ='$t->jk' and nokas = '$t->store'");
+                        $data_saldo = DB::select("SELECT *  from saldostore where jk ='$t->jk' and nokas = '$t->store'");
                         foreach ($data_saldo as $data_sald) {
                             SaldoStore::where('jk', $t->jk)->where('nokas', $t->store)
                                 ->update([
@@ -657,10 +657,10 @@ class PembayaranUMKController extends Controller
             }
         } else {
             $i_bayar = 1; //i_Bayar = 1  : Membayar Kas/Bank
-            $data_cr = DB::select("select * from kasdoc h where h.docno='$nodok'");
+            $data_cr = DB::select("SELECT * from kasdoc h where h.docno='$nodok'");
             foreach ($data_cr as $t) {
                 $v_akhir = -9999999999999999;
-                $data_tglrekap = DB::select("select max(tglrekap) as stglrekap from rekapkas where store = '$t->store' and jk =  '$t->jk'");
+                $data_tglrekap = DB::select("SELECT max(tglrekap) as stglrekap from rekapkas where store = '$t->store' and jk =  '$t->jk'");
                 if (!empty($data_tglrekap)) {
                     foreach ($data_tglrekap as $data_tgl) {
                         $stglrekap  = $data_tgl->stglrekap;
@@ -669,7 +669,7 @@ class PembayaranUMKController extends Controller
                     $stglrekap = date(now());
                 }
 
-                $data_juml = DB::select("select count(*),sum(totprice) as jumlah from kasline where penutup='N' and docno = '$nodok'");
+                $data_juml = DB::select("SELECT count(*),sum(totprice) as jumlah from kasline where penutup='N' and docno = '$nodok'");
                 foreach ($data_juml as $data_jum) {
                     $selisih = round($data_jum->jumlah, 0) * $i_bayar;
                     if ($selisih + $v_akhir > 0) {
@@ -693,7 +693,7 @@ class PembayaranUMKController extends Controller
                                 $v_kredit = 0;
                             }
                         }
-                        $data_saldo = DB::select("select *  from saldostore where jk ='$t->jk' and nokas = '$t->store'");
+                        $data_saldo = DB::select("SELECT *  from saldostore where jk ='$t->jk' and nokas = '$t->store'");
                         foreach ($data_saldo as $data_sald) {
                             Saldostore::where('jk', $t->jk)->where('nokas', $t->store)
                                 ->update([
@@ -725,7 +725,7 @@ class PembayaranUMKController extends Controller
     public function rekap($docs)
     {
         $doc = str_replace('-', '/', $docs);
-        $data_list = DB::select("select * from kasdoc where docno='$doc'");
+        $data_list = DB::select("SELECT * from kasdoc where docno='$doc'");
         foreach ($data_list as $data_kasd) {
             $docno = $data_kasd->docno;
             $thnbln = $data_kasd->thnbln;
@@ -753,7 +753,7 @@ class PembayaranUMKController extends Controller
                 $id = "K";
             }
 
-            $data_pbd = DB::select("select a.* from pbd_tbl_param a where id='$id'");
+            $data_pbd = DB::select("SELECT a.* from pbd_tbl_param a where id='$id'");
             foreach ($data_pbd as $rsparam) {
                 if ($mp == "P" or $mp == "p") {
                     $minta1 = $rsparam->minta1;
@@ -820,7 +820,7 @@ class PembayaranUMKController extends Controller
             ->update([
                 'tgl_kurs' =>  $request->tanggal,
             ]);
-        $data_list = DB::select("select a.nilai_dok,a.mrs_no,a.kepada,a.tgl_kurs,a.jk,right(a.thnbln,2) bulan, left(a.thnbln, 4) tahun,a.store,a.ci,a.rate,a.ket1,a.ket2,a.ket3, b.*,a.voucher from kasdoc a join kasline b on a.docno=b.docno where a.docno='$docno'");
+        $data_list = DB::select("SELECT a.nilai_dok,a.mrs_no,a.kepada,a.tgl_kurs,a.jk,right(a.thnbln,2) bulan, left(a.thnbln, 4) tahun,a.store,a.ci,a.rate,a.ket1,a.ket2,a.ket3, b.*,a.voucher from kasdoc a join kasline b on a.docno=b.docno where a.docno='$docno'");
 
         if (!empty($data_list)) {
             foreach ($data_list as $data) {
@@ -879,7 +879,7 @@ class PembayaranUMKController extends Controller
     public function rekapRc($docno)
     {
         $doc = str_replace('-', '/', $docno);
-        $data_list = DB::select("select a.*, b.keterangan from kasdoc a join umu_bayar_header b on a.docno=b.no_kas where a.docno='$doc'");
+        $data_list = DB::select("SELECT a.*, b.keterangan from kasdoc a join umu_bayar_header b on a.docno=b.no_kas where a.docno='$doc'");
         if (!empty($data_list)) {
             foreach ($data_list as $objrs) {
                 $jumangka = $objrs->nilai_dok;

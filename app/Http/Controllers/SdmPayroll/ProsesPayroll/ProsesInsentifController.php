@@ -19,7 +19,7 @@ class ProsesInsentifController extends Controller
      */
     public function index()
     {
-        return view('proses_insentif.create');
+        return view('modul-sdm-payroll.proses-insentif.create');
     }
 
     /**
@@ -29,7 +29,7 @@ class ProsesInsentifController extends Controller
      */
     public function create()
     {
-        return view('proses_insentif.create');
+        return view('modul-sdm-payroll.proses-insentif.create');
     }
 
     /**
@@ -59,25 +59,25 @@ class ProsesInsentifController extends Controller
         if($request->radioupah == 'proses'){
             
                 if($prosesupah == 'A'){
-                    $data_Cekinsentif = DB::select("select * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
+                    $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
                 }else{
-                    $data_Cekinsentif = DB::select("select * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan' and status='$prosesupah'");
+                    $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan' and status='$prosesupah'");
                 }
                 if(!empty($data_Cekinsentif)){ //di rubah !
                         Alert::Info("Data Insentif bulan $data_bulan dan tahun $data_tahun sudah pernah di proses", 'Info')->persistent(true);
-                        return redirect()->route('proses_insentif.index');
+                        return redirect()->route('modul_sdm_payroll.proses_insentif.index');
                 }else{
                         if($request->prosesupah == 'A'){
                             
                                     // PekerjaTetapIns()
                                     // 1.CARI PEGAWAI YANG STATUS PEKERJA TETAP
-                                    $data_caripegawaic = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
+                                    $data_caripegawaic = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
                                     foreach($data_caripegawaic as $data_caript)
                                     {                                
                                         $nopegpt = $data_caript->nopeg;
                                         $kodekel = $data_caript->kodekeluarga;
                                     
-                                    $data_upahtetappt = DB::select("select a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
+                                    $data_upahtetappt = DB::select("SELECT a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
                                     if(!empty($data_upahtetappt)){
                                         foreach($data_upahtetappt as $data_upahpt)
                                         {
@@ -94,7 +94,7 @@ class ProsesInsentifController extends Controller
                                     $insentifpt = $upahtetappt * $upah;
                                     
                                     // 2.Cari nilai Jamsostek
-                                    $data_carijamsostekpt = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
+                                    $data_carijamsostekpt = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
                                         if(!empty($data_carijamsostekpt)){
                                             foreach($data_carijamsostekpt as $data_carijampt)
                                             {
@@ -108,7 +108,7 @@ class ProsesInsentifController extends Controller
                                             $niljstaccidentpt = '0';
                                         }
 
-                                    $data_jslifept = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
+                                    $data_jslifept = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
                                         if(!empty($data_jslifept)){
                                             foreach($data_jslifept as $data_carilifept)
                                             {
@@ -122,7 +122,7 @@ class ProsesInsentifController extends Controller
                                             $niljstlifept = '0';
                                         }
 
-                                    $data_fasilitaspt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
+                                    $data_fasilitaspt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
                                         if(!empty($data_fasilitaspt)){
                                             foreach($data_fasilitaspt as $data_fasilpt)
                                             {
@@ -137,7 +137,7 @@ class ProsesInsentifController extends Controller
                                         }
 
                                     // 3.Cari nilai kena pajak upah bulan sebelumnya
-                                    $data_kenapajakpt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
+                                    $data_kenapajakpt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
                                         if(!empty($data_kenapajakpt)){
                                             foreach($data_kenapajakpt as $data_kenappt)
                                             {
@@ -151,7 +151,7 @@ class ProsesInsentifController extends Controller
                                             $nilaikenapajak1pt = '0';
                                         }
 
-                                    $data_koreksigajipt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
+                                    $data_koreksigajipt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
                                         if(!empty($data_koreksigajipt)){
                                             foreach($data_koreksigajipt as $data_koreksigpt)
                                             {
@@ -177,7 +177,7 @@ class ProsesInsentifController extends Controller
 
                                     $neto1tahunpt =  $totkenapajakpt - $biayajabatanpt;
 
-                                    $data_ptkppt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
+                                    $data_ptkppt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
                                         if(!empty($data_ptkppt)){
                                             foreach($data_ptkppt as $data_ppt)
                                             {
@@ -199,7 +199,7 @@ class ProsesInsentifController extends Controller
                                     $pajakbulanpt=1;
                                     $nilkenapajakpt = $nilaikenapajakapt;
                                     $sisapokokpt = $nilkenapajakpt;
-                                    $data_sdmprogresif = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                                    $data_sdmprogresif = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                                     foreach($data_sdmprogresif as $data_progpt)
                                     {
                                         $awalpt = $data_progpt->awal;
@@ -234,7 +234,7 @@ class ProsesInsentifController extends Controller
                                         $tunjanganpt=$pajakbulanpt;
 
 
-                                    $data_stungajipt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
+                                    $data_stungajipt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
                                         if(!empty($data_stungajipt)){
                                             foreach($data_stungajipt as $data_stpt)
                                             {
@@ -249,7 +249,7 @@ class ProsesInsentifController extends Controller
                                         }
                                     $pajakakhirpt = ($pajakbulanpt - $pajakgajipt)* 12;
 
-                                    $data_potonganpt = DB::select("select nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$$data_bulan' and nopek='$nopegpt'");
+                                    $data_potonganpt = DB::select("SELECT nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$$data_bulan' and nopek='$nopegpt'");
                                         if(!empty($data_potonganpt)){
                                             foreach($data_potonganpt as $data_potpt)
                                             {
@@ -317,14 +317,14 @@ class ProsesInsentifController extends Controller
 
                                     // pekerjakontrakins()
                                     // 1.CARI PEGAWAI YANG STATUS PEKERJA Kontrak
-                                    $data_caripegawaipk = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
+                                    $data_caripegawaipk = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
                                     foreach($data_caripegawaipk as $data_carikt)
                                     {                                
                                         $nopeg = $data_carikt->nopeg;
                                         $kodekel = $data_carikt->kodekeluarga;
 
                                         // 1. UPAHALLIN
-                                        $data_upahkt = DB::select("select nilai from sdm_allin where nopek='$nopeg'");
+                                        $data_upahkt = DB::select("SELECT nilai from sdm_allin where nopek='$nopeg'");
                                         if(!empty($data_upahkt)){
                                             foreach($data_upahkt as $data_upkt)
                                             {
@@ -340,7 +340,7 @@ class ProsesInsentifController extends Controller
                                         
                                         $insentifkt = $upahallinkt * $upah;
 
-                                        $data_kenapajakkt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg' and a.aard=b.kode and b.kenapajak='Y'");
+                                        $data_kenapajakkt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg' and a.aard=b.kode and b.kenapajak='Y'");
                                         if(!empty($data_kenapajakkt)){
                                             foreach($data_kenapajakkt as $data_kenakt)
                                             {
@@ -354,7 +354,7 @@ class ProsesInsentifController extends Controller
                                             $nilaikenapajak1kt = '0';
                                         }
 
-                                        $data_korgajikt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg'");
+                                        $data_korgajikt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg'");
                                         foreach($data_korgajikt as $data_korkt)
                                         {
                                             $kortam2kt = $data_korkt->kortam;
@@ -370,7 +370,7 @@ class ProsesInsentifController extends Controller
 
                                         $neto1tahunkt =  $totkenapajakkt - $biayajabatankt;
 
-                                        $data_ptkpkt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopeg'");
+                                        $data_ptkpkt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopeg'");
                                         if(!empty($data_ptkpkt)){
                                             foreach($data_ptkpkt as $data_ptkt)
                                             {
@@ -394,7 +394,7 @@ class ProsesInsentifController extends Controller
                                         $nilkenapajakkt = $nilaikenapajakakt;
                                         $sisapokokkt = $nilkenapajakkt;
                                         $sisapokok1kt = $sisapokokkt;
-                                        $data_sdmprogresif = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                                        $data_sdmprogresif = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                                         foreach($data_sdmprogresif as $data_progkt)
                                         {
                                             $awalkt = $data_progkt->awal;
@@ -426,7 +426,7 @@ class ProsesInsentifController extends Controller
                                             }
                                                 $tunjangankt=$pajakbulankt;
 
-                                                $data_tunjgajikt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopeg' and aard='27'");
+                                                $data_tunjgajikt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopeg' and aard='27'");
                                                 if(!empty($data_tunjgajikt)){
                                                     foreach($data_tunjgajikt as $data_tunjkt)
                                                     {
@@ -442,7 +442,7 @@ class ProsesInsentifController extends Controller
 
                                                 $pajakakhirkt = ($pajakbulankt - $pajakgajikt)* 12;
 
-                                                $data_potongankt = DB::select("select nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$data_bulan' and nopek='$nopeg'");
+                                                $data_potongankt = DB::select("SELECT nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$data_bulan' and nopek='$nopeg'");
                                                 if(!empty($data_potongankt)){
                                                     foreach($data_potongankt as $data_potkt)
                                                     {
@@ -514,13 +514,13 @@ class ProsesInsentifController extends Controller
                         }elseif($request->prosesupah == 'C'){
                                     // PekerjaTetapIns()
                                      // 1.CARI PEGAWAI YANG STATUS PEKERJA TETAP
-                                     $data_caripegawaic = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
+                                     $data_caripegawaic = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
                                      foreach($data_caripegawaic as $data_caript)
                                      {                                
                                          $nopegpt = $data_caript->nopeg;
                                          $kodekel = $data_caript->kodekeluarga;
                                      
-                                     $data_upahtetappt = DB::select("select a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
+                                     $data_upahtetappt = DB::select("SELECT a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
                                      if(!empty($data_upahtetappt)){
                                          foreach($data_upahtetappt as $data_upahpt)
                                          {
@@ -537,7 +537,7 @@ class ProsesInsentifController extends Controller
                                      $insentifpt = $upahtetappt * $upah;
                                      
                                      // 2.Cari nilai Jamsostek
-                                     $data_carijamsostekpt = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
+                                     $data_carijamsostekpt = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
                                          if(!empty($data_carijamsostekpt)){
                                              foreach($data_carijamsostekpt as $data_carijampt)
                                              {
@@ -551,7 +551,7 @@ class ProsesInsentifController extends Controller
                                              $niljstaccidentpt = '0';
                                          }
  
-                                     $data_jslifept = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
+                                     $data_jslifept = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
                                          if(!empty($data_jslifept)){
                                              foreach($data_jslifept as $data_carilifept)
                                              {
@@ -565,7 +565,7 @@ class ProsesInsentifController extends Controller
                                              $niljstlifept = '0';
                                          }
  
-                                     $data_fasilitaspt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
+                                     $data_fasilitaspt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
                                          if(!empty($data_fasilitaspt)){
                                              foreach($data_fasilitaspt as $data_fasilpt)
                                              {
@@ -580,7 +580,7 @@ class ProsesInsentifController extends Controller
                                          }
  
                                      // 3.Cari nilai kena pajak upah bulan sebelumnya
-                                     $data_kenapajakpt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
+                                     $data_kenapajakpt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
                                          if(!empty($data_kenapajakpt)){
                                              foreach($data_kenapajakpt as $data_kenappt)
                                              {
@@ -594,7 +594,7 @@ class ProsesInsentifController extends Controller
                                              $nilaikenapajak1pt = '0';
                                          }
  
-                                     $data_koreksigajipt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
+                                     $data_koreksigajipt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
                                          if(!empty($data_koreksigajipt)){
                                              foreach($data_koreksigajipt as $data_koreksigpt)
                                              {
@@ -620,7 +620,7 @@ class ProsesInsentifController extends Controller
  
                                      $neto1tahunpt =  $totkenapajakpt - $biayajabatanpt;
  
-                                     $data_ptkppt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
+                                     $data_ptkppt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
                                          if(!empty($data_ptkppt)){
                                              foreach($data_ptkppt as $data_ppt)
                                              {
@@ -642,7 +642,7 @@ class ProsesInsentifController extends Controller
                                      $pajakbulanpt=1;
                                      $nilkenapajakpt = $nilaikenapajakapt;
                                      $sisapokokpt = $nilkenapajakpt;
-                                     $data_sdmprogresif = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                                     $data_sdmprogresif = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                                      foreach($data_sdmprogresif as $data_progpt)
                                      {
                                          $awalpt = $data_progpt->awal;
@@ -676,7 +676,7 @@ class ProsesInsentifController extends Controller
                                          $tunjanganpt=$pajakbulanpt;
  
  
-                                     $data_stungajipt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
+                                     $data_stungajipt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
                                          if(!empty($data_stungajipt)){
                                              foreach($data_stungajipt as $data_stpt)
                                              {
@@ -691,7 +691,7 @@ class ProsesInsentifController extends Controller
                                          }
                                      $pajakakhirpt = ($pajakbulanpt - $pajakgajipt)* 12;
  
-                                     $data_potonganpt = DB::select("select nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$$data_bulan' and nopek='$nopegpt'");
+                                     $data_potonganpt = DB::select("SELECT nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$$data_bulan' and nopek='$nopegpt'");
                                          if(!empty($data_potonganpt)){
                                              foreach($data_potonganpt as $data_potpt)
                                              {
@@ -760,14 +760,14 @@ class ProsesInsentifController extends Controller
 
                                     // pekerjakontrakins()
                                     // 1.CARI PEGAWAI YANG STATUS PEKERJA Kontrak
-                                    $data_caripegawaipk = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
+                                    $data_caripegawaipk = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
                                     foreach($data_caripegawaipk as $data_carikt)
                                     {                                
                                         $nopeg = $data_carikt->nopeg;
                                         $kodekel = $data_carikt->kodekeluarga;
 
                                         // 1. UPAHALLIN
-                                        $data_upahkt = DB::select("select nilai from sdm_allin where nopek='$nopeg'");
+                                        $data_upahkt = DB::select("SELECT nilai from sdm_allin where nopek='$nopeg'");
                                         if(!empty($data_upahkt)){
                                             foreach($data_upahkt as $data_upkt)
                                             {
@@ -783,7 +783,7 @@ class ProsesInsentifController extends Controller
                                         
                                         $insentifkt = $upahallinkt * $upah;
 
-                                        $data_kenapajakkt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg' and a.aard=b.kode and b.kenapajak='Y'");
+                                        $data_kenapajakkt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg' and a.aard=b.kode and b.kenapajak='Y'");
                                         if(!empty($data_kenapajakkt)){
                                             foreach($data_kenapajakkt as $data_kenakt)
                                             {
@@ -797,7 +797,7 @@ class ProsesInsentifController extends Controller
                                             $nilaikenapajak1kt = '0';
                                         }
 
-                                        $data_korgajikt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg'");
+                                        $data_korgajikt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopeg'");
                                         foreach($data_korgajikt as $data_korkt)
                                         {
                                             $kortam2kt = $data_korkt->kortam;
@@ -813,7 +813,7 @@ class ProsesInsentifController extends Controller
 
                                         $neto1tahunkt =  $totkenapajakkt - $biayajabatankt;
 
-                                        $data_ptkpkt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopeg'");
+                                        $data_ptkpkt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopeg'");
                                         if(!empty($data_ptkpkt)){
                                             foreach($data_ptkpkt as $data_ptkt)
                                             {
@@ -837,7 +837,7 @@ class ProsesInsentifController extends Controller
                                         $nilkenapajakkt = $nilaikenapajakakt;
                                         $sisapokokkt = $nilkenapajakkt;
                                         $sisapokok1kt = $sisapokokkt;
-                                        $data_sdmprogresif = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                                        $data_sdmprogresif = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                                         foreach($data_sdmprogresif as $data_progkt)
                                         {
                                             $awalkt = $data_progkt->awal;
@@ -869,7 +869,7 @@ class ProsesInsentifController extends Controller
                                             }
                                                 $tunjangankt=$pajakbulankt;
 
-                                                $data_tunjgajikt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopeg' and aard='27'");
+                                                $data_tunjgajikt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopeg' and aard='27'");
                                                 if(!empty($data_tunjgajikt)){
                                                     foreach($data_tunjgajikt as $data_tunjkt)
                                                     {
@@ -885,7 +885,7 @@ class ProsesInsentifController extends Controller
 
                                                 $pajakakhirkt = ($pajakbulankt - $pajakgajikt)* 12;
 
-                                                $data_potongankt = DB::select("select nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$data_bulan' and nopek='$nopeg'");
+                                                $data_potongankt = DB::select("SELECT nilai as nilai from pay_potongan_insentif where tahun='$data_tahun' and bulan='$data_bulan' and nopek='$nopeg'");
                                                 if(!empty($data_potongankt)){
                                                     foreach($data_potongankt as $data_potkt)
                                                     {
@@ -956,7 +956,7 @@ class ProsesInsentifController extends Controller
                             
                         }
 
-                        $cek_stat = DB::select("select * from stat_bayar_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
+                        $cek_stat = DB::select("SELECT * from stat_bayar_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
                         if(!empty($cek_stat)){
                             StatBayarInsentif::where('tahun', $data_tahun)
                                     ->where('bulan',$data_bulan)
@@ -973,11 +973,11 @@ class ProsesInsentifController extends Controller
 
 
                         Alert::success("Data Insentif bulan $data_bulan dan tahun $data_tahun berhasil di proses ", 'Berhasil')->persistent(true);
-                        return redirect()->route('proses_insentif.index');
+                        return redirect()->route('modul_sdm_payroll.proses_insentif.index');
                 }
         }else {
         
-            $data_cekstatusbayar = DB::select("select status from stat_bayar_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
+            $data_cekstatusbayar = DB::select("SELECT status from stat_bayar_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
             if(!empty($data_cekstatusbayar)){
                     foreach($data_cekstatusbayar as $data_bayar)
                     {
@@ -985,9 +985,9 @@ class ProsesInsentifController extends Controller
                     }
                     if($data_cekbayar == 'N'){
                         if($prosesupah == 'A'){
-                            $data_Cekinsentif = DB::select("select * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
+                            $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
                         }else{
-                            $data_Cekinsentif = DB::select("select * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan' and status='$prosesupah'");
+                            $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan' and status='$prosesupah'");
                         }
                             if(!empty($data_Cekinsentif)){
                                     if($request->prosesupah == 'A'){
@@ -999,34 +999,34 @@ class ProsesInsentifController extends Controller
                                         MasterInsentif::where('tahun', $data_tahun)->where('bulan',$data_bulan)->where('status',$prosesupah)->delete();
                                     }
                                     Alert::success("Proses pembatalan proses Insentif selesai", 'Berhasil')->persistent(true);
-                                    return redirect()->route('proses_insentif.index');
+                                    return redirect()->route('modul_sdm_payroll.proses_insentif.index');
                             }else {
                                     Alert::info("Tidak ditemukan data insentif bulan $data_bulan dan tahun $data_tahun", 'Info')->persistent(true);
-                                    return redirect()->route('proses_insentif.index');
+                                    return redirect()->route('modul_sdm_payroll.proses_insentif.index');
                             }
 
                     }else {
                         Alert::info("Tidak bisa dibatalkan Data Insentif bulan $data_bulan tahun $data_tahun sudah di proses perbendaharaan", 'Info')->persistent(true);
-                        return redirect()->route('proses_insentif.index');
+                        return redirect()->route('modul_sdm_payroll.proses_insentif.index');
                     }
             }else{
                     Alert::Info("Tidak ditemukan data insentif bulan $data_bulan dan tahun $data_tahun", 'Info')->persistent(true);
-                    return redirect()->route('proses_insentif.index');
+                    return redirect()->route('modul_sdm_payroll.proses_insentif.index');
             }
         }
     }
 
     public function ctkslipinsentif()
     {
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('proses_insentif.rekap',compact('data_pegawai'));
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        return view('modul-sdm-payroll.proses-insentif.rekap',compact('data_pegawai'));
     }
     public function cetak_slipinsentif(Request $request)
     {
-        $data_list = DB::select("select a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
-        $data_detail = DB::select("select a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('03','07')");            
+        $data_list = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
+        $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('03','07')");            
         if(!empty($data_list) and !empty($data_detail)) {
-            $pdf = DomPDF::loadview('proses_insentif.export_slipinsentif',compact('request','data_list','data_detail'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-insentif.export_slipinsentif',compact('request','data_list','data_detail'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
         
@@ -1036,20 +1036,20 @@ class ProsesInsentifController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('proses_insentif.ctkslipinsentif');
+            return redirect()->route('modul_sdm_payroll.proses_insentif.ctkslipinsentif');
         }
     }
 
     public function ctkrekapinsentif()
     {
-        return view('proses_insentif.rekapinsentif');
+        return view('modul-sdm-payroll.proses-insentif.rekapinsentif');
     }
 
     public function rekapExport(Request $request)
     {
-        $data_list = DB::select("select a.status,a.nopek,a.nilai,a.ut,a.pajakins,b.nama as namapegawai from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg  where a.aard='24' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
+        $data_list = DB::select("SELECT a.status,a.nopek,a.nilai,a.ut,a.pajakins,b.nama as namapegawai from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg  where a.aard='24' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
         if(!empty($data_list)){
-            $pdf = DomPDF::loadview('proses_insentif.export_rekapinsentif',compact('request','data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-insentif.export_rekapinsentif',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -1059,7 +1059,7 @@ class ProsesInsentifController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('proses_insentif.ctkrekapinsentif');
+            return redirect()->route('modul_sdm_payroll.proses_insentif.ctkrekapinsentif');
         }
     }
 }

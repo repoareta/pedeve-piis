@@ -24,7 +24,7 @@ class PermintaanBayarController extends Controller
      */
     public function index(Request $request)
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
                 $bulan = substr($data_bul->bulan_buku, 4, 2);
@@ -40,20 +40,20 @@ class PermintaanBayarController extends Controller
     public function indexJson(Request $request)
     {
         if ($request->permintaan <>  null and $request->tahun == null and $request->bulan == null) {
-            $data = DB::select("select a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' order by a.no_bayar desc");
+            $data = DB::select("SELECT a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' order by a.no_bayar desc");
         } elseif ($request->permintaan <>  null and $request->tahun <>  null and $request->bulan ==  null) {
-            $data = DB::select("select  a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' and left(a.bulan_buku,4)='$request->tahun' order by a.no_bayar desc");
+            $data = DB::select("SELECT  a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' and left(a.bulan_buku,4)='$request->tahun' order by a.no_bayar desc");
         } elseif ($request->permintaan ==  null and $request->tahun <>  null and $request->bulan <>  null) {
-            $data = DB::select("select a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where right(a.no_bayar,4)='$request->tahun' and SUBSTRING(a.no_bayar,11,2) ='$request->bulan' order by a.no_bayar desc");
+            $data = DB::select("SELECT a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where right(a.no_bayar,4)='$request->tahun' and SUBSTRING(a.no_bayar,11,2) ='$request->bulan' order by a.no_bayar desc");
         } elseif ($request->permintaan <>  null and $request->tahun <>  null and $request->bulan <>  null) {
-            $data = DB::select("select a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' and right(a.no_bayar,4)='$request->tahun' and SUBSTRING(a.no_bayar,11,2) ='$request->bulan' order by a.no_bayar desc");
+            $data = DB::select("SELECT a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.no_bayar like '$request->permintaan%' and right(a.no_bayar,4)='$request->tahun' and SUBSTRING(a.no_bayar,11,2) ='$request->bulan' order by a.no_bayar desc");
         } else {
-            $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+            $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             foreach ($data_tahunbulan as $data_bul) {
                 $bulan_buku = $data_bul->bulan_buku;
             }
              
-            $data = DB::select("select  a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.bulan_buku ='$bulan_buku' order by a.no_bayar desc");
+            $data = DB::select("SELECT  a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.bulan_buku ='$bulan_buku' order by a.no_bayar desc");
         }
 
         return datatables()->of($data)
@@ -67,7 +67,7 @@ class PermintaanBayarController extends Controller
                 if ($data->app_sdm == 'Y') {
                     $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
                 } else {
-                    $radio =  '<label  class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
+                    $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
                 }
             }
             return $radio;
@@ -96,11 +96,11 @@ class PermintaanBayarController extends Controller
     public function create()
     {
         $debit_nota = UmuDebetNota::all();
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         foreach ($data_tahunbulan as $data_bul) {
             $bulan_buku = $data_bul->bulan_buku;
         }
-        $data = DB::select("select left(max(no_bayar),-14) as no_bayar from umu_bayar_header where  date_part('year', tgl_bayar)  = date_part('year', CURRENT_DATE)");
+        $data = DB::select("SELECT left(max(no_bayar),-14) as no_bayar from umu_bayar_header where  date_part('year', tgl_bayar)  = date_part('year', CURRENT_DATE)");
         foreach ($data as $data_no_bayar) {
             $data_no_bayar->no_bayar;
         }
@@ -122,7 +122,7 @@ class PermintaanBayarController extends Controller
      */
     public function store(Request $request)
     {
-        $check_data =  DB::select("select * from umu_bayar_header where no_bayar = '$request->nobayar'");
+        $check_data =  DB::select("SELECT * from umu_bayar_header where no_bayar = '$request->nobayar'");
         if (!empty($check_data)) {
             PermintaanBayarHeader::where('no_bayar', $request->nobayar)
             ->update([
@@ -169,7 +169,7 @@ class PermintaanBayarController extends Controller
 
     public function storeDetail(request $request)
     {
-        $check_data =  DB::select("select * from umu_bayar_detail where no = '$request->no' and  no_bayar = '$request->nobayar'");
+        $check_data =  DB::select("SELECT * from umu_bayar_detail where no = '$request->no' and  no_bayar = '$request->nobayar'");
         if (!empty($check_data)) {
             PermintaanBayarDetail::where('no_bayar', $request->nobayar)
             ->where('no', $request->no)
@@ -251,12 +251,12 @@ class PermintaanBayarController extends Controller
         $nobayars=str_replace('-', '/', $nobayar);
         $data_bayars =  PermintaanBayarHeader::where('no_bayar', $nobayars)->get();
         $debit_nota = UmuDebetNota::all();
-        $no_uruts =  DB::select("select max(no) as no from umu_bayar_detail where no_bayar = '$nobayars'");
+        $no_uruts =  DB::select("SELECT max(no) as no from umu_bayar_detail where no_bayar = '$nobayars'");
         $data_bayar_details = PermintaanBayarDetail::where('no_bayar', $nobayars)->get();
-        $data_account = DB::select("select kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' order by kodeacct desc");
+        $data_account = DB::select("SELECT kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' order by kodeacct desc");
         $data_bagian = DB::select("SELECT A.kode,A.nama FROM sdm_tbl_kdbag A ORDER BY A.kode");
-        $data_jenisbiaya = DB::select("select kode,keterangan from jenisbiaya order by kode");
-        $data_cj = DB::select("select kode,nama from cashjudex order by kode");
+        $data_jenisbiaya = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
+        $data_cj = DB::select("SELECT kode,nama from cashjudex order by kode");
         $count= PermintaanBayarDetail::where('no_bayar', $nobayars)->select('no_bayar')->sum('nilai');
         $vendor=Vendor::all();
         if (!empty($no_urut) == null) {
@@ -284,7 +284,7 @@ class PermintaanBayarController extends Controller
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
+            $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
             return response()->json($data_account);
         }
     }
@@ -292,7 +292,7 @@ class PermintaanBayarController extends Controller
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_bagian = DB::select("select kode,nama from sdm_tbl_kdbag where kode like '$cari%' or nama like '$cari%' order by kode");
+            $data_bagian = DB::select("SELECT kode,nama from sdm_tbl_kdbag where kode like '$cari%' or nama like '$cari%' order by kode");
             return response()->json($data_bagian);
         }
     }
@@ -300,7 +300,7 @@ class PermintaanBayarController extends Controller
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_jenisbiaya = DB::select("select kode,keterangan from jenisbiaya where kode like '$cari%' or keterangan like '$cari%' order by kode");
+            $data_jenisbiaya = DB::select("SELECT kode,keterangan from jenisbiaya where kode like '$cari%' or keterangan like '$cari%' order by kode");
             return response()->json($data_jenisbiaya);
         }
     }
@@ -308,7 +308,7 @@ class PermintaanBayarController extends Controller
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_cj = DB::select("select kode,nama from cashjudex where kode like '$cari%' or nama like '$cari%' order by kode");
+            $data_cj = DB::select("SELECT kode,nama from cashjudex where kode like '$cari%' or nama like '$cari%' order by kode");
             return response()->json($data_cj);
         }
     }
@@ -366,7 +366,7 @@ class PermintaanBayarController extends Controller
     public function rekap($id)
     {
         $nobayar=str_replace('-', '/', $id);
-        $data_cekjb = DB::select("select a.no_bayar,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as total from umu_bayar_header a where a.no_bayar='$nobayar'");
+        $data_cekjb = DB::select("SELECT a.no_bayar,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as total from umu_bayar_header a where a.no_bayar='$nobayar'");
         foreach ($data_cekjb as $data_cek) {
             $data_c = $data_cek->total;
         }
@@ -409,7 +409,7 @@ class PermintaanBayarController extends Controller
         $bayar_header_list = PermintaanBayarHeader::where('no_bayar', $nobayar)->get();
         foreach ($bayar_header_list as $data_report) {
             $data_report;
-            $data_rek = DB::select("select * from tbl_vendor where nama ='$data_report->kepada'");
+            $data_rek = DB::select("SELECT * from tbl_vendor where nama ='$data_report->kepada'");
         }
         $bayar_detail_list = PermintaanBayarDetail::where('no_bayar', $nobayar)->get();
         $list_acount =PermintaanBayarDetail::where('no_bayar', $nobayar)->select('nilai')->sum('nilai');

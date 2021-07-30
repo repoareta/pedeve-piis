@@ -19,10 +19,10 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-create">
-            {{csrf_field()}}
+        <form class="kt-form" id="form-create">
+            @csrf
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
                     <?php 
                     $tgl = date_create(now());
@@ -30,37 +30,37 @@
                     $bulan = date_format($tgl, 'n'); 
                 ?>
                     <select class="form-control select2" style="width: 100% !important;" name="bulan">
-                        <option value="01" <?php if($bulan  == 1 ) echo 'selected' ; ?>>Januari</option>
-                        <option value="02" <?php if($bulan  == 2 ) echo 'selected' ; ?>>Februari</option>
-                        <option value="03" <?php if($bulan  == 3 ) echo 'selected' ; ?>>Maret</option>
-                        <option value="04" <?php if($bulan  == 4 ) echo 'selected' ; ?>>April</option>
-                        <option value="05" <?php if($bulan  == 5 ) echo 'selected' ; ?>>Mei</option>
-                        <option value="06" <?php if($bulan  == 6 ) echo 'selected' ; ?>>Juni</option>
-                        <option value="07" <?php if($bulan  == 7 ) echo 'selected' ; ?>>Juli</option>
-                        <option value="08" <?php if($bulan  == 8 ) echo 'selected' ; ?>>Agustus</option>
-                        <option value="09" <?php if($bulan  == 9 ) echo 'selected' ; ?>>September</option>
-                        <option value="10" <?php if($bulan  == 10 ) echo 'selected' ; ?>>Oktober</option>
-                        <option value="11" <?php if($bulan  == 11 ) echo 'selected' ; ?>>November</option>
-                        <option value="12" <?php if($bulan  == 12 ) echo 'selected' ; ?>>Desember</option>
+                        <option value="01" <?php if($bulan == 1 ) echo 'selected' ; ?>>Januari</option>
+                        <option value="02" <?php if($bulan == 2 ) echo 'selected' ; ?>>Februari</option>
+                        <option value="03" <?php if($bulan == 3 ) echo 'selected' ; ?>>Maret</option>
+                        <option value="04" <?php if($bulan == 4 ) echo 'selected' ; ?>>April</option>
+                        <option value="05" <?php if($bulan == 5 ) echo 'selected' ; ?>>Mei</option>
+                        <option value="06" <?php if($bulan == 6 ) echo 'selected' ; ?>>Juni</option>
+                        <option value="07" <?php if($bulan == 7 ) echo 'selected' ; ?>>Juli</option>
+                        <option value="08" <?php if($bulan == 8 ) echo 'selected' ; ?>>Agustus</option>
+                        <option value="09" <?php if($bulan == 9 ) echo 'selected' ; ?>>September</option>
+                        <option value="10" <?php if($bulan == 10 ) echo 'selected' ; ?>>Oktober</option>
+                        <option value="11" <?php if($bulan == 11 ) echo 'selected' ; ?>>November</option>
+                        <option value="12" <?php if($bulan == 12 ) echo 'selected' ; ?>>Desember</option>
                     </select>
                 </div>
                 <div class="col-4">
-                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4"
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"
                         autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Tahun Harus Diisi...')" oninput="setCustomValidity('')">
+                        oninvalid="this.setCustomValidity('Tahun Harus Diisi...')">
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2"
                         autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
+                        oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right">Keterangan<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label text-right">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="" name="keterangan" size="35" maxlength="35"
                         title="Keterangan" autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
+                        oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')">
                 </div>
             </div>
 
@@ -118,7 +118,7 @@
                     <div class="col-2"></div>
                     <div class="col-10">
                         <a href="{{route('bulan_perbendaharaan.index')}}" class="btn btn-warning"><i class="fa fa-reply"
-                                aria-hidden="true"></i>Cancel</a>
+                                aria-hidden="true"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"
                                 aria-hidden="true"></i>Save</button>
                     </div>
@@ -171,21 +171,21 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 		$('#tanggal2').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 		$('#tanggal3').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 	});

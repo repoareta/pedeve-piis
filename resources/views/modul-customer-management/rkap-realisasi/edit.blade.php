@@ -48,13 +48,13 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Tahun</label>
                         <div class="col-8" >
-                            <input class="form-control" type="text" value="{{ $rkapRealisasi->tahun }}" name="tahun" size="4" maxlength="4"> 
+                            <input class="form-control" type="text" value="{{ $rkapRealisasi->tahun }}" name="tahun"> 
                         </div>
                     </div>
                     <div class="form-group row" id="bulan-group" @if($rkapRealisasi->bulan === null) style="display: none;" @endif>
                         <label class="col-2 col-form-label">Bulan</label>
                         <div class="col-8" >
-                            <select class="form-control select2" name="bulan" id="bulan" style="width: 100%">
+                            <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan" style="width: 100%">
                                 <option value="">- Pilih -</option>
                                 <option value="01" @if($rkapRealisasi->bulan == '01') selected @endif>Januari</option>
                                 <option value="02" @if($rkapRealisasi->bulan == '02') selected @endif>Februari</option>
@@ -138,7 +138,7 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{ route('modul_cm.rkap_realisasi.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                            <a href="{{ route('modul_cm.rkap_realisasi.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
                         </div>
                     </div>

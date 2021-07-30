@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
 		<div class="col-12">
-			<form class="kt-form kt-form--label-right" action="{{ route('modul_umum.anggaran.report.export') }}" method="post">
+			<form class="kt-form" action="{{ route('modul_umum.anggaran.report.export') }}" method="POST">
                 @csrf
                 <div class="form-group row">
                     <label for="mulai-input" class="col-2 col-form-label">Tahun</label>
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a  href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
                             <button type="submit" class="btn btn-danger"><i class="fa fa-file-pdf" aria-hidden="true"></i> Export .PDF</button>
                         </div>
                     </div>

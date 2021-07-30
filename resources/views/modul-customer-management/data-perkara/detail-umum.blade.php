@@ -18,13 +18,13 @@
                     $tanggal = date_format($tgl, 'd M Y');
                 ?>
                 <tr>
-                    <th style="background-color:#F4F6F6;" width="20%">Tanggal</th><td>{{$tanggal}}</td>
+                    <th style="background-color:#F4F6F6;" width="20%">Tanggal</th><td>{{ $tanggal}}</td>
                 </tr>
                 <tr>
-                    <th style="background-color:#F4F6F6;" width="20%">Klasifikasi Perkara</th><td>{{$data->klasifikasi_perkara}}</td>
+                    <th style="background-color:#F4F6F6;" width="20%">Klasifikasi Perkara</th><td>{{ $data->klasifikasi_perkara}}</td>
                 </tr>
                 <tr>
-                    <th style="background-color:#F4F6F6;" width="20%">Nomer Perkara</th><td>{{$data->no_perkara}}</td>
+                    <th style="background-color:#F4F6F6;" width="20%">Nomer Perkara</th><td>{{ $data->no_perkara}}</td>
                 </tr>
                 @endforeach
                 <tr>
@@ -42,8 +42,8 @@
                                 @foreach($data_p as $key=>$data_peng)
                                 @if($data_peng->status == '1')
                                     <tr>
-                                        <td style="text-align:center">{{$no++}}</td>
-                                        <td>{{$data_peng->nama}}</td>
+                                        <td style="text-align:center">{{ $no++}}</td>
+                                        <td>{{ $data_peng->nama }}</td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -67,9 +67,9 @@
                                     @foreach($data_ as $key=>$data_peng)
                                     <tr>
                                     @if($data_peng->status == '1')
-                                        <td style="text-align:center">{{$no++}}</td>
-                                        <td>{{$data_peng->nama_hakim == null ? '-': $data_peng->nama_hakim }}</td>
-                                        <td>{{$data_peng->nama}}</td>
+                                        <td style="text-align:center">{{ $no++}}</td>
+                                        <td>{{ $data_peng->nama_hakim == null ? '-': $data_peng->nama_hakim }}</td>
+                                        <td>{{ $data_peng->nama }}</td>
                                     
                                     @endif
                                     </tr>
@@ -93,8 +93,8 @@
                                     @foreach($data_p as $key=>$data_ter)
                                     <tr>
                                     @if($data_ter->status == '2')
-                                        <td style="text-align:center">{{$no++}}</td>
-                                        <td>{{$data_ter->nama}}</td>
+                                        <td style="text-align:center">{{ $no++}}</td>
+                                        <td>{{ $data_ter->nama }}</td>
                                     @endif
                                     </tr>
                                     @endforeach
@@ -118,9 +118,9 @@
                                 @foreach($data_ as $key=>$data_ter)
                                 <tr>
                                     @if($data_ter->status == '2')
-                                        <td style="text-align:center">{{$no++}}</td>
-                                        <td>{{$data_ter->nama_hakim == null ? '-': $data_ter->nama_hakim }}</td>
-                                        <td>{{$data_ter->nama}}</td>
+                                        <td style="text-align:center">{{ $no++}}</td>
+                                        <td>{{ $data_ter->nama_hakim == null ? '-': $data_ter->nama_hakim }}</td>
+                                        <td>{{ $data_ter->nama }}</td>
                                     @endif
                                 </tr>
                                 @endforeach
@@ -143,8 +143,8 @@
                                 @foreach($data_p as $key=>$data_turut)
                                 <tr>
                                 @if($data_turut->status == '3')
-                                    <td style="text-align:center">{{$no++}}</td>
-                                    <td>{{$data_turut->nama}}</td>
+                                    <td style="text-align:center">{{ $no++}}</td>
+                                    <td>{{ $data_turut->nama }}</td>
                                 @endif
                                 </tr>
                                 @endforeach
@@ -168,9 +168,9 @@
                                 @foreach($data_ as $key=>$data_turut)
                                 <tr>
                                     @if($data_turut->status == '3')
-                                        <td style="text-align:center">{{$no}}</td>
-                                        <td>{{$data_turut->nama_hakim == null ? '-': $data_turut->nama_hakim }}</td>
-                                        <td>{{$data_turut->nama}}</td>
+                                        <td style="text-align:center">{{ $no}}</td>
+                                        <td>{{ $data_turut->nama_hakim == null ? '-': $data_turut->nama_hakim }}</td>
+                                        <td>{{ $data_turut->nama }}</td>
                                     @endif
                                 </tr>
                                 @endforeach

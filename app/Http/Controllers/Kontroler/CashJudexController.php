@@ -16,7 +16,7 @@ class CashJudexController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.* from cashjudex a order by a.kode");
+        $data = DB::select("SELECT a.* from cashjudex a order by a.kode");
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
@@ -33,7 +33,7 @@ class CashJudexController extends Controller
 
     public function store(Request $request)
     {
-        $data_objRs = DB::select("select kode from CashJudex where kode='$request->kode'");
+        $data_objRs = DB::select("SELECT kode from CashJudex where kode='$request->kode'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -50,7 +50,7 @@ class CashJudexController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from CashJudex where kode='$no'");
+        $data_cash = DB::select("SELECT * from CashJudex where kode='$no'");
         foreach($data_cash as $data)
         {
             $kode = $data->kode;

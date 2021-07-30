@@ -41,8 +41,8 @@
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form  class="kt-form kt-form--label-right" id="form-create">
-				{{csrf_field()}}
+			<form class="kt-form" id="form-create">
+				@csrf
 				<div class="kt-portlet__body">
 					<div class="form-group form-group-last">
 						<div class="alert alert-secondary" role="alert">
@@ -59,10 +59,10 @@
 							<?php 
 								$docno = $mp.'-'.$bagian.'-'.$nomor;
 							?>
-								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{$mp}}" id="mp" readonly>
+								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{ $mp}}" id="mp" readonly>
 							</div>
 							<div class="col-5">
-								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{$nomor}}" id="nomor" readonly>
+								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{ $nomor}}" id="nomor" readonly>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -72,49 +72,49 @@
 									$jabatan = "Sekretaris Perseroan";
 									$nama = "Silahkan Isi";
 									?>
-								<select class="form-control" name="bulan" required>
-									<option value="01" <?php if($bulan  == '01' ) echo 'selected' ; ?>>Januari</option>
-									<option value="02" <?php if($bulan  == '02' ) echo 'selected' ; ?>>Februari</option>
-									<option value="03" <?php if($bulan  == '03' ) echo 'selected' ; ?>>Maret</option>
-									<option value="04" <?php if($bulan  == '04' ) echo 'selected' ; ?>>April</option>
-									<option value="05" <?php if($bulan  == '05' ) echo 'selected' ; ?>>Mei</option>
-									<option value="06" <?php if($bulan  == '06' ) echo 'selected' ; ?>>Juni</option>
-									<option value="07" <?php if($bulan  == '07' ) echo 'selected' ; ?>>Juli</option>
-									<option value="08" <?php if($bulan  == '08' ) echo 'selected' ; ?>>Agustus</option>
-									<option value="09" <?php if($bulan  == '09' ) echo 'selected' ; ?>>September</option>
-									<option value="10" <?php if($bulan  == '10' ) echo 'selected' ; ?>>Oktober</option>
-									<option value="11" <?php if($bulan  == '11' ) echo 'selected' ; ?>>November</option>
-									<option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
+								<select class="form-control" name="bulan">
+									<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
+									<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
+									<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
+									<option value="04" <?php if($bulan == '04' ) echo 'selected' ; ?>>April</option>
+									<option value="05" <?php if($bulan == '05' ) echo 'selected' ; ?>>Mei</option>
+									<option value="06" <?php if($bulan == '06' ) echo 'selected' ; ?>>Juni</option>
+									<option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
+									<option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
+									<option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
+									<option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
+									<option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
+									<option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
 								</select>
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
-								<input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" autocomplete="off" required>
-								<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
+								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
+								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Bagian</label>
 							<div class="col-5">
-								<input class="form-control" type="text" name="bagian" value="{{$bagian}}" id="bagian" required>
+								<input class="form-control" type="text" name="bagian" value="{{ $bagian}}" id="bagian">
 							</div>
 							<div class="col-5">
-								<input class="form-control" type="text" name="nama_bagian" value="{{$nama_bagian}}" id="nama_bagian" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" name="nama_bagian" value="{{ $nama_bagian}}" id="nama_bagian" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Jenis Kartu</label>
 							<div class="col-5">
-								<select name="jk" id="jk" class="form-control selectpicker" data-live-search="true">
+								<select name="jk" id="jk" class="form-control select2">
 									<option value="15">Rupiah</option>
 									<option value="18">Dollar</option>
 
 								</select>
-								<input name="kurs" type="hidden" value="{{$rate}}"></td>
+								<input name="kurs" type="hidden" value="{{ $rate}}"></td>
 							</div>
 							<label for="nopek-input" class="col-2 col-form-label">Currency Index</label>
 							<div class="col-3">
@@ -133,13 +133,13 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">No. Bukti</label>
 							<div class="col-10">
-								<input class="form-control" type="text" value="{{$nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="{{ $nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
+							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
-								<textarea class="form-control" type="text" value=""  id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')" oninput="setCustomValidity('')"></textarea>
+								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')"></textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
 							</div>
 						</div>
@@ -148,8 +148,8 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a  href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-									<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+									<a href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 								</div>
 							</div>
 						</div>

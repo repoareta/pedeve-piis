@@ -17,7 +17,7 @@ class PotonganManualController extends Controller
      */
     public function index()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             if(!empty($data_tahunbulan)) {
                 foreach ($data_tahunbulan as $data_bul) {
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
@@ -27,13 +27,13 @@ class PotonganManualController extends Controller
                 $bulan ='00';
                 $tahun ='0000';
             }
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('potongan_manual.index',compact('data_pegawai','tahun','bulan'));
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        return view('modul-sdm-payroll.potongan-manual.index',compact('data_pegawai','tahun','bulan'));
     }
 
     public function indexJson(Request $request)
     {
-            $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+            $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             foreach($data_tahunbulan as $data_bul)
             {
                 $bulan_buku = $data_bul->bulan_buku;
@@ -45,17 +45,17 @@ class PotonganManualController extends Controller
             $nopek = $request->nopek;
             if($nopek == null){
                 if($bulan == null and $tahun == null){
-                $data = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.tahun ='$tahuns' order by a.tahun, a.bulan asc");
+                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.tahun ='$tahuns' order by a.tahun, a.bulan asc");
                 }elseif($bulan == null and $tahun <> null){
-                $data = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.tahun ='$tahun' order by a.tahun, a.bulan asc");
+                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.tahun ='$tahun' order by a.tahun, a.bulan asc");
                 }else{
-                $data = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode where a.bulan='$bulan' and a.tahun='$tahun' order by a.nopek asc");
+                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode where a.bulan='$bulan' and a.tahun='$tahun' order by a.nopek asc");
                 }
             }else{
                 if($bulan == null and $tahun == null and $nopek <> ""){
-                $data = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode where a.nopek='$nopek' order by a.tahun, a.bulan desc");
+                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode where a.nopek='$nopek' order by a.tahun, a.bulan desc");
                 }else{
-                $data = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
+                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
                 }
             }
             return datatables()->of($data)
@@ -87,13 +87,13 @@ class PotonganManualController extends Controller
                 return $data->aard.' -- '.$data->nama_aard;
            })
             ->addColumn('ccl', function ($data) {
-                 return number_format($data->ccl,0,'.',',');
+                 return abs($data->ccl);
            })
             ->addColumn('jmlcc', function ($data) {
-                 return number_format($data->jmlcc,0,'.',',');
+                 return currency_format($data->jmlcc);
            })
             ->addColumn('nilai', function ($data) {
-                 return number_format($data->nilai,2,'.',',');
+                 return currency_format($data->nilai);
            })
     
             ->addColumn('radio', function ($data) {
@@ -112,8 +112,8 @@ class PotonganManualController extends Controller
     public function create()
     {
         $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
-        $pay_aard = DB::select("select kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
-        return view('potongan_manual.create', compact('data_pegawai','pay_aard'));
+        $pay_aard = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
+        return view('modul-sdm-payroll.potongan-manual.create', compact('data_pegawai','pay_aard'));
     }
 
     /**
@@ -124,7 +124,7 @@ class PotonganManualController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_potongan   where nopek='$request->nopek' and aard='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
+        $data_cek = DB::select("SELECT * from pay_potongan   where nopek='$request->nopek' and aard='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
         if(!empty($data_cek)){
             $data=0;
             return response()->json($data);
@@ -165,8 +165,8 @@ class PotonganManualController extends Controller
      */
     public function edit($bulan,$tahun,$aard,$nopek)
     {
-        $data_list = DB::select("select a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
-        return view('potongan_manual.edit',compact('data_list'));
+        $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
+        return view('modul-sdm-payroll.potongan-manual.edit',compact('data_list'));
     }
 
     /**

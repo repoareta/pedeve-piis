@@ -22,27 +22,27 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{ route('pembayaran_jumk.store.app') }}" method="post">
+        <form class="kt-form" action="{{ route('pembayaran_jumk.store.app') }}" method="POST">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-10">
-                    <input style="background-color:#DCDCDC; cursor:not-allowed" type="text" class="form-control" name="nodok" value="{{$data->docno}}" readonly />
+                    <input style="background-color:#DCDCDC; cursor:not-allowed" type="text" class="form-control" name="nodok" value="{{ $data->docno}}" readonly />
                     <input type="text" class="form-control" hidden name="userid" value="{{ auth()->user()->userid }}" readonly />
                 </div>
             </div>
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">Tanggal Approval</label>
                 <div class="col-10">
-                    <input type="text" class="form-control" name="tgl_app" id="date_range_picker" value="" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Approval Harus Diisi..')" onchange="setCustomValidity('')"/>
+                    <input type="text" class="form-control" name="tgl_app" id="date_range_picker" value="" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Approval Harus Diisi..')"/>
                 </div>
             </div>
             <div class="kt-form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{ route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
+                        <a href="{{ route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submit</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             todayHighlight: true,
             templates: arrows,
             autoclose: true,
-            // language : 'id',
+            language : 'id',
             format   : 'yyyy-mm-dd',
             orientation: 'bottom'
         });

@@ -29,7 +29,7 @@
 						</div>
 					</div>
 				</div>
-                <form action="{{ route('penerimaan_kas.create') }}" method="post">
+                <form action="{{ route('penerimaan_kas.create') }}" method="POST">
                     @csrf
                     <input class="form-control" type="hidden" name="userid" value="{{ auth()->user()->userid }}">
                     <div class="form-group row">
@@ -51,8 +51,8 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a  href="{{ route('penerimaan_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                                <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Process</button>
+                                <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check"></i>Proses</button>
                             </div>
                         </div>
                     </div>

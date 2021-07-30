@@ -19,75 +19,75 @@
     </div>
 
     <div class="card-body">
-        <form  class="kt-form kt-form--label-right" id="form-edit">
-            {{csrf_field()}}
+        <form class="kt-form" id="form-edit">
+            @csrf
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
                 <?php 
                     $tgl = date_create(now());
                     $tahun = substr($thnbln,0,-2); 
                     $bulan = substr($thnbln,4); 
                 ?>
-                        <input class="form-control" type="text" value="{{$bulan}}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                         <div class="col-4" >
-                            <input class="form-control tahun" type="text" name="tahun" value="{{$tahun}}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <div class="col-2" >
-                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')" oninput="setCustomValidity('')">
+                            <input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')">
                         </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Keterangan<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')" oninput="setCustomValidity('')">
+                    <input class="form-control" type="text" value="{{ $keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="1" <?php if ($status == '1' )  echo 'checked' ; ?> type="radio"  name="status"> Opening 
+                    <div class="radio-inline">
+                        <label class="radio">
+                            <input value="1" <?php if ($status == '1' )  echo 'checked' ; ?> type="radio" name="status"> Opening 
                             <span></span>
                         </label>
                     </div>
                 </div>
                 <label for="" class="col-2 col-form-label">Tanggal Opening</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tanggal}}" name="tanggal" id="tanggal"  size="11" maxlength="11" title="Tanggal Opening" autocomplete="off">
+                    <input class="form-control" type="text" value="{{ $tanggal}}" name="tanggal" id="tanggal"  size="11" maxlength="11" title="Tanggal Opening" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="2" <?php if ($status == '2' )  echo 'checked' ; ?> type="radio"    name="status"> Stoping
+                    <div class="radio-inline">
+                        <label class="radio">
+                            <input value="2" <?php if ($status == '2' )  echo 'checked' ; ?> type="radio"   name="status"> Stoping
                             <span></span>
                         </label>
                     </div>
                 </div>
                 <label for="" class="col-2 col-form-label">Tanggal Stoping</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tanggal2}}" name="tanggal2" id="tanggal2" size="11" maxlength="11" title="Tanggal Stoping" autocomplete="off">
+                    <input class="form-control" type="text" value="{{ $tanggal2}}" name="tanggal2" id="tanggal2" size="11" maxlength="11" title="Tanggal Stoping" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label"></label>
                 <div class="col-3">
-                    <div class="kt-radio-inline">
-                        <label class="kt-radio kt-radio--solid">
-                            <input value="3" <?php if ($status == '3' )  echo 'checked' ; ?> type="radio"    name="status"> Closing
+                    <div class="radio-inline">
+                        <label class="radio">
+                            <input value="3" <?php if ($status == '3' )  echo 'checked' ; ?> type="radio"   name="status"> Closing
                             <span></span>
                         </label>
                     </div>
                 </div>
                 <label for="" class="col-2 col-form-label">Tanggal Closing</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="{{$tanggal3}}" name="tanggal3" id="tanggal3"  size="11" maxlength="11" title="Tanggal Closing" autocomplete="off">
+                    <input class="form-control" type="text" value="{{ $tanggal3}}" name="tanggal3" id="tanggal3"  size="11" maxlength="11" title="Tanggal Closing" autocomplete="off">
                 </div>
             </div>
             
@@ -95,8 +95,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{ route('bulan_perbendaharaan.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a href="{{ route('bulan_perbendaharaan.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
             </div>
@@ -139,21 +139,21 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 		$('#tanggal2').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 		$('#tanggal3').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
 	});

@@ -17,7 +17,7 @@ class PotonganInsentifController extends Controller
      */
     public function index()
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             if(!empty($data_tahunbulan)) {
                 foreach ($data_tahunbulan as $data_bul) {
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
@@ -27,13 +27,13 @@ class PotonganInsentifController extends Controller
                 $bulan ='00';
                 $tahun ='0000';
             }
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('potongan_insentif.index',compact('data_pegawai','tahun','bulan'));
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        return view('modul-sdm-payroll.potongan-insentif.index',compact('data_pegawai','tahun','bulan'));
     }
 
     public function indexJson(Request $request)
     {
-        $data_tahunbulan = DB::select("select max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
+        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             foreach($data_tahunbulan as $data_bul)
             {
                 $bulan_buku = $data_bul->bulan_buku;
@@ -46,17 +46,17 @@ class PotonganInsentifController extends Controller
 
         if($nopek == null){
             if($bulan == null and $tahun == null){
-            $data = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahuns'  order by a.tahun,a.bulan asc");
+            $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahuns'  order by a.tahun,a.bulan asc");
             }elseif($bulan == null and $tahun <> null){
-            $data = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahun'  order by a.tahun,a.bulan asc");
+            $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahun'  order by a.tahun,a.bulan asc");
             }else{
-            $data = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.bulan='$bulan' and a.tahun='$tahun' order by a.nopek asc");
+            $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.bulan='$bulan' and a.tahun='$tahun' order by a.nopek asc");
             }
         }else{
             if($bulan == null and $tahun == null){
-            $data = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' order by a.tahun,a.bulan desc");
+            $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' order by a.tahun,a.bulan desc");
             }else{
-            $data = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
+            $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
             }
         }
         return datatables()->of($data)
@@ -102,7 +102,7 @@ class PotonganInsentifController extends Controller
     public function create()
     {
         $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
-        return view('potongan_insentif.create',compact('data_pegawai'));
+        return view('modul-sdm-payroll.potongan-insentif.create',compact('data_pegawai'));
     }
 
     /**
@@ -113,7 +113,7 @@ class PotonganInsentifController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_potongan_insentif a where a.nopek='$request->nopek' and a.bulan='$request->bulan' and a.tahun='$request->tahun'");			
+        $data_cek = DB::select("SELECT * from pay_potongan_insentif a where a.nopek='$request->nopek' and a.bulan='$request->bulan' and a.tahun='$request->tahun'");			
         if(!empty($data_cek)){
             $data=0;
             return response()->json($data);
@@ -151,8 +151,8 @@ class PotonganInsentifController extends Controller
      */
     public function edit($bulan,$tahun,$nopek)
     {
-        $data_list = DB::select("select a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
-        return view('potongan_insentif.edit',compact('data_list'));
+        $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
+        return view('modul-sdm-payroll.potongan-insentif.edit',compact('data_list'));
     }
 
     /**

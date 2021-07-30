@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label for="gcg-jabatan-input" class="col-2 col-form-label">Menu ID</label>
                         <div class="col-10">
-                            <select class="form-control select2" name="menuid" id="menuid">	
+                            <select class="form-control select2" style="width: 100% !important;" name="menuid" id="menuid">	
                                 <option value="">- Pilih Data -</option>							
                                 @foreach ($user_menus as $menu)
                                     <option value="{{ $menu->menuid }}">{{ $menu->menuid }} - {{ $menu->menunm }} - Tambah[{{ $menu->tambah }}] Ubah[{{ $menu->rubah }}] Hapus[{{ $menu->hapus }}] Cetak[{{ $menu->cetak }}] Lihat[{{ $menu->lihat }}]</option>
@@ -80,8 +80,8 @@
 					<div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
                         </div>
                     </div>
 				</form>

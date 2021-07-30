@@ -11,29 +11,29 @@ class MasterBankController extends Controller
 {
     public function index()
     {
-        return view('master_bank.index');
+        return view('modul-sdm-payroll.master-bank.index');
     }
 
     public function indexJson()
     {
-        $data = DB::select("select kode, nama, alamat, kota from pay_tbl_bank order by kode asc");
+        $data = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank order by kode asc");
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
-                return '<p align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span></label></p>';
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
         })
         ->rawColumns(['radio'])
-            ->make(true);
+        ->make(true);
     }
 
     public function create()
     {
-        return view('master_bank.create');
+        return view('modul-sdm-payroll.master-bank.create');
     }
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("select * from pay_tbl_bank where kode = '$request->kode'" ); 			
+        $data_cek = DB::select("SELECT * from pay_tbl_bank where kode = '$request->kode'" ); 			
         if(!empty($data_cek)){
             $data=2;
             return response()->json($data);
@@ -59,7 +59,7 @@ class MasterBankController extends Controller
             $alamat = $data->alamat;
             $kota = $data->kota;
         }
-        return view('master_bank.edit',compact('kode','nama','alamat','kota'));
+        return view('modul-sdm-payroll.master-bank.edit',compact('kode','nama','alamat','kota'));
     }
 
     public function update(Request $request)

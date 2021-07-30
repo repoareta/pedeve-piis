@@ -30,9 +30,9 @@
                     <tbody>
                         @foreach($data_list as $data)
                             <tr>
-                                <td>{{$data->no_perkara}}</td>
-                                <td>{{$data->jenis_perkara}}</td>
-                                <td>{{$data->status_perkara}}</td>
+                                <td>{{ $data->no_perkara}}</td>
+                                <td>{{ $data->jenis_perkara}}</td>
+                                <td>{{ $data->status_perkara}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -62,7 +62,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                            <a  href="{{ route('modul_cm.data_perkara.index') }}" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i>Kembali</a>
+                            <a href="{{ route('modul_cm.data_perkara.index') }}" class="btn btn-primary"><i class="fa fa-reply"></i>Kembali</a>
                             </li>
                         </ul>
                     </div>

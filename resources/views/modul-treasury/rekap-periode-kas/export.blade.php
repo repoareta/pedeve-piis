@@ -68,11 +68,11 @@
                             <tr>
                                 <td>DARI TANGGAL</td>
                                 <td>:</td>
-                                <td>{{$request->tanggal}}</td>
+                                <td>{{ $request->tanggal}}</td>
                                 <td> </td>
                                 <td>S/D TANGGAL</td>
                                 <td>:</td>
-                                <td>{{$request->tanggal2}}</td>
+                                <td>{{ $request->tanggal2}}</td>
                             </tr>
                         </table>
                     </td>
@@ -95,22 +95,22 @@
                             <tr>
                                 <td width="15%">JENIS KARTU</td>
                                 <td width="5%">:</td>
-                                <td>{{$jenis_kartu}}</td>
+                                <td>{{ $jenis_kartu}}</td>
                             </tr>
                             <tr>
                                 <td width="15%">LOKASI</td>
                                 <td width="5%">:</td>
-                                <td>{{$lokasi_kas_bank}}</td>
+                                <td>{{ $lokasi_kas_bank}}</td>
                             </tr>
                             <tr>
                                 <td width="15%">NO. REKENING</td>
                                 <td width="5%">:</td>
-                                <td>{{$no_rekening}}</td>
+                                <td>{{ $no_rekening}}</td>
                             </tr>
                             <tr>
                                 <td width="15%">MATA UANG</td>
                                 <td width="5%">:</td>
-                                <td>{{$mata_uang}}</td>
+                                <td>{{ $mata_uang}}</td>
                             </tr>
                         </table>
                     </td>
@@ -136,16 +136,16 @@
                     $saldo_awal[$no]=$data->saldo_awal;
                 ?>
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
-                        <td width="5%" style="text-align:center;border:1px solid black;">{{$no}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->tanggal_rekap}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->no_bukti}}</td>
-                        <td style="text-align:left;border:1px solid black;">{{$data->uraian_penjelasan}}</td>
+                        <td width="5%" style="text-align:center;border:1px solid black;">{{ $no}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->tanggal_rekap}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->no_bukti}}</td>
+                        <td style="text-align:left;border:1px solid black;">{{ $data->uraian_penjelasan}}</td>
                         <td style="text-align:right;border:1px solid black;">{{number_format($data->debet,2)}}</td>
                         <td style="text-align:right;border:1px solid black;">{{number_format($data->kredit,2)}}</td>
                         <td style="text-align:right;border:1px solid black;">
                             {{number_format(($data->debet-$data->kredit)+$data->saldo_awal,2)}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->lokasi}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->cj}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->lokasi}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->cj}}</td>
                     </tr>
                     @endforeach
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">

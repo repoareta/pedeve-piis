@@ -94,14 +94,14 @@ tr {
                     $total[$no] = $data->totprice;
                 ?>
                     <tr>
-                        <td class="row-td text-left">{{$data->docno}}</td>
-                        <td class="row-td text-center">{{$data->voucher}}</td>
-                        <td class="row-td text-center">{{$data->thnbln}}</td>
-                        <td class="row-td text-center">{{$data->account}}</td>
-                        <td class="row-td text-center">{{$data->lokasi}}</td>
-                        <td class="row-td text-center">{{$data->cj}}</td>
-                        <td class="row-td text-left">{{$data->keterangan}}</td>
-                        <td class="row-td text-right">{{$data->totprice < 0 ? "(".number_format($data->totprice*-1,2).")" : number_format($data->totprice,2)}}</td>
+                        <td class="row-td text-left">{{ $data->docno}}</td>
+                        <td class="row-td text-center">{{ $data->voucher}}</td>
+                        <td class="row-td text-center">{{ $data->thnbln}}</td>
+                        <td class="row-td text-center">{{ $data->account}}</td>
+                        <td class="row-td text-center">{{ $data->lokasi}}</td>
+                        <td class="row-td text-center">{{ $data->cj}}</td>
+                        <td class="row-td text-left">{{ $data->keterangan}}</td>
+                        <td class="row-td text-right">{{ $data->totprice < 0 ? "(".number_format($data->totprice*-1,2).")" : number_format($data->totprice,2)}}</td>
                     </tr>
                 @endforeach
                 </tbody>

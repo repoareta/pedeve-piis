@@ -18,11 +18,11 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form kt-form--label-right" action="{{route('perhitungan_bagihasil.export')}}" method="post">
-			{{csrf_field()}}
+        <form class="kt-form" action="{{route('perhitungan_bagihasil.export')}}" method="POST">
+			@csrf
 			<div class="kt-portlet__body">
 				<div class="form-group row">
-					<label for="dari-input" class="col-2 col-form-label">Per Tanggal<span style="color:red;">*</span></label>
+					<label for="dari-input" class="col-2 col-form-label">Per Tanggal<span class="text-danger">*</span></label>
 					<div class="col-8">
 					<input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('Y-m-d') }}">
 					</div>
@@ -31,8 +31,8 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a  href="{{ route('perhitungan_bagihasil.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
+							<a href="{{ route('perhitungan_bagihasil.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>
 				</div>
@@ -49,7 +49,7 @@ $(document).ready(function () {
 		todayHighlight: true,
 		orientation: "bottom left",
 		autoclose: true,
-		// language : 'id',
+		language : 'id',
 		format   : 'yyyy-mm-dd'
 	});
 });

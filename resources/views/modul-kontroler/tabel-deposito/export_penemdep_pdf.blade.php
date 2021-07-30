@@ -80,9 +80,9 @@ tr {
                 <tbody>
                 @foreach($data_list as $key=>$row)
                     <tr>
-                        <td class="text-center">{{$key+1}}</td>
-                        <td>{{$row->descacct}}</td>
-                        <td class="text-center">{{$row->asal}}</td>
+                        <td class="text-center">{{ $key+1}}</td>
+                        <td>{{ $row->descacct}}</td>
+                        <td class="text-center">{{ $row->asal}}</td>
                         <td class="text-right">
                            <?php
                             if($row->ci == 2){
@@ -141,7 +141,7 @@ tr {
                             }
                             ?>
                         </td>
-                        <td class="text-center">{{$row->accharibunga}}</td>
+                        <td class="text-center">{{ $row->accharibunga}}</td>
                         <td class="text-right">
                             <?php
                             if($row->ci == 2){
@@ -156,7 +156,7 @@ tr {
                     </tr>
                 @endforeach
                     <tr>
-                        <th class="text-left" colspan="3">TOTAL {{$lapangan}}</th>
+                        <th class="text-left" colspan="3">TOTAL {{ $lapangan}}</th>
                         <th class="text-right">{{number_format(array_sum($total_1),2)}}</th>
                         <th colspan="4"></th>
                         <th class="text-right">{{number_format(array_sum($total_2),2)}}</th>

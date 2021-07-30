@@ -21,7 +21,7 @@ class PinjamanPekerjaController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.id_pinjaman,a.nopek,a.jml_pinjaman,a.tenor,a.mulai,a.sampai,a.angsuran,a.cair,a.lunas,a.no_kontrak,b.nama as namapegawai,(select c.curramount from pay_master_hutang c where c.nopek=a.nopek and c.aard='20' and c.tahun||c.bulan = (select trim(max(tahun||bulan)) as bultah from pay_master_hutang where aard='20' and nopek=a.nopek)) as curramount from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg  where  a.lunas='N' order by a.id_pinjaman asc");
+        $data = DB::select("SELECT a.id_pinjaman,a.nopek,a.jml_pinjaman,a.tenor,a.mulai,a.sampai,a.angsuran,a.cair,a.lunas,a.no_kontrak,b.nama as namapegawai,(select c.curramount from pay_master_hutang c where c.nopek=a.nopek and c.aard='20' and c.tahun||c.bulan = (select trim(max(tahun||bulan)) as bultah from pay_master_hutang where aard='20' and nopek=a.nopek)) as curramount from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg  where  a.lunas='N' order by a.id_pinjaman asc");
     
         return datatables()->of($data)
         ->addColumn('mulai', function ($data) {
@@ -65,13 +65,13 @@ class PinjamanPekerjaController extends Controller
 
     public function create()
     {
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status<>'P' order by nopeg");
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status<>'P' order by nopeg");
         return view('pinjaman_pekerja.create',compact('data_pegawai'));
     }
 
     public function IdpinjamanJson(Request $request)
     {
-        $data = DB::select("select right(max(id_pinjaman),2) as idpinjaman from pay_mtrpkpp where nopek='$request->nopek'");
+        $data = DB::select("SELECT right(max(id_pinjaman),2) as idpinjaman from pay_mtrpkpp where nopek='$request->nopek'");
         if(!empty($data)){
             foreach($data as $data_p)
             {
@@ -108,9 +108,9 @@ class PinjamanPekerjaController extends Controller
     
     public function edit($no)
     {
-        $data_list = DB::select("select a.*,b.nama as namapegawai from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg where a.id_pinjaman='$no'");
-        $data_detail = DB::select("select id_pinjaman,nopek,tahun,bulan,pokok,bunga,realpokok,realbunga,(realpokok+realbunga) as jumlah2,(pokok+bunga) as jumlah,tahun||bulan as thnbln,nodoc from pay_skdpkpp where id_pinjaman='$no' order by tahun||bulan");
-        $count = DB::select("select sum(pokok) jml,sum(bunga) bunga,sum(realpokok) realpokok,sum(realbunga) realbunga  from pay_skdpkpp where id_pinjaman='$no'");
+        $data_list = DB::select("SELECT a.*,b.nama as namapegawai from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg where a.id_pinjaman='$no'");
+        $data_detail = DB::select("SELECT id_pinjaman,nopek,tahun,bulan,pokok,bunga,realpokok,realbunga,(realpokok+realbunga) as jumlah2,(pokok+bunga) as jumlah,tahun||bulan as thnbln,nodoc from pay_skdpkpp where id_pinjaman='$no' order by tahun||bulan");
+        $count = DB::select("SELECT sum(pokok) jml,sum(bunga) bunga,sum(realpokok) realpokok,sum(realbunga) realbunga  from pay_skdpkpp where id_pinjaman='$no'");
         return view('pinjaman_pekerja.edit',compact('data_list','data_detail','count'));
     }
 

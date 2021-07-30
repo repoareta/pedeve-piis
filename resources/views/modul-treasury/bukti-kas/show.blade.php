@@ -45,7 +45,7 @@
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                     <div class="col-6">
-                        <input class="form-control" type="text" value="{{ $tahun }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -117,7 +117,7 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label"></label>
                     <div class="col-10">
-                        <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i>Save & Back</a>
+                        <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-primary"><i class="fa fa-reply"></i>Save & Back</a>
                     </div>
                 </div>
             </div>
@@ -218,7 +218,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian</label>
 						<label for="example-text-input" class="col-1 col-form-label">:</label>
 						<div class="col-9">
-							<textarea  class="form-control" type="text" value=""  name="rincian" size="50" maxlength="250"  onkeyup="this.value = this.value.toUpperCase()">-</textarea>
+							<textarea  class="form-control" type="text" value="" name="rincian" size="50" maxlength="250"  onkeyup="this.value = this.value.toUpperCase()">-</textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -257,7 +257,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class="col-1 col-form-label">:</label>
 						<div class="col-9">
 							<input  class="form-control" type="text" value="" id="nilai-line" name="nilai" size="16" maxlength="16"  required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
@@ -265,8 +265,8 @@
 					</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Save</button>
                 </div>
             </form>
         </div>
@@ -288,19 +288,19 @@
                 <div class="modal-body">
 					@csrf
                     <div class="form-group row ">
-						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value=""  name="nourut" id="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value=""  name="nodok" id="nodok" readonly>
+							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
+							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Rincian<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" oninput="setCustomValidity('')" onkeyup="this.value = this.value.toUpperCase()"></textarea>
+							<textarea  class="form-control" type="text" value="" name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" onkeyup="this.value = this.value.toUpperCase()"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -310,7 +310,7 @@
 							<select name="sanper"  id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
-								<option value="{{$data_acc->kodeacct}}">{{$data_acc->kodeacct}} - {{$data_acc->descacct}}</option>
+								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
 								@endforeach
 								
 							</select>
@@ -323,7 +323,7 @@
 							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
-								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
 							</select>
 						</div>
@@ -342,7 +342,7 @@
 							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
-								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 								@endforeach
 							</select>
 						</div>
@@ -354,13 +354,13 @@
 							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
-								<option value="{{$data_cas->kode}}">{{$data_cas->kode}} - {{$data_cas->nama}}</option>
+								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
 								@endforeach
 							</select>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span style="color:red;">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<input  class="form-control" type="text" value="" name="nilai" id="nilai1"  size="16" maxlength="16"  required oninvalid="this.setCustomValidity('Jumlah Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
@@ -368,8 +368,8 @@
 					</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                    <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Save</button>
                 </div>
             </form>
         </div>

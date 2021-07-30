@@ -41,7 +41,7 @@
                     <div class="form-group row">
                         <label for="nopek-input" class="col-2 col-form-label">Nopek</label>
                         <div class="col-10">
-                            <select class="form-control select2" id="nopek" name="nopek">
+                            <select class="form-control select2" style="width: 100% !important;" id="nopek" name="nopek">
                                 <option value="">- Pilih Nopek -</option>
                                 @foreach ($pegawai_list as $pegawai)
                                 <option value="{{ $pegawai->nopeg }}" @if($pegawai->nopeg == $panjar_header->nopek)
@@ -55,7 +55,7 @@
                     <div class="form-group row">
                         <label for="example-email-input" class="col-2 col-form-label">Jabatan</label>
                         <div class="col-5">
-                            <select class="form-control select2" name="jabatan" id="jabatan">
+                            <select class="form-control select2" style="width: 100% !important;" name="jabatan" id="jabatan">
                                 <option value="">- Pilih Jabatan -</option>
                                 @foreach ($jabatan_list as $jabatan)
                                     <option value="{{ $jabatan->keterangan }}" @if($jabatan->keterangan == $panjar_header->jabatan)
@@ -126,7 +126,7 @@
                     <div class="form-group row">
                         <label for="biaya" class="col-2 col-form-label">Biaya</label>
                         <div class="col-10">
-                            <select class="form-control select2" name="biaya" id="biaya">
+                            <select class="form-control select2" style="width: 100% !important;" name="biaya" id="biaya">
                                 <option value="">- Pilih Biaya -</option>
                                 <option value="P" @if($panjar_header->ditanggung_oleh == 'P') selected @endif>Ditanggung Perusahaan</option>
                                 <option value="K" @if($panjar_header->ditanggung_oleh == 'K') selected @endif>Ditanggung Pribadi</option>
@@ -153,8 +153,8 @@
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -227,7 +227,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				</button>
 			</div>
-			<form class="kt-form kt-form--label-right" action="" method="POST" id="formPanjarDinasDetail">
+			<form class="kt-form" action="" method="POST" id="formPanjarDinasDetail">
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">No. Urut</label>
@@ -246,7 +246,7 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Nopek</label>
 						<div class="col-10">
-							<select class="form-control select2" id="nopek_detail" name="nopek_detail" style="width: 100% !important;">
+							<select class="form-control select2" style="width: 100% !important;" id="nopek_detail" name="nopek_detail" style="width: 100% !important;">
 								<option value="">- Pilih Nopek -</option>
 								@foreach ($pegawai_list as $pegawai)
 									<option value="{{ $pegawai->nopeg.'-'.$pegawai->nama }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
@@ -259,7 +259,7 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Jabatan</label>
 						<div class="col-10">
-							<select class="form-control select2" name="jabatan_detail" readonly id="jabatan_detail" style="width: 100% !important;">
+							<select class="form-control select2" style="width: 100% !important;" name="jabatan_detail" readonly id="jabatan_detail" style="width: 100% !important;">
 								<option value="">- Pilih Jabatan -</option>
 								@foreach ($jabatan_list as $jabatan)
 									<option value="{{ $jabatan->keterangan }}">{{ $jabatan->keterangan }}</option>
@@ -277,8 +277,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
-					<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply"></i> Batal</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
 				</div>
 			</form>
 		</div>
@@ -337,7 +337,7 @@
 		$('#date_range_picker').datepicker({
 			todayHighlight: true,
 			// autoclose: true,
-			// language : 'id',
+			language : 'id',
 			// format   : 'yyyy-mm-dd'
 			format   : 'dd-mm-yyyy'
 		});
@@ -347,7 +347,7 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			// format   : 'yyyy-mm-dd'
 			format   : 'dd-mm-yyyy'
 		});

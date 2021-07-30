@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form method="post" id="form-edit">
+        <form method="POST" id="form-edit">
             <div class="kt-portlet__body">
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
@@ -30,20 +30,20 @@
                     </div>
                 
                     <div class="form-group row">
-                    <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                    <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                         <div class="col-6" >
                             <input class="form-control tahun" type="text" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed" value="{{ $tahun }}">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                         </div>
                     </div>
     
                     <div class="form-group row">
-                        <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span style="color:red;">*</span></label>
+                        <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" onchange="setCustomValidity('')" disabled>
+                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" disabled>
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}" {{ $nopek == $data->nopeg ? 'selected' : null }}>{{ $data->nopeg }} -- {{ $data->nama }}</option>
@@ -53,9 +53,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span style="color:red;">*</span></label>
+                        <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')" onchange="setCustomValidity('')" disabled>
+                            <select class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')" disabled>
                                 <option value="">-Pilih Jenis-</option>
                                 <option value="24" @if ($jenis == 24) selected @endif>Bonus</option>
                                 <option value="25" @if ($jenis == 25) selected @endif>THR</option>
@@ -84,8 +84,8 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a  href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                                <a href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.kt-select2').select2();
+        
 
         $('#form-edit').submit(function(){
             $.ajax({

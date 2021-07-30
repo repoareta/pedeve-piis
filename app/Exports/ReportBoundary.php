@@ -32,7 +32,7 @@ class ReportBoundary implements FromView, WithDrawings, WithEvents, ShouldAutoSi
         $bulan = $this->bulan;
         $tahun = $this->tahun;
         
-        return view('gcg.report_boundary.export_xlsx', compact('report_list', 'bulan', 'tahun'));
+        return view('modul-sdm-payroll.gcg.report-boundary.export-xlsx', compact('report_list', 'bulan', 'tahun'));
     }
 
     public function drawings()

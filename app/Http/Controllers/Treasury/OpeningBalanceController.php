@@ -32,7 +32,7 @@ class OpeningBalanceController extends Controller
      */
     public function indexJson()
     {
-        $data = DB::select("select thnblnsup,substr(thnblnsup,1,4) tahun,substr(thnblnsup,5,2) bulan, substr(thnblnsup,7,1) suplesi, no_jurnal_rp, no_jurnal_dl,user_id,tgl_buat from history_ob order by thnblnsup desc");
+        $data = DB::select("SELECT thnblnsup,substr(thnblnsup,1,4) tahun,substr(thnblnsup,5,2) bulan, substr(thnblnsup,7,1) suplesi, no_jurnal_rp, no_jurnal_dl,user_id,tgl_buat from history_ob order by thnblnsup desc");
 
         return datatables()->of($data)
         ->addColumn('bulan', function ($data) {
@@ -77,12 +77,12 @@ class OpeningBalanceController extends Controller
     {
         $thn = $request->tahun;
         $tabel_opsi = "obpsi_$thn";
-        $cek = DB::select("select * from history_ob where substr(thnblnsup,1,4)='$thn'");
+        $cek = DB::select("SELECT * from history_ob where substr(thnblnsup,1,4)='$thn'");
         if (!empty($cek)) {
             $dataa = 2;
             return response()->json($dataa);
         } else {
-            $data_vthn = DB::select("select substr(max(o.thnblnsup),1,4) as vthn from history_ob o");
+            $data_vthn = DB::select("SELECT substr(max(o.thnblnsup),1,4) as vthn from history_ob o");
             if (!empty($data_vthn)) {
                 foreach ($data_vthn as $data_v) {
                     $vthn = $data_v->vthn;
@@ -95,7 +95,7 @@ class OpeningBalanceController extends Controller
                 $data = $vthn;
                 return response()->json($data);
             }
-            $data_vada = DB::select("select count(a.tablename) as vada from pg_tables a where a.tablename like 'obpsi_'||'$thn' ");
+            $data_vada = DB::select("SELECT count(a.tablename) as vada from pg_tables a where a.tablename like 'obpsi_'||'$thn' ");
             if (!empty($data_vada)) {
                 foreach ($data_vada as $data_van) {
                     $vada = $data_van->vada;
@@ -129,7 +129,7 @@ class OpeningBalanceController extends Controller
             });
 
             $vthn_o = $thn - 1;
-            $data_opsi = DB::select("select * from obpsi_$vthn_o");
+            $data_opsi = DB::select("SELECT * from obpsi_$vthn_o");
             foreach ($data_opsi as $data_op) {
                 DB::table("$tabel_opsi")->insert([
                     'tahun' => $data_op->tahun,
@@ -159,7 +159,7 @@ class OpeningBalanceController extends Controller
                 'bulan' => '00',
                 'suplesi' => '0'
             ]);
-            $crd2_neraca = DB::select("select d.lokasi,d.account,d.jb,d.ci,
+            $crd2_neraca = DB::select("SELECT d.lokasi,d.account,d.jb,d.ci,
                         sum(coalesce(d.totpricerp,0)) jmlrp,
                         sum(coalesce(d.totpricedl,0)) jmldl
                 from fiosd201 d
@@ -168,7 +168,7 @@ class OpeningBalanceController extends Controller
             foreach ($crd2_neraca as $t1) {
                 $vrp        = $t1->jmlrp;
                 $vdl        = $t1->jmldl;
-                $data_vsql = DB::select("select * from $tabel_opsi where account='$t1->account' and jb='$t1->jb' and ci='$t1->ci' and lokasi='$t1->lokasi'");
+                $data_vsql = DB::select("SELECT * from $tabel_opsi where account='$t1->account' and jb='$t1->jb' and ci='$t1->ci' and lokasi='$t1->lokasi'");
 
                 if (!empty($data_vsql)) {
                     foreach ($data_vsql as $b) {
@@ -202,7 +202,7 @@ class OpeningBalanceController extends Controller
                     ]);
                 }
             }
-            $crd2 = DB::select("select d.lokasi,d.ci,
+            $crd2 = DB::select("SELECT d.lokasi,d.ci,
                     sum(coalesce(d.totpricerp,0)) jmlrp,
                     sum(coalesce(d.totpricedl,0)) jmldl
                     from fiosd201 d, account_ob o
@@ -297,7 +297,7 @@ class OpeningBalanceController extends Controller
         $thn = $request->tahun;
         $tabel_opsi = "obpsi_$thn";
 
-        $data_vtnbln = DB::select("select max(thnblnsup) as vthnbln from history_ob");
+        $data_vtnbln = DB::select("SELECT max(thnblnsup) as vthnbln from history_ob");
         
         foreach ($data_vtnbln as $data_vth) {
             if (substr($data_vth->vthnbln, 0, 4) <> $thn) {
@@ -309,7 +309,7 @@ class OpeningBalanceController extends Controller
         Schema::dropIfExists("$tabel_opsi");
         HistoryOb::where('thnblnsup', 'like', "$thn%")->delete();
 
-        $data_vthn = DB::select("select substr(max(a.tablename),7,4) as vthn from pg_tables a where a.tablename like 'obpsi_%'");
+        $data_vthn = DB::select("SELECT substr(max(a.tablename),7,4) as vthn from pg_tables a where a.tablename like 'obpsi_%'");
 
         foreach ($data_vthn as $data_vt) {
             if ($thn <> $data_vt->vthn) {

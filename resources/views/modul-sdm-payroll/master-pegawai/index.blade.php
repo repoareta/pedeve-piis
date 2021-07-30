@@ -48,7 +48,7 @@
 	
 					<label for="" class="col-form-label">Status</label>
 					<div class="col-2">
-						<select class="form-control select2" name="status" id="status">
+						<select class="form-control select2" style="width: 100% !important;" name="status" id="status">
 							<option value=""> - Pilih Status- </option>
 							<option value="C">Aktif</option>
 							<option value="P">Pensiun</option>									

@@ -48,7 +48,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px"  style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">RINCIAN BIAYA PEGAWAI DAN KANTOR</font><br>
-                   <font style="font-size: 10pt;"> PERIODE : {{$request->bulan1}} S/D {{$request->bulan2}} {{$request->tahun}} </font><br>
+                   <font style="font-size: 10pt;"> PERIODE : {{ $request->bulan1}} S/D {{ $request->bulan2}} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>
@@ -385,9 +385,9 @@
                             $subtotalmd = array_sum($mdupah)+array_sum($mdupah1)+array_sum($mdupah2)+array_sum($mdupah3)+array_sum($mdupah4)+array_sum($mdupah5)+array_sum($mdupah6)+array_sum($mdupah7)+array_sum($mdupah8)+array_sum($mdupah9);
                             $subtotalms = array_sum($msupah)+array_sum($msupah1)+array_sum($msupah2)+array_sum($msupah3)+array_sum($msupah4)+array_sum($msupah5)+array_sum($msupah6)+array_sum($msupah7)+array_sum($msupah8)+array_sum($msupah9);
                         ?>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$subtotalmd == 0 ? '0.00' : number_format($subtotalmd,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$subtotalms == 0 ? '0.00' : number_format($subtotalms,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$subtotalmd+$subtotalms == 0 ? '0.00' : number_format($subtotalmd+$subtotalms,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalmd == 0 ? '0.00' : number_format($subtotalmd,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalms == 0 ? '0.00' : number_format($subtotalms,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalmd+$subtotalms == 0 ? '0.00' : number_format($subtotalmd+$subtotalms,2)}}</th>
                     </tr>
 
                     <!-- kantor -->
@@ -476,9 +476,9 @@
                             $subtotalmd1 = array_sum($mdupah10)+array_sum($mdupah11)+array_sum($mdupah12)+array_sum($mdupah13)+array_sum($mdupah14)+array_sum($mdupah15)+array_sum($mdupah16)+array_sum($mdupah17)+array_sum($mdupah18)+array_sum($mdupah19);
                             $subtotalms1 = array_sum($msupah10)+array_sum($msupah11)+array_sum($msupah12)+array_sum($msupah13)+array_sum($msupah14)+array_sum($msupah15)+array_sum($msupah16)+array_sum($msupah17)+array_sum($msupah18)+array_sum($msupah19);
                         ?>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$subtotalmd1 == 0 ? '0.00' : number_format($subtotalmd1,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$subtotalms1 == 0 ? '0.00' : number_format($subtotalms1,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$subtotalmd1+$subtotalms1 == 0 ? '0.00' : number_format($subtotalmd1+$subtotalms1,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalmd1 == 0 ? '0.00' : number_format($subtotalmd1,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalms1 == 0 ? '0.00' : number_format($subtotalms1,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalmd1+$subtotalms1 == 0 ? '0.00' : number_format($subtotalmd1+$subtotalms1,2)}}</th>
                     </tr>
                     <tr >
                         <td width="5%" style="text-align:right;font-size: 9pt;font-weight: bold" colspan="2">TOTAL:</td>
@@ -486,9 +486,9 @@
                             $totalmd = $subtotalmd+$subtotalmd1;
                             $totalms = $subtotalms+$subtotalms1;
                         ?>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$totalmd == 0 ? '0.00' : number_format($totalmd,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$totalms == 0 ? '0.00' : number_format($totalms,2)}}</th>
-                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{$totalmd+$totalms == 0 ? '0.00' : number_format($totalmd+$totalms,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $totalmd == 0 ? '0.00' : number_format($totalmd,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $totalms == 0 ? '0.00' : number_format($totalms,2)}}</th>
+                        <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $totalmd+$totalms == 0 ? '0.00' : number_format($totalmd+$totalms,2)}}</th>
                     </tr>
                 <thead>
             </table>

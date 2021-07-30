@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label text-right">Bulan/Tahun <span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Bulan/Tahun <span class="text-danger">*</span></label>
                         <div class="col-4">
                             <input class="form-control" type="text" value="{{ $bulan_buku }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label text-right">Bagian <span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Bagian <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <select name="bagian" id="bagian" class="form-control">
                                 <option>- Pilih -</option>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label text-right">Jenis Kartu <span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label text-right">Jenis Kartu <span class="text-danger">*</span></label>
                         <div class="col-3">
                             <select name="jenis_kartu" id="jenis_kartu" class="form-control">
                                 <option value="">- Pilih -</option>
@@ -77,15 +77,15 @@
                         <div class="col-2" >
                             <input class="form-control" type="text" name="currency_index" id="currency_index" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
-                        <label class="col-1 col-form-label text-right">Kurs <span style="color:red;">*</span></label>
+                        <label class="col-1 col-form-label text-right">Kurs <span class="text-danger">*</span></label>
                         <div class="col-2" >
                             <input class="form-control" type="text" name="kurs" id="kurs" size="7" maxlength="7" >
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="jenis-dinas-input" class="col-2 col-form-label text-right">Lokasi <span style="color:red;">*</span></label>
+                        <label for="jenis-dinas-input" class="col-2 col-form-label text-right">Lokasi <span class="text-danger">*</span></label>
                         <div class="col-4">
-                            <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Lokasi Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Lokasi Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                             </select>
                         </div>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label text-right">
-                        {{ request()->mp == 'M' ? 'Dari' : 'Kepada' }} <span style="color:red;">*</span>
+                        {{ request()->mp == 'M' ? 'Dari' : 'Kepada' }} <span class="text-danger">*</span>
                         </label>
                         <div class="col-10">
                         <select class="form-control" style="width: 100% !important;" id="kepada" name="kepada"></select>
@@ -135,8 +135,8 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                                <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                                <a href="{{ route('penerimaan_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
                     </div>

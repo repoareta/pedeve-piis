@@ -17,9 +17,9 @@ class KasCashJudexController extends Controller
 {
     public function create1()
     {
-        $data_tahun = DB::select("select max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("select kodelokasi,nama from mdms");
-        $data_sanper = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' order by kodeacct desc");
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' order by kodeacct desc");
         return view('modul-treasury.kas-bank.report1', compact('data_kodelok', 'data_sanper', 'data_tahun'));
     }
 
@@ -27,7 +27,7 @@ class KasCashJudexController extends Controller
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
+            $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
             return response()->json($data_account);
         }
     }
@@ -90,13 +90,13 @@ class KasCashJudexController extends Controller
 
     public function create2()
     {
-        $data_tahun = DB::select("select max(tahun||bulan) as thnbln from fiosd201");
+        $data_tahun = DB::select("SELECT max(tahun||bulan) as thnbln from fiosd201");
         return view('modul-treasury.kas-bank.report2', compact('data_tahun'));
     }
 
     public function cetak2(Request $request)
     {
-        $data_list = DB::select("select a.docno ,a.voucher ,a.rekapdate ,substring(a.thnbln from 1  for 4 ) as tahun,substring(a.thnbln  from 5  for 2 ) as bulan,b.lineno ,b.keterangan ,a.jk ,a.store ,a.ci ,a.rate ,a.voucher ,b.account ,coalesce(b.totprice,1)*CASE WHEN a.rate=0 THEN 1 WHEN a.rate IS NULL THEN 1  ELSE a.rate END as totprice ,b.area,b.lokasi ,b.bagian ,b.jb ,b.pk ,b.cj,a.rekap from kasdoc a join kasline b on a.docno=b.docno where  a.thnbln='202001' AND (coalesce(a.paid,'N') = 'Y' ) and coalesce(b.penutup,'N')<>'Y'");
+        $data_list = DB::select("SELECT a.docno ,a.voucher ,a.rekapdate ,substring(a.thnbln from 1  for 4 ) as tahun,substring(a.thnbln  from 5  for 2 ) as bulan,b.lineno ,b.keterangan ,a.jk ,a.store ,a.ci ,a.rate ,a.voucher ,b.account ,coalesce(b.totprice,1)*CASE WHEN a.rate=0 THEN 1 WHEN a.rate IS NULL THEN 1  ELSE a.rate END as totprice ,b.area,b.lokasi ,b.bagian ,b.jb ,b.pk ,b.cj,a.rekap from kasdoc a join kasline b on a.docno=b.docno where  a.thnbln='202001' AND (coalesce(a.paid,'N') = 'Y' ) and coalesce(b.penutup,'N')<>'Y'");
         if (!empty($data_list)) {
             $pdf = PDF::loadview('modul-treasury.kas-bank.export_report2', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
@@ -114,7 +114,7 @@ class KasCashJudexController extends Controller
 
     public function create3()
     {
-        $data_tahun = DB::select("Select max(tahun||bulan) as thnbln from fiosd201");
+        $data_tahun = DB::select("SELECT max(tahun||bulan) as thnbln from fiosd201");
         return view('modul-treasury.kas-bank.report3', compact('data_tahun'));
     }
 
@@ -142,14 +142,14 @@ class KasCashJudexController extends Controller
 
     public function create4()
     {
-        $data_judex = DB::select("select kode,nama from cashjudex");
+        $data_judex = DB::select("SELECT kode,nama from cashjudex");
         return view('modul-treasury.kas-bank.report4', compact('data_judex'));
     }
 
     public function cetak4(Request $request)
     {
         $thnbln = $request->tahun . '' . $request->bulan;
-        $data_list = DB::select("select a.docno ,a.voucher ,a.rekapdate ,substring(a.thnbln from 1  for 4 ) as tahun,substring(a.thnbln  from 5  for 2 ) as bulan,b.lineno ,b.keterangan ,a.jk ,a.store ,a.ci ,a.rate ,a.voucher ,b.account ,coalesce(b.totprice,1)*CASE WHEN a.rate=0 THEN 1 WHEN a.rate IS NULL THEN 1  ELSE a.rate END as totprice ,b.area,b.lokasi ,b.bagian ,b.jb ,b.pk ,b.cj,a.rekap from kasdoc a join kasline b on a.docno=b.docno where  a.thnbln='$thnbln' and b.cj='$request->cj' AND (coalesce(a.paid,'N') = 'Y' ) and coalesce(b.penutup,'N')<>'Y'");
+        $data_list = DB::select("SELECT a.docno ,a.voucher ,a.rekapdate ,substring(a.thnbln from 1  for 4 ) as tahun,substring(a.thnbln  from 5  for 2 ) as bulan,b.lineno ,b.keterangan ,a.jk ,a.store ,a.ci ,a.rate ,a.voucher ,b.account ,coalesce(b.totprice,1)*CASE WHEN a.rate=0 THEN 1 WHEN a.rate IS NULL THEN 1  ELSE a.rate END as totprice ,b.area,b.lokasi ,b.bagian ,b.jb ,b.pk ,b.cj,a.rekap from kasdoc a join kasline b on a.docno=b.docno where  a.thnbln='$thnbln' and b.cj='$request->cj' AND (coalesce(a.paid,'N') = 'Y' ) and coalesce(b.penutup,'N')<>'Y'");
         if (!empty($data_list)) {
             $pdf = PDF::loadview('modul-treasury.kas-bank.export_report4', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
@@ -168,7 +168,7 @@ class KasCashJudexController extends Controller
 
     public function create5()
     {
-        $data_judex = DB::select("select kode,nama from cashjudex");
+        $data_judex = DB::select("SELECT kode,nama from cashjudex");
         return view('modul-treasury.kas-bank.report5', compact('data_judex'));
     }
 
@@ -193,7 +193,7 @@ class KasCashJudexController extends Controller
 
     public function create6()
     {
-        $data_judex = DB::select("select kode,nama from cashjudex");
+        $data_judex = DB::select("SELECT kode,nama from cashjudex");
         return view('modul-treasury.kas-bank.report6', compact('data_judex'));
     }
 
@@ -416,10 +416,11 @@ class KasCashJudexController extends Controller
     public function cetak9(Request $request)
     {
         $data_list = ViewCashFlowPerCJReport::select('*')->where('tahun', $request->tahun)->where('bulan', $request->bulan)->orderBy('status', 'asc')->get();
-        $data_total = DB::select("select
+        $data_total = DB::select("SELECT
         SUM((case when status = 1 then nilai end)) - SUM((case when status = 2 then nilai end)) AS status_1,
         SUM((case when status = 1 then totreal end)) - SUM((case when status = 2 then totreal end)) AS totreal_1
         from v_cashflowpercjreport where tahun='$request->tahun' and bulan='$request->bulan'");
+        
         if ($data_list->count() > 0) {
             $pdf = PDF::loadview('modul-treasury.kas-bank.export_proyeksi_cashflow_pajak_pdf', compact('data_list', 'data_total', 'request'))
                 ->setPaper('A4', 'portrait')
@@ -437,7 +438,7 @@ class KasCashJudexController extends Controller
 
     public function create10()
     {
-        $data_judex = DB::select("select kode,nama from cashjudex");
+        $data_judex = DB::select("SELECT kode,nama from cashjudex");
         return view('modul-treasury.kas-bank.report10', compact('data_judex'));
     }
 
@@ -445,7 +446,7 @@ class KasCashJudexController extends Controller
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_cj = DB::select("select kode,nama from cashjudex where kode like '$cari%' or nama like '$cari%' order by kode");
+            $data_cj = DB::select("SELECT kode,nama from cashjudex where kode like '$cari%' or nama like '$cari%' order by kode");
             return response()->json($data_cj);
         }
     }
@@ -468,7 +469,7 @@ class KasCashJudexController extends Controller
         } else {
             $yyy = "thnbln >= '$thnbln1' and thnbln <= '$thnbln2'";
         }
-        $data_list = DB::select("select * from v_repcashjudex where $yyy order by docno asc");
+        $data_list = DB::select("SELECT * from v_repcashjudex where $yyy order by docno asc");
         if (!empty($data_list)) {
             $pdf = PDF::loadview('modul-treasury.kas-bank.export_cash_judex_pdf', compact('data_list', 'request'))
                 ->setPaper('a4', 'portrait')

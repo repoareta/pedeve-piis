@@ -66,7 +66,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">LAPORAN RUGI LABA</font><br>
-                   <font style="font-size: 10pt;"> BULAN BUKU : {{strtoupper($bulan)}} {{$request->tahun}} </font><br>
+                   <font style="font-size: 10pt;"> BULAN BUKU : {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>
@@ -88,7 +88,7 @@
                                 <tr>
                                     <td>TANGGAL REPORT</td>
                                     <td>:</td>
-                                    <td>{{$request->tanggal}}</td>
+                                    <td>{{ $request->tanggal}}</td>
                                 </tr>
                             </table>    
                         </th>
@@ -125,8 +125,8 @@
                         $kons[$no] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -157,8 +157,8 @@
                         $kons1[$no1] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -189,8 +189,8 @@
                         $kons2[$no2] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -221,8 +221,8 @@
                         $kons3[$no3] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -244,9 +244,9 @@
                     ?>
                         <td width="70%" style="text-align:left;font-size: 8pt;font-weight: bold; border:1px solid black;padding-left:20px;">JUMLAH</td>
                         <td width="15%" style="text-align:right;border:1px solid black;" ></td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$mmdtotal < 0 ? '('.number_format($mmdtotal*-1,2).')':number_format($mmdtotal,2) }}</td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$mmstotal < 0 ? '('.number_format($mmstotal*-1,2).')':number_format($mmstotal,2) }}</td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$konstotal < 0 ? '('.number_format($konstotal*-1,2).')':number_format($konstotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $mmdtotal < 0 ? '('.number_format($mmdtotal*-1,2).')':number_format($mmdtotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $mmstotal < 0 ? '('.number_format($mmstotal*-1,2).')':number_format($mmstotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $konstotal < 0 ? '('.number_format($konstotal*-1,2).')':number_format($konstotal,2) }}</td>
                     </tr>
 
                    
@@ -276,8 +276,8 @@
                         $kons4[$no4] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -308,8 +308,8 @@
                         $kons5[$no5] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -340,8 +340,8 @@
                         $kons6[$no6] = $data->kons;
                     ?>
                     <tr style="font-size: 8pt;">
-                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{$data->jenis}}</td>
-                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{$data->sub_akun}}</td>
+                        <td width="70%" style="padding-left:25%x;border-left:1px solid black;">{{ $data->jenis}}</td>
+                        <td width="15%" style="text-align:center;border-left:1px solid black;">{{ $data->sub_akun}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mmd,0) < 0 ? '('.number_format($data->mmd*-1,2).')':number_format($data->mmd,2)}}</td>
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{number_format($data->mms,0) < 0 ? '('.number_format($data->mms*-1,2).')':number_format($data->mms,2)}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{number_format($data->kons,0) < 0 ? '('.number_format($data->kons*-1,2).')':number_format($data->kons,2)}}</td>
@@ -364,9 +364,9 @@
                     ?>
                         <td width="70%" style="text-align:left;font-size: 8pt;font-weight: bold; border:1px solid black;padding-left:10px;">JUMLAH</td>
                         <td width="15%" style="text-align:right;border:1px solid black;" ></td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$mmdtotal < 0 ? '('.number_format($mmdtotal*-1,2).')':number_format($mmdtotal,2) }}</td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$mmstotal < 0 ? '('.number_format($mmstotal*-1,2).')':number_format($mmstotal,2) }}</td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$konstotal < 0 ? '('.number_format($konstotal*-1,2).')':number_format($konstotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $mmdtotal < 0 ? '('.number_format($mmdtotal*-1,2).')':number_format($mmdtotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $mmstotal < 0 ? '('.number_format($mmstotal*-1,2).')':number_format($mmstotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $konstotal < 0 ? '('.number_format($konstotal*-1,2).')':number_format($konstotal,2) }}</td>
                     </tr>
 
                     <tr style="font-size: 8pt;">
@@ -377,9 +377,9 @@
                     ?>
                         <td width="70%" style="text-align:left;font-size: 8pt;font-weight: bold; border:1px solid black;">JUMLAH</td>
                         <td width="15%" style="text-align:right;border:1px solid black;" ></td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$mmdtotal < 0 ? '('.number_format($mmdtotal*-1,2).')':number_format($mmdtotal,2) }}</td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$mmstotal < 0 ? '('.number_format($mmstotal*-1,2).')':number_format($mmstotal,2) }}</td>
-                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{$konstotal < 0 ? '('.number_format($konstotal*-1,2).')':number_format($konstotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $mmdtotal < 0 ? '('.number_format($mmdtotal*-1,2).')':number_format($mmdtotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $mmstotal < 0 ? '('.number_format($mmstotal*-1,2).')':number_format($mmstotal,2) }}</td>
+                        <td width="30%" style="text-align:right;font-size: 8pt;font-weight: bold;border:1px solid black;">{{ $konstotal < 0 ? '('.number_format($konstotal*-1,2).')':number_format($konstotal,2) }}</td>
                     </tr>
                 </tbody>
             </table>

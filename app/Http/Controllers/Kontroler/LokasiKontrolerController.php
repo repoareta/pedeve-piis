@@ -16,7 +16,7 @@ class LokasiKontrolerController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.* from lokasi a ORDER BY a.kodelokasi");
+        $data = DB::select("SELECT a.* from lokasi a ORDER BY a.kodelokasi");
         return datatables()->of($data)
         ->addColumn('kode', function ($data) {
             return $data->kodelokasi;
@@ -38,7 +38,7 @@ class LokasiKontrolerController extends Controller
     }
     public function store(Request $request)
     {
-        $data_objRs = DB::select("select kodelokasi from lokasi where kodelokasi='$request->kode'");
+        $data_objRs = DB::select("SELECT kodelokasi from lokasi where kodelokasi='$request->kode'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -55,7 +55,7 @@ class LokasiKontrolerController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from lokasi where kodelokasi='$no'");
+        $data_cash = DB::select("SELECT * from lokasi where kodelokasi='$no'");
         foreach($data_cash as $data)
         {
             $kode = $data->kodelokasi;

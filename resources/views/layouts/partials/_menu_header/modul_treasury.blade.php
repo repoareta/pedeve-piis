@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('cash_flow.lengkap') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                            <a href="{{ route('kas_bank.create9') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

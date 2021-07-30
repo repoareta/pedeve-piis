@@ -19,7 +19,7 @@ class ProsesThrController extends Controller
      */
     public function index()
     {
-        return view('proses_thr.create');
+        return view('modul-sdm-payroll.proses-thr.create');
     }
 
     /**
@@ -29,7 +29,7 @@ class ProsesThrController extends Controller
      */
     public function create()
     {
-        return view('proses_thr.create');
+        return view('modul-sdm-payroll.proses-thr.create');
     }
 
     /**
@@ -59,27 +59,27 @@ class ProsesThrController extends Controller
         if($request->radioupah == 'proses'){
             
             if($prosesupah == 'A'){
-                $data_Cekthr = DB::select("select * from pay_master_thr where tahun='$tahun' and bulan='$bulan'");
+                $data_Cekthr = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan'");
             }else{
-                $data_Cekthr = DB::select("select * from pay_master_thr where tahun='$tahun' and bulan='$bulan' and status='$prosesupah'");
+                $data_Cekthr = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan' and status='$prosesupah'");
             }
 
             // Cek THR
             if(!empty($data_Cekthr)){
                 Alert::Info("Data THR bulan $bulan dan tahun $tahun sudah pernah di proses", 'Info')->persistent(true);
-                return redirect()->route('proses_thr.index');
+                return redirect()->route('modul_sdm_payroll.proses_thr.index');
             }else {
                
                 if($prosesupah == 'A'){
 
                     // pekerjatetapthr()
                     // 1.cari pegawai yang status pekerja tetap
-                    $data_pegawaitetapC = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
+                    $data_pegawaitetapC = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
                     foreach($data_pegawaitetapC as $data_pegawaitept)
                     {
                         $nopegpt = $data_pegawaitept->nopeg;
                         $kodekelpt = $data_pegawaitept->kodekeluarga;
-                        $data_upahpt = DB::select("select a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
+                        $data_upahpt = DB::select("SELECT a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
                         if(!empty($data_upahpt)){
                             foreach($data_upahpt as $data_uppt)
                             {
@@ -97,7 +97,7 @@ class ProsesThrController extends Controller
                         if($nopegpt == "181326"){
                             $tunjjabatanpt = '0';
                         }else{
-                             $rstunjjabatanpt = DB::select("select a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegpt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegpt')");
+                             $rstunjjabatanpt = DB::select("SELECT a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegpt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegpt')");
                             if(!empty($rstunjjabatanpt)){
                                 foreach($rstunjjabatanpt as $data_tunpt){
                                     if($data_tunpt->tunjangan <> ""){
@@ -112,7 +112,7 @@ class ProsesThrController extends Controller
                         }
                         
                         // '3.tunjangan biaya hidup aard aard = 04
-                        $rstunjdaerahpt = DB::select("select a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegpt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegpt')");
+                        $rstunjdaerahpt = DB::select("SELECT a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegpt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegpt')");
                         if(!empty($rstunjdaerahpt)){
                             foreach($rstunjdaerahpt as $data_daept){
                                 if($data_daept->nilai <> ""){
@@ -129,7 +129,7 @@ class ProsesThrController extends Controller
                         $pengalipt = "1";
 
                         // 4.'cari nilai jamsostek
-                        $rsjstaccidentpt = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
+                        $rsjstaccidentpt = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
                         if(!empty($rsjstaccidentpt)){
                             foreach($rsjstaccidentpt as $data_jspt){
                                 if($data_jspt->curramount <> ""){
@@ -142,7 +142,7 @@ class ProsesThrController extends Controller
                             $niljstaccidentpt = '0';
                         }
                         
-                        $rsjstlifept = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
+                        $rsjstlifept = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
                         if(!empty($rsjstlifept)){
                             foreach($rsjstlifept as $data_lifpt){
                                 if($data_lifpt->curramount <> ""){
@@ -156,7 +156,7 @@ class ProsesThrController extends Controller
                         }
 
 
-                        $rsfasilitaspt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
+                        $rsfasilitaspt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
                         if(!empty($rsfasilitaspt)){
                             foreach($rsfasilitaspt as $data_faspt){
                                 if($data_faspt->nilai <> ""){
@@ -170,7 +170,7 @@ class ProsesThrController extends Controller
                         }
 
                         // 4.'cari nilai kena pajak upah bulan sebelumnya
-                        $rskenapajak1pt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
+                        $rskenapajak1pt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
                         if(!empty($rskenapajak1pt)){
                             foreach($rskenapajak1pt as $data_kenapt){
                                 if($data_kenapt->nilai1 <> ""){
@@ -184,7 +184,7 @@ class ProsesThrController extends Controller
                         }
 
 
-                        $rskorgajipt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
+                        $rskorgajipt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
                         if(!empty($rskorgajipt)){
                             foreach($rskorgajipt as $data_koreksipt){
                                 if($data_koreksipt->kortam <> ""){
@@ -209,7 +209,7 @@ class ProsesThrController extends Controller
 
                         $neto1tahunpt =  $totkenapajakpt - $biayajabatanpt;
 
-                        $rsptkppt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
+                        $rsptkppt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
                         if(!empty($rsptkppt)){
                             foreach($rsptkppt as $data_ptkppt){
                                 if($data_ptkppt->nilai <> ""){
@@ -230,7 +230,7 @@ class ProsesThrController extends Controller
                         $pajakbulanpt=1;
                         $nilkenapajakpt = $nilaikenapajakapt;
                         $sisapokokpt = $nilkenapajakpt;
-                        $data_sdmprogresifpt = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                        $data_sdmprogresifpt = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                         foreach($data_sdmprogresifpt as $data_progpt)
                         {
                             $awalpt = $data_progpt->awal;
@@ -263,7 +263,7 @@ class ProsesThrController extends Controller
                                 $nilaikenapajakpt=(($nilaikenapajakpt-$selisihpt)/1000)*1000;
                         }
                             $tunjanganpt=$pajakbulanpt;
-                            $rstunjgajipt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
+                            $rstunjgajipt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
                             if(!empty($rstunjgajipt)){
                                 foreach($rstunjgajipt as $data_tungapt){
                                     if($data_tungapt->nilai <> ""){
@@ -277,7 +277,7 @@ class ProsesThrController extends Controller
                             }
 
                             $pajakakhirpt = ($pajakbulanpt * 12)-($pajakgajipt*12);
-                            $rskoreksipt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='32'");
+                            $rskoreksipt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='32'");
                             if(!empty($rskoreksipt)){
                                 foreach($rskoreksipt as $data_koreksipt){
                                     if($data_koreksipt->nilai <> ""){
@@ -290,7 +290,7 @@ class ProsesThrController extends Controller
                                 $koreksipt = '0';
                             }
 
-                            $rsbazmapt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='36'");
+                            $rsbazmapt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='36'");
                             if(!empty($rsbazmapt)){
                                 foreach($rsbazmapt as $data_bazmapt){
                                     if($data_bazmapt->nilai <> ""){
@@ -372,7 +372,7 @@ class ProsesThrController extends Controller
 
                     // pekerjakontrakthr()
                     // cari pegawai yang status pekerja kontrak
-                    $data_pegawaikontrakk = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
+                    $data_pegawaikontrakk = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
                     foreach($data_pegawaikontrakk as $data_pegawaikonkt)
                     {
                         $nopegkt = $data_pegawaikonkt->nopeg;
@@ -380,7 +380,7 @@ class ProsesThrController extends Controller
                         if($nopegkt == "070953"){
                             $bulangaji=3;
                         }
-                        $rsupahallinkt = DB::select("select nilai from sdm_allin where nopek='$nopegkt'");
+                        $rsupahallinkt = DB::select("SELECT nilai from sdm_allin where nopek='$nopegkt'");
                         if(!empty($rsupahallinkt)){
                             foreach($rsupahallinkt as $data_upkt)
                             {
@@ -394,7 +394,7 @@ class ProsesThrController extends Controller
                             $upahallinkt= '0';
                         }
 
-                        $rstunjjabatankt = DB::select("select a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegkt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegkt')");
+                        $rstunjjabatankt = DB::select("SELECT a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegkt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegkt')");
                         if(!empty($rstunjjabatankt)){
                             foreach($rstunjjabatankt as $data_tunkt)
                             {
@@ -408,7 +408,7 @@ class ProsesThrController extends Controller
                             $tunjjabatankt= '0';
                         }
 
-                        $rstunjdaerahkt = DB::select("select a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegkt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegkt')");
+                        $rstunjdaerahkt = DB::select("SELECT a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegkt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegkt')");
                         if(!empty($rstunjdaerahkt)){
                             foreach($rstunjdaerahkt as $data_tundaekt)
                             {
@@ -434,7 +434,7 @@ class ProsesThrController extends Controller
                             $thrgabkt=$thrgabkt; 
                         }
 
-                        $rskenapajak1kt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt' and a.aard=b.kode and b.kenapajak='Y'");
+                        $rskenapajak1kt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt' and a.aard=b.kode and b.kenapajak='Y'");
                         if(!empty($rskenapajak1kt)){
                             foreach($rskenapajak1kt as $data_kenapajakkt)
                             {
@@ -448,7 +448,7 @@ class ProsesThrController extends Controller
                             $nilaikenapajak1kt= '0';
                         }
 
-                        $rskorgaji2kt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt'"); 
+                        $rskorgaji2kt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt'"); 
                         foreach($rskorgaji2kt as $data_korkt)
                         {
                             $kortam2kt = $data_korkt->kortam;
@@ -464,7 +464,7 @@ class ProsesThrController extends Controller
                         }
 
                         $neto1tahunkt =  $totkenapajakkt - $biayajabatankt;
-                        $rsptkpkt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegkt'");
+                        $rsptkpkt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegkt'");
                         if(!empty($rsptkpkt)){
                             foreach($rsptkpkt as $data_ptkpkt)
                             {
@@ -486,7 +486,7 @@ class ProsesThrController extends Controller
                         $nilkenapajakkt = $nilaikenapajakakt;
                         $sisapokokkt = $nilkenapajakkt;
                         $sisapokok1kt = $sisapokokkt;
-                        $data_sdmprogresifkt = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                        $data_sdmprogresifkt = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                         foreach($data_sdmprogresifkt as $data_progkt)
                         {
                             $awalkt = $data_progkt->awal;
@@ -518,7 +518,7 @@ class ProsesThrController extends Controller
                             }
                             $tunjangankt=$pajakbulankt;
 
-                            $rstunjgajikt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegkt' and aard='27'");
+                            $rstunjgajikt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegkt' and aard='27'");
                             if(!empty($rstunjgajikt)){
                                 foreach($rstunjgajikt as $datakt)
                                 {
@@ -533,7 +533,7 @@ class ProsesThrController extends Controller
                             }
 
                             $pajakakhirkt = ($pajakbulankt * 12)-($pajakgajikt*12);
-                            $rskoreksikt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='32'");
+                            $rskoreksikt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='32'");
                             if(!empty($rskoreksikt)){
                                 foreach($rskoreksikt as $data_korekkt)
                                 {
@@ -546,7 +546,7 @@ class ProsesThrController extends Controller
                             }else{
                                 $koreksikt= '0';
                             }
-                            $rsbazmakt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='36'");
+                            $rsbazmakt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='36'");
                             if(!empty($rsbazmakt)){
                                 foreach($rsbazmakt as $data_bazkt)
                                 {
@@ -629,7 +629,7 @@ class ProsesThrController extends Controller
 
 
                     // pekerjabantuthr()
-                    $data_pegawaibantub = DB::select("select nopeg,status,kodekeluarga from sdm_master_pegawai where status='B' order by nopeg asc");
+                    $data_pegawaibantub = DB::select("SELECT nopeg,status,kodekeluarga from sdm_master_pegawai where status='B' order by nopeg asc");
                     foreach($data_pegawaibantub as $data_pegawaikonpb)
                     {
                         $nopegpb = $data_pegawaikonpb->nopeg;
@@ -640,7 +640,7 @@ class ProsesThrController extends Controller
                         }
 
                         // 1.cari upah all in 01
-                        $rsupahallinpb = DB::select("select nilai from sdm_allin where nopek='$nopegpb'");
+                        $rsupahallinpb = DB::select("SELECT nilai from sdm_allin where nopek='$nopegpb'");
                         if(!empty($rsupahallinpb)){
                             foreach($rsupahallinpb as $data_uppb)
                             {
@@ -656,7 +656,7 @@ class ProsesThrController extends Controller
                         $pengalipb = 1;
                         $thrgabpb =$upahallinpb;
 
-                        $rsupahtetappb = DB::select("select a.ut from sdm_ut a where a.nopeg='$nopegpb' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpb')");
+                        $rsupahtetappb = DB::select("SELECT a.ut from sdm_ut a where a.nopeg='$nopegpb' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpb')");
                         if(!empty($rsupahtetappb)){
                             foreach($rsupahtetappb as $data_uptetappb)
                             {
@@ -670,7 +670,7 @@ class ProsesThrController extends Controller
                             $upahtetappb= '0';
                         }
 
-                       $rsfasilitaspb = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='06'");
+                       $rsfasilitaspb = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='06'");
                        if(!empty($rsfasilitaspb)){
                             foreach($rsfasilitaspb as $data_faspb)
                             {
@@ -686,7 +686,7 @@ class ProsesThrController extends Controller
                        
 
                        //    hitung pajak pph21
-                       $rskenapajak1pb = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpb' and a.aard=b.kode and b.kenapajak='Y'");
+                       $rskenapajak1pb = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpb' and a.aard=b.kode and b.kenapajak='Y'");
                        if(!empty($rskenapajak1pb)){
                            foreach($rskenapajak1pb as $data_kenapapb)
                            {
@@ -712,7 +712,7 @@ class ProsesThrController extends Controller
                         $neto1tahunpb =  $totkenapajakpb - $biayajabatanpb;
 
                         // cari nilai tidak kena pajak
-                        $rsptkppb = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpb'");
+                        $rsptkppb = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpb'");
                         if(!empty($rsptkppb)){
                             foreach($rsptkppb as $data_ptkppb)
                             {
@@ -733,7 +733,7 @@ class ProsesThrController extends Controller
                         $pajakbulanpb=1;
                         $nilkenapajakpb = $nilaikenapajakapb;
                         $sisapokokpb = $nilkenapajakpb;
-                        $data_sdmprogresifpb = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                        $data_sdmprogresifpb = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                         foreach($data_sdmprogresifpb as $data_progpb)
                         {
                             $awalpb = $data_progpb->awal;
@@ -765,7 +765,7 @@ class ProsesThrController extends Controller
                                 $nilaikenapajakpb=(($nilaikenapajakpb-$selisihpb)/1000)*1000;
                             }
                             $tunjanganpb=$pajakbulanpb;
-                            $rstunjgajipb = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='27'");
+                            $rstunjgajipb = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='27'");
                             if(!empty($rstunjgajipb)){
                                 foreach($rstunjgajipb as $data_tunjpb)
                                 {
@@ -782,7 +782,7 @@ class ProsesThrController extends Controller
                           
                             $pajakakhirpb = ($pajakbulanpb * 12)-($pajakgajipb*12);
 
-                            $rskoreksipb = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='32'");
+                            $rskoreksipb = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='32'");
                             if(!empty($rskoreksipb)){
                                 foreach($rskoreksipb as $data_korekspb)
                                 {
@@ -795,7 +795,7 @@ class ProsesThrController extends Controller
                             }else{
                                 $koreksipb= '0';
                             }   
-                            $rsbazmapb = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='36'");
+                            $rsbazmapb = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='36'");
                             if(!empty($rsbazmapb)){
                                 foreach($rsbazmapb as $data_bazpb)
                                 {
@@ -879,12 +879,12 @@ class ProsesThrController extends Controller
                 }elseif($prosesupah == 'C'){
                     // pekerjatetapthr()
                    // 1.cari pegawai yang status pekerja tetap
-                   $data_pegawaitetapC = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
+                   $data_pegawaitetapC = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='C' order by nopeg asc");
                    foreach($data_pegawaitetapC as $data_pegawaitept)
                    {
                        $nopegpt = $data_pegawaitept->nopeg;
                        $kodekelpt = $data_pegawaitept->kodekeluarga;
-                       $data_upahpt = DB::select("select a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
+                       $data_upahpt = DB::select("SELECT a.ut from sdm_ut a where a.nopeg='$nopegpt' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpt')");
                        if(!empty($data_upahpt)){
                            foreach($data_upahpt as $data_uppt)
                            {
@@ -902,7 +902,7 @@ class ProsesThrController extends Controller
                        if($nopegpt == "181326"){
                            $tunjjabatanpt = '0';
                        }else{
-                            $rstunjjabatanpt = DB::select("select a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegpt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegpt')");
+                            $rstunjjabatanpt = DB::select("SELECT a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegpt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegpt')");
                            if(!empty($rstunjjabatanpt)){
                                foreach($rstunjjabatanpt as $data_tunpt){
                                    if($data_tunpt->tunjangan <> ""){
@@ -917,7 +917,7 @@ class ProsesThrController extends Controller
                        }
                        
                        // '3.tunjangan biaya hidup aard aard = 04
-                       $rstunjdaerahpt = DB::select("select a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegpt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegpt')");
+                       $rstunjdaerahpt = DB::select("SELECT a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegpt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegpt')");
                        if(!empty($rstunjdaerahpt)){
                            foreach($rstunjdaerahpt as $data_daept){
                                if($data_daept->nilai <> ""){
@@ -934,7 +934,7 @@ class ProsesThrController extends Controller
                        $pengalipt = "1";
 
                        // 4.'cari nilai jamsostek
-                       $rsjstaccidentpt = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
+                       $rsjstaccidentpt = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='10'");
                        if(!empty($rsjstaccidentpt)){
                            foreach($rsjstaccidentpt as $data_jspt){
                                if($data_jspt->curramount <> ""){
@@ -947,7 +947,7 @@ class ProsesThrController extends Controller
                            $niljstaccidentpt = '0';
                        }
                        
-                       $rsjstlifept = DB::select("select curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
+                       $rsjstlifept = DB::select("SELECT curramount from pay_master_bebanprshn where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='12'");
                        if(!empty($rsjstlifept)){
                            foreach($rsjstlifept as $data_lifpt){
                                if($data_lifpt->curramount <> ""){
@@ -961,7 +961,7 @@ class ProsesThrController extends Controller
                        }
 
 
-                       $rsfasilitaspt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
+                       $rsfasilitaspt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='06'");
                        if(!empty($rsfasilitaspt)){
                            foreach($rsfasilitaspt as $data_faspt){
                                if($data_faspt->nilai <> ""){
@@ -975,7 +975,7 @@ class ProsesThrController extends Controller
                        }
 
                        // 4.'cari nilai kena pajak upah bulan sebelumnya
-                       $rskenapajak1pt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
+                       $rskenapajak1pt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt' and a.aard=b.kode and b.kenapajak='Y'");
                        if(!empty($rskenapajak1pt)){
                            foreach($rskenapajak1pt as $data_kenapt){
                                if($data_kenapt->nilai1 <> ""){
@@ -989,7 +989,7 @@ class ProsesThrController extends Controller
                        }
 
 
-                       $rskorgajipt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
+                       $rskorgajipt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpt'");
                        if(!empty($rskorgajipt)){
                            foreach($rskorgajipt as $data_koreksipt){
                                if($data_koreksipt->kortam <> ""){
@@ -1014,7 +1014,7 @@ class ProsesThrController extends Controller
 
                        $neto1tahunpt =  $totkenapajakpt - $biayajabatanpt;
 
-                       $rsptkppt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
+                       $rsptkppt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpt'");
                        if(!empty($rsptkppt)){
                            foreach($rsptkppt as $data_ptkppt){
                                if($data_ptkppt->nilai <> ""){
@@ -1035,7 +1035,7 @@ class ProsesThrController extends Controller
                        $pajakbulanpt=1;
                        $nilkenapajakpt = $nilaikenapajakapt;
                        $sisapokokpt = $nilkenapajakpt;
-                       $data_sdmprogresifpt = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                       $data_sdmprogresifpt = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                        foreach($data_sdmprogresifpt as $data_progpt)
                        {
                            $awalpt = $data_progpt->awal;
@@ -1067,7 +1067,7 @@ class ProsesThrController extends Controller
                                $nilaikenapajakpt=(($nilaikenapajakpt-$selisihpt)/1000)*1000;
                        }
                            $tunjanganpt=$pajakbulanpt;
-                           $rstunjgajipt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
+                           $rstunjgajipt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpt' and aard='27'");
                            if(!empty($rstunjgajipt)){
                                foreach($rstunjgajipt as $data_tungapt){
                                    if($data_tungapt->nilai <> ""){
@@ -1081,7 +1081,7 @@ class ProsesThrController extends Controller
                            }
 
                            $pajakakhirpt = ($pajakbulanpt * 12)-($pajakgajipt*12);
-                           $rskoreksipt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='32'");
+                           $rskoreksipt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='32'");
                            if(!empty($rskoreksipt)){
                                foreach($rskoreksipt as $data_koreksipt){
                                    if($data_koreksipt->nilai <> ""){
@@ -1094,7 +1094,7 @@ class ProsesThrController extends Controller
                                $koreksipt = '0';
                            }
 
-                           $rsbazmapt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='36'");
+                           $rsbazmapt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpt' and aard='36'");
                            if(!empty($rsbazmapt)){
                                foreach($rsbazmapt as $data_bazmapt){
                                    if($data_bazmapt->nilai <> ""){
@@ -1176,7 +1176,7 @@ class ProsesThrController extends Controller
                 }elseif($prosesupah == 'K'){
                     // pekerjakontrakthr()
                      // cari pegawai yang status pekerja kontrak
-                     $data_pegawaikontrakk = DB::select("select nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
+                     $data_pegawaikontrakk = DB::select("SELECT nopeg,kodekeluarga from sdm_master_pegawai where status='K' order by nopeg asc");
                      foreach($data_pegawaikontrakk as $data_pegawaikonkt)
                      {
                          $nopegkt = $data_pegawaikonkt->nopeg;
@@ -1184,7 +1184,7 @@ class ProsesThrController extends Controller
                          if($nopegkt == "070953"){
                              $bulangaji=3;
                          }
-                         $rsupahallinkt = DB::select("select nilai from sdm_allin where nopek='$nopegkt'");
+                         $rsupahallinkt = DB::select("SELECT nilai from sdm_allin where nopek='$nopegkt'");
                          if(!empty($rsupahallinkt)){
                              foreach($rsupahallinkt as $data_upkt)
                              {
@@ -1198,7 +1198,7 @@ class ProsesThrController extends Controller
                              $upahallinkt= '0';
                          }
  
-                         $rstunjjabatankt = DB::select("select a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegkt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegkt')");
+                         $rstunjjabatankt = DB::select("SELECT a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegkt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegkt')");
                          if(!empty($rstunjjabatankt)){
                              foreach($rstunjjabatankt as $data_tunkt)
                              {
@@ -1212,7 +1212,7 @@ class ProsesThrController extends Controller
                              $tunjjabatankt= '0';
                          }
  
-                         $rstunjdaerahkt = DB::select("select a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegkt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegkt')");
+                         $rstunjdaerahkt = DB::select("SELECT a.golgaji, b.nilai from sdm_golgaji a,pay_tbl_tunjangan b where a.nopeg='$nopegkt' and a.golgaji=b.golongan and a.tanggal=(select max(tanggal) from sdm_golgaji where nopeg ='$nopegkt')");
                          if(!empty($rstunjdaerahkt)){
                              foreach($rstunjdaerahkt as $data_tundaekt)
                              {
@@ -1238,7 +1238,7 @@ class ProsesThrController extends Controller
                              $thrgabkt=$thrgabkt; 
                          }
  
-                         $rskenapajak1kt = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt' and a.aard=b.kode and b.kenapajak='Y'");
+                         $rskenapajak1kt = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt' and a.aard=b.kode and b.kenapajak='Y'");
                          if(!empty($rskenapajak1kt)){
                              foreach($rskenapajak1kt as $data_kenapajakkt)
                              {
@@ -1252,7 +1252,7 @@ class ProsesThrController extends Controller
                              $nilaikenapajak1kt= '0';
                          }
  
-                         $rskorgaji2kt = DB::select("select sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt'"); 
+                         $rskorgaji2kt = DB::select("SELECT sum(a.nilai) as kortam from pay_koreksigaji a where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegkt'"); 
                          foreach($rskorgaji2kt as $data_korkt)
                          {
                              $kortam2kt = $data_korkt->kortam;
@@ -1268,7 +1268,7 @@ class ProsesThrController extends Controller
                          }
  
                          $neto1tahunkt =  $totkenapajakkt - $biayajabatankt;
-                         $rsptkpkt = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegkt'");
+                         $rsptkpkt = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegkt'");
                          if(!empty($rsptkpkt)){
                              foreach($rsptkpkt as $data_ptkpkt)
                              {
@@ -1290,7 +1290,7 @@ class ProsesThrController extends Controller
                          $nilkenapajakkt = $nilaikenapajakakt;
                          $sisapokokkt = $nilkenapajakkt;
                          $sisapokok1kt = $sisapokokkt;
-                         $data_sdmprogresifkt = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                         $data_sdmprogresifkt = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                          foreach($data_sdmprogresifkt as $data_progkt)
                          {
                              $awalkt = $data_progkt->awal;
@@ -1322,7 +1322,7 @@ class ProsesThrController extends Controller
                              }
                              $tunjangankt=$pajakbulankt;
  
-                             $rstunjgajikt = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegkt' and aard='27'");
+                             $rstunjgajikt = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegkt' and aard='27'");
                              if(!empty($rstunjgajikt)){
                                  foreach($rstunjgajikt as $datakt)
                                  {
@@ -1337,7 +1337,7 @@ class ProsesThrController extends Controller
                              }
  
                              $pajakakhirkt = ($pajakbulankt * 12)-($pajakgajikt*12);
-                             $rskoreksikt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='32'");
+                             $rskoreksikt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='32'");
                              if(!empty($rskoreksikt)){
                                  foreach($rskoreksikt as $data_korekkt)
                                  {
@@ -1350,7 +1350,7 @@ class ProsesThrController extends Controller
                              }else{
                                  $koreksikt= '0';
                              }
-                             $rsbazmakt = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='36'");
+                             $rsbazmakt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='36'");
                              if(!empty($rsbazmakt)){
                                  foreach($rsbazmakt as $data_bazkt)
                                  {
@@ -1433,7 +1433,7 @@ class ProsesThrController extends Controller
                     
                 }else{
                     // pekerjabantuthr()
-                    $data_pegawaibantub = DB::select("select nopeg,status,kodekeluarga from sdm_master_pegawai where status='B' order by nopeg asc");
+                    $data_pegawaibantub = DB::select("SELECT nopeg,status,kodekeluarga from sdm_master_pegawai where status='B' order by nopeg asc");
                     foreach($data_pegawaibantub as $data_pegawaikonpb)
                     {
                         $nopegpb = $data_pegawaikonpb->nopeg;
@@ -1444,7 +1444,7 @@ class ProsesThrController extends Controller
                         }
 
                         // 1.cari upah all in 01
-                        $rsupahallinpb = DB::select("select nilai from sdm_allin where nopek='$nopegpb'");
+                        $rsupahallinpb = DB::select("SELECT nilai from sdm_allin where nopek='$nopegpb'");
                         if(!empty($rsupahallinpb)){
                             foreach($rsupahallinpb as $data_uppb)
                             {
@@ -1460,7 +1460,7 @@ class ProsesThrController extends Controller
                         $pengalipb = 1;
                         $thrgabpb =$upahallinpb;
 
-                        $rsupahtetappb = DB::select("select a.ut from sdm_ut a where a.nopeg='$nopegpb' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpb')");
+                        $rsupahtetappb = DB::select("SELECT a.ut from sdm_ut a where a.nopeg='$nopegpb' and a.mulai=(select max(mulai) from sdm_ut where nopeg='$nopegpb')");
                         if(!empty($rsupahtetappb)){
                             foreach($rsupahtetappb as $data_uptetappb)
                             {
@@ -1474,7 +1474,7 @@ class ProsesThrController extends Controller
                             $upahtetappb= '0';
                         }
 
-                       $rsfasilitaspb = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='06'");
+                       $rsfasilitaspb = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='06'");
                        if(!empty($rsfasilitaspb)){
                             foreach($rsfasilitaspb as $data_faspb)
                             {
@@ -1490,7 +1490,7 @@ class ProsesThrController extends Controller
                        
 
                        //    hitung pajak pph21
-                       $rskenapajak1pb = DB::select("select sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpb' and a.aard=b.kode and b.kenapajak='Y'");
+                       $rskenapajak1pb = DB::select("SELECT sum(a.nilai) as nilai1 from pay_master_upah a,pay_tbl_aard b where a.tahun='$tahungaji' and a.bulan='$bulangaji' and a.nopek='$nopegpb' and a.aard=b.kode and b.kenapajak='Y'");
                        if(!empty($rskenapajak1pb)){
                            foreach($rskenapajak1pb as $data_kenapapb)
                            {
@@ -1516,7 +1516,7 @@ class ProsesThrController extends Controller
                         $neto1tahunpb =  $totkenapajakpb - $biayajabatanpb;
 
                         // cari nilai tidak kena pajak
-                        $rsptkppb = DB::select("select a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpb'");
+                        $rsptkppb = DB::select("SELECT a.kodekeluarga,b.nilai from sdm_master_pegawai a,pay_tbl_ptkp b where a.kodekeluarga=b.kdkel and a.nopeg='$nopegpb'");
                         if(!empty($rsptkppb)){
                             foreach($rsptkppb as $data_ptkppb)
                             {
@@ -1537,7 +1537,7 @@ class ProsesThrController extends Controller
                         $pajakbulanpb=1;
                         $nilkenapajakpb = $nilaikenapajakapb;
                         $sisapokokpb = $nilkenapajakpb;
-                        $data_sdmprogresifpb = DB::select("select * from sdm_tbl_progressif order by awal asc");
+                        $data_sdmprogresifpb = DB::select("SELECT * from sdm_tbl_progressif order by awal asc");
                         foreach($data_sdmprogresifpb as $data_progpb)
                         {
                             $awalpb = $data_progpb->awal;
@@ -1569,7 +1569,7 @@ class ProsesThrController extends Controller
                                 $nilaikenapajakpb=(($nilaikenapajakpb-$selisihpb)/1000)*1000;
                             }
                             $tunjanganpb=$pajakbulanpb;
-                            $rstunjgajipb = DB::select("select nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='27'");
+                            $rstunjgajipb = DB::select("SELECT nilai from pay_master_upah where tahun='$tahungaji' and bulan='$bulangaji' and nopek='$nopegpb' and aard='27'");
                             if(!empty($rstunjgajipb)){
                                 foreach($rstunjgajipb as $data_tunjpb)
                                 {
@@ -1586,7 +1586,7 @@ class ProsesThrController extends Controller
                           
                             $pajakakhirpb = ($pajakbulanpb * 12)-($pajakgajipb*12);
 
-                            $rskoreksipb = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='32'");
+                            $rskoreksipb = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='32'");
                             if(!empty($rskoreksipb)){
                                 foreach($rskoreksipb as $data_korekspb)
                                 {
@@ -1599,7 +1599,7 @@ class ProsesThrController extends Controller
                             }else{
                                 $koreksipb= '0';
                             }   
-                            $rsbazmapb = DB::select("select sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='36'");
+                            $rsbazmapb = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='36'");
                             if(!empty($rsbazmapb)){
                                 foreach($rsbazmapb as $data_bazpb)
                                 {
@@ -1681,7 +1681,7 @@ class ProsesThrController extends Controller
                     }
 
                 }
-                    $cek_stat = DB::select("select * from stat_bayar_thr where tahun='$tahun' and bulan='$bulan'");
+                    $cek_stat = DB::select("SELECT * from stat_bayar_thr where tahun='$tahun' and bulan='$bulan'");
                         if(!empty($cek_stat)){
                             StatBayarThr::where('tahun', $tahun)
                                     ->where('bulan',$bulan)
@@ -1696,13 +1696,13 @@ class ProsesThrController extends Controller
                                 ]); 
                         }
                 Alert::success("Data THR bulan $bulan dan tahun $tahun berhasil di proses ", 'Berhasil')->persistent(true);
-                return redirect()->route('proses_thr.index');
+                return redirect()->route('modul_sdm_payroll.proses_thr.index');
                 
             }
 
         }else{
 
-            $data_cekstatusbayar = DB::select("select status from stat_bayar_thr where tahun='$tahun' and bulan='$bulan'");
+            $data_cekstatusbayar = DB::select("SELECT status from stat_bayar_thr where tahun='$tahun' and bulan='$bulan'");
             if(!empty($data_cekstatusbayar)){
                     foreach($data_cekstatusbayar as $data_bayar)
                     {
@@ -1710,9 +1710,9 @@ class ProsesThrController extends Controller
                     }
                     if($data_cekbayar == 'N'){
                         if($prosesupah == 'A'){
-                            $data_Cekbatal = DB::select("select * from pay_master_thr where tahun='$tahun' and bulan='$bulan'");
+                            $data_Cekbatal = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan'");
                         }else{
-                            $data_Cekbatal = DB::select("select * from pay_master_thr where tahun='$tahun' and bulan='$bulan' and status='$prosesupah'");
+                            $data_Cekbatal = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan' and status='$prosesupah'");
                         }
                             if(!empty($data_Cekbatal)){
                                     if($prosesupah == 'A'){
@@ -1726,19 +1726,19 @@ class ProsesThrController extends Controller
                                         MasterThr::where('tahun', $tahun)->where('bulan',$bulan)->where('status',$prosesupah)->delete();
                                     }
                                     Alert::success("Proses pembatalan proses THR selesai", 'Berhasil')->persistent(true);
-                                    return redirect()->route('proses_thr.index');
+                                    return redirect()->route('modul_sdm_payroll.proses_thr.index');
                             }else {
                                     Alert::Info("Tidak ditemukan data THR bulan $bulan dan tahun $tahun", 'Info')->persistent(true);
-                                    return redirect()->route('proses_thr.index');
+                                    return redirect()->route('modul_sdm_payroll.proses_thr.index');
                             }
 
                     }else {
                         Alert::Info("Tidak bisa dibatalkan Data THR bulan $bulan tahun $tahun sudah di proses perbendaharaan", 'Info')->persistent(true);
-                        return redirect()->route('proses_thr.index');
+                        return redirect()->route('modul_sdm_payroll.proses_thr.index');
                     }
             }else{
                     Alert::Info("Tidak ditemukan data THR bulan $bulan dan tahun $tahun", 'Info')->persistent(true);
-                    return redirect()->route('proses_thr.index');
+                    return redirect()->route('modul_sdm_payroll.proses_thr.index');
             }
 
         }
@@ -1747,15 +1747,15 @@ class ProsesThrController extends Controller
 
     public function ctkslipthr()
     {
-        $data_pegawai = DB::select("select nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('proses_thr.rekap',compact('data_pegawai'));
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        return view('modul-sdm-payroll.proses-thr.rekap',compact('data_pegawai'));
     }
     public function cetak_slipthr(Request $request)
     {
-        $data_list = DB::select("select a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
-        $data_detail = DB::select("select a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('07','03')");
+        $data_list = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
+        $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('07','03')");
         if(!empty($data_list) and !empty($data_detail)) {
-            $pdf = DomPDF::loadview('proses_thr.export_slipthr',compact('request','data_list','data_detail'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-thr.export_slipthr',compact('request','data_list','data_detail'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
             
@@ -1765,20 +1765,20 @@ class ProsesThrController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('proses_thr.ctkslipthr');
+            return redirect()->route('modul_sdm_payroll.proses_thr.ctkslipthr');
         }
     }
 
     public function ctkrekapthr()
     {
-        return view('proses_thr.rekapthr');
+        return view('modul-sdm-payroll.proses-thr.rekapthr');
     }
 
     public function rekapExport(Request $request)
     {
-        $data_list = DB::select("select a.aard,a.bulan,a.tahun,a.nopek,a.koreksi,a.nilai,a.pengali,a.pajakthr,a.tbiayahidup,a.ut,a.tjabatan,a.status,a.potongan,b.nama as namapegawai from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard='25' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
+        $data_list = DB::select("SELECT a.aard,a.bulan,a.tahun,a.nopek,a.koreksi,a.nilai,a.pengali,a.pajakthr,a.tbiayahidup,a.ut,a.tjabatan,a.status,a.potongan,b.nama as namapegawai from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard='25' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
         if(!empty($data_list)){
-            $pdf = DomPDF::loadview('proses_thr.export_rekapthr',compact('request','data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-thr.export_rekapthr',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -1788,7 +1788,7 @@ class ProsesThrController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('proses_thr.ctkrekapthr');
+            return redirect()->route('modul_sdm_payroll.proses_thr.ctkrekapthr');
         }
     }
 }

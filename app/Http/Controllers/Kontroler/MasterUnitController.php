@@ -15,7 +15,7 @@ class MasterUnitController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select tab_tbl_unit.*,tab_tbl_prshn.nama as namaprshn from tab_tbl_unit,tab_tbl_prshn where tab_tbl_unit.perusahaan=tab_tbl_prshn.kode order by tab_tbl_prshn.nama,tab_tbl_unit.nama");
+        $data = DB::select("SELECT tab_tbl_unit.*,tab_tbl_prshn.nama as namaprshn from tab_tbl_unit,tab_tbl_prshn where tab_tbl_unit.perusahaan=tab_tbl_prshn.kode order by tab_tbl_prshn.nama,tab_tbl_unit.nama");
         return datatables()->of($data)
         ->addColumn('namaprshn', function ($data) {
             return $data->namaprshn;
@@ -45,13 +45,13 @@ class MasterUnitController extends Controller
 
     public function create()
     {
-        $data_perusahaan = DB::select("select * from tab_tbl_prshn");
+        $data_perusahaan = DB::select("SELECT * from tab_tbl_prshn");
         return view('master_unit.create',compact('data_perusahaan'));
     }
     
     public function store(Request $request)
     {
-        $data = DB::select("select * from tab_tbl_unit where kode='$request->kode'");
+        $data = DB::select("SELECT * from tab_tbl_unit where kode='$request->kode'");
         if(!empty($data)){
             $data2 = 2;
             return response()->json($data2);
@@ -77,8 +77,8 @@ class MasterUnitController extends Controller
 
     public function edit($kode)
     {
-        $data_perusahaan = DB::select("select * from tab_tbl_prshn");
-        $data = DB::select("select * from tab_tbl_unit where kode='$kode'");
+        $data_perusahaan = DB::select("SELECT * from tab_tbl_prshn");
+        $data = DB::select("SELECT * from tab_tbl_unit where kode='$kode'");
         foreach($data as $dat)
         {
             $tembusan = $dat->tembusan;

@@ -16,7 +16,7 @@ class JenisBiayaController extends Controller
 
     public function indexJson(Request $request)
     {
-        $data = DB::select("select a.* from jenisbiaya a order by a.kode");
+        $data = DB::select("SELECT a.* from jenisbiaya a order by a.kode");
         return datatables()->of($data)
         ->addColumn('kode', function ($data) {
             return $data->kode;
@@ -38,7 +38,7 @@ class JenisBiayaController extends Controller
     }
     public function store(Request $request)
     {
-        $data_objRs = DB::select("select kode from jenisbiaya where kode='$request->kode'");
+        $data_objRs = DB::select("SELECT kode from jenisbiaya where kode='$request->kode'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
@@ -55,7 +55,7 @@ class JenisBiayaController extends Controller
 
     public function edit($no)
     {
-        $data_cash = DB::select("select * from jenisbiaya where kode='$no'");
+        $data_cash = DB::select("SELECT * from jenisbiaya where kode='$no'");
         foreach($data_cash as $data)
         {
             $kode = $data->kode;

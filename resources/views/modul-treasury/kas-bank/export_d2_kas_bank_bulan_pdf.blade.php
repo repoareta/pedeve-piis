@@ -376,16 +376,16 @@ tr {
                          <td colspan="6" class="text-left"></td>
                          <td colspan="2" class="text-right">TOTAL DEBET</td>
                          <td class="text-right"></td>
-                         <td class="text-right">{{$total_debet_1_1_rp}}</td>
-                         <td class="text-right">{{$total_debet_2_1_rp}}</td>
+                         <td class="text-right">{{ $total_debet_1_1_rp}}</td>
+                         <td class="text-right">{{ $total_debet_2_1_rp}}</td>
                          <td colspan="3" class="text-right"></td>
                      </tr>
                      <tr>
                          <td colspan="6" class="text-left"></td>
                          <td colspan="2" class="text-right">TOTAL KREDIT</td>
                          <td class="text-right"></td>
-                         <td class="text-right">{{$total_kredit_1_1_rp}}</td>
-                         <td class="text-right">{{$total_kredit_2_1_rp}}</td>
+                         <td class="text-right">{{ $total_kredit_1_1_rp}}</td>
+                         <td class="text-right">{{ $total_kredit_2_1_rp}}</td>
                          <td colspan="3" class="text-right"></td>
                      </tr>
                 </tbody>
