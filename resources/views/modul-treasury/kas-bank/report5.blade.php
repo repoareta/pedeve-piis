@@ -23,11 +23,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <select name="cj" class="form-control select2" style="width: 100% !important;"  required oninvalid="this.setCustomValidity('C.Judex Harus Diisi..')">
-=======
                     <select name="cj" class="form-control select2" required>
->>>>>>> Stashed changes
                         <option value="">- Pilih -</option>
                         @foreach($data_judex as $data)
                         <option value="{{ $data->kode }}">{{ $data->kode }} -- {{ $data->nama }}</option>

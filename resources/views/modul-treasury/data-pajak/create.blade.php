@@ -43,11 +43,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-<<<<<<< Updated upstream
-                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')">
-=======
                             <select name="nopek" class="form-control select2" style="width: 100% !important;" required>
->>>>>>> Stashed changes
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}">{{ $data->nopeg }} -- {{ $data->nama }}</option>
@@ -58,11 +54,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
-<<<<<<< Updated upstream
-                            <select name="jenis" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')">
-=======
                             <select name="jenis" class="form-control select2" style="width: 100% !important;" required>
->>>>>>> Stashed changes
                                 <option value="">-Pilih Jenis-</option>
                                 <option value="24">Bonus</option>
                                 <option value="25">THR</option>

@@ -300,11 +300,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-<<<<<<< Updated upstream
-							<textarea  class="form-control" type="text" value="" name="rincian" id="rincian" size="50" maxlength="250" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')" onkeyup="this.value = this.value.toUpperCase()"></textarea>
-=======
 							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required onkeyup="this.value = this.value.toUpperCase()"></textarea>
->>>>>>> Stashed changes
 						</div>
 					</div>
 					<div class="form-group row">

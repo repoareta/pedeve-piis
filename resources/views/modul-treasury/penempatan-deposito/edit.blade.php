@@ -31,25 +31,15 @@
             <div class="form-group row">
             {{--<label for="" class="col-2 col-form-label text-right">Asal<span class="text-danger">*</span></label>--}}
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="hidden" value="{{ $data->asal}}" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
-                    <input  class="form-control" type="hidden" value="{{ $data->perpanjangan}}" id="perpanjangan" name="perpanjangan" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="hidden" value="{{$data->asal}}" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
                     <input  class="form-control" type="hidden" value="{{$data->perpanjangan}}" id="perpanjangan" name="perpanjangan" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="{{ $data->namabank}}" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
-                    <input  class="form-control" type="hidden" value="{{ $data->kdbank}}" id="kdbank" name="kdbank" size="30" maxlength="30" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="{{$data->namabank}}" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
                     <input  class="form-control" type="hidden" value="{{$data->kdbank}}" id="kdbank" name="kdbank" size="30" maxlength="30" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
@@ -61,21 +51,13 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Tgl Deposito<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="<?php $tgl= date_create($data->tgldep); echo date_format($tgl, 'd-m-Y') ?>" id="tanggal" name="tanggal" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Tgl Deposito Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="<?php $tgl= date_create($data->tgldep); echo date_format($tgl, 'd-m-Y') ?>" id="tanggal" name="tanggal" size="15" maxlength="15" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Jatuh Tempo<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="<?php $tgl= date_create($data->tgltempo); echo date_format($tgl, 'd-m-Y') ?>" id="tanggal2" name="tanggal2" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Jatuh Tempo Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="<?php $tgl= date_create($data->tgltempo); echo date_format($tgl, 'd-m-Y') ?>" id="tanggal2" name="tanggal2" size="15" maxlength="15" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
@@ -87,11 +69,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">No. Seri<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="{{ $data->noseri}}" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('No. Seri Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="{{$data->noseri}}" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="kt-form__actions">
