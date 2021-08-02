@@ -35,21 +35,13 @@
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <div class="col-2" >
-<<<<<<< Updated upstream
-                            <input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')">
-=======
                             <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
->>>>>>> Stashed changes
                         </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input class="form-control" type="text" value="{{ $keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')">
-=======
                     <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required>
->>>>>>> Stashed changes
                 </div>
             </div>
 

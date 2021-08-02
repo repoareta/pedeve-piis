@@ -24,30 +24,18 @@
                 <label for="dari-input" class="col-2 col-form-label text-right">Mulai Tanggal<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <div class="input-daterange input-group" id="date_range_picker">
-<<<<<<< Updated upstream
-                        <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off" required oninvalid="this.setCustomValidity('Mulai Harus Diisi..')"/>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Sampai</span>
-                        </div>
-                        <input type="text" class="form-control" name="tanggal2" id="tanggal2" autocomplete="off" required oninvalid="this.setCustomValidity('Sampai Harus Diisi..')"/>
-=======
                         <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off" required>
                         <div class="input-group-append">
                             <span class="input-group-text">Sampai</span>
                         </div>
                         <input type="text" class="form-control" name="tanggal2" id="tanggal2" autocomplete="off" required>
->>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <select class="form-control select2" style="width: 100% !important;"  name="jk" id="jk" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')">
-=======
                     <select class="form-control select2"  name="jk" id="jk" required>
->>>>>>> Stashed changes
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -56,11 +44,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <select class="form-control select2" style="width: 100% !important;"  name="nokas" id="nokas" required oninvalid="this.setCustomValidity('No.Kas/Bank Harus Diisi..')">
-=======
                     <select class="form-control select2"  name="nokas" id="nokas" required>
->>>>>>> Stashed changes
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -69,19 +53,11 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label text-right">Setuju<span class="text-danger">*</span></label>
                 <div class="col-4">
-<<<<<<< Updated upstream
-                    <input class="form-control" type="text" value="" name="setuju" id="setuju" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Setuju Harus Diisi..')" autocomplete="off">
-=======
                     <input class="form-control" type="text" value="" name="setuju" id="setuju" size="50" maxlength="50" required autocomplete="off">
->>>>>>> Stashed changes
                 </div>
                 <label class="col-2 col-form-label text-right">Dibuat Oleh<span class="text-danger">*</span></label>
                 <div class="col-4" >
-<<<<<<< Updated upstream
-                    <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required oninvalid="this.setCustomValidity('Dibuat Oleh Harus Diisi..')" autocomplete="off">
-=======
                     <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required autocomplete="off">
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="kt-form__actions">

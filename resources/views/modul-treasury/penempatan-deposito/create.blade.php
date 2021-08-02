@@ -23,11 +23,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen <span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <select name="nodok" id="nodok" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('No. Dokumen Harus Diisi..')">
-=======
                     <select name="nodok" id="nodok" class="form-control selectpicker" data-live-search="true" required>
->>>>>>> Stashed changes
                         <option value="">- Pilih -</option>
                         @foreach($data_dok as $data)
                         <option data-lineno="{{ $data->lineno}}" value="{{ $data->docno}}">{{ $data->docno}} - {{ $data->keterangan}}</option>
@@ -37,53 +33,32 @@
                     <input class="form-control" type="hidden" value="" name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="" name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="" name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-<<<<<<< Updated upstream
-                    <input class="form-control" type="hidden" value="" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Asal Harus Diisi..')" autocomplete="off" >
-=======
                     <input class="form-control" type="hidden" value="" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bank <span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
-                    <input  class="form-control" type="hidden" value="" id="kdbank" name="kdbank" size="30" maxlength="30" required oninvalid="this.setCustomValidity('Nama Bank Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
                     <input  class="form-control" type="hidden" value="" id="kdbank" name="kdbank" size="30" maxlength="30" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="" name="nominal" size="25" maxlength="25" required oninvalid="this.setCustomValidity('Nominal Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value=""  name="nominal" size="25" maxlength="25" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Tgl Deposito <span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="" id="tanggal" name="tanggal" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Tgl Deposito Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="" id="tanggal" name="tanggal" size="15" maxlength="15" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Jatuh Tempo <span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="" id="tanggal2" name="tanggal2" size="15" maxlength="15" required oninvalid="this.setCustomValidity('Jatuh Tempo Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="" id="tanggal2" name="tanggal2" size="15" maxlength="15" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="form-group row">
@@ -95,11 +70,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">No. Seri <span class="text-danger">*</span></label>
                 <div class="col-10">
-<<<<<<< Updated upstream
-                    <input  class="form-control" type="text" value="" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required oninvalid="this.setCustomValidity('No. Seri Harus Diisi..')" autocomplete="off" >
-=======
                     <input  class="form-control" type="text" value="" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
->>>>>>> Stashed changes
                 </div>
             </div>
             
