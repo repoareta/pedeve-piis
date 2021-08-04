@@ -84,7 +84,7 @@ class KasCashJudexController extends Controller
             return $pdf->stream('rekap_d2_kas_bank_' . date('Y-m-d H:i:s') . '.pdf');
         } else {
             Alert::info("Tidak ditemukan data yang di cari", 'Failed')->persistent(true);
-            return redirect()->route('modul-treasury.kas-bank.create1');
+            return redirect()->route('kas_bank.create1');
         }
     }
 
