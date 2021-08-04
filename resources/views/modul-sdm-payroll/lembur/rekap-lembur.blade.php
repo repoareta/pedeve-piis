@@ -46,8 +46,8 @@
                             </select>
                         </div>
                         <div class="col-4" >
-                            <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete='off' required>
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete='off'>
+                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                         </div>
                     </div>
                     <div class="form__actions">

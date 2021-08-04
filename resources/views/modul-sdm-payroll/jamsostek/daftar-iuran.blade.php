@@ -46,24 +46,24 @@
                             </select>
                         </div>
                         <div class="col-5" >
-                            <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete='off'>
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete='off'>
+                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Penandatangan<span class="text-danger">*</span></label>
                         <div class="col-5">
-                            <input class="form-control" type="text" value="Ali Syamsul R" name="nama" id="nama" size="50" maxlength="200" autocomplete='off'>
+                            <input class="form-control" type="text" value="Ali Syamsul R" name="nama" id="nama" autocomplete="off">
                         </div>
                         <label class="col-1 col-form-label">Jabatan<span class="text-danger">*</span></label>
                         <div class="col-4" >
-                            <input class="form-control" type="text" value="CS & Business Support" name="jabatan" id="jabatan" size="50" maxlength="200" autocomplete='off'>
+                            <input class="form-control" type="text" value="CS & Business Support" name="jabatan" id="jabatan" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Tanggal Cetak<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}"  id="tanggal" autocomplete='off'>
+                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">

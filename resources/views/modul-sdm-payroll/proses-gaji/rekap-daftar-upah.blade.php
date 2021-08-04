@@ -48,14 +48,14 @@
                             </select>
                         </div>
                         <div class="col-4" >
-                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete='off'>
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete='off'>
+                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="dari-input" class="col-2 col-form-label">Status Pekerja<span class="text-danger">*</span></label>
                         <div class="col-8">
-                            <select name="prosesupah" id="select-debetdari" class="form-control select2" autocomplete='off'>
+                            <select name="prosesupah" id="select-debetdari" class="form-control select2" autocomplete="off">
                                 <option value="C">Pekerja Tetap</option>
                                 <option value="U">Komisaris</option>
                                 <option value="O">Komite</option>
@@ -65,17 +65,17 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Penandatangan<span class="text-danger">*</span></label>
                         <div class="col-4">
-                            <input class="form-control" type="text" value="{{ $nama }}" name="nama" id="nama" size="50" maxlength="200" required autocomplete='off'>
+                            <input class="form-control" type="text" value="{{ $nama }}" name="nama" id="nama" required autocomplete="off">
                         </div>
                         <label class="col-1 col-form-label">Jabatan<span class="text-danger">*</span></label>
                         <div class="col-3" >
-                            <input class="form-control" type="text" value="{{ $jabatan }}" name="jabatan" id="jabatan" size="50" maxlength="200" required autocomplete='off'>
+                            <input class="form-control" type="text" value="{{ $jabatan }}" name="jabatan" id="jabatan" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Tanggal Cetak<span class="text-danger">*</span></label>
                         <div class="col-8">
-                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}"  id="tanggal" size="15" maxlength="15" autocomplete='off' required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete='off'>
+                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" autocomplete="off">
                         </div>
                     </div>
                     <div class="form__actions">

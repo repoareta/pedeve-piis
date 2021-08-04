@@ -31,7 +31,7 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required autocomplete="off" oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required autocomplete="off" oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Potongan<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="aard" id="aard" class="form-control select2" style="width: 100% !important;" required autocomplete="off" oninvalid="this.setCustomValidity('Potongan Harus Diisi..')" onchange="setCustomValidity('')">
+                            <select name="aard" id="aard" class="form-control select2" style="width: 100% !important;" required autocomplete="off" oninvalid="this.setCustomValidity('Potongan Harus Diisi..')">
                                 <option value="">- Pilih -</option>
                                 @foreach($pay_aard as $data)
                                 <option value="{{ $data->kode }}">{{ $data->kode }} - {{ $data->nama }}</option>

@@ -1016,12 +1016,24 @@ class ProsesInsentifController extends Controller
         }
     }
 
-    public function ctkslipinsentif()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function slipInsentif()
     {
         $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('modul-sdm-payroll.proses-insentif.rekap',compact('data_pegawai'));
+        return view('modul-sdm-payroll.proses-insentif.slip-insentif',compact('data_pegawai'));
     }
-    public function cetak_slipinsentif(Request $request)
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function slipInsentifExport(Request $request)
     {
         $data_list = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
         $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('03','07')");            
@@ -1036,20 +1048,31 @@ class ProsesInsentifController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.proses_insentif.ctkslipinsentif');
+            return redirect()->route('modul_sdm_payroll.proses_insentif.slip_insentif');
         }
     }
 
-    public function ctkrekapinsentif()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function rekapInsentif()
     {
-        return view('modul-sdm-payroll.proses-insentif.rekapinsentif');
+        return view('modul-sdm-payroll.proses-insentif.rekap-insentif');
     }
 
-    public function rekapExport(Request $request)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function rekapInsentifExport(Request $request)
     {
         $data_list = DB::select("SELECT a.status,a.nopek,a.nilai,a.ut,a.pajakins,b.nama as namapegawai from pay_master_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg  where a.aard='24' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
         if(!empty($data_list)){
-            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-insentif.export_rekapinsentif',compact('request','data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-insentif.rekap-insentif-pdf',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -1059,7 +1082,7 @@ class ProsesInsentifController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.proses_insentif.ctkrekapinsentif');
+            return redirect()->route('modul_sdm_payroll.proses_insentif.rekap_insentif');
         }
     }
 }

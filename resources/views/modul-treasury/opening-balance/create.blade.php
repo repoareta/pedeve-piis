@@ -100,7 +100,7 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Tahun<span class="text-danger">*</span></label>
                             <div class="col-10" >
-                                <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                                <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
                             </div>
                     </div>
                     <div class="form-group row">

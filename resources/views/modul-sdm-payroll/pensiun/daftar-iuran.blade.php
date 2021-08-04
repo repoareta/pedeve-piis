@@ -46,24 +46,24 @@
                             </select>
                         </div>
                         <div class="col-5" >
-                            <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete='off'>
+                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Penandatangan<span class="text-danger">*</span></label>
                         <div class="col-5">
-                            <input class="form-control" type="text" value="" name="nama" id="nama" size="50" maxlength="200" required autocomplete='off'>
+                            <input class="form-control" type="text" value="" name="nama" id="nama" required autocomplete="off">
                         </div>
                         <label class="col-1 col-form-label">Jabatan<span class="text-danger">*</span></label>
                         <div class="col-4" >
-                            <input class="form-control" type="text" value="Sekretaris Perseroan" name="jabatan" id="jabatan" size="50" maxlength="200" required autocomplete='off'>
+                            <input class="form-control" type="text" value="Sekretaris Perseroan" name="jabatan" id="jabatan" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Tanggal Cetak<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}"  id="tanggal" size="15" maxlength="15" autocomplete='off' required>
+                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off" required>
                         </div>
                     </div>
                     <div class="form__actions">
