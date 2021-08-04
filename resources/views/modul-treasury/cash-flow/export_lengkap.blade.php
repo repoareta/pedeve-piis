@@ -72,13 +72,13 @@
                 padding-left:10%;
             }
 
-            header { 
+            /* header { 
                 position: fixed; 
                 left: 0px; 
                 top: -110px;
                 right: 0px;
                 height: 0px;
-            }
+            } */
 
             @page { 
                 margin: 130px 50px 50px 50px;
@@ -104,8 +104,10 @@
                     </p>
                 </div>
         
-                <div>
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-top:10px">
+                <div class="row">
+                    <div class="text-right" style="width: 100%;">
+                        <img src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-right: 20px;">
+                    </div>
                 </div>
             </div>
         </header>

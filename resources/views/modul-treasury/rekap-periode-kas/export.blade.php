@@ -20,13 +20,13 @@
         }
 
         /** Define the header rules **/
-        header {
+        /* header {
             position: fixed;
             top: 1cm;
             left: 0cm;
             right: 0cm;
             height: 3cm;
-        }
+        } */
 
         /** Define the footer rules **/
         footer {
