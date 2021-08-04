@@ -24,7 +24,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">Bank</label>
                 <div class="col-10">
-                    <select name="sanper" class="form-control select2" style="width: 100% !important;"  oninvalid="this.setCustomValidity('Bank Harus Diisi..')">
+                    <select name="sanper" class="form-control select2">
                         <option value="">- All -</option>
                         @foreach($data_bank as $data)
                         <option value="{{ $data->kdbank}}">{{ $data->kdbank}} -- {{ $data->descacct}}</option>
@@ -67,9 +67,8 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="kurs" value="{{ $kurs}}" size="15" maxlength="15"
-                        autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Kurs Harus Diisi..')">
+                    <input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15"
+                        autocomplete="off" required>
                 </div>
             </div>
             <div class="kt-form__actions">

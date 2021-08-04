@@ -37,7 +37,7 @@
         <form class="kt-form" method="POST" action="{{ route('perhitungan_bagihasil.index.search')}}" >
 			@csrf
             <div class="form-group row">	
-                <label for="" class="col-form-label">Tanggal</label>
+                <label for="" class="col-1 col-form-label">Tanggal</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ $date}}" size="10" maxlength="10" autocomplete="off">
                 </div>

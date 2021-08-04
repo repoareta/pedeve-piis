@@ -45,22 +45,18 @@
                     </select>
                 </div>
                 <div class="col-4">
-                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"
-                        autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Tahun Harus Diisi...')">
+                    <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4"
+                        autocomplete="off" required>
                 </div>
                 <div class="col-2">
                     <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2"
-                        autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Suplesi Harus Diisi...')">
+                        autocomplete="off" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="" name="keterangan" size="35" maxlength="35"
-                        title="Keterangan" autocomplete="off" required
-                        oninvalid="this.setCustomValidity('Keterangan Harus Diisi...')">
+                    <input class="form-control" type="text" value="" name="keterangan" size="35" maxlength="35" title="Keterangan" autocomplete="off" required>
                 </div>
             </div>
 

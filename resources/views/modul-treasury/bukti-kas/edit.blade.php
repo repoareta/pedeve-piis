@@ -69,7 +69,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="bagian" id="bagian" style="width: 100%;" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')">
+                            <select name="bagian" id="bagian" style="width: 100%;" class="form-control selectpicker" data-live-search="true" required>
                                 <option value="">- Pilih -</option>
                                 @foreach($data_bagian as $row)
                                 <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
@@ -133,7 +133,7 @@
                         <label class="col-2 col-form-label">
                         @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{ $data->kepada}}" size="40" maxlength="40" required oninvalid="this.setCustomValidity('<?php if($mp == "M"){ ?> Dari <?php }else{ ?> Kepada <?php } ?> Harus Diisi..')" autocomplete="off">
+                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -205,7 +205,7 @@
     </div>
     
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="tabel-detail-permintaan">
+        <table class="table table-bordered table-checkable" id="tabel-detail-permintaan">
             <thead class="thead-light">
                 <tr>
                     <th ><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked ></th>

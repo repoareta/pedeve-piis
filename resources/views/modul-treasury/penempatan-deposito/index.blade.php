@@ -59,7 +59,7 @@
     <div class="card-body">
         <form class="kt-form" id="search-form" >
             <div class="form-group row">
-                <label for="" class="col-form-label">Bulan</label>
+                <label for="" class="col-1 col-form-label">Bulan</label>
                 <div class="col-2">
                     <select name="bulan" class="form-control select2" style="width: 100% !important;">
                         <option value="">- Pilih -</option>

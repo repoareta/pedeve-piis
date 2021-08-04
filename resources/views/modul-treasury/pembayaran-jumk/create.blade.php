@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Bagian Harus Diisi..')">
+                    <select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;" required>
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $data)
                         <option value="{{ $data->kode }}">{{ $data->kode }} - {{ $data->nama }}</option>
@@ -58,7 +58,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-3">
-                    <select name="jk" id="jk" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Kartu Harus Diisi..')">
+                    <select name="jk" id="jk" class="form-control select2" style="width: 100% !important;" required>
                         <option value="">- Pilih -</option>
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>
@@ -78,7 +78,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
                 <div class="col-4">
-                    <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Lokasi Harus Diisi..')">
+                    <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required>
                         <option value="">- Pilih -</option>
                         
                     </select>

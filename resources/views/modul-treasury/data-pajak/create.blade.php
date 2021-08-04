@@ -43,7 +43,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Pegawai Harus Diisi..')">
+                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required>
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}">{{ $data->nopeg }} -- {{ $data->nama }}</option>
@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="jenis" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Harus Diisi..')">
+                            <select name="jenis" class="form-control select2" style="width: 100% !important;" required>
                                 <option value="">-Pilih Jenis-</option>
                                 <option value="24">Bonus</option>
                                 <option value="25">THR</option>
@@ -70,13 +70,13 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Nilai</label>
                         <div class="col-10">
-                            <input class="form-control" name="nilai" type="text" value="" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
+                            <input class="form-control" name="nilai" type="text" value="" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pajak</label>
                         <div class="col-10">
-                            <input class="form-control" name="pajak" type="text" value="" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ','); setCustomValidity('')" autocomplete="off">
+                            <input class="form-control" name="pajak" type="text" value="" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
                         </div>
                     </div>
     
