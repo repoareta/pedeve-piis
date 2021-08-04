@@ -4954,8 +4954,16 @@ class ProsesGajiController extends Controller
     
     public function slipGaji()
     {
-        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('modul-sdm-payroll.proses-gaji.slipgaji',compact('data_pegawai'));
+        $data_pegawai = DB::select("SELECT 
+        nopeg,
+        nama,
+        status,
+        nama 
+        from sdm_master_pegawai 
+        where status <> 'P' 
+        order by nopeg");
+
+        return view('modul-sdm-payroll.proses-gaji.slip-gaji', compact('data_pegawai'));
     }
     public function cetak_slipgaji(Request $request)
     {
@@ -4967,7 +4975,7 @@ class ProsesGajiController extends Controller
             $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0)*-1 as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and a.aard in ('09','23','26')");
             $data_lain = DB::select("SELECT a.nopek,a.aard,a.bulan,a.tahun,round(a.curramount,0) as curramount,(select sum(curramount) as total from pay_master_bebanprshn where nopek=a.nopek and aard=a.aard and tahun||bulan <= a.tahun||a.bulan) as total ,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_bebanprshn a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' order by a.aard asc");
             
-            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_slipgaji',compact('request','data_list','data_detail','data_lain'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.slip-gaji-pdf',compact('request','data_list','data_detail','data_lain'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
         
@@ -4977,7 +4985,7 @@ class ProsesGajiController extends Controller
             return $pdf->stream();
         }else{
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.proses_gaji.slipGaji');
+            return redirect()->route('modul_sdm_payroll.proses_gaji.slip_gaji');
         }
     }
 

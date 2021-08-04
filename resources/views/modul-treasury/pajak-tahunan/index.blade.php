@@ -25,7 +25,7 @@
                 <div class="form-group row">
                     <label for="jenis-dinas-input" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                     <div class="col-8">
-                        <select name="tahun" class="form-control select2" required>
+                        <select name="tahun" class="form-control select2">
                             <option value="">- Pilih -</option>
                             @for ($i = 2004; $i <= date('Y'); $i++)
                             <option value="{{ $i}}" <?php if($i == date('Y')) echo 'selected'; ?>>{{ $i}}</option>

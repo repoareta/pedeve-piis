@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="cj" id="select-debetdari" class="form-control selectpicker" data-live-search="true" required>
+                    <select name="cj" id="select-debetdari" class="form-control select2">
                         <option value="">- Pilih -</option>
                         @foreach($data_judex as $data)
                         <option value="{{ $data->kode }}">{{ $data->kode }} -- {{ $data->nama }}</option>
@@ -56,7 +56,7 @@
                 </div>
                     <div class="col-5" >
                         <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
-                        <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                        <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off">
                     </div>
             </div>

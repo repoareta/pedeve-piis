@@ -25,13 +25,13 @@
                 <label class="col-2 col-form-label">Tanggal Rekap</label>
                 <div class="col-10">
                     <input class="form-control" type="hidden" name="add" value="add">
-                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d'))}}" size="11" maxlength="11"  autocomplete="off" required>
+                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d'))}}" size="11" maxlength="11"  autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="jk" id="jk" class="form-control selectpicker" data-live-search="true" required>
+                    <select name="jk" id="jk" class="form-control select2">
                         <option value="">- Pilih -</option>
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>
@@ -42,12 +42,12 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">No. Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="nokas" id="nokas" class="form-control" data-live-search="true" required>
+                    <select name="nokas" id="nokas" class="form-control"required>
                         <option value="">- Pilih -</option>
                         
                         
                     </select>
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>
             <div class="form__actions">

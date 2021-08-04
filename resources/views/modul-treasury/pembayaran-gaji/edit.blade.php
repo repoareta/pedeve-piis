@@ -59,14 +59,14 @@
                     </div>
                         <div class="col-6" >
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" required>
+                            <select name="bagian" id="bagian" class="form-control select2">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_bagian as $row)
                                 <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
@@ -273,7 +273,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
-							<select name="status"  class="form-control selectpicker" data-live-search="true" required>
+							<select name="status"  class="form-control select2">
 								<option value="">-Pilih-</option>
 								@foreach($data_rincian as $rincian)
 								<option value="{{ $rincian->status}}">{{ $rincian->status}}</option>
@@ -367,7 +367,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required></textarea>
+							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">

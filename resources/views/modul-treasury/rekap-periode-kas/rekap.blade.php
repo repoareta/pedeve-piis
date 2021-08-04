@@ -24,18 +24,18 @@
                 <label for="dari-input" class="col-2 col-form-label text-right">Mulai Tanggal<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <div class="input-daterange input-group" id="date_range_picker">
-                        <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off" required>
+                        <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off">
                         <div class="input-group-append">
                             <span class="input-group-text">Sampai</span>
                         </div>
-                        <input type="text" class="form-control" name="tanggal2" id="tanggal2" autocomplete="off" required>
+                        <input type="text" class="form-control" name="tanggal2" id="tanggal2" autocomplete="off">
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="form-control select2"  name="jk" id="jk" required>
+                    <select class="form-control select2"  name="jk" id="jk">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="form-control select2"  name="nokas" id="nokas" required>
+                    <select class="form-control select2"  name="nokas" id="nokas">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>

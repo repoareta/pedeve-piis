@@ -30,7 +30,7 @@
                                 $tahun = date_format($tgl, 'Y'); 
                                 $bulan = date_format($tgl, 'n'); 
                             ?>
-                            <select class="form-control select2" style="width: 100% !important;" name="bulan" required>
+                            <select class="form-control select2" style="width: 100% !important;" name="bulan">
                                 <option value="1" <?php if($bulan == 1 ) echo 'selected' ; ?>>Januari</option>
                                 <option value="2" <?php if($bulan == 2 ) echo 'selected' ; ?>>Februari</option>
                                 <option value="3" <?php if($bulan == 3 ) echo 'selected' ; ?>>Maret</option>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-4" >
                             <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required autocomplete="off">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
                     <div class="form-group row">

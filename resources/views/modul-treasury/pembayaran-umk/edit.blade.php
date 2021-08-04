@@ -50,14 +50,14 @@
             </div>
                 <div class="col-6" >
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" required>
+                    <select name="bagian" id="bagian" class="form-control select2">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $row)
                         <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
@@ -257,14 +257,14 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<textarea  class="form-control" type="text" value=""  name="rincian" size="50" maxlength="250" required></textarea>
+							<textarea  class="form-control" type="text" value=""  name="rincian" size="50" maxlength="250"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  class="form-control selectpicker" data-live-search="true" required>
+							<select name="sanper"  class="form-control select2">
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
@@ -277,7 +277,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian"  class="form-control selectpicker" data-live-search="true" required>
+							<select name="bagian"  class="form-control select2">
 								<option value="">-Pilih-</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -299,7 +299,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb"  class="form-control selectpicker" data-live-search="true" required>
+							<select name="jb"  class="form-control select2">
 								<option value="">-Pilih-</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
@@ -313,7 +313,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" class="form-control selectpicker" data-live-search="true" required>
+							<select name="cj" class="form-control select2">
 								<option value="">-Pilih-</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
@@ -373,7 +373,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required></textarea>
+							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">

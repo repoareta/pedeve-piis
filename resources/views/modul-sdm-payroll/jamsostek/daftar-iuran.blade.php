@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-5" >
                             <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
                     <div class="form-group row">

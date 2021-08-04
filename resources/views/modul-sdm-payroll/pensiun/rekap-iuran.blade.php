@@ -29,8 +29,8 @@
                             ?>
                         <label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                         <div class="col-4" >
-                            <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
                     <div class="form-group row">

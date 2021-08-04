@@ -47,14 +47,14 @@
                     </div>
                         <div class="col-6" >
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" required>
+                            <select name="bagian" id="bagian" class="form-control select2">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_bagian as $data)
                                 <option value="{{ $data->kode }}">{{ $data->kode }} - {{ $data->nama }}</option>
@@ -68,7 +68,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                         <div class="col-3">
-                            <select name="jk" id="jk" class="form-control selectpicker" data-live-search="true" required>
+                            <select name="jk" id="jk" class="form-control select2">
                                 <option value="">- Pilih -</option>
                                 <option value="10">Kas(Rupiah)</option>
                                 <option value="11">Bank(Rupiah)</option>
@@ -88,7 +88,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
                         <div class="col-4">
-                            <select name="lokasi" id="lokasi" class="form-control select2" required>
+                            <select name="lokasi" id="lokasi" class="form-control select2">
                                 <option value="">- Pilih -</option>
                                 
                             </select>
