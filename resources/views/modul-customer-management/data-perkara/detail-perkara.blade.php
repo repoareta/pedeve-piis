@@ -38,8 +38,8 @@
                     </tbody>
                 </table>
 
-                <div class="kt-portlet__head kt-portlet__head">
-                    <div class="kt-portlet__head-toolbar">
+                <div class="portlet__head portlet__head">
+                    <div class="portlet__head-toolbar">
                         <ul class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-primary" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#detail_umum" id="reload-umum" role="tab" aria-selected="true">
@@ -67,7 +67,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="kt-portlet__body" style="padding-top:10px">
+                <div class="portlet__body" style="padding-top:10px">
                     <div class="tab-content">
                         <div class="tab-pane active" id="detail_umum">
                             @include('modul-customer-management.data-perkara.detail-umum')

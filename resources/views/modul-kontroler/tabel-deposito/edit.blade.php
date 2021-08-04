@@ -2,52 +2,52 @@
 
 @section('content')
 <!-- begin:: Subheader -->
-<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-	<div class="kt-container  kt-container--fluid ">
-		<div class="kt-subheader__main">
-			<h3 class="kt-subheader__title">
+<div class="subheader   grid__item" id="kt_subheader">
+	<div class="container  container--fluid ">
+		<div class="subheader__main">
+			<h3 class="subheader__title">
 				Jurnal Umum </h3>
-			<span class="kt-subheader__separator kt-hidden"></span>
-			<div class="kt-subheader__breadcrumbs">
-				<a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
-				<span class="kt-subheader__breadcrumbs-separator"></span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
+			<span class="subheader__separator hidden"></span>
+			<div class="subheader__breadcrumbs">
+				<a href="#" class="subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+				<span class="subheader__breadcrumbs-separator"></span>
+				<a href="" class="subheader__breadcrumbs-link">
 					Kontroler </a>
-				<span class="kt-subheader__breadcrumbs-separator"></span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
+				<span class="subheader__breadcrumbs-separator"></span>
+				<a href="" class="subheader__breadcrumbs-link">
 					Jurnal Umum </a>
-				<span class="kt-subheader__breadcrumbs-separator"></span>
-				<span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Tambah</span>
+				<span class="subheader__breadcrumbs-separator"></span>
+				<span class="subheader__breadcrumbs-link subheader__breadcrumbs-link--active">Tambah</span>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- end:: Subheader -->
 
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-	<div class="kt-portlet kt-portlet--mobile">
-		<div class="kt-portlet__head kt-portlet__head--lg">
-			<div class="kt-portlet__head-label">
-				<span class="kt-portlet__head-icon">
-					<i class="kt-font-brand flaticon2-plus-1"></i>
+<div class="container  container--fluid  grid__item grid__item--fluid">
+	<div class="portlet portlet--mobile">
+		<div class="portlet__head portlet__head--lg">
+			<div class="portlet__head-label">
+				<span class="portlet__head-icon">
+					<i class="font-brand flaticon2-plus-1"></i>
 				</span>
-				<h3 class="kt-portlet__head-title">
+				<h3 class="portlet__head-title">
 					Tambah Jurnal Umum
 				</h3>			
 			</div>
-			<div class="kt-portlet__head-toolbar">
-				<div class="kt-portlet__head-wrapper">
+			<div class="portlet__head-toolbar">
+				<div class="portlet__head-wrapper">
 				</div>
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form class="kt-form" id="form-edit">
+			<form class="form" id="form-edit">
 				@csrf
-				<div class="kt-portlet__body">
+				<div class="portlet__body">
 					<div class="form-group form-group-last">
 						<div class="alert alert-secondary" role="alert">
 							<div class="alert-text">
-								<h5 class="kt-portlet__head-title">
+								<h5 class="portlet__head-title">
 									Header Jurnal Umum
 								</h5>	
 							</div>
@@ -146,7 +146,7 @@
 							</div>
 						</div>
 						@endforeach
-						<div class="kt-form__actions">
+						<div class="form__actions">
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
@@ -165,45 +165,45 @@
 				
 
 					
-				<div class="kt-portlet__head kt-portlet__head">
-					<div class="kt-portlet__head-label">
-						<span class="kt-portlet__head-icon">
-							<i class="kt-font-brand flaticon2-line-chart"></i>
+				<div class="portlet__head portlet__head">
+					<div class="portlet__head-label">
+						<span class="portlet__head-icon">
+							<i class="font-brand flaticon2-line-chart"></i>
 						</span>
-						<h3 class="kt-portlet__head-title">
+						<h3 class="portlet__head-title">
 							Detail Jurnal Umum
 						</h3>			
-						<div class="kt-portlet__head-toolbar">
-							<div class="kt-portlet__head-wrapper">
-								<div class="kt-portlet__head-actions">
+						<div class="portlet__head-toolbar">
+							<div class="portlet__head-wrapper">
+								<div class="portlet__head-actions">
 								@if($status2 <> "Y")
 									<a href="#" data-toggle="modal" data-target="#kt_modal_4">
-										<span style="font-size: 2em;" class="kt-font-success">
+										<span style="font-size: 2em;" class="font-success">
 											<i class="fas fa-plus-circle"></i>
 										</span>
 									</a>
 					
 									<a href="#" id="editRow">
-										<span style="font-size: 2em;" class="kt-font-warning">
+										<span style="font-size: 2em;" class="font-warning">
 											<i class="fas fa-edit"></i>
 										</span>
 									</a>
 					
 									<a href="#" id="deleteRow">
-										<span style="font-size: 2em;" class="kt-font-danger">
+										<span style="font-size: 2em;" class="font-danger">
 											<i class="fas fa-times-circle"></i>
 										</span>
 									</a>
 								@else
-									<span style="font-size: 2em;cursor:not-allowed" class="kt-font-success">
+									<span style="font-size: 2em;cursor:not-allowed" class="font-success">
 										<i class="fas fa-plus-circle"></i>
 									</span>
 				
-									<span style="font-size: 2em;cursor:not-allowed" class="kt-font-warning">
+									<span style="font-size: 2em;cursor:not-allowed" class="font-warning">
 										<i class="fas fa-edit"></i>
 									</span>
 				
-									<span style="font-size: 2em;cursor:not-allowed" class="kt-font-danger">
+									<span style="font-size: 2em;cursor:not-allowed" class="font-danger">
 										<i class="fas fa-times-circle"></i>
 									</span>
 								@endif
@@ -212,7 +212,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="kt-portlet__body">
+				<div class="portlet__body">
 					<table class="table table-striped table-bordered table-hover table-checkable" id="kt_table">
 						<thead class="thead-light">
 							<tr>
@@ -359,7 +359,7 @@
 					</div>
 
 																					
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -476,7 +476,7 @@
 					</div>
 
 																					
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">

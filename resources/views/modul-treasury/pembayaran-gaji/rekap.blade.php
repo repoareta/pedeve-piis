@@ -18,9 +18,9 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{route('pembayaran_gaji.export')}}" method="POST">
+        <form class="form" action="{{route('pembayaran_gaji.export')}}" method="POST">
 			@csrf
-			<div class="kt-portlet__body">
+			<div class="portlet__body">
 				<div class="form-group row">
 					<label class="col-2 col-form-label">Tanggal Cetak</label>
 					<div class="col-8">
@@ -130,7 +130,7 @@
                 <input type="hidden" value="{{ $kd_kepada}}" name="kd_kepada">
                 <input type="hidden" value="Daftar Transfer" name="cetaktrans">
                 <input type="hidden" value="Cetak RC" name="cetak">
-				<div class="kt-form__actions">
+				<div class="form__actions">
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">

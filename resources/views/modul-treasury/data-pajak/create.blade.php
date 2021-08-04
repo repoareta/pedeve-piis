@@ -19,11 +19,11 @@
 
     <div class="card-body">
         <form method="POST" id="form-create">
-            <div class="kt-portlet__body">
+            <div class="portlet__body">
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            <h5 class="kt-portlet__head-title">
+                            <h5 class="portlet__head-title">
                                 Header Menu Tambah - Data Pajak Tahunan
                             </h5>	
                         </div>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
     
-                    <div class="kt-form__actions">
+                    <div class="form__actions">
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">

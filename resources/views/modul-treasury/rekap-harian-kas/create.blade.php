@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-create">
+        <form class="form" id="form-create">
             @csrf
 
             <div class="form-group row">
@@ -50,7 +50,7 @@
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

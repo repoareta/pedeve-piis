@@ -71,7 +71,7 @@
                         autocomplete="off" required>
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

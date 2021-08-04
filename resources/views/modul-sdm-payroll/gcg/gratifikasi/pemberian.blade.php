@@ -20,13 +20,13 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form" id="formPemberian" action="{{ route('modul_sdm_payroll.gcg.gratifikasi.pemberian.store') }}" method="POST">
+                <form class="form" id="formPemberian" action="{{ route('modul_sdm_payroll.gcg.gratifikasi.pemberian.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="pemberian_bulan_lalu" class="col-3 col-form-label">Tidak ada pemberian bulan lalu</label>
 						<div class="col-9">
-							<div class="kt-checkbox-inline">
-								<label class="kt-checkbox kt-checkbox--brand">
+							<div class="checkbox-inline">
+								<label class="checkbox checkbox--brand">
 									<input type="checkbox" name="pemberian_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada pemberian untuk periode bulan lalu
 									<span></span>
 								</label>
@@ -76,7 +76,7 @@
 						</div>
 					</div>
 
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-3"></div>
 							<div class="col-9">

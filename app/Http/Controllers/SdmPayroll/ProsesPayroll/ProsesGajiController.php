@@ -4981,13 +4981,18 @@ class ProsesGajiController extends Controller
         }
     }
 
-
-    public function ctkrekapgaji()
+    /**
+     * 
+     */
+    public function rekapGaji()
     {
-        return view('modul-sdm-payroll.proses-gaji.rekap');
+        return view('modul-sdm-payroll.proses-gaji.rekap-gaji');
     }
-   
-    public function rekapExport(Request $request)
+    
+    /**
+     * 
+     */
+    public function rekapGajiExport(Request $request)
     {
         if($request->prosesupah == 'C'){
             $data_list = db::select("SELECT a.nopek,b.nama, d.nama as nmbag, d.kode,
@@ -5138,11 +5143,17 @@ class ProsesGajiController extends Controller
         }
     }
     
+    /**
+     * 
+     */
     public function daftarUpah()
     {
         return view('modul-sdm-payroll.proses-gaji.rekap-daftar-upah');
     }
     
+    /**
+     * 
+     */
     public function daftarUpahExport(Request $request)
     {
         if($request->prosesupah == 'C'){

@@ -53,7 +53,7 @@
 
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form" id="search-form">
+                <form class="form" id="search-form">
                     <div class="form-group row">
                         <label for="" class="col-1 col-form-label">No. Bukti</label>
                         <div class="col-2">
@@ -122,7 +122,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
+            <form class="form" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">No Dokumen</label>

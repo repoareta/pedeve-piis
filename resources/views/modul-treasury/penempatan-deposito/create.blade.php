@@ -74,7 +74,7 @@
                 </div>
             </div>
             
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col"></div>
                     <div class="col"></div>

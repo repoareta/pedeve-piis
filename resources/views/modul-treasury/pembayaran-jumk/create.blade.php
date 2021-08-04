@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-create">
+        <form class="form" id="form-create">
             @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">No.Dokumen</label>
@@ -125,7 +125,7 @@
                     <textarea class="form-control" type="text" name="ket3" id="ket3" value="" autocomplete="off"></textarea>
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

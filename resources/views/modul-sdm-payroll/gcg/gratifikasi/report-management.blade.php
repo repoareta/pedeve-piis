@@ -22,7 +22,7 @@
     <div class="card-body">
 
         <div class="col-12">
-            <form action="{{ route('modul_sdm_payroll.gcg.gratifikasi.report.management.export') }}" class="col-12 kt-form" method="GET" id="search-form" target="_blank">
+            <form action="{{ route('modul_sdm_payroll.gcg.gratifikasi.report.management.export') }}" class="col-12 form" method="GET" id="search-form" target="_blank">
                 <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bentuk Gratifikasi</label>
                     <div class="col-4">

@@ -44,7 +44,7 @@
     <div class="card-body">
 
 		<div class="col-12">
-			<form class="kt-form" id="search-form" method="POST">
+			<form class="form" id="search-form" method="POST">
 				<div class="form-group row">
 					<label for="" class="col-form-label">NO. PANJAR</label>
 					<div class="col-4">

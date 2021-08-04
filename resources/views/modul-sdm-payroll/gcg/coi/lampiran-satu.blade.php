@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<form class="kt-form" id="formPrint" 
+			<form class="form" id="formPrint" 
 			@if(Request::get('tempat'))action="{{ route('modul_sdm_payroll.gcg.coi.lampiran_satu.print') }}" @endif
 			@if(Request::get('tempat')) method="POST" @else method="GET" @endif>
 			@csrf

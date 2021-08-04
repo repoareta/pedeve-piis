@@ -97,7 +97,7 @@
                             <input class="form-control nominal" name="nilai" type="text" value="0" size="25" maxlength="25" required autocomplete="off">
                         </div>
                     </div>				
-                    <div class="kt-form__actions">
+                    <div class="form__actions">
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">

@@ -227,7 +227,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				</button>
 			</div>
-			<form class="kt-form" action="" method="POST" id="formPanjarDinasDetail">
+			<form class="form" action="" method="POST" id="formPanjarDinasDetail">
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">No. Urut</label>

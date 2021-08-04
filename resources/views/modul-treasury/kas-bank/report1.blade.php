@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{route('kas_bank.cetak1')}}" method="POST">
+        <form class="form" action="{{route('kas_bank.cetak1')}}" method="POST">
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
             <div class="form-group row">
@@ -80,7 +80,7 @@
                     <select class="cariaccount form-control" style="width: 100% !important;" name="sanper"></select>
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

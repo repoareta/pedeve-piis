@@ -19,7 +19,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-edit">
+        <form class="form" id="form-edit">
             @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
@@ -91,7 +91,7 @@
                 </div>
             </div>
             
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

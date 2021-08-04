@@ -72,7 +72,7 @@
                     <input  class="form-control" type="text" value="{{$data->noseri}}" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off" >
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

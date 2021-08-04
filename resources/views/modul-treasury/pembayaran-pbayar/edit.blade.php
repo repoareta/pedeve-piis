@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-edit">
+        <form class="form" id="form-edit">
             @csrf
             @foreach($data_list as $data)
             <?php
@@ -150,7 +150,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
@@ -267,7 +267,7 @@
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
 					</div>														
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -307,7 +307,7 @@
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
 					</div>												
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -437,7 +437,7 @@
 					</div>
 
 																					
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">

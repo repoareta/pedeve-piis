@@ -23,7 +23,7 @@
                 <form class="form" action="{{ route('modul_sdm_payroll.lembur.rekap_lembur.export') }}" method="post">
                     @csrf
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                         <div class="col-4">
                             <?php 
                                 $tgl = date_create(now());

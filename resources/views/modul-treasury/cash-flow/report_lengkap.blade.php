@@ -20,7 +20,7 @@
     <div class="card-body">
         <form class="form" action="{{route('cash_flow.lengkap.export')}}" method="GET"
             target="_blank">
-            <div class="kt-portlet__body">
+            <div class="portlet__body">
                 <div class="form-group row">
                     <label for="mulai-input" class="col-2 col-form-label">Bulan Mulai<span
                             style="color:red;">*</span></label>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
 
-                <div class="kt-form__actions">
+                <div class="form__actions">
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">

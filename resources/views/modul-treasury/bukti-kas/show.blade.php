@@ -203,7 +203,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form" id="form-create-detail" enctype="multipart/form-data" method="POST">
+            <form class="form" id="form-create-detail" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
 					@csrf
                     <div class="form-group row ">
@@ -284,7 +284,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form" id="form-edit-detail" enctype="multipart/form-data" method="POST">
+            <form class="form" id="form-edit-detail" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
 					@csrf
                     <div class="form-group row ">
