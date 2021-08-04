@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.proses_thr.rekap_thr.export') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_thr.rekap_thr.export') }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-4" >
                             <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required oninvalid="this.setCustomValidity('Tahun Harus Diisi..')" autocomplete="off">
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">

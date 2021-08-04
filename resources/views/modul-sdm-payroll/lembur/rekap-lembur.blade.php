@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.lembur.rekap_lembur.export') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.lembur.rekap_lembur.export') }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
