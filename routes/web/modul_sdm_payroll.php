@@ -563,9 +563,9 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::post('jamsostek/update', [JamsostekController::class, 'update'])->name('update');
         Route::delete('jamsostek/delete', [JamsostekController::class, 'delete'])->name('delete');
         Route::get('jamsostek/daftar-iuran', [JamsostekController::class, 'daftarIuran'])->name('daftar_iuran');
-        Route::post('jamsostek/rekap-iuran', [JamsostekController::class, 'rekapExport'])->name('rekap.export');
-        Route::get('jamsostek/ctkrekapiuranjamsostek', [JamsostekController::class, 'ctkrekapiuranjamsostek'])->name('ctkrekapiuranjamsostek');
-        Route::post('jamsostek/rekapiuran/export', [JamsostekController::class, 'rekapIuranExport'])->name('rekapiuran.export');
+        Route::post('jamsostek/daftar-iuran/export', [JamsostekController::class, 'daftarIuranExport'])->name('daftar_iuran.export');
+        Route::get('jamsostek/rekap-iuran', [JamsostekController::class, 'rekapIuran'])->name('rekap_iuran');
+        Route::post('jamsostek/rekap-iuran/export', [JamsostekController::class, 'rekapIuranExport'])->name('rekap_iuran.export');
     });
     //end jamsostek
     
@@ -581,7 +581,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::post('pensiun/update', [PensiunController::class, 'update'])->name('update');
         Route::delete('pensiun/delete', [PensiunController::class, 'delete'])->name('delete');
         Route::get('pensiun/daftar-iuran', [PensiunController::class, 'daftarIuran'])->name('daftar_iuran');
-        Route::post('pensiun/rekap/export', [PensiunController::class, 'rekapExport'])->name('rekap.export');
+        Route::post('pensiun/daftar-iuran/export', [PensiunController::class, 'daftarIuranExport'])->name('daftar_iuran.export');
         Route::get('pensiun/rekap-iuran', [PensiunController::class, 'rekapIuran'])->name('rekap_iuran');
         Route::post('pensiun/rekap-iuran/export', [PensiunController::class, 'rekapIuranExport'])->name('rekap_iuran.export');
     });

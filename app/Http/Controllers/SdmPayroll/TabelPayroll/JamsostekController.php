@@ -128,11 +128,22 @@ class JamsostekController extends Controller
         return response()->json();
     }
 
-
-    public function ctkiuranjs()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function daftarIuran()
     {
-        return view('modul-sdm-payroll.jamsostek.rekap');
+        return view('modul-sdm-payroll.jamsostek.daftar-iuran');
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function rekapExport(Request $request)
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
@@ -162,15 +173,26 @@ class JamsostekController extends Controller
         }
     }
 
-    public function ctkrekapiuranjamsostek()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function rekapIuran()
     {
-        
-        return view('modul-sdm-payroll.jamsostek.rekapiuran');
+        return view('modul-sdm-payroll.jamsostek.rekap-iuran');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function rekapIuranExport(Request $request)
     {
-        $pdf = DomPDF::loadview('modul-sdm-payroll.jamsostek.export_rekap_iuranjamsostek',compact('request'))->setPaper('a4', 'landscape');
+        $pdf = DomPDF::loadview('modul-sdm-payroll.jamsostek.rekap-iuran-pdf',compact('request'))
+        ->setPaper('a4', 'landscape');
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
 

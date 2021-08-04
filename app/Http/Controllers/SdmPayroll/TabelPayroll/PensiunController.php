@@ -127,12 +127,23 @@ class PensiunController extends Controller
         return response()->json();
     }
 
-    public function ctkiuranpensiun()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function daftarIuran()
     {
-        return view('modul-sdm-payroll.pensiun.rekap');
+        return view('modul-sdm-payroll.pensiun.daftar-iuran');
     }
 
-    public function rekapExport(Request $request)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function daftarIuranExport(Request $request)
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
         $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
@@ -159,11 +170,22 @@ class PensiunController extends Controller
         }
     }
 
-    public function ctkrekapiuranpensiun()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function rekapIuran()
     {
-        return view('modul-sdm-payroll.pensiun.rekapiuran');
+        return view('modul-sdm-payroll.pensiun.rekap-iuran');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function rekapIuranExport(Request $request)
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun'");
