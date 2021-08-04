@@ -23,7 +23,7 @@
                 <form class="form" action="{{ route('modul_sdm_payroll.proses_gaji.daftar_upah.export') }}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+                        <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                         <div class="col-4">
                             <?php 
                                 $tgl = date_create(now());
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-4" >
                             <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete='off'>
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}"  name="userid" autocomplete='off'>
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete='off'>
                         </div>
                     </div>
                     <div class="form-group row">

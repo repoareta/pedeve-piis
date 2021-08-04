@@ -24,7 +24,7 @@
         <div class="col-12">
             <form action="{{ route('modul_sdm_payroll.gcg.gratifikasi.report.management.export') }}" class="col-12 kt-form" method="GET" id="search-form" target="_blank">
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">Bentuk Gratifikasi</label>
+                    <label for="" class="col-2 col-form-label">Bentuk Gratifikasi</label>
                     <div class="col-4">
                         <select class="form-control select2" style="width: 100% !important;" name="bentuk_gratifikasi" id="bentuk_gratifikasi">
                             <option value="">- Pilih -</option>
@@ -36,7 +36,7 @@
                 </div>
     
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">Pilih Fungsi</label>
+                    <label for="" class="col-2 col-form-label">Pilih Fungsi</label>
                     <div class="col-4">
                         <select class="form-control select2" style="width: 100% !important;" name="fungsi" id="fungsi">
                             <option value="">- Pilih -</option>
@@ -48,7 +48,7 @@
                 </div>
     
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">Bulan</label>
+                    <label for="" class="col-2 col-form-label">Bulan</label>
                     <div class="col-4">
                         <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan">
                             <option value="">- Pilih Bulan -</option>
@@ -69,7 +69,7 @@
                 </div>
     
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">Tahun</label>
+                    <label for="" class="col-2 col-form-label">Tahun</label>
                     <div class="col-4">
                         <select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
                             <option value="">- Pilih Tahun -</option>

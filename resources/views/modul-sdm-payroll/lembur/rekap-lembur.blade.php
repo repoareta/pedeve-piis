@@ -13,25 +13,25 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Report Iuran Pensiun
+                Tabel Rekap Daftar Lembur
             </h3>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.pensiun.daftar_iuran.export') }}" method="POST">
+                <form class="form" action="{{ route('modul_sdm_payroll.lembur.rekap_lembur.export') }}" method="post">
                     @csrf
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
-                        <div class="col-5">
+                        <label for="" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                        <div class="col-4">
                             <?php 
                                 $tgl = date_create(now());
                                 $tahun = date_format($tgl, 'Y'); 
                                 $bulan = date_format($tgl, 'n');
                             ?>
                             <select class="form-control select2" style="width: 100% !important;" name="bulan" required>
-                                <option value="1" <?php if($bulan == 1 ) echo 'selected' ; ?>>Januari</option>
+                            <option value="1" <?php if($bulan == 1 ) echo 'selected' ; ?>>Januari</option>
                                 <option value="2" <?php if($bulan == 2 ) echo 'selected' ; ?>>Februari</option>
                                 <option value="3" <?php if($bulan == 3 ) echo 'selected' ; ?>>Maret</option>
                                 <option value="4" <?php if($bulan == 4 ) echo 'selected' ; ?>>April</option>
@@ -45,25 +45,9 @@
                                 <option value="12" <?php if($bulan == 12 ) echo 'selected' ; ?>>Desember</option>
                             </select>
                         </div>
-                        <div class="col-5" >
-                            <input class="form-control" type="text" value="{{$tahun}}" name="tahun" size="4" maxlength="4" onkeypress="return hanyaAngka(event)" autocomplete='off' required>
-                            <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete='off'>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-2 col-form-label">Penandatangan<span class="text-danger">*</span></label>
-                        <div class="col-5">
-                            <input class="form-control" type="text" value="" name="nama" id="nama" size="50" maxlength="200" required autocomplete='off'>
-                        </div>
-                        <label class="col-1 col-form-label">Jabatan<span class="text-danger">*</span></label>
                         <div class="col-4" >
-                            <input class="form-control" type="text" value="Sekretaris Perseroan" name="jabatan" id="jabatan" size="50" maxlength="200" required autocomplete='off'>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="jenis-dinas-input" class="col-2 col-form-label">Tanggal Cetak<span class="text-danger">*</span></label>
-                        <div class="col-10">
-                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}"  id="tanggal" size="15" maxlength="15" autocomplete='off' required>
+                            <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete='off' required>
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete='off'>
                         </div>
                     </div>
                     <div class="form__actions">
@@ -84,15 +68,5 @@
 @endsection
 
 @push('page-scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#tanggal').datepicker({
-            todayHighlight: true,
-            orientation: "bottom left",
-            autoclose: true,
-            language : 'id',
-            format   : 'dd MM yyyy'
-        });
-    });
-</script>
+
 @endpush

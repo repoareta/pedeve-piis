@@ -43,7 +43,7 @@
 		<form class="form" action="{{route('cash_flow.permatauang.export')}}" method="GET" target="_blank">
 			<div class="kt-portlet__body">
 				<div class="form-group row">
-					<label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+					<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 					<div class="col-5">
 						<?php 
 							$tgl = date_create(now());
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="form-group row">
-					<label for="spd-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
+					<label for="" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
                     <div class="col-10" >
                         <input class="form-control" type="text" name="kurs" autocomplete="off">
                     </div>

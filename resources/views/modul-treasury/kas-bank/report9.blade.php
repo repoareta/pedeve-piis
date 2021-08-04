@@ -21,7 +21,7 @@
         <form class="form" action="{{route('kas_bank.cetak9')}}" method="POST" target="_blank">
             @csrf
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
                     <?php 
                         $tgl = date_create(now());
