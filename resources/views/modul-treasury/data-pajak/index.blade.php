@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
@@ -19,27 +19,29 @@
             <h3 class="card-label">
                 Tabel Data Pajak Tahunan
             </h3>
-            <div class="text-right">
+        </div>
+        <div class="card-toolbar">
+            <div class="float-left">
                 @if($data_akses->tambah == 1)
-                <a href="{{ route('data_pajak.create') }}" class="btn p-0">
+                <a href="{{ route('data_pajak.create') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
-                <button id="editRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
-                        <i class="fas fa-2x fa-edit text-warning"></i>
+                @if($data_akses->rubah == 1 || $data_akses->lihat == 1)
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                     </span>
-                </button>
+                </a>
                 @endif
                 @if($data_akses->hapus == 1)
-                <button id="deleteRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
-                </button>
+                </a>
                 @endif
             </div>
         </div>
