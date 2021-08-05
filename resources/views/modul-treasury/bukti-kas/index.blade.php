@@ -23,7 +23,7 @@
         <div class="card-toolbar">
             <div class="float-left">
                 @if($userAbility->tambah == 1)
-                <a href="{{ route('penerimaan_kas.create.kas') }}" class="btn p-0">
+                <a href="{{ route('penerimaan_kas.create.kas') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
