@@ -64,11 +64,6 @@
                 serverSide: true,
                 ajax      : {
                             url: "{{ route('modul_administrator.set_function.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
                             data: function (d) {
                                 d.pencarian = $('input[name=pencarian]').val();
                             }
