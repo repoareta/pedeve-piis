@@ -132,16 +132,9 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            
-            
             pageLength: 100,
             ajax      : {
                 url: "{{ route('modul_cm.monitoring_kinerja.index.json') }}",
-                type : "POST",
-                dataType : "JSON",
-                headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}',
-                },
                 data: function (d) {
                     d.bulan = $('select[name=bulan]').val();
                     d.tahun = $('input[name=tahun]').val();
@@ -162,16 +155,17 @@
                 {data: 'tkp', name: 'tkp', class: 'text-right'},
                 {data: 'kpi', name: 'kpi', class: 'text-right'},
             ]
-    });
-    $('#search-form').on('submit', function(e) {
-        t.draw();
-        e.preventDefault();
-                var bulan = $('select[name=bulan]').val();
-        $('#acc').val(bulan);
-    });
+        });
+
+        $('#search-form').on('submit', function(e) {
+            t.draw();
+            e.preventDefault();
+            var bulan = $('select[name=bulan]').val();
+            $('#acc').val(bulan);
+        });
     
-    //edit monitoring_kinerja
-    $('#editRow').click(function(e) {
+        //edit monitoring_kinerja
+        $('#editRow').click(function(e) {
             e.preventDefault();
 
             if($('input[class=btn-radio]').is(':checked')) { 
@@ -184,9 +178,8 @@
             }
         });
 
-
-    //delete monitoring_kinerja
-    $('#deleteRow').click(function(e) {
+        //delete monitoring_kinerja
+        $('#deleteRow').click(function(e) {
             e.preventDefault();
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function() {
@@ -210,38 +203,35 @@
                         })
                         .then((result) => {
                         if (result.value) {
-                            $.ajax({
-                                url: "{{ route('modul_cm.monitoring_kinerja.delete') }}",
-                                type: 'DELETE',
-                                dataType: 'json',
-                                data: {
-                                    "id": id,
-                                    "_token": "{{ csrf_token() }}",
-                                },
-                                success: function () {
-                                    Swal.fire({
-                                        type  : 'success',
-                                        title : 'Hapus No. monitoring kinerja ' + id,
-                                        text  : 'Berhasil',
-                                        timer : 2000
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                },
-                                error: function () {
-                                    alert("Terjadi kesalahan, coba lagi nanti");
-                                }
-                            });
-                        }
+                                $.ajax({
+                                    url: "{{ route('modul_cm.monitoring_kinerja.delete') }}",
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    data: {
+                                        "id": id,
+                                        "_token": "{{ csrf_token() }}",
+                                    },
+                                    success: function () {
+                                        Swal.fire({
+                                            type  : 'success',
+                                            title : 'Hapus No. monitoring kinerja ' + id,
+                                            text  : 'Berhasil',
+                                            timer : 2000
+                                        }).then(function() {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function () {
+                                        alert("Terjadi kesalahan, coba lagi nanti");
+                                    }
+                                });
+                            }
+                        });
                     });
-                });
             } else {
                 swalAlertInit('hapus');
-            }
-            
+            } 
         });
-
-
-});		
+    });		
 </script>
 @endpush

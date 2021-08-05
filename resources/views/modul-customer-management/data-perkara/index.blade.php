@@ -68,16 +68,11 @@
                 processing: true,
                 serverSide: true,
                 ajax      : {
-                            url: "{{ route('modul_cm.data_perkara.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            data: function (d) {
-                                d.pencarian = $('input[name=pencarian]').val();
-                            }
-                        },
+                    url: "{{ route('modul_cm.data_perkara.index.json') }}",
+                    data: function (d) {
+                        d.pencarian = $('input[name=pencarian]').val();
+                    }
+                },
                 columns: [
                     {data: 'radio', name: 'radio'},
                     {data: 'tanggal', name: 'tanggal'},

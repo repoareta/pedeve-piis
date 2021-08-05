@@ -81,16 +81,11 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-						url: "{{ route('rekap_harian_kas.index.json') }}",
-						type : "POST",
-						dataType : "JSON",
-						headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-						},
-						data: function (d) {
-							d.nama = $('input[name=nokas]').val();
-						}
-					},
+				url: "{{ route('rekap_harian_kas.index.json') }}",
+				data: function (d) {
+					d.nama = $('input[name=nokas]').val();
+				}
+			},
 			columns: [
 				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'jk', name: 'jk'},
@@ -103,6 +98,7 @@
 				{data: 'saldoakhir', name: 'saldoakhir'},
 			]
 		});
+
 		$('#search-form').on('submit', function(e) {
 			t.draw();
 			e.preventDefault();
@@ -193,6 +189,6 @@
 				swalAlertInit('cetak');
 			}
 		});
-});
+	});
 </script>
 @endpush

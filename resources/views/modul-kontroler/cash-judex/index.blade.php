@@ -66,11 +66,6 @@ $(document).ready(function () {
         serverSide: true,
         ajax: {
             url: "{{ route('modul_kontroler.cash_judex.index.json') }}",
-            type : "POST",
-            dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
             data: function (d) {
                 d.pencarian = $('input[name=pencarian]').val();
             }

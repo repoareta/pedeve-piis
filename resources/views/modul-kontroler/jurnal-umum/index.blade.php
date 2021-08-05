@@ -105,17 +105,12 @@
             processing: true,
             serverSide: true,
             ajax      : {
-                        url: "{{ route('modul_kontroler.jurnal_umum.index.json') }}",
-                        type : "POST",
-                        dataType : "JSON",
-                        headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                        },
-                        data: function (d) {
-                            d.tahun = $('input[name=tahun]').val();
-                            d.bulan = $('select[name=bulan]').val();
-                        }
-                    },
+                url: "{{ route('modul_kontroler.jurnal_umum.index.json') }}",
+                data: function (d) {
+                    d.tahun = $('input[name=tahun]').val();
+                    d.bulan = $('select[name=bulan]').val();
+                }
+            },
             columns: [
                 {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                 {data: 'docno', name: 'docno'},

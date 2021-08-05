@@ -63,16 +63,11 @@
                 processing: true,
                 serverSide: true,
                 ajax      : {
-                            url: "{{ route('modul_administrator.set_menu.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            data: function (d) {
-                                d.pencarian = $('input[name=pencarian]').val();
-                            }
-                        },
+                    url: "{{ route('modul_administrator.set_menu.index.json') }}",
+                    data: function (d) {
+                        d.pencarian = $('input[name=pencarian]').val();
+                    }
+                },
                 columns: [
                     {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                     {data: 'userid', name: 'userid'},
@@ -82,6 +77,7 @@
                     {data: 'userap', name: 'userap'},
                 ]
             });
+            
             $('#search-form').on('submit', function(e) {
                 t.draw();
                 e.preventDefault();

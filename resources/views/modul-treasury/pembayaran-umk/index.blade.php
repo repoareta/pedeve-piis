@@ -114,18 +114,13 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-						url: "{{ route('pembayaran_umk.index.json') }}",
-						type : "POST",
-						dataType : "JSON",
-						headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-						},
-						data: function (d) {
-							d.bukti = $('input[name=bukti]').val();
-							d.bulan = $('select[name=bulan]').val();
-							d.tahun = $('input[name=tahun]').val();
-						}
-					},
+				url: "{{ route('pembayaran_umk.index.json') }}",
+				data: function (d) {
+					d.bukti = $('input[name=bukti]').val();
+					d.bulan = $('select[name=bulan]').val();
+					d.tahun = $('input[name=tahun]').val();
+				}
+			},
 			columns: [
 				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'action', name: 'action'},
@@ -140,26 +135,27 @@
 				{data: 'nilai', name: 'nilai'},
 			]
 		});
+
 		$('#search-form').on('submit', function(e) {
 			t.draw();
 			e.preventDefault();
 		});
 		
 		// edit Kas/Bank Otomatis
-			$('#editRow').click(function(e) {
-				e.preventDefault();
-				if($('input[type=radio]').is(':checked')) { 
-					$("input[type=radio]:checked").each(function(){
-						var nodok = $(this).val().split("/").join("-");
-						// var nodok = $(this).attr('nodok');
-						location.href = "{{url('perbendaharaan/pembayaran-umk/edit') }}"+ '/' +nodok;
-					});
-				} else {
-					swalAlertInit('ubah');
-				}
-			});
-			// delete Kas/Bank otomatis
-			$('#deleteRow').click(function(e) {
+		$('#editRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function(){
+					var nodok = $(this).val().split("/").join("-");
+					// var nodok = $(this).attr('nodok');
+					location.href = "{{url('perbendaharaan/pembayaran-umk/edit') }}"+ '/' +nodok;
+				});
+			} else {
+				swalAlertInit('ubah');
+			}
+		});
+		// delete Kas/Bank otomatis
+		$('#deleteRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
@@ -225,19 +221,20 @@
 			} else {
 				swalAlertInit('hapus');
 			}
-			});
-			//export 
-			$('#exportRow').click(function(e) {
-				e.preventDefault();
-				if($('input[class=btn-radio]').is(':checked')) { 
-					$("input[class=btn-radio]:checked").each(function(){
-						var docno = $(this).attr('docno');
-						location.href = "{{url('perbendaharaan/pembayaran-umk/rekap') }}"+ '/' +docno;
-					});
-				} else {
-					swalAlertInit('cetak');
-				}
-			});
-});
+		});
+		
+		//export 
+		$('#exportRow').click(function(e) {
+			e.preventDefault();
+			if($('input[class=btn-radio]').is(':checked')) { 
+				$("input[class=btn-radio]:checked").each(function(){
+					var docno = $(this).attr('docno');
+					location.href = "{{url('perbendaharaan/pembayaran-umk/rekap') }}"+ '/' +docno;
+				});
+			} else {
+				swalAlertInit('cetak');
+			}
+		});
+	});
 </script>
 @endpush
