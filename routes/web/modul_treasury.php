@@ -61,7 +61,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "informasi_saldo.index"...
     Route::name('informasi_saldo.')->group(function () {
         Route::get('informasi-saldo', [InformasiSaldoController::class, 'index'])->name('index');
-        Route::post('informasi-saldo/index/json', [InformasiSaldoController::class, 'indexJson'])->name('index.json');
+        Route::get('informasi-saldo/index/json', [InformasiSaldoController::class, 'indexJson'])->name('index.json');
     });
     //end informasi-saldo
 
@@ -70,7 +70,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "data_pajak.index"...
     Route::name('data_pajak.')->group(function () {
         Route::get('data-pajak', [DataPajakController::class, 'index'])->name('index');
-        Route::post('data-pajak/index/json', [DataPajakController::class, 'indexJson'])->name('index.json');
+        Route::get('data-pajak/index/json', [DataPajakController::class, 'indexJson'])->name('index.json');
         Route::get('data-pajak/create', [DataPajakController::class, 'create'])->name('create');
         Route::post('data-pajak/store', [DataPajakController::class, 'store'])->name('store');
         Route::get('data-pajak/edit/{tahun}/{bulan}/{nopek}/{jenis}', [DataPajakController::class, 'edit'])->name('edit');
@@ -99,7 +99,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "bulan_perbendaharaan.index"...
     Route::name('bulan_perbendaharaan.')->group(function () {
         Route::get('bulan-perbendaharaan', [BulanPerbendaharaanController::class, 'index'])->name('index');
-        Route::post('bulan-perbendaharaan/index/index-json', [BulanPerbendaharaanController::class, 'indexJson'])->name('index.json');
+        Route::get('bulan-perbendaharaan/index/index-json', [BulanPerbendaharaanController::class, 'indexJson'])->name('index.json');
         Route::get('bulan-perbendaharaan/create', [BulanPerbendaharaanController::class, 'create'])->name('create');
         Route::post('bulan-perbendaharaan/store', [BulanPerbendaharaanController::class, 'store'])->name('store');
         Route::get('bulan-perbendaharaan/edit/{id}', [BulanPerbendaharaanController::class, 'edit'])->name('edit');
@@ -112,7 +112,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "opening-balance.index"...
     Route::name('opening_balance.')->group(function () {
         Route::get('opening-balance', [OpeningBalanceController::class, 'index'])->name('index');
-        Route::post('opening-balance/index/index-json', [OpeningBalanceController::class, 'indexJson'])->name('index.json');
+        Route::get('opening-balance/index/index-json', [OpeningBalanceController::class, 'indexJson'])->name('index.json');
         Route::get('opening-balance/create', [OpeningBalanceController::class, 'create'])->name('create');
         Route::post('opening-balance/store', [OpeningBalanceController::class, 'store'])->name('store');
         Route::get('opening-balance/edit/{id}', [OpeningBalanceController::class, 'edit'])->name('edit');
@@ -124,7 +124,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "penempatan_deposito.index"...
     Route::name('penempatan_deposito.')->group(function () {
         Route::get('penempatan-deposito', [PenempatanDepositoController::class, 'index'])->name('index');
-        Route::post('penempatan-deposito/index-json', [PenempatanDepositoController::class, 'indexJson'])->name('index.json');
+        Route::get('penempatan-deposito/index-json', [PenempatanDepositoController::class, 'indexJson'])->name('index.json');
         Route::post('penempatan-deposito/lineno/json', [PenempatanDepositoController::class, 'linenoJson'])->name('linenoJson');
         Route::post('penempatan-deposito/kurs/json', [PenempatanDepositoController::class, 'kursJson'])->name('kursJson');
         Route::post('penempatan-deposito/kdbank/json', [PenempatanDepositoController::class, 'kdbankJson'])->name('kdbankJson');
@@ -159,7 +159,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "pembayaran_gaji.index"...
     Route::name('pembayaran_gaji.')->group(function () {
         Route::get('pembayaran-gaji', [PembayaranGajiController::class, 'index'])->name('index');
-        Route::post('pembayaran-gaji/index-json', [PembayaranGajiController::class, 'indexJson'])->name('index.json');
+        Route::get('pembayaran-gaji/index-json', [PembayaranGajiController::class, 'indexJson'])->name('index.json');
         Route::get('pembayaran-gaji/create', [PembayaranGajiController::class, 'create'])->name('create');
         Route::post('pembayaran-gaji/create/json', [PembayaranGajiController::class, 'createJson'])->name('createJson');
         Route::post('pembayaran-gaji/lokasi/json', [PembayaranGajiController::class, 'lokasiJson'])->name('lokasiJson');
@@ -186,7 +186,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "pembayaran_umk.index"...
     Route::name('pembayaran_umk.')->group(function () {
         Route::get('pembayaran-umk', [PembayaranUMKController::class, 'index'])->name('index');
-        Route::post('pembayaran-umk/index-json', [PembayaranUMKController::class, 'indexJson'])->name('index.json');
+        Route::get('pembayaran-umk/index-json', [PembayaranUMKController::class, 'indexJson'])->name('index.json');
         Route::get('pembayaran-umk/create', [PembayaranUMKController::class, 'create'])->name('create');
         Route::post('pembayaran-umk/create/json', [PembayaranUMKController::class, 'createJson'])->name('createJson');
         Route::post('pembayaran-umk/lokasi/json', [PembayaranUMKController::class, 'lokasiJson'])->name('lokasiJson');
@@ -214,7 +214,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "pembayaran_jumk.index"...
     Route::name('pembayaran_jumk.')->group(function () {
         Route::get('pembayaran-jumk', [PembayaranJUMKController::class, 'index'])->name('index');
-        Route::post('pembayaran-jumk/index-json', [PembayaranJUMKController::class, 'indexJson'])->name('index.json');
+        Route::get('pembayaran-jumk/index-json', [PembayaranJUMKController::class, 'indexJson'])->name('index.json');
         Route::get('pembayaran-jumk/create', [PembayaranJUMKController::class, 'create'])->name('create');
         Route::post('pembayaran-jumk/create/json', [PembayaranJUMKController::class, 'createJson'])->name('createJson');
         Route::post('pembayaran-jumk/lokasi/json', [PembayaranJUMKController::class, 'lokasiJson'])->name('lokasiJson');
@@ -241,7 +241,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "pembayaran_pbayar.index"...
     Route::name('pembayaran_pbayar.')->group(function () {
         Route::get('pembayaran-pbayar', [PembayaranPBayarController::class, 'index'])->name('index');
-        Route::post('pembayaran-pbayar/index-json', [PembayaranPBayarController::class, 'indexJson'])->name('index.json');
+        Route::get('pembayaran-pbayar/index-json', [PembayaranPBayarController::class, 'indexJson'])->name('index.json');
         Route::get('pembayaran-pbayar/create', [PembayaranPBayarController::class, 'create'])->name('create');
         Route::post('pembayaran-pbayar/create/json', [PembayaranPBayarController::class, 'createJson'])->name('createJson');
         Route::post('pembayaran-pbayar/lokasi/json', [PembayaranPBayarController::class, 'lokasiJson'])->name('lokasiJson');
@@ -270,7 +270,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "rekap_harian_kas.index"...
     Route::name('rekap_harian_kas.')->group(function () {
         Route::get('rekap-harian-kas', [RekapHarianKasController::class, 'index'])->name('index');
-        Route::post('rekap-harian-kas/index-json', [RekapHarianKasController::class, 'indexJson'])->name('index.json');
+        Route::get('rekap-harian-kas/index-json', [RekapHarianKasController::class, 'indexJson'])->name('index.json');
         Route::post('rekap-harian-kas/jeniskartu/json', [RekapHarianKasController::class, 'JeniskaruJson'])->name('jenis.kartu.json');
         Route::post('rekap-harian-kas/nokas/json', [RekapHarianKasController::class, 'NokasJson'])->name('nokas.json');
         Route::get('rekap-harian-kas/create', [RekapHarianKasController::class, 'create'])->name('create');

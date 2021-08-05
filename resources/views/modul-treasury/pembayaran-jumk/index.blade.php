@@ -119,11 +119,6 @@
 			serverSide: true,
 			ajax      : {
 						url: "{{ route('pembayaran_jumk.index.json') }}",
-						type : "POST",
-						dataType : "JSON",
-						headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-						},
 						data: function (d) {
 							d.bukti = $('input[name=bukti]').val();
 							d.bulan = $('select[name=bulan]').val();

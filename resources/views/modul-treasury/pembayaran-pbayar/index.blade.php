@@ -119,11 +119,6 @@
 			serverSide: true,
 			ajax      : {
 						url: "{{ route('pembayaran_pbayar.index.json') }}",
-						type : "POST",
-						dataType : "JSON",
-						headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-						},
 						data: function (d) {
 							d.bukti = $('input[name=bukti]').val();
 							d.bulan = $('select[name=bulan]').val();
@@ -132,7 +127,7 @@
 					},
 			columns: [
 				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
-				{data: 'action', name: 'action'},
+				{data: 'action', name: 'action', class: 'text-center'},
 				{data: 'docno', name: 'docno'},
 				{data: 'tanggalinput', name: 'tanggalinput'},
 				{data: 'nobukti', name: 'nobukti'},

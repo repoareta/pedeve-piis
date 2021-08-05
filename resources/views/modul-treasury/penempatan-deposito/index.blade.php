@@ -130,11 +130,6 @@
 			scrollCollapse: true,
 			ajax      : {
 				url: "{{ route('penempatan_deposito.index.json') }}",
-				type : "POST",
-				dataType : "JSON",
-				headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
 				data: function (d) {
 					d.bulan = $('select[name=bulan]').val();
 					d.tahun = $('input[name=tahun]').val();

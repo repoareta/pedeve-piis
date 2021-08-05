@@ -64,11 +64,6 @@
             serverSide: true,
             ajax: {
                 url: "{{ route('informasi_saldo.index.json') }}",
-                type: "POST",
-                dataType: "JSON",
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
                 data: function (d) {
                     d.tanggal = $('input[name=tanggal]').val();
                 }
