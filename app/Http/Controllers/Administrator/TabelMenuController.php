@@ -23,7 +23,7 @@ class TabelMenuController extends Controller
         return view('modul-administrator.tabel-menu.index');
     }
 
-    public function searchIndex()
+    public function indexJson()
     {
         $data = DftMenu::orderBy('userap', 'asc')->get();
         return datatables()->of($data)

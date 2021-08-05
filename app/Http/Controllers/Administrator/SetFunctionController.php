@@ -24,7 +24,7 @@ class SetFunctionController extends Controller
         return view('modul-administrator.set-function.index');
     }
 
-    public function searchIndex()
+    public function indexJson()
     {
         $data = UserPdv::orderBy('userid','asc')->get();
         return datatables()->of($data)

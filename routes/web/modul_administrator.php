@@ -14,7 +14,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     // Route assigned name "set_user.index"...
     Route::name('set_user.')->group(function () {
         Route::get('set-user', [SetUserController::class, 'index'])->name('index');
-        Route::post('set-user/index/index-json', [SetUserController::class, 'indexJson'])->name('index.json');
+        Route::get('set-user/index/index-json', [SetUserController::class, 'indexJson'])->name('index.json');
         Route::get('set-user/create', [SetUserController::class, 'create'])->name('create');
         Route::post('set-user/store', [SetUserController::class, 'store'])->name('store');
         Route::get('set-user/edit/{id}', [SetUserController::class, 'edit'])->name('edit');
@@ -29,7 +29,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     // Route assigned name "set_menu.index"...
     Route::name('set_menu.')->group(function () {
         Route::get('set-menu', [SetMenuController::class, 'index'])->name('index');
-        Route::post('set-menu/index/index-json', [SetMenuController::class, 'indexJson'])->name('index.json');
+        Route::get('set-menu/index/index-json', [SetMenuController::class, 'indexJson'])->name('index.json');
         Route::get('set-menu/edit/{id}', [SetMenuController::class, 'edit'])->name('edit');
         Route::post('set-menu/update/{id}', [SetMenuController::class, 'update'])->name('update');
     });
@@ -51,7 +51,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     // Route assigned name "tabel_menu.index"...
     Route::name('tabel_menu.')->group(function () {
         Route::get('tabel-menu', [TabelMenuController::class, 'index'])->name('index');
-        Route::post('tabel-menu/index/index-json', [TabelMenuController::class, 'indexJson'])->name('index.json');
+        Route::get('tabel-menu/index/index-json', [TabelMenuController::class, 'indexJson'])->name('index.json');
         Route::get('tabel-menu/create', [TabelMenuController::class, 'create'])->name('create');
         Route::post('tabel-menu/store', [TabelMenuController::class, 'store'])->name('store');
         Route::get('tabel-menu/edit/{id}', [TabelMenuController::class, 'edit'])->name('edit');
@@ -73,7 +73,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     // Route assigned name "log.index"...
     Route::name('log.')->group(function () {
         Route::get('log', [LogController::class, 'index'])->name('index');
-        Route::post('log/index-json', [LogController::class, 'indexJson'])->name('index.json');
+        Route::get('log/index-json', [LogController::class, 'indexJson'])->name('index.json');
     });
     //end log
 });
