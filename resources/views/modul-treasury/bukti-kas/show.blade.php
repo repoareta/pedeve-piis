@@ -134,17 +134,17 @@
             </h3>
             <div class="text-right">
                 <button data-toggle="modal" data-target="#createDetailModal" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button class="btn p-0" id="btn-edit">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 <button class="btn p-0" id="btn-delete">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </button>

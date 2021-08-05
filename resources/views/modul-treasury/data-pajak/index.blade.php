@@ -18,21 +18,21 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('data_pajak.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </button>

@@ -19,28 +19,28 @@
             <div class="text-right">
                 @if($userAbility->tambah == 1)
                 <a href="{{ route('penerimaan_kas.create.kas') }}">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
                 <a href="#" id="editRow">
-                    <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->hapus == 1)
                 <a href="#" id="deleteRow">
-                    <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->cetak == 1)
                 <a href="#" id="exportRow">
-                    <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-secondary"></i>
                     </span>
                 </a>

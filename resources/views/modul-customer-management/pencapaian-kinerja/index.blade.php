@@ -19,7 +19,7 @@
         <div class="card-toolbar">
             <div class="float-left">
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>

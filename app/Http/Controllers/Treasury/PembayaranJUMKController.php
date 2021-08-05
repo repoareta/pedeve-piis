@@ -166,12 +166,12 @@ class PembayaranJUMKController extends Controller
             })
             ->addColumn('action', function ($data) {
                 if ($data->verified == 'Y') {
-                    $action = '<span class="text-success pointer-link" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle fa-2x"></i></span>';
+                    $action = '<span class="pointer-link" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
                 } else {
                     if ($data->paid == 'Y') {
-                        $action = '<a href="' . route('pembayaran_jumk.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="kt-font-warning pointer-link"   title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x"></i></span></a>';
+                        $action = '<a href="' . route('pembayaran_jumk.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="pointer-link" title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
                     } else {
-                        $action = '<a href="' . route('pembayaran_jumk.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="text-danger pointer-link"  title="Klik untuk Pembayaran"><i class="fas fa-ban fa-2x"></i></span></a>';
+                        $action = '<a href="' . route('pembayaran_jumk.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="pointer-link" title="Klik untuk Pembayaran"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
                     }
                 }
                 return $action;

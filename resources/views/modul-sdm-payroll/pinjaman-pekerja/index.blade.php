@@ -19,17 +19,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -81,7 +81,7 @@ $(document).ready(function () {
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button'},
+                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                 {data: 'id_pinjaman', name: 'id_pinjaman'},
                 {data: 'nopek', name: 'nopek'},
                 {data: 'namapegawai', name: 'namapegawai'},

@@ -78,9 +78,9 @@ class PostingKasBankController extends Controller
        })
         ->addColumn('action', function ($data) {
             if($data->verified == 'Y'){
-                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="text-success pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle fa-2x"></i></span></a>';
+                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
             } else {
-                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="text-danger pointer-link"  title="" style="cursor:hand"><i class="fas fa-ban fa-2x"></i></span></a>';
+                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="" style="cursor:hand"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
             }               
             return $action;
         })

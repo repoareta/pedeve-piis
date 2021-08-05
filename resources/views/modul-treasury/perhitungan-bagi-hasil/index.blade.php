@@ -17,14 +17,14 @@
             <div class="text-right">
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->cetak == 1)
                 <button id="exportRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-print text-secondary"></i>
                     </span>
                 </button>

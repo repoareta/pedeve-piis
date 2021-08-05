@@ -172,12 +172,12 @@
             </h3>
             <div class="text-right">
                 <button id="btn-create" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
                         <i class="fas fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button id="btn-edit" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
                         <i class="fas fa-edit text-warning"></i>
                     </span>
                 </button>

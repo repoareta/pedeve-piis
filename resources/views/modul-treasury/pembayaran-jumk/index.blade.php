@@ -17,28 +17,28 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('pembayaran_jumk.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->cetak == 1)
                 <button id="exportRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-primary"></i>
                     </span>
                 </button>
@@ -127,7 +127,7 @@
 						}
 					},
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'action', name: 'action'},
 				{data: 'docno', name: 'docno'},
 				{data: 'tanggalinput', name: 'tanggalinput'},

@@ -24,7 +24,7 @@
             <div class="float-left">
                 <div class="">
                     <a href="#">
-                        <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                             <i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
                         </span>
                     </a>
@@ -74,7 +74,7 @@
                             }
                         },
                 columns: [
-                    {data: 'radio', name: 'aksi', class:'radio-button'},
+                    {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                     {data: 'userid', name: 'userid'},
                     {data: 'usernm', name: 'usernm'},
                     {data: 'kode', name: 'kode'},

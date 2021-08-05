@@ -17,14 +17,14 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('opening_balance.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
                     </span>
                 </button>
@@ -71,7 +71,7 @@
                 }
             },
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'bulan', name: 'bulan'},
 				{data: 'tahun', name: 'tahun'},
 				{data: 'suplesi', name: 'suplesi'},

@@ -182,9 +182,9 @@ class KasBankKontrolerController extends Controller
         return datatables()->of($data)
         ->addColumn('action', function ($data) {
             if($data->paid == 'Y'){
-                return '<span class="text-success pointer-link"  title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x"></i></span>';
+                return '<span title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
             } else {
-                return '<span class="text-danger pointer-link"  title="Klik Untuk Pembayaran"><i class="fas fa-ban fa-2x"></i></span>';
+                return '<span class="pointer-link" title="Klik Untuk Pembayaran"><i class="fas fa-ban fa-2x text-danger"></i></span>';
             }
        })
         ->addColumn('docno', function ($data) {

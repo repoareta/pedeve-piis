@@ -17,21 +17,21 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('penempatan_deposito.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </button>
@@ -39,7 +39,7 @@
 
                 @if($data_akses->tambah == 1)
                 <button id="dolarRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Perpanjang Deposito">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Perpanjang Deposito">
                         <i class="fas icon-2x fa-dollar-sign text-primary"></i>
                     </span>
                 </button>
@@ -47,7 +47,7 @@
 
                 @if($data_akses->cetak == 1)
                 <button id="exportRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-secondary"></i>
                     </span>
                 </button>
@@ -137,7 +137,7 @@
 				}
 			},
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'noseri', name: 'noseri'},
 				{data: 'namabank', name: 'namabank'},
 				{data: 'nominal', name: 'nominal'},
