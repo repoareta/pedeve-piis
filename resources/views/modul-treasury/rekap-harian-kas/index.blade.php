@@ -20,11 +20,11 @@
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
-                <button id="editRow" class="btn p-0">
+                {{-- <button id="editRow" class="btn p-0">
                     <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
-                </button>
+                </button> --}}
                 <button id="deleteRow" class="btn p-0">
                     <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
@@ -173,7 +173,7 @@
 					var tgl = $(this).attr('tanggal');
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
-					location.replace("{{url('perbendaharaan/rekap_harian_kas/edit')}}"+ '/' +no+'/'+id+'/'+tgl);
+					location.href = "{{url('perbendaharaan/rekap-harian-kas/edit')}}"+ '/' +no+'/'+id+'/'+tgl;
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -187,7 +187,7 @@
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
 					var tanggal = $(this).attr('tanggal');
-					location.replace("{{url('perbendaharaan/rekap_harian_kas/rekap')}}"+ '/' +no+'/'+id+'/'+tanggal);
+					location.href = "{{url('perbendaharaan/rekap-harian-kas/rekap')}}"+ '/' +no+'/'+id+'/'+tanggal;
 				});
 			} else {
 				swalAlertInit('cetak');

@@ -10,6 +10,7 @@ use App\Models\Ttable;
 use DomPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class RekapHarianKasController extends Controller
@@ -342,6 +343,7 @@ class RekapHarianKasController extends Controller
     {
         return view('modul-treasury.rekap-harian-kas.rekaphari', compact('jk', 'nokas', 'tanggal'));
     }
+    
     public function CtkHarian(Request $request)
     {
         $data_list = DB::select("
@@ -349,12 +351,12 @@ class RekapHarianKasController extends Controller
             ");
         // dd($request->jk);
         if (!empty($data_list)) {
-            $pdf = DomPDF::loadview('modul-treasury.rekap-harian-kas.export_hariankas', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
-            $pdf->output();
-            $dom_pdf = $pdf->getDomPDF();
+            $pdf = PDF::loadview('modul-treasury.rekap-harian-kas.export_hariankas', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            // $pdf->output();
+            // $dom_pdf = $pdf->getDomPDF();
 
-            $canvas = $dom_pdf->getCanvas();
-            $canvas->page_text(390, 115, "({PAGE_NUM}) Dari {PAGE_COUNT}", null, 8, array(0, 0, 0)); //lembur landscape
+            // $canvas = $dom_pdf->getCanvas();
+            // $canvas->page_text(390, 115, "({PAGE_NUM}) Dari {PAGE_COUNT}", null, 8, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
         } else {

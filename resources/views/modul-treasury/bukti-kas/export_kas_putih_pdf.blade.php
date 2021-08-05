@@ -74,13 +74,13 @@ h4 {
 .pagecount:before {
 content: counter(pages);
 }
-header { 
+/* header { 
     position: fixed; 
     left: 0px; 
     top: -110px;
     right: 0px;
     height: 0px;
-}
+} */
 @page { 
     margin: 130px 50px 50px 50px;
 }
@@ -95,13 +95,15 @@ header {
                 <p>
                     <b>PT PERTAMINA PEDEVE INDONESIA
                     <br>
-                    BUKTI PENGELUARAN KAS BANK
+                    BUKTI PENGELUARAN KAS/BANK
                     </b>
                 </p>
             </div>
     
-            <div>
-                <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-top:10px">
+            <div class="row">
+                <div class="text-right" style="width: 100%;">
+                    <img src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-right: 20px;">
+                </div>
             </div>
         </div>
     </header>
@@ -114,7 +116,7 @@ header {
                     <tr>
                         <td colspan="6">
                             <p>
-                                SUDAH TERIMA DARI : {{ $kasdoc->kepada }}
+                                HARAP DIBAYAR KEPADA : {{ $kasdoc->kepada }}
                             <br>
                             UANG SEJUMLAH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  
                             @if ($kasdoc->ci == 1)
@@ -122,10 +124,10 @@ header {
                             @else
                             US$
                             @endif
-                            {{ number_format(abs($kasdoc->nilai_dok), 2) }}
+                            {{ number_format(abs($kasdoc->kasline_sum_totprice), 2) }}
                             <br>
                             <div style="border: 1px solid black; padding: 10px;">
-                                {{ strtoupper(terbilang(abs($kasdoc->nilai_dok))) }}
+                                {{ strtoupper(terbilang(abs($kasdoc->kasline_sum_totprice))) }}
 
                                 @if ($kasdoc->ci == 1)
                                 RUPIAH
@@ -138,7 +140,7 @@ header {
                         <td colspan="2" nowrap>
                             JENIS KARTU  &nbsp;&nbsp;&nbsp;&nbsp;: {{ $kasdoc->jk }}
                             <br>
-                            BLN/THN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $kasdoc->thnbln }}
+                            BLN/THN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ substr($kasdoc->thnbln, 0, 4) }} / {{ substr($kasdoc->thnbln, -2, 2) }}
                             <br>
                             NO. KAS/BANK &nbsp;&nbsp;: {{ $kasdoc->store }}
                             <br>
@@ -214,7 +216,7 @@ header {
                     <tr>
                         <td colspan="6" class="text-right">Jumlah</td>
                         <td colspan="2" class="text-right">
-                            {{ number_format(abs($total)) }}
+                            {{ number_format(abs($total), 2) }}
                             @if ($total < 0)
                                 CR
                             @endif
