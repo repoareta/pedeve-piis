@@ -130,7 +130,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'action', name: 'aksi', class:'radio-button'},
+            {data: 'action', name: 'aksi', class:'radio-button text-center'},
             {data: 'bulan_tahun', name: 'bulan_tahun'},
             {data: 'pekerja', name: 'pekerja'},
             {data: 'aard', name: 'aard'},

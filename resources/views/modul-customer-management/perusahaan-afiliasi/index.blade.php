@@ -68,7 +68,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax      : "{{ route('modul_cm.perusahaan_afiliasi.index.json') }}",
         columns: [
-            {data: 'action', name: 'aksi', class:'radio-button', width:'5px', class:'text-center radio-button'},
+            {data: 'action', name: 'aksi', class:'radio-button text-center', width:'5px', class:'text-center radio-button'},
             {data: 'nama', name: 'nama', class:'no-wrap'},
             {data: 'telepon', name: 'telepon'},
             {data: 'alamat', name: 'alamat'},

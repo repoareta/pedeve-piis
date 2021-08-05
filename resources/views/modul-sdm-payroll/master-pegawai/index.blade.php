@@ -106,7 +106,7 @@
 				}
 			},
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button', width: '10'},
+				{data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
 				{data: 'nopeg', name: 'nopeg', class:'no-wrap'},
 				{data: 'nama', name: 'nama', class:'no-wrap'},
 				{data: 'status', name: 'status', class:'no-wrap'},

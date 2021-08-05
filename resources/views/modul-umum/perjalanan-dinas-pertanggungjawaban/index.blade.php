@@ -96,7 +96,7 @@
 				}
 			},
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button'},
+				{data: 'action', name: 'aksi', class:'radio-button text-center'},
 				{data: 'no_ppanjar', name: 'no_ppanjar', class:'no-wrap'},
 				{data: 'no_panjar', name: 'no_panjar', class:'no-wrap'},
 				{data: 'tgl_ppanjar', name: 'tgl_ppanjar', class:'no-wrap'},
