@@ -21,11 +21,11 @@ class PemegangSahamController extends Controller
         $pemegang_saham_list = PemegangSaham::where('perusahaan_afiliasi_id', $perusahaan_afiliasi);
 
         return datatables()->of($pemegang_saham_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pemegang_saham" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

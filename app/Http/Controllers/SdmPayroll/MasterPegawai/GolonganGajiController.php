@@ -21,14 +21,14 @@ class GolonganGajiController extends Controller
         $golongan_gaji_list = GolonganGaji::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($golongan_gaji_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_golongan_gaji" value="'.$row->nopeg.'_'.$row->golgaji.'_'.$row->tanggal.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('tanggal', function ($row) {
                 return Carbon::parse($row->tanggal)->translatedFormat('d F Y');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

@@ -24,13 +24,13 @@ class TunjanganGolonganController extends Controller
         $tunjangan_list = PayTunjangan::all();
         
         return datatables()->of($tunjangan_list)
-        ->addColumn('action', function ($row) {
+        ->addColumn('radio', function ($row) {
                 return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" golongan="'.$row->golongan.'" name="btn-radio"><span></span></label>';
         })
         ->addColumn('nilai', function ($row) {
             return currency_idr($row->nilai);
         })
-        ->rawColumns(['action'])
+        ->rawColumns(['radio'])
         ->make(true);
     }
 

@@ -21,7 +21,7 @@ class UpahAllInController extends Controller
         $upah_all_in_list = UpahAllIn::where('nopek', $pegawai->nopeg)->get();
 
         return datatables()->of($upah_all_in_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_all_in" value="'.$row->nopek.'-'.$row->nilai.'"><span></span></label>';
                 return $radio;
             })
@@ -40,7 +40,7 @@ class UpahAllInController extends Controller
                 }
                 return null;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

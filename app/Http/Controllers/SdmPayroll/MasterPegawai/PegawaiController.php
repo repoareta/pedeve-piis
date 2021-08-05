@@ -50,7 +50,7 @@ class PegawaiController extends Controller
                     $query->where('status', request('status'));
                 }
             })
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->nopeg.'"><span></span></label>';
                 return $radio;
             })
@@ -103,7 +103,7 @@ class PegawaiController extends Controller
                         break;
                 }
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

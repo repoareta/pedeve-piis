@@ -91,7 +91,7 @@ class UangMukaKerjaController extends Controller
             }
             return $radio;
         })
-        ->addColumn('action', function ($data) {
+        ->addColumn('radio', function ($data) {
             if ($data->app_pbd == 'Y') {
                 $action = '<span class="pointer-link" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
             } else {
@@ -103,7 +103,7 @@ class UangMukaKerjaController extends Controller
             }
             return $action;
         })
-        ->rawColumns(['action','radio','jenis_um'])
+        ->rawColumns(['radio','radio','jenis_um'])
         ->make(true);
     }
     /**

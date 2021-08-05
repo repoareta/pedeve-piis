@@ -21,7 +21,7 @@ class KursusController extends Controller
         $kursus_list = Kursus::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($kursus_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_kursus" value="'.$row->nopeg.'_'.$row->mulai.'_'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
@@ -31,7 +31,7 @@ class KursusController extends Controller
             ->addColumn('sampai', function ($row) {
                 return Carbon::parse($row->sampai)->translatedFormat('d F Y');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

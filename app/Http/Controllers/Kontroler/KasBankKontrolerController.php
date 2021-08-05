@@ -180,7 +180,7 @@ class KasBankKontrolerController extends Controller
         }
         
         return datatables()->of($data)
-        ->addColumn('action', function ($data) {
+        ->addColumn('radio', function ($data) {
             if($data->paid == 'Y'){
                 return '<span title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
             } else {

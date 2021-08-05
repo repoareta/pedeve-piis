@@ -21,7 +21,7 @@ class PengalamanKerjaController extends Controller
         $pengalaman_kerja_list = PengalamanKerja::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($pengalaman_kerja_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pengalaman_kerja" value="'.$row->nopeg.'_'.$row->mulai.'_'.$row->pangkat.'"><span></span></label>';
                 return $radio;
             })
@@ -31,7 +31,7 @@ class PengalamanKerjaController extends Controller
             ->addColumn('sampai', function ($row) {
                 return Carbon::parse($row->sampai)->translatedFormat('d F Y');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

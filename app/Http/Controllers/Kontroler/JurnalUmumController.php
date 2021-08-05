@@ -57,7 +57,7 @@ class JurnalUmumController extends Controller
             $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" docno="'. str_replace('/', '-', $data->docno).'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
-        ->addColumn('action', function ($data) {
+        ->addColumn('radio', function ($data) {
             if(Auth::user()->userid <> 'PWC'){
                 $action = '<a href="'. route('modul_kontroler.jurnal_umum.copy',['no' => str_replace('/', '-', $data->docno)]).'"><span><i class="fas fa-2x fa-paste text-primary"></i></span></a>';
             } else {
@@ -65,7 +65,7 @@ class JurnalUmumController extends Controller
             }               
             return $action;
         })
-        ->rawColumns(['action','radio'])
+        ->rawColumns(['radio','radio'])
         ->make(true); 
     }
 

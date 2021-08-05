@@ -54,7 +54,7 @@ class PerjalananDinasController extends Controller
             ->addColumn('nilai', function ($row) {
                 return currency_idr($row->jum_panjar);
             })
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 if (optional($row->ppanjar_header)->no_panjar) {
                     $ppanjar_header = "true";
                 } else {
@@ -64,7 +64,7 @@ class PerjalananDinasController extends Controller
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" data-ppanjar="'.$ppanjar_header.'" value="'.$row->no_panjar.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

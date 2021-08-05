@@ -30,7 +30,7 @@ class VendorController extends Controller
 
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

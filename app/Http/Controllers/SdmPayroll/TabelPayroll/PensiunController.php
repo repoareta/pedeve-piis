@@ -28,7 +28,7 @@ class PensiunController extends Controller
             $data = PayTblPensiun::all();
 
             return datatables()->of($data)
-            ->addColumn('action', function ($data) {
+            ->addColumn('radio', function ($data) {
                     $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->pribadi.'" name="btn-radio"><span></span></label>';
                 return $radio;
             })
@@ -44,7 +44,7 @@ class PensiunController extends Controller
             ->addColumn('perusahaan3', function ($data) {
                 return currency_format($data->perusahaan3);
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
         
         }

@@ -73,11 +73,11 @@ class AnggaranSubmainController extends Controller
             ->addColumn('sisa', function ($row) {
                 return currency_idr($row->nilai_real);
             })
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode_main.'-'.$row->kode_submain.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action', 'sub_anggaran'])
+            ->rawColumns(['radio', 'sub_anggaran'])
             ->make(true);
     }
 

@@ -22,7 +22,7 @@ class PerizinanController extends Controller
         $perizinan_list = Perizinan::where('perusahaan_afiliasi_id', $perusahaan_afiliasi);
 
         return datatables()->of($perizinan_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_perizinan" nama="'.$row->keterangan.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
@@ -31,7 +31,7 @@ class PerizinanController extends Controller
                 $dokumen = '<a href="'.$file_path.'" target=_blank>'.$row->dokumen.'</a>';
                 return $dokumen;
             })
-            ->rawColumns(['action', 'dokumen'])
+            ->rawColumns(['radio', 'dokumen'])
             ->make(true);
     }
 

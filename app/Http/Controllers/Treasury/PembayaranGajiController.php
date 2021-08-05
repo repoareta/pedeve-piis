@@ -169,7 +169,7 @@ class PembayaranGajiController extends Controller
                 $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" value="' . $data->docno . '" docno="' . str_replace('/', '-', $data->docno) . '" class="btn-radio" name="btn-radio"><span></span></label></center>';
                 return $radio;
             })
-            ->addColumn('action', function ($data) {
+            ->addColumn('radio', function ($data) {
                 if ($data->verified == 'Y') {
                     $action = '<span class="pointer-link" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
                 } else {

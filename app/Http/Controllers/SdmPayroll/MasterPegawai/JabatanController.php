@@ -22,7 +22,7 @@ class JabatanController extends Controller
         $jabatan_list = Jabatan::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($jabatan_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_jabatan" value="'.$row->nopeg.'_'.$row->mulai.'_'.$row->kdbag.'_'.$row->kdjab.'"><span></span></label>';
                 return $radio;
             })
@@ -45,7 +45,7 @@ class JabatanController extends Controller
             ->addColumn('sampai', function ($row) {
                 return Carbon::parse($row->mulai)->translatedFormat('d F Y');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

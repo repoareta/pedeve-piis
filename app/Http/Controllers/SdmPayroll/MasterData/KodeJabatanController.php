@@ -35,7 +35,7 @@ class KodeJabatanController extends Controller
         ->get();
 
         return datatables()->of($kode_jabatan_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kdbag.'-'.$row->kdjab.'"><span></span></label>';
                 return $radio;
             })
@@ -46,7 +46,7 @@ class KodeJabatanController extends Controller
             ->addColumn('tunjangan', function ($row) {
                 return currency_idr($row->tunjangan);
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 
