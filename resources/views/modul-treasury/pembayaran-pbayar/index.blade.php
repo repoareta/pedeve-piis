@@ -127,7 +127,7 @@
 					},
 			columns: [
 				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-				{data: 'radio', name: 'radio', class: 'text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'docno', name: 'docno'},
 				{data: 'tanggalinput', name: 'tanggalinput'},
 				{data: 'nobukti', name: 'nobukti'},
