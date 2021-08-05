@@ -232,7 +232,7 @@
                 $("input[type=radio]:checked").each(function(){
                     var nodok = $(this).val().split("/").join("-");
                     // var nodok = $(this).attr('nodok');
-                    location.href = "{{url('perbendaharaan/penerimaan-kas')}}"+ '/' + nodok + '/edit';
+                    location.href = "{{url('perbendaharaan/penerimaan-kas') }}"+ '/' + nodok + '/edit';
                 });
             } else {
                 swalAlertInit('ubah');

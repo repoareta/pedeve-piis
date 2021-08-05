@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 10pt;font-weight: bold ">REPORT DETAIL KAS/BANK PER BAGIAN</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">CASH JUDEX BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">CASH JUDEX BULAN {{strtoupper($bulan) }} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -111,15 +111,15 @@
                         <td>{{ $data->jk}}</td>
                         <td>{{ $data->bulan}}</td>
                         <td>{{ $data->cj}}</td>
-                        <td>{{ $data->voucher}}</td>
+                        <td>{{ $data->voucher }}</td>
                         <td>{{ $data->pk}}</td>
-                        <td>{{ $data->store}}</td>
+                        <td>{{ $data->store }}</td>
                         <td>{{ $data->account}}</td>
                         <td>{{ $data->jb}}</td>
                         <td>{{ $data->lokasi}}</td>
                         <td>{{ $data->bagian}}</td>
                         <td>{{ $data->lineno}}</td>
-                        <td style="text-align:right;">{{ $data->rate <= 0 ? number_format($data->totprice,0) : number_format($data->totprice)}}</td>
+                        <td style="text-align:right;">{{ $data->rate <= 0 ? number_format($data->totprice,0) : number_format($data->totprice) }}</td>
                         <td style="text-align:right;">{{ $data->ci == 2 ? number_format($data->totprice) : '0'}}</td>
                     </tr>
                     <?php 
@@ -133,18 +133,18 @@
                         $total_dol= array_sum($dol);  
                      ?>
                         <td colspan="11" style="font-size: 8pt;text-align:right;">TOTAL PER BAGIAN</td>
-                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_rup,0)}}</td>
-                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_dol,0)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_rup,0) }}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_dol,0) }}</td>
                     </tr>
                     <tr>
                         <td colspan="11" style="font-size: 8pt;text-align:right;">TOTAL PER CJ</td>
-                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_rup,0)}}</td>
-                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_dol,0)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_rup,0) }}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_dol,0) }}</td>
                     </tr>
                     <tr>
                         <td colspan="11" style="font-size: 8pt;text-align:right;">GRAND TOTAL</td>
-                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_rup,0)}}</td>
-                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_dol,0)}}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_rup,0) }}</td>
+                        <td style="font-size: 8pt;text-align:right;">{{ number_format($total_dol,0) }}</td>
                     </tr>
                 <tbody>
 

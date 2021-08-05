@@ -85,7 +85,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function(){
 					var dataid = $(this).attr('data-id');
-					location.replace("{{url('sdm-payroll/jamsostek/edit')}}"+ '/' +dataid);
+					location.replace("{{url('sdm-payroll/jamsostek/edit') }}"+ '/' +dataid);
 				});
 			} else {
 				swalAlertInit('ubah');

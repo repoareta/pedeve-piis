@@ -34,12 +34,12 @@
     </div>
 
     <div class="card-body">
-        <form class="form" method="POST" action="{{ route('perhitungan_bagihasil.index.search')}}" >
+        <form class="form" method="POST" action="{{ route('perhitungan_bagihasil.index.search') }}" >
 			@csrf
             <div class="form-group row">	
                 <label for="" class="col-1 col-form-label">Tanggal</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ $date}}" size="10" maxlength="10" autocomplete="off">
+                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ $date }}" size="10" maxlength="10" autocomplete="off">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -47,7 +47,7 @@
             </div>
         </form>
 
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th></th>
@@ -104,10 +104,10 @@
 				}
 			?>
 			@if(!empty($data_list))
-			<tr><td colspan="5"><b>Total Rupiah : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{number_format(array_sum($totalrupiah),2)}}</td><td colspan="4"><b>Total Rata Tertimbang:</b><td align="center" bgcolor="#CCFF99"><b>{{number_format(array_sum($totalrata),2)}}</b></td></tr>
-			<tr><td colspan="5"><b>Total Dollar   : $.</b></td><td align="right" bgcolor="#CCFF99"> {{number_format(array_sum($totaldollar),2)}}</td><td colspan="5"></td></tr>
-			<tr><td colspan="5"><b>Ekivalen       : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{number_format(array_sum($ekivalen),2)}}</td><td colspan="5"></td></tr>
-			<tr><td colspan="5"><b>Total          : Rp.</b></td><td align="right" bgcolor="#CCFF99"><b>{{number_format(array_sum($total),2)}}</b></td><td colspan="5"></td></tr>
+			<tr><td colspan="5"><b>Total Rupiah : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{ number_format(array_sum($totalrupiah),2) }}</td><td colspan="4"><b>Total Rata Tertimbang:</b><td align="center" bgcolor="#CCFF99"><b>{{ number_format(array_sum($totalrata),2) }}</b></td></tr>
+			<tr><td colspan="5"><b>Total Dollar   : $.</b></td><td align="right" bgcolor="#CCFF99"> {{ number_format(array_sum($totaldollar),2) }}</td><td colspan="5"></td></tr>
+			<tr><td colspan="5"><b>Ekivalen       : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{ number_format(array_sum($ekivalen),2) }}</td><td colspan="5"></td></tr>
+			<tr><td colspan="5"><b>Total          : Rp.</b></td><td align="right" bgcolor="#CCFF99"><b>{{ number_format(array_sum($total),2) }}</b></td><td colspan="5"></td></tr>
 			@endif
 		</table>
     </div>

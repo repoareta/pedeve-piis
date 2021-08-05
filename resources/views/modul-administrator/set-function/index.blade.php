@@ -35,7 +35,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+                <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
                             <th></th>
@@ -94,7 +94,7 @@
                 if($('input[class=btn-radio]').is(':checked')) { 
                     $("input[class=btn-radio]:checked").each(function(){
                         var no = $(this).attr('kode');
-                        location.replace("{{url('administrator/set-function/edit')}}"+ '/' +no);
+                        location.replace("{{url('administrator/set-function/edit') }}"+ '/' +no);
                     });
                 } else {
                     swalAlertInit('ubah');

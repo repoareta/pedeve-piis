@@ -33,7 +33,9 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->orderBy('year', 'DESC')
         ->get([DB::raw('extract(year from tgl_pumk) as year')]);
 
-        return view('modul-umum.umk-pertanggungjawaban.index', compact('tahun'));
+        $bulan = null;
+
+        return view('modul-umum.umk-pertanggungjawaban.index', compact('tahun', 'bulan'));
     }
 
     /**
@@ -71,12 +73,12 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             })
             ->addColumn('approval', function ($row) {
                 if ($row->app_pbd == 'Y') {
-                    $button = '<span class="text-success"><i class="fas fa-check-circle fa-2x"title="Data Sudah di proses perbendaharaan"></i></span>';
+                    $button = '<span><i class="fas fa-check-circle fa-2x text-success" title="Data Sudah di proses perbendaharaan"></i></span>';
                 } else {
                     if ($row->app_sdm == 'Y') {
-                        $button = '<a href="'. route('uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span class="text-success"><i class="fas fa-check-circle fa-2x"title="Batalkan Approval"></i></span></a>';
+                        $button = '<a href="'. route('modul_umum.uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span><i class="fas fa-check-circle fa-2x text-success" title="Batalkan Approval"></i></span></a>';
                     } else {
-                        $button = '<a href="'. route('uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span class="text-danger"><i class="fas fa-ban" title="Klik untuk Approval"></i></span></a>';
+                        $button = '<a href="'. route('modul_umum.uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span><i class="fas fa-ban fa-2x text-danger" title="Klik untuk Approval"></i></span></a>';
                     }
                 }
 
@@ -173,7 +175,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         }
 
         Alert::success('Simpan Pertanggungjawaban UMK', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('uang_muka_kerja.pertanggungjawaban.index');
+        return redirect()->route('modul_umum.uang_muka_kerja.pertanggungjawaban.index');
     }
 
     /**
@@ -254,7 +256,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         $pumk_header->save();
 
         Alert::success('Ubah Pertanggungjawaban UMK', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('uang_muka_kerja.pertanggungjawaban.index');
+        return redirect()->route('modul_umum.uang_muka_kerja.pertanggungjawaban.index');
     }
 
     /**
@@ -325,6 +327,6 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             }
         }
 
-        return redirect()->route('uang_muka_kerja.pertanggungjawaban.index');
+        return redirect()->route('modul_umum.uang_muka_kerja.pertanggungjawaban.index');
     }
 }

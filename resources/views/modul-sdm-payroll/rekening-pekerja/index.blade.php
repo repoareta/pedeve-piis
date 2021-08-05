@@ -83,7 +83,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function(){
 					var kode = $(this).attr('kode');
-					location.replace("{{url('sdm-payroll/rekening-pekerja/edit')}}"+ '/' +kode);
+					location.replace("{{url('sdm-payroll/rekening-pekerja/edit') }}"+ '/' +kode);
 				});
 			} else {
 				swalAlertInit('ubah');

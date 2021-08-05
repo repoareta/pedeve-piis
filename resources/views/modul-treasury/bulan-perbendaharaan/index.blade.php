@@ -42,7 +42,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th></th>
@@ -154,7 +154,7 @@
                 if($('input[class=btn-radio]').is(':checked')) { 
                     $("input[class=btn-radio]:checked").each(function(){
                         var no = $(this).attr('kode');
-                        location.replace("{{url('perbendaharaan/bulan-perbendaharaan/edit')}}"+ '/' +no);
+                        location.replace("{{url('perbendaharaan/bulan-perbendaharaan/edit') }}"+ '/' +no);
                     });
                 } else {
                     swalAlertInit('ubah');

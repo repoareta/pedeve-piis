@@ -95,19 +95,19 @@ tr {
                 ?>
                     <tr>
                         <td class="row-td text-left">{{ $data->docno}}</td>
-                        <td class="row-td text-center">{{ $data->voucher}}</td>
+                        <td class="row-td text-center">{{ $data->voucher }}</td>
                         <td class="row-td text-center">{{ $data->thnbln}}</td>
                         <td class="row-td text-center">{{ $data->account}}</td>
                         <td class="row-td text-center">{{ $data->lokasi}}</td>
                         <td class="row-td text-center">{{ $data->cj}}</td>
                         <td class="row-td text-left">{{ $data->keterangan}}</td>
-                        <td class="row-td text-right">{{ $data->totprice < 0 ? "(".number_format($data->totprice*-1,2).")" : number_format($data->totprice,2)}}</td>
+                        <td class="row-td text-right">{{ $data->totprice < 0 ? "(".number_format($data->totprice*-1,2).")" : number_format($data->totprice,2) }}</td>
                     </tr>
                 @endforeach
                 </tbody>
                     <tr style="font-weight: bold">
                         <td colspan="7" class="text-right">TOTAL</td>
-                        <td class="text-right">{{array_sum($total) < 0 ? "(".number_format(array_sum($total)*-1,2).")" : number_format(array_sum($total),2)}}</td>
+                        <td class="text-right">{{array_sum($total) < 0 ? "(".number_format(array_sum($total)*-1,2).")" : number_format(array_sum($total),2) }}</td>
                     </tr>
             </table>
         </div>

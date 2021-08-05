@@ -142,17 +142,17 @@
                 ?>
                     <tr style="text-align:center;font-size: 8pt;border: 1px solid black;">
                         <td width="5%" style="text-align:center;border:1px solid black;">{{$no}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->no_dokumen}}</td>
-                        <td style="text-align:center;border:1px solid black;">{{$data->no_bukti}}</td>
-                        <td style="text-align:left;border:1px solid black;">{{$data->uraian_penjelasan}}</td>
-                        <td style="text-align:right;border:1px solid black;">{{number_format($data->debet,2) < 0 ? "(".number_format($data->debet*-1,2).")" : number_format($data->debet,2)}}</td>
-                        <td style="text-align:right;border:1px solid black;">{{number_format($data->kredit,2) < 0 ? "(".number_format($data->kredit*-1,2).")" : number_format($data->kredit,2)}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->no_dokumen}}</td>
+                        <td style="text-align:center;border:1px solid black;">{{ $data->no_bukti}}</td>
+                        <td style="text-align:left;border:1px solid black;">{{ $data->uraian_penjelasan}}</td>
+                        <td style="text-align:right;border:1px solid black;">{{ number_format($data->debet,2) < 0 ? "(".number_format($data->debet*-1,2).")" : number_format($data->debet,2) }}</td>
+                        <td style="text-align:right;border:1px solid black;">{{ number_format($data->kredit,2) < 0 ? "(".number_format($data->kredit*-1,2).")" : number_format($data->kredit,2) }}</td>
                     </tr>
                 @endforeach
                     <tr style="text-align:center;font-size: 8pt;border: 1px solid black;">
                         <th colspan="4" style="text-align:center;border:1px solid black;">TOTAL</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($debet),2) < 0 ? "(".number_format(array_sum($debet)*-1,2).")" : number_format(array_sum($debet),2)}}</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($kredit),2) < 0 ? "(".number_format(array_sum($kredit)*-1,2).")" : number_format(array_sum($kredit),2)}}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($debet),2) < 0 ? "(".number_format(array_sum($debet)*-1,2).")" : number_format(array_sum($debet),2) }}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($kredit),2) < 0 ? "(".number_format(array_sum($kredit)*-1,2).")" : number_format(array_sum($kredit),2) }}</th>
                     </tr>
                 <tbody>
             </table>
@@ -166,9 +166,9 @@
                         <th style="text-align:center;border:1px solid black;">SALDO AKHIR</th>
                     </tr>
                     <tr style="text-align:center;font-size: 8pt;border: 1px solid black;">
-                        <th colspan="2" style="text-align:right;border:1px solid black;">{{number_format(abs(array_sum($saldo_awal)),2)}}</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($debet),2) < 0 ? "(".number_format(array_sum($debet)*-1,2).")" : number_format(array_sum($debet),2)}}</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($kredit),2) < 0 ? "(".number_format(array_sum($kredit)*-1,2).")" : number_format(array_sum($kredit),2)}}</th>
+                        <th colspan="2" style="text-align:right;border:1px solid black;">{{ number_format(abs(array_sum($saldo_awal)),2) }}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($debet),2) < 0 ? "(".number_format(array_sum($debet)*-1,2).")" : number_format(array_sum($debet),2) }}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($kredit),2) < 0 ? "(".number_format(array_sum($kredit)*-1,2).")" : number_format(array_sum($kredit),2) }}</th>
                         <th style="text-align:right;border:1px solid black;">
                         @if((array_sum($debet)-array_sum($kredit)) < 0)
                                 <?php echo number_format((array_sum($debet)-array_sum($kredit))*-1,2) ."CR"; ?>
@@ -177,14 +177,14 @@
 
                         @endif
                         </th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal),2) < 0 ? "(".number_format(((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal))*-1,2).")" : number_format((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal),2)}}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal),2) < 0 ? "(".number_format(((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal))*-1,2).")" : number_format((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal),2) }}</th>
                     </tr>
                 </tbody>
             </table>
             
             <table width="100%" style="font-size: 10pt; padding-top:10px;">
                     <tr>
-                        <td align="center" ></td><td align="center" width="200">JAKARTA, {{date('d/m/Y')}}</td>
+                        <td align="center" ></td><td align="center" width="200">JAKARTA, {{date('d/m/Y') }}</td>
                     </tr>
                     <tr style="font-size: 10pt;">
                         <td align="center" width="200">DIBUAT OLEH,</td><td align="center" width="200">DISETUJUI OLEH,</td><br>
@@ -196,7 +196,7 @@
             </table>
             <table width="100%" style="font-size: 10pt; padding-top:10px;">
                     <tr style="font-size: 10pt;">
-                        <td align="center" width="200"><u>{{strtoupper($request->dibuat)}}</u></td><td align="center" width="200"><u>{{strtoupper($request->setuju)}}</u></td><br>
+                        <td align="center" width="200"><u>{{strtoupper($request->dibuat) }}</u></td><td align="center" width="200"><u>{{strtoupper($request->setuju) }}</u></td><br>
                     </tr>
             </table>
         </main>

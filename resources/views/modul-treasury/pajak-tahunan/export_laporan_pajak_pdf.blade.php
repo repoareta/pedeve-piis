@@ -179,7 +179,7 @@ foreach($data_list as $key=>$row){
                                 <td>NAMA PEMOTONG PAJAK</td>
                                 <td></td>
                                 <td>PT. PERTAMINA PEDEVE INDONESIA</td>
-                                <td>{{number_format($row->data_8,2) < 0 ? "(".number_format($row->data_8*-1,2).")" : number_format($row->data_8,2)}}
+                                <td>{{ number_format($row->data_8,2) < 0 ? "(".number_format($row->data_8*-1,2).")" : number_format($row->data_8,2) }}
                                 </td>
                             </tr>
                             <tr style="font-size: 11pt;">
@@ -246,17 +246,17 @@ foreach($data_list as $key=>$row){
         {{--<table>
             <tr>
                 <td>0.00</td>
-                <td>{{number_format($row->data_1,2) < 0 ? "(".number_format($row->data_1*-1,2).")" : number_format($row->data_1,2)}}
+                <td>{{ number_format($row->data_1,2) < 0 ? "(".number_format($row->data_1*-1,2).")" : number_format($row->data_1,2) }}
         </td>
-        <td>{{number_format($row->data_2,2) < 0 ? "(".number_format($row->data_2*-1,2).")" : number_format($row->data_2,2)}}
+        <td>{{ number_format($row->data_2,2) < 0 ? "(".number_format($row->data_2*-1,2).")" : number_format($row->data_2,2) }}
         </td>
-        <td>{{number_format($row->data_3,2) < 0 ? "(".number_format($row->data_3*-1,2).")" : number_format($row->data_3,2)}}
+        <td>{{ number_format($row->data_3,2) < 0 ? "(".number_format($row->data_3*-1,2).")" : number_format($row->data_3,2) }}
         </td>
-        <td>{{number_format($row->data_6,2) < 0 ? "(".number_format($row->data_6*-1,2).")" : number_format($row->data_6,2)}}
+        <td>{{ number_format($row->data_6,2) < 0 ? "(".number_format($row->data_6*-1,2).")" : number_format($row->data_6,2) }}
         </td>
-        <td>{{number_format($row->data_4,2) < 0 ? "(".number_format($row->data_4*-1,2).")" : number_format($row->data_4,2)}}
+        <td>{{ number_format($row->data_4,2) < 0 ? "(".number_format($row->data_4*-1,2).")" : number_format($row->data_4,2) }}
         </td>
-        <td>{{number_format($row->data_5,2) < 0 ? "(".number_format($row->data_5*-1,2).")" : number_format($row->data_5,2)}}
+        <td>{{ number_format($row->data_5,2) < 0 ? "(".number_format($row->data_5*-1,2).")" : number_format($row->data_5,2) }}
         </td>
         </tr>
         </table>--}}
@@ -281,34 +281,34 @@ foreach($data_list as $key=>$row){
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">1. GAJI/ PENSIUN ATAU THT/JHT</td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_1,2) < 0 ? "(".number_format($row->data_1*-1,2).")" : number_format($row->data_1,2)}}
+                                <td>{{ number_format($row->data_1,2) < 0 ? "(".number_format($row->data_1*-1,2).")" : number_format($row->data_1,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">2. TUNJANGAN PPh</td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_2,2) < 0 ? "(".number_format($data_no_2*-1,2).")" : number_format($data_no_2,2)}}
+                                <td>{{ number_format($data_no_2,2) < 0 ? "(".number_format($data_no_2*-1,2).")" : number_format($data_no_2,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">3. TUNJANGAN LAINNYA, UANG LEMBUR DAN
                                     SEBAGAINYA</td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_6,2) < 0 ? "(".number_format($row->data_6*-1,2).")" : number_format($row->data_6,2)}}
+                                <td>{{ number_format($row->data_6,2) < 0 ? "(".number_format($row->data_6*-1,2).")" : number_format($row->data_6,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">4. HONORARIUM DAN IMBALAN LAIN SEJENISNYA
                                 </td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_4,2) < 0 ? "(".number_format($row->data_4*-1,2).")" : number_format($row->data_4,2)}}
+                                <td>{{ number_format($row->data_4,2) < 0 ? "(".number_format($row->data_4*-1,2).")" : number_format($row->data_4,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">5. PREMI ASURANSI YANG DIBAYAR PEMBERI
                                     KERJA</td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_8,2) < 0 ? "(".number_format($row->data_8*-1,2).")" : number_format($row->data_8,2)}}
+                                <td>{{ number_format($row->data_8,2) < 0 ? "(".number_format($row->data_8*-1,2).")" : number_format($row->data_8,2) }}
                                 </td>
                             </tr>
                             <tr>
@@ -320,20 +320,20 @@ foreach($data_list as $key=>$row){
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">7. JUMLAH (1 s.d 6) </td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_9+$data_tunjpajak,2) < 0 ? "(".number_format($row->data_9+$data_tunjpajak*-1,2).")" : number_format($row->data_9+$data_tunjpajak,2)}}
+                                <td>{{ number_format($row->data_9+$data_tunjpajak,2) < 0 ? "(".number_format($row->data_9+$data_tunjpajak*-1,2).")" : number_format($row->data_9+$data_tunjpajak,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">8. TANTIEM, BONUS, GRATIFIKASI, JASA
                                     PRODUKSI DAN THR </td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_2,2) < 0 ? "(".number_format($row->data_2*-1,2).")" : number_format($row->data_2,2)}}
+                                <td>{{ number_format($row->data_2,2) < 0 ? "(".number_format($row->data_2*-1,2).")" : number_format($row->data_2,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">9. JUMLAH PENGHASILAN BRUTO (7 + 8) </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_9,2) < 0 ? "(".number_format($data_no_9*-1,2).")" : number_format($data_no_9,2)}}
+                                <td>{{ number_format($data_no_9,2) < 0 ? "(".number_format($data_no_9*-1,2).")" : number_format($data_no_9,2) }}
                                 </td>
                             </tr>
                             <tr>
@@ -345,28 +345,28 @@ foreach($data_list as $key=>$row){
                                 <td style="font-size: 11pt;padding-left:15px;">10. BIAYA JABATAN/BIAYA PENSIUN ATAS
                                     PENGHASILAN PADA ANGKA 7</td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_10,2) < 0 ? "(".number_format($data_no_10*-1,2).")" : number_format($data_no_10,2)}}
+                                <td>{{ number_format($data_no_10,2) < 0 ? "(".number_format($data_no_10*-1,2).")" : number_format($data_no_10,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">11. BIAYA JABATAN/BIAYA PENSIUN ATAS
                                     PENGHASILAN PADA ANGKA 8 </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_11,2) < 0 ? "(".number_format($data_no_11*-1,2).")" : number_format($data_no_11,2)}}
+                                <td>{{ number_format($data_no_11,2) < 0 ? "(".number_format($data_no_11*-1,2).")" : number_format($data_no_11,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">12. IURAN PENSIUN ATAU IURAN THT/ JHT
                                 </td>
                                 <td>:</td>
-                                <td>{{number_format($row->data_5,2) < 0 ? "(".number_format($row->data_5*-1,2).")" : number_format($row->data_5,2)}}
+                                <td>{{ number_format($row->data_5,2) < 0 ? "(".number_format($row->data_5*-1,2).")" : number_format($row->data_5,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">13. JUMLAH PENGURANGAN (10 + 11 + 12)
                                 </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_10+$data_no_10+$row->data_5,2) < 0 ? "(".number_format($data_no_10+$data_no_10+$row->data_5*-1,2).")" : number_format($data_no_10+$data_no_10+$row->data_5,2)}}
+                                <td>{{ number_format($data_no_10+$data_no_10+$row->data_5,2) < 0 ? "(".number_format($data_no_10+$data_no_10+$row->data_5*-1,2).")" : number_format($data_no_10+$data_no_10+$row->data_5,2) }}
                                 </td>
                             </tr>
                             <tr>
@@ -379,7 +379,7 @@ foreach($data_list as $key=>$row){
                                 <td style="font-size: 11pt;padding-left:15px;">14. JUMLAH PENGHASILAN NETO (9 - 13)
                                 </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_9+$data_no_10+$data_no_10+$row->data_5,2) < 0 ? "(".number_format($data_no_9+$data_no_10+$data_no_10+$row->data_5*-1,2).")" : number_format($data_no_9+$data_no_10+$data_no_10+$row->data_5,2)}}
+                                <td>{{ number_format($data_no_9+$data_no_10+$data_no_10+$row->data_5,2) < 0 ? "(".number_format($data_no_9+$data_no_10+$data_no_10+$row->data_5*-1,2).")" : number_format($data_no_9+$data_no_10+$data_no_10+$row->data_5,2) }}
                                 </td>
                             </tr>
                             <tr>
@@ -397,21 +397,21 @@ foreach($data_list as $key=>$row){
                                 <td style="font-size: 11pt;padding-left:15px;">17. PENGHASILAN TIDAK KENA PAJAK (PTKP)
                                 </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_17,2) < 0 ? "(".number_format($data_no_17*-1,2).")" : number_format($data_no_17,2)}}
+                                <td>{{ number_format($data_no_17,2) < 0 ? "(".number_format($data_no_17*-1,2).")" : number_format($data_no_17,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">18. PENGHASILAN KENA PAJAK SETAHUN/
                                     DISETAHUNKAN (16-17) </td>
                                 <td>:</td>
-                                <td>{{number_format(($data_no_9+$data_no_10+$data_no_10+$row->data_5)-$data_no_17,2) < 0 ? "(".number_format(($data_no_9+$data_no_10+$data_no_10+$row->data_5)-$data_no_17*-1,2).")" : number_format(($data_no_9+$data_no_10+$data_no_10+$row->data_5)-$data_no_17,2)}}
+                                <td>{{ number_format(($data_no_9+$data_no_10+$data_no_10+$row->data_5)-$data_no_17,2) < 0 ? "(".number_format(($data_no_9+$data_no_10+$data_no_10+$row->data_5)-$data_no_17*-1,2).")" : number_format(($data_no_9+$data_no_10+$data_no_10+$row->data_5)-$data_no_17,2) }}
                                 </td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">19. PPh PASAL 21 ATAS PENGHASILAN KENA
                                     PAJAK SETAHUN/DISETAHUNKAN </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_19,2) < 0 ? "(".number_format($data_no_19*-1,2).")" : number_format($data_no_19,2)}}
+                                <td>{{ number_format($data_no_19,2) < 0 ? "(".number_format($data_no_19*-1,2).")" : number_format($data_no_19,2) }}
                                 </td>
                             </tr>
                             <tr>
@@ -423,7 +423,7 @@ foreach($data_list as $key=>$row){
                             <tr>
                                 <td style="font-size: 11pt;padding-left:15px;">21. PPh PASAL 21 TERUTANG </td>
                                 <td>:</td>
-                                <td>{{number_format($data_no_19,2) < 0 ? "(".number_format($data_no_19*-1,2).")" : number_format($data_no_19,2)}}
+                                <td>{{ number_format($data_no_19,2) < 0 ? "(".number_format($data_no_19*-1,2).")" : number_format($data_no_19,2) }}
                                 </td>
                             </tr>
                             <tr>

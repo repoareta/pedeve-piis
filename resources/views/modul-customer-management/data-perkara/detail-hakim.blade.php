@@ -31,7 +31,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="hakim">
+                <table class="table table-bordered" id="hakim">
                     <thead class="thead-light">
                         <tr>
                             <th></th>

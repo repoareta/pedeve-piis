@@ -52,7 +52,7 @@
             </div>
         </form>
 
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 				<th></th>
@@ -173,7 +173,7 @@
 					var tgl = $(this).attr('tanggal');
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
-					location.href = "{{url('perbendaharaan/rekap-harian-kas/edit')}}"+ '/' +no+'/'+id+'/'+tgl;
+					location.href = "{{url('perbendaharaan/rekap-harian-kas/edit') }}"+ '/' +no+'/'+id+'/'+tgl;
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -187,7 +187,7 @@
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
 					var tanggal = $(this).attr('tanggal');
-					location.href = "{{url('perbendaharaan/rekap-harian-kas/rekap')}}"+ '/' +no+'/'+id+'/'+tanggal;
+					location.href = "{{url('perbendaharaan/rekap-harian-kas/rekap') }}"+ '/' +no+'/'+id+'/'+tanggal;
 				});
 			} else {
 				swalAlertInit('cetak');

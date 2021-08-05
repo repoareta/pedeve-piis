@@ -153,7 +153,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="tabel-detail-permintaan">
+        <table class="table table-bordered" id="tabel-detail-permintaan">
             <thead class="thead-light">
                 <tr>
                     <th ><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked ></th>
@@ -307,7 +307,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
+							<select name="sanper" id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>

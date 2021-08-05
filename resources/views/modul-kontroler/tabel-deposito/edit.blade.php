@@ -112,15 +112,15 @@
 							<label for="" class="col-2 col-form-label">Jenis Kartu</label>
 							<div class="col-5">
 								<select name="jk" id="jk" class="form-control select2">
-									<option value="15" <?php if($jk  == '15' ) echo 'selected' ; ?>>Rupiah</option>
-									<option value="18" <?php if($jk  == '18' ) echo 'selected' ; ?>>Dollar</option>
+									<option value="15" <?php if($jk  == '15') echo 'selected'; ?>>Rupiah</option>
+									<option value="18" <?php if($jk  == '18') echo 'selected'; ?>>Dollar</option>
 
 								</select>
 								<input name="kurs" type="hidden" value="{{ $rate}}"></td>
 							</div>
 							<label for="nopek-input" class="col-2 col-form-label">Currency Index</label>
 							<div class="col-3">
-								<input class="form-control" type="text" name="ci" value="{{ $ci}}"  id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php } else { }?>>
+								<input class="form-control" type="text" name="ci" value="{{ $ci}}" id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php } else { }?>>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -150,7 +150,7 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+									<a href="{{route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 									@if($status2 <> "Y")
 									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 									@else
@@ -213,7 +213,7 @@
 					</div>
 				</div>
 				<div class="portlet__body">
-					<table class="table table-striped table-bordered table-hover table-checkable" id="kt_table">
+					<table class="table table-bordered" id="kt_table">
 						<thead class="thead-light">
 							<tr>
 								<th ></th>
@@ -232,22 +232,22 @@
 						<tbody>
 						@foreach($data_detail as $data_d)
 							<tr>
-								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio"><span></span></label></td>
+								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno) }}" lineno="{{ $data_d->lineno}}" class="btn-radio"><span></span></label></td>
 								<td>{{ $data_d->lineno}}</td>
 								<td>{{ $data_d->lokasi}}</td>
 								<td>{{ $data_d->account}}</td>
 								<td>{{ $data_d->bagian}}</td>
 								<td>{{ $data_d->pk}}</td>
 								<td>{{ $data_d->jb}}</td>
-								<td>{{number_format($data_d->debet,2,'.',',')}}</td>
-								<td>{{number_format($data_d->kredit,2,'.',',')}}</td>
-								<td>{{number_format($data_d->rate,0)}}</td>
+								<td>{{ number_format($data_d->debet,2,'.',',') }}</td>
+								<td>{{ number_format($data_d->kredit,2,'.',',') }}</td>
+								<td>{{ number_format($data_d->rate,0) }}</td>
 								<td>{{ $data_d->keterangan}}</td>
 							</tr>
 						@endforeach
 						</tbody>
 						<tr>
-							<td colspan="2" align="left"><input id="status2" name="status2" type="checkbox" <?php if($status2  == 'Y' ) echo 'checked' ; ?>> Posting</td>
+							<td colspan="2" align="left"><input id="status2" name="status2" type="checkbox" <?php if($status2  == 'Y') echo 'checked' ; ?>> Posting</td>
 							<td colspan="6" align="right">Out of Balance : </td>
 							<td colspan="3" ><?php echo number_format($jumlahnya, 2, ',', '.').' '.$lab2; ?></td>
 						</tr>
@@ -333,7 +333,7 @@
 							<select name="jnsbiaya" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000' ) echo 'selected' ; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000') echo 'selected'; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -354,7 +354,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off" >
+							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 
@@ -471,7 +471,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off" >
+							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 
@@ -524,7 +524,7 @@ $("#jk").on("change", function(){
 
 $('#form-edit').submit(function(){
 			$.ajax({
-				url  : "{{route('jurnal_umum.update')}}",
+				url  : "{{route('jurnal_umum.update') }}",
 				type : "POST",
 				data : $('#form-edit').serialize(),
 				dataType : "JSON",
@@ -568,7 +568,7 @@ $('#form-edit').submit(function(){
 //prosess create detail
  $('#form-tambah-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('jurnal_umum.store.detail')}}",
+			url  : "{{route('jurnal_umum.store.detail') }}",
 			type : "POST",
 			data : $('#form-tambah-detail').serialize(),
 			dataType : "JSON",
@@ -621,7 +621,7 @@ $('#editRow').on('click', function(e) {
 			var no = $(this).attr('docno');
 			var id = $(this).attr('lineno');
 			$.ajax({
-				url :"{{url('kontroler/jurnal_umum/editdetail')}}"+ '/' +no+'/'+id,
+				url :"{{url('kontroler/jurnal_umum/editdetail') }}"+ '/' +no+'/'+id,
 				type : 'get',
 				dataType:"json",
 				headers: {
@@ -656,7 +656,7 @@ $('#editRow').on('click', function(e) {
 	//prosess create detail
 	$('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('jurnal_umum.update.detail')}}",
+			url  : "{{route('jurnal_umum.update.detail') }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

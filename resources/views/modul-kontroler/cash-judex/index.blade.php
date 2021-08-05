@@ -147,7 +147,7 @@ $(document).ready(function () {
         if($('input[class=btn-radio]').is(':checked')) { 
             $("input[class=btn-radio]:checked").each(function(){
                 var no = $(this).attr('kode');
-                location.replace("{{url('kontroler/cash_judex/edit')}}"+ '/' +no);
+                location.replace("{{url('kontroler/cash_judex/edit') }}"+ '/' +no);
             });
         } else {
             swalAlertInit('ubah');

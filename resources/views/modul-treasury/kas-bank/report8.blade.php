@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('kas_bank.cetak8')}}" method="GET" target="_blank">
+        <form class="form" action="{{route('kas_bank.cetak8') }}" method="GET" target="_blank">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">Mulai</label>

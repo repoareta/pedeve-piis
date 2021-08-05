@@ -29,8 +29,8 @@
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">Tanggal<span style="color:red;">*</span></label>
                 <div class="col-10" >
-                    <input class="form-control" type="text" name="tanggal" value="{{$tanggal}}"  id="tanggal" size="15" maxlength="15" autocomplete='off' readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                <input class="form-control" type="hidden" name="tglctk" value="{{ date('d F Y') }}"  id="tglctk" size="15" maxlength="15" autocomplete='off' required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete='off'>
+                    <input class="form-control" type="text" name="tanggal" value="{{$tanggal}}" id="tanggal" size="15" maxlength="15" autocomplete='off' readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                <input class="form-control" type="hidden" name="tglctk" value="{{ date('d F Y') }}" id="tglctk" size="15" maxlength="15" autocomplete='off' required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete='off'>
                     <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
                 </div>
             </div>
@@ -54,7 +54,7 @@
             <div class="form-group row">
                 <div class="col-2"></div>
                 <div class="col-10">
-                    <a  href="{{ route('rekap_harian_kas.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
+                    <a  href="{{ route('rekap_harian_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
                     <button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Cetak</button>
                 </div>
             </div>

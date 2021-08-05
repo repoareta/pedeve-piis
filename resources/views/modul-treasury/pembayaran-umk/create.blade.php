@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-10">
-                    <input type="hidden" class="form-control"  value="{{date('Y-m-d')}}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                    <input type="hidden" class="form-control"  value="{{date('Y-m-d') }}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
                     <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                 </div>
                 <label class="col-1 col-form-label">No Ver</label>
                 <div class="col-2" >
-                    <input class="form-control" type="text" name="nover" value="{{ $nover}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nover" value="{{ $nover}}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
             </div>
     
@@ -129,7 +129,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('pembayaran_umk.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{route('pembayaran_umk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -170,7 +170,7 @@ $('#form-create').submit(function(){
 	var nomor = $("#nomor").val();
 	var scurrdoc = mp+'-'+bagian+'-'+nomor;
 	$.ajax({
-		url  : "{{route('pembayaran_umk.store')}}",
+		url  : "{{route('pembayaran_umk.store') }}",
 		type : "POST",
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
@@ -186,7 +186,7 @@ $('#form-create').submit(function(){
 				text  : 'Berhasil',
 				timer : 2000
 			}).then(function() {
-				location.href = "{{url('perbendaharaan/pembayaran-umk/edit')}}"+ '/' +scurrdoc;
+				location.href = "{{url('perbendaharaan/pembayaran-umk/edit') }}"+ '/' +scurrdoc;
 			});
 		}else if(data = 2){
 			Swal.fire({
@@ -214,7 +214,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_umk.createJson')}}",
+		url : "{{route('pembayaran_umk.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -269,7 +269,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_umk.lokasiJson')}}",
+		url : "{{route('pembayaran_umk.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -298,7 +298,7 @@ var lokasi = $('#lokasi').val();
 var mp = $('#mp').val();
 var tahun = $('#tahun').val();
 	$.ajax({
-		url : "{{route('pembayaran_umk.nobuktiJson')}}",
+		url : "{{route('pembayaran_umk.nobuktiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -354,7 +354,7 @@ $('#nilai').keyup(function(){
 		allowClear: true,
 		tags: true,
 		ajax: {
-			url: "{{route('penerimaan_kas.ajax-kepada')}}",
+			url: "{{route('penerimaan_kas.ajax-kepada') }}",
 			type : "post",
 			dataType : "JSON",
 			headers: {

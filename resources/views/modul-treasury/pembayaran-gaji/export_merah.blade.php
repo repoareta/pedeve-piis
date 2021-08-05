@@ -67,9 +67,9 @@
                             <td>: </td>
                             <td>
                                 @if($ci == 1)
-                                Rp. {{number_format($nilai_dok) < 0 ? "(".number_format($nilai_dok*-1,2).")" : number_format($nilai_dok,2)}}
+                                Rp. {{ number_format($nilai_dok) < 0 ? "(".number_format($nilai_dok*-1,2).")" : number_format($nilai_dok,2) }}
                                 @else
-                                US$. {{number_format($nilai_dok) < 0 ? "(".number_format($nilai_dok*-1,2).")" : number_format($nilai_dok,2)}}
+                                US$. {{ number_format($nilai_dok) < 0 ? "(".number_format($nilai_dok*-1,2).")" : number_format($nilai_dok,2) }}
                                 @endif
                             </td>
                         </tr>
@@ -78,9 +78,9 @@
                         <tr>
                             <td>
                                 @if($ci == 1)
-                                {{number_format($nilai_dok) < 0 ? strtoupper(terbilang($nilai_dok*-1)) : strtoupper(terbilang($nilai_dok)) }} {{strtoupper('rupiah')}}
+                                {{ number_format($nilai_dok) < 0 ? strtoupper(terbilang($nilai_dok*-1)) : strtoupper(terbilang($nilai_dok)) }} {{strtoupper('rupiah') }}
                                 @else
-                                {{number_format($nilai_dok) < 0 ? strtoupper(terbilang($nilai_dok*-1)) : strtoupper(terbilang($nilai_dok)) }} {{strtoupper('DOLLAR')}}
+                                {{ number_format($nilai_dok) < 0 ? strtoupper(terbilang($nilai_dok*-1)) : strtoupper(terbilang($nilai_dok)) }} {{strtoupper('DOLLAR') }}
                                 @endif
                             </td>
                         </tr>
@@ -106,7 +106,7 @@
                         <tr>
                             <td width="45%">NO. BUKTI </td>
                             <td>: </td>
-                            <td>{{ $voucher}}</td>
+                            <td>{{ $voucher }}</td>
                         </tr>
                         <tr>
                             <td width="45%">CURRENCY IDX </td>
@@ -121,7 +121,7 @@
                         <tr>
                             <td width="45%">KURS</td>
                             <td>: </td>
-                            <td>{{number_format($rate,0)}}</td>
+                            <td>{{ number_format($rate,0) }}</td>
                         </tr>
                     </table>
                 </td>
@@ -154,7 +154,7 @@
                             <td style="text-align:center;">{{ $data->bagian}}</td>
                             <td style="text-align:center;">{{ $data->pk}}</td>
                             <td style="text-align:center;">{{ $data->jb}}</td>
-                            <td style="text-align:right;">{{number_format($data->totprice,2) < 0 ? number_format($data->totprice*-1,2)." CR" : number_format($data->totprice,2)}}</td>
+                            <td style="text-align:right;">{{ number_format($data->totprice,2) < 0 ? number_format($data->totprice*-1,2)." CR" : number_format($data->totprice,2) }}</td>
                             <td style="text-align:center;">{{ $data->cj}}</td>
                         </tr>
                         @endforeach
@@ -165,7 +165,7 @@
                                         <td><b><u>KETERANGAN</u></b></td>
                                     </tr>
                                     <tr>
-                                        <td>{{ $ket1}}</td>
+                                        <td>{{ $ket1 }}</td>
                                     </tr>
                                     <tr>
                                         <td>{{ $ket2}}</td>
@@ -179,7 +179,7 @@
                         </tr>
                         <tr>
                             <td colspan="6" style="text-align:right;"><b>TOTAL</b></td>
-                            <td style="text-align:right;"><b>{{number_format(array_sum($total),2) < 0 ? number_format(array_sum($total)*-1,2)." CR" : number_format(array_sum($total),2)}}</b></td>
+                            <td style="text-align:right;"><b>{{ number_format(array_sum($total),2) < 0 ? number_format(array_sum($total)*-1,2)." CR" : number_format(array_sum($total),2) }}</b></td>
                             <td></td>
                         </tr>
                     </table>

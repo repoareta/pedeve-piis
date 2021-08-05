@@ -106,8 +106,8 @@ tr {
                             echo date_format($tgltempo, 'd/m/Y');
                         ?>
                         </td>
-                        <td class="text-center">{{number_format($row->haribunga,0)}}</td>
-                        <td class="text-center">{{number_format($row->bungatahun,2)}}</td>
+                        <td class="text-center">{{ number_format($row->haribunga,0) }}</td>
+                        <td class="text-center">{{ number_format($row->bungatahun,2) }}</td>
                         <td class="text-right">
                             <?php 
                             if($row->ci == 2){
@@ -157,26 +157,26 @@ tr {
                 @endforeach
                     <tr>
                         <th class="text-left" colspan="3">TOTAL {{ $lapangan}}</th>
-                        <th class="text-right">{{number_format(array_sum($total_1),2)}}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_1),2) }}</th>
                         <th colspan="4"></th>
-                        <th class="text-right">{{number_format(array_sum($total_2),2)}}</th>
-                        <th class="text-right">{{number_format(array_sum($total_3),2)}}</th>
-                        <th class="text-right">{{number_format(array_sum($total_4),2)}}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_2),2) }}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_3),2) }}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_4),2) }}</th>
                         <th></th>
-                        <th class="text-right">{{number_format(array_sum($total_5),2)}}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_5),2) }}</th>
                     </tr>
                     <tr>
                         <th class="text-left" colspan="3">GRAND TOTAL MD + MS</th>
-                        <th class="text-right">{{number_format(array_sum($total_1),2)}}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_1),2) }}</th>
                         <th colspan="4"></th>
-                        <th class="text-right">{{number_format(array_sum($total_2),2)}}</th>
-                        <th class="text-right">{{number_format(array_sum($total_3),2)}}</th>
-                        <th class="text-right">{{number_format(array_sum($total_4),2)}}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_2),2) }}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_3),2) }}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_4),2) }}</th>
                         <th></th>
-                        <th class="text-right">{{number_format(array_sum($total_5),2)}}</th>
+                        <th class="text-right">{{ number_format(array_sum($total_5),2) }}</th>
                     </tr>
                     <tr>
-                        <th class="text-left" colspan="13">KURS : {{number_format($request->kurs,0)}}</th>
+                        <th class="text-left" colspan="13">KURS : {{ number_format($request->kurs,0) }}</th>
                     </tr>
                 </tbody>
             </table>

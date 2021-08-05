@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('perhitungan_bagihasil.export')}}" method="POST">
+        <form class="form" action="{{route('perhitungan_bagihasil.export') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<div class="form-group row">
@@ -31,7 +31,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{ route('perhitungan_bagihasil.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{ route('perhitungan_bagihasil.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>

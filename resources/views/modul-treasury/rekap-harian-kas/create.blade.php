@@ -25,7 +25,7 @@
                 <label class="col-2 col-form-label">Tanggal Rekap</label>
                 <div class="col-10">
                     <input class="form-control" type="hidden" name="add" value="add">
-                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d'))}}" size="11" maxlength="11"  autocomplete="off">
+                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d')) }}" size="11" maxlength="11"  autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('rekap_harian_kas.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{route('rekap_harian_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary" name="submit" ><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
     $(document).ready(function () {
 $('#form-create').submit(function(){
 	$.ajax({
-		url  : "{{route('rekap_harian_kas.store')}}",
+		url  : "{{route('rekap_harian_kas.store') }}",
 		type : "POST",
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
@@ -85,7 +85,7 @@ $('#form-create').submit(function(){
 				text  : 'Berhasil',
 				timer : 2000
 			}).then(function() {
-				location.replace("{{route('rekap_harian_kas.index')}}");
+				location.replace("{{route('rekap_harian_kas.index') }}");
 				});
 		}else if(data == 2){
 			Swal.fire({
@@ -122,7 +122,7 @@ $('#form-create').submit(function(){
 $("#tanggal").on("change", function(){
 var tanggal = $('#tanggal').val();
 	$.ajax({
-		url : "{{route('rekap_harian_kas.jenis.kartu.json')}}",
+		url : "{{route('rekap_harian_kas.jenis.kartu.json') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -151,7 +151,7 @@ $("#jk").on("change", function(){
 var tanggal = $('#tanggal').val();
 var jk = $('#jk').val();
 	$.ajax({
-		url : "{{route('rekap_harian_kas.nokas.json')}}",
+		url : "{{route('rekap_harian_kas.nokas.json') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {

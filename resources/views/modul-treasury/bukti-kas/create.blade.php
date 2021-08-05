@@ -95,7 +95,7 @@
                         </div>
                         <label class="col-1 col-form-label text-right">No Ver</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>
                     <div class="form-group row">

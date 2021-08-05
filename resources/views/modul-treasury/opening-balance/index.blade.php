@@ -34,7 +34,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th width="50"></th>
@@ -89,7 +89,7 @@
 			if($('input[class=btn-radio]').is(':checked')) { 
 				$("input[class=btn-radio]:checked").each(function(){
 					var no = $(this).attr('kode');
-					location.href = "{{url('perbendaharaan/opening-balance/edit')}}" + '/' + no;
+					location.href = "{{url('perbendaharaan/opening-balance/edit') }}" + '/' + no;
 				});
 			} else {
 				swalAlertInit('batal');
