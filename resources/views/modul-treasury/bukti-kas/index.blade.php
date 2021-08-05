@@ -11,7 +11,6 @@
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-
     <div class="card-header">
         <div class="card-title">
             <span class="card-icon">
@@ -22,29 +21,29 @@
             </h3>
             <div class="text-right">
                 @if($userAbility->tambah == 1)
-                <a href="{{ route('penerimaan_kas.create.kas') }}">
+                <a href="{{ route('penerimaan_kas.create.kas') }}" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
-                <a href="#" id="editRow">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                <a href="#" id="editRow" class="btn p-0">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas fa-2x fa-edit text-warning"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->hapus == 1)
-                <a href="#" id="deleteRow">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas fa-2x fa-times-circle text-danger"></i>
+                <button id="deleteRow" class="btn p-0">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                        <i class="fas fa-2x fa-trash text-danger"></i>
                     </span>
-                </a>
+                </button>
                 @endif
                 @if($userAbility->cetak == 1)
-                <a href="#" id="exportRow">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                <a href="#" id="exportRow" class="btn p-0">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas fa-2x fa-print text-info"></i>
                     </span>
                 </a>
