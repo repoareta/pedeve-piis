@@ -80,20 +80,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
             var t = $('#kt_table').DataTable({
-                scrollX   : true,
+                scrollX: true,
                 processing: true,
                 serverSide: true,
-                ajax      : {
-                            url: "{{ route('data_pajak.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            data: function (d) {
-                                d.pencarian = $('input[name=pencarian]').val();
-                            }
-                        },
+                ajax: {
+                    url: "{{ route('data_pajak.index.json') }}",
+                    data: function (d) {
+                        d.pencarian = $('input[name=pencarian]').val();
+                    }
+                },
                 columns: [
                     {data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
                     {data: 'tahun', name: 'tahun'},

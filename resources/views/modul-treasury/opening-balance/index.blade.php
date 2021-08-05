@@ -65,11 +65,6 @@
 			serverSide: true,
 			ajax: {
                 url: "{{ route('opening_balance.index.json') }}",
-                type : "POST",
-                dataType : "JSON",
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
                 data: function (d) {
                     d.pencarian = $('input[name=pencarian]').val();
                 }

@@ -118,19 +118,14 @@
 			pageLength: 50,
 			scrollY: "500px",
 			scrollCollapse: true,
-			ajax      : {
-						url: "{{ route('pembayaran_gaji.index.json') }}",
-						type : "POST",
-						dataType : "JSON",
-						headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-						},
-						data: function (d) {
-							d.bukti = $('input[name=bukti]').val();
-							d.bulan = $('select[name=bulan]').val();
-							d.tahun = $('input[name=tahun]').val();
-						}
-					},
+			ajax: {
+				url: "{{ route('pembayaran_gaji.index.json') }}",
+				data: function (d) {
+					d.bukti = $('input[name=bukti]').val();
+					d.bulan = $('select[name=bulan]').val();
+					d.tahun = $('input[name=tahun]').val();
+				}
+			},
 			columns: [
 				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'action', name: 'action'},
