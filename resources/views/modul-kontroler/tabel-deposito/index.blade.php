@@ -34,7 +34,7 @@
 			<div class="portlet__head-toolbar">
 				<div class="portlet__head-wrapper">
 					<div class="portlet__head-actions">
-						<span style="font-size: 2em;" class="font-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
+						<span class="font-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 							<i class="fas fa-print" id="exportRow"></i>
 						</span>
 					</div>

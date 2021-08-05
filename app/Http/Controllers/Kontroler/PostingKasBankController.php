@@ -78,9 +78,9 @@ class PostingKasBankController extends Controller
        })
         ->addColumn('action', function ($data) {
             if($data->verified == 'Y'){
-                $action = '<p align="center"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle" ></i></span></a></p>';
+                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="text-success pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle"></i></span></a>';
             }else{
-                $action = '<p align="center"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="" style="cursor:hand"><i class="fas fa-ban" ></i></span></a></p>';
+                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="text-danger pointer-link"  title="" style="cursor:hand"><i class="fas fa-ban" ></i></span></a>';
             }               
             return $action;
         })
@@ -310,7 +310,7 @@ class PostingKasBankController extends Controller
 
         return datatables()->of($data)
         ->addColumn('docno', function ($data) {
-            $action = '<p align="left"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="kt-font-primary pointer-link" data-toggle="kt-tooltip" data-placement="top" title="" style="cursor:hand">'.$data->docno.'</i></span></a></p>';
+            $action = '<p align="left"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="kt-font-primary pointer-link"  title="" style="cursor:hand">'.$data->docno.'</i></span></a>';
             return $action;
        })
         ->rawColumns(['docno'])

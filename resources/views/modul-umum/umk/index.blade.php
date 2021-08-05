@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
 					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -113,7 +113,7 @@
                 processing: true,
                 serverSide: true,
                 ajax      : {
-                    url: "{{ route('uang_muka_kerja.index.json') }}",
+                    url: "{{ route('modul_umum.uang_muka_kerja.index.json') }}",
                     type : "POST",
                     dataType : "JSON",
                     headers: {
@@ -160,52 +160,41 @@
     $('#reportRow').on('click', function(e) {
         e.preventDefault();
     
-    var allVals = [];  
-    $(".btn-radio:checked").each(function() {  
-        e.preventDefault();
-        var dataid = $(this).attr('data-id');
-        var dataa = $(this).attr('dataumk');
-    
-        if(dataid == 1) 
-        {
-            swalAlertInit('cetak'); 
-        }  else { 
-            location.replace("{{url('umum/uang-muka-kerja/rekap')}}"+ '/' +dataid);
-        }	
-                    
-    });
-    });
-    
-    //refresh data
-    $('#show-data').on('click', function(e) {
-        e.preventDefault();
-            location.replace("{{ route('uang_muka_kerja.index') }}");
-    
-    });
-    
+        var allVals = [];  
+        $(".btn-radio:checked").each(function() {  
+            e.preventDefault();
+            var dataid = $(this).attr('data-id');
+            var dataa = $(this).attr('dataumk');
+        
+            if(dataid == 1) 
+            {
+                swalAlertInit('cetak'); 
+            }  else { 
+                location.replace("{{url('umum/uang-muka-kerja/rekap')}}"+ '/' +dataid);
+            }	
+                        
+        });
+    });    
     
     //edit
     $('#btn-edit-umk').on('click', function(e) {
         e.preventDefault();
-    var allVals = [];  
-    $(".btn-radio:checked").each(function() {  
-        e.preventDefault();
-        var dataid = $(this).attr('data-id');
-        var dataa = $(this).attr('data-umk-table');
-    
-        if(dataid == 1) 
-        {
-            swalAlertInit('ubah');  
-        }  else {  
-            location.replace("{{url('umum/uang-muka-kerja/edit')}}"+ '/' +dataid);
-        }	
-                    
+        var allVals = [];  
+        $(".btn-radio:checked").each(function() {  
+            e.preventDefault();
+            var dataid = $(this).attr('data-id');
+            var dataa = $(this).attr('data-umk-table');
+        
+            if(dataid == 1) 
+            {
+                swalAlertInit('ubah');  
+            }  else {  
+                location.replace("{{url('umum/uang-muka-kerja/edit')}}"+ '/' +dataid);
+            }	
+                        
+        });
     });
-    });
     
-    
-    
-    //delete
     //delete
     $('#deleteRow').click(function(e) {
                 e.preventDefault();
@@ -245,7 +234,7 @@
                                 .then((result) => {
                                 if (result.value) {
                                     $.ajax({
-                                        url: "{{ route('uang_muka_kerja.delete') }}",
+                                        url: "{{ route('modul_umum.uang_muka_kerja.delete') }}",
                                         type: 'DELETE',
                                         dataType: 'json',
                                         data: {

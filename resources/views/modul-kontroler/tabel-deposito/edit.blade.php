@@ -178,19 +178,19 @@
 								<div class="portlet__head-actions">
 								@if($status2 <> "Y")
 									<a href="#" data-toggle="modal" data-target="#kt_modal_4">
-										<span style="font-size: 2em;" class="font-success">
+										<span class="font-success">
 											<i class="fas fa-plus-circle"></i>
 										</span>
 									</a>
 					
 									<a href="#" id="editRow">
-										<span style="font-size: 2em;" class="font-warning">
+										<span class="font-warning">
 											<i class="fas fa-edit"></i>
 										</span>
 									</a>
 					
 									<a href="#" id="deleteRow">
-										<span style="font-size: 2em;" class="font-danger">
+										<span class="font-danger">
 											<i class="fas fa-times-circle"></i>
 										</span>
 									</a>

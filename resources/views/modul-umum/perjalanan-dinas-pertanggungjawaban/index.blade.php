@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.pertanggungjawaban.create') }}">
+                <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.create') }}">
 					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -90,7 +90,7 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-				url: "{{ route('perjalanan_dinas.pertanggungjawaban.index.json') }}",
+				url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index.json') }}",
 				data: function (d) {
 					d.noppanjar = $('input[name=noppanjar]').val();
 				}
@@ -116,7 +116,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
-					var url = '{{ route("perjalanan_dinas.pertanggungjawaban.edit", ":no_ppanjar") }}';
+					var url = '{{ route("modul_umum.perjalanan_dinas.pertanggungjawaban.edit", ":no_ppanjar") }}';
 					// go to page edit
 					window.location.href = url.replace(':no_ppanjar', id);
 				});
@@ -151,7 +151,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('perjalanan_dinas.pertanggungjawaban.delete') }}",
+								url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.delete') }}",
 								type: 'DELETE',
 								data: {
 									"id": id,
@@ -205,7 +205,7 @@
 					.then((result) => {
 						if (result.value) {
 							var id = $(this).val().split("/").join("-");
-					        var url = '{{ route("perjalanan_dinas.pertanggungjawaban.export", ":no_ppanjar") }}';
+					        var url = '{{ route("modul_umum.perjalanan_dinas.pertanggungjawaban.export", ":no_ppanjar") }}';
 
                             window.location.href = url.replace(':no_ppanjar', id);
 
