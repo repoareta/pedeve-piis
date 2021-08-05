@@ -85,7 +85,7 @@
                 }
             },
             columns: [
-                {data: 'action', name: 'action', class:'radio-button text-center', width: '10'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'main', name: 'main', class:'no-wrap'},
                 {data: 'sub_anggaran', name: 'sub_anggaran', class:'no-wrap'},
                 {data: 'tahun', name: 'tahun'},

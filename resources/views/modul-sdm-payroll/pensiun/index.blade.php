@@ -68,7 +68,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.pensiun.index.json') }}",
 			columns: [
-				{data: 'action', name: 'action'},
+				{data: 'radio', name: 'radio', class: 'text-center', width: '10'},
 				{data: 'pribadi', name: 'pribadi'},
 				{data: 'perusahaan', name: 'perusahaan'},
 				{data: 'perusahaan2', name: 'perusahaan2'},

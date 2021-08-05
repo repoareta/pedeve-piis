@@ -99,7 +99,7 @@
 				}
 			},
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'no_panjar', name: 'no_panjar', class:'no-wrap'},
 				{data: 'jenis_dinas', name: 'jenis'},
 				{data: 'mulai', name: 'mulai', class:'no-wrap'},

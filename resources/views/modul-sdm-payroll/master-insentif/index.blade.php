@@ -130,7 +130,7 @@
 				}
 			},
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'tahun', name: 'tahun', class:'no-wrap'},
 				{data: 'bulan', name: 'bulan'},
 				{data: 'pekerja', name: 'pekerja'},

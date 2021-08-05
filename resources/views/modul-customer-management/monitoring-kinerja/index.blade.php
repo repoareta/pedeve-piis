@@ -141,7 +141,7 @@
                 }
             },
             columns: [
-                {data: 'action', name: 'action'},
+                {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
                 {data: 'nama', name: 'nama'},
                 {data: 'thnbln', name: 'thnbln'},
                 {data: 'ci', name: 'ci'},

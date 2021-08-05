@@ -74,7 +74,7 @@
                     }
                 },
                 columns: [
-                    {data: 'radio', name: 'radio'},
+                    {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
                     {data: 'tanggal', name: 'tanggal'},
                     {data: 'no_perkara', name: 'no_perkara'},
                     {data: 'jenis_perkara', name: 'jenis_perkara'},

@@ -68,7 +68,7 @@
                 serverSide: true,
                 ajax      : "{{ route('modul_umum.vendor.index.json') }}",
                 columns: [
-                    {data: 'action', name: 'action'},
+                    {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
                     {data: 'nama', name: 'nama'},
                     {data: 'no_rekening', name: 'no_rekening'},
                     {data: 'nama_bank', name: 'nama_bank'},

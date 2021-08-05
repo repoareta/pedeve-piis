@@ -66,7 +66,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax      : "{{ route('modul_sdm_payroll.tunjangan_golongan.index.json') }}",
         columns: [
-            {data: 'action', name: 'action', class: 'text-center'},
+            {data: 'radio', name: 'radio', class: 'text-center'},
             {data: 'golongan', name: 'golongan'},
             {data: 'nilai', name: 'nilai', class: 'text-right'},
         ]

@@ -315,7 +315,7 @@
 			serverSide: true,
 			ajax: "{{ route('modul_umum.perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}",
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'no', name: 'no'},
 				{data: 'nopek', name: 'nopek'},
 				{data: 'nama', name: 'nama'},

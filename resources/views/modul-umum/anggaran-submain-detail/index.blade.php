@@ -84,7 +84,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
+            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
             {data: 'kode', name: 'kode'},
             {data: 'detail_anggaran', name: 'detail_anggaran'},
             {data: 'tahun', name: 'tahun'},

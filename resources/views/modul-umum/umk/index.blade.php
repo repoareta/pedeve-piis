@@ -128,7 +128,7 @@
                 {data: 'jenis_um', name: 'jenis_um'},
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jumlah', name: 'jumlah'},
-                {data: 'action', name: 'action'},
+                {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
             ]     
         });
 

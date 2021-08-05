@@ -65,7 +65,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.master_tabungan.index.json') }}",
 			columns: [
-				{data: 'radio', name: 'radio'},
+				{data: 'radio', name: 'radio', class: 'text-center', width: '10'},
 				{data: 'perusahaan', name: 'perusahaan'},
 			]
 		});

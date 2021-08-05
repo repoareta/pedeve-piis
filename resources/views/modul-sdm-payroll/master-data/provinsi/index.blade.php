@@ -66,7 +66,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax      : "{{ route('modul_sdm_payroll.provinsi.index.json') }}",
         columns: [
-            {data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
+            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
             {data: 'kode', name: 'kode', class:'no-wrap'},
             {data: 'nama', name: 'nama', class:'no-wrap'}
         ]

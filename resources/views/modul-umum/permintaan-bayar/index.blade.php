@@ -131,7 +131,7 @@ $(document).ready(function () {
 			{data: 'keterangan', name: 'keterangan'},
 			{data: 'lampiran', name: 'lampiran'},
 			{data: 'nilai', name: 'nilai', class: 'text-right'},
-			{data: 'action', name: 'action', class: 'text-center'}
+			{data: 'radio', name: 'radio', class: 'text-center'}
 		]
 			
 		

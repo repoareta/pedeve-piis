@@ -69,7 +69,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.kode_jabatan.index.json') }}",
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'kdbag', name: 'kdbag', class:'no-wrap'},
 				{data: 'kdjab', name: 'kdjab', class:'no-wrap'},
 				{data: 'keterangan', name: 'keterangan', class:'no-wrap'},

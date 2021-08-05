@@ -119,7 +119,7 @@
                 {data: 'store', name: 'store'},
                 {data: 'voucher', name: 'voucher'},
                 {data: 'posted', name: 'posted'},
-                {data: 'action', name: 'action', class: 'text-center'},
+                {data: 'radio', name: 'radio', class: 'text-center'},
             ]
         });
 
