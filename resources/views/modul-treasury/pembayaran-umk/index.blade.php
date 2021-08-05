@@ -117,7 +117,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('pembayaran_umk.index.json') }}",
 				data: function (d) {
 					d.bukti = $('input[name=bukti]').val();

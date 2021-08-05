@@ -113,7 +113,7 @@ $(document).ready(function () {
         scrollX   : true,
         processing: true,
         serverSide: true,
-        ajax      : {
+        ajax: {
             url: "{{ route('modul_sdm_payroll.potongan_manual.index.json') }}",
             data: function (d) {
                 d.nopek = $('select[name=nopek]').val();

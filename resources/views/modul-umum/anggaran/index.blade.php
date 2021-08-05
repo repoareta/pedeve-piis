@@ -128,7 +128,7 @@ $(document).ready(function () {
 		scrollX   : true,
 		processing: true,
 		serverSide: true,
-		ajax      : {
+		ajax: {
 			url: "{{ route('modul_umum.anggaran.index.json') }}",
 			data: function (d) {
 				d.kode_anggaran = $('input[name=kode_anggaran]').val();

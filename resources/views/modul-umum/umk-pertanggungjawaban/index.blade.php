@@ -119,7 +119,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.index.json') }}",
 				data: function (d) {
 					d.no_pumk = $('input[name=no_pumk]').val();

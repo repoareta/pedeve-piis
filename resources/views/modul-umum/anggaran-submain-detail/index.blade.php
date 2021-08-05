@@ -76,7 +76,7 @@ $(document).ready(function () {
         scrollX   : true,
         processing: true,
         serverSide: true,
-        ajax      : {
+        ajax: {
             url: "{{ route('modul_umum.anggaran.submain.detail.index.json') }}",
             data: function (d) {
                 d.kode = $('input[name=kode]').val();

@@ -67,7 +67,7 @@
                 scrollX   : true,
                 processing: true,
                 serverSide: true,
-                ajax      : {
+                ajax: {
                     url: "{{ route('modul_cm.data_perkara.index.json') }}",
                     data: function (d) {
                         d.pencarian = $('input[name=pencarian]').val();

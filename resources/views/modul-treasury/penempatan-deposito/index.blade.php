@@ -128,7 +128,7 @@
 			pageLength: 100,
 			scrollY:        "500px",
 			scrollCollapse: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('penempatan_deposito.index.json') }}",
 				data: function (d) {
 					d.bulan = $('select[name=bulan]').val();

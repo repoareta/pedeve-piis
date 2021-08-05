@@ -89,7 +89,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index.json') }}",
 				data: function (d) {
 					d.noppanjar = $('input[name=noppanjar]').val();

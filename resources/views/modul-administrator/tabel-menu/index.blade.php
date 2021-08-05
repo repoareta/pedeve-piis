@@ -71,7 +71,7 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            ajax      : {
+            ajax: {
                 url: "{{ route('modul_administrator.tabel_menu.index.json') }}",
                 data: function (d) {
                     d.pencarian = $('input[name=pencarian]').val();

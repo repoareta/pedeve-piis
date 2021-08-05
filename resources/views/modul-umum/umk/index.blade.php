@@ -112,7 +112,7 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            ajax      : {
+            ajax: {
                 url: "{{ route('modul_umum.uang_muka_kerja.index.json') }}",
                 data: function (d) {
                     d.permintaan = $('input[name=permintaan]').val();

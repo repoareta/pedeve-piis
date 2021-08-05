@@ -122,7 +122,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_sdm_payroll.gcg.gratifikasi.report.management.json') }}",
 				data: function (d) {
 					d.bentuk_gratifikasi = $('select[name=bentuk_gratifikasi]').val();

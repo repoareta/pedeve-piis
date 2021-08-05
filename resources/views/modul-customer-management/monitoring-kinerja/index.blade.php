@@ -133,7 +133,7 @@
             processing: true,
             serverSide: true,
             pageLength: 100,
-            ajax      : {
+            ajax: {
                 url: "{{ route('modul_cm.monitoring_kinerja.index.json') }}",
                 data: function (d) {
                     d.bulan = $('select[name=bulan]').val();

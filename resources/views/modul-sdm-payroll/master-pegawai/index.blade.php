@@ -98,7 +98,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_sdm_payroll.master_pegawai.index.json') }}",
 				data: function (d) {
 					d.nopeg = $('input[name=nopeg]').val();

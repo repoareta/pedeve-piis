@@ -92,7 +92,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_umum.perjalanan_dinas.index.json') }}",
 				data: function (d) {
 					d.nopanjar = $('input[name=nopanjar]').val();

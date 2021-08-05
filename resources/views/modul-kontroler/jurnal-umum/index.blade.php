@@ -104,7 +104,7 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            ajax      : {
+            ajax: {
                 url: "{{ route('modul_kontroler.jurnal_umum.index.json') }}",
                 data: function (d) {
                     d.tahun = $('input[name=tahun]').val();

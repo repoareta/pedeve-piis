@@ -120,7 +120,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_sdm_payroll.master_beban_perusahaan.index.json') }}",
 				data: function (d) {
 					d.no_pekerja = $('select[name=no_pekerja]').val();

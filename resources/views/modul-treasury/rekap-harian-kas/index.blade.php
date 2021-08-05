@@ -84,7 +84,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('rekap_harian_kas.index.json') }}",
 				data: function (d) {
 					d.nama = $('input[name=nokas]').val();

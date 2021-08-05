@@ -121,7 +121,7 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_sdm_payroll.master_insentif.index.json') }}",
 				data: function (d) {
 					d.no_pekerja = $('select[name=no_pekerja]').val();

@@ -64,7 +64,7 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            ajax      : {
+            ajax: {
                         url: "{{ route('modul_kontroler.jenis_biaya.index.json') }}",
                         type : "POST",
                         dataType : "JSON",
