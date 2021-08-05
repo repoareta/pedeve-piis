@@ -124,7 +124,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'radio', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'tanggal', name: 'tanggal'},
                 {data: 'nopek', name: 'nopek'},
                 {data: 'makanpg', name: 'makanpg', class:'text-right'},

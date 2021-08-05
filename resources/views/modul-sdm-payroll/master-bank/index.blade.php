@@ -68,7 +68,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.master_bank.index.json') }}",
 			columns: [
-				{data: 'radio', name: 'radio', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'kode', name: 'kode'},
 				{data: 'nama', name: 'nama'},
 				{data: 'alamat', name: 'alamat'},

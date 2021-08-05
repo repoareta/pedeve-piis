@@ -67,7 +67,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax      : "{{ route('modul_sdm_payroll.jenis_upah.index.json') }}",
         columns: [
-            {data: 'radio', name: 'radio', class:'radio-button text-center'},
+            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
             {data: 'kode', name: 'kode'},
             {data: 'nama', name: 'nama'},
             {data: 'cetak', name: 'cetak'},

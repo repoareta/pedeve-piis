@@ -68,7 +68,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.rekening_pekerja.index.json') }}",
 			columns: [
-				{data: 'radio', name: 'radio', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'namapekerja', name: 'namapekerja'},
 				{data: 'namabank', name: 'namabank'},
 				{data: 'rekening', name: 'rekening'},
