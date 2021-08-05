@@ -127,8 +127,8 @@
                 ajax      : {
                     url: "{{ route('modul_administrator.set_user.index.json') }}",
                     data: function (d) {
-                        d.pencarian = $('input[name=pencarian]').val();
-                    }
+                                d.pencarian = $('input[name=pencarian]').val();
+                            }
                 },
                 columns: [
                     {data: 'radio', name: 'aksi', class:'radio-button text-center'},
