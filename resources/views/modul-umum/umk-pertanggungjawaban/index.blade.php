@@ -128,7 +128,7 @@
 				}
 			},
 			columns: [
-				{data: 'radio', name: 'radio', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'radio', class:'radio-button'},
 				{data: 'no_pumk', name: 'no_pumk'},
 				{data: 'no_umk', name: 'no_umk'},
 				{data: 'no_kas', name: 'no_kas'},

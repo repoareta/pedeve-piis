@@ -220,7 +220,7 @@
                 { data: 'rate', name: 'rate' },
                 { data: 'nilai_dokumen', name: 'nilai_dokumen' },
                 { data: 'status', name: 'status', class: 'text-center' },
-                { data: 'radio', name: 'radio', class: 'text-center' },
+                { data: 'action', name: 'action', class: 'text-center' },
 			]
 			
 	    });

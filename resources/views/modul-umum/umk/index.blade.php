@@ -121,14 +121,14 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'radio', orderable: false, searchable: false, class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'tgl_panjar', name: 'tgl_panjar'},
                 {data: 'no_umk', name: 'no_umk'},
                 {data: 'no_kas', name: 'no_kas'},
                 {data: 'jenis_um', name: 'jenis_um'},
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jumlah', name: 'jumlah'},
-                {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
+                {data: 'action', name: 'action', class: 'text-center'},
             ]     
         });
 
