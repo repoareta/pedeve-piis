@@ -63,7 +63,7 @@
                 processing: true,
                 serverSide: true,
                 ajax      : {
-                            url: "{{ route('modul_administrator.set_menu.index.json') }}",
+                            url: "{{ route('modul_administrator.set_function.index.json') }}",
                             type : "POST",
                             dataType : "JSON",
                             headers: {

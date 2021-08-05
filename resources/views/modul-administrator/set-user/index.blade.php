@@ -70,6 +70,51 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="cetakModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Cetak Data</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form class="form" action="{{ route('modul_administrator.set_user.export') }}" method="post" target="_blank">
+			@csrf
+				<div class="modal-body">
+					<div class="form-group row">
+						<div class="col-12">
+							<div class="radio-inline">
+								<label class="radio radio-outline radio-primary">
+									<input type="radio" name="cetak" value="A" onclick="displayResult(1)" checked/> Cetak All
+									<span></span>
+								</label>
+								<label class="radio radio-outline radio-primary">
+									<input type="radio" name="cetak" value="B" onclick="displayResult(2)" /> Cetak Per User
+									<span></span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-8" id="userid">
+							<select name="userid"  class="form-control selectpicker" data-live-search="true" oninvalid="this.setCustomValidity('Dibayar Kepada Harus Diisi..')" onchange="setCustomValidity('')">
+								@foreach ($data as $row)
+								<option value="{{ $row->userid }}">{{ $row->userid }}</option>
+								@endforeach
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Cetak Data</button>
+					</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Modal End -->
 @endsection
 @push('page-scripts')
 <script type="text/javascript">

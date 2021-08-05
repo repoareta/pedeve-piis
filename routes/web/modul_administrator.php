@@ -73,7 +73,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     // Route assigned name "log.index"...
     Route::name('log.')->group(function () {
         Route::get('log', [LogController::class, 'index'])->name('index');
-        Route::post('log/index-json', [LogController::class, 'indexJson'])->name('index.json');
+        Route::get('log/index-json', [LogController::class, 'indexJson'])->name('index.json');
     });
     //end log
 });

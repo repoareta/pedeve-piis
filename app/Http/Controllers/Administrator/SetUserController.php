@@ -34,7 +34,7 @@ class SetUserController extends Controller
         return view('modul-administrator.set-user.index', compact('data'));
     }
 
-    public function searchIndex()
+    public function indexJson()
     {
         $data = UserPdv::orderBy('userid', 'asc')->get();
         return datatables()->of($data)
