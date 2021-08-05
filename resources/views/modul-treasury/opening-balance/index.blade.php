@@ -70,7 +70,7 @@
                 }
             },
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center'},
 				{data: 'bulan', name: 'bulan'},
 				{data: 'tahun', name: 'tahun'},
 				{data: 'suplesi', name: 'suplesi'},

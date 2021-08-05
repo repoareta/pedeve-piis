@@ -76,7 +76,7 @@
                         }
                     },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center'},
                 {data: 'kode', name: 'kode'},
                 {data: 'nama', name: 'nama'},
             ]

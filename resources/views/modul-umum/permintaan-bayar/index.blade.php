@@ -124,7 +124,7 @@ $(document).ready(function () {
 			}
 		},
 		columns: [
-			{data: 'radio', name: 'aksi', orderable: false, searchable: false},
+			{data: 'radio', name: 'radio', orderable: false, searchable: false},
 			{data: 'no_bayar', name: 'no_bayar'},
 			{data: 'no_kas', name: 'no_kas'},
 			{data: 'kepada', name: 'kepada'},

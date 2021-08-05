@@ -126,7 +126,7 @@
 						}
 					},
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center'},
 				{data: 'radio', name: 'radio', class: 'text-center'},
 				{data: 'docno', name: 'docno'},
 				{data: 'tanggalinput', name: 'tanggalinput'},

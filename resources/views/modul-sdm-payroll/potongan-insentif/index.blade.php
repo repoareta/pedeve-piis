@@ -119,7 +119,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+            {data: 'radio', name: 'radio', class:'radio-button text-center'},
             {data: 'bulan', name: 'bulan'},
             {data: 'nopek', name: 'nopek'},
             {data: 'nilai', name: 'nilai'},

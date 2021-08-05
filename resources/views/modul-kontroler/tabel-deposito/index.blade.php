@@ -127,7 +127,7 @@ $(document).ready(function () {
 					}
 				},
 				columns: [
-					{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+					{data: 'radio', name: 'radio', class:'radio-button text-center'},
 					{data: 'noseri', name: 'noseri'},
 					{data: 'namabank', name: 'namabank'},
 					{data: 'nominal', name: 'nominal'},

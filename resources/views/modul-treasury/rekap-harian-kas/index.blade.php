@@ -91,7 +91,7 @@
 				}
 			},
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center'},
 				{data: 'jk', name: 'jk'},
 				{data: 'store', name: 'store'},
 				{data: 'no', name: 'no'},

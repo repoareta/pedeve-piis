@@ -77,7 +77,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center'},
                 {data: 'jenis', name: 'jenis'},
                 {data: 'batas_awal', name: 'batas_awal'},
                 {data: 'batas_akhir', name: 'batas_akhir'},

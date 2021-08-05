@@ -78,7 +78,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center'},
                 {data: 'menuid', name: 'menuid'},
                 {data: 'menunm', name: 'menunm'},
                 {data: 'userap', name: 'userap'},

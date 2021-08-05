@@ -121,7 +121,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', orderable: false, searchable: false, class:'radio-button text-center'},
                 {data: 'tgl_panjar', name: 'tgl_panjar'},
                 {data: 'no_umk', name: 'no_umk'},
                 {data: 'no_kas', name: 'no_kas'},

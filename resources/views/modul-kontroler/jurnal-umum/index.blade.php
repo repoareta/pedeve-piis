@@ -112,7 +112,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center'},
                 {data: 'docno', name: 'docno'},
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jk', name: 'jk'},
