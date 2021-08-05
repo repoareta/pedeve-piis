@@ -81,7 +81,7 @@ $(document).ready(function () {
         if($('input[type=radio]').is(':checked')) { 
             $("input[type=radio]:checked").each(function(){
                 var kode = $(this).attr('kode');
-                location.replace("{{url('sdm/jenis_upah/edit') }}"+ '/' +kode);
+                location.replace("{{ url('sdm/jenis_upah/edit') }}"+ '/' +kode);
             });
         } else {
             swalAlertInit('ubah');

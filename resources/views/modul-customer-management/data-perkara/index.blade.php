@@ -145,7 +145,7 @@
                 if($('input[class=btn-radio]').is(':checked')) { 
                     $("input[class=btn-radio]:checked").each(function(){
                         var no = $(this).attr('data-id');
-                        location.replace("{{url('customer_management/data_perkara/edit') }}"+ '/' +no);
+                        location.replace("{{ url('customer_management/data_perkara/edit') }}"+ '/' +no);
                     });
                 } else {
                     swalAlertInit('ubah');

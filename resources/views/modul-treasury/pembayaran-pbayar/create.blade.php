@@ -186,7 +186,7 @@ $('#form-create').submit(function(){
 				text  : 'Berhasil',
 				timer : 2000
 			}).then(function() {
-				location.href = "{{url('perbendaharaan/pembayaran-pbayar/edit') }}"+ '/' +scurrdoc;
+				location.href = "{{ url('perbendaharaan/pembayaran-pbayar/edit') }}"+ '/' +scurrdoc;
 			});
 		}else if(data = 2){
 			Swal.fire({

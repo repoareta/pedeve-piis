@@ -123,7 +123,7 @@
                         }).get();
                         $.ajax({
                             method: "POST",
-                            url:"{{url('administrator/set-menu/update') }}" + '/' + id,
+                            url:"{{ url('administrator/set-menu/update') }}" + '/' + id,
                             data: {
                                 "_token": "{{ csrf_token() }}",
                                 'menus': checked,                                    

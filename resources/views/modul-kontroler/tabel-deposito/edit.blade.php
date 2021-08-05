@@ -621,7 +621,7 @@ $('#editRow').on('click', function(e) {
 			var no = $(this).attr('docno');
 			var id = $(this).attr('lineno');
 			$.ajax({
-				url :"{{url('kontroler/jurnal_umum/editdetail') }}"+ '/' +no+'/'+id,
+				url :"{{ url('kontroler/jurnal_umum/editdetail') }}"+ '/' +no+'/'+id,
 				type : 'get',
 				dataType:"json",
 				headers: {

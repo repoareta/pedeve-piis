@@ -204,7 +204,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('docno');
-                    location.replace("{{url('kontroler/jurnal_umum/edit') }}"+ '/' +no);
+                    location.replace("{{ url('kontroler/jurnal_umum/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');
@@ -217,7 +217,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var docno = $(this).attr('docno');
-                    location.replace("{{url('kontroler/jurnal_umum/rekap') }}"+ '/' +docno);
+                    location.replace("{{ url('kontroler/jurnal_umum/rekap') }}"+ '/' +docno);
                 });
             } else {
                 swalAlertInit('cetak');

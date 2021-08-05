@@ -141,7 +141,7 @@ $(document).ready(function () {
                 var bulan = $(this).attr('bulan');
                 var nopek = $(this).attr('nopek');
                 var nama  = $(this).attr('nama');
-                location.replace("{{url('sdm-payroll/potongan-insentif/edit') }}"+ '/' +bulan+'/' +tahun+'/' +nopek);
+                location.replace("{{ url('sdm-payroll/potongan-insentif/edit') }}"+ '/' +bulan+'/' +tahun+'/' +nopek);
             });
         } else {
             swalAlertInit('ubah');

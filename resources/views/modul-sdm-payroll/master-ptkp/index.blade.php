@@ -79,7 +79,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function(){
 					var kode = $(this).attr('kode');
-					location.replace("{{url('sdm-payroll/master-ptkp/edit') }}"+ '/' +kode);
+					location.replace("{{ url('sdm-payroll/master-ptkp/edit') }}"+ '/' +kode);
 				});
 			} else {
 				swalAlertInit('ubah');

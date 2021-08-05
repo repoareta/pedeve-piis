@@ -89,7 +89,7 @@
 			if($('input[class=btn-radio]').is(':checked')) { 
 				$("input[class=btn-radio]:checked").each(function(){
 					var no = $(this).attr('kode');
-					location.href = "{{url('perbendaharaan/opening-balance/edit') }}" + '/' + no;
+					location.href = "{{ url('perbendaharaan/opening-balance/edit') }}" + '/' + no;
 				});
 			} else {
 				swalAlertInit('batal');

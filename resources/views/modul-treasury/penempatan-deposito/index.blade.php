@@ -181,7 +181,7 @@ $('#editRow').click(function(e) {
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
 			var pjg = $(this).attr('pjg');
-			location.href = "{{url('perbendaharaan/penempatan-deposito/edit') }}" + '/' + nodok +'/' + lineno + '/' + pjg;
+			location.href = "{{ url('perbendaharaan/penempatan-deposito/edit') }}" + '/' + nodok +'/' + lineno + '/' + pjg;
 		});
 	} else {
 		swalAlertInit('ubah');
@@ -195,7 +195,7 @@ $('#exportRow').on('click', function(e) {
 			e.preventDefault();
 			var no = $(this).attr('nodok').split("/").join("-");
 			var id = $(this).attr('lineno');
-				location.href = "{{url('perbendaharaan/penempatan-deposito/rekaprc') }}" + '/' + no + '/' + id;
+				location.href = "{{ url('perbendaharaan/penempatan-deposito/rekaprc') }}" + '/' + no + '/' + id;
 		});
 	} else{
 		swalAlertInit('cetak');
@@ -210,7 +210,7 @@ $('#dolarRow').click(function(e) {
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
 			var pjg = $(this).attr('pjg');
-			location.href = "{{url('perbendaharaan/penempatan-deposito/depopjg') }}" + '/' + nodok + '/' + lineno + '/' + pjg;
+			location.href = "{{ url('perbendaharaan/penempatan-deposito/depopjg') }}" + '/' + nodok + '/' + lineno + '/' + pjg;
 		});
 	} else {
 		swalAlertInit('perpanjangan deposito');

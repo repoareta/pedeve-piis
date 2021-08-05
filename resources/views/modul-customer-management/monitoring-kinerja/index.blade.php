@@ -171,7 +171,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var id = $(this).attr('data-id');
-                    location.replace("{{url('customer_management/monitoring_kinerja/edit') }}"+ '/' +id);
+                    location.replace("{{ url('customer_management/monitoring_kinerja/edit') }}"+ '/' +id);
                 });
             } else {
                 swalAlertInit('ubah');

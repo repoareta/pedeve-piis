@@ -110,7 +110,7 @@ $(document).ready(function () {
         if($('input[class=btn-radio]').is(':checked')) { 
             $("input[class=btn-radio]:checked").each(function(){
                 var id = $(this).attr('id_pinjaman');
-                location.replace("{{url('sdm/pinjaman_pekerja/edit') }}"+ '/' +id);
+                location.replace("{{ url('sdm/pinjaman_pekerja/edit') }}"+ '/' +id);
             });
         } else {
             swalAlertInit('ubah');

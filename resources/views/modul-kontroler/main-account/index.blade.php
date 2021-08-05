@@ -155,7 +155,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{url('kontroler/main_account/edit') }}"+ '/' +no);
+                    location.replace("{{ url('kontroler/main_account/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');

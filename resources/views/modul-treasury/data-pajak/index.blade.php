@@ -115,7 +115,7 @@
                         var bulan = $(this).attr('bulan');
                         var nopek = $(this).attr('nopek');
                         var jenis = $(this).attr('jenis');
-                        location.href = "{{url('perbendaharaan/data-pajak/edit') }}" + '/' + tahun + '/' + bulan + '/' + nopek + '/' + jenis;
+                        location.href = "{{ url('perbendaharaan/data-pajak/edit') }}" + '/' + tahun + '/' + bulan + '/' + nopek + '/' + jenis;
                     });
                 } else {
                     swalAlertInit('ubah');

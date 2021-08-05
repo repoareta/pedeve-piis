@@ -150,7 +150,7 @@ $(document).ready(function () {
                 var nopek = $(this).attr('nopek');
                 var aard  = $(this).attr('aard');
                 var nama  = $(this).attr('nama');
-                location.replace("{{url('sdm/potongan_koreksi_gaji/edit') }}"+ '/' +bulan+'/' +tahun+'/'+aard+ '/' +nopek);
+                location.replace("{{ url('sdm/potongan_koreksi_gaji/edit') }}"+ '/' +bulan+'/' +tahun+'/'+aard+ '/' +nopek);
             });
         } else {
             swalAlertInit('ubah');

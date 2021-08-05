@@ -130,7 +130,7 @@
 						<div class="col-10">
 							<a href="{{route('pembayaran_pbayar.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
-							<a href="{{url('perbendaharaan/pembayaran-pbayar/rekaprc') }}/{{ $docs}}" class="btn btn-primary"><i class="fa fa-print"></i>Cetak RC</a>
+							<a href="{{ url('perbendaharaan/pembayaran-pbayar/rekaprc') }}/{{ $docs}}" class="btn btn-primary"><i class="fa fa-print"></i>Cetak RC</a>
 						</div>
 					</div>
 				</div>

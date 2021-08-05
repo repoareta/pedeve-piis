@@ -150,7 +150,7 @@ $(document).ready(function () {
 			$("input[class=btn-radio]:checked").each(function() {  
 				e.preventDefault();
 				var dataid = $(this).attr('data-id');
-					location.replace("{{url('umum/permintaan-bayar/rekap') }}"+ '/' +dataid);
+					location.replace("{{ url('umum/permintaan-bayar/rekap') }}"+ '/' +dataid);
 			});
 		} else{
 			swalAlertInit('cetak');
@@ -165,7 +165,7 @@ $(document).ready(function () {
 		if($('input[class=btn-radio]').is(':checked')) { 
 			$("input[class=btn-radio]:checked").each(function(){
 				var id = $(this).attr('data-id');
-				location.replace("{{url('umum/permintaan-bayar/edit') }}"+ '/' +id);
+				location.replace("{{ url('umum/permintaan-bayar/edit') }}"+ '/' +id);
 			});
 		} else {
 			swalAlertInit('ubah');

@@ -158,7 +158,7 @@
                 if($('input[class=btn-radio]').is(':checked')) { 
                     $("input[class=btn-radio]:checked").each(function(){
                         var no = $(this).attr('kode');
-                        location.replace("{{url('administrator/set-user/edit') }}"+ '/' +no);
+                        location.replace("{{ url('administrator/set-user/edit') }}"+ '/' +no);
                     });
                 } else {
                     swalAlertInit('ubah');

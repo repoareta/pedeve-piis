@@ -93,7 +93,7 @@
 		if($('input[class=btn-radio]').is(':checked')) { 
 			$("input[class=btn-radio]:checked").each(function(){
 				var kode = $(this).attr('kode');
-				location.replace("{{url('kontroler/master_pekerja/edit') }}"+ '/' +kode);
+				location.replace("{{ url('kontroler/master_pekerja/edit') }}"+ '/' +kode);
 			});
 		} else {
 			swalAlertInit('ubah');

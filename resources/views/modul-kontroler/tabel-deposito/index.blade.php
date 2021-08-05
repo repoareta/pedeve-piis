@@ -173,7 +173,7 @@ $(document).ready(function () {
 					e.preventDefault();
 					var no = $(this).attr('nodok').split("/").join("-");
 					var id = $(this).attr('lineno');
-						location.replace("{{url('kontroler/tabel_deposito/rekap') }}"+ '/' +no+'/'+id);
+						location.replace("{{ url('kontroler/tabel_deposito/rekap') }}"+ '/' +no+'/'+id);
 				});
 			} else{
 				swalAlertInit('cetak');

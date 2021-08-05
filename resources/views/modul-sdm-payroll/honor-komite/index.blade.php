@@ -147,7 +147,7 @@ $(document).ready(function () {
                 var nopek = $(this).attr('nopek');
                 var aard  = $(this).attr('aard');
                 var nama  = $(this).attr('nama');
-                location.replace("{{url('sdm/honor_komite/edit') }}"+ '/' +bulan+'/' +tahun+ '/' +nopek);
+                location.replace("{{ url('sdm/honor_komite/edit') }}"+ '/' +bulan+'/' +tahun+ '/' +nopek);
             });
         } else {
             swalAlertInit('ubah');
