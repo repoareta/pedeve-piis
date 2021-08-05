@@ -129,7 +129,7 @@
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jumlah', name: 'jumlah'},
                 {data: 'action', name: 'action', class: 'text-center'},
-            ]     
+            ]
         });
 
         $('#search-form').on('submit', function(e) {
@@ -138,110 +138,110 @@
         });
 
         //report Uang Muka Kerja 
-    $('#reportRow').on('click', function(e) {
-        e.preventDefault();
-    
-        var allVals = [];  
-        $(".btn-radio:checked").each(function() {  
+        $('#reportRow').on('click', function(e) {
             e.preventDefault();
-            var dataid = $(this).attr('data-id');
-            var dataa = $(this).attr('dataumk');
         
-            if(dataid == 1) 
-            {
-                swalAlertInit('cetak'); 
-            } else { 
-                location.replace("{{ url('umum/uang-muka-kerja/rekap') }}"+ '/' +dataid);
-            }	
-                        
+            var allVals = [];  
+            $(".btn-radio:checked").each(function() {  
+                e.preventDefault();
+                var dataid = $(this).attr('data-id');
+                var dataa = $(this).attr('dataumk');
+            
+                if(dataid == 1) 
+                {
+                    swalAlertInit('cetak'); 
+                } else { 
+                    location.replace("{{ url('umum/uang-muka-kerja/rekap') }}"+ '/' +dataid);
+                }	
+                            
+            });
+        });    
+        
+        //edit
+        $('#btn-edit-umk').on('click', function(e) {
+            e.preventDefault();
+            var allVals = [];  
+            $(".btn-radio:checked").each(function() {  
+                e.preventDefault();
+                var dataid = $(this).attr('data-id');
+                var dataa = $(this).attr('kt_table');
+            
+                if(dataid == 1) 
+                {
+                    swalAlertInit('ubah');  
+                } else {  
+                    location.replace("{{ url('umum/uang-muka-kerja/edit') }}"+ '/' +dataid);
+                }	
+                            
+            });
         });
-    });    
     
-    //edit
-    $('#btn-edit-umk').on('click', function(e) {
-        e.preventDefault();
-        var allVals = [];  
-        $(".btn-radio:checked").each(function() {  
+        //delete
+        $('#deleteRow').click(function(e) {
             e.preventDefault();
-            var dataid = $(this).attr('data-id');
-            var dataa = $(this).attr('kt_table');
-        
-            if(dataid == 1) 
-            {
-                swalAlertInit('ubah');  
-            } else {  
-                location.replace("{{ url('umum/uang-muka-kerja/edit') }}"+ '/' +dataid);
-            }	
-                        
+            $(".btn-radio:checked").each(function() {  
+                var dataid = $(this).attr('data-id');
+                if(dataid == 1) {  
+                    swalAlertInit('hapus'); 
+                } else { 
+                    $("input[type=radio]:checked").each(function() {
+                        var id = $(this).attr('dataumk');
+                        var status = $(this).attr('data-s');
+                        // delete stuff
+                        if(status == 'Y'){
+                            Swal.fire({
+                                type  : 'info',
+                                title : 'Data Tidak Bisa Dihapus, Data Sudah di Proses Perbendaharaan.',
+                                text  : 'Failed',
+                            });
+                        } else {
+                            const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-primary',
+                                cancelButton: 'btn btn-danger'
+                            },
+                                buttonsStyling: false
+                            })
+                            swalWithBootstrapButtons.fire({
+                                title: "Data yang akan dihapus?",
+                                text: "No. UMK : " + id,
+                                type: 'warning',
+                                showCancelButton: true,
+                                reverseButtons: true,
+                                confirmButtonText: 'Ya, hapus',
+                                cancelButtonText: 'Batalkan'
+                            })
+                            .then((result) => {
+                                if (result.value) {
+                                    $.ajax({
+                                        url: "{{ route('modul_umum.uang_muka_kerja.delete') }}",
+                                        type: 'DELETE',
+                                        dataType: 'json',
+                                        data: {
+                                            "id": id,
+                                            "_token": "{{ csrf_token() }}",
+                                        },
+                                        success: function () {
+                                            Swal.fire({
+                                                type  : 'success',
+                                                title : 'Hapus No. UMK ' + id,
+                                                text  : 'Berhasil',
+                                                timer : 2000
+                                            }).then(function() {
+                                                location.reload();
+                                            });
+                                        },
+                                        error: function () {
+                                            alert("Terjadi kesalahan, coba lagi nanti");
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
         });
     });
-    
-    //delete
-    $('#deleteRow').click(function(e) {
-        e.preventDefault();
-        $(".btn-radio:checked").each(function() {  
-            var dataid = $(this).attr('data-id');
-            if(dataid == 1) {  
-                swalAlertInit('hapus'); 
-            } else { 
-                $("input[type=radio]:checked").each(function() {
-                    var id = $(this).attr('dataumk');
-                    var status = $(this).attr('data-s');
-                    // delete stuff
-                    if(status == 'Y'){
-                        Swal.fire({
-                            type  : 'info',
-                            title : 'Data Tidak Bisa Dihapus, Data Sudah di Proses Perbendaharaan.',
-                            text  : 'Failed',
-                        });
-                    } else {
-                        const swalWithBootstrapButtons = Swal.mixin({
-                        customClass: {
-                            confirmButton: 'btn btn-primary',
-                            cancelButton: 'btn btn-danger'
-                        },
-                            buttonsStyling: false
-                        })
-                        swalWithBootstrapButtons.fire({
-                            title: "Data yang akan dihapus?",
-                            text: "No. UMK : " + id,
-                            type: 'warning',
-                            showCancelButton: true,
-                            reverseButtons: true,
-                            confirmButtonText: 'Ya, hapus',
-                            cancelButtonText: 'Batalkan'
-                        })
-                        .then((result) => {
-                            if (result.value) {
-                                $.ajax({
-                                    url: "{{ route('modul_umum.uang_muka_kerja.delete') }}",
-                                    type: 'DELETE',
-                                    dataType: 'json',
-                                    data: {
-                                        "id": id,
-                                        "_token": "{{ csrf_token() }}",
-                                    },
-                                    success: function () {
-                                        Swal.fire({
-                                            type  : 'success',
-                                            title : 'Hapus No. UMK ' + id,
-                                            text  : 'Berhasil',
-                                            timer : 2000
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function () {
-                                        alert("Terjadi kesalahan, coba lagi nanti");
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    });
-});
 </script>
 @endpush
