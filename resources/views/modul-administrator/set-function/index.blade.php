@@ -25,7 +25,7 @@
                 <div class="">
                     <a href="#">
                         <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                            <i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+                            <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                         </span>
                     </a>
                 </div>

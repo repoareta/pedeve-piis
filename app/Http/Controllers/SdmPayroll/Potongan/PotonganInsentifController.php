@@ -89,7 +89,7 @@ class PotonganInsentifController extends Controller
             $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"   nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>'; 
             return $radio;
         })
-        ->rawColumns(['radio','radio'])
+        ->rawColumns(['radio'])
         ->make(true);
        
     }

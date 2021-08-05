@@ -172,17 +172,17 @@
                 <div class="">
                     <a href="#">
                         <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                            <i class="fas icon-2x fa-plus-circle text-dark"></i>
+                            <i class="fas fa-2x fa-plus-circle text-dark"></i>
                         </span>
                     </a>
                     <a href="#">
                         <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                            <i class="fas icon-2x fa-edit text-dark"></i>
+                            <i class="fas fa-2x fa-edit text-dark"></i>
                         </span>
                     </a>
                     <a href="#">
                         <span class="text-dark fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                            <i class="fas icon-2x fa-times-circle text-dark"></i>
+                            <i class="fas fa-2x fa-times-circle text-dark"></i>
                         </span>
                     </a>
                 </div>

@@ -21,22 +21,22 @@
             <div class="text-right">
                 <a href="{{ route('rekap_harian_kas.create') }}" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                        <i class="fas icon-2x fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 {{-- <button id="editRow" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas icon-2x fa-edit text-warning"></i>
+                        <i class="fas fa-2x fa-edit text-warning"></i>
                     </span>
                 </button> --}}
                 <button id="deleteRow" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
-                        <i class="fas icon-2x fa-trash text-danger"></i>
+                        <i class="fas fa-2x fa-trash text-danger"></i>
                     </span>
                 </button>
                 <button id="exportRow" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
-                        <i class="fas icon-2x fa-print text-primary"></i>
+                        <i class="fas fa-2x fa-print text-primary"></i>
                     </span>
                 </button>
             </div>
