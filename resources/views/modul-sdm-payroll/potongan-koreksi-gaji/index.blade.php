@@ -126,7 +126,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+            {data: 'radio', name: 'aksi', class:'radio-button'},
             {data: 'tahun', name: 'tahun'},
             {data: 'bulan', name: 'bulan'},
             {data: 'nopek', name: 'nopek'},

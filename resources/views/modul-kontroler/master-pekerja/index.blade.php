@@ -72,7 +72,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_kontroler.master_pekerja.index.json') }}",
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button'},
 				{data: 'nopek', name: 'nopek'},
 				{data: 'namaprshn', name: 'namaprshn'},
 				{data: 'nama', name: 'nama'},

@@ -84,7 +84,7 @@
                             }
                         },
                 columns: [
-                    {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                    {data: 'radio', name: 'aksi', class:'radio-button'},
                     {data: 'menuid', name: 'menuid'},
                     {data: 'menunm', name: 'menunm'},
                     {data: 'userap', name: 'userap'},

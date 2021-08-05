@@ -69,7 +69,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.tabel_aard.index.json') }}",
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button'},
 				{data: 'kode', name: 'kode'},
 				{data: 'nama', name: 'nama'},
 				{data: 'jenis', name: 'jenis'},

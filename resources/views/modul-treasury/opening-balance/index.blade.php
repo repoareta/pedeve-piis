@@ -71,7 +71,7 @@
                 }
             },
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button'},
 				{data: 'bulan', name: 'bulan'},
 				{data: 'tahun', name: 'tahun'},
 				{data: 'suplesi', name: 'suplesi'},

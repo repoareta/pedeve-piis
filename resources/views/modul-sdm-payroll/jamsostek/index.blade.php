@@ -69,7 +69,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.jamsostek.index.json') }}",
 			columns: [
-				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'action', name: 'aksi', class:'radio-button'},
 				{data: 'pribadi', name: 'pribadi'},
 				{data: 'accident', name: 'accident'},
 				{data: 'pensiun', name: 'pensiun'},

@@ -137,7 +137,7 @@
 				}
 			},
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button'},
 				{data: 'noseri', name: 'noseri'},
 				{data: 'namabank', name: 'namabank'},
 				{data: 'nominal', name: 'nominal'},

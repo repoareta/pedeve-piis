@@ -124,7 +124,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'radio', name: 'aksi', class:'radio-button'},
                 {data: 'tanggal', name: 'tanggal'},
                 {data: 'nopek', name: 'nopek'},
                 {data: 'makanpg', name: 'makanpg', class:'text-right'},

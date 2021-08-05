@@ -85,7 +85,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'action', name: 'action', orderable: false, searchable: false, class:'radio-button'},
+            {data: 'action', name: 'action', class:'radio-button'},
             {data: 'main', name: 'main', class:'no-wrap'},
             {data: 'sub_anggaran', name: 'sub_anggaran', class:'no-wrap'},
             {data: 'tahun', name: 'tahun'},

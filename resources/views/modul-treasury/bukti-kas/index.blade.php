@@ -205,7 +205,7 @@
 				}
 			},
 			columns: [
-				{ data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button' },
+				{ data: 'radio', name: 'aksi', class:'radio-button' },
                 { data: 'no_dok', name: 'no_dok' },
                 { data: 'tanggal', name: 'tanggal' },
                 { data: 'voucher', name: 'voucher' },
@@ -215,8 +215,8 @@
                 { data: 'ci', name: 'ci' },
                 { data: 'rate', name: 'rate' },
                 { data: 'nilai_dokumen', name: 'nilai_dokumen' },
-                { data: 'status', name: 'status', orderable: false, searchable: false, class: 'text-center' },
-                { data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-center' },
+                { data: 'status', name: 'status', class: 'text-center' },
+                { data: 'action', name: 'action', class: 'text-center' },
 			]
 			
 	    });

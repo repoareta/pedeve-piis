@@ -66,7 +66,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.master_ptkp.index.json') }}",
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button'},
 				{data: 'kdkel', name: 'kdkel'},
 				{data: 'nilai', name: 'nilai', class: 'text-right'},
 			]

@@ -81,7 +81,7 @@
                     }
                 },
                 columns: [
-                    {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                    {data: 'radio', name: 'aksi', class:'radio-button'},
                     {data: 'thnbln', name: 'thnbln'},
                     {data: 'nama_status', name: 'nama_status'},
                     {data: 'data_buka', name: 'data_buka'},

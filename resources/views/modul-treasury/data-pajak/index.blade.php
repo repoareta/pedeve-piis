@@ -91,7 +91,7 @@
                             }
                         },
                 columns: [
-                    {data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                    {data: 'action', name: 'aksi', class:'radio-button'},
                     {data: 'tahun', name: 'tahun'},
                     {data: 'bulan', name: 'bulan'},
                     {data: 'pekerja', name: 'pekerja'},

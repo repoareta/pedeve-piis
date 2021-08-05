@@ -136,7 +136,7 @@ $(document).ready(function () {
 			}
 		},
 		columns: [
-			{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+			{data: 'action', name: 'aksi', class:'radio-button'},
 			{data: 'kode_main', name: 'kode_main', class:'no-wrap'},
 			{data: 'nama_main', name: 'nama_main'},
 			{data: 'tahun', name: 'tahun'},

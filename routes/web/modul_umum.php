@@ -71,7 +71,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
     // Route assigned name "uang-muka-kerja.index"...
     Route::name('uang_muka_kerja.')->group(function () {
         Route::get('uang-muka-kerja', [UangMukaKerjaController::class, 'index'])->name('index');
-        Route::post('uang-muka-kerja/search-json', [UangMukaKerjaController::class, 'indexJson'])->name('index.json');
+        Route::get('uang-muka-kerja/index-json', [UangMukaKerjaController::class, 'indexJson'])->name('index.json');
         Route::get('uang-muka-kerja/search/account', [UangMukaKerjaController::class, 'searchAccount'])->name('search.account');
         Route::get('uang-muka-kerja/search/bagian', [UangMukaKerjaController::class, 'searchBagian'])->name('search.bagian');
         Route::get('uang-muka-kerja/search/jb', [UangMukaKerjaController::class, 'searchJb'])->name('search.jb');

@@ -81,7 +81,7 @@ $(document).ready(function () {
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'radio', name: 'aksi', class:'radio-button'},
                 {data: 'id_pinjaman', name: 'id_pinjaman'},
                 {data: 'nopek', name: 'nopek'},
                 {data: 'namapegawai', name: 'namapegawai'},

@@ -82,7 +82,7 @@
                         }
                     },
             columns: [
-                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'radio', name: 'aksi', class:'radio-button'},
                 {data: 'jenis', name: 'jenis'},
                 {data: 'batas_awal', name: 'batas_awal'},
                 {data: 'batas_akhir', name: 'batas_akhir'},

@@ -121,16 +121,15 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button text-center'},
+                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                 {data: 'tgl_panjar', name: 'tgl_panjar'},
                 {data: 'no_umk', name: 'no_umk'},
                 {data: 'no_kas', name: 'no_kas'},
                 {data: 'jenis_um', name: 'jenis_um'},
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jumlah', name: 'jumlah'},
-                {data: 'action', name: 'action'},
-            ]
-                
+                {data: 'action', name: 'action', class: 'text-center'},
+            ]     
         });
 
         $('#search-form').on('submit', function(e) {
@@ -152,7 +151,7 @@
             {
                 swalAlertInit('cetak'); 
             } else { 
-                location.replace("{{url('umum/uang-muka-kerja/rekap')}}"+ '/' +dataid);
+                location.replace("{{ url('umum/uang-muka-kerja/rekap') }}"+ '/' +dataid);
             }	
                         
         });
@@ -171,7 +170,7 @@
             {
                 swalAlertInit('ubah');  
             } else {  
-                location.replace("{{url('umum/uang-muka-kerja/edit')}}"+ '/' +dataid);
+                location.replace("{{ url('umum/uang-muka-kerja/edit') }}"+ '/' +dataid);
             }	
                         
         });
@@ -182,8 +181,7 @@
         e.preventDefault();
         $(".btn-radio:checked").each(function() {  
             var dataid = $(this).attr('data-id');
-            if(dataid == 1)  
-            {  
+            if(dataid == 1) {  
                 swalAlertInit('hapus'); 
             } else { 
                 $("input[type=radio]:checked").each(function() {
@@ -214,35 +212,34 @@
                             cancelButtonText: 'Batalkan'
                         })
                         .then((result) => {
-                        if (result.value) {
-                            $.ajax({
-                                url: "{{ route('modul_umum.uang_muka_kerja.delete') }}",
-                                type: 'DELETE',
-                                dataType: 'json',
-                                data: {
-                                    "id": id,
-                                    "_token": "{{ csrf_token() }}",
-                                },
-                                success: function () {
-                                    Swal.fire({
-                                        type  : 'success',
-                                        title : 'Hapus No. UMK ' + id,
-                                        text  : 'Berhasil',
-                                        timer : 2000
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                },
-                                error: function () {
-                                    alert("Terjadi kesalahan, coba lagi nanti");
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-        } 
-                
+                            if (result.value) {
+                                $.ajax({
+                                    url: "{{ route('modul_umum.uang_muka_kerja.delete') }}",
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    data: {
+                                        "id": id,
+                                        "_token": "{{ csrf_token() }}",
+                                    },
+                                    success: function () {
+                                        Swal.fire({
+                                            type  : 'success',
+                                            title : 'Hapus No. UMK ' + id,
+                                            text  : 'Berhasil',
+                                            timer : 2000
+                                        }).then(function() {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function () {
+                                        alert("Terjadi kesalahan, coba lagi nanti");
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
         });
     });
 });
