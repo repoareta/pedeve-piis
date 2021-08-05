@@ -74,7 +74,7 @@
                 }
             },
             columns: [
-                {data: 'action', name: 'aksi', class:'radio-button text-center'},
+                {data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
                 {data: 'kodestore', name: 'kodestore'},
                 {data: 'ak', name: 'ak'},
             ]
