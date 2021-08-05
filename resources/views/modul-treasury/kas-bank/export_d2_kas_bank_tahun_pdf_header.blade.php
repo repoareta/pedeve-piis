@@ -14,7 +14,7 @@
     <?php 
     if($bulan == "00" OR $bulan == "OB"){
         $bln = "OPENING BALANCE $tahun";
-    }else{
+    } else {
         $array_bln	 = array(
             1 =>   'Januari',
             'Februari',

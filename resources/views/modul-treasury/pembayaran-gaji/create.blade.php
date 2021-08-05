@@ -167,7 +167,7 @@
 			$( "#kurs" ).prop( "readonly", true );
 			$('#kurs').css("background-color","#DCDCDC");
 			$('#kurs').css("cursor","not-allowed");
-		}else{
+		} else {
 			var kurs1 = $('#data-kurs').val();
 			$('#kurs').val(kurs1);
 			$('#simbol-kurs').show();
@@ -208,7 +208,7 @@ $('#form-create').submit(function(){
 				title : 'Bulan Buku Tidak Ada Atau Sudah Di Posting.',
 				text  : 'Failed',
 			});
-		}else{
+		} else {
 			Swal.fire({
 				type  : 'info',
 				title : 'Data Yang Diinput Sudah Ada.',
@@ -273,7 +273,7 @@ var jk = $('#jk').val();
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}else{
+	} else {
 		$("#ci").val("");
 		$("#kurs").val("");
 		$("#jnskas").val("");
@@ -338,7 +338,7 @@ $('#nilai').keyup(function(){
 		$("#iklan").val('CR');
 	}else if(nilai > '0'){
 		$("#iklan").val('DR');
-	}else{
+	} else {
 		$("#iklan").val('');
 	}
 });

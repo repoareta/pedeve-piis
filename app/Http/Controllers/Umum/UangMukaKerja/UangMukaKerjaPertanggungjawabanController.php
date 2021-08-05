@@ -33,7 +33,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->orderBy('year', 'DESC')
         ->get([DB::raw('extract(year from tgl_pumk) as year')]);
 
-        return view('modul-umum.umk_pertanggungjawaban.index', compact('tahun'));
+        return view('modul-umum.umk-pertanggungjawaban.index', compact('tahun'));
     }
 
     /**
@@ -71,10 +71,10 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             })
             ->addColumn('approval', function ($row) {
                 if ($row->app_pbd == 'Y') {
-                    $button = '<span class="text-success"><i class="fas fa-check-circle"title="Data Sudah di proses perbendaharaan"></i></span>';
+                    $button = '<span class="text-success"><i class="fas fa-check-circle fa-2x"title="Data Sudah di proses perbendaharaan"></i></span>';
                 } else {
                     if ($row->app_sdm == 'Y') {
-                        $button = '<a href="'. route('uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span class="text-success"><i class="fas fa-check-circle"title="Batalkan Approval"></i></span></a>';
+                        $button = '<a href="'. route('uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span class="text-success"><i class="fas fa-check-circle fa-2x"title="Batalkan Approval"></i></span></a>';
                     } else {
                         $button = '<a href="'. route('uang_muka_kerja.pertanggungjawaban.approval', ['no_pumk' => str_replace('/', '-', $row->no_pumk)]).'"><span class="text-danger"><i class="fas fa-ban" title="Klik untuk Approval"></i></span></a>';
                     }
@@ -118,7 +118,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         
         $c_judex_list = DB::select("SELECT kode,nama from cashjudex order by kode");
 
-        return view('modul-umum.umk_pertanggungjawaban.create', compact(
+        return view('modul-umum.umk-pertanggungjawaban.create', compact(
             'pegawai_list',
             'umk_header_list',
             'pumk_header_count',
@@ -217,7 +217,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         
         $c_judex_list = DB::select("SELECT kode,nama from cashjudex order by kode");
 
-        return view('modul-umum.umk_pertanggungjawaban.edit', compact(
+        return view('modul-umum.umk-pertanggungjawaban.edit', compact(
             'pegawai_list',
             'umk_header_list',
             'jabatan_list',
@@ -280,7 +280,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
         ->first();
 
-        $pdf = DomPDF::loadview('modul-umum.umk_pertanggungjawaban.export_row', [
+        $pdf = DomPDF::loadview('modul-umum.umk-pertanggungjawaban.export_row', [
             'pumk_header' => $pumk_header,
             'pekerja_jabatan' => $pegawai_jabatan
         ]);
@@ -291,7 +291,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
     {
         $no_pumk = str_replace('-', '/', $id);
         $pumk_header = PUmkHeader::where('no_pumk', $no_pumk)->first();
-        return view('modul-umum.umk_pertanggungjawaban.approv', compact('pumk_header'));
+        return view('modul-umum.umk-pertanggungjawaban.approv', compact('pumk_header'));
     }
 
     public function storeApp(Request $request)

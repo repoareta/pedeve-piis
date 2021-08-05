@@ -105,7 +105,7 @@ $('#form-create').submit(function(){
 				title : 'rekap harian ini sudah ada!',
 				text  : 'Info',
 			});
-		}else{
+		} else {
 			Swal.fire({
 				icon  : 'info',
 				title : 'rekap kas sudah dilakukan!',
@@ -138,7 +138,7 @@ var tanggal = $('#tanggal').val();
 				title : 'Tidak Di temuka Data kas Bank Pada Tanggal '+tanggal,
 				text  : 'Failed',
 			});
-			}else{
+			} else {
 				$('#jk').val(data.jk).trigger('change');
 			}
 		},
@@ -168,7 +168,7 @@ var jk = $('#jk').val();
 				title : 'Tidak Di temuka Data kas Bank Pada Tanggal '+tanggal,
 				text  : 'Failed',
 			});
-			}else{
+			} else {
 				$('#nokas').html(data.html);
 			}
 		},

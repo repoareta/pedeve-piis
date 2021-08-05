@@ -54,7 +54,7 @@ class PotonganOtomatisController extends Controller
                 $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.bulan='$bulan' and a.tahun='$tahun' order by a.ccl");
         }elseif($nopek <> null and $aardpot <> null and $bulan == null and $tahun <> null){
                 $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.tahun='$tahun' order by a.ccl");
-        }else{
+        } else {
             $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
         }
         return datatables()->of($data)
@@ -129,7 +129,7 @@ class PotonganOtomatisController extends Controller
         $akhir = $request->ccl + ($request->jmlcc-1);
         if($request->nilai == 0){
             DB::delete("delete from pay_potongan where (tahun||bulan >= '$tahunnext||$bulannext') and nopek='$nopek' and aard='$aard'");
-        }else{
+        } else {
             DB::delete("delete from pay_potongan where (tahun||bulan >= '$tahunnext||$bulannext') and nopek='$nopek' and aard='$aard'");
             for($col=$ccl;$col<=$akhir;$col++){
           

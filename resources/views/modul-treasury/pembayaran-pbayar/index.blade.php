@@ -207,7 +207,7 @@
 											title : 'Penghapusan gagal,data tidak dalam status Opening.',
 											text  : 'Failed',
 										});
-									}else{
+									} else {
 										Swal.fire({
 											type  : 'info',
 											title : 'Sebelum dihapus,status bayar harus dibatalkan dulu.',

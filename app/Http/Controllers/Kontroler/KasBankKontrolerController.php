@@ -63,7 +63,7 @@ class KasBankKontrolerController extends Controller
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             StoreJK::insert([
                 'jeniskartu' => $request->jk,
                 'kodestore' => $request->kode,
@@ -140,7 +140,7 @@ class KasBankKontrolerController extends Controller
                 $tahun = substr($data_bul->bulan_buku,0,-2); 
                 $bulan = substr($data_bul->bulan_buku,4); 
             }
-        }else{
+        } else {
             $bulan ='00';
             $tahun ='0000';
         }
@@ -155,11 +155,11 @@ class KasBankKontrolerController extends Controller
             {
                 if(is_null($dat->thnbln)){
                     $thnblopen2 = "";
-                }else{
+                } else {
                     $thnblopen2 = $dat->thnbln;
                 }
             }
-        }else{
+        } else {
             $thnblopen2 = "";
         }
         $tahun = $request->tahun;
@@ -182,9 +182,9 @@ class KasBankKontrolerController extends Controller
         return datatables()->of($data)
         ->addColumn('action', function ($data) {
             if($data->paid == 'Y'){
-                return '<span class="text-success pointer-link"  title="Batalkan Pembayaran"><i class="fas fa-check-circle"></i></span>';
-            }else{
-                return '<span class="text-danger pointer-link"  title="Klik Untuk Pembayaran"><i class="fas fa-ban" ></i></span>';
+                return '<span class="text-success pointer-link"  title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x"></i></span>';
+            } else {
+                return '<span class="text-danger pointer-link"  title="Klik Untuk Pembayaran"><i class="fas fa-ban fa-2x"></i></span>';
             }
        })
         ->addColumn('docno', function ($data) {
@@ -214,7 +214,7 @@ class KasBankKontrolerController extends Controller
         ->addColumn('nilai', function ($data) {
             if ($data->nilai_dok == "") {
                 return  '0';
-            }else{
+            } else {
                 return number_format($data->nilai_dok,2,'.',',');
             }
        })
@@ -254,7 +254,7 @@ class KasBankKontrolerController extends Controller
                 $id = "T";
             }elseif(Auth::user()->userid == "AA"){
                 $id = "A";
-            }else{
+            } else {
                 $id = "K";
             }
 
@@ -277,7 +277,7 @@ class KasBankKontrolerController extends Controller
                     $nbuku2 = "";
                     $kas2 = "";
                     $nkas2 = "";
-                }else{
+                } else {
                     $minta1 = "";
                     $nminta1 = "";
                     $verifikasi1 = "";
@@ -349,7 +349,7 @@ class KasBankKontrolerController extends Controller
             $mp = substr($docno,0,1);
             if($mp == "M" or $mp == "m"){
                 $reportname = "export_merah";
-            }else{
+            } else {
                 $reportname = "export_putih";
             }
             $pdf = DomPDF::loadview("kas_bank_kontroler.$reportname",compact(
@@ -378,7 +378,7 @@ class KasBankKontrolerController extends Controller
             $canvas->page_text(105, 75,"", null, 10, array(0, 0, 0)); //slip Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data", 'Failed')->persistent(true);
             return redirect()->route('cetak_kas_bank.index');
         }

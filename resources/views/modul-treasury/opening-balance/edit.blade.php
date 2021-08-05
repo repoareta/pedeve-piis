@@ -64,7 +64,7 @@
                                 title : '~Opening Balance tidak bisa di batalkan, Opening Balance bulan terakhir harus dibatalkan terlebih dahulu',
                                 text  : 'Info',
                             });
-                        }else{
+                        } else {
                             Swal.fire({
                                 icon  : 'success',
                                 title : 'Data Berhasil Dibatalkan Dan Opening Balance Terakhir Adalah!~~' +data,

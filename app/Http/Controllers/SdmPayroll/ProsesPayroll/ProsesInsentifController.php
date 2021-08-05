@@ -52,7 +52,7 @@ class ProsesInsentifController extends Controller
         if($data_bulan - 1 == 0){
             $bulangaji="12";
             $tahungaji=$data_tahun - 1;
-        }else{
+        } else {
             $bulangaji=$data_bulan - 1;
             $tahungaji= $data_tahun;
         }
@@ -60,13 +60,13 @@ class ProsesInsentifController extends Controller
             
                 if($prosesupah == 'A'){
                     $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
-                }else{
+                } else {
                     $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan' and status='$prosesupah'");
                 }
                 if(!empty($data_Cekinsentif)){ //di rubah !
                         Alert::Info("Data Insentif bulan $data_bulan dan tahun $data_tahun sudah pernah di proses", 'Info')->persistent(true);
                         return redirect()->route('modul_sdm_payroll.proses_insentif.index');
-                }else{
+                } else {
                         if($request->prosesupah == 'A'){
                             
                                     // PekerjaTetapIns()
@@ -171,7 +171,7 @@ class ProsesInsentifController extends Controller
                                     $biayajabatan2pt = ((5/100) * $totkenapajakpt);
                                     if($biayajabatan2pt > 6000000){
                                         $biayajabatanpt = 6000000;  
-                                    }else{
+                                    } else {
                                         $biayajabatanpt = $biayajabatan2pt;
                                     }
 
@@ -213,7 +213,7 @@ class ProsesInsentifController extends Controller
                                                 $pph21rpt = $sisapokok1pt * $prosenpt;
                                             }elseif($sisapokok1pt > 0 and $sisapokok1pt >= $rangept ){
                                                 $pph21rpt = $rangept * $prosenpt;
-                                            }else{
+                                            } else {
                                                 $pph21rpt = 0;
                                             }
                                         }else {
@@ -330,11 +330,11 @@ class ProsesInsentifController extends Controller
                                             {
                                                 if($data_upkt->nilai <> ""){
                                                     $upahallinkt = $data_upkt->nilai;
-                                                }else{
+                                                } else {
                                                     $upahallinkt = '0';
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             $upahallinkt= '0';
                                         }
                                         
@@ -346,11 +346,11 @@ class ProsesInsentifController extends Controller
                                             {
                                                 if($data_kenakt->nilai1 <> ""){
                                                     $nilaikenapajak1kt  = $data_kenakt->nilai1;
-                                                }else{
+                                                } else {
                                                     $nilaikenapajak1kt  = '0';
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             $nilaikenapajak1kt = '0';
                                         }
 
@@ -364,7 +364,7 @@ class ProsesInsentifController extends Controller
                                         $biayajabatan2kt = ((5/100) * $totkenapajakkt);
                                         if($biayajabatan2kt > 6000000){
                                             $biayajabatankt = 6000000;  
-                                        }else{
+                                        } else {
                                             $biayajabatankt = $biayajabatan2kt;
                                         }
 
@@ -376,11 +376,11 @@ class ProsesInsentifController extends Controller
                                             {
                                                 if($data_ptkt->nilai <> ""){
                                                     $nilaiptkp1kt  = $data_ptkt->nilai;
-                                                }else{
+                                                } else {
                                                     $nilaiptkp1kt  = '0';
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             $nilaiptkp1kt = '0';
                                         }
 
@@ -407,7 +407,7 @@ class ProsesInsentifController extends Controller
                                                     $pph21rkt = $sisapokok1kt * $prosenkt;
                                                 }elseif($sisapokok1kt > 0 and $sisapokok1kt >= $rangekt ){
                                                     $pph21rkt = $rangekt * $prosenkt;
-                                                }else{
+                                                } else {
                                                     $pph21rkt = 0;
                                                 }
                                             }else {
@@ -432,11 +432,11 @@ class ProsesInsentifController extends Controller
                                                     {
                                                         if($data_tunjkt->nilai <> ""){
                                                             $pajakgajikt  = $data_tunjkt->nilai;
-                                                        }else{
+                                                        } else {
                                                             $pajakgajikt  = '0';
                                                         }
                                                     }
-                                                }else{
+                                                } else {
                                                     $pajakgajikt = '0';
                                                 }
 
@@ -448,11 +448,11 @@ class ProsesInsentifController extends Controller
                                                     {
                                                         if($data_potkt->nilai <> ""){
                                                             $potonganinsentifkt  = $data_potkt->nilai;
-                                                        }else{
+                                                        } else {
                                                             $potonganinsentifkt  = '0';
                                                         }
                                                     }
-                                                }else{
+                                                } else {
                                                     $potonganinsentifkt = '0';
                                                 }
 
@@ -614,7 +614,7 @@ class ProsesInsentifController extends Controller
                                      $biayajabatan2pt = ((5/100) * $totkenapajakpt);
                                      if($biayajabatan2pt > 6000000){
                                          $biayajabatanpt = 6000000;  
-                                     }else{
+                                     } else {
                                          $biayajabatanpt = $biayajabatan2pt;
                                      }
  
@@ -656,7 +656,7 @@ class ProsesInsentifController extends Controller
                                                  $pph21rpt = $sisapokok1pt * $prosenpt;
                                              }elseif($sisapokok1pt > 0 and $sisapokok1pt >= $rangept ){
                                                  $pph21rpt = $rangept * $prosenpt;
-                                             }else{
+                                             } else {
                                                  $pph21rpt = 0;
                                              }
                                          }else {
@@ -773,11 +773,11 @@ class ProsesInsentifController extends Controller
                                             {
                                                 if($data_upkt->nilai <> ""){
                                                     $upahallinkt = $data_upkt->nilai;
-                                                }else{
+                                                } else {
                                                     $upahallinkt = '0';
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             $upahallinkt= '0';
                                         }
                                         
@@ -789,11 +789,11 @@ class ProsesInsentifController extends Controller
                                             {
                                                 if($data_kenakt->nilai1 <> ""){
                                                     $nilaikenapajak1kt  = $data_kenakt->nilai1;
-                                                }else{
+                                                } else {
                                                     $nilaikenapajak1kt  = '0';
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             $nilaikenapajak1kt = '0';
                                         }
 
@@ -807,7 +807,7 @@ class ProsesInsentifController extends Controller
                                         $biayajabatan2kt = ((5/100) * $totkenapajakkt);
                                         if($biayajabatan2kt > 6000000){
                                             $biayajabatankt = 6000000;  
-                                        }else{
+                                        } else {
                                             $biayajabatankt = $biayajabatan2kt;
                                         }
 
@@ -819,11 +819,11 @@ class ProsesInsentifController extends Controller
                                             {
                                                 if($data_ptkt->nilai <> ""){
                                                     $nilaiptkp1kt  = $data_ptkt->nilai;
-                                                }else{
+                                                } else {
                                                     $nilaiptkp1kt  = '0';
                                                 }
                                             }
-                                        }else{
+                                        } else {
                                             $nilaiptkp1kt = '0';
                                         }
 
@@ -850,7 +850,7 @@ class ProsesInsentifController extends Controller
                                                     $pph21rkt = $sisapokok1kt * $prosenkt;
                                                 }elseif($sisapokok1kt > 0 and $sisapokok1kt >= $rangekt ){
                                                     $pph21rkt = $rangekt * $prosenkt;
-                                                }else{
+                                                } else {
                                                     $pph21rkt = 0;
                                                 }
                                             }else {
@@ -875,11 +875,11 @@ class ProsesInsentifController extends Controller
                                                     {
                                                         if($data_tunjkt->nilai <> ""){
                                                             $pajakgajikt  = $data_tunjkt->nilai;
-                                                        }else{
+                                                        } else {
                                                             $pajakgajikt  = '0';
                                                         }
                                                     }
-                                                }else{
+                                                } else {
                                                     $pajakgajikt = '0';
                                                 }
 
@@ -891,11 +891,11 @@ class ProsesInsentifController extends Controller
                                                     {
                                                         if($data_potkt->nilai <> ""){
                                                             $potonganinsentifkt  = $data_potkt->nilai;
-                                                        }else{
+                                                        } else {
                                                             $potonganinsentifkt  = '0';
                                                         }
                                                     }
-                                                }else{
+                                                } else {
                                                     $potonganinsentifkt = '0';
                                                 }
 
@@ -986,7 +986,7 @@ class ProsesInsentifController extends Controller
                     if($data_cekbayar == 'N'){
                         if($prosesupah == 'A'){
                             $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan'");
-                        }else{
+                        } else {
                             $data_Cekinsentif = DB::select("SELECT * from pay_master_insentif where tahun='$data_tahun' and bulan='$data_bulan' and status='$prosesupah'");
                         }
                             if(!empty($data_Cekinsentif)){
@@ -995,7 +995,7 @@ class ProsesInsentifController extends Controller
                                         StatBayarInsentif::where('tahun', $data_tahun)->where('bulan',$data_bulan)->delete();
                                     }elseif($request->prosesupah == 'C'){
                                         MasterInsentif::where('tahun', $data_tahun)->where('bulan',$data_bulan)->where('status',$prosesupah)->delete();
-                                    }else{
+                                    } else {
                                         MasterInsentif::where('tahun', $data_tahun)->where('bulan',$data_bulan)->where('status',$prosesupah)->delete();
                                     }
                                     Alert::success("Proses pembatalan proses Insentif selesai", 'Berhasil')->persistent(true);
@@ -1009,7 +1009,7 @@ class ProsesInsentifController extends Controller
                         Alert::info("Tidak bisa dibatalkan Data Insentif bulan $data_bulan tahun $data_tahun sudah di proses perbendaharaan", 'Info')->persistent(true);
                         return redirect()->route('modul_sdm_payroll.proses_insentif.index');
                     }
-            }else{
+            } else {
                     Alert::Info("Tidak ditemukan data insentif bulan $data_bulan dan tahun $data_tahun", 'Info')->persistent(true);
                     return redirect()->route('modul_sdm_payroll.proses_insentif.index');
             }
@@ -1046,7 +1046,7 @@ class ProsesInsentifController extends Controller
             $canvas->page_text(910, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //slip Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
             return redirect()->route('modul_sdm_payroll.proses_insentif.slip_insentif');
         }
@@ -1080,7 +1080,7 @@ class ProsesInsentifController extends Controller
             $canvas->page_text(740, 115, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
             return redirect()->route('modul_sdm_payroll.proses_insentif.rekap_insentif');
         }

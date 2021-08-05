@@ -224,7 +224,7 @@
                 @foreach($data_detail as $data_d)
                 <?php $no++; ?>
                 <tr class="table-info">
-                    <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno}}" nourut="{{ $data_d->lineno}}"  class="btn-radio" ><span></span></label></td>
+                    <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno}}" nourut="{{ $data_d->lineno}}"  class="btn-radio"><span></span></label></td>
                     <td scope="row" align="center">{{ $data_d->lineno}}</td>
                     <td>{{ $data_d->keterangan}}</td>
                     <td align="center">{{ $data_d->account}}</td>
@@ -241,7 +241,7 @@
                 <td class="text-right"><?php 
                     if ($count <> "") {
                         echo number_format($count, 2, '.', ',');
-                    }else{
+                    } else {
                         echo '0.00';
                     }
                 ?></td>
@@ -400,7 +400,7 @@ $(document).ready(function () {
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}else{
+	} else {
 		$("#ci").val("");
 		$("#kurs").val("");
 		$( "#kurs" ).prop( "required", true );
@@ -530,7 +530,7 @@ var jk = $('#jk').val();
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}else{
+	} else {
 		$("#ci").val("");
 		$("#kurs").val("");
 		$( "#kurs" ).prop( "required", true );
@@ -602,7 +602,7 @@ $('#nilai').keyup(function(){
 		$("#iklan").val('CR');
 	}else if(nilai > '0'){
 		$("#iklan").val('DR');
-	}else{
+	} else {
 		$("#iklan").val('');
 	}
 });
@@ -672,7 +672,7 @@ if($('input[type=radio]').is(':checked')) {
 				}
 			})
 	});
-}else{
+} else {
 	swalAlertInit('ubah'); 
 }			
 });

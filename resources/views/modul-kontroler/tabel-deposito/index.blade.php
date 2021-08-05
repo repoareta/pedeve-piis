@@ -152,7 +152,7 @@ $(document).ready(function () {
 					}else if(data["warna"] == 2){
 						$( row ).css( "background-color", "#666666" );
 						$('td', row ).css( "color", "#FFFEFE" );
-					}else{
+					} else {
 						$( row ).css( "background-color", "#000000" );
 						$('td', row ).css( "color", "#FFFEFE" );
 					}

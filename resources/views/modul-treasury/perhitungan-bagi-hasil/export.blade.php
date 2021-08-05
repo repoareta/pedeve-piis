@@ -105,19 +105,19 @@
                             //identrupiah
                             if($data->kurs == 1){
                                  $idenrup = $data->nominal;
-                            }else{
+                            } else {
                                 $idenrup = 0;
                             }
                             //identdolar
                             if($data->kurs <> 1){
                                  $idendl = $data->nominal;
-                            }else{
+                            } else {
                                 $idendl = 0;
                             }
                             //identekivalen
                             if($data->kurs <> 1){
                                 $ideneki = $data->nominal * $data->kurs;
-                            }else{
+                            } else {
                                 $ideneki = 0;
                             }
                             $tato = $ideneki + $idenrup;
@@ -128,10 +128,10 @@
                                 if($data->jenis == 'T'){ 
                                     if($data->kurs == 1 ){ 
                                        $rata = ($data->nominal/$sumtot)*$data->bungatahun;
-                                    }else{
+                                    } else {
                                        $rata = (($data->nominal*$data->kurs)/$sumtot)*$data->bungatahun;
                                     }
-                                }else{
+                                } else {
                                     $rata = 0;
                                 }
                                 echo $rata;

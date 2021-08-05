@@ -88,7 +88,7 @@ tr {
                             if($row->ci == 2){
                                 echo number_format($request->kurs * $row->nominal,2);
                                 $total_1[$key+1] = $request->kurs * $row->nominal;
-                            }else{
+                            } else {
                                 echo number_format($row->nominal,2);
                                 $total_1[$key+1] = $row->nominal;
                             }
@@ -113,7 +113,7 @@ tr {
                             if($row->ci == 2){
                                 echo number_format($request->kurs * $row->bungabulan,2);
                                 $total_2[$key+1] = $request->kurs * $row->bungabulan;
-                            }else{
+                            } else {
                                 echo number_format($row->bungabulan,2);
                                 $total_2[$key+1] = $row->bungabulan;
                             }
@@ -124,7 +124,7 @@ tr {
                             if($row->ci == 2){
                                 echo number_format($request->kurs * $row->pph20,2);
                                 $total_3[$key+1] = $request->kurs * $row->pph20;
-                            }else{
+                            } else {
                                 echo number_format($row->pph20,2);
                                 $total_3[$key+1] = $row->pph20;
                             }
@@ -135,7 +135,7 @@ tr {
                             if($row->ci == 2){
                                 echo number_format($request->kurs * $row->netbulan,2);
                                 $total_4[$key+1] = $request->kurs * $row->netbulan;
-                            }else{
+                            } else {
                                 echo number_format($row->netbulan,2);
                                 $total_4[$key+1] = $row->netbulan;
                             }
@@ -147,7 +147,7 @@ tr {
                             if($row->ci == 2){
                                 echo number_format($request->kurs * $row->accnetbulan,2);
                                 $total_5[$key+1] = $request->kurs * $row->accnetbulan;
-                            }else{
+                            } else {
                                 echo number_format($row->accnetbulan,2);
                                 $total_5[$key+1] = $row->accnetbulan;
                             }

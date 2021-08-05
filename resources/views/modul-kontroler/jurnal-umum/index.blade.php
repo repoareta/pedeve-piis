@@ -181,7 +181,7 @@
                                         title : 'Penghapusan Gagal, Data Tidak Dalam Status Opening.',
                                         text  : 'Info',
                                         });
-                                    }else{
+                                    } else {
                                         Swal.fire({
                                         type  : 'info',
                                         title : 'Data Sudah Di Posting, Tidak Bisa Di Update/Hapus.',

@@ -84,7 +84,7 @@ class UangMukaKerjaController extends Controller
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="Y" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" class="btn-radio" name="btn-radio"><span></span></label>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio" ><span></span></label>';
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio"><span></span></label>';
                 } else {
                     $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" class="btn-radio" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio"><span></span></label>';
                 }
@@ -93,12 +93,12 @@ class UangMukaKerjaController extends Controller
         })
         ->addColumn('action', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $action = '<span class="text-success pointer-link" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle"></i></span>';
+                $action = '<span class="text-success pointer-link" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x"></i></span>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="text-success pointer-link"  title="Batalkan Approval"><i class="fas fa-check-circle"></i></span></a>';
+                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="text-success pointer-link"  title="Batalkan Approval"><i class="fas fa-check-circle fa-2x"></i></span></a>';
                 } else {
-                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="text-danger pointer-link"  title="Klik untuk Approval"><i class="fas fa-ban" ></i></span></a>';
+                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="text-danger pointer-link"  title="Klik untuk Approval"><i class="fas fa-ban fa-2x"></i></span></a>';
                 }
             }
             return $action;

@@ -182,7 +182,7 @@
             {
                 $('#userid').val(1);
                 $('#userid').hide();
-            }else{
+            } else {
                 $('#userid').val("");
                 $('#userid').show();
             }

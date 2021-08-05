@@ -73,7 +73,7 @@
 					<?php
 						 if ($data->kurs > "1") {
 							$nmkurs = "DOLLAR";
-						}else{
+						} else {
 							$nmkurs = "RUPIAH";
 						}
 						$tgldep = date_create($data->tgldepo);

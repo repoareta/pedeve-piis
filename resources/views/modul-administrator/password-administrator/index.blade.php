@@ -109,7 +109,7 @@
                 
                 $('#password_lama').attr('type','text');
                 
-            }else{
+            } else {
                 
                 $(this).removeClass('fa-eye');
                 
@@ -129,7 +129,7 @@
                 
                 $('#password_baru').attr('type','text');
                 
-            }else{
+            } else {
                 
                 $(this).removeClass('fa-eye');
                 
@@ -149,7 +149,7 @@
                 
                 $('#password_konfirmasi').attr('type','text');
                 
-            }else{
+            } else {
                 
                 $(this).removeClass('fa-eye');
                 

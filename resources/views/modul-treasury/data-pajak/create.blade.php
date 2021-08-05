@@ -122,7 +122,7 @@
                     }).then(function() {
                         window.location.href = "{{ route('data_pajak.index') }}";
                     });
-                }else{
+                } else {
                     Swal.fire({
                         icon: 'info',
                         title: 'Data Yang Diinput Sudah Ada.',

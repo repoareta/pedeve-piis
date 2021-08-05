@@ -74,10 +74,10 @@ class PermintaanBayarController extends Controller
         })
         ->addColumn('action', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $action = '<span title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
+                $action = '<span title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span title="Batalkan Approval"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
+                    $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span title="Batalkan Approval"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span></a>';
                 } else {
                     $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
                 }

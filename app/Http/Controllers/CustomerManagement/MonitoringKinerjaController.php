@@ -40,7 +40,7 @@ class MonitoringKinerjaController extends Controller
         ->addColumn('ci', function ($data) {
             if($data->ci == 1){
                 return "IDR";
-            }else{
+            } else {
                 return "USD";
             }
         })

@@ -46,14 +46,14 @@ class PenempatanDepositoController extends Controller
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulan' and b.tahun='$tahun' order by a.tgltempo asc");
             }elseif($bulan == "" and $tahun <> ""){ 
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.tahun='$tahun' order by a.tgltempo asc" );				    
-            }else{
+            } else {
                 $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
                 if(!empty($data_tahunbulan)){
                     foreach($data_tahunbulan as $data_bul)
                     {
                         $bulan_buku = $data_bul->bulan_buku;
                     }
-                }else{
+                } else {
                     $tgl = now();
                     $tanggal = date_format($tgl, 'Ym');
                     $bulan_buku = $tanggal;
@@ -72,7 +72,7 @@ class PenempatanDepositoController extends Controller
                         return 1;
                     }elseif($tgltempo <= date('Y-m-d')){
                         return 2;
-                    }else{
+                    } else {
                         return 3;
                     }
                 })
@@ -222,7 +222,7 @@ class PenempatanDepositoController extends Controller
                     {
                         if($data_kdb->v_jenis == 'T'){
                                 $v_pembagi = '36000';
-                        }else{
+                        } else {
                                 $v_pembagi = '36500';
                         }
                     }
@@ -239,7 +239,7 @@ class PenempatanDepositoController extends Controller
                     $v_range = $tgltempo - $tgldep;
                     if($v_range < 0 ){
                         $v_rangeok = ($tgltempo+12) - $tgldep;
-                    }else{
+                    } else {
                         $v_rangeok = $v_range;
                     }
             
@@ -598,7 +598,7 @@ class PenempatanDepositoController extends Controller
                     {
                         if($data_kdb->v_jenis == 'T'){
                                 $v_pembagi = '36000';
-                        }else{
+                        } else {
                                 $v_pembagi = '36500';
                         }
                     }
@@ -615,7 +615,7 @@ class PenempatanDepositoController extends Controller
                     $v_range = $tgltempo - $tgldep;
                     if($v_range < 0 ){
                         $v_rangeok = ($tgltempo+12) - $tgldep;
-                    }else{
+                    } else {
                         $v_rangeok = $v_range;
                     }
             
@@ -735,7 +735,7 @@ class PenempatanDepositoController extends Controller
         // if($request->lapangan == ""){
         $lp = "a.asal in ('MD','MS')";
         $lapangan = "MD,MS";
-        // }else{
+        // } else {
         //     $lp = "a.asal='$request->lapangan'";
         //     $lapangan = "$request->lapangan";
         // }

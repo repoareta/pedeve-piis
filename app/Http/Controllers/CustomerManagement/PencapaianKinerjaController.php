@@ -30,7 +30,7 @@ class PencapaianKinerjaController extends Controller
     {   
         if($request->perusahaan <> null){
             $perusahaan = "and a.kd_perusahaan = '$request->perusahaan'";
-        }else{
+        } else {
             $perusahaan = "";
         }
         $data_perusahaan = PerusahaanAfiliasi::all();
@@ -43,7 +43,7 @@ class PencapaianKinerjaController extends Controller
     {
         if($request->perusahaan == 'A'){
             $perusahaan = '';
-        }else{
+        } else {
             $perusahaan = "and a.kd_perusahaan = '$request->perusahaan'";
         }
         

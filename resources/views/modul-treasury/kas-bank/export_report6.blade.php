@@ -98,12 +98,12 @@
                     <?php $a++;
                         if ($data->rate <= 0) {
                             $rupiah = $data->totprice;
-                        }else{
+                        } else {
                             $rupiah = $data->totprice*$data->rate;
                         }
                         if ($data->ci == 2) {
                             $dolar = $data->totprice;
-                        }else{
+                        } else {
                             $dolar = 0;
                         }
                     ?>

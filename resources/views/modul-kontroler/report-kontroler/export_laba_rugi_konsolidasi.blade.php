@@ -119,34 +119,34 @@
                         <?php
                             if(substr($data->sandi, 0, 3) == 400 and $data->lapangan=='MD'){
                                 $mdupah1[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah1[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 400 and $data->lapangan=='MS'){
                                 $msupah1[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah1[$a] = "0";
                             }
                             
                             if(substr($data->sandi, 0, 3) == 409 and $data->lapangan=='MD'){
                                 $mdupah2[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah2[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 409 and $data->lapangan=='MS'){
                                 $msupah2[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah2[$a] = "0";
                             }
 
                             if(substr($data->sandi, 0, 3) == 420 and $data->lapangan=='MD'){
                                 $mdupah3[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah3[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 420 and $data->lapangan=='MS'){
                                 $msupah3[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah3[$a] = "0";
                             }
                         ?>
@@ -190,23 +190,23 @@
                         <?php
                             if(substr($data->sandi, 0, 3) == 500 and $data->lapangan=='MD'){
                                 $mdupah4[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah4[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 500 and $data->lapangan=='MS'){
                                 $msupah4[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah4[$a] = "0";
                             }
 
                             if(substr($data->sandi, 0, 3) == 510 and $data->lapangan=='MD'){
                                 $mdupah5[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah5[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 510 and $data->lapangan=='MS'){
                                 $msupah5[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah5[$a] = "0";
                             }
                             
@@ -222,7 +222,7 @@
                                     } else {
                                         $mdupah6[$a] =  $data->pengali_tampil*$data->cum_rp ;
                                     }
-                            }else{ 
+                            } else { 
                                 $mdupah6[$a] = "0";
                             }
                             if (substr($data->sandi, 0, 3) == 512 and $data->sub_akun== 510 and $data->lapangan=='MS') {
@@ -238,40 +238,40 @@
                                         $msupah6[$a] =  $data->pengali_tampil*$data->cum_rp ;
                                     }
 
-                            }else{ 
+                            } else { 
                                 $msupah6[$a] = "0";
                             }
                             
                             if(substr($data->sandi, 0, 3) == 516 and $data->lapangan=='MD'){
                                 $mdupah7[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah7[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 516 and $data->lapangan=='MS'){
                                 $msupah7[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah7[$a] = "0";
                             }
 
                             if(substr($data->sandi, 0, 3) == 530 and $data->lapangan=='MD'){
                                 $mdupah8[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah8[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 530 and $data->lapangan=='MS'){
                                 $msupah8[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah8[$a] = "0";
                             }
 
                             if(substr($data->sandi, 0, 3) == 540 and $data->lapangan=='MD'){
                                 $mdupah9[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $mdupah9[$a] = "0";
                             }
                             if(substr($data->sandi, 0, 3) == 540 and $data->lapangan=='MS'){
                                 $msupah9[$a] =  $data->pengali_tampil*$data->cum_rp ;
-                            }else{ 
+                            } else { 
                                 $msupah9[$a] = "0";
                             }
                             

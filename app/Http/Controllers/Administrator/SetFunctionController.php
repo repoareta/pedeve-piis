@@ -40,7 +40,7 @@ class SetFunctionController extends Controller
         ->addColumn('userlv', function ($data) {
             if($data->userlv == 0){
                 return "ADMINISTRATOR";
-            }else{
+            } else {
                 return "USER";
             }
         })
@@ -104,27 +104,27 @@ class SetFunctionController extends Controller
     {
         if($request->tambah == ""){
             $tambah = 0;
-        }else{
+        } else {
             $tambah = 1;
         }
         if($request->ubah == ""){
             $rubah = 0;
-        }else{
+        } else {
             $rubah = 1;
         }
         if($request->hapus == ""){
             $hapus = 0;
-        }else{
+        } else {
             $hapus = 1;
         }
         if($request->cetak == ""){
             $cetak = 0;
-        }else{
+        } else {
             $cetak = 1;
         }
         if($request->lihat == ""){
             $lihat = 0;
-        }else{
+        } else {
             $lihat = 1;
         }
 

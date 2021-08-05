@@ -120,7 +120,7 @@
 							</div>
 							<label for="nopek-input" class="col-2 col-form-label">Currency Index</label>
 							<div class="col-3">
-								<input class="form-control" type="text" name="ci" value="{{ $ci}}"  id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php }else{ }?>>
+								<input class="form-control" type="text" name="ci" value="{{ $ci}}"  id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php } else { }?>>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -232,7 +232,7 @@
 						<tbody>
 						@foreach($data_detail as $data_d)
 							<tr>
-								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio"><span></span></label></td>
 								<td>{{ $data_d->lineno}}</td>
 								<td>{{ $data_d->lokasi}}</td>
 								<td>{{ $data_d->account}}</td>
@@ -512,7 +512,7 @@ $("#jk").on("change", function(){
 		$( "#ci" ).prop( "readonly", true );
 		$('#ci').css("background-color","#DCDCDC");
 		$('#ci').css("cursor","not-allowed");
-	}else{
+	} else {
 		$('#ci').val(2);
 		$( "#ci" ).prop( "required", true );
 		$( "#ci" ).prop( "readonly", false );
@@ -548,7 +548,7 @@ $('#form-edit').submit(function(){
 						text  : 'Info',
 						timer : 2000
 						});
-					}else{
+					} else {
 						Swal.fire({
 						type  : 'info',
 						title : 'Data Sudah Di Posting, Tidak Bisa Di Update/Hapus.',
@@ -594,7 +594,7 @@ $('#form-edit').submit(function(){
 						}).then(function() {
 							location.reload();
 						});
-				}else{
+				} else {
 					Swal.fire({
 						type  : 'info',
 						title : 'Sandi Perkiraan Salah/Tidak Ditemukan.',

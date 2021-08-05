@@ -131,7 +131,7 @@ $(document).ready(function () {
                                 title : 'Status cair tidak bisa dihapus.',
                                 text  : 'Info',
                             });
-                }else{
+                } else {
                     const swalWithBootstrapButtons = Swal.mixin({
                         customClass: {
                             confirmButton: 'btn btn-primary',

@@ -171,12 +171,12 @@ class PembayaranGajiController extends Controller
             })
             ->addColumn('action', function ($data) {
                 if ($data->verified == 'Y') {
-                    $action = '<span class="text-success pointer-link" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle"></i></span>';
+                    $action = '<span class="text-success pointer-link" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle fa-2x"></i></span>';
                 } else {
                     if ($data->paid == 'Y') {
-                        $action = '<a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="kt-font-warning pointer-link"   title="Batalkan Pembayaran"><i class="fas fa-check-circle"></i></span></a>';
+                        $action = '<a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="kt-font-warning pointer-link"   title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x"></i></span></a>';
                     } else {
-                        $action = '<a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="text-danger pointer-link"  title="Klik untuk Pembayaran"><i class="fas fa-ban" ></i></span></a>';
+                        $action = '<a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="text-danger pointer-link"  title="Klik untuk Pembayaran"><i class="fas fa-ban fa-2x"></i></span></a>';
                     }
                 }
                 return $action;

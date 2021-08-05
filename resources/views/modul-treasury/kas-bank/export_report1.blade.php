@@ -112,12 +112,12 @@
                                  $jmlrp = number_format($data->totprice,0); 
                             }elseif($data->ci == 2){ 
                                 $jmlrp = number_format($data->totprice * $data->rate); 
-                            }else{ 
+                            } else { 
                                 $jmlrp = '0'; 
                             }
                             if($data->ci == 2){ 
                                  $jmldl = number_format($data->totprice,0); 
-                            }else{ 
+                            } else { 
                                 $jmldl = '0'; 
                             }
                         ?>

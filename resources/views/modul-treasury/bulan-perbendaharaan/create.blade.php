@@ -148,7 +148,7 @@
 					}).then(function(data) {
 						location.href = "{{ route('bulan_perbendaharaan.index') }}";
 						});
-				}else{
+				} else {
 					Swal.fire({
 						icon  : 'info',
 						title : 'Duplikasi data dokumen, entri dibatalkan.',

@@ -186,7 +186,7 @@ $(document).ready(function () {
 								title : 'Data Tidak Bisa Dihapus, Data Sudah di Proses Perbendaharaan.',
 								text  : 'Failed',
 							});
-				}else{
+				} else {
 					const swalWithBootstrapButtons = Swal.mixin({
 						customClass: {
 							confirmButton: 'btn btn-primary',

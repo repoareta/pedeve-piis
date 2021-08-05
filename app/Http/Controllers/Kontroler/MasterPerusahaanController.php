@@ -42,7 +42,7 @@ class MasterPerusahaanController extends Controller
         if(!empty($data)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
         DB::table('tab_tbl_prshn')->insert([
             'kode' => $request->kode,
             'nama' => $request->nama,

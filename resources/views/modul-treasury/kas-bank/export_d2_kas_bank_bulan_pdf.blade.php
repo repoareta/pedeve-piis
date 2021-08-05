@@ -105,12 +105,12 @@ tr {
                         $total_ci_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $total_ci_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $total_ci_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $total_ci_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $total_ci_2_rp = 0;
                     }
 
@@ -119,12 +119,12 @@ tr {
                         $total_sandi_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $total_sandi_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $total_sandi_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $total_sandi_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $total_sandi_2_rp = 0;
                     }
 
@@ -133,12 +133,12 @@ tr {
                         $sub_debet_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $sub_debet_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $sub_debet_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $sub_debet_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $sub_debet_2_rp = 0;
                     }
                     //TOTAL DEBET
@@ -146,12 +146,12 @@ tr {
                         $total_debet_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $total_debet_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $total_debet_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $total_debet_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $total_debet_2_rp = 0;
                     }
                     
@@ -160,12 +160,12 @@ tr {
                         $sub_kredit_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $sub_kredit_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $sub_kredit_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $sub_kredit_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $sub_kredit_2_rp = 0;
                     }
                     //TOTAL KREDIT
@@ -173,12 +173,12 @@ tr {
                         $total_kredit_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $total_kredit_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $total_kredit_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $total_kredit_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $total_kredit_2_rp = 0;
                     }
                     
@@ -187,12 +187,12 @@ tr {
                         $total_main_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $total_main_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $total_main_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $total_main_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $total_main_2_rp = 0;
                     }
                     
@@ -201,12 +201,12 @@ tr {
                         $total_class_1_rp += $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $total_class_1_rp += $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $total_class_1_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $total_class_2_rp += $row['totprice'];
-                    }else{
+                    } else {
                         $total_class_2_rp = 0;
                     }
 
@@ -217,18 +217,18 @@ tr {
                         $jml_rp = $row['totprice'];
                     }elseif ($row->ci == 2) {
                         $jml_rp = $row['totprice']*$row['rate'];
-                    }else{
+                    } else {
                         $jml_rp = 0;
                     }
                     if ($row->ci == 2) {
                         $jml_dl = $row['totprice'];
-                    }else{
+                    } else {
                         $jml_dl = 0;
                     }
 
                     if($row->ci == '1'){
                         $kurs = "";
-                    }else{
+                    } else {
                         $kurs = number_format($row->rate,2);
                     }
 
@@ -259,7 +259,7 @@ tr {
                             $lapangan =  $data_list[$key+1]['lokasi'];
                             $sanmain =  substr($data_list[$key+1]['account'],0,3);
                             $sanclass =  substr($data_list[$key+1]['account'],0,1);
-                        }else{
+                        } else {
                             $sandi =  substr($data_list[$key]['account'],0,2);
                             $mu =  $data_list[$key]['ci']*2;
                             $lapangan =  substr($data_list[$key]['lokasi'],0,1);

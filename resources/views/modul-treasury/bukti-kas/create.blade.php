@@ -363,7 +363,7 @@
                 $("#iklan").val('CR');
             }else if(nilai > '0'){
                 $("#iklan").val('DR');
-            }else{
+            } else {
                 $("#iklan").val('');
             }
         });

@@ -66,13 +66,13 @@ class PotonganKoreksiGajiController extends Controller
                 $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.tahun ='$tahuns' order by a.tahun desc,a.bulan desc");
             }elseif($bulan == null and $tahun <> null){
                 $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.tahun ='$tahun' order by a.tahun desc,a.bulan desc");
-            }else{
+            } else {
                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.bulan='$bulan' and a.tahun='$tahun' order by a.tahun desc,a.bulan desc");
             }
-        }else{
+        } else {
             if($bulan == null and $tahun == null){
                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.nopek='$nopek' order by a.tahun desc,a.bulan desc");	
-            }else{
+            } else {
                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.bulan='$bulan' and a.tahun='$tahun' and a.nopek='$nopek' order by a.tahun desc,a.bulan desc");
             }
         }
@@ -213,7 +213,7 @@ class PotonganKoreksiGajiController extends Controller
             $canvas->page_text(740, 115, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
             return redirect()->route('potongan_koreksi_gaji.ctkkoreksi');
         }

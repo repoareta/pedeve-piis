@@ -231,7 +231,7 @@
 				$( "#ci" ).prop( "readonly", true );
 				$('#ci').css("background-color","#DCDCDC");
 				$('#ci').css("cursor","not-allowed");
-			}else{
+			} else {
 				$('#ci').val(2);
 				$( "#ci" ).prop( "required", true );
 				$( "#ci" ).prop( "readonly", false );
@@ -262,7 +262,7 @@
 					}).then(function(data) {
 						window.location.replace("{{ route('jurnal_umum.edit', ['no' => $docno] ) }}");
 						});
-				}else{
+				} else {
 					Swal.fire({
 						type  : 'info',
 						title : 'Duplikasi data dokumen, entri dibatalkan.',

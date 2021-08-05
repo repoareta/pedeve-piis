@@ -132,7 +132,7 @@ foreach($data_list as $key=>$row){
                                         $jenis = $data_peg->gender;
                                         $kdkel = $data_peg->kodekeluarga;
                                     }
-                                }else{
+                                } else {
                                     $nama = '-';
                                     $npwp = '-';
                                     $alamat = '-';
@@ -153,7 +153,7 @@ foreach($data_list as $key=>$row){
                                         $mulai = $data_t->mulai;
                                         $sampai = $data_t->sampai;
                                     }
-                                }else{
+                                } else {
                                     $data_tunjpajak = 0;
                                     $data_no_2 = 0;
                                     $data_no_10 = 0;
@@ -221,7 +221,7 @@ foreach($data_list as $key=>$row){
                                             echo "K/2";
                                         }else if($kdkel =='203'){
                                             echo "K/3";
-                                        }else{
+                                        } else {
                                             echo "";
                                         }
                                     ?>

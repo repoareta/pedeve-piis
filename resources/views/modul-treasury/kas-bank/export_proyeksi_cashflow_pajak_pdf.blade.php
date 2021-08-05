@@ -172,7 +172,7 @@ tr {
                             $urutan = "Penyertaan Saham Langsung";
                         }else if ($row->urutan =='18'){
                             $urutan = "Lain-Lain";
-                        }else{
+                        } else {
                             $urutan = "-";
                         }
                     if ($row->status != $status) {
@@ -183,7 +183,7 @@ tr {
                                 <td class="th-small"></td>
                                 <td class="th-small"></td>
                             </tr>';
-                        }else{
+                        } else {
                             echo '<tr style="font-weight: bold;">
                                 <td class="th-small text-left">PENGELUARAN</td>
                                 <td class=" text-left"></td>
@@ -201,7 +201,7 @@ tr {
                             <td class="th-small text-right">'.$data_01_1.'</td>
                             <td class="th-small text-right">'.$data_01_2.'</td>
                         </tr>';
-                    }else{
+                    } else {
                         
                         echo '<tr>
                             <td class="th-small text-left"  style="padding-left:5%;">- '.$urutan.'</td>

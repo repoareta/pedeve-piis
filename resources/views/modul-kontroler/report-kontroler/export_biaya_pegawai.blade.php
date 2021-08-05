@@ -78,221 +78,221 @@
 
                     if($data->tigadigit == 500 and $data->lapangan=='MD'){
                         $mdupah[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah[$a] = "0";
                     }
                     if($data->tigadigit == 500 and $data->lapangan=='MS'){
                         $msupah[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah[$a] = "0";
                     }
 
                     if($data->tigadigit == 501 and $data->lapangan=='MD'){
                         $mdupah1[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah1[$a] = "0";
                     }
                     if($data->tigadigit == 501 and $data->lapangan=='MS'){
                         $msupah1[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah1[$a] = "0";
                     }
 
                     if($data->tigadigit == 502 and $data->lapangan=='MD'){
                         $mdupah2[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah2[$a] = "0";
                     }
                     if($data->tigadigit == 502 and $data->lapangan=='MS'){
                         $msupah2[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah2[$a] = "0";
                     }
 
                     if($data->tigadigit == 503 and $data->lapangan=='MD'){
                         $mdupah3[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah3[$a] = "0";
                     }
                     if($data->tigadigit == 503 and $data->lapangan=='MS'){
                         $msupah3[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah3[$a] = "0";
                     }
                     
                     if($data->tigadigit == 504 and $data->lapangan=='MD'){
                         $mdupah4[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah4[$a] = "0";
                     }
                     if($data->tigadigit == 504 and $data->lapangan=='MS'){
                         $msupah4[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah4[$a] = "0";
                     }
 
                     if($data->tigadigit == 505 and $data->lapangan=='MD'){
                         $mdupah5[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah5[$a] = "0";
                     }
                     if($data->tigadigit == 505 and $data->lapangan=='MS'){
                         $msupah5[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah5[$a] = "0";
                     }
 
                     if($data->tigadigit == 506 and $data->lapangan=='MD'){
                         $mdupah6[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah6[$a] = "0";
                     }
                     if($data->tigadigit == 506 and $data->lapangan=='MS'){
                         $msupah6[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah6[$a] = "0";
                     }
 
                     if($data->tigadigit == 507 and $data->lapangan=='MD'){
                         $mdupah7[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah7[$a] = "0";
                     }
                     if($data->tigadigit == 507 and $data->lapangan=='MS'){
                         $msupah7[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah7[$a] = "0";
                     }
 
                     if($data->tigadigit == 508 and $data->lapangan=='MD'){
                         $mdupah8[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah8[$a] = "0";
                     }
                     if($data->tigadigit == 508 and $data->lapangan=='MS'){
                         $msupah8[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah8[$a] = "0";
                     }
 
                     if($data->tigadigit == 509 and $data->lapangan=='MD'){
                         $mdupah9[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah9[$a] = "0";
                     }
                     if($data->tigadigit == 509 and $data->lapangan=='MS'){
                         $msupah9[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah9[$a] = "0";
                     }
 
                     if($data->tigadigit == 510 and $data->lapangan=='MD'){
                         $mdupah10[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah10[$a] = "0";
                     }
                     if($data->tigadigit == 510 and $data->lapangan=='MS'){
                         $msupah10[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah10[$a] = "0";
                     }
 
                     if($data->tigadigit == 511 and $data->lapangan=='MD'){
                         $mdupah11[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah11[$a] = "0";
                     }
                     if($data->tigadigit == 511 and $data->lapangan=='MS'){
                         $msupah11[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah11[$a] = "0";
                     }
 
                     if($data->tigadigit == 512 and $data->lapangan=='MD'){
                         $mdupah12[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah12[$a] = "0";
                     }
                     if($data->tigadigit == 512 and $data->lapangan=='MS'){
                         $msupah12[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah12[$a] = "0";
                     }
                     
                     if($data->tigadigit == 513 and $data->lapangan=='MD'){
                         $mdupah13[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah13[$a] = "0";
                     }
                     if($data->tigadigit == 513 and $data->lapangan=='MS'){
                         $msupah13[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah13[$a] = "0";
                     }
 
                     if($data->tigadigit == 514 and $data->lapangan=='MD'){
                         $mdupah14[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah14[$a] = "0";
                     }
                     if($data->tigadigit == 514 and $data->lapangan=='MS'){
                         $msupah14[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah14[$a] = "0";
                     }
 
                     if($data->tigadigit == 515 and $data->lapangan=='MD'){
                         $mdupah15[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah15[$a] = "0";
                     }
                     if($data->tigadigit == 515 and $data->lapangan=='MS'){
                         $msupah15[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah15[$a] = "0";
                     }
 
                     if($data->tigadigit == 516 and $data->lapangan=='MD'){
                         $mdupah16[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah16[$a] = "0";
                     }
                     if($data->tigadigit == 516 and $data->lapangan=='MS'){
                         $msupah16[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah16[$a] = "0";
                     }
 
                     if($data->tigadigit == 517 and $data->lapangan=='MD'){
                         $mdupah17[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah17[$a] = "0";
                     }
                     if($data->tigadigit == 517 and $data->lapangan=='MS'){
                         $msupah17[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah17[$a] = "0";
                     }
 
                     if($data->tigadigit == 518 and $data->lapangan=='MD'){
                         $mdupah18[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah18[$a] = "0";
                     }
                     if($data->tigadigit == 518 and $data->lapangan=='MS'){
                         $msupah18[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah18[$a] = "0";
                     }
 
                     if($data->tigadigit == 519 and $data->lapangan=='MD'){
                         $mdupah19[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $mdupah19[$a] = "0";
                     }
                     if($data->tigadigit == 519 and $data->lapangan=='MS'){
                         $msupah19[$a] =  $data->cum_rp ;
-                    }else{ 
+                    } else { 
                         $msupah19[$a] = "0";
                     }
 

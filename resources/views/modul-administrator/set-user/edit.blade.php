@@ -73,27 +73,27 @@
                         <?php
                             if(substr_count($data->userap,"A") > 0){
                                 $userp1 = "A"; 
-                            }else{ 
+                            } else { 
                                 $userp1="";
                             } 
                             if(substr_count($data->userap,"G") > 0){
                                 $userp2 = "G"; 
-                            }else{ 
+                            } else { 
                                 $userp2="";
                             } 
                             if(substr_count($data->userap,"D") > 0){ 
                                 $userp3 = "D"; 
-                            }else{ 
+                            } else { 
                                 $userp3="";
                             } 
                             if(substr_count($data->userap,"E") > 0){ 
                                 $userp4 = "E"; 
-                            }else{ 
+                            } else { 
                                 $userp4="";
                             } 
                             if(substr_count($data->userap,"F") > 0){ 
                                 $userp5 = "F"; 
-                            }else{ 
+                            } else { 
                                 $userp5="";
                             } 
 						?>
