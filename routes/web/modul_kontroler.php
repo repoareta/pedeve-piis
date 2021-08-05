@@ -16,6 +16,7 @@ use App\Http\Controllers\Kontroler\PostingKasBankController;
 use App\Http\Controllers\Kontroler\ReportKontrolerController;
 use App\Http\Controllers\Kontroler\SandiPerkiraanController;
 use App\Http\Controllers\Kontroler\TabelDepositoController;
+use Illuminate\Routing\RouteGroup;
 
 Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
 
@@ -129,96 +130,100 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     });
     //end tabel_deposito
 
+    // Tabel 
+    Route::prefix('tabel.')->group(function () {
 
-    //cash_judex
-    // Route assigned name "cash_judex.index"...
-    Route::name('cash_judex.')->group(function () {
-        Route::get('cash-judex', [CashJudexController::class, 'index'])->name('index');
-        Route::post('cash-judex/index/index-json', [CashJudexController::class, 'indexJson'])->name('index.json');
-        Route::get('cash-judex/create', [CashJudexController::class, 'create'])->name('create');
-        Route::post('cash-judex/store', [CashJudexController::class, 'store'])->name('store');
-        Route::get('cash-judex/edit/{no}', [CashJudexController::class, 'edit'])->name('edit');
-        Route::post('cash-judex/update', [CashJudexController::class, 'update'])->name('update');
-        Route::delete('cash-judex/delete', [CashJudexController::class, 'delete'])->name('delete');
-    });
-    //end cash_judex
-
-
-    //jenis_biaya
-    // Route assigned name "jenis_biaya.index"...
-    Route::name('jenis_biaya.')->group(function () {
-        Route::get('jenis-biaya', [JenisBiayaController::class, 'index'])->name('index');
-        Route::post('jenis-biaya/index/index-json', [JenisBiayaController::class, 'indexJson'])->name('index.json');
-        Route::get('jenis-biaya/create', [JenisBiayaController::class, 'create'])->name('create');
-        Route::post('jenis-biaya/store', [JenisBiayaController::class, 'store'])->name('store');
-        Route::get('jenis-biaya/edit/{no}', [JenisBiayaController::class, 'edit'])->name('edit');
-        Route::post('jenis-biaya/update', [JenisBiayaController::class, 'update'])->name('update');
-        Route::delete('jenis-biaya/delete', [JenisBiayaController::class, 'delete'])->name('delete');
-    });
-    //end jenis_biaya
+        //cash_judex
+        // Route assigned name "cash_judex.index"...
+        Route::name('cash_judex.')->group(function () {
+            Route::get('cash-judex', [CashJudexController::class, 'index'])->name('index');
+            Route::post('cash-judex/index/index-json', [CashJudexController::class, 'indexJson'])->name('index.json');
+            Route::get('cash-judex/create', [CashJudexController::class, 'create'])->name('create');
+            Route::post('cash-judex/store', [CashJudexController::class, 'store'])->name('store');
+            Route::get('cash-judex/edit/{no}', [CashJudexController::class, 'edit'])->name('edit');
+            Route::post('cash-judex/update', [CashJudexController::class, 'update'])->name('update');
+            Route::delete('cash-judex/delete', [CashJudexController::class, 'delete'])->name('delete');
+        });
+        //end cash_judex
     
-    //kas_bank_kontroler
-    // Route assigned name "kas_bank_kontroler.index"...
-    Route::name('kas_bank_kontroler.')->group(function () {
-        Route::get('kas-bank-kontroler', [KasBankKontrolerController::class, 'index'])->name('index');
-        Route::post('kas-bank-kontroler/index/index-json', [KasBankKontrolerController::class, 'indexJson'])->name('index.json');
-        Route::get('kas-bank-kontroler/create', [KasBankKontrolerController::class, 'create'])->name('create');
-        Route::post('kas-bank-kontroler/store', [KasBankKontrolerController::class, 'store'])->name('store');
-        Route::get('kas-bank-kontroler/edit/{no}', [KasBankKontrolerController::class, 'edit'])->name('edit');
-        Route::post('kas-bank-kontroler/update', [KasBankKontrolerController::class, 'update'])->name('update');
-        Route::delete('kas-bank-kontroler/delete', [KasBankKontrolerController::class, 'delete'])->name('delete');
-    });
-    //end kas_bank_kontroler
     
-    //lokasi_kontroler
-    // Route assigned name "lokasi_kontroler.index"...
-    Route::name('lokasi_kontroler.')->group(function () {
-        Route::get('lokasi-kontroler', [LokasiKontrolerController::class, 'index'])->name('index');
-        Route::post('lokasi-kontroler/index/index-json', [LokasiKontrolerController::class, 'indexJson'])->name('index.json');
-        Route::get('lokasi-kontroler/create', [LokasiKontrolerController::class, 'create'])->name('create');
-        Route::post('lokasi-kontroler/store', [LokasiKontrolerController::class, 'store'])->name('store');
-        Route::get('lokasi-kontroler/edit/{no}', [LokasiKontrolerController::class, 'edit'])->name('edit');
-        Route::post('lokasi-kontroler/update', [LokasiKontrolerController::class, 'update'])->name('update');
-        Route::delete('lokasi-kontroler/delete', [LokasiKontrolerController::class, 'delete'])->name('delete');
-    });
-    //end lokasi_kontroler
-
-    //sandi_perkiraan
-    // Route assigned name "sandi_perkiraan.index"...
-    Route::name('sandi_perkiraan.')->group(function () {
-        Route::get('sandi-perkiraan', [SandiPerkiraanController::class, 'index'])->name('index');
-        Route::post('sandi-perkiraan/index/index-json', [SandiPerkiraanController::class, 'indexJson'])->name('index.json');
-        Route::get('sandi-perkiraan/create', [SandiPerkiraanController::class, 'create'])->name('create');
-        Route::post('sandi-perkiraan/store', [SandiPerkiraanController::class, 'store'])->name('store');
-        Route::get('sandi-perkiraan/edit/{no}', [SandiPerkiraanController::class, 'edit'])->name('edit');
-        Route::post('sandi-perkiraan/update', [SandiPerkiraanController::class, 'update'])->name('update');
-        Route::delete('sandi-perkiraan/delete', [SandiPerkiraanController::class, 'delete'])->name('delete');
-    });
-    //end sandi_perkiraan
-
-    //bulan_kontroler
-    // Route assigned name "bulan_kontroler.index"...
-    Route::name('bulan_kontroler.')->group(function () {
-        Route::get('bulan-kontroler', [BulanKontrolerController::class, 'index'])->name('index');
-        Route::post('bulan-kontroler/index/index-json', [BulanKontrolerController::class, 'indexJson'])->name('index.json');
-        Route::get('bulan-kontroler/create', [BulanKontrolerController::class, 'create'])->name('create');
-        Route::post('bulan-kontroler/store', [BulanKontrolerController::class, 'store'])->name('store');
-        Route::get('bulan-kontroler/edit/{no}', [BulanKontrolerController::class, 'edit'])->name('edit');
-        Route::post('bulan-kontroler/update', [BulanKontrolerController::class, 'update'])->name('update');
-        Route::delete('bulan-kontroler/delete', [BulanKontrolerController::class, 'delete'])->name('delete');
-    });
-    //end bulan_kontroler
-
-    //main_account
-    // Route assigned name "main_account.index"...
-    Route::name('main_account.')->group(function () {
-        Route::get('main-account', [MainAccountController::class, 'index'])->name('index');
-        Route::post('main-account/index/index-json', [MainAccountController::class, 'indexJson'])->name('index.json');
-        Route::get('main-account/create', [MainAccountController::class, 'create'])->name('create');
-        Route::post('main-account/store', [MainAccountController::class, 'store'])->name('store');
-        Route::get('main-account/edit/{no}', [MainAccountController::class, 'edit'])->name('edit');
-        Route::post('main-account/update', [MainAccountController::class, 'update'])->name('update');
-        Route::delete('main-account/delete', [MainAccountController::class, 'delete'])->name('delete');
+        //jenis_biaya
+        // Route assigned name "jenis_biaya.index"...
+        Route::name('jenis_biaya.')->group(function () {
+            Route::get('jenis-biaya', [JenisBiayaController::class, 'index'])->name('index');
+            Route::post('jenis-biaya/index/index-json', [JenisBiayaController::class, 'indexJson'])->name('index.json');
+            Route::get('jenis-biaya/create', [JenisBiayaController::class, 'create'])->name('create');
+            Route::post('jenis-biaya/store', [JenisBiayaController::class, 'store'])->name('store');
+            Route::get('jenis-biaya/edit/{no}', [JenisBiayaController::class, 'edit'])->name('edit');
+            Route::post('jenis-biaya/update', [JenisBiayaController::class, 'update'])->name('update');
+            Route::delete('jenis-biaya/delete', [JenisBiayaController::class, 'delete'])->name('delete');
+        });
+        //end jenis_biaya
+        
+        //kas_bank_kontroler
+        // Route assigned name "kas_bank_kontroler.index"...
+        Route::name('kas_bank_kontroler.')->group(function () {
+            Route::get('kas-bank-kontroler', [KasBankKontrolerController::class, 'index'])->name('index');
+            Route::post('kas-bank-kontroler/index/index-json', [KasBankKontrolerController::class, 'indexJson'])->name('index.json');
+            Route::get('kas-bank-kontroler/create', [KasBankKontrolerController::class, 'create'])->name('create');
+            Route::post('kas-bank-kontroler/store', [KasBankKontrolerController::class, 'store'])->name('store');
+            Route::get('kas-bank-kontroler/edit/{no}', [KasBankKontrolerController::class, 'edit'])->name('edit');
+            Route::post('kas-bank-kontroler/update', [KasBankKontrolerController::class, 'update'])->name('update');
+            Route::delete('kas-bank-kontroler/delete', [KasBankKontrolerController::class, 'delete'])->name('delete');
+        });
+        //end kas_bank_kontroler
+        
+        //lokasi_kontroler
+        // Route assigned name "lokasi_kontroler.index"...
+        Route::name('lokasi_kontroler.')->group(function () {
+            Route::get('lokasi-kontroler', [LokasiKontrolerController::class, 'index'])->name('index');
+            Route::post('lokasi-kontroler/index/index-json', [LokasiKontrolerController::class, 'indexJson'])->name('index.json');
+            Route::get('lokasi-kontroler/create', [LokasiKontrolerController::class, 'create'])->name('create');
+            Route::post('lokasi-kontroler/store', [LokasiKontrolerController::class, 'store'])->name('store');
+            Route::get('lokasi-kontroler/edit/{no}', [LokasiKontrolerController::class, 'edit'])->name('edit');
+            Route::post('lokasi-kontroler/update', [LokasiKontrolerController::class, 'update'])->name('update');
+            Route::delete('lokasi-kontroler/delete', [LokasiKontrolerController::class, 'delete'])->name('delete');
+        });
+        //end lokasi_kontroler
+    
+        //sandi_perkiraan
+        // Route assigned name "sandi_perkiraan.index"...
+        Route::name('sandi_perkiraan.')->group(function () {
+            Route::get('sandi-perkiraan', [SandiPerkiraanController::class, 'index'])->name('index');
+            Route::post('sandi-perkiraan/index/index-json', [SandiPerkiraanController::class, 'indexJson'])->name('index.json');
+            Route::get('sandi-perkiraan/create', [SandiPerkiraanController::class, 'create'])->name('create');
+            Route::post('sandi-perkiraan/store', [SandiPerkiraanController::class, 'store'])->name('store');
+            Route::get('sandi-perkiraan/edit/{no}', [SandiPerkiraanController::class, 'edit'])->name('edit');
+            Route::post('sandi-perkiraan/update', [SandiPerkiraanController::class, 'update'])->name('update');
+            Route::delete('sandi-perkiraan/delete', [SandiPerkiraanController::class, 'delete'])->name('delete');
+        });
+        //end sandi_perkiraan
+    
+        //bulan_kontroler
+        // Route assigned name "bulan_kontroler.index"...
+        Route::name('bulan_kontroler.')->group(function () {
+            Route::get('bulan-kontroler', [BulanKontrolerController::class, 'index'])->name('index');
+            Route::post('bulan-kontroler/index/index-json', [BulanKontrolerController::class, 'indexJson'])->name('index.json');
+            Route::get('bulan-kontroler/create', [BulanKontrolerController::class, 'create'])->name('create');
+            Route::post('bulan-kontroler/store', [BulanKontrolerController::class, 'store'])->name('store');
+            Route::get('bulan-kontroler/edit/{no}', [BulanKontrolerController::class, 'edit'])->name('edit');
+            Route::post('bulan-kontroler/update', [BulanKontrolerController::class, 'update'])->name('update');
+            Route::delete('bulan-kontroler/delete', [BulanKontrolerController::class, 'delete'])->name('delete');
+        });
+        //end bulan_kontroler
+    
+        //main_account
+        // Route assigned name "main_account.index"...
+        Route::name('main_account.')->group(function () {
+            Route::get('main-account', [MainAccountController::class, 'index'])->name('index');
+            Route::post('main-account/index/index-json', [MainAccountController::class, 'indexJson'])->name('index.json');
+            Route::get('main-account/create', [MainAccountController::class, 'create'])->name('create');
+            Route::post('main-account/store', [MainAccountController::class, 'store'])->name('store');
+            Route::get('main-account/edit/{no}', [MainAccountController::class, 'edit'])->name('edit');
+            Route::post('main-account/update', [MainAccountController::class, 'update'])->name('update');
+            Route::delete('main-account/delete', [MainAccountController::class, 'delete'])->name('delete');
+        });
+        
     });
     //end main_account
 

@@ -34,6 +34,8 @@
                 Log User
             </h3>
         </div>
+    </div>
+    <div class="card-body">
         <form id="search-form">
             <div class="form-group row">
                 <label class="col-xl-1 col-lg-1 col-form-label">Bulan</label>
@@ -63,8 +65,6 @@
                 </div>
             </div>
         </form>
-    </div>
-    <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
                 <table class="table table-bordered" id="kt_table" width="100%">

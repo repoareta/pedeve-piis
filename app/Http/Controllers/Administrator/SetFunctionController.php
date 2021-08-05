@@ -28,15 +28,6 @@ class SetFunctionController extends Controller
     {
         $data = UserPdv::orderBy('userid','asc')->get();
         return datatables()->of($data)
-        ->addColumn('userid', function ($data) {
-            return $data->userid;
-        })
-        ->addColumn('usernm', function ($data) {
-            return $data->usernm;
-        })
-        ->addColumn('kode', function ($data) {
-            return $data->kode;
-        })
         ->addColumn('userlv', function ($data) {
             if($data->userlv == 0){
                 return "ADMINISTRATOR";
@@ -77,7 +68,7 @@ class SetFunctionController extends Controller
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->userid.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
         })
-        ->rawColumns(['radio','userap'])
+        ->rawColumns(['radio'])
         ->make(true); 
     }
 

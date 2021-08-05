@@ -27,12 +27,6 @@ class TabelMenuController extends Controller
     {
         $data = DftMenu::orderBy('userap', 'asc')->get();
         return datatables()->of($data)
-        ->addColumn('menuid', function ($data) {
-            return $data->menuid;
-        })
-        ->addColumn('menunm', function ($data) {
-            return $data->menunm;
-        })
         ->addColumn('userap', function ($data) {
             if($data->userap == 'UMU'){
                 $userap = 'UMUM';
