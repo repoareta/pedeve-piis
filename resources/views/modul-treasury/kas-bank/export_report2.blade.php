@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 10pt;font-weight: bold ">DAFTAR RINCIAN PER NO. BUKTI</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">BULAN {{strtoupper($bulan) }} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -108,9 +108,9 @@
                             <tr>
                                 <td>{{ $data->bulan}}</td>
                                 <td>{{ $data->jk}}</td>
-                                <td>{{ $data->store}}</td>
+                                <td>{{ $data->store }}</td>
                                 <td>{{ $data->ci}}</td>
-                                <td>{{ $data->voucher}}</td>
+                                <td>{{ $data->voucher }}</td>
                                 <td>{{ $data->rekap}}</td>
                                 <td>{{ $data->totprice > 0 ? number_format($data->totprice,0) : '0'}}</td>
                                 <td>{{ $data->totprice < 0 ? number_format($data->totprice,0) : '0'}}</td>

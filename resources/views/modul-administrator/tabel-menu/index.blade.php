@@ -24,17 +24,17 @@
             <div class="float-left">
                 <div class="">
                     <a href="{{ route('modul_administrator.tabel_menu.create') }}">
-                        <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                        <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                             <i class="fas icon-2x fa-plus-circle text-success"></i>
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                             <i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                             <i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
                         </span>
                     </a>
@@ -45,7 +45,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+                <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
                             <th></th>
@@ -66,101 +66,94 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-
-            // datatable
-            var t = $('#kt_table').DataTable({
-                scrollX   : true,
-                processing: true,
-                serverSide: true,
-                ajax      : {
-                            url: "{{ route('modul_administrator.tabel_menu.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            data: function (d) {
-                                d.pencarian = $('input[name=pencarian]').val();
-                            }
-                        },
-                columns: [
-                    {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
-                    {data: 'menuid', name: 'menuid'},
-                    {data: 'menunm', name: 'menunm'},
-                    {data: 'userap', name: 'userap'},
-                ]
-            });
-
-            // delete
-            $('#deleteRow').click(function(e) {
-                e.preventDefault();
-                if($('input[class=btn-radio]').is(':checked')) { 
-                    $("input[class=btn-radio]:checked").each(function() {
-                        var kode = $(this).attr('kode');
-                        // delete stuff
-                        const swalWithBootstrapButtons = Swal.mixin({
-                            customClass: {
-                                confirmButton: 'btn btn-primary',
-                                cancelButton: 'btn btn-danger'
-                            },
-                                buttonsStyling: false
-                            })
-                            swalWithBootstrapButtons.fire({
-                                title: "Data yang akan dihapus?",
-                                text: "Jenis  : " +kode,
-                                icon: 'warning',
-                                showCancelButton: true,
-                                reverseButtons: true,
-                                confirmButtonText: 'Ya, hapus',
-                                cancelButtonText: 'Batalkan'
-                            })
-                            .then((result) => {
-                            if (result.value) {
-                                $.ajax({
-                                    url: "{{ route('modul_administrator.tabel_menu.delete') }}",
-                                    type: 'DELETE',
-                                    dataType: 'json',
-                                    data: {
-                                        "kode": kode,
-                                        "_token": "{{ csrf_token() }}",
-                                    },
-                                    success: function (data) {
-                                        Swal.fire({
-                                            icon  : 'success',
-                                            text : "Data Set User dengan jenis  : " +kode+" Berhasil Dihapus.",
-                                            title  : 'Berhasil',
-                                            
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function () {
-                                        alert("Terjadi kesalahan, coba lagi nanti");
-                                    }
-                                });
-                            }
-                        });
-                    });
-                } else {
-                    swalAlertInit('hapus');
+        // datatable
+        var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax      : {
+                url: "{{ route('modul_administrator.tabel_menu.index.json') }}",
+                data: function (d) {
+                    d.pencarian = $('input[name=pencarian]').val();
                 }
-            });
-    
-            //edit 
-            $('#editRow').click(function(e) {
-                e.preventDefault();
-    
-                if($('input[class=btn-radio]').is(':checked')) { 
-                    $("input[class=btn-radio]:checked").each(function(){
-                        var no = $(this).attr('kode');
-                        location.replace("{{url('administrator/tabel-menu/edit')}}"+ '/' +no);
-                    });
-                } else {
-                    swalAlertInit('ubah');
-                }
-            });
-    
+            },
+            columns: [
+                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'menuid', name: 'menuid'},
+                {data: 'menunm', name: 'menunm'},
+                {data: 'userap', name: 'userap'},
+            ]
         });
-    
-    </script>
+
+        // delete
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[class=btn-radio]').is(':checked')) { 
+                $("input[class=btn-radio]:checked").each(function() {
+                    var kode = $(this).attr('kode');
+                    // delete stuff
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-primary',
+                            cancelButton: 'btn btn-danger'
+                        },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire({
+                            title: "Data yang akan dihapus?",
+                            text: "Jenis  : " +kode,
+                            icon: 'warning',
+                            showCancelButton: true,
+                            reverseButtons: true,
+                            confirmButtonText: 'Ya, hapus',
+                            cancelButtonText: 'Batalkan'
+                        })
+                        .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_administrator.tabel_menu.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "kode": kode,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        icon  : 'success',
+                                        text : "Data Set User dengan jenis  : " +kode+" Berhasil Dihapus.",
+                                        title  : 'Berhasil',
+                                        
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
+
+        //edit 
+        $('#editRow').click(function(e) {
+            e.preventDefault();
+
+            if($('input[class=btn-radio]').is(':checked')) { 
+                $("input[class=btn-radio]:checked").each(function(){
+                    var no = $(this).attr('kode');
+                    location.replace("{{ url('administrator/tabel-menu/edit') }}"+ '/' +no);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
+    });
+</script>
 @endpush

@@ -131,27 +131,27 @@ class SetUserController extends Controller
 
         if ($request->akt == 'A') {
             $akt = 'AKT';
-        }else{
+        } else {
             $akt = '';
         }
         if ($request->cm == 'G') {
             $cm = 'CM';
-        }else{
+        } else {
             $cm = '';
         }
         if ($request->pbd == 'D') {
             $pbd = 'PBD';
-        }else{
+        } else {
             $pbd = '';
         }
         if ($request->umu == 'E') {
             $umu = 'UMU';
-        }else{
+        } else {
             $umu = '';
         }
         if ($request->sdm == 'F') {
             $sdm = 'SDM';
-        }else{
+        } else {
             $sdm = '';
         }
         

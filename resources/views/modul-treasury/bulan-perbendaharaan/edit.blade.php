@@ -19,7 +19,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-edit">
+        <form class="form" id="form-edit">
             @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
@@ -35,13 +35,13 @@
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <div class="col-2" >
-                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off" required>
+                            <input class="form-control" type="text" value="{{$suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off">
                         </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off" required>
+                    <input class="form-control" type="text" value="{{$keterangan}}" name="keterangan"  size="35" maxlength="35" title="Keterangan" autocomplete="off">
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
                 </div>
             </div>
             
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">

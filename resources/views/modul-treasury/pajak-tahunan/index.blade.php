@@ -19,13 +19,13 @@
     </div>
 
     <div class="card-body">
-        <form action="{{route('proses_pajak.export.proses')}}" method="POST">
+        <form action="{{route('proses_pajak.export.proses') }}" method="POST">
             @csrf
             <div class="form-group form-group-last">
                 <div class="form-group row">
                     <label for="jenis-dinas-input" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                     <div class="col-8">
-                        <select name="tahun" class="form-control select2" required>
+                        <select name="tahun" class="form-control select2">
                             <option value="">- Pilih -</option>
                             @for ($i = 2004; $i <= date('Y'); $i++)
                             <option value="{{ $i}}" <?php if($i == date('Y')) echo 'selected'; ?>>{{ $i}}</option>
@@ -36,11 +36,11 @@
                     </div>
                 </div>
 
-                <div class="kt-form__actions">
+                <div class="form__actions">
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Kembali</a>
+                            <a href="{{route('data_pajak.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Kembali</a>
                             <button type="submit" class="btn btn-primary" onclick="$('form').attr('target', '_blank')"><i class="fa fa-print"></i>Cetak</button>
                         </div>
                     </div>

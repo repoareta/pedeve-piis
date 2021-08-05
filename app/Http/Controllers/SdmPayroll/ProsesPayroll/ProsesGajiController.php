@@ -106,11 +106,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmjabpt->tunjangan <> ""){
                                             $tunjabatanpt = $data_sdmjabpt->tunjangan;
-                                        }else{
+                                        } else {
                                             $tunjabatanpt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $tunjabatanpt = '0';
                             }
                             MasterUpah::insert([
@@ -138,11 +138,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpt->nilai <> ""){
                                         $tunjabatanhiduppt = $data_sdmpt->nilai;
-                                        }else{
+                                        } else {
                                             $tunjabatanhiduppt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $tunjabatanhiduppt = '0';
                             }
                             MasterUpah::insert([
@@ -181,7 +181,7 @@ class ProsesGajiController extends Controller
                                 }elseif($sisabulanpt == '-1' and $sisatahunpt > '0'){
                                     $uangcutipt = $upahtetappt + $tunjabatanpt + $tunjabatanhiduppt;
                                     $fasilitaspt = 1.5 * $uangcutipt;
-                                }else{
+                                } else {
                                     $fasilitaspt = '0';
                                 }
                             MasterUpah::insert([
@@ -209,11 +209,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpt->totlembur <> ""){
                                             $totallemburpt = $data_sdmpt->totlembur;
-                                        }else{
+                                        } else {
                                             $totallemburpt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $totallemburpt = '0';
                             }
                             MasterUpah::insert([
@@ -241,11 +241,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpt->nilai <> ""){
                                             $fassisapt = $data_sdmpt->nilai;
-                                        }else{
+                                        } else {
                                             $fassisapt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $fassisapt = '0';
                             }
                             MasterUpah::insert([
@@ -371,11 +371,11 @@ class ProsesGajiController extends Controller
                                     $cclpotongpinjampt = $data_potongpt->ccl;
                                     if($data_potongpt->nilai < 0){
                                         $nilaipotonganpinjampt = ($data_potongpt->nilai * -1);
-                                    }else{
+                                    } else {
                                     $nilaipotonganpinjampt = $data_potongpt->nilai;
                                     }
                                 }
-                            }else{
+                            } else {
                                 $nilaipotonganpinjampt = '0';
                                 $jmlccpotongpinjampt = '0';
                                 $cclpotongpinjampt = '0';
@@ -398,11 +398,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($totalpt->pembulatan1 < 0){
                                         $sisagajipt = $totalpt->pembulatan2;
-                                    }else{
+                                    } else {
                                         $sisagajipt = $totalpt->pembulatan1;
                                     }
                                 }
-                            }else{
+                            } else {
                                 $sisagajipt = '0';
                             }
 
@@ -422,7 +422,7 @@ class ProsesGajiController extends Controller
                             if($bulan2pt > 12){
                                 $data_bulan2pt = 1;
                                 $data_tahun2pt = $data_tahun + 1;
-                            }else{
+                            } else {
                                 $data_bulan2pt =$bulan2pt;
                                 $data_tahun2pt = $data_tahun;
                             }
@@ -456,7 +456,7 @@ class ProsesGajiController extends Controller
                                 $biayajabatanspt = ((5/100)*$totalkenapajakpt);
                                 if($biayajabatanspt > 6000000){
                                     $biayajabatanpt = 6000000;
-                                }else{
+                                } else {
                                     $biayajabatanpt = $biayajabatanspt;
                                 }
                                 
@@ -479,7 +479,7 @@ class ProsesGajiController extends Controller
                                 {
                                     $nilaiptkp1pt = $data_ppt->nilai;
                                 }
-                            }else{
+                            } else {
                                     $nilaiptkp1pt = '0';
                             }
 
@@ -578,11 +578,11 @@ class ProsesGajiController extends Controller
                             {
                                 if($data_sdmjabkt->tunjangan <> ""){
                                     $tunjabatankt = $data_sdmjabkt->tunjangan;
-                                }else{
+                                } else {
                                     $tunjabatankt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $tunjabatankt = '0';
                         }
                         MasterUpah::insert([
@@ -611,11 +611,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmdaerahkt->nilai <> ""){
                                         $tunjangandaerahkt = $data_sdmdaerahkt->nilai;
-                                    }else{
+                                    } else {
                                         $tunjangandaerahkt = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $tunjangandaerahkt = '0';
                         }
                         MasterUpah::insert([
@@ -643,7 +643,7 @@ class ProsesGajiController extends Controller
                             {
                                 if($datakt->nopeg == 'K00011'){
                                     $gapokkt = '0';
-                                }else{
+                                } else {
                                     $gapokkt = $data_gapkt->gapok;
                                 }
                             }
@@ -725,7 +725,7 @@ class ProsesGajiController extends Controller
                                 }elseif($sisabulankt == '-1' and $sisatahunkt > '0'){
                                     $uangcutikt = $upahallinkt + $tunjabatankt + $tunjangandaerahkt;
                                     $fasilitaskt = 1.5 * $uangcutikt;
-                                }else{
+                                } else {
                                     $fasilitaskt = '0';
                                 }
                             }
@@ -757,11 +757,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmkt->totlembur <> ""){
                                         $totallemburkt = $data_sdmkt->totlembur;
-                                    }else{
+                                    } else {
                                         $totallemburkt = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $totallemburkt = '0';
                         }
                         MasterUpah::insert([
@@ -793,7 +793,7 @@ class ProsesGajiController extends Controller
                                     $fassisakt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fassisakt = '0';
                         }
                         MasterUpah::insert([
@@ -831,11 +831,11 @@ class ProsesGajiController extends Controller
                                 $cclpotongpinjamkt = $data_potongkt->ccl;
                                 if($data_potongkt->nilai < 0){
                                     $nilaipotonganpinjamkt = $data_potongkt->nilai;
-                                }else{
+                                } else {
                                     $nilaipotonganpinjamkt = ($data_potongkt->nilai * -1);
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaipotonganpinjamkt = '0';
                             $jmlccpotongpinjamkt = '0';
                             $cclpotongpinjamkt = '0';
@@ -858,11 +858,11 @@ class ProsesGajiController extends Controller
                             {
                                 if($totalkt->pembulatan1 < 0){
                                     $sisagajikt = $totalkt->pembulatan2;
-                                }else{
+                                } else {
                                     $sisagajikt = $totalkt->pembulatan1;
                                 }
                             }
-                        }else{
+                        } else {
                             $sisagajikt = '0';
                         }
                         MasterUpah::insert([
@@ -881,7 +881,7 @@ class ProsesGajiController extends Controller
                         if($bulan2kt >12){
                             $data_bulan2kt = 1;
                             $data_tahun2kt = $data_tahun + 1;
-                        }else{
+                        } else {
                             $data_bulan2kt =$bulan2kt;
                             $data_tahun2kt = $data_tahun;
                         }
@@ -902,7 +902,7 @@ class ProsesGajiController extends Controller
                         {
                             if($kenapkt->nilai1 <> ""){
                                 $nilaikenapajakkt = $kenapkt->nilai1;
-                            }else{
+                            } else {
                                 $nilaikenapajakkt = '0';
                             }
                         }
@@ -915,7 +915,7 @@ class ProsesGajiController extends Controller
                         $biayajabatanskt = ((5/100)*$totalkenapajakkt);
                                 if($biayajabatanskt > 6000000){
                                     $biayajabatankt = 6000000;
-                                }else{
+                                } else {
                                     $biayajabatankt = $biayajabatanskt;
                                 }
                                 $neto1tahunkt = $totalkenapajakkt - $biayajabatankt;
@@ -937,7 +937,7 @@ class ProsesGajiController extends Controller
                                 $nilaiptkp1kt = '0';
                             }
                         }
-                    }else{
+                    } else {
                             $nilaiptkp1kt = '0';
                     }
 
@@ -1039,7 +1039,7 @@ class ProsesGajiController extends Controller
                                             $upahtetappb = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $upahtetappb = '0';
                             }
                             MasterUpah::insert([
@@ -1071,7 +1071,7 @@ class ProsesGajiController extends Controller
                                             $upahdaerahpb = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $upahdaerahpb = '0';
                             }
 
@@ -1089,7 +1089,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_penpb->ut <> ""){
                                         $upahtetappensiunpb = $data_penpb->ut;
-                                    }else{
+                                    } else {
                                         $upahtetappensiunpb = '0';
                                     }
                                 }
@@ -1118,7 +1118,7 @@ class ProsesGajiController extends Controller
                                     $fasilitaspb = '0';
                                     // $uangcutipb = $upahallin + $tunjabatan + $tunjangandaerah;
                                     // $fasilitaspb = 1.5 * $uangcutipb;
-                                }else{
+                                } else {
                                     $fasilitaspb = '0';
                                 }
                             }
@@ -1151,11 +1151,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmpb->totlembur <> ""){
                                         $totallemburpb = $data_sdmpb->totlembur;
-                                    }else{
+                                    } else {
                                         $totallemburpb = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $totallemburpb = '0';
                         }
                         MasterUpah::insert([
@@ -1180,7 +1180,7 @@ class ProsesGajiController extends Controller
                                     $fassisapb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fassisapb = '0';
                         }
                         MasterUpah::insert([
@@ -1266,7 +1266,7 @@ class ProsesGajiController extends Controller
                                         $niljstaccidentpb = ($data_perpb->accident/100) * $gapokpb;
                                         $niljspensiunpb = ($data_perpb->pensiun/100) * $gapokpb;
                                         $niljslifepb = ($data_perpb->life/100) * $gapokpb;
-                                    }else{
+                                    } else {
                                         $niljspribadipb = '0';
                                         $niljstaccidentpb = '0';
                                         $niljspensiunpb = '0';
@@ -1360,7 +1360,7 @@ class ProsesGajiController extends Controller
                                             'nilai' => $bazmapb * -1,        
                                             'userid' => $request->userid,        
                                             ]); 
-                                }else{
+                                } else {
                                     MasterUpah::insert([
                                             'tahun' => $data_tahun,
                                             'bulan' => $data_bulan,
@@ -1372,7 +1372,7 @@ class ProsesGajiController extends Controller
                                             'userid' => $request->userid,        
                                             ]); 
                                 }
-                            }else{
+                            } else {
                                 $nildapenpribadipb = '0';
                                 $nildapenperusahaanpb = '0';
                             }
@@ -1411,7 +1411,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($datapb->nopeg <> '709685'){
                                         $iuranwajibpb = ($data_tabpb->perusahaan/100) * $upahtetappb;
-                                    }else{
+                                    } else {
                                         $iuranwajibpb = '0';
                                     }
                                 }
@@ -1492,7 +1492,7 @@ class ProsesGajiController extends Controller
                                     $cclpotongpprppb = $data_nilaipb->ccl;
                                     if($data_nilaipb->bilai < 0){
                                         $nilaipotongpprppb = $data_nilaipb->nilai * -1;
-                                    }else{
+                                    } else {
                                         $nilaipotongpprppb = $data_nilaipb->nilai;
                                     }
                                 }
@@ -1551,7 +1551,7 @@ class ProsesGajiController extends Controller
                                     $cclpotongkoperasipb = $data_potongankoppb->ccl;
                                     if($data_potongankoppb->nilai < 0){
                                         $nilaipotongkoperasipb = $data_potongankoppb->nilai;
-                                    }else{
+                                    } else {
                                         $nilaipotongkoperasipb = $data_potongankoppb->nilai * -1;
                                     }
                                 }
@@ -1647,7 +1647,7 @@ class ProsesGajiController extends Controller
                             if($bulan2pb > 12){
                                 $data_bulan2pb = 1;
                                 $data_tahun2pb = $data_tahun + 1;
-                            }else{
+                            } else {
                                 $data_bulan2pb =$bulan2pb;
                                 $data_tahun2pb = $data_tahun;
                             }
@@ -1678,7 +1678,7 @@ class ProsesGajiController extends Controller
                             $biayajabatan2pb = ((5/100) * $totkenapajakpb);
                             if($biayajabatan2pb > 6000000){
                                 $biayajabatanpb = 6000000;  
-                            }else{
+                            } else {
                                 $biayajabatanpb = $biayajabatan2pb;
                             }                              
                             
@@ -1809,11 +1809,11 @@ class ProsesGajiController extends Controller
                                         {
                                             if($data_sdps->nilai <> ""){
                                                 $fassisaps = $data_sdps->nilai;
-                                            }else{
+                                            } else {
                                                 $fassisaps = '0';
                                             }
                                         }
-                                }else{
+                                } else {
                                     $fassisaps = '0';
                                 }
                                 MasterUpah::insert([
@@ -1834,7 +1834,7 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_carinilaips->nilai <> ""){
                                             $faslainps = $data_carinilaips->nilai;
-                                        }else{
+                                        } else {
                                             $faslainps = '0';
                                         }
                                     }
@@ -1860,11 +1860,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($totalps->pembulatan1 < 0){
                                             $sisagajips = $totalps->pembulatan2;
-                                        }else{
+                                        } else {
                                             $sisagajips = $totalps->pembulatan1;
                                         }
                                     }
-                                }else{
+                                } else {
                                     $sisagajips = '0';
                                 }
                                 MasterUpah::insert([
@@ -1883,7 +1883,7 @@ class ProsesGajiController extends Controller
                                 if($bulan2ps >12){
                                     $data_bulan2ps = 1;
                                     $data_tahun2ps = $data_tahun + 1;
-                                }else{
+                                } else {
                                     $data_bulan2ps =$bulan2ps;
                                     $data_tahun2ps = $data_tahun;
                                 }
@@ -1904,7 +1904,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($kenapps->nilai1 <> ""){
                                         $nilaikenapajak1ps = $kenapps->nilai1;
-                                    }else{
+                                    } else {
                                         $nilaikenapajak1ps = '0';
                                     }
                                 }
@@ -1925,7 +1925,7 @@ class ProsesGajiController extends Controller
                                 }elseif($dataps->nopeg == "kom5"){
                                     $tunjpajakps = (5/100) * $nilaikenapajakaps;
                                     $potpajakps = (15/100) * ($nilaikenapajakaps + $tunjpajakps);
-                                }else{
+                                } else {
                                     $tunjpajakps = (5/100) * $nilaikenapajakaps;
                                     $potpajakps = (30/100) * ($nilaikenapajakaps + $tunjpajakps);
                                 }
@@ -2038,11 +2038,11 @@ class ProsesGajiController extends Controller
                             {
                                 if($totalkm->pembulatan1 < 0){
                                     $sisagajikm = $totalkm->pembulatan2;
-                                }else{
+                                } else {
                                     $sisagajikm = $totalkm->pembulatan1;
                                 }
                             }
-                        }else{
+                        } else {
                             $sisagajikm = '0';
                         }
                         MasterUpah::insert([
@@ -2077,7 +2077,7 @@ class ProsesGajiController extends Controller
                         if($bulan2km >12){
                             $data_bulan2km = 1;
                             $data_tahun2km = $data_tahun + 1;
-                        }else{
+                        } else {
                             $data_bulan2km =$bulan2km;
                             $data_tahun2km = $data_tahun;
                         }
@@ -2098,7 +2098,7 @@ class ProsesGajiController extends Controller
                         {
                             if($kenapkm->nilai1 <> ""){
                                 $nilaikenapajakkm = $kenapkm->nilai1;
-                            }else{
+                            } else {
                                 $nilaikenapajakkm = '0';
                             }
                         }
@@ -2216,7 +2216,7 @@ class ProsesGajiController extends Controller
                                         $tunjjabatanpj = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $tunjjabatanpj = '0';
                             }
                             MasterUpah::insert([
@@ -2278,11 +2278,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpj->nilai <> ""){
                                             $fassisapj = $data_sdmpj->nilai;
-                                        }else{
+                                        } else {
                                             $fassisapj = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $fassisapj = '0';
                             }
                             MasterUpah::insert([
@@ -2303,7 +2303,7 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_carinilaipj->nilai <> ""){
                                             $faslainpj = $data_carinilaipj->nilai;
-                                        }else{
+                                        } else {
                                             $faslainpj = '0';
                                         }
                                     }
@@ -2389,11 +2389,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($totalpj->pembulatan1 < 0){
                                             $sisagajipj = $totalpj->pembulatan2;
-                                        }else{
+                                        } else {
                                             $sisagajipj = $totalpj->pembulatan1;
                                         }
                                     }
-                                }else{
+                                } else {
                                     $sisagajipj = '0';
                                 }
                                 MasterUpah::insert([
@@ -2412,7 +2412,7 @@ class ProsesGajiController extends Controller
                                 if($bulan2pj >12){
                                     $data_bulan2pj = 1;
                                     $data_tahun2pj = $data_tahun + 1;
-                                }else{
+                                } else {
                                     $data_bulan2pj =$bulan2pj;
                                     $data_tahun2pj = $data_tahun;
                                 }
@@ -2433,7 +2433,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($kenappj->nilai1 <> ""){
                                         $nilaikenapajak1pj = $kenappj->nilai1;
-                                    }else{
+                                    } else {
                                         $nilaikenapajak1pj = '0';
                                     }
                                 }
@@ -2445,7 +2445,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($tdkkenappj->nilai1 <> ""){
                                         $nilaiptkp1pj = $tdkkenappj->nilai1;
-                                    }else{
+                                    } else {
                                         $nilaiptkp1pj = '0';
                                     }
                                 }
@@ -2502,7 +2502,7 @@ class ProsesGajiController extends Controller
                                             $upahtetappt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $upahtetappt = '0';
                             }
                             MasterUpah::insert([
@@ -2530,11 +2530,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmjabpt->tunjangan <> ""){
                                             $tunjabatanpt = $data_sdmjabpt->tunjangan;
-                                        }else{
+                                        } else {
                                             $tunjabatanpt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $tunjabatanpt = '0';
                             }
                             MasterUpah::insert([
@@ -2562,11 +2562,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpt->nilai <> ""){
                                         $tunjabatanhiduppt = $data_sdmpt->nilai;
-                                        }else{
+                                        } else {
                                             $tunjabatanhiduppt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $tunjabatanhiduppt = '0';
                             }
                             MasterUpah::insert([
@@ -2605,7 +2605,7 @@ class ProsesGajiController extends Controller
                                 }elseif($sisabulanpt == '-1' and $sisatahunpt > '0'){
                                     $uangcutipt = $upahtetappt + $tunjabatanpt + $tunjabatanhiduppt;
                                     $fasilitaspt = 1.5 * $uangcutipt;
-                                }else{
+                                } else {
                                     $fasilitaspt = '0';
                                 }
                             MasterUpah::insert([
@@ -2633,11 +2633,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpt->totlembur <> ""){
                                             $totallemburpt = $data_sdmpt->totlembur;
-                                        }else{
+                                        } else {
                                             $totallemburpt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $totallemburpt = '0';
                             }
                             MasterUpah::insert([
@@ -2665,11 +2665,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdmpt->nilai <> ""){
                                             $fassisapt = $data_sdmpt->nilai;
-                                        }else{
+                                        } else {
                                             $fassisapt = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $fassisapt = '0';
                             }
                             MasterUpah::insert([
@@ -2794,11 +2794,11 @@ class ProsesGajiController extends Controller
                                     $cclpotongpinjampt = $data_potongpt->ccl;
                                     if($data_potongpt->nilai < 0){
                                         $nilaipotonganpinjampt = ($data_potongpt->nilai * -1);
-                                    }else{
+                                    } else {
                                     $nilaipotonganpinjampt = $data_potongpt->nilai;
                                     }
                                 }
-                            }else{
+                            } else {
                                 $nilaipotonganpinjampt = '0';
                                 $jmlccpotongpinjampt = '0';
                                 $cclpotongpinjampt = '0';
@@ -2821,11 +2821,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($totalpt->pembulatan1 < 0){
                                         $sisagajipt = $totalpt->pembulatan2;
-                                    }else{
+                                    } else {
                                         $sisagajipt = $totalpt->pembulatan1;
                                     }
                                 }
-                            }else{
+                            } else {
                                 $sisagajipt = '0';
                             }
                             MasterUpah::insert([
@@ -2844,7 +2844,7 @@ class ProsesGajiController extends Controller
                             if($bulan2pt > 12){
                                 $data_bulan2pt = 1;
                                 $data_tahun2pt = $data_tahun + 1;
-                            }else{
+                            } else {
                                 $data_bulan2pt =$bulan2pt;
                                 $data_tahun2pt = $data_tahun;
                             }
@@ -2878,7 +2878,7 @@ class ProsesGajiController extends Controller
                                 $biayajabatanspt = ((5/100)*$totalkenapajakpt);
                                 if($biayajabatanspt > 6000000){
                                     $biayajabatanpt = 6000000;
-                                }else{
+                                } else {
                                     $biayajabatanpt = $biayajabatanspt;
                                 }
                                 
@@ -2899,7 +2899,7 @@ class ProsesGajiController extends Controller
                                 {
                                     $nilaiptkp1pt = $data_ppt->nilai;
                                 }
-                            }else{
+                            } else {
                                     $nilaiptkp1pt = '0';
                             }
 
@@ -3002,11 +3002,11 @@ class ProsesGajiController extends Controller
                             {
                                 if($data_sdmjabkt->tunjangan <> ""){
                                     $tunjabatankt = $data_sdmjabkt->tunjangan;
-                                }else{
+                                } else {
                                     $tunjabatankt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $tunjabatankt = '0';
                         }
                             MasterUpah::insert([
@@ -3035,11 +3035,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmdaerahkt->nilai <> ""){
                                         $tunjangandaerahkt = $data_sdmdaerahkt->nilai;
-                                    }else{
+                                    } else {
                                         $tunjangandaerahkt = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $tunjangandaerahkt = '0';
                         }
                         MasterUpah::insert([
@@ -3067,7 +3067,7 @@ class ProsesGajiController extends Controller
                             {
                                 if($datakt->nopeg == 'K00011'){
                                     $gapokkt = '0';
-                                }else{
+                                } else {
                                     $gapokkt = $data_gapkt->gapok;
                                 }
                             }
@@ -3149,7 +3149,7 @@ class ProsesGajiController extends Controller
                                 }elseif($sisabulankt == '-1' and $sisatahunkt > '0'){
                                     $uangcutikt = $upahallinkt + $tunjabatankt + $tunjangandaerahkt;
                                     $fasilitaskt = 1.5 * $uangcutikt;
-                                }else{
+                                } else {
                                     $fasilitaskt = '0';
                                 }
                             }
@@ -3181,11 +3181,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmkt->totlembur <> ""){
                                         $totallemburkt = $data_sdmkt->totlembur;
-                                    }else{
+                                    } else {
                                         $totallemburkt = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $totallemburkt = '0';
                         }
                         MasterUpah::insert([
@@ -3217,7 +3217,7 @@ class ProsesGajiController extends Controller
                                     $fassisakt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fassisakt = '0';
                         }
                         MasterUpah::insert([
@@ -3256,11 +3256,11 @@ class ProsesGajiController extends Controller
                                 $cclpotongpinjamkt = $data_potongkt->ccl;
                                 if($data_potongkt->nilai < 0){
                                     $nilaipotonganpinjamkt = $data_potongkt->nilai;
-                                }else{
+                                } else {
                                     $nilaipotonganpinjamkt = ($data_potongkt->nilai * -1);
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaipotonganpinjamkt = '0';
                             $jmlccpotongpinjamkt = '0';
                             $cclpotongpinjamkt = '0';
@@ -3283,11 +3283,11 @@ class ProsesGajiController extends Controller
                             {
                                 if($totalkt->pembulatan1 < 0){
                                     $sisagajikt = $totalkt->pembulatan2;
-                                }else{
+                                } else {
                                     $sisagajikt = $totalkt->pembulatan1;
                                 }
                             }
-                        }else{
+                        } else {
                             $sisagajikt = '0';
                         }
                         MasterUpah::insert([
@@ -3306,7 +3306,7 @@ class ProsesGajiController extends Controller
                         if($bulan2kt >12){
                             $data_bulan2kt = 1;
                             $data_tahun2kt = $data_tahun + 1;
-                        }else{
+                        } else {
                             $data_bulan2kt =$bulan2kt;
                             $data_tahun2kt = $data_tahun;
                         }
@@ -3327,7 +3327,7 @@ class ProsesGajiController extends Controller
                         {
                             if($kenapkt->nilai1 <> ""){
                                 $nilaikenapajakkt = $kenapkt->nilai1;
-                            }else{
+                            } else {
                                 $nilaikenapajakkt = '0';
                             }
                         }
@@ -3340,7 +3340,7 @@ class ProsesGajiController extends Controller
                         $biayajabatanskt = ((5/100)*$totalkenapajakkt);
                                 if($biayajabatanskt > 6000000){
                                     $biayajabatankt = 6000000;
-                                }else{
+                                } else {
                                     $biayajabatankt = $biayajabatanskt;
                                 }
                                 $neto1tahunkt = $totalkenapajakkt - $biayajabatankt;
@@ -3362,7 +3362,7 @@ class ProsesGajiController extends Controller
                                 $nilaiptkp1kt = '0';
                             }
                         }
-                    }else{
+                    } else {
                             $nilaiptkp1kt = '0';
                     }
 
@@ -3467,7 +3467,7 @@ class ProsesGajiController extends Controller
                                             $upahtetappb = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $upahtetappb = '0';
                             }
                             MasterUpah::insert([
@@ -3499,7 +3499,7 @@ class ProsesGajiController extends Controller
                                             $upahdaerahpb = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $upahdaerahpb = '0';
                             }
 
@@ -3517,7 +3517,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_penpb->ut <> ""){
                                         $upahtetappensiunpb = $data_penpb->ut;
-                                    }else{
+                                    } else {
                                         $upahtetappensiunpb = '0';
                                     }
                                 }
@@ -3546,7 +3546,7 @@ class ProsesGajiController extends Controller
                                     $fasilitaspb = '0';
                                     // $uangcutipb = $upahallin + $tunjabatan + $tunjangandaerah;
                                     // $fasilitaspb = 1.5 * $uangcutipb;
-                                }else{
+                                } else {
                                     $fasilitaspb = '0';
                                 }
                             }
@@ -3579,11 +3579,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmpb->totlembur <> ""){
                                         $totallemburpb = $data_sdmpb->totlembur;
-                                    }else{
+                                    } else {
                                         $totallemburpb = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $totallemburpb = '0';
                         }
                         MasterUpah::insert([
@@ -3608,7 +3608,7 @@ class ProsesGajiController extends Controller
                                     $fassisapb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fassisapb = '0';
                         }
                         MasterUpah::insert([
@@ -3694,7 +3694,7 @@ class ProsesGajiController extends Controller
                                         $niljstaccidentpb = ($data_perpb->accident/100) * $gapokpb;
                                         $niljspensiunpb = ($data_perpb->pensiun/100) * $gapokpb;
                                         $niljslifepb = ($data_perpb->life/100) * $gapokpb;
-                                    }else{
+                                    } else {
                                         $niljspribadipb = '0';
                                         $niljstaccidentpb = '0';
                                         $niljspensiunpb = '0';
@@ -3788,7 +3788,7 @@ class ProsesGajiController extends Controller
                                             'nilai' => $bazmapb * -1,        
                                             'userid' => $request->userid,        
                                             ]); 
-                                }else{
+                                } else {
                                     MasterUpah::insert([
                                             'tahun' => $data_tahun,
                                             'bulan' => $data_bulan,
@@ -3800,7 +3800,7 @@ class ProsesGajiController extends Controller
                                             'userid' => $request->userid,        
                                             ]); 
                                 }
-                            }else{
+                            } else {
                                 $nildapenpribadipb = '0';
                                 $nildapenperusahaanpb = '0';
                             }
@@ -3839,7 +3839,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($datapb->nopeg <> '709685'){
                                         $iuranwajibpb = ($data_tabpb->perusahaan/100) * $upahtetappb;
-                                    }else{
+                                    } else {
                                         $iuranwajibpb = '0';
                                     }
                                 }
@@ -3920,7 +3920,7 @@ class ProsesGajiController extends Controller
                                     $cclpotongpprppb = $data_nilaipb->ccl;
                                     if($data_nilaipb->bilai < 0){
                                         $nilaipotongpprppb = $data_nilaipb->nilai * -1;
-                                    }else{
+                                    } else {
                                         $nilaipotongpprppb = $data_nilaipb->nilai;
                                     }
                                 }
@@ -3979,7 +3979,7 @@ class ProsesGajiController extends Controller
                                     $cclpotongkoperasipb = $data_potongankoppb->ccl;
                                     if($data_potongankoppb->nilai < 0){
                                         $nilaipotongkoperasipb = $data_potongankoppb->nilai;
-                                    }else{
+                                    } else {
                                         $nilaipotongkoperasipb = $data_potongankoppb->nilai * -1;
                                     }
                                 }
@@ -4075,7 +4075,7 @@ class ProsesGajiController extends Controller
                             if($bulan2pb > 12){
                                 $data_bulan2pb = 1;
                                 $data_tahun2pb = $data_tahun + 1;
-                            }else{
+                            } else {
                                 $data_bulan2pb =$bulan2pb;
                                 $data_tahun2pb = $data_tahun;
                             }
@@ -4106,7 +4106,7 @@ class ProsesGajiController extends Controller
                             $biayajabatan2pb = ((5/100) * $totkenapajakpb);
                             if($biayajabatan2pb > 6000000){
                                 $biayajabatanpb = 6000000;  
-                            }else{
+                            } else {
                                 $biayajabatanpb = $biayajabatan2pb;
                             }                              
                             
@@ -4223,7 +4223,7 @@ class ProsesGajiController extends Controller
                                     $tunjjabatanpj = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $tunjjabatanpj = '0';
                         }
                         MasterUpah::insert([
@@ -4269,11 +4269,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_sdmpj->nilai <> ""){
                                         $fassisapj = $data_sdmpj->nilai;
-                                    }else{
+                                    } else {
                                         $fassisapj = '0';
                                     }
                                 }
-                        }else{
+                        } else {
                             $fassisapj = '0';
                         }
                         MasterUpah::insert([
@@ -4309,7 +4309,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_carinilaipj->nilai <> ""){
                                         $faslainpj = $data_carinilaipj->nilai;
-                                    }else{
+                                    } else {
                                         $faslainpj = '0';
                                     }
                                 }
@@ -4395,11 +4395,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($totalpj->pembulatan1 < 0){
                                         $sisagajipj = $totalpj->pembulatan2;
-                                    }else{
+                                    } else {
                                         $sisagajipj = $totalpj->pembulatan1;
                                     }
                                 }
-                            }else{
+                            } else {
                                 $sisagajipj = '0';
                             }
                             MasterUpah::insert([
@@ -4418,7 +4418,7 @@ class ProsesGajiController extends Controller
                             if($bulan2pj >12){
                                 $data_bulan2pj = 1;
                                 $data_tahun2pj = $data_tahun + 1;
-                            }else{
+                            } else {
                                 $data_bulan2pj =$bulan2pj;
                                 $data_tahun2pj = $data_tahun;
                             }
@@ -4439,7 +4439,7 @@ class ProsesGajiController extends Controller
                             {
                                 if($kenappj->nilai1 <> ""){
                                     $nilaikenapajak1pj = $kenappj->nilai1;
-                                }else{
+                                } else {
                                     $nilaikenapajak1pj = '0';
                                 }
                             }
@@ -4451,7 +4451,7 @@ class ProsesGajiController extends Controller
                             {
                                 if($tdkkenappj->nilai1 <> ""){
                                     $nilaiptkp1pj = $tdkkenappj->nilai1;
-                                }else{
+                                } else {
                                     $nilaiptkp1pj = '0';
                                 }
                             }
@@ -4536,11 +4536,11 @@ class ProsesGajiController extends Controller
                                     {
                                         if($data_sdps->nilai <> ""){
                                             $fassisaps = $data_sdps->nilai;
-                                        }else{
+                                        } else {
                                             $fassisaps = '0';
                                         }
                                     }
-                            }else{
+                            } else {
                                 $fassisaps = '0';
                             }
                             MasterUpah::insert([
@@ -4576,7 +4576,7 @@ class ProsesGajiController extends Controller
                                 {
                                     if($data_carinilaips->nilai <> ""){
                                         $faslainps = $data_carinilaips->nilai;
-                                    }else{
+                                    } else {
                                         $faslainps = '0';
                                     }
                                 }
@@ -4602,11 +4602,11 @@ class ProsesGajiController extends Controller
                                 {
                                     if($totalps->pembulatan1 < 0){
                                         $sisagajips = $totalps->pembulatan2;
-                                    }else{
+                                    } else {
                                         $sisagajips = $totalps->pembulatan1;
                                     }
                                 }
-                            }else{
+                            } else {
                                 $sisagajips = '0';
                             }
                             MasterUpah::insert([
@@ -4625,7 +4625,7 @@ class ProsesGajiController extends Controller
                             if($bulan2ps >12){
                                 $data_bulan2ps = 1;
                                 $data_tahun2ps = $data_tahun + 1;
-                            }else{
+                            } else {
                                 $data_bulan2ps =$bulan2ps;
                                 $data_tahun2ps = $data_tahun;
                             }
@@ -4646,7 +4646,7 @@ class ProsesGajiController extends Controller
                             {
                                 if($kenapps->nilai1 <> ""){
                                     $nilaikenapajak1ps = $kenapps->nilai1;
-                                }else{
+                                } else {
                                     $nilaikenapajak1ps = '0';
                                 }
                             }
@@ -4667,7 +4667,7 @@ class ProsesGajiController extends Controller
                             }elseif($dataps->nopeg == "kom5"){
                                 $tunjpajakps = (5/100) * $nilaikenapajakaps;
                                 $potpajakps = (15/100) * ($nilaikenapajakaps + $tunjpajakps);
-                            }else{
+                            } else {
                                 $tunjpajakps = (5/100) * $nilaikenapajakaps;
                                 $potpajakps = (30/100) * ($nilaikenapajakaps + $tunjpajakps);
                             }
@@ -4729,7 +4729,7 @@ class ProsesGajiController extends Controller
                 
                     
 
-                }else{
+                } else {
 
                     
                     // Komite()
@@ -4782,11 +4782,11 @@ class ProsesGajiController extends Controller
                             {
                                 if($totalkm->pembulatan1 < 0){
                                     $sisagajikm = $totalkm->pembulatan2;
-                                }else{
+                                } else {
                                     $sisagajikm = $totalkm->pembulatan1;
                                 }
                             }
-                        }else{
+                        } else {
                             $sisagajikm = '0';
                         }
                         MasterUpah::insert([
@@ -4819,7 +4819,7 @@ class ProsesGajiController extends Controller
                         if($bulan2km >12){
                             $data_bulan2km = 1;
                             $data_tahun2km = $data_tahun + 1;
-                        }else{
+                        } else {
                             $data_bulan2km =$bulan2km;
                             $data_tahun2km = $data_tahun;
                         }
@@ -4840,7 +4840,7 @@ class ProsesGajiController extends Controller
                         {
                             if($kenapkm->nilai1 <> ""){
                                 $nilaikenapajakkm = $kenapkm->nilai1;
-                            }else{
+                            } else {
                                 $nilaikenapajakkm = '0';
                             }
                         }
@@ -4954,8 +4954,16 @@ class ProsesGajiController extends Controller
     
     public function slipGaji()
     {
-        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('modul-sdm-payroll.proses-gaji.slipgaji',compact('data_pegawai'));
+        $data_pegawai = DB::select("SELECT 
+        nopeg,
+        nama,
+        status,
+        nama 
+        from sdm_master_pegawai 
+        where status <> 'P' 
+        order by nopeg");
+
+        return view('modul-sdm-payroll.proses-gaji.slip-gaji', compact('data_pegawai'));
     }
     public function cetak_slipgaji(Request $request)
     {
@@ -4967,7 +4975,7 @@ class ProsesGajiController extends Controller
             $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0)*-1 as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and a.aard in ('09','23','26')");
             $data_lain = DB::select("SELECT a.nopek,a.aard,a.bulan,a.tahun,round(a.curramount,0) as curramount,(select sum(curramount) as total from pay_master_bebanprshn where nopek=a.nopek and aard=a.aard and tahun||bulan <= a.tahun||a.bulan) as total ,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_bebanprshn a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' order by a.aard asc");
             
-            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_slipgaji',compact('request','data_list','data_detail','data_lain'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.slip-gaji-pdf',compact('request','data_list','data_detail','data_lain'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
         
@@ -4975,19 +4983,24 @@ class ProsesGajiController extends Controller
             $canvas->page_text(910, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //slip Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.proses_gaji.slipGaji');
+            return redirect()->route('modul_sdm_payroll.proses_gaji.slip_gaji');
         }
     }
 
-
-    public function ctkrekapgaji()
+    /**
+     * 
+     */
+    public function rekapGaji()
     {
-        return view('modul-sdm-payroll.proses-gaji.rekap');
+        return view('modul-sdm-payroll.proses-gaji.rekap-gaji');
     }
-   
-    public function rekapExport(Request $request)
+    
+    /**
+     * 
+     */
+    public function rekapGajiExport(Request $request)
     {
         if($request->prosesupah == 'C'){
             $data_list = db::select("SELECT a.nopek,b.nama, d.nama as nmbag, d.kode,
@@ -5018,7 +5031,7 @@ class ProsesGajiController extends Controller
             $canvas->page_text(890, 125, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //Rekap Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-            }else{
+            } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
             }
@@ -5051,7 +5064,7 @@ class ProsesGajiController extends Controller
             $canvas->page_text(880, 140, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //Rekap Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-            }else{
+            } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
             }
@@ -5087,7 +5100,7 @@ class ProsesGajiController extends Controller
             $canvas->page_text(880, 140, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //Rekap Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-            }else{
+            } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
             }
@@ -5109,11 +5122,11 @@ class ProsesGajiController extends Controller
             $canvas->page_text(880, 140, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //Rekap Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-            }else{
+            } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
             }
-        }else{
+        } else {
             $data_list = db::select("SELECT a.nopek,b.nama,d.nama as nmbag,d.kode ,
             sum(CASE WHEN a.aard ='02' THEN round(a.nilai,0) ELSE '0' END) as a_upah,
             sum(CASE WHEN a.aard in ('32')  THEN round(a.nilai,0)*-1 ELSE '0' END) as a_koreksi,
@@ -5131,18 +5144,24 @@ class ProsesGajiController extends Controller
             $canvas->page_text(880, 140, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //Rekap Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-            }else{
+            } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
             }
         }
     }
     
+    /**
+     * 
+     */
     public function daftarUpah()
     {
         return view('modul-sdm-payroll.proses-gaji.rekap-daftar-upah');
     }
     
+    /**
+     * 
+     */
     public function daftarUpahExport(Request $request)
     {
         if($request->prosesupah == 'C'){
@@ -5204,11 +5223,11 @@ class ProsesGajiController extends Controller
             $canvas->page_text(880, 140, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //Rekap Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-            }else{
+            } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.daftar_upah');
             }
-        }else{
+        } else {
             $data_list = db::select("SELECT nopek, namapegawai,rekening,namabank,
             sum(CASE WHEN aard ='02' THEN round(nilai,0) ELSE '0' END) as allin,
             sum(CASE WHEN aard ='23' THEN round(nilai,0) ELSE '0' END) as jumkoreksi, 

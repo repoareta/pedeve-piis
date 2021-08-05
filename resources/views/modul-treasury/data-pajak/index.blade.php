@@ -18,21 +18,21 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('data_pajak.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </button>
@@ -42,7 +42,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="search-form">
+        <form class="form" id="search-form">
             <div class="form-group row">
                 <label for="" class="col-1 col-form-label">Pencarian</label>
                 <div class="col-2">
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </form>
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th width="50"></th>
@@ -91,7 +91,7 @@
                             }
                         },
                 columns: [
-                    {data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                    {data: 'action', name: 'aksi', class:'radio-button text-center'},
                     {data: 'tahun', name: 'tahun'},
                     {data: 'bulan', name: 'bulan'},
                     {data: 'pekerja', name: 'pekerja'},
@@ -115,7 +115,7 @@
                         var bulan = $(this).attr('bulan');
                         var nopek = $(this).attr('nopek');
                         var jenis = $(this).attr('jenis');
-                        location.href = "{{url('perbendaharaan/data-pajak/edit')}}" + '/' + tahun + '/' + bulan + '/' + nopek + '/' + jenis;
+                        location.href = "{{ url('perbendaharaan/data-pajak/edit') }}" + '/' + tahun + '/' + bulan + '/' + nopek + '/' + jenis;
                     });
                 } else {
                     swalAlertInit('ubah');

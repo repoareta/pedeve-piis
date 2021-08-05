@@ -85,7 +85,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label text-right">Lokasi <span class="text-danger">*</span></label>
                         <div class="col-4">
-                            <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required>
+                            <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;">
                                 <option value="">- Pilih -</option>
                             </select>
                         </div>
@@ -95,7 +95,7 @@
                         </div>
                         <label class="col-1 col-form-label text-right">No Ver</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -363,7 +363,7 @@
                 $("#iklan").val('CR');
             }else if(nilai > '0'){
                 $("#iklan").val('DR');
-            }else{
+            } else {
                 $("#iklan").val('');
             }
         });

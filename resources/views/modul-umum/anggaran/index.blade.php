@@ -18,17 +18,17 @@
 
 			<div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -41,7 +41,7 @@
         </div>
         <div class="card-toolbar">
 			<div class="float-right">
-				<form action="{{ route('modul_umum.anggaran.rekap.export') }}" class="form-inline kt-form" method="POST" target="_blank">
+				<form action="{{ route('modul_umum.anggaran.rekap.export') }}" class="form-inline form" method="POST" target="_blank">
 					@csrf
 					<div class="form-group">
 						<div class="input-group">
@@ -70,7 +70,7 @@
     <div class="card-body">
 
 		<div class="col-12">
-			<form class="kt-form" id="search-form" method="POST">
+			<form class="form" id="search-form" method="POST">
 				<div class="form-group row">
 					<label for="" class="col-form-label">Kode Anggaran</label>
 					<div class="col-2">
@@ -136,7 +136,7 @@ $(document).ready(function () {
 			}
 		},
 		columns: [
-			{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+			{data: 'action', name: 'aksi', class:'radio-button text-center'},
 			{data: 'kode_main', name: 'kode_main', class:'no-wrap'},
 			{data: 'nama_main', name: 'nama_main'},
 			{data: 'tahun', name: 'tahun'},

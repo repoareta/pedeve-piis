@@ -19,28 +19,28 @@
             <div class="text-right">
                 @if($userAbility->tambah == 1)
                 <a href="{{ route('penerimaan_kas.create.kas') }}">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
                 <a href="#" id="editRow">
-                    <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->hapus == 1)
                 <a href="#" id="deleteRow">
-                    <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->cetak == 1)
                 <a href="#" id="exportRow">
-                    <span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-secondary"></i>
                     </span>
                 </a>
@@ -53,7 +53,7 @@
 
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form" id="search-form">
+                <form class="form" id="search-form">
                     <div class="form-group row">
                         <label for="" class="col-1 col-form-label">No. Bukti</label>
                         <div class="col-2">
@@ -122,7 +122,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
+            <form class="form" action="{{ route('penerimaan_kas.export') }}" method="GET" id="formCetakData" target="_blank">
                 <div class="modal-body">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">No Dokumen</label>
@@ -205,7 +205,7 @@
 				}
 			},
 			columns: [
-				{ data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button' },
+				{ data: 'radio', name: 'aksi', class:'radio-button' },
                 { data: 'no_dok', name: 'no_dok' },
                 { data: 'tanggal', name: 'tanggal' },
                 { data: 'voucher', name: 'voucher' },
@@ -215,8 +215,8 @@
                 { data: 'ci', name: 'ci' },
                 { data: 'rate', name: 'rate' },
                 { data: 'nilai_dokumen', name: 'nilai_dokumen' },
-                { data: 'status', name: 'status', orderable: false, searchable: false, class: 'text-center' },
-                { data: 'action', name: 'action', orderable: false, searchable: false, class: 'text-center' },
+                { data: 'status', name: 'status', class: 'text-center' },
+                { data: 'action', name: 'action', class: 'text-center' },
 			]
 			
 	    });
@@ -232,7 +232,7 @@
                 $("input[type=radio]:checked").each(function(){
                     var nodok = $(this).val().split("/").join("-");
                     // var nodok = $(this).attr('nodok');
-                    location.href = "{{url('perbendaharaan/penerimaan-kas')}}"+ '/' + nodok + '/edit';
+                    location.href = "{{ url('perbendaharaan/penerimaan-kas') }}"+ '/' + nodok + '/edit';
                 });
             } else {
                 swalAlertInit('ubah');
@@ -287,7 +287,7 @@
                                             title : 'Penghapusan gagal,data tidak dalam status Opening.',
                                             text  : 'Failed',
                                         });
-                                    }else{
+                                    } else {
                                         Swal.fire({
                                             icon  : 'info',
                                             title : 'Sebelum dihapus,status bayar harus dibatalkan dulu.',

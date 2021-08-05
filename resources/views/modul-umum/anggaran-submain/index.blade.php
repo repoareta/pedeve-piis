@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
 		<div class="col-12">
-			<form class="kt-form" id="search-form" method="POST">
+			<form class="form" id="search-form" method="POST">
 				<div class="form-group row">
 					<label for="" class="col-form-label">Kode Sub Anggaran</label>
 					<div class="col-2">
@@ -85,7 +85,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'action', name: 'action', orderable: false, searchable: false, class:'radio-button'},
+            {data: 'action', name: 'action', class:'radio-button'},
             {data: 'main', name: 'main', class:'no-wrap'},
             {data: 'sub_anggaran', name: 'sub_anggaran', class:'no-wrap'},
             {data: 'tahun', name: 'tahun'},

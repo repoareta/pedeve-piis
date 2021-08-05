@@ -238,7 +238,7 @@
                     <?php
                         if($data->ci == 2){
                             echo "US$. ".number_format($data->nilai_perkara*$data->rate,2);
-                        }else{
+                        } else {
                             echo "Rp.".number_format($data->nilai_perkara,2);
                         }
                     ?>

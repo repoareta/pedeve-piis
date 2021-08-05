@@ -60,7 +60,7 @@ class MainAccountController extends Controller
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             $jenis = $request->jenis;
             $batasawal= $request->batasawal;
             $batasakhir= $request->batasakhir;

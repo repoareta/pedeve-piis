@@ -37,7 +37,7 @@
                         <br>
                             RINCIAN KAS/BANK PER CASH JUDEX
                         <br>
-                            BULAN {{strtoupper($bulan)}} {{ $request->tahun }}
+                            BULAN {{strtoupper($bulan) }} {{ $request->tahun }}
                         <br>
                     </p>
                 </td>

@@ -37,7 +37,7 @@ class CashJudexController extends Controller
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             CashJudex::insert([
                 'kode' => $request->kode,
                 'nama' => $request->nama

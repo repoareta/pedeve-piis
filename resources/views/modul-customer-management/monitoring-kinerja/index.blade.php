@@ -19,17 +19,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_cm.perusahaan_afiliasi.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -38,7 +38,7 @@
     </div>
     <div class="card-body">
         <div class="col-12">
-			<form class="kt-form" id="search-form" >
+			<form class="form" id="search-form" >
 				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
@@ -64,18 +64,18 @@
 							$bulan_1 = ($array_bln[ltrim($bulan,0)]);
 						?>
 						<select class="form-control select2" style="width: 100% !important;" name="bulan">
-							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
-							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
-							<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
-							<option value="04" <?php if($bulan == '04' ) echo 'selected' ; ?>>April</option>
-							<option value="05" <?php if($bulan == '05' ) echo 'selected' ; ?>>Mei</option>
-							<option value="06" <?php if($bulan == '06' ) echo 'selected' ; ?>>Juni</option>
-							<option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
-							<option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
-							<option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
-							<option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
-							<option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
-							<option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
+							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
+							<option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
+							<option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
+							<option value="04" <?php if($bulan == '04') echo 'selected'; ?>>April</option>
+							<option value="05" <?php if($bulan == '05') echo 'selected'; ?>>Mei</option>
+							<option value="06" <?php if($bulan == '06') echo 'selected'; ?>>Juni</option>
+							<option value="07" <?php if($bulan == '07') echo 'selected'; ?>>Juli</option>
+							<option value="08" <?php if($bulan == '08') echo 'selected'; ?>>Agustus</option>
+							<option value="09" <?php if($bulan == '09') echo 'selected'; ?>>September</option>
+							<option value="10" <?php if($bulan == '10') echo 'selected'; ?>>Oktober</option>
+							<option value="11" <?php if($bulan == '11') echo 'selected'; ?>>November</option>
+							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
 	
@@ -132,16 +132,9 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            
-            
             pageLength: 100,
             ajax      : {
                 url: "{{ route('modul_cm.monitoring_kinerja.index.json') }}",
-                type : "POST",
-                dataType : "JSON",
-                headers: {
-                'X-CSRF-Token': '{{ csrf_token() }}',
-                },
                 data: function (d) {
                     d.bulan = $('select[name=bulan]').val();
                     d.tahun = $('input[name=tahun]').val();
@@ -162,31 +155,31 @@
                 {data: 'tkp', name: 'tkp', class: 'text-right'},
                 {data: 'kpi', name: 'kpi', class: 'text-right'},
             ]
-    });
-    $('#search-form').on('submit', function(e) {
-        t.draw();
-        e.preventDefault();
-                var bulan = $('select[name=bulan]').val();
-        $('#acc').val(bulan);
-    });
+        });
+
+        $('#search-form').on('submit', function(e) {
+            t.draw();
+            e.preventDefault();
+            var bulan = $('select[name=bulan]').val();
+            $('#acc').val(bulan);
+        });
     
-    //edit monitoring_kinerja
-    $('#editRow').click(function(e) {
+        //edit monitoring_kinerja
+        $('#editRow').click(function(e) {
             e.preventDefault();
 
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var id = $(this).attr('data-id');
-                    location.replace("{{url('customer_management/monitoring_kinerja/edit')}}"+ '/' +id);
+                    location.replace("{{ url('customer_management/monitoring_kinerja/edit') }}"+ '/' +id);
                 });
             } else {
                 swalAlertInit('ubah');
             }
         });
 
-
-    //delete monitoring_kinerja
-    $('#deleteRow').click(function(e) {
+        //delete monitoring_kinerja
+        $('#deleteRow').click(function(e) {
             e.preventDefault();
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function() {
@@ -210,38 +203,35 @@
                         })
                         .then((result) => {
                         if (result.value) {
-                            $.ajax({
-                                url: "{{ route('modul_cm.monitoring_kinerja.delete') }}",
-                                type: 'DELETE',
-                                dataType: 'json',
-                                data: {
-                                    "id": id,
-                                    "_token": "{{ csrf_token() }}",
-                                },
-                                success: function () {
-                                    Swal.fire({
-                                        type  : 'success',
-                                        title : 'Hapus No. monitoring kinerja ' + id,
-                                        text  : 'Berhasil',
-                                        timer : 2000
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                },
-                                error: function () {
-                                    alert("Terjadi kesalahan, coba lagi nanti");
-                                }
-                            });
-                        }
+                                $.ajax({
+                                    url: "{{ route('modul_cm.monitoring_kinerja.delete') }}",
+                                    type: 'DELETE',
+                                    dataType: 'json',
+                                    data: {
+                                        "id": id,
+                                        "_token": "{{ csrf_token() }}",
+                                    },
+                                    success: function () {
+                                        Swal.fire({
+                                            type  : 'success',
+                                            title : 'Hapus No. monitoring kinerja ' + id,
+                                            text  : 'Berhasil',
+                                            timer : 2000
+                                        }).then(function() {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function () {
+                                        alert("Terjadi kesalahan, coba lagi nanti");
+                                    }
+                                });
+                            }
+                        });
                     });
-                });
             } else {
                 swalAlertInit('hapus');
-            }
-            
+            } 
         });
-
-
-});		
+    });		
 </script>
 @endpush

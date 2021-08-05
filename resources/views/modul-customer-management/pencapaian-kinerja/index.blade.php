@@ -19,7 +19,7 @@
         <div class="card-toolbar">
             <div class="float-left">
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -28,7 +28,7 @@
     </div>
     <div class="card-body">
         <div class="col-12">
-			<form class="kt-form" action="{{ route('modul_cm.pencapaian_kinerja.search') }}" method="GET">
+			<form class="form" action="{{ route('modul_cm.pencapaian_kinerja.search') }}" method="GET">
 				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
@@ -54,18 +54,18 @@
 							$bulan_1 = ($array_bln[ltrim($bulan,0)]);
 						?>
 						<select class="form-control select2" style="width: 100% !important;" name="bulan">
-							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
-							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
-							<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
-							<option value="04" <?php if($bulan == '04' ) echo 'selected' ; ?>>April</option>
-							<option value="05" <?php if($bulan == '05' ) echo 'selected' ; ?>>Mei</option>
-							<option value="06" <?php if($bulan == '06' ) echo 'selected' ; ?>>Juni</option>
-							<option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
-							<option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
-							<option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
-							<option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
-							<option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
-							<option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
+							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
+							<option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
+							<option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
+							<option value="04" <?php if($bulan == '04') echo 'selected'; ?>>April</option>
+							<option value="05" <?php if($bulan == '05') echo 'selected'; ?>>Mei</option>
+							<option value="06" <?php if($bulan == '06') echo 'selected'; ?>>Juni</option>
+							<option value="07" <?php if($bulan == '07') echo 'selected'; ?>>Juli</option>
+							<option value="08" <?php if($bulan == '08') echo 'selected'; ?>>Agustus</option>
+							<option value="09" <?php if($bulan == '09') echo 'selected'; ?>>September</option>
+							<option value="10" <?php if($bulan == '10') echo 'selected'; ?>>Oktober</option>
+							<option value="11" <?php if($bulan == '11') echo 'selected'; ?>>November</option>
+							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
 	

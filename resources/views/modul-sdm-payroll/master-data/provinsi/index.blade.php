@@ -19,17 +19,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_sdm_payroll.provinsi.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -66,7 +66,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax      : "{{ route('modul_sdm_payroll.provinsi.index.json') }}",
         columns: [
-            {data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button', width: '10'},
+            {data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
             {data: 'kode', name: 'kode', class:'no-wrap'},
             {data: 'nama', name: 'nama', class:'no-wrap'}
         ]

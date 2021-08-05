@@ -18,7 +18,7 @@ class TabelDepositoController extends Controller
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
                     $bulan = substr($data_bul->bulan_buku,4); 
                 }
-            }else{
+            } else {
                 $bulan ='00';
                 $tahun ='0000';
             }
@@ -33,14 +33,14 @@ class TabelDepositoController extends Controller
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulan' and b.tahun='$tahun' order by a.tgltempo asc");
             }elseif($bulan == "" and $tahun <> ""){ 
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.tahun='$tahun' order by a.tgltempo asc" );				    
-            }else{
+            } else {
                 $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)=6");
                 if(!empty($data_tahunbulan)){
                     foreach($data_tahunbulan as $data_bul)
                     {
                         $bulan_buku = $data_bul->bulan_buku;
                     }
-                }else{
+                } else {
                     $tgl = now();
                     $tanggal = date_format($tgl, 'Ym');
                     $bulan_buku = $tanggal;
@@ -59,7 +59,7 @@ class TabelDepositoController extends Controller
                         return 1;
                     }elseif($tgltempo <= date('Y-m-d')){
                         return 2;
-                    }else{
+                    } else {
                         return 3;
                     }
                 })
@@ -125,7 +125,7 @@ class TabelDepositoController extends Controller
             // if($request->lapangan == ""){
                 $lp = "a.asal in ('MD','MS')";
                 $lapangan = "MD,MS";
-            // }else{
+            // } else {
             //     $lp = "a.asal='$request->lapangan'";
             //     $lapangan = "$request->lapangan";
             // }
@@ -134,7 +134,7 @@ class TabelDepositoController extends Controller
                 $bulan = ltrim($request->bulan,0);
                 $tahun = $request->tahun;
                 $data = "a.kdbank='$sanper' and d.bulan='$bulan' and d.tahun='$tahun'";
-            }else{
+            } else {
                 $sanper ="like '%' ";
                 $bulan = ltrim($request->bulan,0);
                 $tahun = $request->tahun;
@@ -155,7 +155,7 @@ class TabelDepositoController extends Controller
             ->setOption('margin-bottom', 10);
     
             return $pdf->stream('rekap_d2_perperiode_'.date('Y-m-d H:i:s').'.pdf');
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data yang di cari ", 'Failed')->persistent(true);
             return redirect()->route('tabel_deposito.index');
         }

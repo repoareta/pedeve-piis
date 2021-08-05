@@ -199,28 +199,28 @@
                 <tr>
                     <td class="row-td">{{ $bulan_}}</td>
                     <td class="row-td text-right">
-                        {{ $row->data_1 < 0 ? "(".number_format($row->data_1*-1,2).")" : number_format($row->data_1,2)}}
+                        {{ $row->data_1 < 0 ? "(".number_format($row->data_1*-1,2).")" : number_format($row->data_1,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_2 < 0 ? "(".number_format($row->data_2*-1,2).")" : number_format($row->data_2,2)}}
+                        {{ $row->data_2 < 0 ? "(".number_format($row->data_2*-1,2).")" : number_format($row->data_2,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_3 < 0 ? "(".number_format($row->data_3*-1,2).")" : number_format($row->data_3,2)}}
+                        {{ $row->data_3 < 0 ? "(".number_format($row->data_3*-1,2).")" : number_format($row->data_3,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_4 < 0 ? "(".number_format($row->data_4*-1,2).")" : number_format($row->data_4,2)}}
+                        {{ $row->data_4 < 0 ? "(".number_format($row->data_4*-1,2).")" : number_format($row->data_4,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_5 < 0 ? "(".number_format($row->data_5*-1,2).")" : number_format($row->data_5,2)}}
+                        {{ $row->data_5 < 0 ? "(".number_format($row->data_5*-1,2).")" : number_format($row->data_5,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_6 < 0 ? "(".number_format($row->data_6*-1,2).")" : number_format($row->data_6,2)}}
+                        {{ $row->data_6 < 0 ? "(".number_format($row->data_6*-1,2).")" : number_format($row->data_6,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_7 < 0 ? "(".number_format($row->data_7*-1,2).")" : number_format($row->data_7,2)}}
+                        {{ $row->data_7 < 0 ? "(".number_format($row->data_7*-1,2).")" : number_format($row->data_7,2) }}
                     </td>
                     <td class="row-td text-right">
-                        {{ $row->data_8 < 0 ? "(".number_format($row->data_8*-1,2).")" : number_format($row->data_8,2)}}
+                        {{ $row->data_8 < 0 ? "(".number_format($row->data_8*-1,2).")" : number_format($row->data_8,2) }}
                     </td>
                 </tr>
             </tbody>
@@ -234,28 +234,28 @@
             <tr style="text-align: left; padding-left:20px;font: normal 12px Verdana, Arial, sans-serif">
                 <th class="text-left">TOTA</th>
                 <th class="text-right">
-                    {{ $data_peg->data_1 < 0 ? "(".number_format($data_peg->data_1*-1,2).")" : number_format($data_peg->data_1,2)}}
+                    {{ $data_peg->data_1 < 0 ? "(".number_format($data_peg->data_1*-1,2).")" : number_format($data_peg->data_1,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_2 < 0 ? "(".number_format($data_peg->data_2*-1,2).")" : number_format($data_peg->data_2,2)}}
+                    {{ $data_peg->data_2 < 0 ? "(".number_format($data_peg->data_2*-1,2).")" : number_format($data_peg->data_2,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_3 < 0 ? "(".number_format($data_peg->data_3*-1,2).")" : number_format($data_peg->data_3,2)}}
+                    {{ $data_peg->data_3 < 0 ? "(".number_format($data_peg->data_3*-1,2).")" : number_format($data_peg->data_3,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_4 < 0 ? "(".number_format($data_peg->data_4*-1,2).")" : number_format($data_peg->data_4,2)}}
+                    {{ $data_peg->data_4 < 0 ? "(".number_format($data_peg->data_4*-1,2).")" : number_format($data_peg->data_4,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_5 < 0 ? "(".number_format($data_peg->data_5*-1,2).")" : number_format($data_peg->data_5,2)}}
+                    {{ $data_peg->data_5 < 0 ? "(".number_format($data_peg->data_5*-1,2).")" : number_format($data_peg->data_5,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_6 < 0 ? "(".number_format($data_peg->data_6*-1,2).")" : number_format($data_peg->data_6,2)}}
+                    {{ $data_peg->data_6 < 0 ? "(".number_format($data_peg->data_6*-1,2).")" : number_format($data_peg->data_6,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_7 < 0 ? "(".number_format($data_peg->data_7*-1,2).")" : number_format($data_peg->data_7,2)}}
+                    {{ $data_peg->data_7 < 0 ? "(".number_format($data_peg->data_7*-1,2).")" : number_format($data_peg->data_7,2) }}
                 </th>
                 <th class="text-right">
-                    {{ $data_peg->data_8 < 0 ? "(".number_format($data_peg->data_8*-1,2).")" : number_format($data_peg->data_8,2)}}
+                    {{ $data_peg->data_8 < 0 ? "(".number_format($data_peg->data_8*-1,2).")" : number_format($data_peg->data_8,2) }}
                 </th>
             </tr>
             @endforeach

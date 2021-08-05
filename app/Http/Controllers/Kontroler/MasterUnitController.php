@@ -55,7 +55,7 @@ class MasterUnitController extends Controller
         if(!empty($data)){
             $data2 = 2;
             return response()->json($data2);
-        }else{
+        } else {
         DB::table('tab_tbl_unit')->insert([
         'tembusan' => $request->tembusan ,
         'skdari' => $request->skdari ,

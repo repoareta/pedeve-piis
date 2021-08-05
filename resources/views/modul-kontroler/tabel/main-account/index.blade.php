@@ -19,17 +19,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_kontroler.main_account.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -71,18 +71,13 @@
             processing: true,
             serverSide: true,
             ajax      : {
-                        url: "{{ route('modul_kontroler.main_account.index.json') }}",
-                        type : "POST",
-                        dataType : "JSON",
-                        headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                        },
-                        data: function (d) {
-                            d.pencarian = $('input[name=pencarian]').val();
-                        }
-                    },
+                url: "{{ route('modul_kontroler.main_account.index.json') }}",
+                data: function (d) {
+                    d.pencarian = $('input[name=pencarian]').val();
+                }
+            },
             columns: [
-                {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                 {data: 'jenis', name: 'jenis'},
                 {data: 'batas_awal', name: 'batas_awal'},
                 {data: 'batas_akhir', name: 'batas_akhir'},
@@ -160,7 +155,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{url('kontroler/main_account/edit')}}"+ '/' +no);
+                    location.replace("{{ url('kontroler/main_account/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');

@@ -23,7 +23,7 @@ class PotonganInsentifController extends Controller
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
                     $bulan = substr($data_bul->bulan_buku,4); 
                 }
-            }else{
+            } else {
                 $bulan ='00';
                 $tahun ='0000';
             }
@@ -49,13 +49,13 @@ class PotonganInsentifController extends Controller
             $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahuns'  order by a.tahun,a.bulan asc");
             }elseif($bulan == null and $tahun <> null){
             $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahun'  order by a.tahun,a.bulan asc");
-            }else{
+            } else {
             $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.bulan='$bulan' and a.tahun='$tahun' order by a.nopek asc");
             }
-        }else{
+        } else {
             if($bulan == null and $tahun == null){
             $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' order by a.tahun,a.bulan desc");
-            }else{
+            } else {
             $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
             }
         }

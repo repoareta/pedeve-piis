@@ -20,7 +20,7 @@ class PostingKasBankController extends Controller
             $tahun = substr($data_bul->bulan_buku,0,-2); 
             $bulan = substr($data_bul->bulan_buku,4); 
         }
-    }else{
+    } else {
         $bulan ='00';
         $tahun ='0000';
     }
@@ -34,16 +34,16 @@ class PostingKasBankController extends Controller
             {
                 if(is_null($dat->thnbln)){
                     $thnblopen2 = "";
-                }else{
+                } else {
                     $thnblopen2 = $dat->thnbln;
                 }
             }
-        }else{
+        } else {
             $thnblopen2 = "";
         }
         if($request->bulan <>"" and $request->tahun<>""){
             $data = DB::select("SELECT a.* from kasdoc a where a.thnbln ='$request->tahun$request->bulan' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
-        }else{
+        } else {
             $data = DB::select("SELECT a.* from kasdoc a where a.thnbln ='$thnblopen2' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
         }		
         return datatables()->of($data)
@@ -51,7 +51,7 @@ class PostingKasBankController extends Controller
             if($data->paiddate <>""){
                 $tgl = date_create($data->paiddate);
                 return date_format($tgl, 'd/m/Y');
-            }else{
+            } else {
                 return '0';
             }
        })
@@ -78,9 +78,9 @@ class PostingKasBankController extends Controller
        })
         ->addColumn('action', function ($data) {
             if($data->verified == 'Y'){
-                $action = '<p align="center"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle" ></i></span></a></p>';
-            }else{
-                $action = '<p align="center"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="" style="cursor:hand"><i class="fas fa-ban" ></i></span></a></p>';
+                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
+            } else {
+                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="" style="cursor:hand"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
             }               
             return $action;
         })
@@ -113,7 +113,7 @@ class PostingKasBankController extends Controller
                 $paiddate = $objrs->paiddate;
                 if($mp == "P"){
                     $darkep = "Kepada";
-                }else{ 
+                } else { 
                     $darkep = "Dari";
                 }
 
@@ -123,7 +123,7 @@ class PostingKasBankController extends Controller
                 }elseif($jk == "11"){
                     $namajk = "Bank (Rupiah)";
                     $namaci = "1.Rp";
-                }else{
+                } else {
                     $namajk = "Kas (Rupiah)";
                     $namaci = "1.Rp";
                 }
@@ -134,7 +134,7 @@ class PostingKasBankController extends Controller
                         {
                         $nama_bagian = $rsbagian->nama;
                         }
-                    }else{
+                    } else {
                         $nama_bagian = "";
                     }
 
@@ -144,7 +144,7 @@ class PostingKasBankController extends Controller
                         {
                             $nama_kas = $rskas->namabank;
                         }
-                    }else{
+                    } else {
                         $nama_kas = "-";
                     }
             }
@@ -154,7 +154,7 @@ class PostingKasBankController extends Controller
                 {
                     $nu = $no->nu+1;
                 }
-            }else{
+            } else {
                 $nu=1;
             }  
             $data_detail = DB::select("SELECT a.* from kasline a where a.docno='$docno' order by a.lineno");
@@ -173,7 +173,7 @@ class PostingKasBankController extends Controller
             {
                 if($sums->tot <> ""){
                     $jumlahnya = $sums->tot;
-                }else{
+                } else {
                     $jumlahnya = 0;
                 }
             }
@@ -257,7 +257,7 @@ class PostingKasBankController extends Controller
             {
                 if($sums->tot <> ""){
                     $jumlahnya = $sums->tot;
-                }else{
+                } else {
                     $jumlahnya = 0;
                 }
             }
@@ -310,7 +310,7 @@ class PostingKasBankController extends Controller
 
         return datatables()->of($data)
         ->addColumn('docno', function ($data) {
-            $action = '<p align="left"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="kt-font-primary pointer-link" data-toggle="kt-tooltip" data-placement="top" title="" style="cursor:hand">'.$data->docno.'</i></span></a></p>';
+            $action = '<p align="left"><a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="kt-font-primary pointer-link"  title="" style="cursor:hand">'.$data->docno.'</i></span></a>';
             return $action;
        })
         ->rawColumns(['docno'])
@@ -343,7 +343,7 @@ class PostingKasBankController extends Controller
                 if($objrs->posted == "Y"){
                     $data = 2;
                     return response()->json($data);
-                }else{
+                } else {
                     
                     Kasline::insert([
                         'docno' => $docno ,
@@ -383,7 +383,7 @@ class PostingKasBankController extends Controller
                 if($objrs->posted == "Y"){
                     $data = 2;
                     return response()->json($data);
-                }else{
+                } else {
                     Kasline::where('docno', $docno)
                     ->where('lineno', $nourut)
                     ->update([
@@ -423,7 +423,7 @@ class PostingKasBankController extends Controller
             {
                 $thnblopen3 = vf($data->thnbln);
             }
-        }else{
+        } else {
             $thnblopen3 = "";
         }
         $nokas = $request->nokas;
@@ -438,7 +438,7 @@ class PostingKasBankController extends Controller
         if(($tahunbulan1 <> $tabulasli) or ($tahunbulan1 <> $tabulasli)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             $data_cekposting = DB::select("SELECT * from kasdoc where paiddate between '$tanggal' and '$tanggal2' and posted <>'Y' and verified='Y' and store='$nokas'");
             if(!empty($data_cekposting)){
                 $data_kitaposting = DB::select("SELECT * from kasdoc where store='$nokas' and verified='Y' and posted <> 'Y' and paiddate between '$tanggal' and '$tanggal2'");
@@ -453,7 +453,7 @@ class PostingKasBankController extends Controller
                         if($data_ka->v_thnbln<>$data_ka->v_thnbln_b){
                             $data = 3;
                             return response()->json($data);
-                        }else{
+                        } else {
                             
                             $data_crdoc = DB::select("SELECT * from kasdoc where docno='$docno'");
                             $ada = false;
@@ -470,7 +470,7 @@ class PostingKasBankController extends Controller
                                             $sno = $n->jum+1;
                                             $nilaitot = -$n->total;
                                         }
-                                    }else{
+                                    } else {
                                             $sno = 1;
                                             $nilaitot = 0;
                                     }
@@ -520,12 +520,12 @@ class PostingKasBankController extends Controller
                                     if($dd->ci == '2'){
                                         if($account == '178'){ //--- item transaksi dengan rate pajak
                                             $vrate = $dd->rate_pajak;
-                                        }else{
+                                        } else {
                                             $vrate = $dd->rate;
                                         }
                                             $v_rp = $ll->totprice*$vrate;
                                             $v_dl = $ll->totprice;
-                                    }else{
+                                    } else {
                                         $vrate = 1;               //--- item transaksi dengan rate transaksi biasa
                                         $v_rp  = $ll->totprice;
                                         $v_dl  = 0;
@@ -570,7 +570,7 @@ class PostingKasBankController extends Controller
                 }
                 $data = 1;
                 return response()->json($data);
-            }else{ 
+            } else { 
                 $data = 5;
                 return response()->json($data);
             }
@@ -590,7 +590,7 @@ class PostingKasBankController extends Controller
             {
                 $thnblopen3 = vf($data->thnbln);
             }
-        }else{
+        } else {
             $thnblopen3 = "";
         }
         $nokas = $request->nokas;
@@ -605,7 +605,7 @@ class PostingKasBankController extends Controller
         if(($tahunbulan1 <> $tabulasli) or ($tahunbulan1 <> $tabulasli)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             $data_kitabatal = DB::select("SELECT * from kasdoc where store='$nokas' and posted='Y' and paiddate between '$tanggal' and '$tanggal2'");
             if(!empty($data_kitabatal)){ 
                 foreach($data_kitabatal as $kitabatal)
@@ -633,7 +633,7 @@ class PostingKasBankController extends Controller
                 }
                 $data = 1;
                 return response()->json($data);
-            }else{
+            } else {
                 $data = 3;
                 return response()->json($data);
             }
@@ -654,7 +654,7 @@ class PostingKasBankController extends Controller
                     ]);
                     $data = 1;
                     return response()->json($data);
-        }else{
+        } else {
             $status1 = $request->status1;
             $docno = $request->mp.'/'.$request->bagian.'/'.$request->nomor;
         
@@ -665,7 +665,7 @@ class PostingKasBankController extends Controller
                     if($datac->posted == "Y"){
                         $data = 2;
                         return response()->json($data);
-                    }else{
+                    } else {
                         Kasdoc::where('docno', $docno)
                         ->update([
                             'verified' => 'N',
@@ -675,7 +675,7 @@ class PostingKasBankController extends Controller
                         return response()->json($data);
                     }
                 }
-            }else{
+            } else {
                 Kasdoc::where('docno', $docno)
                 ->update([
                     'verified' => 'N',

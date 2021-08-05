@@ -22,7 +22,7 @@ class JurnalUmumController extends Controller
                     $tahun = substr($data_bul->bulan_buku,0,-2); 
                     $bulan = substr($data_bul->bulan_buku,4); 
                 }
-            }else{
+            } else {
                 $bulan ='00';
                 $tahun ='0000';
             }
@@ -38,17 +38,17 @@ class JurnalUmumController extends Controller
             {
                 if(is_null($dat->thnbln)){
                     $thnblopen2 = "";
-                }else{
+                } else {
                     $thnblopen2 = $dat->thnbln;
                 }
             }
-        }else{
+        } else {
             $thnblopen2 = "";
         }
 
         if($request->bulan<>"" and $request->tahun<>""){
             $data = DB::select("SELECT  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$request->tahun$request->bulan' order by voucher");
-        }else{
+        } else {
             $data = DB::select("SELECT  docno, keterangan, jk, store, voucher, posted from jurumdoc  where thnbln ='$thnblopen2' order by voucher");
         }
 
@@ -60,7 +60,7 @@ class JurnalUmumController extends Controller
         ->addColumn('action', function ($data) {
             if(Auth::user()->userid <> 'PWC'){
                 $action = '<a href="'. route('modul_kontroler.jurnal_umum.copy',['no' => str_replace('/', '-', $data->docno)]).'"><span><i class="fas fa-2x fa-paste text-primary"></i></span></a>';
-            }else{
+            } else {
                 $action = '<span><i class="fas fa-2x fa-paste text-success"></i></span>';
             }               
             return $action;
@@ -77,11 +77,11 @@ class JurnalUmumController extends Controller
             {
                 if(is_null($dat->thnbln)){
                     $thnblopen2 = "";
-                }else{
+                } else {
                     $thnblopen2 = $dat->thnbln;
                 }
             }
-        }else{
+        } else {
             $thnblopen2 = "";
         }
 
@@ -90,7 +90,7 @@ class JurnalUmumController extends Controller
         if($s == ""){
             Alert::info("Bulan buku tidak ada atau sudah di posting", 'Failed')->persistent(true);
             return redirect()->route('modul-kontroler.jurnal-umum.create');
-        }else{  
+        } else {  
             $thnbln = $s;
             $suplesi = 0; 
             $tahun = substr($s,0,-2); 
@@ -109,7 +109,7 @@ class JurnalUmumController extends Controller
                     $nobukti='AA'.$id;
                     $nomor = substr($tahun,2,2).''.$bulan.''.$id;
                 }
-            }else{
+            } else {
                 $nobukti = "AA001";
                 $nomor = substr($tahun,2,2).''.$bulan.'001';
             }
@@ -151,7 +151,7 @@ class JurnalUmumController extends Controller
         if(!empty($data_cek)){
             $data = 0;
             return response()->json($data);
-        }else{
+        } else {
             JurumDoc::insert([
                             'docno' => $docno,
                             'thnbln' => $thnbln,
@@ -186,7 +186,7 @@ class JurnalUmumController extends Controller
                 {
                     $nu = $no->nu+1;
                 }
-            }else{
+            } else {
                 $nu=1;
             }  
             $data_lapang = DB::select("SELECT kodelokasi,nama from lokasi");
@@ -203,11 +203,11 @@ class JurnalUmumController extends Controller
                                 $lab2 = "CR";
                             }elseif($data_sum->tot > 0){
                                 $lab2 = "DR";
-                            }else{
+                            } else {
                                 $lab2 = "";
                             }
                         }
-                   }else{
+                   } else {
                         $jumlahnya = 0;
                    }
 
@@ -229,14 +229,14 @@ class JurnalUmumController extends Controller
         if(stbbuku2($thnbln,$suplesi) <> 'gtopening'){ 
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             $data_rscekjurnal = DB::select("SELECT a.thnbln,a.posted from jurumdoc a where a.docno='$docno'");
             foreach($data_rscekjurnal as $data_cekjur)
             {
                 if($data_cekjur->posted == "Y"){
                     $data = 3;
                     return response()->json($data);
-                }else{
+                } else {
                     Jurumdoc::where('docno', $docno)
                     ->update([
                         'suplesi' => $suplesi,
@@ -265,12 +265,12 @@ class JurnalUmumController extends Controller
             if(stbbuku2($data_cekjur->thnbln,"0") > 'gtopening'){
                 $data = 2;
                 return response()->json($data);
-            }else{
+            } else {
             
                 if($data_cekjur->posted == "Y"){
                     $data = 3;
                     return response()->json($data);
-                }else{
+                } else {
                     Jurumdoc::where('docno', $docno)->delete();
                     JurumLine::where('docno', $docno)->delete();
                     $data = 1;
@@ -298,21 +298,21 @@ class JurnalUmumController extends Controller
                 {
                     $rate = $data_car->rate;
                 }
-            }else{
+            } else {
                 $rate = "1";
             }
-        }else{
+        } else {
             $rate = $request->rate;
         }
 
         if($request->debet == ""){
             $debet="0"; 
-        }else{
+        } else {
             $debet= $request->debet; 
         }
         if($request->kredit == ""){
             $kredit="0"; 
-        }else{
+        } else {
             $kredit= $request->kredit; 
         }
 
@@ -320,7 +320,7 @@ class JurnalUmumController extends Controller
 	  if(!empty($data_jurum)){
         $data = 2;
         return response()->json($data);
-      }else{ 
+      } else { 
             $data_coun = DB::select("SELECT * from account where kodeacct='$sanper'");
             if(!empty($data_coun)){
 
@@ -340,7 +340,7 @@ class JurnalUmumController extends Controller
                 ]);
                 $data = 1;
                 return response()->json($data);
-            }else{
+            } else {
                 $data = 3;
                 return response()->json($data);
             }
@@ -404,11 +404,11 @@ class JurnalUmumController extends Controller
             {
                 if(is_null($data_rs)){
                     $thnblopen3 = '0';
-                }else{
+                } else {
                     $thnblopen3 = trim($data_rs->thnbln);
                 }
             }
-        }else{
+        } else {
             $thnblopen3 = "";
         }
         $docno = str_replace('-', '/', $request->docno);
@@ -422,7 +422,7 @@ class JurnalUmumController extends Controller
         if($bulbuk <> $thnblopen3){
             Alert::info('Proses Posting Jurnal Gagal, Bulan Buku Aktif: '.$bulbuk, 'Info')->persistent(true);
             return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
-        }else{
+        } else {
             if($request->status =="N"){
                 $data_cekdetail = DB::select("SELECT (sum(debet) - sum(kredit)) as total from jurumline where docno='$docno'");
                 foreach($data_cekdetail as $data_cekde)
@@ -446,13 +446,13 @@ class JurnalUmumController extends Controller
                         {
                             if($d->ci=='2'){
                                 $totpricerp = $l->rate*($l->debet-$l->kredit);
-                            }else{
+                            } else {
                                 $totpricerp = $l->debet-$l->kredit;
                             };
 
                             if($d->ci=='2'){
                                 $totpricedl = $l->debet-$l->kredit;
-                            }else{
+                            } else {
                                 $totpricedl = '0';
                             }
 
@@ -494,11 +494,11 @@ class JurnalUmumController extends Controller
                     ]);
                     Alert::success('Data Berhasil Diposting', 'Berhasil')->persistent(true);
                     return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
-                }else{
+                } else {
                     Alert::info('Posting Gagal, Debet Kredit Tidak Balance', 'Info')->persistent(true);
                     return redirect()->route('modul-kontroler.jurnal-umum.edit', ['no' => $request->docno]);
                 }
-            }else{
+            } else {
                 Fiosd201::where('docno', $docno)->delete();
                 Jurumdoc::where('docno', $docno)
                     ->update([
@@ -526,11 +526,11 @@ class JurnalUmumController extends Controller
             {
                 if(is_null($dat->thnbln)){
                     $thnblopen2 = "";
-                }else{
+                } else {
                     $thnblopen2 = $dat->thnbln;
                 }
             }
-        }else{
+        } else {
             $thnblopen2 = "";
         }
         $mp = "J";
@@ -549,7 +549,7 @@ class JurnalUmumController extends Controller
                     $nobukti='AA'.$id;
                     $nomor = substr($tahun,2,2).''.$bulan.''.$id;
                 }
-            }else{
+            } else {
                 $nobukti = "AA001";
                 $nomor = substr($tahun,2,2).''.$bulan.'001';
             }    
@@ -631,7 +631,7 @@ class JurnalUmumController extends Controller
             $canvas->page_text(105, 75, "{PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //slip Gaji landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data", 'Failed')->persistent(true);
             return redirect()->route('modul-kontroler.jurnal-umum.index');
         }

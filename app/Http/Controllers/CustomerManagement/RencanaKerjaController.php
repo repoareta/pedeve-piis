@@ -37,7 +37,7 @@ class RencanaKerjaController extends Controller
         ->addColumn('ci', function ($data) {
                 if($data->ci_r == 1){
                     return "IDR";
-                }else{
+                } else {
                     return "USD";
                 }
         })

@@ -19,17 +19,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -69,7 +69,7 @@
 			serverSide: true,
 			ajax      : "{{ route('modul_sdm_payroll.kode_jabatan.index.json') }}",
 			columns: [
-				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button', width: '10'},
+				{data: 'action', name: 'aksi', class:'radio-button text-center', width: '10'},
 				{data: 'kdbag', name: 'kdbag', class:'no-wrap'},
 				{data: 'kdjab', name: 'kdjab', class:'no-wrap'},
 				{data: 'keterangan', name: 'keterangan', class:'no-wrap'},

@@ -18,13 +18,13 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-edit">
+        <form class="form" id="form-edit">
             @csrf
-            <div class="kt-portlet__body">
+            <div class="portlet__body">
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            <h5 class="kt-portlet__head-title">
+                            <h5 class="portlet__head-title">
                                 Header Menu Edit Pembayaran Gaji
                             </h5>	
                         </div>
@@ -59,17 +59,17 @@
                     </div>
                         <div class="col-6" >
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" required>
+                            <select name="bagian" id="bagian" class="form-control select2">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_bagian as $row)
-                                <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
+                                <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected'; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
                                 @endforeach
                                 
                             </select>
@@ -81,18 +81,18 @@
                         <div class="col-3">
                             <select name="jk" id="jk" class="form-control select2" style="width: 100% !important;">
                                 <option value="">- Pilih -</option>
-                                <option value="10" <?php if($data->jk == '10' ) echo 'selected' ; ?>>Kas(Rupiah)</option>
-                                <option value="11" <?php if($data->jk == '11' ) echo 'selected' ; ?>>Bank(Rupiah)</option>
-                                <option value="13" <?php if($data->jk == '13' ) echo 'selected' ; ?>>Bank(Dollar)</option>
+                                <option value="10" <?php if($data->jk == '10') echo 'selected'; ?>>Kas(Rupiah)</option>
+                                <option value="11" <?php if($data->jk == '11') echo 'selected'; ?>>Bank(Rupiah)</option>
+                                <option value="13" <?php if($data->jk == '13') echo 'selected'; ?>>Bank(Dollar)</option>
                                 
                             </select>							</div>
                         <label class="col-2 col-form-label">Currency Index</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="ci" value="{{ $data->ci}}"  id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label">Kurs<span class="text-danger">*</span></label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="kurs" value="{{number_format($data->rate,0)}}"  id="kurs" size="7" maxlength="7" >
+                            <input class="form-control" type="text" name="kurs" value="{{ number_format($data->rate,0) }}" id="kurs" size="7" maxlength="7" >
                         </div>
                     </div>
                     
@@ -103,25 +103,25 @@
                                 <option value="">- Pilih -</option>
                                 
                             </select>
-                            <input class="form-control" type="hidden"  value="{{ $data->store}}" id="lokasi2">
-                            <input class="form-control" type="hidden"  value="{{ $data->namabank}}-{{ $data->norekening}}" id="lokasi1">
+                            <input class="form-control" type="hidden" value="{{ $data->store }}" id="lokasi2">
+                            <input class="form-control" type="hidden" value="{{ $data->namabank }}-{{ $data->norekening }}" id="lokasi1">
                         </div>
                         @if($mp == 'P')
                         <label class="col-1 col-form-label">No Bukti</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher}}"  id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label">No Ver</label>
                         <div class="col-2" >
-                            <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         @else
                         <label class="col-1 col-form-label">No Bukti</label>
                         <div class="col-5" >
-                            <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher}}"  id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <div class="col-1" >
-                            <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         @endif
                     </div>
@@ -130,20 +130,20 @@
                         <label class="col-2 col-form-label">
                         @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required autocomplete="off">
+                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Sejumlah<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text"  value="{{number_format($data->nilai_dok,2,'.',',')}}" size="16" maxlength="16" readonly required autocomplete="off">
-                            <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{number_format($count,2,'.','')}}" size="16" maxlength="16" required autocomplete="off">
+                            <input class="form-control" type="text"  value="{{ number_format($data->nilai_dok,2,'.',',') }}" size="16" maxlength="16" readonly required autocomplete="off">
+                            <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{ number_format($count,2,'.','') }}" size="16" maxlength="16" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 1</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket1" id="ket1" value="{{ $data->ket1}}"></textarea>
+                            <textarea class="form-control" type="text" name="ket1" id="ket1" value="{{ $data->ket1 }}"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -159,11 +159,11 @@
                         </div>
                     </div>
                     @endforeach
-                    <div class="kt-form__actions">
+                    <div class="form__actions">
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{route('pembayaran_gaji.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <a href="{{route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
@@ -183,12 +183,12 @@
             </h3>
             <div class="text-right">
                 <button id="btn-create" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
                         <i class="fas fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button id="btn-edit" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
                         <i class="fas fa-edit text-warning"></i>
                     </span>
                 </button>
@@ -201,7 +201,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table">
+        <table class="table table-bordered" id="kt_table">
             <thead class="thead-light">
                 <tr>
                     <th ></th>
@@ -221,7 +221,7 @@
                 @foreach($data_detail as $data_d)
                 <?php $no++; ?>
                 <tr class="table-info">
-                    <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno}}" nourut="{{ $data_d->lineno}}"  class="btn-radio" ><span></span></label></td>
+                    <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno}}" nourut="{{ $data_d->lineno}}"  class="btn-radio"><span></span></label></td>
                     <td scope="row" align="center">{{ $data_d->lineno}}</td>
                     <td>{{ $data_d->keterangan}}</td>
                     <td>{{ $data_d->lokasi}}</td>
@@ -230,7 +230,7 @@
                     <td align="center">{{ $data_d->pk}}</td>
                     <td align="center">{{ $data_d->jb}}</td>
                     <td align="center">{{ $data_d->cj}}</td>
-                    <td align="right">{{number_format($data_d->totprice,2,'.',',')}}</td>
+                    <td align="right">{{ number_format($data_d->totprice,2,'.',',') }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -239,7 +239,7 @@
                     <td align="right"><?php 
                         if ($count <> "") {
                             echo number_format($count, 2, '.', ',');
-                        }else{
+                        } else {
                             echo '0.00';
                         }
                     ?></td>
@@ -273,7 +273,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
-							<select name="status"  class="form-control selectpicker" data-live-search="true" required>
+							<select name="status"  class="form-control select2">
 								<option value="">-Pilih-</option>
 								@foreach($data_rincian as $rincian)
 								<option value="{{ $rincian->status}}">{{ $rincian->status}}</option>
@@ -283,7 +283,7 @@
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
 					</div>														
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -323,7 +323,7 @@
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
 					</div>												
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -367,14 +367,14 @@
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250" required></textarea>
+							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">KD. Lapang</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8" >
-							<select name="lapangan"  id="select-lapangan" class="form-control select2" style="width: 100% !important;" >
+							<select name="lapangan" id="select-lapangan" class="form-control select2" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($lokasi as $data_lok)
 								<option value="{{ $data_lok->kodelokasi}}">{{ $data_lok->kodelokasi}} - {{ $data_lok->nama }}</option>
@@ -386,7 +386,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  id="select-sanper" class="form-control select2" style="width: 100% !important;" >
+							<select name="sanper" id="select-sanper" class="form-control select2" style="width: 100% !important;" >
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
@@ -454,7 +454,7 @@
 					</div>
 
 																					
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -517,7 +517,7 @@ $(document).ready(function () {
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}else{
+	} else {
 		$("#ci").val("");
 		$("#kurs").val("");
 		$( "#kurs" ).prop( "required", true );
@@ -534,7 +534,7 @@ var ci = $('#ci').val();
 var lokasi1 = $('#lokasi1').val();
 var lokasi2 = $('#lokasi2').val();
 $.ajax({
-	url : "{{route('pembayaran_gaji.lokasiJson')}}",
+	url : "{{route('pembayaran_gaji.lokasiJson') }}",
 	type : "POST",
 	dataType: 'json',
 	data : {
@@ -559,7 +559,7 @@ $.ajax({
 })
 $('#form-edit').submit(function(){
 	$.ajax({
-		url  : "{{route('pembayaran_gaji.update')}}",
+		url  : "{{route('pembayaran_gaji.update') }}",
 		type : "POST",
 		data : $('#form-edit').serialize(),
 		dataType : "JSON",
@@ -589,7 +589,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_gaji.createJson')}}",
+		url : "{{route('pembayaran_gaji.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -646,7 +646,7 @@ var jk = $('#jk').val();
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}else{
+	} else {
 		$("#ci").val("");
 		$("#kurs").val("");
 		$( "#kurs" ).prop( "required", true );
@@ -660,7 +660,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_gaji.lokasiJson')}}",
+		url : "{{route('pembayaran_gaji.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -691,7 +691,7 @@ $("#lokasi").on("click", function(){
 	var mp = $('#mp').val();
 	var tahun = $('#tahun').val();
 		$.ajax({
-			url : "{{route('pembayaran_gaji.nobuktiJson')}}",
+			url : "{{route('pembayaran_gaji.nobuktiJson') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {
@@ -718,7 +718,7 @@ $('#nilai').keyup(function(){
 		$("#iklan").val('CR');
 	}else if(nilai > '0'){
 		$("#iklan").val('DR');
-	}else{
+	} else {
 		$("#iklan").val('');
 	}
 });
@@ -736,7 +736,7 @@ $('#btn-delete-all').on('click', function(e) {
 	//prosess create detail
 	$('#form-create-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_gaji.store.detail')}}",
+			url  : "{{route('pembayaran_gaji.store.detail') }}",
 			type : "POST",
 			data : $('#form-create-detail').serialize(),
 			dataType : "JSON",
@@ -754,7 +754,7 @@ $('#btn-delete-all').on('click', function(e) {
 					}).then(function() {
 						location.reload();
 						});
-				}else{
+				} else {
 					Swal.fire({
 						icon  : 'info',
 						title : 'Duplikasi data dokumen detail, entri dibatalkan',
@@ -772,7 +772,7 @@ $('#btn-delete-all').on('click', function(e) {
 	//prosess delete all detail
 	$('#form-delete-all').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_gaji.delete.detail.all')}}",
+			url  : "{{route('pembayaran_gaji.delete.detail.all') }}",
 			type : "delete",
 			data : $('#form-delete-all').serialize(),
 			dataType : "JSON",
@@ -804,7 +804,7 @@ if($('input[type=radio]').is(':checked')) {
 		var nodok = $(this).attr('nodok').split("/").join("-");
 		var nourut = $(this).attr('nourut');
 			$.ajax({
-				url :"{{url('perbendaharaan/pembayaran-gaji/editdetail')}}"+ '/' +nodok+ '/' +nourut,
+				url :"{{ url('perbendaharaan/pembayaran-gaji/editdetail') }}"+ '/' +nodok+ '/' +nourut,
 				type : 'get',
 				dataType:"json",
 				headers: {
@@ -829,13 +829,13 @@ if($('input[type=radio]').is(':checked')) {
 				}
 			})
 	});
-}else{
+} else {
 	swalAlertInit('ubah'); 
 }			
 });
 $('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_gaji.update.detail')}}",
+			url  : "{{route('pembayaran_gaji.update.detail') }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

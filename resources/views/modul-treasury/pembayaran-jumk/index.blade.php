@@ -17,28 +17,28 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('pembayaran_jumk.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->cetak == 1)
                 <button id="exportRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-primary"></i>
                     </span>
                 </button>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="search-form" >
+        <form class="form" id="search-form" >
             <div class="form-group row">
                 <label for="" class="col-1 col-form-label">No. Bukti</label>
                 <div class="col-2">
@@ -58,18 +58,18 @@
                 <div class="col-2">
                     <select name="bulan" class="form-control select2">
                         <option value="">- Pilih -</option>
-                        <option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
-                        <option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
-                        <option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
-                        <option value="04" <?php if($bulan == '04' ) echo 'selected' ; ?>>April</option>
-                        <option value="05" <?php if($bulan == '05' ) echo 'selected' ; ?>>Mei</option>
-                        <option value="06" <?php if($bulan == '06' ) echo 'selected' ; ?>>Juni</option>
-                        <option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
-                        <option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
-                        <option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
-                        <option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
-                        <option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
-                        <option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
+                        <option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
+                        <option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
+                        <option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
+                        <option value="04" <?php if($bulan == '04') echo 'selected'; ?>>April</option>
+                        <option value="05" <?php if($bulan == '05') echo 'selected'; ?>>Mei</option>
+                        <option value="06" <?php if($bulan == '06') echo 'selected'; ?>>Juni</option>
+                        <option value="07" <?php if($bulan == '07') echo 'selected'; ?>>Juli</option>
+                        <option value="08" <?php if($bulan == '08') echo 'selected'; ?>>Agustus</option>
+                        <option value="09" <?php if($bulan == '09') echo 'selected'; ?>>September</option>
+                        <option value="10" <?php if($bulan == '10') echo 'selected'; ?>>Oktober</option>
+                        <option value="11" <?php if($bulan == '11') echo 'selected'; ?>>November</option>
+                        <option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
                     </select>
                 </div>
 
@@ -83,7 +83,7 @@
             </div>
         </form>
 
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th></th>
@@ -127,7 +127,7 @@
 						}
 					},
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'action', name: 'action'},
 				{data: 'docno', name: 'docno'},
 				{data: 'tanggalinput', name: 'tanggalinput'},
@@ -151,7 +151,7 @@
 					$("input[type=radio]:checked").each(function(){
 						var nodok = $(this).val().split("/").join("-");
 						// var nodok = $(this).attr('nodok');
-						location.href = "{{url('perbendaharaan/pembayaran-jumk/edit')}}"+ '/' +nodok;
+						location.href = "{{ url('perbendaharaan/pembayaran-jumk/edit') }}"+ '/' +nodok;
 					});
 				} else {
 					swalAlertInit('ubah');
@@ -206,7 +206,7 @@
 											title : 'Penghapusan gagal,data tidak dalam status Opening.',
 											text  : 'Failed',
 										});
-									}else{
+									} else {
 										Swal.fire({
 											type  : 'info',
 											title : 'Sebelum dihapus,status bayar harus dibatalkan dulu.',
@@ -231,7 +231,7 @@
 				if($('input[class=btn-radio]').is(':checked')) { 
 					$("input[class=btn-radio]:checked").each(function(){
 						var docno = $(this).attr('docno');
-						location.href = "{{url('perbendaharaan/pembayaran-jumk/rekap')}}"+ '/' +docno;
+						location.href = "{{ url('perbendaharaan/pembayaran-jumk/rekap') }}"+ '/' +docno;
 					});
 				} else {
 					swalAlertInit('cetak');

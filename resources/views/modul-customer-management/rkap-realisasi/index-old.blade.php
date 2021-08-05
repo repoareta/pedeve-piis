@@ -18,7 +18,7 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_cm.rkap_realisasi.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data RKAP">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data RKAP">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
@@ -28,12 +28,12 @@
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -43,7 +43,7 @@
     <div class="card-body">
 
 		<div class="col-12">
-			<form class="kt-form" id="search-form" >
+			<form class="form" id="search-form" >
 				<div class="form-group row">
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">

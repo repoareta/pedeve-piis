@@ -26,11 +26,11 @@
                 </div>
             </div>
             
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('opening_balance.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{route('opening_balance.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Proses</button>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             });
             $('#form-batal').submit(function(){
                 $.ajax({
-                    url  : "{{route('opening_balance.update')}}",
+                    url  : "{{route('opening_balance.update') }}",
                     type : "POST",
                     data : $('#form-batal').serialize(),
                     dataType : "JSON",
@@ -64,7 +64,7 @@
                                 title : '~Opening Balance tidak bisa di batalkan, Opening Balance bulan terakhir harus dibatalkan terlebih dahulu',
                                 text  : 'Info',
                             });
-                        }else{
+                        } else {
                             Swal.fire({
                                 icon  : 'success',
                                 title : 'Data Berhasil Dibatalkan Dan Opening Balance Terakhir Adalah!~~' +data,

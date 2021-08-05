@@ -18,9 +18,9 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{ route('pembayaran_umk.export') }}" method="POST">
+        <form class="form" action="{{ route('pembayaran_umk.export') }}" method="POST">
 			@csrf
-			<div class="kt-portlet__body">
+			<div class="portlet__body">
 			@if($mp == "P")
 				<div class="form-group row">
 					<label class="col-2 col-form-label"></label>
@@ -124,13 +124,13 @@
                 <input type="hidden" value="{{ $kd_kepada}}" name="kd_kepada">
                 <input type="hidden" value="Daftar Transfer" name="cetaktrans">
                 <input type="hidden" value="Cetak RC" name="cetak">
-				<div class="kt-form__actions">
+				<div class="form__actions">
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{route('pembayaran_umk.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{route('pembayaran_umk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
-							<a href="{{url('perbendaharaan/pembayaran-umk/rekaprc')}}/{{ $docs}}" class="btn btn-primary"><i class="fa fa-print"></i>Cetak RC</a>
+							<a href="{{ url('perbendaharaan/pembayaran-umk/rekaprc') }}/{{ $docs}}" class="btn btn-primary"><i class="fa fa-print"></i>Cetak RC</a>
 						</div>
 					</div>
 				</div>

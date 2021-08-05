@@ -18,20 +18,20 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-create">
+        <form class="form" id="form-create">
             @csrf
 
             <div class="form-group row">
                 <label class="col-2 col-form-label">Tanggal Rekap</label>
                 <div class="col-10">
                     <input class="form-control" type="hidden" name="add" value="add">
-                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d'))}}" size="11" maxlength="11"  autocomplete="off" required>
+                    <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{(date('Y-m-d')) }}" size="11" maxlength="11"  autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="jk" id="jk" class="form-control selectpicker" data-live-search="true" required>
+                    <select name="jk" id="jk" class="form-control select2">
                         <option value="">- Pilih -</option>
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>
@@ -42,19 +42,19 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">No. Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="nokas" id="nokas" class="form-control" data-live-search="true" required>
+                    <select name="nokas" id="nokas" class="form-control"required>
                         <option value="">- Pilih -</option>
                         
                         
                     </select>
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('rekap_harian_kas.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{route('rekap_harian_kas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary" name="submit" ><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
     $(document).ready(function () {
 $('#form-create').submit(function(){
 	$.ajax({
-		url  : "{{route('rekap_harian_kas.store')}}",
+		url  : "{{route('rekap_harian_kas.store') }}",
 		type : "POST",
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
@@ -85,7 +85,7 @@ $('#form-create').submit(function(){
 				text  : 'Berhasil',
 				timer : 2000
 			}).then(function() {
-				location.replace("{{route('rekap_harian_kas.index')}}");
+				location.replace("{{route('rekap_harian_kas.index') }}");
 				});
 		}else if(data == 2){
 			Swal.fire({
@@ -105,7 +105,7 @@ $('#form-create').submit(function(){
 				title : 'rekap harian ini sudah ada!',
 				text  : 'Info',
 			});
-		}else{
+		} else {
 			Swal.fire({
 				icon  : 'info',
 				title : 'rekap kas sudah dilakukan!',
@@ -122,7 +122,7 @@ $('#form-create').submit(function(){
 $("#tanggal").on("change", function(){
 var tanggal = $('#tanggal').val();
 	$.ajax({
-		url : "{{route('rekap_harian_kas.jenis.kartu.json')}}",
+		url : "{{route('rekap_harian_kas.jenis.kartu.json') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -138,7 +138,7 @@ var tanggal = $('#tanggal').val();
 				title : 'Tidak Di temuka Data kas Bank Pada Tanggal '+tanggal,
 				text  : 'Failed',
 			});
-			}else{
+			} else {
 				$('#jk').val(data.jk).trigger('change');
 			}
 		},
@@ -151,7 +151,7 @@ $("#jk").on("change", function(){
 var tanggal = $('#tanggal').val();
 var jk = $('#jk').val();
 	$.ajax({
-		url : "{{route('rekap_harian_kas.nokas.json')}}",
+		url : "{{route('rekap_harian_kas.nokas.json') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -168,7 +168,7 @@ var jk = $('#jk').val();
 				title : 'Tidak Di temuka Data kas Bank Pada Tanggal '+tanggal,
 				text  : 'Failed',
 			});
-			}else{
+			} else {
 				$('#nokas').html(data.html);
 			}
 		},

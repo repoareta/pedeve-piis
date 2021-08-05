@@ -36,7 +36,7 @@ class SetMenuController extends Controller
         ->addColumn('userlv', function ($data) {
             if($data->userlv == 0){
                 return "ADMINISTRATOR";
-            }else{
+            } else {
                 return "USER";
             }
         })
@@ -124,7 +124,7 @@ class SetMenuController extends Controller
                     $userap = 'PERBENDAHARAAN';
                 }elseif($data->userap == 'AKT'){
                     $userap = 'KONTROLER';
-                }else{
+                } else {
                     $userap = 'CUSTOMER MANAGEMENT';
                 }
                 return $userap;

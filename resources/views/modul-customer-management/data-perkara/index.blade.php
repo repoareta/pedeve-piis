@@ -18,17 +18,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_cm.rkap_realisasi.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -68,16 +68,11 @@
                 processing: true,
                 serverSide: true,
                 ajax      : {
-                            url: "{{ route('modul_cm.data_perkara.index.json') }}",
-                            type : "POST",
-                            dataType : "JSON",
-                            headers: {
-                            'X-CSRF-Token': '{{ csrf_token() }}',
-                            },
-                            data: function (d) {
-                                d.pencarian = $('input[name=pencarian]').val();
-                            }
-                        },
+                    url: "{{ route('modul_cm.data_perkara.index.json') }}",
+                    data: function (d) {
+                        d.pencarian = $('input[name=pencarian]').val();
+                    }
+                },
                 columns: [
                     {data: 'radio', name: 'radio'},
                     {data: 'tanggal', name: 'tanggal'},
@@ -150,7 +145,7 @@
                 if($('input[class=btn-radio]').is(':checked')) { 
                     $("input[class=btn-radio]:checked").each(function(){
                         var no = $(this).attr('data-id');
-                        location.replace("{{url('customer_management/data_perkara/edit')}}"+ '/' +no);
+                        location.replace("{{ url('customer_management/data_perkara/edit') }}"+ '/' +no);
                     });
                 } else {
                     swalAlertInit('ubah');

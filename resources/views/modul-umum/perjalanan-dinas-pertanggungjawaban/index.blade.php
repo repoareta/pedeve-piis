@@ -18,18 +18,18 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('perjalanan_dinas.pertanggungjawaban.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.create') }}">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -44,7 +44,7 @@
     <div class="card-body">
 
 		<div class="col-12">
-			<form class="kt-form" id="search-form" method="POST">
+			<form class="form" id="search-form" method="POST">
 				<div class="form-group row">
 					<label for="" class="col-form-label">NO. PPANJAR</label>
 					<div class="col-4">
@@ -90,13 +90,13 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-				url: "{{ route('perjalanan_dinas.pertanggungjawaban.index.json') }}",
+				url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index.json') }}",
 				data: function (d) {
 					d.noppanjar = $('input[name=noppanjar]').val();
 				}
 			},
 			columns: [
-				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'action', name: 'aksi', class:'radio-button text-center'},
 				{data: 'no_ppanjar', name: 'no_ppanjar', class:'no-wrap'},
 				{data: 'no_panjar', name: 'no_panjar', class:'no-wrap'},
 				{data: 'tgl_ppanjar', name: 'tgl_ppanjar', class:'no-wrap'},
@@ -116,7 +116,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
-					var url = '{{ route("perjalanan_dinas.pertanggungjawaban.edit", ":no_ppanjar") }}';
+					var url = '{{ route("modul_umum.perjalanan_dinas.pertanggungjawaban.edit", ":no_ppanjar") }}';
 					// go to page edit
 					window.location.href = url.replace(':no_ppanjar', id);
 				});
@@ -151,7 +151,7 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('perjalanan_dinas.pertanggungjawaban.delete') }}",
+								url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.delete') }}",
 								type: 'DELETE',
 								data: {
 									"id": id,
@@ -205,7 +205,7 @@
 					.then((result) => {
 						if (result.value) {
 							var id = $(this).val().split("/").join("-");
-					        var url = '{{ route("perjalanan_dinas.pertanggungjawaban.export", ":no_ppanjar") }}';
+					        var url = '{{ route("modul_umum.perjalanan_dinas.pertanggungjawaban.export", ":no_ppanjar") }}';
 
                             window.location.href = url.replace(':no_ppanjar', id);
 

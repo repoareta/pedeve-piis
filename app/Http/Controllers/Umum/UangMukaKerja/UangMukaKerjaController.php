@@ -63,20 +63,11 @@ class UangMukaKerjaController extends Controller
             $data = DB::select("SELECT  a.no_umk,a.jenis_um,a.app_pbd,a.app_sdm,a.tgl_panjar,a.no_kas,a.keterangan,a.jumlah from kerja_header a where a.bulan_buku ='$bulan_buku' order by a.bulan_buku desc,a.no_umk desc");
         }
         return datatables()->of($data)
-        ->addColumn('no_umk', function ($data) {
-            return $data->no_umk;
-        })
-        ->addColumn('no_kas', function ($data) {
-            return $data->no_kas;
-        })
-        ->addColumn('keterangan', function ($data) {
-            return $data->keterangan;
-        })
         ->addColumn('jenis_um', function ($data) {
             if ($data->jenis_um == 'K') {
-                $UM = '<p align="center">UM Kerja</p>';
+                $UM = 'UM Kerja</p>';
             } else {
-                $UM = '<p align="center">UM Dinas</p>';
+                $UM = 'UM Dinas</p>';
             }
             return $UM;
         })
@@ -93,7 +84,7 @@ class UangMukaKerjaController extends Controller
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="Y" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" class="btn-radio" name="btn-radio"><span></span></label>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio" ><span></span></label>';
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio"><span></span></label>';
                 } else {
                     $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" class="btn-radio" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio"><span></span></label>';
                 }
@@ -102,12 +93,12 @@ class UangMukaKerjaController extends Controller
         })
         ->addColumn('action', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $action = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle" ></i></span></p>';
+                $action = '<span class="pointer-link" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
             } else {
                 if ($data->app_sdm == 'Y') {
-                    $action = '<p align="center"><a href="'. route('uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top"  title="Batalkan Approval"><i class="fas fa-check-circle" ></i></span></a></p>';
+                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="pointer-link" title="Batalkan Approval"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
                 } else {
-                    $action = '<p align="center"><a href="'. route('uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Klik untuk Approval"><i class="fas fa-ban" ></i></span></a></p>';
+                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="pointer-link" title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
                 }
             }
             return $action;

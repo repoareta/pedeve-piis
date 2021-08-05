@@ -19,11 +19,11 @@
 
     <div class="card-body">
         <form method="POST" id="form-create">
-            <div class="kt-portlet__body">
+            <div class="portlet__body">
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            <h5 class="kt-portlet__head-title">
+                            <h5 class="portlet__head-title">
                                 Header Menu Tambah - Data Pajak Tahunan
                             </h5>	
                         </div>
@@ -36,14 +36,14 @@
                     </div>
                         <div class="col-6" >
                             <input class="form-control" type="text" value="{{ date('Y') }}" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
     
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="nopek" class="form-control select2" style="width: 100% !important;" required>
+                            <select name="nopek" class="form-control select2" style="width: 100% !important;">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}">{{ $data->nopeg }} -- {{ $data->nama }}</option>
@@ -54,7 +54,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="jenis" class="form-control select2" style="width: 100% !important;" required>
+                            <select name="jenis" class="form-control select2" style="width: 100% !important;">
                                 <option value="">-Pilih Jenis-</option>
                                 <option value="24">Bonus</option>
                                 <option value="25">THR</option>
@@ -80,11 +80,11 @@
                         </div>
                     </div>
     
-                    <div class="kt-form__actions">
+                    <div class="form__actions">
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{route('data_pajak.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <a href="{{route('data_pajak.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
 
         $('#form-create').submit(function(){
             $.ajax({
-                url  : "{{route('data_pajak.store')}}",
+                url  : "{{route('data_pajak.store') }}",
                 type : "POST",
                 data : $('#form-create').serialize(),
                 dataType : "JSON",
@@ -122,7 +122,7 @@
                     }).then(function() {
                         window.location.href = "{{ route('data_pajak.index') }}";
                     });
-                }else{
+                } else {
                     Swal.fire({
                         icon: 'info',
                         title: 'Data Yang Diinput Sudah Ada.',

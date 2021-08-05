@@ -51,7 +51,7 @@ class ProsesThrController extends Controller
         if($bulan - 1 == 0){
             $bulangaji="12";
             $tahungaji=$tahun - 1;
-        }else{
+        } else {
             $bulangaji=$bulan - 1;
             $tahungaji= $tahun;
         }
@@ -60,7 +60,7 @@ class ProsesThrController extends Controller
             
             if($prosesupah == 'A'){
                 $data_Cekthr = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan'");
-            }else{
+            } else {
                 $data_Cekthr = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan' and status='$prosesupah'");
             }
 
@@ -85,28 +85,28 @@ class ProsesThrController extends Controller
                             {
                                 if($data_uppt->ut <> ""){
                                     $upahtetappt = $data_uppt->ut;
-                                }else{
+                                } else {
                                     $upahtetappt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $upahtetappt= '0';
                         }
 
                         // '2.tunjangan jabatan aard = 03
                         if($nopegpt == "181326"){
                             $tunjjabatanpt = '0';
-                        }else{
+                        } else {
                              $rstunjjabatanpt = DB::select("SELECT a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegpt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegpt')");
                             if(!empty($rstunjjabatanpt)){
                                 foreach($rstunjjabatanpt as $data_tunpt){
                                     if($data_tunpt->tunjangan <> ""){
                                         $tunjjabatanpt = $data_tunpt->tunjangan;
-                                    }else{
+                                    } else {
                                         $tunjjabatanpt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $tunjjabatanpt = '0';
                             }
                         }
@@ -117,11 +117,11 @@ class ProsesThrController extends Controller
                             foreach($rstunjdaerahpt as $data_daept){
                                 if($data_daept->nilai <> ""){
                                     $tunjdaerahpt = $data_daept->nilai;
-                                }else{
+                                } else {
                                     $tunjdaerahpt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $tunjdaerahpt = '0';
                         }
 
@@ -134,11 +134,11 @@ class ProsesThrController extends Controller
                             foreach($rsjstaccidentpt as $data_jspt){
                                 if($data_jspt->curramount <> ""){
                                     $niljstaccidentpt = $data_jspt->curramount;
-                                }else{
+                                } else {
                                     $niljstaccidentpt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $niljstaccidentpt = '0';
                         }
                         
@@ -147,11 +147,11 @@ class ProsesThrController extends Controller
                             foreach($rsjstlifept as $data_lifpt){
                                 if($data_lifpt->curramount <> ""){
                                     $niljstlifept = $data_lifpt->curramount;
-                                }else{
+                                } else {
                                     $niljstlifept = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $niljstlifept = '0';
                         }
 
@@ -161,11 +161,11 @@ class ProsesThrController extends Controller
                             foreach($rsfasilitaspt as $data_faspt){
                                 if($data_faspt->nilai <> ""){
                                     $fasilitaspt = $data_faspt->nilai;
-                                }else{
+                                } else {
                                     $fasilitaspt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fasilitaspt = '0';
                         }
 
@@ -175,11 +175,11 @@ class ProsesThrController extends Controller
                             foreach($rskenapajak1pt as $data_kenapt){
                                 if($data_kenapt->nilai1 <> ""){
                                     $nilaikenapajak1pt = $data_kenapt->nilai1;
-                                }else{
+                                } else {
                                     $nilaikenapajak1pt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaikenapajak1pt = '0';
                         }
 
@@ -189,11 +189,11 @@ class ProsesThrController extends Controller
                             foreach($rskorgajipt as $data_koreksipt){
                                 if($data_koreksipt->kortam <> ""){
                                     $kortampt = $data_koreksipt->kortam;
-                                }else{
+                                } else {
                                     $kortampt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $kortampt = '0';
                         }
 
@@ -203,7 +203,7 @@ class ProsesThrController extends Controller
                         $biayajabatan2pt = ((5/100) * $totkenapajakpt);
                         if($biayajabatan2pt > 6000000){
                             $biayajabatanpt = 6000000;  
-                        }else{
+                        } else {
                             $biayajabatanpt = $biayajabatan2pt;
                         }
 
@@ -214,11 +214,11 @@ class ProsesThrController extends Controller
                             foreach($rsptkppt as $data_ptkppt){
                                 if($data_ptkppt->nilai <> ""){
                                     $nilaiptkp1pt = $data_ptkppt->nilai;
-                                }else{
+                                } else {
                                     $nilaiptkp1pt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaiptkp1pt = '0';
                         }
 
@@ -244,7 +244,7 @@ class ProsesThrController extends Controller
                                     $pph21rpt = $sisapokok1pt * $prosenpt;
                                 }elseif($sisapokok1pt > 0 and $sisapokok1pt >= $rangept ){
                                     $pph21rpt = $rangept * $prosenpt;
-                                }else{
+                                } else {
                                     $pph21rpt = 0;
                                 }
                             }else {
@@ -268,11 +268,11 @@ class ProsesThrController extends Controller
                                 foreach($rstunjgajipt as $data_tungapt){
                                     if($data_tungapt->nilai <> ""){
                                         $pajakgajipt = $data_tungapt->nilai;
-                                    }else{
+                                    } else {
                                         $pajakgajipt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $pajakgajipt = '0';
                             }
 
@@ -282,11 +282,11 @@ class ProsesThrController extends Controller
                                 foreach($rskoreksipt as $data_koreksipt){
                                     if($data_koreksipt->nilai <> ""){
                                         $koreksipt = $data_koreksipt->nilai;
-                                    }else{
+                                    } else {
                                         $koreksipt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $koreksipt = '0';
                             }
 
@@ -295,11 +295,11 @@ class ProsesThrController extends Controller
                                 foreach($rsbazmapt as $data_bazmapt){
                                     if($data_bazmapt->nilai <> ""){
                                         $bazmapt = $data_bazmapt->nilai;
-                                    }else{
+                                    } else {
                                         $bazmapt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $bazmapt = '0';
                             }
                             // inspotpajak
@@ -386,11 +386,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_upkt->nilai <> ""){
                                     $upahallinkt = $data_upkt->nilai;
-                                }else{
+                                } else {
                                     $upahallinkt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $upahallinkt= '0';
                         }
 
@@ -400,11 +400,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_tunkt->tunjangan <> ""){
                                     $tunjjabatankt = $data_tunkt->tunjangan;
-                                }else{
+                                } else {
                                     $tunjjabatankt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $tunjjabatankt= '0';
                         }
 
@@ -414,11 +414,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_tundaekt->nilai <> ""){
                                     $tunjdaerahkt = $data_tundaekt->nilai;
-                                }else{
+                                } else {
                                     $tunjdaerahkt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $tunjdaerahkt= '0';
                         }
 
@@ -429,7 +429,7 @@ class ProsesThrController extends Controller
                         }elseif($nopegkt == "120926"){
                             $pengalikt = 340/365;
                             $thrgabkt = (($thrgabkt) * (340/365));
-                        }else{
+                        } else {
                             $pengalikt = "1";
                             $thrgabkt=$thrgabkt; 
                         }
@@ -440,11 +440,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_kenapajakkt->nilai1 <> ""){
                                     $nilaikenapajak1kt = $data_kenapajakkt->nilai1;
-                                }else{
+                                } else {
                                     $nilaikenapajak1kt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaikenapajak1kt= '0';
                         }
 
@@ -459,7 +459,7 @@ class ProsesThrController extends Controller
                         $biayajabatan2kt = ((5/100) * $totkenapajakkt);
                         if($biayajabatan2kt > 6000000){
                             $biayajabatankt = 6000000;  
-                        }else{
+                        } else {
                             $biayajabatankt = $biayajabatan2kt;
                         }
 
@@ -470,11 +470,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_ptkpkt->nilai <> ""){
                                     $nilaiptkp1kt = $data_ptkpkt->nilai;
-                                }else{
+                                } else {
                                     $nilaiptkp1kt = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaiptkp1kt= '0';
                         }
 
@@ -499,7 +499,7 @@ class ProsesThrController extends Controller
                                     $pph21rkt = $sisapokok1kt * $prosenkt;
                                 }elseif($sisapokok1kt > 0 and $sisapokok1kt >= $rangekt ){
                                     $pph21rkt = $rangekt * $prosenkt;
-                                }else{
+                                } else {
                                     $pph21rkt = 0;
                                 }
                             }else {
@@ -524,11 +524,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($datakt->nilai <> ""){
                                         $pajakgajikt = $datakt->nilai;
-                                    }else{
+                                    } else {
                                         $pajakgajikt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $pajakgajikt='0';
                             }
 
@@ -539,11 +539,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_korekkt->nilai <> ""){
                                         $koreksikt = $data_korekkt->nilai;
-                                    }else{
+                                    } else {
                                         $koreksikt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $koreksikt= '0';
                             }
                             $rsbazmakt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='36'");
@@ -552,11 +552,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_bazkt->nilai <> ""){
                                         $bazmakt = $data_bazkt->nilai;
-                                    }else{
+                                    } else {
                                         $bazmakt = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $bazmakt= '0';
                             }
 
@@ -646,11 +646,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_uppb->nilai <> ""){
                                     $upahallinpb = $data_uppb->nilai;
-                                }else{
+                                } else {
                                     $upahallinpb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $upahallinpb= '0';
                         }
                         $pengalipb = 1;
@@ -662,11 +662,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_uptetappb->ut <> ""){
                                     $upahtetappb = $data_uptetappb->ut;
-                                }else{
+                                } else {
                                     $upahtetappb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $upahtetappb= '0';
                         }
 
@@ -676,11 +676,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_faspb->nilai <> ""){
                                     $fasilitaspb = $data_faspb->nilai;
-                                }else{
+                                } else {
                                     $fasilitaspb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fasilitaspb= '0';
                         }
                        
@@ -692,11 +692,11 @@ class ProsesThrController extends Controller
                            {
                                if($data_kenapapb->nilai1 <> ""){
                                    $nilaikenapajak1pb = $data_kenapapb->nilai1;
-                               }else{
+                               } else {
                                    $nilaikenapajak1pb = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $nilaikenapajak1pb= '0';
                        }
 
@@ -705,7 +705,7 @@ class ProsesThrController extends Controller
                         $biayajabatan2pb = ((5/100) * $totkenapajakpb);
                         if($biayajabatan2pb > 6000000){
                             $biayajabatanpb = 6000000;  
-                        }else{
+                        } else {
                             $biayajabatanpb = $biayajabatan2pb;
                         }
 
@@ -718,11 +718,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_ptkppb->nilai <> ""){
                                     $nilaiptkp1pb = $data_ptkppb->nilai;
-                                }else{
+                                } else {
                                     $nilaiptkp1pb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaiptkp1pb= '0';
                         }     
                         
@@ -747,7 +747,7 @@ class ProsesThrController extends Controller
                                     $pph21rpb = $sisapokok1pb * $prosenpb;
                                 }elseif($sisapokok1pb > 0 and $sisapokok1pb >= $rangepb ){
                                     $pph21rpb = $rangepb * $prosenpb;
-                                }else{
+                                } else {
                                     $pph21rpb = 0;
                                 }
                             }else {
@@ -771,11 +771,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_tunjpb->nilai <> ""){
                                         $pajakgajipb = $data_tunjpb->nilai;
-                                    }else{
+                                    } else {
                                         $pajakgajipb = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $pajakgajipb= '0';
                             }  
                             
@@ -788,11 +788,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_korekspb->nilai <> ""){
                                         $koreksipb = $data_korekspb->nilai;
-                                    }else{
+                                    } else {
                                         $koreksipb = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $koreksipb= '0';
                             }   
                             $rsbazmapb = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='36'");
@@ -801,11 +801,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_bazpb->nilai <> ""){
                                         $bazmapb = $data_bazpb->nilai;
-                                    }else{
+                                    } else {
                                         $bazmapb = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $bazmapb= '0';
                             } 
                             
@@ -890,28 +890,28 @@ class ProsesThrController extends Controller
                            {
                                if($data_uppt->ut <> ""){
                                    $upahtetappt = $data_uppt->ut;
-                               }else{
+                               } else {
                                    $upahtetappt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $upahtetappt= '0';
                        }
 
                        // '2.tunjangan jabatan aard = 03
                        if($nopegpt == "181326"){
                            $tunjjabatanpt = '0';
-                       }else{
+                       } else {
                             $rstunjjabatanpt = DB::select("SELECT a.nopeg,a.kdbag,a.kdjab,b.goljob,b.tunjangan from sdm_jabatan a,sdm_tbl_kdjab b where a.nopeg='$nopegpt' and a.kdbag=b.kdbag and a.kdjab=b.kdjab and a.mulai=(select max(mulai) from sdm_jabatan where nopeg='$nopegpt')");
                            if(!empty($rstunjjabatanpt)){
                                foreach($rstunjjabatanpt as $data_tunpt){
                                    if($data_tunpt->tunjangan <> ""){
                                        $tunjjabatanpt = $data_tunpt->tunjangan;
-                                   }else{
+                                   } else {
                                        $tunjjabatanpt = '0';
                                    }
                                }
-                           }else{
+                           } else {
                                $tunjjabatanpt = '0';
                            }
                        }
@@ -922,11 +922,11 @@ class ProsesThrController extends Controller
                            foreach($rstunjdaerahpt as $data_daept){
                                if($data_daept->nilai <> ""){
                                    $tunjdaerahpt = $data_daept->nilai;
-                               }else{
+                               } else {
                                    $tunjdaerahpt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $tunjdaerahpt = '0';
                        }
 
@@ -939,11 +939,11 @@ class ProsesThrController extends Controller
                            foreach($rsjstaccidentpt as $data_jspt){
                                if($data_jspt->curramount <> ""){
                                    $niljstaccidentpt = $data_jspt->curramount;
-                               }else{
+                               } else {
                                    $niljstaccidentpt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $niljstaccidentpt = '0';
                        }
                        
@@ -952,11 +952,11 @@ class ProsesThrController extends Controller
                            foreach($rsjstlifept as $data_lifpt){
                                if($data_lifpt->curramount <> ""){
                                    $niljstlifept = $data_lifpt->curramount;
-                               }else{
+                               } else {
                                    $niljstlifept = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $niljstlifept = '0';
                        }
 
@@ -966,11 +966,11 @@ class ProsesThrController extends Controller
                            foreach($rsfasilitaspt as $data_faspt){
                                if($data_faspt->nilai <> ""){
                                    $fasilitaspt = $data_faspt->nilai;
-                               }else{
+                               } else {
                                    $fasilitaspt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $fasilitaspt = '0';
                        }
 
@@ -980,11 +980,11 @@ class ProsesThrController extends Controller
                            foreach($rskenapajak1pt as $data_kenapt){
                                if($data_kenapt->nilai1 <> ""){
                                    $nilaikenapajak1pt = $data_kenapt->nilai1;
-                               }else{
+                               } else {
                                    $nilaikenapajak1pt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $nilaikenapajak1pt = '0';
                        }
 
@@ -994,11 +994,11 @@ class ProsesThrController extends Controller
                            foreach($rskorgajipt as $data_koreksipt){
                                if($data_koreksipt->kortam <> ""){
                                    $kortampt = $data_koreksipt->kortam;
-                               }else{
+                               } else {
                                    $kortampt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $kortampt = '0';
                        }
 
@@ -1008,7 +1008,7 @@ class ProsesThrController extends Controller
                        $biayajabatan2pt = ((5/100) * $totkenapajakpt);
                        if($biayajabatan2pt > 6000000){
                            $biayajabatanpt = 6000000;  
-                       }else{
+                       } else {
                            $biayajabatanpt = $biayajabatan2pt;
                        }
 
@@ -1019,11 +1019,11 @@ class ProsesThrController extends Controller
                            foreach($rsptkppt as $data_ptkppt){
                                if($data_ptkppt->nilai <> ""){
                                    $nilaiptkp1pt = $data_ptkppt->nilai;
-                               }else{
+                               } else {
                                    $nilaiptkp1pt = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $nilaiptkp1pt = '0';
                        }
 
@@ -1049,7 +1049,7 @@ class ProsesThrController extends Controller
                                    $pph21rpt = $sisapokok1pt * $prosenpt;
                                }elseif($sisapokok1pt > 0 and $sisapokok1pt >= $rangept ){
                                    $pph21rpt = $rangept * $prosenpt;
-                               }else{
+                               } else {
                                    $pph21rpt = 0;
                                }
                            }else {
@@ -1072,11 +1072,11 @@ class ProsesThrController extends Controller
                                foreach($rstunjgajipt as $data_tungapt){
                                    if($data_tungapt->nilai <> ""){
                                        $pajakgajipt = $data_tungapt->nilai;
-                                   }else{
+                                   } else {
                                        $pajakgajipt = '0';
                                    }
                                }
-                           }else{
+                           } else {
                                $pajakgajipt = '0';
                            }
 
@@ -1086,11 +1086,11 @@ class ProsesThrController extends Controller
                                foreach($rskoreksipt as $data_koreksipt){
                                    if($data_koreksipt->nilai <> ""){
                                        $koreksipt = $data_koreksipt->nilai;
-                                   }else{
+                                   } else {
                                        $koreksipt = '0';
                                    }
                                }
-                           }else{
+                           } else {
                                $koreksipt = '0';
                            }
 
@@ -1099,11 +1099,11 @@ class ProsesThrController extends Controller
                                foreach($rsbazmapt as $data_bazmapt){
                                    if($data_bazmapt->nilai <> ""){
                                        $bazmapt = $data_bazmapt->nilai;
-                                   }else{
+                                   } else {
                                        $bazmapt = '0';
                                    }
                                }
-                           }else{
+                           } else {
                                $bazmapt = '0';
                            }
                            // inspotpajak
@@ -1190,11 +1190,11 @@ class ProsesThrController extends Controller
                              {
                                  if($data_upkt->nilai <> ""){
                                      $upahallinkt = $data_upkt->nilai;
-                                 }else{
+                                 } else {
                                      $upahallinkt = '0';
                                  }
                              }
-                         }else{
+                         } else {
                              $upahallinkt= '0';
                          }
  
@@ -1204,11 +1204,11 @@ class ProsesThrController extends Controller
                              {
                                  if($data_tunkt->tunjangan <> ""){
                                      $tunjjabatankt = $data_tunkt->tunjangan;
-                                 }else{
+                                 } else {
                                      $tunjjabatankt = '0';
                                  }
                              }
-                         }else{
+                         } else {
                              $tunjjabatankt= '0';
                          }
  
@@ -1218,11 +1218,11 @@ class ProsesThrController extends Controller
                              {
                                  if($data_tundaekt->nilai <> ""){
                                      $tunjdaerahkt = $data_tundaekt->nilai;
-                                 }else{
+                                 } else {
                                      $tunjdaerahkt = '0';
                                  }
                              }
-                         }else{
+                         } else {
                              $tunjdaerahkt= '0';
                          }
  
@@ -1233,7 +1233,7 @@ class ProsesThrController extends Controller
                          }elseif($nopegkt == "120926"){
                              $pengalikt = 340/365;
                              $thrgabkt = (($thrgabkt) * (340/365));
-                         }else{
+                         } else {
                              $pengalikt = "1";
                              $thrgabkt=$thrgabkt; 
                          }
@@ -1244,11 +1244,11 @@ class ProsesThrController extends Controller
                              {
                                  if($data_kenapajakkt->nilai1 <> ""){
                                      $nilaikenapajak1kt = $data_kenapajakkt->nilai1;
-                                 }else{
+                                 } else {
                                      $nilaikenapajak1kt = '0';
                                  }
                              }
-                         }else{
+                         } else {
                              $nilaikenapajak1kt= '0';
                          }
  
@@ -1263,7 +1263,7 @@ class ProsesThrController extends Controller
                          $biayajabatan2kt = ((5/100) * $totkenapajakkt);
                          if($biayajabatan2kt > 6000000){
                              $biayajabatankt = 6000000;  
-                         }else{
+                         } else {
                              $biayajabatankt = $biayajabatan2kt;
                          }
  
@@ -1274,11 +1274,11 @@ class ProsesThrController extends Controller
                              {
                                  if($data_ptkpkt->nilai <> ""){
                                      $nilaiptkp1kt = $data_ptkpkt->nilai;
-                                 }else{
+                                 } else {
                                      $nilaiptkp1kt = '0';
                                  }
                              }
-                         }else{
+                         } else {
                              $nilaiptkp1kt= '0';
                          }
  
@@ -1303,7 +1303,7 @@ class ProsesThrController extends Controller
                                      $pph21rkt = $sisapokok1kt * $prosenkt;
                                  }elseif($sisapokok1kt > 0 and $sisapokok1kt >= $rangekt ){
                                      $pph21rkt = $rangekt * $prosenkt;
-                                 }else{
+                                 } else {
                                      $pph21rkt = 0;
                                  }
                              }else {
@@ -1328,11 +1328,11 @@ class ProsesThrController extends Controller
                                  {
                                      if($datakt->nilai <> ""){
                                          $pajakgajikt = $datakt->nilai;
-                                     }else{
+                                     } else {
                                          $pajakgajikt = '0';
                                      }
                                  }
-                             }else{
+                             } else {
                                  $pajakgajikt='0';
                              }
  
@@ -1343,11 +1343,11 @@ class ProsesThrController extends Controller
                                  {
                                      if($data_korekkt->nilai <> ""){
                                          $koreksikt = $data_korekkt->nilai;
-                                     }else{
+                                     } else {
                                          $koreksikt = '0';
                                      }
                                  }
-                             }else{
+                             } else {
                                  $koreksikt= '0';
                              }
                              $rsbazmakt = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegkt' and aard='36'");
@@ -1356,11 +1356,11 @@ class ProsesThrController extends Controller
                                  {
                                      if($data_bazkt->nilai <> ""){
                                          $bazmakt = $data_bazkt->nilai;
-                                     }else{
+                                     } else {
                                          $bazmakt = '0';
                                      }
                                  }
-                             }else{
+                             } else {
                                  $bazmakt= '0';
                              }
  
@@ -1431,7 +1431,7 @@ class ProsesThrController extends Controller
                                  ]);
                      }
                     
-                }else{
+                } else {
                     // pekerjabantuthr()
                     $data_pegawaibantub = DB::select("SELECT nopeg,status,kodekeluarga from sdm_master_pegawai where status='B' order by nopeg asc");
                     foreach($data_pegawaibantub as $data_pegawaikonpb)
@@ -1450,11 +1450,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_uppb->nilai <> ""){
                                     $upahallinpb = $data_uppb->nilai;
-                                }else{
+                                } else {
                                     $upahallinpb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $upahallinpb= '0';
                         }
                         $pengalipb = 1;
@@ -1466,11 +1466,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_uptetappb->ut <> ""){
                                     $upahtetappb = $data_uptetappb->ut;
-                                }else{
+                                } else {
                                     $upahtetappb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $upahtetappb= '0';
                         }
 
@@ -1480,11 +1480,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_faspb->nilai <> ""){
                                     $fasilitaspb = $data_faspb->nilai;
-                                }else{
+                                } else {
                                     $fasilitaspb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $fasilitaspb= '0';
                         }
                        
@@ -1496,11 +1496,11 @@ class ProsesThrController extends Controller
                            {
                                if($data_kenapapb->nilai1 <> ""){
                                    $nilaikenapajak1pb = $data_kenapapb->nilai1;
-                               }else{
+                               } else {
                                    $nilaikenapajak1pb = '0';
                                }
                            }
-                       }else{
+                       } else {
                            $nilaikenapajak1pb= '0';
                        }
 
@@ -1509,7 +1509,7 @@ class ProsesThrController extends Controller
                         $biayajabatan2pb = ((5/100) * $totkenapajakpb);
                         if($biayajabatan2pb > 6000000){
                             $biayajabatanpb = 6000000;  
-                        }else{
+                        } else {
                             $biayajabatanpb = $biayajabatan2pb;
                         }
 
@@ -1522,11 +1522,11 @@ class ProsesThrController extends Controller
                             {
                                 if($data_ptkppb->nilai <> ""){
                                     $nilaiptkp1pb = $data_ptkppb->nilai;
-                                }else{
+                                } else {
                                     $nilaiptkp1pb = '0';
                                 }
                             }
-                        }else{
+                        } else {
                             $nilaiptkp1pb= '0';
                         }     
                         
@@ -1551,7 +1551,7 @@ class ProsesThrController extends Controller
                                     $pph21rpb = $sisapokok1pb * $prosenpb;
                                 }elseif($sisapokok1pb > 0 and $sisapokok1pb >= $rangepb ){
                                     $pph21rpb = $rangepb * $prosenpb;
-                                }else{
+                                } else {
                                     $pph21rpb = 0;
                                 }
                             }else {
@@ -1575,11 +1575,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_tunjpb->nilai <> ""){
                                         $pajakgajipb = $data_tunjpb->nilai;
-                                    }else{
+                                    } else {
                                         $pajakgajipb = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $pajakgajipb= '0';
                             }  
                             
@@ -1592,11 +1592,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_korekspb->nilai <> ""){
                                         $koreksipb = $data_korekspb->nilai;
-                                    }else{
+                                    } else {
                                         $koreksipb = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $koreksipb= '0';
                             }   
                             $rsbazmapb = DB::select("SELECT sum(nilai) as nilai from pay_potongan_thr where tahun='$tahun' and bulan='$bulan' and nopek='$nopegpb' and aard='36'");
@@ -1605,11 +1605,11 @@ class ProsesThrController extends Controller
                                 {
                                     if($data_bazpb->nilai <> ""){
                                         $bazmapb = $data_bazpb->nilai;
-                                    }else{
+                                    } else {
                                         $bazmapb = '0';
                                     }
                                 }
-                            }else{
+                            } else {
                                 $bazmapb= '0';
                             } 
                             
@@ -1700,7 +1700,7 @@ class ProsesThrController extends Controller
                 
             }
 
-        }else{
+        } else {
 
             $data_cekstatusbayar = DB::select("SELECT status from stat_bayar_thr where tahun='$tahun' and bulan='$bulan'");
             if(!empty($data_cekstatusbayar)){
@@ -1711,7 +1711,7 @@ class ProsesThrController extends Controller
                     if($data_cekbayar == 'N'){
                         if($prosesupah == 'A'){
                             $data_Cekbatal = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan'");
-                        }else{
+                        } else {
                             $data_Cekbatal = DB::select("SELECT * from pay_master_thr where tahun='$tahun' and bulan='$bulan' and status='$prosesupah'");
                         }
                             if(!empty($data_Cekbatal)){
@@ -1736,7 +1736,7 @@ class ProsesThrController extends Controller
                         Alert::Info("Tidak bisa dibatalkan Data THR bulan $bulan tahun $tahun sudah di proses perbendaharaan", 'Info')->persistent(true);
                         return redirect()->route('modul_sdm_payroll.proses_thr.index');
                     }
-            }else{
+            } else {
                     Alert::Info("Tidak ditemukan data THR bulan $bulan dan tahun $tahun", 'Info')->persistent(true);
                     return redirect()->route('modul_sdm_payroll.proses_thr.index');
             }
@@ -1744,13 +1744,24 @@ class ProsesThrController extends Controller
         }
     }
 
-
-    public function ctkslipthr()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function slipThr()
     {
         $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
-        return view('modul-sdm-payroll.proses-thr.rekap',compact('data_pegawai'));
+        return view('modul-sdm-payroll.proses-thr.slip-thr',compact('data_pegawai'));
     }
-    public function cetak_slipthr(Request $request)
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function slipThrExport(Request $request)
     {
         $data_list = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('02','10')");
         $data_detail = DB::select("SELECT a.nopek,round(a.jmlcc,0) as jmlcc,round(a.ccl,0) as ccl,round(a.nilai,0) as nilai,a.aard,a.bulan,a.tahun,b.nama as nama_pegawai, c.nama as nama_aard,d.nama as nama_upah, d.cetak from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode join pay_tbl_jenisupah d on c.jenis=d.kode where a.nopek='$request->nopek' and a.tahun='$request->tahun' and bulan='$request->bulan' and d.kode in ('07','03')");
@@ -1763,22 +1774,33 @@ class ProsesThrController extends Controller
             $canvas->page_text(910, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //slip thr landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.proses_thr.ctkslipthr');
+            return redirect()->route('modul_sdm_payroll.proses_thr.slip_thr');
         }
     }
 
-    public function ctkrekapthr()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function rekapThr()
     {
-        return view('modul-sdm-payroll.proses-thr.rekapthr');
+        return view('modul-sdm-payroll.proses-thr.rekap-thr');
     }
 
-    public function rekapExport(Request $request)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function rekapThrExport(Request $request)
     {
         $data_list = DB::select("SELECT a.aard,a.bulan,a.tahun,a.nopek,a.koreksi,a.nilai,a.pengali,a.pajakthr,a.tbiayahidup,a.ut,a.tjabatan,a.status,a.potongan,b.nama as namapegawai from pay_master_thr a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard='25' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
         if(!empty($data_list)){
-            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-thr.export_rekapthr',compact('request','data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.proses-thr.rekap-thr-pdf',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -1786,9 +1808,10 @@ class ProsesThrController extends Controller
             $canvas->page_text(740, 115, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.proses_thr.ctkrekapthr');
+            return redirect()->route('modul_sdm_payroll.proses_thr.rekap_thr');
         }
     }
+
 }

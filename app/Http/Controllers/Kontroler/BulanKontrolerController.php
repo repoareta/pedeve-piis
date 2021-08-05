@@ -27,7 +27,7 @@ class BulanKontrolerController extends Controller
                 $nama_status = "OPENING";
              }elseif($data->status == "2"){
                 $nama_status = "STOPING";
-             }else{
+             } else {
                 $nama_status = "CLOSING";
              }
             return $nama_status;
@@ -36,7 +36,7 @@ class BulanKontrolerController extends Controller
             if($data->opendate <> ""){
                 $tgl = date_create($data->opendate);
                 $data_buka = date_format($tgl, 'd/m/Y');
-            }else{
+            } else {
                 $data_buka = "";
             }
             return $data_buka;
@@ -45,7 +45,7 @@ class BulanKontrolerController extends Controller
             if($data->stopdate <> ""){
                 $tgl = date_create($data->stopdate);
                 $data_stop = date_format($tgl, 'd/m/Y');
-            }else{
+            } else {
                 $data_stop = "";
             }
             return $data_stop;
@@ -54,7 +54,7 @@ class BulanKontrolerController extends Controller
             if($data->closedate <> ""){
                 $tgl = date_create($data->closedate);
                 $data_tutup = date_format($tgl, 'd/m/Y');
-            }else{
+            } else {
                 $data_tutup = "";
             }
             return $data_tutup;
@@ -91,24 +91,24 @@ class BulanKontrolerController extends Controller
 		
 		if($opendate <> ""){
 		   $opendate1 = $request->tanggal;
-        }else{
+        } else {
 		   $opendate1 = null;
         }
 		if($stopdate <> ""){
 		   $stopdate1 = $request->tanggal2;
-        }else{
+        } else {
 		   $stopdate1 = null;
         }
 		if($closedate <> ""){
 		   $closedate1 = $request->tanggal3;
-        }else{
+        } else {
 		  $closedate1 = null;
         }
         $data_objRs = DB::select("SELECT * from bulankontroller where thnbln='$thnbln'");
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             $userid = Auth::user()->userid;
             BulanKontroller::insert([
                 'thnbln' => $thnbln,
@@ -136,19 +136,19 @@ class BulanKontrolerController extends Controller
                     if($data->opendate<>""){
                         $tgl = date_create($data->opendate);
                         $tanggal  =   date_format($tgl, 'Y-m-d');
-                    }else{
+                    } else {
                         $tanggal  =   "";
                     }
                     if($data->stopdate<>""){
                         $tgl2 = date_create($data->stopdate);
                         $tanggal2 =   date_format($tgl2, 'Y-m-d');
-                    }else{
+                    } else {
                         $tanggal2 =   "";
                     }
                     if($data->closedate<>""){
                         $tgl3 = date_create($data->closedate);
                         $tanggal3 =  date_format($tgl3, 'Y-m-d');
-                    }else{
+                    } else {
                         $tanggal3 =  "";
                     }
                     $keterangan  =$data->description;
@@ -171,17 +171,17 @@ class BulanKontrolerController extends Controller
 		
 		if($opendate <> ""){
 		   $opendate1 = $request->tanggal;
-        }else{
+        } else {
 		   $opendate1 = null;
         }
 		if($stopdate <> ""){
 		   $stopdate1 = $request->tanggal2;
-        }else{
+        } else {
 		   $stopdate1 = null;
         }
 		if($closedate <> ""){
 		   $closedate1 = $request->tanggal3;
-        }else{
+        } else {
 		  $closedate1 = null;
         }
         Bulankontroller::where('thnbln',$thnbln)

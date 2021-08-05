@@ -227,7 +227,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				</button>
 			</div>
-			<form class="kt-form" action="" method="POST" id="formPanjarDinasDetail">
+			<form class="form" action="" method="POST" id="formPanjarDinasDetail">
 				<div class="modal-body">
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">No. Urut</label>
@@ -315,7 +315,7 @@
 			serverSide: true,
 			ajax: "{{ route('modul_umum.perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}",
 			columns: [
-				{data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'action', name: 'aksi', class:'radio-button text-center'},
 				{data: 'no', name: 'no'},
 				{data: 'nopek', name: 'nopek'},
 				{data: 'nama', name: 'nama'},

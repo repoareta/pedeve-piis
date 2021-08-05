@@ -134,17 +134,17 @@
             </h3>
             <div class="text-right">
                 <button data-toggle="modal" data-target="#createDetailModal" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button class="btn p-0" id="btn-edit">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 <button class="btn p-0" id="btn-delete">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </button>
@@ -153,7 +153,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="tabel-detail-permintaan">
+        <table class="table table-bordered" id="tabel-detail-permintaan">
             <thead class="thead-light">
                 <tr>
                     <th ><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked ></th>
@@ -203,7 +203,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form" id="form-create-detail" enctype="multipart/form-data" method="POST">
+            <form class="form" id="form-create-detail" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
 					@csrf
                     <div class="form-group row ">
@@ -284,7 +284,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form class="kt-form" id="form-edit-detail" enctype="multipart/form-data" method="POST">
+            <form class="form" id="form-edit-detail" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
 					@csrf
                     <div class="form-group row ">
@@ -307,7 +307,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
+							<select name="sanper" id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>

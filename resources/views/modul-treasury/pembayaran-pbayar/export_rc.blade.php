@@ -107,12 +107,12 @@
             <tr>
                 <td width="10%" style="padding-bottom:3%;">Rekening</td>
                 <td width="3%">:</td>
-                <td>{{ucwords(strtolower($request->kepada))}}</td>
+                <td>{{ucwords(strtolower($request->kepada)) }}</td>
             </tr>
             <tr>
                 <td style="padding-bottom:3%;">Jumlah</td>
                 <td>:</td>
-                <td>{{number_format($request->jumangka,0) < 0 ? "(".number_format($request->jumangka*-1,2).")" : number_format($request->jumangka,2)}}
+                <td>{{ number_format($request->jumangka,0) < 0 ? "(".number_format($request->jumangka*-1,2).")" : number_format($request->jumangka,2) }}
                 </td>
             </tr>
             <tr>
@@ -120,17 +120,17 @@
                 <td>:</td>
                 <td>
                     @if($request->ci == 1)
-                    {{number_format($request->jumangka,0) < 0 ? "(".ucwords(terbilang($request->jumangka*-1)).")" : ucwords(terbilang($request->jumangka))}}
+                    {{ number_format($request->jumangka,0) < 0 ? "(".ucwords(terbilang($request->jumangka*-1)).")" : ucwords(terbilang($request->jumangka)) }}
                     Rupiah</td>
                 @else
-                {{number_format($request->jumangka,0) < 0 ? "(".ucwords(terbilang($request->jumangka*-1)).")" : ucwords(terbilang($request->jumangka))}}
+                {{ number_format($request->jumangka,0) < 0 ? "(".ucwords(terbilang($request->jumangka*-1)).")" : ucwords(terbilang($request->jumangka)) }}
                 Dolar</td>
                 @endif
             </tr>
             <tr>
                 <td style="padding-bottom:3%;">Keterangan</td>
                 <td>:</td>
-                <td>{{ucwords(strtolower($request->keterangan))}}</td>
+                <td>{{ucwords(strtolower($request->keterangan)) }}</td>
             </tr>
         </table>
         <table width="100%">

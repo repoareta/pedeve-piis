@@ -67,7 +67,7 @@
         </form>
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+                <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
                             <th>USER ID</th>

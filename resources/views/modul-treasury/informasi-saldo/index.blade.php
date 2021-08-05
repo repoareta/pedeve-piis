@@ -25,7 +25,7 @@
         <div class="col-12">
 
         </div>
-        <form class="kt-form" id="search-form">
+        <form class="form" id="search-form">
             <div class="form-group row">
                 <label for="" class="col-1 col-form-label">Tanggal</label>
                 <div class="col-2">
@@ -36,7 +36,7 @@
                 </div>
             </div>
         </form>
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th width="50"></th>
@@ -70,7 +70,7 @@
                 }
             },
             columns: [
-                {data: 'action', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'action', name: 'aksi', class:'radio-button text-center'},
                 {data: 'kodestore', name: 'kodestore'},
                 {data: 'ak', name: 'ak'},
             ]

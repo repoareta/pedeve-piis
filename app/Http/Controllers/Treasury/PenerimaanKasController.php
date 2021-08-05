@@ -16,8 +16,8 @@ use App\Models\UserMenu;
 use App\Services\PenerimaanKasService;
 use App\Services\TimeTransactionService;
 use DB;
-use DomPDF;
 use Illuminate\Http\Request;
+use PDF;
 
 class PenerimaanKasController extends Controller
 {
@@ -438,22 +438,23 @@ class PenerimaanKasController extends Controller
             ->with(['kasline' => function ($query) {
                 $query->orderBy('lineno', 'ASC');
             }])
+            ->withSum('kasline', 'totprice')
             ->firstOrFail();
 
         // return $kasdoc;
 
         if (substr(strtoupper($request->no_dokumen), 0, 1) == 'P') {
             // return default PDF
-            $pdf = DomPDF::loadview('modul-treasury.bukti-kas.export_kas_putih_pdf', compact(
+            $pdf = PDF::loadview('modul-treasury.bukti-kas.export_kas_putih_pdf', compact(
                 'kasdoc'
-            ))->setOptions(['isPhpEnabled' => true]);
+            ))->setOption("footer-right", "Page [page] from [topage]");
 
             return $pdf->stream('bkp_'.date('Y-m-d H:i:s').'.pdf');
         } else {
             // return default PDF
-            $pdf = DomPDF::loadview('modul-treasury.bukti-kas.export_kas_merah_pdf', compact(
+            $pdf = PDF::loadview('modul-treasury.bukti-kas.export_kas_merah_pdf', compact(
                 'kasdoc'
-            ))->setOptions(['isPhpEnabled' => true]);
+            ))->setOption("footer-right", "Page [page] from [topage]");
 
             return $pdf->stream('bkm_'.date('Y-m-d H:i:s').'.pdf');
         }

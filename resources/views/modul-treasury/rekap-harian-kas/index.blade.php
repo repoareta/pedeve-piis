@@ -16,22 +16,22 @@
             </h3>
             <div class="text-right">
                 <a href="{{ route('rekap_harian_kas.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
-                <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
+                {{-- <button id="editRow" class="btn p-0">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
-                </button>
+                </button> --}}
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
                     </span>
                 </button>
                 <button id="exportRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-primary"></i>
                     </span>
                 </button>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="search-form" >
+        <form class="form" id="search-form" >
             <div class="form-group row">
                 <label for="" class="col-1 col-form-label">No. Kas</label>
                 <div class="col-2">
@@ -52,7 +52,7 @@
             </div>
         </form>
 
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 				<th></th>
@@ -81,18 +81,13 @@
 			processing: true,
 			serverSide: true,
 			ajax      : {
-						url: "{{ route('rekap_harian_kas.index.json') }}",
-						type : "POST",
-						dataType : "JSON",
-						headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-						},
-						data: function (d) {
-							d.nama = $('input[name=nokas]').val();
-						}
-					},
+				url: "{{ route('rekap_harian_kas.index.json') }}",
+				data: function (d) {
+					d.nama = $('input[name=nokas]').val();
+				}
+			},
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'jk', name: 'jk'},
 				{data: 'store', name: 'store'},
 				{data: 'no', name: 'no'},
@@ -103,6 +98,7 @@
 				{data: 'saldoakhir', name: 'saldoakhir'},
 			]
 		});
+
 		$('#search-form').on('submit', function(e) {
 			t.draw();
 			e.preventDefault();
@@ -173,7 +169,7 @@
 					var tgl = $(this).attr('tanggal');
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
-					location.replace("{{url('perbendaharaan/rekap_harian_kas/edit')}}"+ '/' +no+'/'+id+'/'+tgl);
+					location.href = "{{ url('perbendaharaan/rekap-harian-kas/edit') }}"+ '/' +no+'/'+id+'/'+tgl;
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -187,12 +183,12 @@
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
 					var tanggal = $(this).attr('tanggal');
-					location.replace("{{url('perbendaharaan/rekap_harian_kas/rekap')}}"+ '/' +no+'/'+id+'/'+tanggal);
+					location.href = "{{ url('perbendaharaan/rekap-harian-kas/rekap') }}"+ '/' +no+'/'+id+'/'+tanggal;
 				});
 			} else {
 				swalAlertInit('cetak');
 			}
 		});
-});
+	});
 </script>
 @endpush

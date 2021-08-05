@@ -51,7 +51,7 @@
 								<h3>Sign In to Your Account</h3>
 
 								@if(\Session::has('notif'))
-									<span class="text-danger">{{Session::get('notif')}}</span>
+									<span class="text-danger">{{Session::get('notif') }}</span>
 								@endif
 							</div>
                             

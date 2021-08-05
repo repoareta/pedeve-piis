@@ -66,7 +66,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">LAPORAN D2 KAS/BANK</font><br>
-                   <font style="font-size: 10pt;font-weight: bold "> BULAN  {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
+                   <font style="font-size: 10pt;font-weight: bold "> BULAN  {{strtoupper($bulan) }} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>
@@ -101,8 +101,8 @@
                         <td>{{ $data->tglbayar}}</td>
                         <td>{{ $data->docno}}</td>
                         <td>{{ $data->jk}}</td>
-                        <td>{{ $data->store}}</td>
-                        <td>{{ $data->voucher}}</td>
+                        <td>{{ $data->store }}</td>
+                        <td>{{ $data->voucher }}</td>
                         <td>{{ $data->ci}}</td>
                         <td>{{ $data->lokasi}}</td>
                         <td>{{ $data->account}}</td>
@@ -112,12 +112,12 @@
                                  $jmlrp = number_format($data->totprice,0); 
                             }elseif($data->ci == 2){ 
                                 $jmlrp = number_format($data->totprice * $data->rate); 
-                            }else{ 
+                            } else { 
                                 $jmlrp = '0'; 
                             }
                             if($data->ci == 2){ 
                                  $jmldl = number_format($data->totprice,0); 
-                            }else{ 
+                            } else { 
                                 $jmldl = '0'; 
                             }
                         ?>

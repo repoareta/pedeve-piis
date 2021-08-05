@@ -17,14 +17,14 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('opening_balance.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-trash text-danger"></i>
                     </span>
                 </button>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th width="50"></th>
@@ -71,7 +71,7 @@
                 }
             },
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'bulan', name: 'bulan'},
 				{data: 'tahun', name: 'tahun'},
 				{data: 'suplesi', name: 'suplesi'},
@@ -89,7 +89,7 @@
 			if($('input[class=btn-radio]').is(':checked')) { 
 				$("input[class=btn-radio]:checked").each(function(){
 					var no = $(this).attr('kode');
-					location.href = "{{url('perbendaharaan/opening-balance/edit')}}" + '/' + no;
+					location.href = "{{ url('perbendaharaan/opening-balance/edit') }}" + '/' + no;
 				});
 			} else {
 				swalAlertInit('batal');

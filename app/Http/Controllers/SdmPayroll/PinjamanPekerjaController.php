@@ -45,16 +45,16 @@ class PinjamanPekerjaController extends Controller
         })
         ->addColumn('cair', function ($data) {
             if($data->cair == 'Y'){
-                $cair = '<span class="pointer-link" title="Sudah Cair"><i class="fas fa-check-circle fa-2x text-success"></i></span>'; 
-            }else{
+                $cair = '<span class="pointer-link" title="Sudah Cair"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span>'; 
+            } else {
                 $cair = '<span class="pointer-link" title="Belum Cair"><i class="fas fa-ban fa-2x text-danger"></i></span>';
             }
             return $cair;
         })
         ->addColumn('lunas', function ($data) {
             if($data->lunas == 'Y'){
-                $lunas = '<span class="pointer-link" title="Sudah Lunas"><i class="fas fa-check-circle fa-2x text-success"></i></span>'; 
-            }else{
+                $lunas = '<span class="pointer-link" title="Sudah Lunas"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span>'; 
+            } else {
                 $lunas = '<span class="pointer-link" title="Belum Lunas"><i class="fas fa-ban fa-2x text-danger"></i></span>';
             }
             return $lunas;
@@ -78,12 +78,12 @@ class PinjamanPekerjaController extends Controller
                 if($data_p->idpinjaman <> null){
                     $idpinjaman = sprintf("%02s", abs($data_p->idpinjaman + 1));
                     return response()->json($request->nopek.$idpinjaman);
-                }else{
+                } else {
                     $idpinjaman = sprintf("%02s", 1);
                     return response()->json($request->nopek.$idpinjaman);
                 }
             }
-        }else{
+        } else {
             $idpinjaman = sprintf("%02s", 1);
             return response()->json($request->nopek.$idpinjaman);
         }

@@ -43,7 +43,7 @@ class SandiPerkiraanController extends Controller
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             $userid = Auth::user()->userid;
             Account::insert([
                 'kodeacct' => $request->kode,

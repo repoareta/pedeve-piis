@@ -18,24 +18,24 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" action="{{route('rekap_periode_kas.exportperiode')}}" method="POST">
+        <form class="form" action="{{route('rekap_periode_kas.exportperiode') }}" method="POST">
             @csrf
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Mulai Tanggal<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <div class="input-daterange input-group" id="date_range_picker">
-                        <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off" required>
+                        <input type="text" class="form-control" name="tanggal" id="tanggal" autocomplete="off">
                         <div class="input-group-append">
                             <span class="input-group-text">Sampai</span>
                         </div>
-                        <input type="text" class="form-control" name="tanggal2" id="tanggal2" autocomplete="off" required>
+                        <input type="text" class="form-control" name="tanggal2" id="tanggal2" autocomplete="off">
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="form-control select2"  name="jk" id="jk" required>
+                    <select class="form-control select2"  name="jk" id="jk">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="form-control select2"  name="nokas" id="nokas" required>
+                    <select class="form-control select2"  name="nokas" id="nokas">
                         <option value="">- Pilih -</option>
                     </select>
                 </div>
@@ -60,7 +60,7 @@
                     <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required autocomplete="off">
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
@@ -90,7 +90,7 @@
 		var tanggal = $('#tanggal').val();
 		var tanggal2 = $('#tanggal2').val();
 		$.ajax({
-			url : "{{route('rekap_periode_kas.jk.json')}}",
+			url : "{{route('rekap_periode_kas.jk.json') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {
@@ -119,7 +119,7 @@
 		var tanggal = $('#tanggal').val();
 		var tanggal2 = $('#tanggal2').val();
 		$.ajax({
-			url : "{{route('rekap_periode_kas.jk.json')}}",
+			url : "{{route('rekap_periode_kas.jk.json') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {
@@ -149,7 +149,7 @@
 		var tanggal2 = $('#tanggal2').val();
 		var jk = $('#jk').val();
 		$.ajax({
-			url : "{{route('rekap_periode_kas.nokas.json')}}",
+			url : "{{route('rekap_periode_kas.nokas.json') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {

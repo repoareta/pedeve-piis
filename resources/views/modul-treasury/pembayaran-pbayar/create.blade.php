@@ -18,12 +18,12 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-create">
+        <form class="form" id="form-create">
             @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-10">
-                    <input type="hidden" class="form-control"  value="{{date('Y-m-d')}}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                    <input type="hidden" class="form-control"  value="{{date('Y-m-d') }}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
                     <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
                 </div>
             </div>
@@ -37,14 +37,14 @@
             </div>
                 <div class="col-6" >
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>
     
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;" required>
+                    <select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $data)
                         <option value="{{ $data->kode }}">{{ $data->kode }} - {{ $data->nama }}</option>
@@ -58,7 +58,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-3">
-                    <select name="jk" id="jk" class="form-control select2" style="width: 100% !important;" required>
+                    <select name="jk" id="jk" class="form-control select2" style="width: 100% !important;">
                         <option value="">- Pilih -</option>
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>
@@ -78,7 +78,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
                 <div class="col-4">
-                    <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;" required>
+                    <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;">
                         <option value="">- Pilih -</option>
                         
                     </select>
@@ -89,7 +89,7 @@
                 </div>
                 <label class="col-1 col-form-label">No Ver</label>
                 <div class="col-2" >
-                    <input class="form-control" type="text" name="nover" value="{{ $nover}}"  id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nover" value="{{ $nover}}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
             </div>
     
@@ -125,11 +125,11 @@
                     <textarea class="form-control" type="text" name="ket3" id="ket3" value="" autocomplete="off"></textarea>
                 </div>
             </div>
-            <div class="kt-form__actions">
+            <div class="form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('pembayaran_pbayar.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{route('pembayaran_pbayar.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
 			$( "#kurs" ).prop( "readonly", true );
 			$('#kurs').css("background-color","#DCDCDC");
 			$('#kurs').css("cursor","not-allowed");
-		}else{
+		} else {
 			var kurs1 = $('#data-kurs').val();
 			$('#kurs').val(kurs1);
 			$('#simbol-kurs').show();
@@ -170,7 +170,7 @@ $('#form-create').submit(function(){
 	var nomor = $("#nomor").val();
 	var scurrdoc = mp+'-'+bagian+'-'+nomor;
 	$.ajax({
-		url  : "{{route('pembayaran_pbayar.store')}}",
+		url  : "{{route('pembayaran_pbayar.store') }}",
 		type : "POST",
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
@@ -186,7 +186,7 @@ $('#form-create').submit(function(){
 				text  : 'Berhasil',
 				timer : 2000
 			}).then(function() {
-				location.href = "{{url('perbendaharaan/pembayaran-pbayar/edit')}}"+ '/' +scurrdoc;
+				location.href = "{{ url('perbendaharaan/pembayaran-pbayar/edit') }}"+ '/' +scurrdoc;
 			});
 		}else if(data = 2){
 			Swal.fire({
@@ -194,7 +194,7 @@ $('#form-create').submit(function(){
 				title : 'Bulan Buku Tidak Ada Atau Sudah Di Posting.',
 				text  : 'Failed',
 			});
-		}else{
+		} else {
 			Swal.fire({
 				type  : 'info',
 				title : 'Data Yang Diinput Sudah Ada.',
@@ -214,7 +214,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_pbayar.createJson')}}",
+		url : "{{route('pembayaran_pbayar.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -259,7 +259,7 @@ var jk = $('#jk').val();
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}else{
+	} else {
 		$("#ci").val("");
 		$("#kurs").val("");
 		$("#jnskas").val("");
@@ -269,7 +269,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_pbayar.lokasiJson')}}",
+		url : "{{route('pembayaran_pbayar.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -298,7 +298,7 @@ var lokasi = $('#lokasi').val();
 var mp = $('#mp').val();
 var tahun = $('#tahun').val();
 	$.ajax({
-		url : "{{route('pembayaran_pbayar.nobuktiJson')}}",
+		url : "{{route('pembayaran_pbayar.nobuktiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -324,7 +324,7 @@ $('#nilai').keyup(function(){
 		$("#iklan").val('CR');
 	}else if(nilai > '0'){
 		$("#iklan").val('DR');
-	}else{
+	} else {
 		$("#iklan").val('');
 	}
 });
@@ -354,7 +354,7 @@ $('#nilai').keyup(function(){
 		allowClear: true,
 		tags: true,
 		ajax: {
-			url: "{{route('penerimaan_kas.ajax-kepada')}}",
+			url: "{{route('penerimaan_kas.ajax-kepada') }}",
 			type : "post",
 			dataType : "JSON",
 			headers: {

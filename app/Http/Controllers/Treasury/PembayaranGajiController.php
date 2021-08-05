@@ -171,12 +171,12 @@ class PembayaranGajiController extends Controller
             })
             ->addColumn('action', function ($data) {
                 if ($data->verified == 'Y') {
-                    $action = '<p align="center"><span style="font-size: 2em;" class="kt-font-success pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle" ></i></span></p>';
+                    $action = '<span class="pointer-link" title="Data Sudah DiVerifikasi"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
                 } else {
                     if ($data->paid == 'Y') {
-                        $action = '<p align="center"><a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span style="font-size: 2em;" class="kt-font-warning pointer-link" data-toggle="kt-tooltip" data-placement="top"  title="Batalkan Pembayaran"><i class="fas fa-check-circle" ></i></span></a></p>';
+                        $action = '<a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="pointer-link" title="Batalkan Pembayaran"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
                     } else {
-                        $action = '<p align="center"><a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span style="font-size: 2em;" class="kt-font-danger pointer-link" data-toggle="kt-tooltip" data-placement="top" title="Klik untuk Pembayaran"><i class="fas fa-ban" ></i></span></a></p>';
+                        $action = '<a href="' . route('pembayaran_gaji.approv', ['id' => str_replace('/', '-', $data->docno), 'status' => $data->paid]) . '"><span class="pointer-link" title="Klik untuk Pembayaran"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
                     }
                 }
                 return $action;

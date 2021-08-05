@@ -19,7 +19,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+                <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
                             <th>No. Perkara</th>
@@ -38,8 +38,8 @@
                     </tbody>
                 </table>
 
-                <div class="kt-portlet__head kt-portlet__head">
-                    <div class="kt-portlet__head-toolbar">
+                <div class="portlet__head portlet__head">
+                    <div class="portlet__head-toolbar">
                         <ul class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-primary" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#detail_umum" id="reload-umum" role="tab" aria-selected="true">
@@ -67,7 +67,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="kt-portlet__body" style="padding-top:10px">
+                <div class="portlet__body" style="padding-top:10px">
                     <div class="tab-content">
                         <div class="tab-pane active" id="detail_umum">
                             @include('modul-customer-management.data-perkara.detail-umum')
@@ -157,7 +157,7 @@ $(document).ready(function () {
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{url('administrator/data_perkara/edit')}}"+ '/' +no);
+                    location.replace("{{ url('administrator/data_perkara/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');

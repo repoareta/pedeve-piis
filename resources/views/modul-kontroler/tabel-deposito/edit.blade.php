@@ -2,52 +2,52 @@
 
 @section('content')
 <!-- begin:: Subheader -->
-<div class="kt-subheader   kt-grid__item" id="kt_subheader">
-	<div class="kt-container  kt-container--fluid ">
-		<div class="kt-subheader__main">
-			<h3 class="kt-subheader__title">
+<div class="subheader   grid__item" id="kt_subheader">
+	<div class="container  container--fluid ">
+		<div class="subheader__main">
+			<h3 class="subheader__title">
 				Jurnal Umum </h3>
-			<span class="kt-subheader__separator kt-hidden"></span>
-			<div class="kt-subheader__breadcrumbs">
-				<a href="#" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
-				<span class="kt-subheader__breadcrumbs-separator"></span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
+			<span class="subheader__separator hidden"></span>
+			<div class="subheader__breadcrumbs">
+				<a href="#" class="subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+				<span class="subheader__breadcrumbs-separator"></span>
+				<a href="" class="subheader__breadcrumbs-link">
 					Kontroler </a>
-				<span class="kt-subheader__breadcrumbs-separator"></span>
-				<a href="" class="kt-subheader__breadcrumbs-link">
+				<span class="subheader__breadcrumbs-separator"></span>
+				<a href="" class="subheader__breadcrumbs-link">
 					Jurnal Umum </a>
-				<span class="kt-subheader__breadcrumbs-separator"></span>
-				<span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Tambah</span>
+				<span class="subheader__breadcrumbs-separator"></span>
+				<span class="subheader__breadcrumbs-link subheader__breadcrumbs-link--active">Tambah</span>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- end:: Subheader -->
 
-<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
-	<div class="kt-portlet kt-portlet--mobile">
-		<div class="kt-portlet__head kt-portlet__head--lg">
-			<div class="kt-portlet__head-label">
-				<span class="kt-portlet__head-icon">
-					<i class="kt-font-brand flaticon2-plus-1"></i>
+<div class="container  container--fluid  grid__item grid__item--fluid">
+	<div class="portlet portlet--mobile">
+		<div class="portlet__head portlet__head--lg">
+			<div class="portlet__head-label">
+				<span class="portlet__head-icon">
+					<i class="font-brand flaticon2-plus-1"></i>
 				</span>
-				<h3 class="kt-portlet__head-title">
+				<h3 class="portlet__head-title">
 					Tambah Jurnal Umum
 				</h3>			
 			</div>
-			<div class="kt-portlet__head-toolbar">
-				<div class="kt-portlet__head-wrapper">
+			<div class="portlet__head-toolbar">
+				<div class="portlet__head-wrapper">
 				</div>
 			</div>
 		</div>
 			<!--begin: Datatable -->
-			<form class="kt-form" id="form-edit">
+			<form class="form" id="form-edit">
 				@csrf
-				<div class="kt-portlet__body">
+				<div class="portlet__body">
 					<div class="form-group form-group-last">
 						<div class="alert alert-secondary" role="alert">
 							<div class="alert-text">
-								<h5 class="kt-portlet__head-title">
+								<h5 class="portlet__head-title">
 									Header Jurnal Umum
 								</h5>	
 							</div>
@@ -92,7 +92,7 @@
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
 								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
+								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
@@ -112,45 +112,45 @@
 							<label for="" class="col-2 col-form-label">Jenis Kartu</label>
 							<div class="col-5">
 								<select name="jk" id="jk" class="form-control select2">
-									<option value="15" <?php if($jk  == '15' ) echo 'selected' ; ?>>Rupiah</option>
-									<option value="18" <?php if($jk  == '18' ) echo 'selected' ; ?>>Dollar</option>
+									<option value="15" <?php if($jk  == '15') echo 'selected'; ?>>Rupiah</option>
+									<option value="18" <?php if($jk  == '18') echo 'selected'; ?>>Dollar</option>
 
 								</select>
 								<input name="kurs" type="hidden" value="{{ $rate}}"></td>
 							</div>
 							<label for="nopek-input" class="col-2 col-form-label">Currency Index</label>
 							<div class="col-3">
-								<input class="form-control" type="text" name="ci" value="{{ $ci}}"  id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php }else{ }?>>
+								<input class="form-control" type="text" name="ci" value="{{ $ci}}" id="ci" <?php if($ci == 1){ ?> readonly style="background-color:#DCDCDC; cursor:not-allowed" <?php } else { }?>>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="id-pekerja;-input" class="col-2 col-form-label">Store</label>
 							<div class="col-5">
-								<input class="form-control" type="text" value="99" name="nokas" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="99" name="nokas" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 							<div class="col-5">
-								<input class="form-control" type="text" value="JURNAL" name="nama_kas" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="JURNAL" name="nama_kas" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">No. Bukti</label>
 							<div class="col-10">
-								<input class="form-control" type="text" value="{{ $nobukti}}" name="nobukti" size="50" maxlength="200" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="{{ $nobukti}}" name="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 						</div>
 						<div class="form-group row">
 							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
-								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" size="50" maxlength="200" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')">{{ $keterangan}}</textarea>
+								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')">{{ $keterangan}}</textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
 							</div>
 						</div>
 						@endforeach
-						<div class="kt-form__actions">
+						<div class="form__actions">
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a href="{{route('jurnal_umum.index')}}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+									<a href="{{route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 									@if($status2 <> "Y")
 									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 									@else
@@ -165,45 +165,45 @@
 				
 
 					
-				<div class="kt-portlet__head kt-portlet__head">
-					<div class="kt-portlet__head-label">
-						<span class="kt-portlet__head-icon">
-							<i class="kt-font-brand flaticon2-line-chart"></i>
+				<div class="portlet__head portlet__head">
+					<div class="portlet__head-label">
+						<span class="portlet__head-icon">
+							<i class="font-brand flaticon2-line-chart"></i>
 						</span>
-						<h3 class="kt-portlet__head-title">
+						<h3 class="portlet__head-title">
 							Detail Jurnal Umum
 						</h3>			
-						<div class="kt-portlet__head-toolbar">
-							<div class="kt-portlet__head-wrapper">
-								<div class="kt-portlet__head-actions">
+						<div class="portlet__head-toolbar">
+							<div class="portlet__head-wrapper">
+								<div class="portlet__head-actions">
 								@if($status2 <> "Y")
 									<a href="#" data-toggle="modal" data-target="#kt_modal_4">
-										<span style="font-size: 2em;" class="kt-font-success">
+										<span class="font-success">
 											<i class="fas fa-plus-circle"></i>
 										</span>
 									</a>
 					
 									<a href="#" id="editRow">
-										<span style="font-size: 2em;" class="kt-font-warning">
+										<span class="font-warning">
 											<i class="fas fa-edit"></i>
 										</span>
 									</a>
 					
 									<a href="#" id="deleteRow">
-										<span style="font-size: 2em;" class="kt-font-danger">
+										<span class="font-danger">
 											<i class="fas fa-times-circle"></i>
 										</span>
 									</a>
 								@else
-									<span style="font-size: 2em;cursor:not-allowed" class="kt-font-success">
+									<span style="font-size: 2em;cursor:not-allowed" class="font-success">
 										<i class="fas fa-plus-circle"></i>
 									</span>
 				
-									<span style="font-size: 2em;cursor:not-allowed" class="kt-font-warning">
+									<span style="font-size: 2em;cursor:not-allowed" class="font-warning">
 										<i class="fas fa-edit"></i>
 									</span>
 				
-									<span style="font-size: 2em;cursor:not-allowed" class="kt-font-danger">
+									<span style="font-size: 2em;cursor:not-allowed" class="font-danger">
 										<i class="fas fa-times-circle"></i>
 									</span>
 								@endif
@@ -212,8 +212,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="kt-portlet__body">
-					<table class="table table-striped table-bordered table-hover table-checkable" id="kt_table">
+				<div class="portlet__body">
+					<table class="table table-bordered" id="kt_table">
 						<thead class="thead-light">
 							<tr>
 								<th ></th>
@@ -232,22 +232,22 @@
 						<tbody>
 						@foreach($data_detail as $data_d)
 							<tr>
-								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+								<td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno) }}" lineno="{{ $data_d->lineno}}" class="btn-radio"><span></span></label></td>
 								<td>{{ $data_d->lineno}}</td>
 								<td>{{ $data_d->lokasi}}</td>
 								<td>{{ $data_d->account}}</td>
 								<td>{{ $data_d->bagian}}</td>
 								<td>{{ $data_d->pk}}</td>
 								<td>{{ $data_d->jb}}</td>
-								<td>{{number_format($data_d->debet,2,'.',',')}}</td>
-								<td>{{number_format($data_d->kredit,2,'.',',')}}</td>
-								<td>{{number_format($data_d->rate,0)}}</td>
+								<td>{{ number_format($data_d->debet,2,'.',',') }}</td>
+								<td>{{ number_format($data_d->kredit,2,'.',',') }}</td>
+								<td>{{ number_format($data_d->rate,0) }}</td>
 								<td>{{ $data_d->keterangan}}</td>
 							</tr>
 						@endforeach
 						</tbody>
 						<tr>
-							<td colspan="2" align="left"><input id="status2" name="status2" type="checkbox" <?php if($status2  == 'Y' ) echo 'checked' ; ?>> Posting</td>
+							<td colspan="2" align="left"><input id="status2" name="status2" type="checkbox" <?php if($status2  == 'Y') echo 'checked' ; ?>> Posting</td>
 							<td colspan="6" align="right">Out of Balance : </td>
 							<td colspan="3" ><?php echo number_format($jumlahnya, 2, ',', '.').' '.$lab2; ?></td>
 						</tr>
@@ -333,7 +333,7 @@
 							<select name="jnsbiaya" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000' ) echo 'selected' ; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000') echo 'selected'; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 									@endforeach
 							</select>
 						</div>
@@ -354,12 +354,12 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off" >
+							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 
 																					
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -471,12 +471,12 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off" >
+							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 
 																					
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
@@ -512,7 +512,7 @@ $("#jk").on("change", function(){
 		$( "#ci" ).prop( "readonly", true );
 		$('#ci').css("background-color","#DCDCDC");
 		$('#ci').css("cursor","not-allowed");
-	}else{
+	} else {
 		$('#ci').val(2);
 		$( "#ci" ).prop( "required", true );
 		$( "#ci" ).prop( "readonly", false );
@@ -524,7 +524,7 @@ $("#jk").on("change", function(){
 
 $('#form-edit').submit(function(){
 			$.ajax({
-				url  : "{{route('jurnal_umum.update')}}",
+				url  : "{{route('jurnal_umum.update') }}",
 				type : "POST",
 				data : $('#form-edit').serialize(),
 				dataType : "JSON",
@@ -548,7 +548,7 @@ $('#form-edit').submit(function(){
 						text  : 'Info',
 						timer : 2000
 						});
-					}else{
+					} else {
 						Swal.fire({
 						type  : 'info',
 						title : 'Data Sudah Di Posting, Tidak Bisa Di Update/Hapus.',
@@ -568,7 +568,7 @@ $('#form-edit').submit(function(){
 //prosess create detail
  $('#form-tambah-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('jurnal_umum.store.detail')}}",
+			url  : "{{route('jurnal_umum.store.detail') }}",
 			type : "POST",
 			data : $('#form-tambah-detail').serialize(),
 			dataType : "JSON",
@@ -594,7 +594,7 @@ $('#form-edit').submit(function(){
 						}).then(function() {
 							location.reload();
 						});
-				}else{
+				} else {
 					Swal.fire({
 						type  : 'info',
 						title : 'Sandi Perkiraan Salah/Tidak Ditemukan.',
@@ -621,7 +621,7 @@ $('#editRow').on('click', function(e) {
 			var no = $(this).attr('docno');
 			var id = $(this).attr('lineno');
 			$.ajax({
-				url :"{{url('kontroler/jurnal_umum/editdetail')}}"+ '/' +no+'/'+id,
+				url :"{{ url('kontroler/jurnal_umum/editdetail') }}"+ '/' +no+'/'+id,
 				type : 'get',
 				dataType:"json",
 				headers: {
@@ -656,7 +656,7 @@ $('#editRow').on('click', function(e) {
 	//prosess create detail
 	$('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('jurnal_umum.update.detail')}}",
+			url  : "{{route('jurnal_umum.update.detail') }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

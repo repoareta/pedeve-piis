@@ -69,9 +69,9 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="form-create">
+        <form class="form" id="form-create">
             @csrf
-            <div class="kt-portlet__body">
+            <div class="portlet__body">
                 <div class="form-group form-group-last">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Bulan<span class="text-danger">*</span></label>
@@ -82,35 +82,35 @@
                             $bulan = date_format($tgl, 'n'); 
                         ?>
                             <select class="form-control select2" style="width: 100% !important;"  name="bulan">
-                                <option value="01" <?php if($bulan == 1 ) echo 'selected' ; ?>>Januari</option>
-                                <option value="02" <?php if($bulan == 2 ) echo 'selected' ; ?>>Februari</option>
-                                <option value="03" <?php if($bulan == 3 ) echo 'selected' ; ?>>Maret</option>
-                                <option value="04" <?php if($bulan == 4 ) echo 'selected' ; ?>>April</option>
-                                <option value="05" <?php if($bulan == 5 ) echo 'selected' ; ?>>Mei</option>
-                                <option value="06" <?php if($bulan == 6 ) echo 'selected' ; ?>>Juni</option>
-                                <option value="07" <?php if($bulan == 7 ) echo 'selected' ; ?>>Juli</option>
-                                <option value="08" <?php if($bulan == 8 ) echo 'selected' ; ?>>Agustus</option>
-                                <option value="09" <?php if($bulan == 9 ) echo 'selected' ; ?>>September</option>
-                                <option value="10" <?php if($bulan == 10 ) echo 'selected' ; ?>>Oktober</option>
-                                <option value="11" <?php if($bulan == 11 ) echo 'selected' ; ?>>November</option>
-                                <option value="12" <?php if($bulan == 12 ) echo 'selected' ; ?>>Desember</option>
+                                <option value="01" <?php if($bulan == 1 ) echo 'selected'; ?>>Januari</option>
+                                <option value="02" <?php if($bulan == 2 ) echo 'selected'; ?>>Februari</option>
+                                <option value="03" <?php if($bulan == 3 ) echo 'selected'; ?>>Maret</option>
+                                <option value="04" <?php if($bulan == 4 ) echo 'selected'; ?>>April</option>
+                                <option value="05" <?php if($bulan == 5 ) echo 'selected'; ?>>Mei</option>
+                                <option value="06" <?php if($bulan == 6 ) echo 'selected'; ?>>Juni</option>
+                                <option value="07" <?php if($bulan == 7 ) echo 'selected'; ?>>Juli</option>
+                                <option value="08" <?php if($bulan == 8 ) echo 'selected'; ?>>Agustus</option>
+                                <option value="09" <?php if($bulan == 9 ) echo 'selected'; ?>>September</option>
+                                <option value="10" <?php if($bulan == 10 ) echo 'selected'; ?>>Oktober</option>
+                                <option value="11" <?php if($bulan == 11 ) echo 'selected'; ?>>November</option>
+                                <option value="12" <?php if($bulan == 12 ) echo 'selected'; ?>>Desember</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Tahun<span class="text-danger">*</span></label>
                             <div class="col-10" >
-                                <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required>
+                                <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                             </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Suplesi<span class="text-danger">*</span></label>
                             <div class="col-10" >
-                                <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2" autocomplete="off" required>
+                                <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2" autocomplete="off">
                             </div>
                     </div>
                     
-                    <div class="kt-form__actions">
+                    <div class="form__actions">
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
@@ -138,7 +138,7 @@
 			$('#loader').show();
 
 			$.ajax({
-				url  : "{{route('opening_balance.store')}}",
+				url  : "{{route('opening_balance.store') }}",
 				type : "POST",
 				data : $('#form-create').serialize(),
 				dataType : "JSON",

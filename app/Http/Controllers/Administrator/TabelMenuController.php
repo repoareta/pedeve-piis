@@ -36,7 +36,7 @@ class TabelMenuController extends Controller
                 $userap = 'PERBENDAHARAAN';
             }elseif($data->userap == 'AKT'){
                 $userap = 'KONTROLER';
-            }else{
+            } else {
                 $userap = 'CUSTOMER MANAGEMENT';
             }
             return $userap;
@@ -60,7 +60,7 @@ class TabelMenuController extends Controller
         if($dft_menu1){
             Alert::error('Gagal', 'Data Gagal Disimpan')->persistent(true)->autoClose(3000);
             return redirect()->back();
-        }else{
+        } else {
             $dft_menu2 = new DftMenu();
             $dft_menu2->menuid = $request->menuid;
             $dft_menu2->menunm = $request->userap .' - '. $request->menunm;

@@ -19,17 +19,17 @@
         <div class="card-toolbar">
             <div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
-					<span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
-					<span class="text-danger pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
@@ -39,7 +39,7 @@
     <div class="card-body">
 
 		<div class="col-12">
-			<form class="kt-form" id="search-form" >
+			<form class="form" id="search-form" >
 				<div class="form-group row">
 					<label for="" class="col-form-label">Pegawai</label>
 					<div class="col-4">
@@ -54,18 +54,18 @@
 					<div class="col-2">
 						<select name="bulan" class="form-control select2" style="width: 100% !important;" id="bulan">
 							<option>- Pilih -</option>
-							<option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
-							<option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
-							<option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
-							<option value="04" <?php if($bulan == '04' ) echo 'selected' ; ?>>April</option>
-							<option value="05" <?php if($bulan == '05' ) echo 'selected' ; ?>>Mei</option>
-							<option value="06" <?php if($bulan == '06' ) echo 'selected' ; ?>>Juni</option>
-							<option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
-							<option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
-							<option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
-							<option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
-							<option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
-							<option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
+							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
+							<option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
+							<option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
+							<option value="04" <?php if($bulan == '04') echo 'selected'; ?>>April</option>
+							<option value="05" <?php if($bulan == '05') echo 'selected'; ?>>Mei</option>
+							<option value="06" <?php if($bulan == '06') echo 'selected'; ?>>Juni</option>
+							<option value="07" <?php if($bulan == '07') echo 'selected'; ?>>Juli</option>
+							<option value="08" <?php if($bulan == '08') echo 'selected'; ?>>Agustus</option>
+							<option value="09" <?php if($bulan == '09') echo 'selected'; ?>>September</option>
+							<option value="10" <?php if($bulan == '10') echo 'selected'; ?>>Oktober</option>
+							<option value="11" <?php if($bulan == '11') echo 'selected'; ?>>November</option>
+							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
 	
@@ -121,7 +121,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+            {data: 'radio', name: 'aksi', class:'radio-button text-center'},
             {data: 'tahun', name: 'tahun'},
             {data: 'bulan', name: 'bulan'},
             {data: 'nopek', name: 'nopek'},
@@ -147,7 +147,7 @@ $(document).ready(function () {
                 var nopek = $(this).attr('nopek');
                 var aard  = $(this).attr('aard');
                 var nama  = $(this).attr('nama');
-                location.replace("{{url('sdm/honor_komite/edit')}}"+ '/' +bulan+'/' +tahun+ '/' +nopek);
+                location.replace("{{ url('sdm/honor_komite/edit') }}"+ '/' +bulan+'/' +tahun+ '/' +nopek);
             });
         } else {
             swalAlertInit('ubah');

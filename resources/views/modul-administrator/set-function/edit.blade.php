@@ -148,7 +148,7 @@
 						$("#tambah").each(function() {
 							this.checked=true;
 						});
-					}else{
+					} else {
 						$("#tambah").each(function() {
 							this.checked=false;
 						});
@@ -157,7 +157,7 @@
 						$("#ubah").each(function() {
 							this.checked=true;
 						});
-					}else{
+					} else {
 						$("#ubah").each(function() {
 							this.checked=false;
 						});
@@ -166,7 +166,7 @@
 						$("#hapus").each(function() {
 							this.checked=true;
 						});
-					}else{
+					} else {
 						$("#hapus").each(function() {
 							this.checked=false;
 						});
@@ -175,7 +175,7 @@
 						$("#cetak").each(function() {
 							this.checked=true;
 						});
-					}else{
+					} else {
 						$("#cetak").each(function() {
 							this.checked=false;
 						});
@@ -184,7 +184,7 @@
 						$("#lihat").each(function() {
 							this.checked=true;
 						});
-					}else{
+					} else {
 						$("#lihat").each(function() {
 							this.checked=false;
 						});

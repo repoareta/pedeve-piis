@@ -42,7 +42,7 @@ class JenisBiayaController extends Controller
         if(!empty($data_objRs)){
             $data = 2;
             return response()->json($data);
-        }else{
+        } else {
             JenisBiaya::insert([
                 'kode' => $request->kode,
                 'keterangan' => $request->nama

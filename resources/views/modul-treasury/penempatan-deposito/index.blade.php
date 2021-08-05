@@ -17,21 +17,21 @@
             <div class="text-right">
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('penempatan_deposito.create') }}" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas icon-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
                 <button id="editRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
                         <i class="fas icon-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 @endif
                 @if($data_akses->hapus == 1)
                 <button id="deleteRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
                         <i class="fas icon-2x fa-times text-danger"></i>
                     </span>
                 </button>
@@ -39,7 +39,7 @@
 
                 @if($data_akses->tambah == 1)
                 <button id="dolarRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Perpanjang Deposito">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Perpanjang Deposito">
                         <i class="fas icon-2x fa-dollar-sign text-primary"></i>
                     </span>
                 </button>
@@ -47,7 +47,7 @@
 
                 @if($data_akses->cetak == 1)
                 <button id="exportRow" class="btn p-0">
-                    <span class="text-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
                         <i class="fas icon-2x fa-print text-secondary"></i>
                     </span>
                 </button>
@@ -57,24 +57,24 @@
     </div>
 
     <div class="card-body">
-        <form class="kt-form" id="search-form" >
+        <form class="form" id="search-form" >
             <div class="form-group row">
                 <label for="" class="col-1 col-form-label">Bulan</label>
                 <div class="col-2">
                     <select name="bulan" class="form-control select2" style="width: 100% !important;">
                         <option value="">- Pilih -</option>
-                        <option value="01" <?php if($bulan == '01' ) echo 'selected' ; ?>>Januari</option>
-                        <option value="02" <?php if($bulan == '02' ) echo 'selected' ; ?>>Februari</option>
-                        <option value="03" <?php if($bulan == '03' ) echo 'selected' ; ?>>Maret</option>
-                        <option value="04" <?php if($bulan == '04' ) echo 'selected' ; ?>>April</option>
-                        <option value="05" <?php if($bulan == '05' ) echo 'selected' ; ?>>Mei</option>
-                        <option value="06" <?php if($bulan == '06' ) echo 'selected' ; ?>>Juni</option>
-                        <option value="07" <?php if($bulan == '07' ) echo 'selected' ; ?>>Juli</option>
-                        <option value="08" <?php if($bulan == '08' ) echo 'selected' ; ?>>Agustus</option>
-                        <option value="09" <?php if($bulan == '09' ) echo 'selected' ; ?>>September</option>
-                        <option value="10" <?php if($bulan == '10' ) echo 'selected' ; ?>>Oktober</option>
-                        <option value="11" <?php if($bulan == '11' ) echo 'selected' ; ?>>November</option>
-                        <option value="12" <?php if($bulan == '12' ) echo 'selected' ; ?>>Desember</option>
+                        <option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
+                        <option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
+                        <option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
+                        <option value="04" <?php if($bulan == '04') echo 'selected'; ?>>April</option>
+                        <option value="05" <?php if($bulan == '05') echo 'selected'; ?>>Mei</option>
+                        <option value="06" <?php if($bulan == '06') echo 'selected'; ?>>Juni</option>
+                        <option value="07" <?php if($bulan == '07') echo 'selected'; ?>>Juli</option>
+                        <option value="08" <?php if($bulan == '08') echo 'selected'; ?>>Agustus</option>
+                        <option value="09" <?php if($bulan == '09') echo 'selected'; ?>>September</option>
+                        <option value="10" <?php if($bulan == '10') echo 'selected'; ?>>Oktober</option>
+                        <option value="11" <?php if($bulan == '11') echo 'selected'; ?>>November</option>
+                        <option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
                     </select>
                 </div>
 
@@ -88,7 +88,7 @@
             </div>
         </form>
 
-        <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+        <table class="table table-bordered" id="kt_table" width="100%">
 			<thead class="thead-light">
 				<tr>
 					<th></th>
@@ -137,7 +137,7 @@
 				}
 			},
 			columns: [
-				{data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
 				{data: 'noseri', name: 'noseri'},
 				{data: 'namabank', name: 'namabank'},
 				{data: 'nominal', name: 'nominal'},
@@ -162,7 +162,7 @@
 				}else if(data["warna"] == 2){
 					$( row ).css( "background-color", "#666666" );
 					$('td', row ).css( "color", "#FFFEFE" );
-				}else{
+				} else {
 					$( row ).css( "background-color", "#000000" );
 					$('td', row ).css( "color", "#FFFEFE" );
 				}
@@ -181,7 +181,7 @@ $('#editRow').click(function(e) {
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
 			var pjg = $(this).attr('pjg');
-			location.href = "{{url('perbendaharaan/penempatan-deposito/edit')}}" + '/' + nodok +'/' + lineno + '/' + pjg;
+			location.href = "{{ url('perbendaharaan/penempatan-deposito/edit') }}" + '/' + nodok +'/' + lineno + '/' + pjg;
 		});
 	} else {
 		swalAlertInit('ubah');
@@ -195,7 +195,7 @@ $('#exportRow').on('click', function(e) {
 			e.preventDefault();
 			var no = $(this).attr('nodok').split("/").join("-");
 			var id = $(this).attr('lineno');
-				location.href = "{{url('perbendaharaan/penempatan-deposito/rekaprc')}}" + '/' + no + '/' + id;
+				location.href = "{{ url('perbendaharaan/penempatan-deposito/rekaprc') }}" + '/' + no + '/' + id;
 		});
 	} else{
 		swalAlertInit('cetak');
@@ -210,7 +210,7 @@ $('#dolarRow').click(function(e) {
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
 			var pjg = $(this).attr('pjg');
-			location.href = "{{url('perbendaharaan/penempatan-deposito/depopjg')}}" + '/' + nodok + '/' + lineno + '/' + pjg;
+			location.href = "{{ url('perbendaharaan/penempatan-deposito/depopjg') }}" + '/' + nodok + '/' + lineno + '/' + pjg;
 		});
 	} else {
 		swalAlertInit('perpanjangan deposito');

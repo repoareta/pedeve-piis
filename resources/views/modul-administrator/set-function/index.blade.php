@@ -24,7 +24,7 @@
             <div class="float-left">
                 <div class="">
                     <a href="#">
-                        <span class="text-warning pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                             <i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
                         </span>
                     </a>
@@ -35,7 +35,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table" width="100%">
+                <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
                             <th></th>
@@ -74,7 +74,7 @@
                             }
                         },
                 columns: [
-                    {data: 'radio', name: 'aksi', orderable: false, searchable: false, class:'radio-button'},
+                    {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                     {data: 'userid', name: 'userid'},
                     {data: 'usernm', name: 'usernm'},
                     {data: 'kode', name: 'kode'},
@@ -82,6 +82,7 @@
                     {data: 'userap', name: 'userap'},
                 ]
             });
+
             $('#search-form').on('submit', function(e) {
                 t.draw();
                 e.preventDefault();
@@ -94,7 +95,7 @@
                 if($('input[class=btn-radio]').is(':checked')) { 
                     $("input[class=btn-radio]:checked").each(function(){
                         var no = $(this).attr('kode');
-                        location.replace("{{url('administrator/set-function/edit')}}"+ '/' +no);
+                        location.replace("{{ url('administrator/set-function/edit') }}"+ '/' +no);
                     });
                 } else {
                     swalAlertInit('ubah');

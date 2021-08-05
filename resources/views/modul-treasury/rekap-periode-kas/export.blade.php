@@ -20,13 +20,13 @@
         }
 
         /** Define the header rules **/
-        header {
+        /* header {
             position: fixed;
             top: 1cm;
             left: 0cm;
             right: 0cm;
             height: 3cm;
-        }
+        } */
 
         /** Define the footer rules **/
         footer {
@@ -140,21 +140,21 @@
                         <td style="text-align:center;border:1px solid black;">{{ $data->tanggal_rekap}}</td>
                         <td style="text-align:center;border:1px solid black;">{{ $data->no_bukti}}</td>
                         <td style="text-align:left;border:1px solid black;">{{ $data->uraian_penjelasan}}</td>
-                        <td style="text-align:right;border:1px solid black;">{{number_format($data->debet,2)}}</td>
-                        <td style="text-align:right;border:1px solid black;">{{number_format($data->kredit,2)}}</td>
+                        <td style="text-align:right;border:1px solid black;">{{ number_format($data->debet,2) }}</td>
+                        <td style="text-align:right;border:1px solid black;">{{ number_format($data->kredit,2) }}</td>
                         <td style="text-align:right;border:1px solid black;">
-                            {{number_format(($data->debet-$data->kredit)+$data->saldo_awal,2)}}</td>
+                            {{ number_format(($data->debet-$data->kredit)+$data->saldo_awal,2) }}</td>
                         <td style="text-align:center;border:1px solid black;">{{ $data->lokasi}}</td>
                         <td style="text-align:center;border:1px solid black;">{{ $data->cj}}</td>
                     </tr>
                     @endforeach
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
                         <th colspan="4" style="text-align:center;border:1px solid black;">TOTAL</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($debet),2)}}</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($kredit),2)}}
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($debet),2) }}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($kredit),2) }}
                         </th>
                         <th style="text-align:right;border:1px solid black;">
-                            {{number_format((array_sum($debet)-array_sum($kredit)+array_sum($saldo_awal)),2)}}</th>
+                            {{ number_format((array_sum($debet)-array_sum($kredit)+array_sum($saldo_awal)),2) }}</th>
                         <th style="text-align:center;border:1px solid black;"></th>
                         <th style="text-align:center;border:1px solid black;"></th>
                     </tr>
@@ -167,22 +167,22 @@
                     </tr>
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
                         <th colspan="2" style="text-align:right;border:1px solid black;">
-                            {{number_format(array_sum($saldo_awal),2)}}</th>
+                            {{ number_format(array_sum($saldo_awal),2) }}</th>
                         <th colspan="2" style="text-align:right;border:1px solid black;">
-                            {{number_format(array_sum($debet),2)}}</th>
-                        <th style="text-align:right;border:1px solid black;">{{number_format(array_sum($kredit),2)}}
+                            {{ number_format(array_sum($debet),2) }}</th>
+                        <th style="text-align:right;border:1px solid black;">{{ number_format(array_sum($kredit),2) }}
                         </th>
                         <th colspan="2" style="text-align:right;border:1px solid black;">
-                            {{number_format((array_sum($debet)-array_sum($kredit)),2)}}</th>
+                            {{ number_format((array_sum($debet)-array_sum($kredit)),2) }}</th>
                         <th colspan="2" style="text-align:right;border:1px solid black;">
-                            {{number_format((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal),2)}}</th>
+                            {{ number_format((array_sum($debet)-array_sum($kredit))+array_sum($saldo_awal),2) }}</th>
                     </tr>
             <tbody>
         </table>
 
         <table width="100%" style="font-size: 10pt; padding-top:10px;">
             <tr>
-                <td align="center">JAKARTA, {{date('d/m/Y')}}</td>
+                <td align="center">JAKARTA, {{date('d/m/Y') }}</td>
                 <td align="center" width="200"></td>
             </tr>
             <tr style="font-size: 10pt;">
@@ -196,8 +196,8 @@
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:10px;">
             <tr style="font-size: 10pt;">
-                <td align="center" width="200"><u>{{strtoupper($request->dibuat)}}</u></td>
-                <td align="center" width="200"><u>{{strtoupper($request->setuju)}}</u></td><br>
+                <td align="center" width="200"><u>{{strtoupper($request->dibuat) }}</u></td>
+                <td align="center" width="200"><u>{{strtoupper($request->setuju) }}</u></td><br>
             </tr>
         </table>
     </main>

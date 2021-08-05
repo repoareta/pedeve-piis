@@ -236,14 +236,14 @@ tr {
                         if($row->mu == 1){
                             if($row->mu == 1){
                                 $kbl_1_rp = $row->last_rp;
-                            }else{
+                            } else {
                                 $kbl_1_rp = 0;
                             }
                             $kbl_rp = $kbl_1_rp < 0 ? '('.number_format($kbl_1_rp*-1,2) .')' : number_format($kbl_1_rp,2) ;
-                        }else{
+                        } else {
                             if($row->mu == 2){
                                 $kbl_1_rp = $row->last_rp;
-                            }else{
+                            } else {
                                 $kbl_1_rp = 0;
                             }                            
                             $kbl_rp = $kbl_1_rp < 0 ? '('.number_format($kbl_1_rp*-1,2) .')' : number_format($kbl_1_rp,2) ;
@@ -254,14 +254,14 @@ tr {
                         if($kbl_last < 0){
                             if($row->mu == 2){
                                 $kbl_1_dl = $row->last_dl;
-                            }else{
+                            } else {
                                 $kbl_1_dl = 0;
                             }
                             $kbl_dl = $kbl_1_dl < 0 ? '('.number_format($kbl_1_dl*-1,2) .')' : number_format($kbl_1_dl,2) ;
-                        }else{
+                        } else {
                             if($row->mu == 2){
                                 $kbl_1_dl = $row->last_dl;
-                            }else{
+                            } else {
                                 $kbl_1_dl = 0;
                             }                            
                             $kbl_dl = $kbl_1_dl < 0 ? '('.number_format($kbl_1_dl*-1,2) .')' : number_format($kbl_1_dl,2) ;
@@ -272,14 +272,14 @@ tr {
                         if($row->mu == 1){
                             if($row->mu == 1){
                                 $tbi_1_rp = $row->cur_rp;
-                            }else{
+                            } else {
                                 $tbi_1_rp = 0;
                             }
                             $tbi_rp = $tbi_1_rp < 0 ? '('.number_format($tbi_1_rp*-1,2) .')' : number_format($tbi_1_rp,2) ;
-                        }else{
+                        } else {
                             if($row->mu == 2){
                                 $tbi_1_rp = $row->cur_rp;
-                            }else{
+                            } else {
                                 $tbi_1_rp = 0;
                             }                            
                             $tbi_rp = $tbi_1_rp < 0 ? '('.number_format($tbi_1_rp*-1,2) .')' : number_format($tbi_1_rp,2) ;
@@ -291,14 +291,14 @@ tr {
                         if($tbi_cur < 0){
                             if($row->mu == 2){
                                 $tbi_1_dl = $row->cur_dl;
-                            }else{
+                            } else {
                                 $tbi_1_dl = 0;
                             }
                             $tbi_dl = $tbi_1_dl < 0 ? '('.number_format($tbi_1_dl*-1,2) .')' : number_format($tbi_1_dl,2) ;
-                        }else{
+                        } else {
                             if($row->mu == 2){
                                 $tbi_1_dl = $row->cur_dl;
-                            }else{
+                            } else {
                                 $tbi_1_dl = 0;
                             }                            
                             $tbi_dl = $tbi_1_dl < 0 ? '('.number_format($tbi_1_dl*-1,2) .')' : number_format($tbi_1_dl,2) ;
@@ -309,14 +309,14 @@ tr {
                         if($row->mu == 1){
                             if($row->mu == 1){
                                 $kbi_1_rp = $row->cum_rp;
-                            }else{
+                            } else {
                                 $kbi_1_rp = 0;
                             }
                             $kbi_rp = $kbi_1_rp < 0 ? '('.number_format($kbi_1_rp*-1,2) .')' : number_format($kbi_1_rp,2) ;
-                        }else{
+                        } else {
                             if($row->mu == 2){
                                 $kbi_1_rp = $row->cum_rp;
-                            }else{
+                            } else {
                                 $kbi_1_rp = 0;
                             }                            
                             $kbi_rp = $kbi_1_rp < 0 ? '('.number_format($kbi_1_rp*-1,2) .')' : number_format($kbi_1_rp,2) ;
@@ -328,14 +328,14 @@ tr {
                         if($kbi_cum < 0){
                             if($row->mu == 2){
                                 $kbi_1_dl = $row->cum_dl;
-                            }else{
+                            } else {
                                 $kbi_1_dl = 0;
                             }
                             $kbi_dl = $kbi_1_dl < 0 ? '('.number_format($kbi_1_dl*-1,2) .')' : number_format($kbi_1_dl,2) ;
-                        }else{
+                        } else {
                             if($row->mu == 2){
                                 $kbi_1_dl = $row->cum_dl;
-                            }else{
+                            } else {
                                 $kbi_1_dl = 0;
                             }                            
                             $kbi_dl = $kbi_1_dl < 0 ? '('.number_format($kbi_1_dl*-1,2) .')' : number_format($kbi_1_dl,2) ;
@@ -363,7 +363,7 @@ tr {
                             $sanclass =  substr($data_list[$key+1]['sandi'],0,1);
                             $mu =  $data_list[$key+1]['mu'];
                             $lapangan =  $data_list[$key+1]['lapangan'];
-                        }else{
+                        } else {
                             $sandi =  substr($data_list[$key]['sandi'],0,2);
                             $san =  $data_list[$key]['sandi'];
                             $mu =  $data_list[$key]['mu']*2;

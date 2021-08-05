@@ -127,12 +127,23 @@ class PensiunController extends Controller
         return response()->json();
     }
 
-    public function ctkiuranpensiun()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function daftarIuran()
     {
-        return view('modul-sdm-payroll.pensiun.rekap');
+        return view('modul-sdm-payroll.pensiun.daftar-iuran');
     }
 
-    public function rekapExport(Request $request)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function daftarIuranExport(Request $request)
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
         $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
@@ -159,11 +170,22 @@ class PensiunController extends Controller
         }
     }
 
-    public function ctkrekapiuranpensiun()
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function rekapIuran()
     {
-        return view('modul-sdm-payroll.pensiun.rekapiuran');
+        return view('modul-sdm-payroll.pensiun.rekap-iuran');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function rekapIuranExport(Request $request)
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun'");
@@ -185,7 +207,7 @@ class PensiunController extends Controller
                 SUM(CASE WHEN a.bulan ='11' THEN round(a.nilai,0)* -1 ELSE '0' END) as nov,
                 SUM(CASE WHEN a.bulan ='12' THEN round(a.nilai,0)* -1 ELSE '0' END) as des    
                 from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun='$request->tahun'  and a.aard='14' group by a.nopek, b.nama order by b.nama asc");
-            }else{
+            } else {
                 $data_list = DB::select("SELECT 
                     b.nopeg AS nopek,b.nama AS namapegawai, SUM(a.CURRAMOUNT),
                     SUM(CASE WHEN a.bulan ='1' and a.aard in('15','46')  THEN round(a.CURRAMOUNT,0) ELSE '0' END) as jan, 
@@ -202,9 +224,9 @@ class PensiunController extends Controller
                     SUM(CASE WHEN a.bulan ='12' THEN round(a.CURRAMOUNT,0) ELSE '0' END) as des    
                     from pay_master_bebanprshn a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun='$request->tahun'  and a.aard in ('15','46') group by b.nama,b.nopeg order by b.nama asc");
             }
-        }else{
+        } else {
             Alert::info("Tidak ditemukan data Tahun: $request->tahun", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.pensiun.ctkrekapiuranpensiun');
+            return redirect()->route('modul_sdm_payroll.pensiun.rekap_iuran');
         }
         $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.export-rekap-iuranpensiun',compact('request','data_list'))->setPaper('legal', 'landscape');
         $pdf->output();
