@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
@@ -18,34 +18,36 @@
             <h3 class="card-label">
                 Tabel Pembayaran UMK
             </h3>
-            <div class="text-right">
+        </div>
+		<div class="card-toolbar">
+            <div class="float-left">
                 @if($data_akses->tambah == 1)
-                <a href="{{ route('pembayaran_umk.create') }}" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                <a href="{{ route('pembayaran_umk.create') }}">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->rubah == 1 or $data_akses->lihat == 1)
-                <button id="editRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
-                        <i class="fas fa-2x fa-edit text-warning"></i>
+                @if($data_akses->rubah == 1 || $data_akses->lihat == 1)
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                     </span>
-                </button>
+                </a>
                 @endif
                 @if($data_akses->hapus == 1)
-                <button id="deleteRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
-                        <i class="fas fa-2x fa-trash text-danger"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
-                </button>
+                </a>
                 @endif
                 @if($data_akses->cetak == 1)
-                <button id="exportRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
-                        <i class="fas fa-2x fa-print text-primary"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
+                        <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
                     </span>
-                </button>
+                </a>
                 @endif
             </div>
         </div>
@@ -127,7 +129,7 @@
 			},
 			columns: [
 				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-				{data: 'radio', name: 'radio', class: 'text-center', width: '10'},
+				{data: 'action', name: 'action', class: 'text-center', width: '10'},
 				{data: 'docno', name: 'docno'},
 				{data: 'tanggalinput', name: 'tanggalinput'},
 				{data: 'nobukti', name: 'nobukti'},
