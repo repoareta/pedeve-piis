@@ -23,7 +23,7 @@ class ReportKontrolerController extends Controller
                                     account where length(kodeacct)=6 
                                     and kodeacct not like '%X%' 
                                     order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create-d2-perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.d2-perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function searchAccount(Request $request)
@@ -90,7 +90,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create-d2-periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.d2-periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function create_d5_report()
@@ -98,7 +98,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create-d5-report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.d5-report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function exportD5(Request $request)
