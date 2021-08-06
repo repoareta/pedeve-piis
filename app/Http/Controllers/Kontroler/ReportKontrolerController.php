@@ -450,6 +450,7 @@ class ReportKontrolerController extends Controller
         }
 
         $data_list = DB::select("SELECT *, substr(sandi,1,2) as duadigit,substr(sandi,1,3) as tigadigit from v_rincibiayakontroler where substr(sandi,1,3) between '500' and '519' and $zzz");
+        
         if (!empty($data_list)) {
             $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.biaya-pegawai-kantor-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
@@ -461,7 +462,7 @@ class ReportKontrolerController extends Controller
             return $pdf->stream();
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan $request->bulan1 S/D $request->bulan2 Tahun: $request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_kontroler.modul_kontroler.biaya_pegawai.create_biaya_pegawai');
+            return redirect()->route('modul_kontroler.biaya_pegawai.create_biaya_pegawai');
         }
     }
 

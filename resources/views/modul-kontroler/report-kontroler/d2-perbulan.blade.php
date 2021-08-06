@@ -104,7 +104,7 @@
 <script>
     $(document).ready(function () {
         $('.cariaccount').select2({
-            placeholder: '-Pilih-',
+            placeholder: '- Pilih -',
             allowClear: true,
             ajax: {
                 url: "{{ route('modul_kontroler.d2_perbulan.search.account') }}",			

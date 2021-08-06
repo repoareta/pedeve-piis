@@ -312,7 +312,7 @@
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<select name="sanper" id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
-								<option value="">-Pilih-</option>
+								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
 								@endforeach
@@ -325,7 +325,7 @@
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
 							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;" >
-								<option value="">-Pilih-</option>
+								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
@@ -344,7 +344,7 @@
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
 							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;" >
-								<option value="">-Pilih-</option>
+								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
 								@endforeach
@@ -356,7 +356,7 @@
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
 							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;" >
-								<option value="">-Pilih-</option>
+								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
 								@endforeach
@@ -429,7 +429,7 @@
 		});
 
         $('#search-bagian').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.ajax-bagian') }}",
@@ -454,7 +454,7 @@
 		});
 
         $('#search-jenis-biaya').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.ajax-jenis-biaya') }}",
@@ -480,7 +480,7 @@
 
 
         $('#search-cash-judex').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.ajax-cash-judex') }}",

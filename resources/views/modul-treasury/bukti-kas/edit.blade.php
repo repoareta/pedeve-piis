@@ -275,7 +275,7 @@ $(document).ready(function () {
 			}
 		} );
 		$('.cariaccount').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.search.account') }}",
@@ -299,7 +299,7 @@ $(document).ready(function () {
 			}
 		});
 		$('.caribagian').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.search.bagian') }}",
@@ -323,7 +323,7 @@ $(document).ready(function () {
 			}
 		});
 		$('.carijb').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.search.jb') }}",
@@ -347,7 +347,7 @@ $(document).ready(function () {
 			}
 		});
 		$('.caricj').select2({
-			placeholder: '-Pilih-',
+			placeholder: '- Pilih -',
 			allowClear: true,
 			ajax: {
 				url: "{{ route('penerimaan_kas.search.cj') }}",

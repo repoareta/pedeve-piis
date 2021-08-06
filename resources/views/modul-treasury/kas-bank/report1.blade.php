@@ -103,7 +103,7 @@
     $(document).ready(function () {
    
    $('.cariaccount').select2({
-           placeholder: '-Pilih-',
+           placeholder: '- Pilih -',
            allowClear: true,
            ajax: {
                url: "{{ route('kas_bank.search.account') }}",

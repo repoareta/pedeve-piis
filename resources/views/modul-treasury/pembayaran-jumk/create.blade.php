@@ -354,7 +354,7 @@ $('#nilai').keyup(function(){
 	});
 });
 	$('.kepada').select2({
-		placeholder: '-Pilih-',
+		placeholder: '- Pilih -',
 		allowClear: true,
 		tags: true,
 		ajax: {
