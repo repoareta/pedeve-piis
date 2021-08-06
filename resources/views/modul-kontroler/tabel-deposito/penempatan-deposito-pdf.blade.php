@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>
-        RINCIAN TRANSAKSI (D-2)
+        TABEL DEPOSITO
     </title>
 </head>
 <style media="screen">
