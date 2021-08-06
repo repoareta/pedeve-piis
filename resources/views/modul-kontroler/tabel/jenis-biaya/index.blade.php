@@ -64,18 +64,8 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-<<<<<<< HEAD
             ajax      : {
                         url: "{{ route('modul_kontroler.tabel.jenis_biaya.index.json') }}",
-=======
-            ajax: {
-                        url: "{{ route('modul_kontroler.jenis_biaya.index.json') }}",
-                        type : "POST",
-                        dataType : "JSON",
-                        headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                        },
->>>>>>> d7a9f0b45b6bfa1814ce5f1374481edf0f2f96ad
                         data: function (d) {
                             d.pencarian = $('input[name=pencarian]').val();
                         }
