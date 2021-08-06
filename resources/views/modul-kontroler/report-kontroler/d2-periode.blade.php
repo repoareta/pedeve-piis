@@ -33,19 +33,17 @@
 					@csrf
 					<div class="form-group row">
 						<label for="jk-input" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
-						<div class="col-10">
-							<div class="col-10 col-form-label">
-								<div class="radio-inline">
-									<label class="radio radio-outline radio-primary">
-									<input type="radio" name="jk" value="1">
-									<span></span>[10,11,13]</label>
-									<label class="radio radio-outline radio-primary">
-									<input type="radio" name="jk" value="2">
-									<span></span>[15,18]</label>
-									<label class="radio radio-outline radio-primary">
-									<input type="radio" name="jk" value="3">
-									<span></span>All</label>
-								</div>
+						<div class="col-10 col-form-label">
+							<div class="radio-inline">
+								<label class="radio">
+									<input type="radio" value="1" name="jk" checked="">
+								<span></span>10, 11, 13</label>
+								<label class="radio">
+									<input type="radio" value="2" name="jk">
+								<span></span>15, 18</label>
+								<label class="radio">
+									<input type="radio" value="3" name="jk">
+								<span></span>Semua</label>
 							</div>
 						</div>
 					</div>
