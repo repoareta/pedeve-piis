@@ -20,7 +20,7 @@ class SandiPerkiraanController extends Controller
         $data = Account::orderByDesc('kodeacct');
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kodeacct.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kodeacct.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])

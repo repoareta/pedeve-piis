@@ -61,7 +61,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "informasi_saldo.index"...
     Route::name('informasi_saldo.')->group(function () {
         Route::get('informasi-saldo', [InformasiSaldoController::class, 'index'])->name('index');
-        Route::get('informasi-saldo/index/json', [InformasiSaldoController::class, 'indexJson'])->name('index.json');
+        Route::get('informasi-saldo/index-json', [InformasiSaldoController::class, 'indexJson'])->name('index.json');
     });
     //end informasi-saldo
 
@@ -70,7 +70,7 @@ Route::prefix('perbendaharaan')->group(function () {
     // Route assigned name "data_pajak.index"...
     Route::name('data_pajak.')->group(function () {
         Route::get('data-pajak', [DataPajakController::class, 'index'])->name('index');
-        Route::get('data-pajak/index/json', [DataPajakController::class, 'indexJson'])->name('index.json');
+        Route::get('data-pajak/index-json', [DataPajakController::class, 'indexJson'])->name('index.json');
         Route::get('data-pajak/create', [DataPajakController::class, 'create'])->name('create');
         Route::post('data-pajak/store', [DataPajakController::class, 'store'])->name('store');
         Route::get('data-pajak/edit/{tahun}/{bulan}/{nopek}/{jenis}', [DataPajakController::class, 'edit'])->name('edit');

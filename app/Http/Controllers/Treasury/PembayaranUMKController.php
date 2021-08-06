@@ -160,7 +160,7 @@ class PembayaranUMKController extends Controller
                 return $nilai;
             })
             ->addColumn('radio', function ($data) {
-                $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" value="' . $data->docno . '" docno="' . str_replace('/', '-', $data->docno) . '" class="btn-radio" name="btn-radio"><span></span></label></center>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" value="' . $data->docno . '" docno="' . str_replace('/', '-', $data->docno) . '" class="btn-radio" name="btn-radio"><span></span></label>';
                 return $radio;
             })
             ->addColumn('action', function ($data) {
