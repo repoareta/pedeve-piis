@@ -86,11 +86,11 @@
 					<div class="form-group row">
 						<div class="col-12">
 							<div class="radio-inline">
-								<label class="radio radio-outline radio-primary">
+								<label class="radio ">
 									<input type="radio" name="cetak" value="A" onclick="displayResult(1)" checked/> Cetak All
 									<span></span>
 								</label>
-								<label class="radio radio-outline radio-primary">
+								<label class="radio ">
 									<input type="radio" name="cetak" value="B" onclick="displayResult(2)" /> Cetak Per User
 									<span></span>
 								</label>

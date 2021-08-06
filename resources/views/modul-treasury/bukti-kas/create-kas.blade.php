@@ -40,11 +40,11 @@
                         <label for="user-lv-input" class="col-2 col-form-label"></label>
                         <div class="col-10 col-form-label">
                             <div class="radio-inline">
-                                <label class="radio radio-outline radio-primary">
+                                <label class="radio ">
                                     <input type="radio" name="mp" checked="" value="M">
                                     <span></span> PENERIMAAN / BKM
                                 </label>
-                                <label class="radio radio-outline radio-primary">
+                                <label class="radio ">
                                     <input type="radio" name="mp" checked="" value="P">
                                     <span></span> PENGELUARAN / BKP
                                 </label>

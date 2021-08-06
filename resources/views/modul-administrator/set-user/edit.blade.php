@@ -60,10 +60,10 @@
                         <label for="user-lv-input" class="col-2 col-form-label">User Level</label>
                         <div class="col-10 col-form-label">
                             <div class="radio-inline">
-                                <label class="radio radio-outline radio-primary">
+                                <label class="radio ">
                                 <input type="radio" name="userlv" value="0" {{ $data->userlv == 0 ? 'checked' : '' }}>
                                 <span></span>ADMINISTRATOR</label>
-                                <label class="radio radio-outline radio-primary">
+                                <label class="radio ">
                                 <input type="radio" name="userlv" value="1" {{ $data->userlv == 1 ? 'checked' : '' }}>
                                 <span></span>USER</label>
                             </div>
