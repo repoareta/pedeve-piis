@@ -26,8 +26,7 @@
             target="_blank">
             <div class="portlet__body">
                 <div class="form-group row">
-                    <label for="mulai-input" class="col-2 col-form-label">Bulan<span
-                            style="color:red;">*</span></label>
+                    <label for="mulai-input" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
                     <div class="col-10">
                         <div class="input-daterange input-group" id="date_range_picker">
                             @php
@@ -54,8 +53,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="" class="col-2 col-form-label">Tahun<span
-                            style="color:red;">*</span></label>
+                    <label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
                     <div class="col-5">
                         <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" 
                             autocomplete="off">
@@ -79,19 +77,4 @@
 @endsection
 
 @push('page-scripts')
-<script type="text/javascript">
-    function hanyaAngka(evt) {
-        var charCode = (evt.which) ? evt.which : event.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-        return false;
-        return true;
-    }
-
-    $(document).ready(function () {
-        $('.select2').select2().on('change', function() {
-			$(this).valid();
-		});
-    });
-</script>
 @endpush
