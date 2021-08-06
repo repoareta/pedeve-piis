@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\Kontroler\BulanKontrolerController;
 use App\Http\Controllers\Kontroler\CashJudexController;
+use App\Http\Controllers\Kontroler\CetakKasBankController;
 use App\Http\Controllers\Kontroler\JenisBiayaController;
 use App\Http\Controllers\Kontroler\JurnalUmumController;
 use App\Http\Controllers\Kontroler\KasBankKontrolerController;
@@ -113,10 +114,10 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     //cetak-kas-bank
     // Route assigned name "cetak_kas_bank.index"...
     Route::name('cetak_kas_bank.')->group(function () {
-        Route::get('cetak-kas-bank', [KasBankKontrolerController::class, 'indexCetak'])->name('index');
-        Route::get('cetak-kas-bank/index-json', [KasBankKontrolerController::class, 'indexCetakJson'])->name('index.json');
-        Route::get('cetak-kas-bank/rekap/{id}', [KasBankKontrolerController::class, 'rekap'])->name('rekap');
-        Route::post('cetak-kas-bank/export', [KasBankKontrolerController::class, 'export'])->name('export');
+        Route::get('cetak-kas-bank', [CetakKasBankController::class, 'index'])->name('index');
+        Route::get('cetak-kas-bank/index-json', [CetakKasBankController::class, 'indexJson'])->name('index.json');
+        Route::get('cetak-kas-bank/rekap/{id}', [CetakKasBankController::class, 'rekap'])->name('rekap');
+        Route::post('cetak-kas-bank/export', [CetakKasBankController::class, 'export'])->name('export');
     });
     //end cetak-kas-bank
 
