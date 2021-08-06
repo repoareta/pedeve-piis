@@ -146,9 +146,22 @@ class ReportKontrolerController extends Controller
     }
     public function create_neraca_konsolidasi()
     {
-        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_tahun = DB::table('fiosd201')
+                        ->select(DB::raw('max(tahun||bulan||supbln) AS sbulan'))
+                        ->first();
+                        
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('modul-kontroler.report-kontroler.create_neraca_konsolidasi', compact('data_tahun', 'data_kodelok'));
+
+        $tahun = substr($data_tahun->sbulan, 0, 4);
+        $bulan = substr($data_tahun->sbulan, 4, 2);
+        $suplesi = substr($data_tahun->sbulan, 6);
+
+        return view('modul-kontroler.report-kontroler.create_neraca_konsolidasi', compact(
+            'tahun',
+            'bulan',
+            'suplesi',
+            'data_kodelok',
+        ));
     }
     public function exportNeracaKonsolidasi(Request $request)
     {
@@ -199,9 +212,22 @@ class ReportKontrolerController extends Controller
     
     public function create_neraca_detail()
     {
-        $data_tahun = DB::select("SELECT Tahun, Bulan, Suplesi from bulansuplesi where KodeReport='D5'");
+        $data_tahun = DB::table('bulansuplesi')
+                        ->where('kodereport', '=', 'D5')
+                        ->select(['tahun', 'bulan', 'suplesi'])
+                        ->first();
+
+        $tahun = $data_tahun->tahun;
+        $bulan = $data_tahun->bulan;
+        $suplesi = $data_tahun->suplesi;
+
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('modul-kontroler.report-kontroler.create_neraca_detail', compact('data_tahun', 'data_kodelok'));
+        return view('modul-kontroler.report-kontroler.create_neraca_detail', compact(
+            'tahun',
+            'bulan',
+            'suplesi',
+            'data_kodelok',
+        ));
     }
     public function exportNeracaDetail(Request $request)
     {
@@ -240,21 +266,35 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
+                return redirect()->route('modul_kontroler.neraca_detail.create_neraca_detail');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
+            return redirect()->route('modul_kontroler.neraca_detail.create_neraca_detail');
         }
     }
 
 
     public function create_laba_rugi_konsolidasi()
     {
-        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_tahun = DB::table('fiosd201')
+                        ->select(DB::raw('max(tahun||bulan||supbln) AS sbulan'))
+                        ->first();
+                        
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+
+        $tahun = substr($data_tahun->sbulan, 0, 4);
+        $bulan = substr($data_tahun->sbulan, 4, 2);
+        $suplesi = substr($data_tahun->sbulan, 6);
+
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_laba_rugi_konsolidasi', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_laba_rugi_konsolidasi', compact(
+            'tahun',
+            'bulan',
+            'suplesi',
+            'data_kodelok',
+            'data_sanper'
+        ));
     }
     public function exportLabaRugiKonsolidasi(Request $request)
     {
