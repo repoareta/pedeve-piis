@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_kontroler.tabel.cash_judex.create') }}">
+                <a href="{{ route('modul_kontroler.tabel.kas_bank_kontroler.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -43,8 +43,13 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
+                            <th>JENIS</th>
                             <th>KODE</th>
-                            <th>KETERANGAN</th>
+                            <th>NAMA</th>
+                            <th>NO.REKENING</th>
+                            <th>CI</th>
+                            <th>SANPER</th>
+                            <th>LOKASI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,15 +70,20 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ajax: {
-            url: "{{ route('modul_kontroler.tabel.cash_judex.index.json') }}",
+            url: "{{ route('modul_kontroler.tabel.kas_bank_kontroler.index.json') }}",
             data: function (d) {
                 d.pencarian = $('input[name=pencarian]').val();
             }
         },
         columns: [
             {data: 'radio', name: 'aksi', class:'radio-button text-center'},
-            {data: 'kode', name: 'kode'},
-            {data: 'nama', name: 'nama'},
+            {data: 'jeniskartu', name: 'jeniskartu'},
+            {data: 'kodestore', name: 'kodestore'},
+            {data: 'namabank', name: 'namabank'},
+            {data: 'norekening', name: 'norekening'},
+            {data: 'ci', name: 'ci'},
+            {data: 'account', name: 'account'},
+            {data: 'lokasi', name: 'lokasi'},
         ]
     });
     
@@ -107,7 +117,7 @@ $(document).ready(function () {
                     .then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: "{{ route('modul_kontroler.tabel.cash_judex.delete') }}",
+                            url: "{{ route('modul_kontroler.tabel.kas_bank_kontroler.delete') }}",
                             type: 'DELETE',
                             dataType: 'json',
                             data: {
@@ -143,7 +153,7 @@ $(document).ready(function () {
         if($('input[class=btn-radio]').is(':checked')) { 
             $("input[class=btn-radio]:checked").each(function(){
                 var no = $(this).attr('kode');
-                location.replace("{{ url('kontroler/tabel/cash-judex/edit') }}"+ '/' +no);
+                location.replace("{{ url('kontroler/tabel/kas-bank-kontroler/edit') }}"+ '/' +no);
             });
         } else {
             swalAlertInit('ubah');

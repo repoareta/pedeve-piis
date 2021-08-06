@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_kontroler.main_account.create') }}">
+                <a href="{{ route('modul_kontroler.tabel.main_account.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -71,7 +71,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('modul_kontroler.main_account.index.json') }}",
+                url: "{{ route('modul_kontroler.tabel.main_account.index.json') }}",
                 data: function (d) {
                     d.pencarian = $('input[name=pencarian]').val();
                 }
@@ -119,7 +119,7 @@
                         .then((result) => {
                             if (result.value) {
                                 $.ajax({
-                                    url: "{{ route('modul_kontroler.main_account.delete') }}",
+                                    url: "{{ route('modul_kontroler.tabel.main_account.delete') }}",
                                     type: 'DELETE',
                                     dataType: 'json',
                                     data: {
@@ -155,7 +155,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{ url('kontroler/main_account/edit') }}"+ '/' +no);
+                    location.replace("{{ url('kontroler/tabel/main_account/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');

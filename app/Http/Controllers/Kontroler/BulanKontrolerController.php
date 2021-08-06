@@ -12,26 +12,23 @@ class BulanKontrolerController extends Controller
 {
     public function index()
     {
-        return view('bulan_kontroler.index');
+        return view('modul-kontroler.tabel.bulan-kontroler.index');
     }
 
-    public function indexJson(Request $request)
+    public function indexJson()
     {
-        $data = DB::select("SELECT thnbln,status,opendate,stopdate,closedate,description,suplesi from bulankontroller order by thnbln desc");
+        $data = BulanKontroller::orderByDesc('thnbln');
         return datatables()->of($data)
-        ->addColumn('thnbln', function ($data) {
-            return $data->thnbln;
-       })
         ->addColumn('nama_status', function ($data) {
             if($data->status == "1"){
                 $nama_status = "OPENING";
-             }elseif($data->status == "2"){
+            }elseif($data->status == "2"){
                 $nama_status = "STOPING";
-             } else {
+            } else {
                 $nama_status = "CLOSING";
-             }
+            }
             return $nama_status;
-       })
+        })
         ->addColumn('data_buka', function ($data) {
             if($data->opendate <> ""){
                 $tgl = date_create($data->opendate);
@@ -40,7 +37,7 @@ class BulanKontrolerController extends Controller
                 $data_buka = "";
             }
             return $data_buka;
-       })
+        })
         ->addColumn('data_stop', function ($data) {
             if($data->stopdate <> ""){
                 $tgl = date_create($data->stopdate);
@@ -49,7 +46,7 @@ class BulanKontrolerController extends Controller
                 $data_stop = "";
             }
             return $data_stop;
-       })
+        })
         ->addColumn('data_tutup', function ($data) {
             if($data->closedate <> ""){
                 $tgl = date_create($data->closedate);
@@ -58,13 +55,7 @@ class BulanKontrolerController extends Controller
                 $data_tutup = "";
             }
             return $data_tutup;
-       })
-        ->addColumn('description', function ($data) {
-            return $data->description;
-       })
-        ->addColumn('suplesi', function ($data) {
-            return $data->suplesi;
-       })
+        })
         ->addColumn('radio', function ($data) {
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->thnbln.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
@@ -75,7 +66,7 @@ class BulanKontrolerController extends Controller
 
     public function create()
     {
-        return view('bulan_kontroler.create');
+        return view('modul-kontroler.tabel.bulan-kontroler.create');
     }
     public function store(Request $request)
     {
@@ -154,7 +145,7 @@ class BulanKontrolerController extends Controller
                     $keterangan  =$data->description;
                     $suplesi =    $data->suplesi; 
         }
-        return view('bulan_kontroler.edit',compact('thnbln','status','tanggal','tanggal2','tanggal3','keterangan','suplesi'));
+        return view('modul-kontroler.tabel.bulan-kontroler.edit',compact('thnbln','status','tanggal','tanggal2','tanggal3','keterangan','suplesi'));
     }
     public function update(Request $request)
     {

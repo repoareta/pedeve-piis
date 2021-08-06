@@ -12,19 +12,13 @@ class SandiPerkiraanController extends Controller
 {
     public function index()
     {
-        return view('sandi_perkiraan.index');
+        return view('modul-kontroler.tabel.sandi-perkiraan.index');
     }
 
-    public function indexJson(Request $request)
+    public function indexJson()
     {
-        $data = DB::select("SELECT a.* from account a order by a.kodeacct");
+        $data = Account::orderByDesc('kodeacct');
         return datatables()->of($data)
-        ->addColumn('kode', function ($data) {
-            return $data->kodeacct;
-       })
-        ->addColumn('nama', function ($data) {
-            return $data->descacct;
-       })
         ->addColumn('radio', function ($data) {
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kodeacct.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
@@ -35,7 +29,7 @@ class SandiPerkiraanController extends Controller
 
     public function create()
     {
-        return view('sandi_perkiraan.create');
+        return view('modul-kontroler.tabel.sandi-perkiraan.create');
     }
     public function store(Request $request)
     {
@@ -64,7 +58,7 @@ class SandiPerkiraanController extends Controller
             $kode = $data->kodeacct;
             $nama = $data->descacct;
         }
-        return view('sandi_perkiraan.edit',compact('kode','nama'));
+        return view('modul-kontroler.tabel.sandi-perkiraan.edit',compact('kode','nama'));
     }
     public function update(Request $request)
     {

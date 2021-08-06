@@ -11,37 +11,19 @@ class MainAccountController extends Controller
 {
     public function index()
     {
-        return view('modul-kontroler.main-account.index');
+        return view('modul-kontroler.tabel.main-account.index');
     }
 
-    public function indexJson(Request $request)
+    public function indexJson()
     {
-        $data = DB::select("SELECT a.* from main_account a order by a.jenis");
+        $data = MainAccount::orderByDesc('jenis');
         return datatables()->of($data)
-        ->addColumn('jenis', function ($data) {
-            return $data->jenis;
-       })
-        ->addColumn('batas_awal', function ($data) {
-            return $data->batas_awal;
-       })
-        ->addColumn('batas_akhir', function ($data) {
-            return $data->batas_akhir;
-       })
-        ->addColumn('urutan', function ($data) {
-            return $data->urutan;
-       })
         ->addColumn('pengali', function ($data) {
             return number_format($data->pengali,0,'.',',');
-       })
+        })
         ->addColumn('pengali_tampil', function ($data) {
             return number_format($data->pengali_tampil,0,'.',',');
-       })
-        ->addColumn('sub_akun', function ($data) {
-            return $data->sub_akun;
-       })
-        ->addColumn('lokasi', function ($data) {
-            return $data->lokasi;
-       })
+        })
         ->addColumn('radio', function ($data) {
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
@@ -52,7 +34,7 @@ class MainAccountController extends Controller
 
     public function create()
     {
-        return view('modul-kontroler.main-account.create');
+        return view('modul-kontroler.tabel.main-account.create');
     }
     public function store(Request $request)
     {
@@ -99,7 +81,7 @@ class MainAccountController extends Controller
             $subakun = $data->sub_akun;
             $lokasi = $data->lokasi;
         }
-        return view('modul-kontroler.main-account.edit',compact('jenis','batasawal','batasakhir','urutan','pengali','pengalitampil','subakun','lokasi'));
+        return view('modul-kontroler.tabel.main-account.edit',compact('jenis','batasawal','batasakhir','urutan','pengali','pengalitampil','subakun','lokasi'));
     }
     public function update(Request $request)
     {
