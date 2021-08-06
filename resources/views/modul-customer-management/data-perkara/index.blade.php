@@ -63,94 +63,94 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-            var t = $('#kt_table').DataTable({
-                scrollX   : true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ route('modul_cm.data_perkara.index.json') }}",
-                    data: function (d) {
-                        d.pencarian = $('input[name=pencarian]').val();
-                    }
-                },
-                columns: [
-                    {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
-                    {data: 'tanggal', name: 'tanggal'},
-                    {data: 'no_perkara', name: 'no_perkara'},
-                    {data: 'jenis_perkara', name: 'jenis_perkara'},
-                    {data: 'klasifikasi_perkara', name: 'klasifikasi_perkara'},
-                    {data: 'status_perkara', name: 'status_perkara'},
-                    {data: 'detail', name: 'detail'},
-                ]
-            });
+        var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('modul_cm.data_perkara.index.json') }}",
+                data: function (d) {
+                    d.pencarian = $('input[name=pencarian]').val();
+                }
+            },
+            columns: [
+                {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
+                {data: 'tanggal', name: 'tanggal'},
+                {data: 'no_perkara', name: 'no_perkara'},
+                {data: 'jenis_perkara', name: 'jenis_perkara'},
+                {data: 'klasifikasi_perkara', name: 'klasifikasi_perkara'},
+                {data: 'status_perkara', name: 'status_perkara'},
+                {data: 'detail', name: 'detail'},
+            ]
+        });
             
-            $('#deleteRow').click(function(e) {
-                e.preventDefault();
-                if($('input[class=btn-radio]').is(':checked')) { 
-                    $("input[class=btn-radio]:checked").each(function() {
-                        var kode = $(this).attr('data-id');
-                        // delete stuff
-                        const swalWithBootstrapButtons = Swal.mixin({
-                            customClass: {
-                                confirmButton: 'btn btn-primary',
-                                cancelButton: 'btn btn-danger'
-                            },
-                                buttonsStyling: false
-                            })
-                            swalWithBootstrapButtons.fire({
-                                title: "Data yang akan dihapus?",
-                                text: "No Data Perkara  : " +kode,
-                                type: 'warning',
-                                showCancelButton: true,
-                                reverseButtons: true,
-                                confirmButtonText: 'Ya, hapus',
-                                cancelButtonText: 'Batalkan'
-                            })
-                            .then((result) => {
-                            if (result.value) {
-                                $.ajax({
-                                    url: "{{ route('modul_cm.data_perkara.delete') }}",
-                                    type: 'DELETE',
-                                    dataType: 'json',
-                                    data: {
-                                        "kode": kode,
-                                        "_token": "{{ csrf_token() }}",
-                                    },
-                                    success: function (data) {
-                                        Swal.fire({
-                                            type  : 'success',
-                                            title : "Data Perkara Dengan No Perkara  : " +kode+" Berhasil Dihapus.",
-                                            text  : 'Berhasil',
-                                            
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function () {
-                                        alert("Terjadi kesalahan, coba lagi nanti");
-                                    }
-                                });
-                            }
-                        });
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[class=btn-radio]').is(':checked')) { 
+                $("input[class=btn-radio]:checked").each(function() {
+                    var kode = $(this).attr('data-id');
+                    // delete stuff
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-primary',
+                            cancelButton: 'btn btn-danger'
+                        },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire({
+                            title: "Data yang akan dihapus?",
+                            text: "No Data Perkara  : " +kode,
+                            type: 'warning',
+                            showCancelButton: true,
+                            reverseButtons: true,
+                            confirmButtonText: 'Ya, hapus',
+                            cancelButtonText: 'Batalkan'
+                        })
+                        .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_cm.data_perkara.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "kode": kode,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : "Data Perkara Dengan No Perkara  : " +kode+" Berhasil Dihapus.",
+                                        text  : 'Berhasil',
+                                        
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
                     });
-                } else {
-                    swalAlertInit('hapus');
-                }
-            });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
     
-            //edit 
-            $('#editRow').click(function(e) {
-                e.preventDefault();
-    
-                if($('input[class=btn-radio]').is(':checked')) { 
-                    $("input[class=btn-radio]:checked").each(function(){
-                        var no = $(this).attr('data-id');
-                        location.replace("{{ url('customer_management/data_perkara/edit') }}"+ '/' +no);
-                    });
-                } else {
-                    swalAlertInit('ubah');
-                }
-            });
+        //edit 
+        $('#editRow').click(function(e) {
+            e.preventDefault();
+
+            if($('input[class=btn-radio]').is(':checked')) { 
+                $("input[class=btn-radio]:checked").each(function(){
+                    var no = $(this).attr('data-id');
+                    location.replace("{{ url('customer_management/data_perkara/edit') }}"+ '/' +no);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
     });
-    </script>
+</script>
 @endpush
