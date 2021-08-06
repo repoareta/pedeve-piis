@@ -23,7 +23,7 @@ class ReportKontrolerController extends Controller
                                     account where length(kodeacct)=6 
                                     and kodeacct not like '%X%' 
                                     order by kodeacct desc");
-        return view('report-kontroler.create-d2-perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create-d2-perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function searchAccount(Request $request)
