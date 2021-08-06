@@ -87,7 +87,7 @@ class PenempatanDepositoController extends Controller
                 return number_format($data->kurs,0) == 0 ? number_format(1,2) : number_format($data->kurs,2);
                 })
                 ->addColumn('nominal', function ($data) {
-                    return number_format($data->nominal,2,'.',',');
+                    return currency_format($data->nominal);
                 })
                 ->addColumn('tgldep', function ($data) {
                     $tgl = date_create($data->tgldep);
@@ -101,22 +101,22 @@ class PenempatanDepositoController extends Controller
                     return $data->haribunga;
                 })
                 ->addColumn('bungatahun', function ($data) {
-                    return number_format($data->bungatahun,2,'.',',');
+                    return currency_format($data->bungatahun);
                 })
                 ->addColumn('bungabulan', function ($data) {
-                    return number_format($data->bungabulan,2,'.',',');
+                    return currency_format($data->bungabulan);
                 })
                 ->addColumn('pph20', function ($data) {
-                    return number_format($data->pph20,2,'.',',');
+                    return currency_format($data->pph20);
                 })
                 ->addColumn('netbulan', function ($data) {
-                    return number_format($data->netbulan,2,'.',',');
+                    return currency_format($data->netbulan);
                 })
                 ->addColumn('accharibunga', function ($data) {
                     return $data->accharibunga;
                 })
                 ->addColumn('accnetbulan', function ($data) {
-                    return number_format($data->accnetbulan,2,'.',',');
+                    return currency_format($data->accnetbulan);
                 })
                 ->addColumn('radio', function ($data) {
                     $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>'; 
