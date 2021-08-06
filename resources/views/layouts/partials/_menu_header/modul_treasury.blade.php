@@ -5,7 +5,7 @@
     </a>
     <div class="menu-submenu menu-submenu-classic menu-submenu-left">							
         <ul class="menu-subnav">
-            <li class="menu-item menu-item-submenu {{ Route::is('kas_bank.*') ? 'menu-item-active' : null }}" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is(['kas_bank.*', 'cash_flow.*']) ? 'menu-item-active' : null }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>

@@ -56,16 +56,16 @@ class RekapHarianKasController extends Controller
                 return date_format($tgl, 'd F Y');
             })
             ->addColumn('saldoawal', function ($data) {
-                return 'Rp. ' . number_format($data->saldoawal, 2, '.', ',');
+                return currency_idr($data->saldoawal);
             })
             ->addColumn('debet', function ($data) {
-                return 'Rp. ' . number_format($data->debet, 2, '.', ',');
+                return currency_idr($data->debet);
             })
             ->addColumn('kredit', function ($data) {
-                return 'Rp. ' . number_format($data->kredit, 2, '.', ',');
+                return currency_idr($data->kredit);
             })
             ->addColumn('saldoakhir', function ($data) {
-                return 'Rp. ' . number_format($data->saldoakhir, 2, '.', ',');
+                return currency_idr($data->saldoakhir);
             })
 
             ->addColumn('radio', function ($data) {
