@@ -63,7 +63,7 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Tanggal Cetak<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off">
+                            <input class="form-control" type="text" name="tanggal" value="{{ date('d F Y') }}" id="tanggal" autocomplete="off">
                         </div>
                     </div>
                     <div class="form__actions">

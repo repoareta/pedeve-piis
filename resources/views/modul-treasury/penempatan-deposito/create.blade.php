@@ -83,7 +83,7 @@
                     <div class="col"></div>
                     <div class="col"></div>
                     <div class="col-10">
-                        <a href="{{route('penempatan_deposito.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{ route('penempatan_deposito.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
 			var nodok = $(this).val();
 			var lineno =$("#nodok option:selected").attr('data-lineno');
 			$.ajax({
-				url : "{{route('penempatan_deposito.linenoJson') }}",
+				url : "{{ route('penempatan_deposito.linenoJson') }}",
 				type : "POST",
 				dataType: 'json',
 				data : {
@@ -137,7 +137,7 @@
 		$("#nodok").on("change", function(){
 			var nodok = $(this).val();
 			$.ajax({
-				url : "{{route('penempatan_deposito.kursJson') }}",
+				url : "{{ route('penempatan_deposito.kursJson') }}",
 				type : "POST",
 				dataType: 'json',
 				data : {

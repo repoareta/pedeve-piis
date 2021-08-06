@@ -71,7 +71,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "master_perusahaan.index"...
     Route::name('master_perusahaan.')->group(function () {
         Route::get('master-perusahaan', [MasterPerusahaanController::class, 'index'])->name('index');
-        Route::get('master-perusahaan/index/json', [MasterPerusahaanController::class, 'indexJson'])->name('index.json');
+        Route::get('master-perusahaan/index-json', [MasterPerusahaanController::class, 'indexJson'])->name('index.json');
         Route::get('master-perusahaan/create', [MasterPerusahaanController::class, 'create'])->name('create');
         Route::post('master-perusahaan/store', [MasterPerusahaanController::class, 'store'])->name('store');
         Route::get('master-perusahaan/edit/{kode}', [MasterPerusahaanController::class, 'edit'])->name('edit');
@@ -85,7 +85,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "master_unit.index"...
     Route::name('master_unit.')->group(function () {
         Route::get('master-unit', [MasterUnitController::class, 'index'])->name('index');
-        Route::get('master-unit/index/json', [MasterUnitController::class, 'indexJson'])->name('index.json');
+        Route::get('master-unit/index-json', [MasterUnitController::class, 'indexJson'])->name('index.json');
         Route::get('master-unit/create', [MasterUnitController::class, 'create'])->name('create');
         Route::post('master-unit/store', [MasterUnitController::class, 'store'])->name('store');
         Route::get('master-unit/edit/{kode}', [MasterUnitController::class, 'edit'])->name('edit');
@@ -99,7 +99,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "master_pekerja.index"...
     Route::name('master_pekerja.')->group(function () {
         Route::get('master-pekerja', [MasterPegawaiController::class, 'index'])->name('index');
-        Route::get('master-pekerja/index/json', [MasterPegawaiController::class, 'indexJson'])->name('index.json');
+        Route::get('master-pekerja/index-json', [MasterPegawaiController::class, 'indexJson'])->name('index.json');
         Route::get('master-pekerja/create', [MasterPegawaiController::class, 'create'])->name('create');
         Route::post('master-pekerja/store', [MasterPegawaiController::class, 'store'])->name('store');
         Route::get('master-pekerja/edit/{kode}', [MasterPegawaiController::class, 'edit'])->name('edit');
@@ -114,7 +114,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "cetak_kas_bank.index"...
     Route::name('cetak_kas_bank.')->group(function () {
         Route::get('cetak-kas-bank', [KasBankKontrolerController::class, 'indexCetak'])->name('index');
-        Route::post('cetak-kas-bank/index/index-json', [KasBankKontrolerController::class, 'searchIndexCetak'])->name('search.cetak.index');
+        Route::get('cetak-kas-bank/index-json', [KasBankKontrolerController::class, 'indexCetakJson'])->name('index.json');
         Route::get('cetak-kas-bank/rekap/{id}', [KasBankKontrolerController::class, 'rekap'])->name('rekap');
         Route::post('cetak-kas-bank/export', [KasBankKontrolerController::class, 'export'])->name('export');
     });
@@ -283,7 +283,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "laba_rugi_detail.index"...
     Route::name('laba_rugi_detail.')->group(function () {
         Route::get('laba-rugi-detail', [ReportKontrolerController::class, 'create_laba_rugi_detail'])->name('create_laba_rugi_detail');
-        Route::post('laba-rugi-detail/export', [ReportKontrolerController::class, 'exportLabaRugiDetail'])->name('export.laba.rugi.detail');
+        Route::post('laba-rugi-detail/export', [ReportKontrolerController::class, 'labaRugiDetailExport'])->name('export');
     });
 
     //end laporan_keuangan

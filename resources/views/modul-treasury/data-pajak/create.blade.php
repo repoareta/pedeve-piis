@@ -36,7 +36,7 @@
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{ date('m') }}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">						
+                        <input class="form-control" type="text" value="{{ date('m') }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">						
                     </div>
                         <div class="col-6" >
                             <input class="form-control" type="text" value="{{ date('Y') }}" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{route('data_pajak.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <a href="{{ route('data_pajak.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
 
         $('#form-create').submit(function(){
             $.ajax({
-                url  : "{{route('data_pajak.store') }}",
+                url  : "{{ route('data_pajak.store') }}",
                 type : "POST",
                 data : $('#form-create').serialize(),
                 dataType : "JSON",

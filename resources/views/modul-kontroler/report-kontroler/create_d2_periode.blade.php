@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('d2_periode.export') }}" method="GET" target="_blank">
+		<form class="form" action="{{ route('d2_periode.export') }}" method="GET" target="_blank">
 			<div class="portlet__body">
 				<div class="form-group row">
 					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
@@ -86,7 +86,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 				</div>
-				<label for="" class="col-1 col-form-label">S/D</label>
+				<label for="" class="col-1 col-form-label text-center">S/D</label>
 				<div class="col-5">
 						<select class="form-control select2" style="width: 100% !important;" name="bulan_sampai">
 							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
@@ -121,7 +121,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>

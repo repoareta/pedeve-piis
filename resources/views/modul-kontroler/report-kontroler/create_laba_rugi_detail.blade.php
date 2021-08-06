@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('laba_rugi_detail.export.laba.rugi.detail') }}" method="POST">
+		<form class="form" action="{{ route('laba_rugi_detail.export.laba.rugi.detail') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -75,8 +75,8 @@
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
 					</div>
 					<div class="col-2" >
-						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
-						<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" autocomplete="off">
+						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" autocomplete="off">
+						<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" autocomplete="off">
 					</div>
 				</div>
 				
@@ -84,7 +84,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>

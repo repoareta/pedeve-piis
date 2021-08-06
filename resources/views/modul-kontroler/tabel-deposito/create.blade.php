@@ -94,7 +94,7 @@
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off">
+								<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -148,7 +148,7 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a href="{{route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+									<a href="{{ route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 								</div>
 							</div>
@@ -245,7 +245,7 @@
 
 		$('#form-create').submit(function(){
 			$.ajax({
-				url  : "{{route('jurnal_umum.store') }}",
+				url  : "{{ route('jurnal_umum.store') }}",
 				type : "POST",
 				data : $('#form-create').serialize(),
 				dataType : "JSON",

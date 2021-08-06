@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('d2_perbulan.export') }}" method="GET" target="_blank">
+		<form class="form" action="{{ route('d2_perbulan.export') }}" method="GET" target="_blank">
 			<div class="portlet__body">
 				<div class="form-group row">
 					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
@@ -94,7 +94,7 @@
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
 					</div>
 					<div class="col-2" >
-						<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" autocomplete="off">
+						<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" autocomplete="off">
 					</div>
 				</div>
 				
@@ -108,7 +108,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>

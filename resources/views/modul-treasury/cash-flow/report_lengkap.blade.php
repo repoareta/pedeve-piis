@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('cash_flow.lengkap.export') }}" method="GET"
+        <form class="form" action="{{ route('cash_flow.lengkap.export') }}" method="GET"
             target="_blank">
             <div class="portlet__body">
                 <div class="form-group row">

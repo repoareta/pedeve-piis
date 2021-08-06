@@ -115,7 +115,7 @@ $(document).ready(function () {
 				scrollY:        "500px",
 				scrollCollapse: true,
 				ajax: {
-					url: "{{route('tabel_deposito.index.json') }}",
+					url: "{{ route('tabel_deposito.index.json') }}",
 					type : "POST",
 					dataType : "JSON",
 					headers: {

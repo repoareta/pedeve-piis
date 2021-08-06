@@ -142,7 +142,7 @@
 			$('#loader').show();
 
 			$.ajax({
-				url  : "{{route('opening_balance.store') }}",
+				url  : "{{ route('opening_balance.store') }}",
 				type : "POST",
 				data : $('#form-create').serialize(),
 				dataType : "JSON",

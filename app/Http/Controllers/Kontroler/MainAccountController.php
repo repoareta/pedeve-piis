@@ -25,7 +25,7 @@ class MainAccountController extends Controller
             return number_format($data->pengali_tampil,0,'.',',');
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
