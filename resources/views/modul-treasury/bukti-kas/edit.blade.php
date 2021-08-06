@@ -60,8 +60,8 @@
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{ $data->thnbln}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         
                     </div>
                         <div class="col-6" >
@@ -421,7 +421,7 @@ var ci = $('#ci').val();
 var lokasi1 = $('#lokasi1').val();
 var lokasi2 = $('#lokasi2').val();
 $.ajax({
-	url : "{{route('penerimaan_kas.ajax-lokasi') }}",
+	url : "{{ route('penerimaan_kas.ajax-lokasi') }}",
 	type : "POST",
 	dataType: 'json',
 	data : {
@@ -446,7 +446,7 @@ $.ajax({
 })
 $('#form-edit').submit(function(){
 	$.ajax({
-		url  : "{{route('penerimaan_kas.update', request()->documentId) }}",
+		url  : "{{ route('penerimaan_kas.update', request()->documentId) }}",
 		type : "POST",
 		data : $('#form-edit').serialize(),
 		dataType : "JSON",
@@ -477,7 +477,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('penerimaan_kas.ajax-create') }}",
+		url : "{{ route('penerimaan_kas.ajax-create') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -548,7 +548,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('penerimaan_kas.ajax-lokasi') }}",
+		url : "{{ route('penerimaan_kas.ajax-lokasi') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -579,7 +579,7 @@ $("#lokasi").on("click", function(){
 	var mp = $('#mp').val();
 	var tahun = $('#tahun').val();
 		$.ajax({
-			url : "{{route('penerimaan_kas.ajax-bukti') }}",
+			url : "{{ route('penerimaan_kas.ajax-bukti') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {
@@ -682,7 +682,7 @@ if($('input[type=radio]').is(':checked')) {
 });
 $('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('penerimaan_kas.store.detail', [request()->documentId]) }}",
+			url  : "{{ route('penerimaan_kas.store.detail', [request()->documentId]) }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

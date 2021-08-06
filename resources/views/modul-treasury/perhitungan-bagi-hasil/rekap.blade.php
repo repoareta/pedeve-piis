@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('perhitungan_bagihasil.export') }}" method="POST">
+        <form class="form" action="{{ route('perhitungan_bagihasil.export') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<div class="form-group row">

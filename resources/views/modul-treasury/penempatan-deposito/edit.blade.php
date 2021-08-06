@@ -26,10 +26,10 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen<span class="text-danger">*</span></label>
                 <div class="col-10">
-                        <input class="form-control" type="text" value="{{ $data->docno}}"   name="nodok" id="nodok" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{ $data->kurs}}"   name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{ $data->lineno}}"   name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{ $data->keterangan}}"   name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $data->docno}}" name="nodok" id="nodok" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="hidden" value="{{ $data->kurs}}" name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="hidden" value="{{ $data->lineno}}" name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="hidden" value="{{ $data->keterangan}}" name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
             </div>
             <div class="form-group row">
@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('penempatan_deposito.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{ route('penempatan_deposito.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
 	$(document).ready(function () {
 		$('#form-edit').submit(function(){
 			$.ajax({
-				url  : "{{route('penempatan_deposito.update') }}",
+				url  : "{{ route('penempatan_deposito.update') }}",
 				type : "POST",
 				data : $('#form-edit').serialize(),
 				dataType : "JSON",

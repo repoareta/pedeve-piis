@@ -327,8 +327,10 @@ Route::prefix('perbendaharaan')->group(function () {
     Route::name('cash_flow.')->group(function () {
         Route::get('cash_flow/report/internal', [CashFlowController::class, 'internal'])->name('internal');
         Route::get('cash_flow/report/internal/export', [CashFlowController::class, 'internalExport'])->name('internal.export');
+        Route::get('cash_flow/report/perbulan', [CashFlowController::class, 'perBulan'])->name('perbulan');
+        Route::get('cash_flow/report/perbulan/export', [CashFlowController::class, 'perBulanExport'])->name('perbulan.export');
         Route::get('cash_flow/report/perperiode', [CashFlowController::class, 'perPeriode'])->name('perperiode');
-        Route::get('cash_flow/report/perperiode/export', [CashFlowController::class, 'perPeriode'])->name('perperiode.export');
+        Route::get('cash_flow/report/perperiode/export', [CashFlowController::class, 'perPeriodeExport'])->name('perperiode.export');
         Route::get('cash_flow/report/mutasi', [CashFlowController::class, 'mutasi'])->name('mutasi');
         Route::get('cash_flow/report/mutasi/export', [CashFlowController::class, 'mutasiExport'])->name('mutasi.export');
         Route::get('cash_flow/report/permatauang', [CashFlowController::class, 'perMataUang'])->name('permatauang');

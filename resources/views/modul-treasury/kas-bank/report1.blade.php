@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('kas_bank.cetak1') }}" method="POST">
+        <form class="form" action="{{ route('kas_bank.cetak1') }}" method="POST">
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
             <div class="form-group row">
@@ -73,7 +73,7 @@
                     <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                 </div>
                 <div class="col-2">
-                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
+                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" autocomplete="off">
                     <input class="form-control" type="hidden" value="" name="suplesi" autocomplete="off">
                 </div>
             </div>

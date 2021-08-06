@@ -1,12 +1,11 @@
 @extends('layout.global')
-
 @section('content')
 <!-- begin:: Subheader -->
 <div class="subheader   grid__item" id="kt_subheader">
 	<div class="container  container--fluid ">
 		<div class="subheader__main">
 			<h3 class="subheader__title">
-				Cetak Rincian Transaksi D2 Per Periode </h3>
+				Cetak D5 (General Ledger) </h3>
 			<span class="subheader__separator hidden"></span>
 			<div class="subheader__breadcrumbs">
 				<a href="#" class="subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
@@ -14,7 +13,7 @@
 				<a href="" class="subheader__breadcrumbs-link">
 					Kontroler </a>
 				<span class="subheader__breadcrumbs-separator"></span>
-				<span class="subheader__breadcrumbs-link subheader__breadcrumbs-link--active">Cetak Rincian Transaksi D2 Per Periode</span>
+				<span class="subheader__breadcrumbs-link subheader__breadcrumbs-link--active">Cetak D5 (General Ledger)</span>
 			</div>
 		</div>
 	</div>
@@ -29,7 +28,7 @@
 				<i class="font-brand flaticon2-line-chart"></i>
 			</span>
 			<h3 class="portlet__head-title">
-				Tabel Cetak Rincian Transaksi D2 Per Periode
+				Tabel Cetak D5 (General Ledger)
 			</h3>			
 		</div>
 		<div class="portlet__head-toolbar">
@@ -40,29 +39,13 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('d2_periode.export') }}" method="GET" target="_blank">
+		<form class="form" action="{{ route('d5_report.export') }}" method="POST">
+			@csrf
 			<div class="portlet__body">
+				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
+
 				<div class="form-group row">
-					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
-					<div class="col-10">
-						<div class="radio-inline">
-							<label class="radio">
-								<input value="1" type="radio" name="jk" >[10,11,13]
-								<span></span>
-							</label>
-							<label class="radio">
-								<input value="2" type="radio" name="jk">[15,18]
-								<span></span>
-							</label>
-							<label class="radio">
-								<input value="3" type="radio" name="jk" checked>All
-								<span></span>
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
+				<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 				<div class="col-4">
 						<?php 
 						foreach($data_tahun as $data){ 
@@ -71,7 +54,8 @@
 							$suplesi = substr($data->sbulan, 6);
 						}
 						?>
-						<select class="form-control select2" style="width: 100% !important;" name="bulan_mulai">
+						<select class="form-control select2" style="width: 100% !important;" name="bulan">
+							<option value="">-- All --</option>
 							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
 							<option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
@@ -86,43 +70,27 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 				</div>
-				<label for="" class="col-1 col-form-label">S/D</label>
-				<div class="col-5">
-						<select class="form-control select2" style="width: 100% !important;" name="bulan_sampai">
-							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
-							<option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
-							<option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
-							<option value="04" <?php if($bulan == '04') echo 'selected'; ?>>April</option>
-							<option value="05" <?php if($bulan == '05') echo 'selected'; ?>>Mei</option>
-							<option value="06" <?php if($bulan == '06') echo 'selected'; ?>>Juni</option>
-							<option value="07" <?php if($bulan == '07') echo 'selected'; ?>>Juli</option>
-							<option value="08" <?php if($bulan == '08') echo 'selected'; ?>>Agustus</option>
-							<option value="09" <?php if($bulan == '09') echo 'selected'; ?>>September</option>
-							<option value="10" <?php if($bulan == '10') echo 'selected'; ?>>Oktober</option>
-							<option value="11" <?php if($bulan == '11') echo 'selected'; ?>>November</option>
-							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
-						</select>
-				</div>
-				</div>
-				<div class="form-group row">
-				<label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
-					<div class="col-10" >
+					<div class="col-4" >
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
+					</div>
+					<div class="col-2" >
+						<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" autocomplete="off">
+						<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" autocomplete="off">
 					</div>
 				</div>
 				
 				<div class="form-group row">
 					<label for="dari-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 					<div class="col-10">
-						<select class="cariaccount form-control" style="width: 100% !important;" name="sanper"></select>
+						<select class="cariaccount form-control" style="width: 100% !important;" name="sandi"></select>
 					</div>
 				</div>
 				<div class="form__actions">
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{ route('default.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-							<button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
+							<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>
 				</div>
@@ -136,12 +104,14 @@
 @section('scripts')
 <script type="text/javascript">
 $(document).ready(function () {
+   
+	
 	
 	$('.cariaccount').select2({
 		placeholder: '-Pilih-',
 		allowClear: true,
 		ajax: {
-			url: "{{ route('d2_periode.search.account') }}",
+			url: "{{ route('d5_report.search.account') }}",
 			type : "get",
 			dataType : "JSON",
 			headers: {
@@ -169,5 +139,27 @@ $(document).ready(function () {
 		format   : 'dd MM yyyy'
 	});
 });
+			var myVar;
+
+
+
+function myFunction() {
+
+myVar = setTimeout(showPage, 500);
+
+}
+
+
+
+function showPage() {
+
+document.getElementById("loader").style.display = "none";
+
+document.getElementById("myDiv").style.display = "block";
+
+}
+$(document).ready(function(){
+$("#myDiv").fadeOut();
+})
 </script>
 @endsection

@@ -45,8 +45,8 @@
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{ $bulan_buku}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="hidden" value="{{ $bulan_buku}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         
                     </div>
                         <div class="col-6" >
@@ -143,7 +143,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <a href="{{ route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
@@ -188,7 +188,7 @@ $('#form-create').submit(function(){
 	var nomor = $("#nomor").val();
 	var scurrdoc = mp+'-'+bagian+'-'+nomor;
 	$.ajax({
-		url  : "{{route('pembayaran_gaji.store') }}",
+		url  : "{{ route('pembayaran_gaji.store') }}",
 		type : "POST",
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
@@ -232,7 +232,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_gaji.createJson') }}",
+		url : "{{ route('pembayaran_gaji.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -287,7 +287,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_gaji.lokasiJson') }}",
+		url : "{{ route('pembayaran_gaji.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -316,7 +316,7 @@ var lokasi = $('#lokasi').val();
 var mp = $('#mp').val();
 var tahun = $('#tahun').val();
 	$.ajax({
-		url : "{{route('pembayaran_gaji.nobuktiJson') }}",
+		url : "{{ route('pembayaran_gaji.nobuktiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -367,7 +367,7 @@ $('#nilai').keyup(function(){
 		allowClear: true,
 		tags: true,
 		ajax: {
-			url: "{{route('penerimaan_kas.ajax-kepada') }}",
+			url: "{{ route('penerimaan_kas.ajax-kepada') }}",
 			type : "post",
 			dataType : "JSON",
 			headers: {

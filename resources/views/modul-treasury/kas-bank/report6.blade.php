@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('kas_bank.cetak6') }}" method="POST" target="_blank">
+        <form class="form" action="{{ route('kas_bank.cetak6') }}" method="POST" target="_blank">
             @csrf
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-5" >
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
-                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off">
+                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" id="tanggal" autocomplete="off">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>

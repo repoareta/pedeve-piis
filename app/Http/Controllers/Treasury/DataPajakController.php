@@ -48,10 +48,10 @@ class DataPajakController extends Controller
                 return $data->jenis . '  -  ' . $data->nm_jenis;
             })
             ->addColumn('nilai', function ($data) {
-                return number_format($data->nilai, 2, '.', ',');
+                return currency_format($data->nilai);
             })
             ->addColumn('pajak', function ($data) {
-                return number_format($data->pajak, 2, '.', ',');
+                return currency_format($data->pajak);
             })
             ->addColumn('radio', function ($data) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="' . $data->tahun . '"  bulan="' . $data->bulan . '" jenis="' . $data->jenis . '" nopek="' . $data->nopek . '" class="btn-radio"><span></span></label>';

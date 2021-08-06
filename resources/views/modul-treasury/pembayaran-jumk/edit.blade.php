@@ -48,8 +48,8 @@
             <div class="form-group row">
             <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
             <div class="col-4">
-                <input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                <input class="form-control" type="hidden" value="{{ $data->thnbln}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 
             </div>
                 <div class="col-6" >
@@ -158,7 +158,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('pembayaran_jumk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{ route('pembayaran_jumk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -528,7 +528,7 @@ var ci = $('#ci').val();
 var lokasi1 = $('#lokasi1').val();
 var lokasi2 = $('#lokasi2').val();
 $.ajax({
-	url : "{{route('pembayaran_jumk.lokasiJson') }}",
+	url : "{{ route('pembayaran_jumk.lokasiJson') }}",
 	type : "POST",
 	dataType: 'json',
 	data : {
@@ -553,7 +553,7 @@ $.ajax({
 })
 $('#form-edit').submit(function(){
 	$.ajax({
-		url  : "{{route('pembayaran_jumk.update') }}",
+		url  : "{{ route('pembayaran_jumk.update') }}",
 		type : "POST",
 		data : $('#form-edit').serialize(),
 		dataType : "JSON",
@@ -583,7 +583,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_jumk.createJson') }}",
+		url : "{{ route('pembayaran_jumk.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -654,7 +654,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_jumk.lokasiJson') }}",
+		url : "{{ route('pembayaran_jumk.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -685,7 +685,7 @@ $("#lokasi").on("click", function(){
 	var mp = $('#mp').val();
 	var tahun = $('#tahun').val();
 		$.ajax({
-			url : "{{route('pembayaran_jumk.nobuktiJson') }}",
+			url : "{{ route('pembayaran_jumk.nobuktiJson') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {
@@ -730,7 +730,7 @@ $('#btn-delete-all').on('click', function(e) {
 	//prosess create detail
 	$('#form-create-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_jumk.store.detail') }}",
+			url  : "{{ route('pembayaran_jumk.store.detail') }}",
 			type : "POST",
 			data : $('#form-create-detail').serialize(),
 			dataType : "JSON",
@@ -766,7 +766,7 @@ $('#btn-delete-all').on('click', function(e) {
 	//prosess delete all detail
 	$('#form-delete-all').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_jumk.delete.detail.all') }}",
+			url  : "{{ route('pembayaran_jumk.delete.detail.all') }}",
 			type : "delete",
 			data : $('#form-delete-all').serialize(),
 			dataType : "JSON",
@@ -829,7 +829,7 @@ if($('input[type=radio]').is(':checked')) {
 });
 $('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_jumk.update.detail') }}",
+			url  : "{{ route('pembayaran_jumk.update.detail') }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

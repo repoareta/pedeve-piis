@@ -18,7 +18,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     // Route assigned name "data-perkara.index"...
     Route::name('data_perkara.')->group(function () {
         Route::get('data-perkara', [DataPerkaraController::class, 'index'])->name('index');
-        Route::post('data-perkara/index/index-json', [DataPerkaraController::class, 'indexJson'])->name('index.json');
+        Route::get('data-perkara/index/index-json', [DataPerkaraController::class, 'indexJson'])->name('index.json');
         Route::get('data-perkara/create', [DataPerkaraController::class, 'create'])->name('create');
         Route::post('data-perkara/store', [DataPerkaraController::class, 'store'])->name('store');
         Route::get('data-perkara/edit/{no}', [DataPerkaraController::class, 'edit'])->name('edit');
@@ -47,7 +47,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
     // Route assigned name "monitoring-kinerja.index"...
     Route::name('monitoring_kinerja.')->group(function () {
         Route::get('monitoring-kinerja', [MonitoringKinerjaController::class, 'index'])->name('index');
-        Route::post('monitoring-kinerja/index/index-json', [MonitoringKinerjaController::class, 'indexJson'])->name('index.json');
+        Route::get('monitoring-kinerja/index/index-json', [MonitoringKinerjaController::class, 'indexJson'])->name('index.json');
         Route::get('monitoring-kinerja/create', [MonitoringKinerjaController::class, 'create'])->name('create');
         Route::post('monitoring-kinerja/store', [MonitoringKinerjaController::class, 'store'])->name('store');
         Route::get('monitoring-kinerja/edit/{no}', [MonitoringKinerjaController::class, 'edit'])->name('edit');

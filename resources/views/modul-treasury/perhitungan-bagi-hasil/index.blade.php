@@ -24,7 +24,7 @@
                 @if($data_akses->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-trash-alt text-danger" id="deleteRow"></i>
+                        <i class="fas fa-2x fa-times-cirlce text-danger" id="deleteRow"></i>
                     </span>
                 </a>
                 @endif
@@ -88,12 +88,12 @@
 						$tgltempo = date_format($tgltem, 'd/m/Y');
 					?>
 					<td>{{ $nmkurs }}</td>
-					<td>{{ number_format($data->asli,2) }}</td>
-					<td>{{ number_format($data->kurs,2) }}</td>
+					<td>{{ currency_format($data->asli) }}</td>
+					<td>{{ currency_format($data->kurs) }}</td>
 					<td>{{ $tgldepo }}</td>
 					<td>{{ $tgltempo }}</td>
-					<td>{{ number_format($data->bungatahun,2) }}</td>
-					<td>{{ number_format($data->rtimbang,2) }}</td>
+					<td>{{ currency_format($data->bungatahun) }}</td>
+					<td>{{ currency_format($data->rtimbang) }}</td>
 				</tr>
 			@endforeach
 			</tbody>
@@ -110,10 +110,10 @@
 				}
 			?>
 			@if(!empty($data_list))
-			<tr><td colspan="5"><b>Total Rupiah : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{ number_format(array_sum($totalrupiah),2) }}</td><td colspan="4"><b>Total Rata Tertimbang:</b><td align="center" bgcolor="#CCFF99"><b>{{ number_format(array_sum($totalrata),2) }}</b></td></tr>
-			<tr><td colspan="5"><b>Total Dollar   : $.</b></td><td align="right" bgcolor="#CCFF99"> {{ number_format(array_sum($totaldollar),2) }}</td><td colspan="5"></td></tr>
-			<tr><td colspan="5"><b>Ekivalen       : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{ number_format(array_sum($ekivalen),2) }}</td><td colspan="5"></td></tr>
-			<tr><td colspan="5"><b>Total          : Rp.</b></td><td align="right" bgcolor="#CCFF99"><b>{{ number_format(array_sum($total),2) }}</b></td><td colspan="5"></td></tr>
+			<tr><td colspan="5"><b>Total Rupiah : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{ currency_format(array_sum($totalrupiah)) }}</td><td colspan="4"><b>Total Rata Tertimbang:</b><td align="center" bgcolor="#CCFF99"><b>{{ number_format(array_sum($totalrata),2) }}</b></td></tr>
+			<tr><td colspan="5"><b>Total Dollar   : $.</b></td><td align="right" bgcolor="#CCFF99"> {{ currency_format(array_sum($totaldollar)) }}</td><td colspan="5"></td></tr>
+			<tr><td colspan="5"><b>Ekivalen       : Rp.</b></td><td align="right" bgcolor="#CCFF99">{{ currency_format(array_sum($ekivalen)) }}</td><td colspan="5"></td></tr>
+			<tr><td colspan="5"><b>Total          : Rp.</b></td><td align="right" bgcolor="#CCFF99"><b>{{ currency_format(array_sum($total)) }}</b></td><td colspan="5"></td></tr>
 			@endif
 		</table>
     </div>
