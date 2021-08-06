@@ -3,23 +3,37 @@
 namespace App\Http\Controllers\Kontroler;
 
 use App\Http\Controllers\Controller;
+
+// use Model
 use App\Models\CashJudex;
-use DB;
+
+// use request
 use Illuminate\Http\Request;
+use App\Http\Requests\CashJudexStore;
+use App\Http\Requests\CashJudexUpdate;
+
+// use Plugin
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CashJudexController extends Controller
 {
     public function index()
     {
-        return view('modul-kontroler.cash-judex.index');
+        return view('modul-kontroler.tabel.cash-judex.index');
     }
 
-    public function indexJson(Request $request)
+    public function indexJson()
     {
-        $data = DB::select("SELECT a.* from cashjudex a order by a.kode");
+        $data = CashJudex::orderBy('kode');
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
-            $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
+            $radio = '
+                    <center>
+                        <label class="radio radio-outline radio-outline-2x radio-primary">
+                            <input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                        </label>
+                    </center>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -28,44 +42,36 @@ class CashJudexController extends Controller
 
     public function create()
     {
-        return view('modul-kontroler.cash-judex.create');
+        return view('modul-kontroler.tabel.cash-judex.create');
     }
 
-    public function store(Request $request)
+    public function store(CashJudexStore $request)
     {
-        $data_objRs = DB::select("SELECT kode from CashJudex where kode='$request->kode'");
-        if(!empty($data_objRs)){
-            $data = 2;
-            return response()->json($data);
-        } else {
-            CashJudex::insert([
-                'kode' => $request->kode,
-                'nama' => $request->nama
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
-
+        CashJudex::insert([
+            'kode' => $request->kode,
+            'nama' => $request->nama
+        ]);
+        
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.cash_judex.index');
     }
 
-    public function edit($no)
+    public function edit($kode)
     {
-        $data_cash = DB::select("SELECT * from CashJudex where kode='$no'");
-        foreach($data_cash as $data)
-        {
-            $kode = $data->kode;
-            $nama = $data->nama;
-        }
-        return view('modul-kontroler.cash-judex.edit',compact('kode','nama'));
+        $data = CashJudex::where('kode', $kode)->first();
+
+        return view('modul-kontroler.tabel.cash-judex.edit',compact('data'));
     }
     
-    public function update(Request $request)
+    public function update(CashJudexUpdate $request)
     {
         CashJudex::where('kode',$request->kode)
         ->update([
             'nama' => $request->nama
         ]);
-        return response()->json();
+        
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.cash_judex.index');
     }
 
     public function delete(Request $request)

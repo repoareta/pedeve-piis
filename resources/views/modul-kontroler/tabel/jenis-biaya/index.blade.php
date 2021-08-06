@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_kontroler.jenis_biaya.create') }}">
+                <a href="{{ route('modul_kontroler.tabel.jenis_biaya.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
@@ -65,12 +65,7 @@
             processing: true,
             serverSide: true,
             ajax      : {
-                        url: "{{ route('modul_kontroler.jenis_biaya.index.json') }}",
-                        type : "POST",
-                        dataType : "JSON",
-                        headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                        },
+                        url: "{{ route('modul_kontroler.tabel.jenis_biaya.index.json') }}",
                         data: function (d) {
                             d.pencarian = $('input[name=pencarian]').val();
                         }
@@ -78,7 +73,7 @@
             columns: [
                 {data: 'radio', name: 'aksi', class:'radio-button text-center'},
                 {data: 'kode', name: 'kode'},
-                {data: 'nama', name: 'nama'},
+                {data: 'keterangan', name: 'keterangan'},
             ]
         });
         $('#search-form').on('submit', function(e) {
@@ -111,7 +106,7 @@
                         .then((result) => {
                         if (result.value) {
                             $.ajax({
-                                url: "{{ route('modul_kontroler.jenis_biaya.delete') }}",
+                                url: "{{ route('modul_kontroler.tabel.jenis_biaya.delete') }}",
                                 type: 'DELETE',
                                 dataType: 'json',
                                 data: {
@@ -147,7 +142,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{ url('kontroler/jenis_biaya/edit') }}"+ '/' +no);
+                    location.replace("{{ url('kontroler/tabel/jenis-biaya/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');

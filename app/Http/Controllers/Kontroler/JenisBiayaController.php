@@ -3,27 +3,29 @@
 namespace App\Http\Controllers\Kontroler;
 
 use App\Http\Controllers\Controller;
+
+// use model
 use App\Models\JenisBiaya;
-use DB;
+
+// use Request
+use App\Http\Requests\JenisBiayaStore;
+use App\Http\Requests\JenisBiayaUpdate;
 use Illuminate\Http\Request;
+
+// use Plugin
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JenisBiayaController extends Controller
 {
     public function index()
     {
-        return view('modul-kontroler.jenis-biaya.index');
+        return view('modul-kontroler.tabel.jenis-biaya.index');
     }
 
-    public function indexJson(Request $request)
+    public function indexJson()
     {
-        $data = DB::select("SELECT a.* from jenisbiaya a order by a.kode");
+        $data = JenisBiaya::orderBy('kode');
         return datatables()->of($data)
-        ->addColumn('kode', function ($data) {
-            return $data->kode;
-       })
-        ->addColumn('nama', function ($data) {
-            return $data->keterangan;
-       })
         ->addColumn('radio', function ($data) {
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
@@ -34,42 +36,35 @@ class JenisBiayaController extends Controller
 
     public function create()
     {
-        return view('modul-kontroler.jenis-biaya.create');
-    }
-    public function store(Request $request)
-    {
-        $data_objRs = DB::select("SELECT kode from jenisbiaya where kode='$request->kode'");
-        if(!empty($data_objRs)){
-            $data = 2;
-            return response()->json($data);
-        } else {
-            JenisBiaya::insert([
-                'kode' => $request->kode,
-                'keterangan' => $request->nama
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
-
+        return view('modul-kontroler.tabel.jenis-biaya.create');
     }
 
-    public function edit($no)
+    public function store(JenisBiayaStore $request)
     {
-        $data_cash = DB::select("SELECT * from jenisbiaya where kode='$no'");
-        foreach($data_cash as $data)
-        {
-            $kode = $data->kode;
-            $nama = $data->keterangan;
-        }
-        return view('modul-kontroler.jenis-biaya.edit',compact('kode','nama'));
+        JenisBiaya::insert([
+            'kode' => $request->kode,
+            'keterangan' => $request->nama
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.jenis_biaya.index');
     }
-    public function update(Request $request)
+
+
+    public function edit($kode)
+    {
+        $data = JenisBiaya::where('kode', $kode)->first();
+        return view('modul-kontroler.tabel.jenis-biaya.edit',compact('data'));
+    }
+    public function update(JenisBiayaUpdate $request)
     {
         JenisBiaya::where('kode',$request->kode)
         ->update([
-            'keterangan' => $request->nama
+            'keterangan' => $request->keterangan
         ]);
-        return response()->json();
+
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.cash_judex.index');
     }
 
     public function delete(Request $request)

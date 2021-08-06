@@ -40,7 +40,7 @@ Route::prefix('administrator')->name('modul_administrator.')->group(function () 
     Route::name('set_function.')->group(function () {
         Route::get('set-function', [SetFunctionController::class, 'index'])->name('index');
         Route::post('set-function/menuid/json', [SetFunctionController::class, 'menuIdJson'])->name('menuid.json');
-        Route::post('set-function/index/index-json', [SetFunctionController::class, 'indexJson'])->name('index.json');
+        Route::get('set-function/index/index-json', [SetFunctionController::class, 'indexJson'])->name('index.json');
         Route::post('set-function/store', [SetFunctionController::class, 'store'])->name('store');
         Route::get('set-function/edit/{id}', [SetFunctionController::class, 'edit'])->name('edit');
         Route::post('set-function/update/{id}', [SetFunctionController::class, 'update'])->name('update');
