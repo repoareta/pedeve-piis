@@ -32,19 +32,19 @@
                 <form class="form" id="formSetFunction" action="{{ route('modul_administrator.set_function.update', $user_pdv->userid) }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="userid-input" class="col-2 col-form-label">User ID</label>
+						<label for="userid-input" class="col-2 col-form-label">User ID<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="userid" id="userid" value="{{ $user_pdv->userid }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="usernm-input" class="col-2 col-form-label">User Name</label>
+						<label for="usernm-input" class="col-2 col-form-label">User Name<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="usernm" id="usernm" value="{{ $user_pdv->usernm }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
 						</div>
 					</div>
                     <div class="form-group row">
-                        <label for="gcg-jabatan-input" class="col-2 col-form-label">Menu ID</label>
+                        <label for="gcg-jabatan-input" class="col-2 col-form-label">Menu ID<span class="text-danger">*</span></label>
                         <div class="col-10">
                             <select class="form-control select2" style="width: 100% !important;" name="menuid" id="menuid">	
                                 <option value="">- Pilih Data -</option>							
@@ -66,13 +66,13 @@
                                 <span></span>Ubah</label>
                                 <label class="checkbox checkbox-primary">
                                     <input type="checkbox" name="hapus" id="hapus" value="1">
-                                <span></span>Perbendaharaan</label>
+                                <span></span>Hapus</label>
                                 <label class="checkbox checkbox-primary">
                                     <input type="checkbox" name="cetak" id="cetak" value="1">
-                                <span></span>Umum</label>
+                                <span></span>Cetak</label>
                                 <label class="checkbox checkbox-primary">
                                     <input type="checkbox" name="lihat" id="lihat" value="1">
-                                <span></span>SDM</label>
+                                <span></span>Lihat</label>
                             </div>
                         </div>
                     </div>

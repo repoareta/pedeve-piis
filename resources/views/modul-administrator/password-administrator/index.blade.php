@@ -46,7 +46,7 @@
                 <form class="form" id="formPasswordAdministrator" action="{{ route('modul_administrator.password_administrator.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="password-lama-input" class="col-md-2 col-form-label">Password Lama</label>
+						<label for="password-lama-input" class="col-md-2 col-form-label">Password Lama<span class="text-danger">*</span></label>
 						<div class="col-md-10">
                             <div class="input-icon input-icon-right">
                                 <input class="form-control password" type="password" name="password_lama" id="password_lama" autocomplete="off">
@@ -57,7 +57,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="password-baru-input" class="col-md-2 col-form-label">Password Baru</label>
+						<label for="password-baru-input" class="col-md-2 col-form-label">Password Baru<span class="text-danger">*</span></label>
 						<div class="col-md-10">
                             <div class="input-icon input-icon-right">
                                 <input class="form-control password" type="password" name="password_baru" id="password_baru" autocomplete="off">
@@ -68,7 +68,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="password-konfirmasi-input" class="col-md-2 col-form-label">Konfirmasi Password</label>
+						<label for="password-konfirmasi-input" class="col-md-2 col-form-label">Konfirmasi Password<span class="text-danger">*</span></label>
 						<div class="col-md-10">
                             <div class="input-icon input-icon-right">
                                 <input class="form-control password" type="password" name="password_konfirmasi" id="password_konfirmasi" autocomplete="off">

@@ -32,13 +32,13 @@
                 <form class="form" id="formSetUser" action="{{ route('modul_administrator.set_user.update', $data->userid) }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="userid-input" class="col-2 col-form-label">User ID</label>
+						<label for="userid-input" class="col-2 col-form-label">User ID<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="userid" id="userid" value="{{ $data->userid }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="usernm-input" class="col-2 col-form-label">User Name</label>
+						<label for="usernm-input" class="col-2 col-form-label">User Name<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="usernm" id="usernm" onkeyup="this.value = this.value.toUpperCase()" value="{{ $data->userid }}">
 						</div>

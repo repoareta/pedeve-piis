@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_kontroler.cash_judex.create') }}">
+                <a href="{{ route('modul_kontroler.tabel.cash_judex.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -65,7 +65,7 @@ $(document).ready(function () {
         processing: true,
         serverSide: true,
         ajax: {
-            url: "{{ route('modul_kontroler.cash_judex.index.json') }}",
+            url: "{{ route('modul_kontroler.tabel.cash_judex.index.json') }}",
             data: function (d) {
                 d.pencarian = $('input[name=pencarian]').val();
             }
@@ -76,6 +76,7 @@ $(document).ready(function () {
             {data: 'nama', name: 'nama'},
         ]
     });
+    
     $('#search-form').on('submit', function(e) {
         t.draw();
         e.preventDefault();
@@ -106,7 +107,7 @@ $(document).ready(function () {
                     .then((result) => {
                     if (result.value) {
                         $.ajax({
-                            url: "{{ route('modul_kontroler.cash_judex.delete') }}",
+                            url: "{{ route('modul_kontroler.tabel.cash_judex.delete') }}",
                             type: 'DELETE',
                             dataType: 'json',
                             data: {
@@ -142,7 +143,7 @@ $(document).ready(function () {
         if($('input[class=btn-radio]').is(':checked')) { 
             $("input[class=btn-radio]:checked").each(function(){
                 var no = $(this).attr('kode');
-                location.replace("{{ url('kontroler/cash_judex/edit') }}"+ '/' +no);
+                location.replace("{{ url('kontroler/tabel/cash-judex/edit') }}"+ '/' +no);
             });
         } else {
             swalAlertInit('ubah');

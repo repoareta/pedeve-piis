@@ -16,7 +16,7 @@
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.cash_judex.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.cash_judex.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.jenis_biaya.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.jenis_biaya.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.kas_bank_kontroler.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.kas_bank_kontroler.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.lokasi_kontroler.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.lokasi_kontroler.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -48,7 +48,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.sandi_perkiraan.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.sandi_perkiraan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.bulan_kontroler.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.bulan_kontroler.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
@@ -64,7 +64,7 @@
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
-                            <a href="{{ route('modul_kontroler.main_account.index') }}" class="menu-link">
+                            <a href="{{ route('modul_kontroler.tabel.main_account.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>

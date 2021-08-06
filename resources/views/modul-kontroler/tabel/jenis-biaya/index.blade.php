@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_kontroler.jenis_biaya.create') }}">
+                <a href="{{ route('modul_kontroler.tabel.jenis_biaya.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -64,6 +64,10 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
+<<<<<<< HEAD
+            ajax      : {
+                        url: "{{ route('modul_kontroler.tabel.jenis_biaya.index.json') }}",
+=======
             ajax: {
                         url: "{{ route('modul_kontroler.jenis_biaya.index.json') }}",
                         type : "POST",
@@ -71,6 +75,7 @@
                         headers: {
                         'X-CSRF-Token': '{{ csrf_token() }}',
                         },
+>>>>>>> d7a9f0b45b6bfa1814ce5f1374481edf0f2f96ad
                         data: function (d) {
                             d.pencarian = $('input[name=pencarian]').val();
                         }
@@ -78,7 +83,7 @@
             columns: [
                 {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'kode', name: 'kode'},
-                {data: 'nama', name: 'nama'},
+                {data: 'keterangan', name: 'keterangan'},
             ]
         });
         $('#search-form').on('submit', function(e) {
@@ -111,7 +116,7 @@
                         .then((result) => {
                         if (result.value) {
                             $.ajax({
-                                url: "{{ route('modul_kontroler.jenis_biaya.delete') }}",
+                                url: "{{ route('modul_kontroler.tabel.jenis_biaya.delete') }}",
                                 type: 'DELETE',
                                 dataType: 'json',
                                 data: {
@@ -147,7 +152,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{ url('kontroler/jenis_biaya/edit') }}"+ '/' +no);
+                    location.replace("{{ url('kontroler/tabel/jenis-biaya/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');
