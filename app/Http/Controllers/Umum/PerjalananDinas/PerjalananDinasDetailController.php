@@ -26,11 +26,11 @@ class PerjalananDinasDetailController extends Controller
             ->addColumn('golongan', function ($row) {
                 return $row->status;
             })
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no.'-'.$row->nopek.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

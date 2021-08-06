@@ -21,11 +21,11 @@ class PenghargaanController extends Controller
         $penghargaan_list = Penghargaan::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($penghargaan_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_penghargaan" value="'.$row->nopeg.'_'.$row->tanggal.'_'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

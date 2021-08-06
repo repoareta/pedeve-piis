@@ -20,17 +20,17 @@
             <div class="float-left">
                 <a href="{{ route('modul_kontroler.tabel.jenis_biaya.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas icon-2x fa-plus-circle text-success"></i>
+						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
             </div>
@@ -64,14 +64,24 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
+<<<<<<< HEAD
             ajax      : {
                         url: "{{ route('modul_kontroler.tabel.jenis_biaya.index.json') }}",
+=======
+            ajax: {
+                        url: "{{ route('modul_kontroler.jenis_biaya.index.json') }}",
+                        type : "POST",
+                        dataType : "JSON",
+                        headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+>>>>>>> d7a9f0b45b6bfa1814ce5f1374481edf0f2f96ad
                         data: function (d) {
                             d.pencarian = $('input[name=pencarian]').val();
                         }
                     },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'kode', name: 'kode'},
                 {data: 'keterangan', name: 'keterangan'},
             ]

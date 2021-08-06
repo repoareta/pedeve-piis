@@ -72,7 +72,7 @@ class PermintaanBayarController extends Controller
             }
             return $radio;
         })
-        ->addColumn('action', function ($data) {
+        ->addColumn('approval', function ($data) {
             if ($data->app_pbd == 'Y') {
                 $action = '<span title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span>';
             } else {
@@ -84,7 +84,7 @@ class PermintaanBayarController extends Controller
             }
             return $action;
         })
-        ->rawColumns(['action','radio'])
+        ->rawColumns(['radio','approval'])
         ->make(true);
     }
     

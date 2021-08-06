@@ -22,7 +22,7 @@ class AktaController extends Controller
         $akta_list = Akta::where('perusahaan_afiliasi_id', $perusahaan_afiliasi);
 
         return datatables()->of($akta_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_akta" nama="'.$row->jenis.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
@@ -31,7 +31,7 @@ class AktaController extends Controller
                 $dokumen = '<a href="'.$file_path.'" target=_blank>'.$row->dokumen.'</a>';
                 return $dokumen;
             })
-            ->rawColumns(['action', 'dokumen'])
+            ->rawColumns(['radio', 'dokumen'])
             ->make(true);
     }
 

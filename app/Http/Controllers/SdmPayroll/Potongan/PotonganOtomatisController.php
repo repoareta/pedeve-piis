@@ -102,7 +102,7 @@ class PotonganOtomatisController extends Controller
             $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'" nopek="'.$data->nopek.'" aard="'.$data->aardpot.'" nama="'.$data->nama_nopek.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
-        ->rawColumns(['action','radio'])
+        ->rawColumns(['radio'])
         ->make(true);
     }
 

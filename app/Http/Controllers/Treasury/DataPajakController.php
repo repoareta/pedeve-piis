@@ -53,11 +53,11 @@ class DataPajakController extends Controller
             ->addColumn('pajak', function ($data) {
                 return number_format($data->pajak, 2, '.', ',');
             })
-            ->addColumn('action', function ($data) {
+            ->addColumn('radio', function ($data) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="' . $data->tahun . '"  bulan="' . $data->bulan . '" jenis="' . $data->jenis . '" nopek="' . $data->nopek . '" class="btn-radio"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

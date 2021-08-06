@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('set-user') }}
+@endsection
+
 @push('page-styles')
 
 @endpush
@@ -187,17 +191,17 @@
             <div class="text-right">
                 <button data-toggle="modal" data-target="#createDetailModal" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                        <i class="fas icon-2x fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button class="btn p-0" id="btn-edit">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas icon-2x fa-edit text-warning"></i>
+                        <i class="fas fa-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 <button class="btn p-0" id="btn-delete">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
-                        <i class="fas icon-2x fa-times text-danger"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger"></i>
                     </span>
                 </button>
             </div>

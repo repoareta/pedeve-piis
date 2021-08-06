@@ -20,22 +20,22 @@
             <div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas icon-2x fa-plus-circle text-success"></i>
+						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
-						<i class="fas icon-2x fa-print text-info" id="exportRow"></i>
+						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
 					</span>                    
 				</a>
             </div>
@@ -89,14 +89,14 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index.json') }}",
 				data: function (d) {
 					d.noppanjar = $('input[name=noppanjar]').val();
 				}
 			},
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'no_ppanjar', name: 'no_ppanjar', class:'no-wrap'},
 				{data: 'no_panjar', name: 'no_panjar', class:'no-wrap'},
 				{data: 'tgl_ppanjar', name: 'tgl_ppanjar', class:'no-wrap'},

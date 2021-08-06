@@ -1,5 +1,9 @@
 @extends('layout.global')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('set-user') }}
+@endsection
+
 @section('content')
 <!-- begin:: Subheader -->
 <div class="subheader   grid__item" id="kt_subheader">

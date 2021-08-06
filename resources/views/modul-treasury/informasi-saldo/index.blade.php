@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('set-user') }}
+@endsection
+
 @push('page-styles')
 
 @endpush
@@ -60,17 +64,12 @@
             serverSide: true,
             ajax: {
                 url: "{{ route('informasi_saldo.index.json') }}",
-                type: "POST",
-                dataType: "JSON",
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
                 data: function (d) {
                     d.tanggal = $('input[name=tanggal]').val();
                 }
             },
             columns: [
-                {data: 'action', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'kodestore', name: 'kodestore'},
                 {data: 'ak', name: 'ak'},
             ]

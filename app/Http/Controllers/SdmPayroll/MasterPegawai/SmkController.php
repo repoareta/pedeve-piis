@@ -21,11 +21,11 @@ class SmkController extends Controller
         $smk_list = SMK::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($smk_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_smk" value="'.$row->nopeg.'-'.$row->tahun.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

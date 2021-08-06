@@ -65,7 +65,7 @@ class JurnalUmumController extends Controller
             }               
             return $action;
         })
-        ->rawColumns(['action','radio'])
+        ->rawColumns(['radio','action'])
         ->make(true); 
     }
 

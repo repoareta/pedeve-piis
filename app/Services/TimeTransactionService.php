@@ -32,7 +32,7 @@ class TimeTransactionService
     {
         $listOfMonths = [];
 
-        for ($month = 1; $month < 12; $month++) {
+        for ($month = 1; $month <= 12; $month++) {
 
             $formattedMonth = strlen($month) <= 1 ? '0' . $month : (string) $month;
             $monthInString = date('F', mktime(0, 0, 0, $month, 1));

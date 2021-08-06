@@ -19,17 +19,17 @@
             <div class="float-left">
                 <a href="{{ route('modul_cm.rkap_realisasi.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas icon-2x fa-plus-circle text-success"></i>
+						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
             </div>
@@ -115,7 +115,7 @@
                 }
             },
             columns: [
-                {data: 'action', name: 'action'},
+                {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
                 {data: 'nama', name: 'nama'},
                 {data: 'tahun', name: 'tahun'},
                 {data: 'bulan', name: 'bulan'},

@@ -65,11 +65,11 @@ class InformasiSaldoController extends Controller
             ->addColumn('ak', function ($data) {
                 return 'Rp. ' . number_format($data->ak, 2, '.', ',');
             })
-            ->addColumn('action', function ($data) {
+            ->addColumn('radio', function ($data) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" jk="' . $data->kodestore . '" nokas="' . $data->jeniskartu . '" class="btn-radio"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

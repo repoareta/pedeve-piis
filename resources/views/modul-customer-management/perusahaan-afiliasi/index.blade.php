@@ -20,17 +20,17 @@
             <div class="float-left">
                 <a href="{{ route('modul_cm.perusahaan_afiliasi.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas icon-2x fa-plus-circle text-success"></i>
+						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
             </div>
@@ -68,7 +68,7 @@ $(document).ready(function () {
         serverSide: true,
         ajax      : "{{ route('modul_cm.perusahaan_afiliasi.index.json') }}",
         columns: [
-            {data: 'action', name: 'aksi', class:'radio-button text-center', width:'5px', class:'text-center radio-button'},
+            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
             {data: 'nama', name: 'nama', class:'no-wrap'},
             {data: 'telepon', name: 'telepon'},
             {data: 'alamat', name: 'alamat'},

@@ -21,7 +21,7 @@ class GajiPokokController extends Controller
         $gaji_pokok_list = GajiPokok::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($gaji_pokok_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_gaji_pokok" value="'.$row->nopeg.'-'.$row->gapok.'"><span></span></label>';
                 return $radio;
             })
@@ -34,7 +34,7 @@ class GajiPokokController extends Controller
             ->addColumn('sampai', function ($row) {
                 return Carbon::parse($row->mulai)->translatedFormat('d F Y');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

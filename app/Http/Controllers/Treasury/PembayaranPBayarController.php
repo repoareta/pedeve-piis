@@ -609,8 +609,8 @@ class PembayaranPBayarController extends Controller
     public function approv($id, $status)
     {
         $nodok = str_replace('-', '/', $id);
-        $data_app = Kasdoc::where('docno', $nodok)->select('*')->get();
-        return view('modul-treasury.pembayaran-pbayar.approv', compact('data_app', 'status'));
+        $data = Kasdoc::where('docno', $nodok)->select('*')->first();
+        return view('modul-treasury.pembayaran-pbayar.approv', compact('data', 'status'));
     }
 
     public function storeApp(Request $request)

@@ -30,7 +30,7 @@ class MonitoringKinerjaController extends Controller
         and a.tahun='$request->tahun'");
         
         return datatables()->of($data)
-        ->addColumn('action', function ($data) {
+        ->addColumn('radio', function ($data) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_monitoring.'" value="'.$data->kd_monitoring.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
@@ -71,7 +71,7 @@ class MonitoringKinerjaController extends Controller
         ->addColumn('kpi', function ($data) {
             return currency_format($data->kpi);
         })
-        ->rawColumns(['action','thnbln'])
+        ->rawColumns(['radio','thnbln'])
         ->make(true);
             
     }

@@ -71,7 +71,7 @@
                     url : '{!! url()->current() !!}'
                 },
                 columns: [
-                    {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},
+                    {data: 'checkbox', name: 'checkbox'},
                     {data: 'menuid', name: 'menuid'},
                     {data: 'menunm', name: 'menunm'},
                     {data: 'userap', name: 'userap'},

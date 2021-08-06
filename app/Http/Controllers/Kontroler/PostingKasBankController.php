@@ -76,7 +76,7 @@ class PostingKasBankController extends Controller
         ->addColumn('nilai', function ($data) {
             return number_format($data->nilai_dok,2,'.',',');
        })
-        ->addColumn('action', function ($data) {
+        ->addColumn('radio', function ($data) {
             if($data->verified == 'Y'){
                 $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
             } else {
@@ -84,7 +84,7 @@ class PostingKasBankController extends Controller
             }               
             return $action;
         })
-        ->rawColumns(['action'])
+        ->rawColumns(['radio'])
         ->make(true); 
     }
 

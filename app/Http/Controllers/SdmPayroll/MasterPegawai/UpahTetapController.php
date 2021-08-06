@@ -21,7 +21,7 @@ class UpahTetapController extends Controller
         $upah_tetap_list = UpahTetap::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($upah_tetap_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap" value="'.$row->nopeg.'-'.$row->ut.'"><span></span></label>';
                 return $radio;
             })
@@ -34,7 +34,7 @@ class UpahTetapController extends Controller
             ->addColumn('sampai', function ($row) {
                 return Carbon::parse($row->sampai)->translatedFormat('d F Y');
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

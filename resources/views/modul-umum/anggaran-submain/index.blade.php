@@ -72,106 +72,105 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-$(document).ready(function () {
-    var t = $('#kt_table').DataTable({
-        scrollX   : true,
-        processing: true,
-        serverSide: true,
-        ajax      : {
-            url: "{{ route('modul_umum.anggaran.submain.index.json') }}",
-            data: function (d) {
-                d.kode = $('input[name=kode]').val();
-                d.tahun = $('select[name=tahun]').val();
-            }
-        },
-        columns: [
-            {data: 'action', name: 'action', class:'radio-button'},
-            {data: 'main', name: 'main', class:'no-wrap'},
-            {data: 'sub_anggaran', name: 'sub_anggaran', class:'no-wrap'},
-            {data: 'tahun', name: 'tahun'},
-            {data: 'nilai', name: 'nilai'},
-            {data: 'nilai_real', name: 'nilai_real'},
-            {data: 'sisa', name: 'sisa'},
-        ]
-    });
+    $(document).ready(function () {
+        var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('modul_umum.anggaran.submain.index.json') }}",
+                data: function (d) {
+                    d.kode = $('input[name=kode]').val();
+                    d.tahun = $('select[name=tahun]').val();
+                }
+            },
+            columns: [
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+                {data: 'main', name: 'main', class:'no-wrap'},
+                {data: 'sub_anggaran', name: 'sub_anggaran', class:'no-wrap'},
+                {data: 'tahun', name: 'tahun'},
+                {data: 'nilai', name: 'nilai'},
+                {data: 'nilai_real', name: 'nilai_real'},
+                {data: 'sisa', name: 'sisa'},
+            ]
+        });
 
-    $('#search-form').on('submit', function(e) {
-        t.draw();
-        e.preventDefault();
-    });
+        $('#search-form').on('submit', function(e) {
+            t.draw();
+            e.preventDefault();
+        });
 
-    $('#editRow').click(function(e) {
-        e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function() {
-                var kode_main = $(this).val().split("-")[0];
-                var kode_submain = $(this).val().split("-")[1];
-                var url = '{{ route("modul_umum.anggaran.submain.edit", [":kode_main", ":kode_submain"]) }}';
-                // go to page edit
-                window.location.href = url
-                .replace(':kode_main', kode_main)
-                .replace(':kode_submain', kode_submain);
-            });
-        } else {
-            swalAlertInit('ubah');
-        }
-    });
-
-    $('#deleteRow').click(function(e) {
-        e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function() {
-                var id = $(this).val();
-                // delete stuff
-                const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-danger'
-                },
-                    buttonsStyling: false
-                })
-
-                swalWithBootstrapButtons.fire({
-                    title: "Data yang akan dihapus?",
-                    text: "Kode : " + id,
-                    type: 'warning',
-                    showCancelButton: true,
-                    reverseButtons: true,
-                    confirmButtonText: 'Ya, hapus',
-                    cancelButtonText: 'Batalkan'
-                })
-                .then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: "{{ route('modul_umum.anggaran.submain.delete') }}",
-                            type: 'DELETE',
-                            dataType: 'json',
-                            data: {
-                                "id": id,
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success: function () {
-                                Swal.fire({
-                                    type  : 'success',
-                                    title : 'Hapus Kode ' + id,
-                                    text  : 'Berhasil',
-                                    timer : 2000
-                                }).then(function() {
-                                    t.ajax.reload();
-                                });
-                            },
-                            error: function () {
-                                alert("Terjadi kesalahan, coba lagi nanti");
-                            }
-                        });
-                    }
+        $('#editRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var kode_main = $(this).val().split("-")[0];
+                    var kode_submain = $(this).val().split("-")[1];
+                    var url = '{{ route("modul_umum.anggaran.submain.edit", [":kode_main", ":kode_submain"]) }}';
+                    // go to page edit
+                    window.location.href = url
+                    .replace(':kode_main', kode_main)
+                    .replace(':kode_submain', kode_submain);
                 });
-            });
-        } else {
-            swalAlertInit('hapus');
-        }
-    });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
 
-});
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var id = $(this).val();
+                    // delete stuff
+                    const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Data yang akan dihapus?",
+                        text: "Kode : " + id,
+                        type: 'warning',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batalkan'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_umum.anggaran.submain.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "id": id,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : 'Hapus Kode ' + id,
+                                        text  : 'Berhasil',
+                                        timer : 2000
+                                    }).then(function() {
+                                        t.ajax.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
+    });
 </script>
 @endpush

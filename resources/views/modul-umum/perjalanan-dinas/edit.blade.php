@@ -178,17 +178,17 @@
                 <div class="">
                     <a href="#" id="openDetail">
                         <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                            <i class="fas icon-2x fa-plus-circle text-primary"></i>
+                            <i class="fas fa-2x fa-plus-circle text-primary"></i>
                         </span>
                     </a>
                     <a href="#">
                         <span data-toggle="tooltip" data-placement="top" id="editRow" title="Ubah Data">
-                            <i class="fas icon-2x fa-edit text-warning"></i>
+                            <i class="fas fa-2x fa-edit text-warning"></i>
                         </span>
                     </a>
                     <a href="#">
                         <span data-toggle="tooltip" data-placement="top" id="deleteRow" title="Hapus Data">
-                            <i class="fas icon-2x fa-times-circle text-danger"></i>
+                            <i class="fas fa-2x fa-times-circle text-danger"></i>
                         </span>
                     </a>
                 </div>
@@ -315,7 +315,7 @@
 			serverSide: true,
 			ajax: "{{ route('modul_umum.perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}",
 			columns: [
-				{data: 'action', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'no', name: 'no'},
 				{data: 'nopek', name: 'nopek'},
 				{data: 'nama', name: 'nama'},

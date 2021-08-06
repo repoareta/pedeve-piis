@@ -32,11 +32,11 @@ class PerusahaanAfiliasiController extends Controller
         $perusahaan_afiliasi_list = PerusahaanAfiliasi::all();
 
         return datatables()->of($perusahaan_afiliasi_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

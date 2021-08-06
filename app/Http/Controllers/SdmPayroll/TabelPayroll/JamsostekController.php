@@ -26,7 +26,7 @@ class JamsostekController extends Controller
         $data = PayTblJamsostek::all();
 
         return datatables()->of($data)
-        ->addColumn('action', function ($data) {
+        ->addColumn('radio', function ($data) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->pribadi.'" name="btn-radio"><span></span></label>';
             return $radio;
         })
@@ -45,7 +45,7 @@ class JamsostekController extends Controller
         ->addColumn('manulife', function ($data) {
             return currency_format($data->manulife);
         })
-        ->rawColumns(['action'])
+        ->rawColumns(['radio'])
         ->make(true);
     }
 

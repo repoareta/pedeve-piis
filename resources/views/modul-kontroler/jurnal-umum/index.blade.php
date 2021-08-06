@@ -20,17 +20,17 @@
             <div class="float-left">
                 <a href="{{ route('modul_kontroler.jurnal_umum.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas icon-2x fa-plus-circle text-success"></i>
+						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
             </div>
@@ -104,7 +104,7 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            ajax      : {
+            ajax: {
                 url: "{{ route('modul_kontroler.jurnal_umum.index.json') }}",
                 data: function (d) {
                     d.tahun = $('input[name=tahun]').val();
@@ -112,7 +112,7 @@
                 }
             },
             columns: [
-                {data: 'radio', name: 'aksi', class:'radio-button text-center'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'docno', name: 'docno'},
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jk', name: 'jk'},

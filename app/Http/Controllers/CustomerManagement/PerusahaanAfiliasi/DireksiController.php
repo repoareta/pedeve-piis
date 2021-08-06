@@ -21,11 +21,11 @@ class DireksiController extends Controller
         $direksi_list = Direksi::where('perusahaan_afiliasi_id', $perusahaan_afiliasi);
 
         return datatables()->of($direksi_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_direksi" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

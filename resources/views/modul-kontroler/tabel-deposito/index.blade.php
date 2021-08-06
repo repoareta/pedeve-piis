@@ -114,7 +114,7 @@ $(document).ready(function () {
 				serverSide: true,
 				scrollY:        "500px",
 				scrollCollapse: true,
-				ajax      : {
+				ajax: {
 					url: "{{route('tabel_deposito.index.json') }}",
 					type : "POST",
 					dataType : "JSON",
@@ -127,7 +127,7 @@ $(document).ready(function () {
 					}
 				},
 				columns: [
-					{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+					{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 					{data: 'noseri', name: 'noseri'},
 					{data: 'namabank', name: 'namabank'},
 					{data: 'nominal', name: 'nominal'},

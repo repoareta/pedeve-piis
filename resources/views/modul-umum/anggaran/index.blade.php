@@ -19,22 +19,22 @@
 			<div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas icon-2x fa-plus-circle text-success"></i>
+						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
-						<i class="fas icon-2x fa-print text-info" id="exportRow"></i>
+						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
 					</span>                    
 				</a>
             </div>
@@ -128,7 +128,7 @@ $(document).ready(function () {
 		scrollX   : true,
 		processing: true,
 		serverSide: true,
-		ajax      : {
+		ajax: {
 			url: "{{ route('modul_umum.anggaran.index.json') }}",
 			data: function (d) {
 				d.kode_anggaran = $('input[name=kode_anggaran]').val();
@@ -136,7 +136,7 @@ $(document).ready(function () {
 			}
 		},
 		columns: [
-			{data: 'action', name: 'aksi', class:'radio-button text-center'},
+			{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 			{data: 'kode_main', name: 'kode_main', class:'no-wrap'},
 			{data: 'nama_main', name: 'nama_main'},
 			{data: 'tahun', name: 'tahun'},

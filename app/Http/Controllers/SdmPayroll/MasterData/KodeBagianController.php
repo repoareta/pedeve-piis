@@ -31,11 +31,11 @@ class KodeBagianController extends Controller
         $kode_bagian_list = KodeBagian::orderBy('kode', 'desc')->get();
 
         return datatables()->of($kode_bagian_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

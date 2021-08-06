@@ -23,7 +23,7 @@ class KeluargaController extends Controller
         $keluarga_list = Keluarga::where('nopeg', $pegawai->nopeg)->get();
 
         return datatables()->of($keluarga_list)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_keluarga" value="'.$row->nopeg.'-'.$row->status.'-'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
@@ -45,7 +45,7 @@ class KeluargaController extends Controller
             ->addColumn('pendidikan', function ($row) {
                 return "$row->kodependidikan ($row->tempatpendidikan)";
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

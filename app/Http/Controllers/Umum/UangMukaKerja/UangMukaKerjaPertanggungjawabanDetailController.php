@@ -35,7 +35,7 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
             ->get();
         }
         return datatables()->of($pumk_list_detail)
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no.'-'.$row->no_pumk.'"><span></span></label>';
                 return $radio;
             })
@@ -46,7 +46,7 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
                 return float_two($row->nilai);
             })
 
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

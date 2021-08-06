@@ -76,7 +76,7 @@ $(document).ready(function () {
         scrollX   : true,
         processing: true,
         serverSide: true,
-        ajax      : {
+        ajax: {
             url: "{{ route('modul_umum.anggaran.submain.detail.index.json') }}",
             data: function (d) {
                 d.kode = $('input[name=kode]').val();
@@ -84,7 +84,7 @@ $(document).ready(function () {
             }
         },
         columns: [
-            {data: 'action', name: 'aksi', class:'radio-button text-center'},
+            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
             {data: 'kode', name: 'kode'},
             {data: 'detail_anggaran', name: 'detail_anggaran'},
             {data: 'tahun', name: 'tahun'},

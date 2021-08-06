@@ -84,11 +84,11 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
 
                 return $button;
             })
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no_pumk.'"><span></span></label>';
                 return $radio;
             })
-            ->rawColumns(['action', 'approval'])
+            ->rawColumns(['radio', 'approval'])
             ->make(true);
     }
 

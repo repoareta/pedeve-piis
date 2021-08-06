@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('set-user') }}
+@endsection
+
 @push('page-styles')
 
 @endpush
@@ -7,8 +11,7 @@
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
@@ -16,32 +19,34 @@
             <h3 class="card-label">
                 Bukti Kas/Bank
             </h3>
-            <div class="text-right">
+        </div>
+        <div class="card-toolbar">
+            <div class="float-left">
                 @if($userAbility->tambah == 1)
                 <a href="{{ route('penerimaan_kas.create.kas') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                        <i class="fas icon-2x fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
-                <a href="#" id="editRow">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas icon-2x fa-edit text-warning"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                     </span>
                 </a>
                 @endif
                 @if($userAbility->hapus == 1)
-                <a href="#" id="deleteRow">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas icon-2x fa-times text-danger"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
-                </a>
+                </button>
                 @endif
                 @if($userAbility->cetak == 1)
-                <a href="#" id="exportRow">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
-                        <i class="fas icon-2x fa-print text-secondary"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
                     </span>
                 </a>
                 @endif
@@ -205,7 +210,7 @@
 				}
 			},
 			columns: [
-				{ data: 'radio', name: 'aksi', class:'radio-button' },
+				{ data: 'radio', name: 'radio', class:'radio-button' },
                 { data: 'no_dok', name: 'no_dok' },
                 { data: 'tanggal', name: 'tanggal' },
                 { data: 'voucher', name: 'voucher' },

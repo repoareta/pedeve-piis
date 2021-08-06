@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('set-user') }}
+@endsection
+
 @push('page-styles')
 
 @endpush
@@ -18,14 +22,14 @@
                 @if($data_akses->tambah == 1)
                 <a href="{{ route('opening_balance.create') }}" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                        <i class="fas icon-2x fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
                 @if($data_akses->rubah == 1)
                 <button id="editRow" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
-                        <i class="fas icon-2x fa-trash text-danger"></i>
+                        <i class="fas fa-2x fa-trash text-danger"></i>
                     </span>
                 </button>
                 @endif
@@ -61,17 +65,12 @@
 			serverSide: true,
 			ajax: {
                 url: "{{ route('opening_balance.index.json') }}",
-                type : "POST",
-                dataType : "JSON",
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
                 data: function (d) {
                     d.pencarian = $('input[name=pencarian]').val();
                 }
             },
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'bulan', name: 'bulan'},
 				{data: 'tahun', name: 'tahun'},
 				{data: 'suplesi', name: 'suplesi'},

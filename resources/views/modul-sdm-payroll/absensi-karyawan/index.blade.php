@@ -20,7 +20,7 @@
             <div class="float-left">
 				<a href="#">
 					<span class="pointer-link" data-toggle="modal" data-target="#mapping" data-placement="top" title="Mapping Data Absen.">
-                        <i class="fab fa-hubspot icon-2x text-success"></i>
+                        <i class="fab fa-hubspot fa-2x text-success"></i>
                     </span>
 				</a>
             </div>

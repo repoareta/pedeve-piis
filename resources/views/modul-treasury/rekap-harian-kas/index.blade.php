@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('set-user') }}
+@endsection
+
 @push('page-styles')
 
 @endpush
 
 @section('content')
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
@@ -14,27 +18,24 @@
             <h3 class="card-label">
                 Tabel Rekap Harian Kas/Bank
             </h3>
-            <div class="text-right">
-                <a href="{{ route('rekap_harian_kas.create') }}" class="btn p-0">
+        </div>
+		<div class="card-toolbar">
+            <div class="float-left">
+                <a href="{{ route('rekap_harian_kas.create') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                        <i class="fas icon-2x fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
-                {{-- <button id="editRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
-                        <i class="fas icon-2x fa-edit text-warning"></i>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <i class="fas fa-2x fa-trash text-danger" id="deleteRow"></i>
                     </span>
-                </button> --}}
-                <button id="deleteRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data">
-                        <i class="fas icon-2x fa-trash text-danger"></i>
+                </a>
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
+                        <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
                     </span>
-                </button>
-                <button id="exportRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Cetak Data">
-                        <i class="fas icon-2x fa-print text-primary"></i>
-                    </span>
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -80,14 +81,14 @@
 			scrollX   : true,
 			processing: true,
 			serverSide: true,
-			ajax      : {
+			ajax: {
 				url: "{{ route('rekap_harian_kas.index.json') }}",
 				data: function (d) {
 					d.nama = $('input[name=nokas]').val();
 				}
 			},
 			columns: [
-				{data: 'radio', name: 'aksi', class:'radio-button text-center'},
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'jk', name: 'jk'},
 				{data: 'store', name: 'store'},
 				{data: 'no', name: 'no'},

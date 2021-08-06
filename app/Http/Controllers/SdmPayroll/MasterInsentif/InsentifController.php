@@ -55,7 +55,7 @@ class InsentifController extends Controller
                     $query->where('tahun', '=', $request->get('tahun'));
                 }
             })
-            ->addColumn('action', function ($row) {
+            ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_all_in" value="'.$row->tahun.'-'.$row->bulan.'-'.$row->nopek.'-'.$row->aard.'"><span></span></label>';
                 return $radio;
             })
@@ -71,7 +71,7 @@ class InsentifController extends Controller
             ->addColumn('nilai', function ($row) {
                 return currency_idr($row->nilai);
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['radio'])
             ->make(true);
     }
 

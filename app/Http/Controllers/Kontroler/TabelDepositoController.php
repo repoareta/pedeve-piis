@@ -109,7 +109,7 @@ class TabelDepositoController extends Controller
                     $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>'; 
                     return $radio;
                 })
-                ->rawColumns(['action','radio'])
+                ->rawColumns(['radio'])
                 ->make(true);
     }
 
