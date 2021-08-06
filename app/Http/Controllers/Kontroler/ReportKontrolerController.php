@@ -22,7 +22,7 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('modul-kontroler.report-kontroler.create_d2_perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
-    
+
     public function searchAccount(Request $request)
     {
         if ($request->has('q')) {
@@ -74,7 +74,7 @@ class ReportKontrolerController extends Controller
             return $pdf->stream();
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('report_kontroler.create1');
+            return redirect()->route('modul_kontroler.report_kontroler.create1');
         }
     }
 
@@ -137,11 +137,11 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream('rekap_d5_'.date('Y-m-d H:i:s').'.pdf');
             } else {
                 Alert::info("Tidak ditemukan data yang di cari", 'Failed')->persistent(true);
-                return redirect()->route('d5_report.create_d5_report');
+                return redirect()->route('modul_kontroler.d5_report.create_d5_report');
             }
         } else {
             Alert::info("Tidak ditemukan data yang di cari", 'Failed')->persistent(true);
-            return redirect()->route('d5_report.create_d5_report');
+            return redirect()->route('modul_kontroler.d5_report.create_d5_report');
         }
     }
     public function create_neraca_konsolidasi()
@@ -188,11 +188,11 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+                return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+            return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
         }
     }
     
@@ -240,11 +240,11 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+                return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+            return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
         }
     }
 
@@ -290,22 +290,39 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
+                return redirect()->route('modul_kontroler.laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
+            return redirect()->route('modul_kontroler.laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function create_laba_rugi_detail()
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_laba_rugi_detail', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        
+        return view('modul-kontroler.report-kontroler.laba-rugi-detail', compact(
+            'data_tahun', 
+            'data_kodelok', 
+            'data_sanper'
+        ));
     }
-    public function exportLabaRugiDetail(Request $request)
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function labaRugiDetailExport(Request $request)
     {
         
             $tahun = "$request->tahun";
@@ -340,11 +357,11 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('laba_rugi_detail.create_laba_rugi_detail');
+                return redirect()->route('modul_kontroler.laba_rugi_detail.create_laba_rugi_detail');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('laba_rugi_detail.create_laba_rugi_detail');
+            return redirect()->route('modul_kontroler.laba_rugi_detail.create_laba_rugi_detail');
         }
     }
 
@@ -397,7 +414,7 @@ class ReportKontrolerController extends Controller
             return $pdf->stream();
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan $request->bulan1 S/D $request->bulan2 Tahun: $request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('modul_kontroler.biaya_pegawai.create_biaya_pegawai');
+            return redirect()->route('modul_kontroler.modul_kontroler.biaya_pegawai.create_biaya_pegawai');
         }
     }
 
@@ -667,7 +684,7 @@ class ReportKontrolerController extends Controller
 
         // dd($account_sc);
 
-        $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laporan_keuangan_pdf', compact(
+        $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.catatan-laporan-keuangan-pdf', compact(
             'account_sc',
             'tahun',
             'bulan'

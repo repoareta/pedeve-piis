@@ -283,7 +283,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     // Route assigned name "laba_rugi_detail.index"...
     Route::name('laba_rugi_detail.')->group(function () {
         Route::get('laba-rugi-detail', [ReportKontrolerController::class, 'create_laba_rugi_detail'])->name('create_laba_rugi_detail');
-        Route::post('laba-rugi-detail/export', [ReportKontrolerController::class, 'exportLabaRugiDetail'])->name('export.laba.rugi.detail');
+        Route::post('laba-rugi-detail/export', [ReportKontrolerController::class, 'labaRugiDetailExport'])->name('export');
     });
 
     //end laporan_keuangan

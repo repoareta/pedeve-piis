@@ -73,7 +73,7 @@
 								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
 							</div>
 							<div class="col-3" >
-								<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" size="15" maxlength="15" autocomplete="off">
+								<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" autocomplete="off">
 							</div>
 						</div>
 						

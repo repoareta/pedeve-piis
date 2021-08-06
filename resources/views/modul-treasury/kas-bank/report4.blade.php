@@ -61,7 +61,7 @@
                     <div class="col-5" >
                         <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
                         <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
-                        <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" id="tanggal" size="15" maxlength="15" autocomplete="off">
+                        <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" id="tanggal" autocomplete="off">
                     </div>
             </div>
             <div class="form__actions">

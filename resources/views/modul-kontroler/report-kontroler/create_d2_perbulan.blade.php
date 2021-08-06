@@ -94,7 +94,7 @@
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
 					</div>
 					<div class="col-2" >
-						<input class="form-control" type="text" value="{{ $suplesi }}" name="suplesi" autocomplete="off">
+						<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" autocomplete="off">
 					</div>
 				</div>
 				
