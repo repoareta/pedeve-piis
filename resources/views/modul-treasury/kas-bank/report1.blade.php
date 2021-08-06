@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('kas_bank.cetak1') }}" method="POST">
+        <form class="form" action="{{ route('kas_bank.cetak1') }}" method="POST">
             @csrf
             <input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
             <div class="form-group row">

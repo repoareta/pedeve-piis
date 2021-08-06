@@ -158,7 +158,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('pembayaran_umk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{ route('pembayaran_umk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -527,7 +527,7 @@ var ci = $('#ci').val();
 var lokasi1 = $('#lokasi1').val();
 var lokasi2 = $('#lokasi2').val();
 $.ajax({
-	url : "{{route('pembayaran_umk.lokasiJson') }}",
+	url : "{{ route('pembayaran_umk.lokasiJson') }}",
 	type : "POST",
 	dataType: 'json',
 	data : {
@@ -552,7 +552,7 @@ $.ajax({
 })
 $('#form-edit').submit(function(){
 	$.ajax({
-		url  : "{{route('pembayaran_umk.update') }}",
+		url  : "{{ route('pembayaran_umk.update') }}",
 		type : "POST",
 		data : $('#form-edit').serialize(),
 		dataType : "JSON",
@@ -582,7 +582,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_umk.createJson') }}",
+		url : "{{ route('pembayaran_umk.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -653,7 +653,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_umk.lokasiJson') }}",
+		url : "{{ route('pembayaran_umk.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -684,7 +684,7 @@ $("#lokasi").on("click", function(){
 	var mp = $('#mp').val();
 	var tahun = $('#tahun').val();
 		$.ajax({
-			url : "{{route('pembayaran_umk.nobuktiJson') }}",
+			url : "{{ route('pembayaran_umk.nobuktiJson') }}",
 			type : "POST",
 			dataType: 'json',
 			data : {
@@ -729,7 +729,7 @@ $('#btn-delete-all').on('click', function(e) {
 	//prosess create detail
 	$('#form-create-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_umk.store.detail') }}",
+			url  : "{{ route('pembayaran_umk.store.detail') }}",
 			type : "POST",
 			data : $('#form-create-detail').serialize(),
 			dataType : "JSON",
@@ -765,7 +765,7 @@ $('#btn-delete-all').on('click', function(e) {
 	//prosess delete all detail
 	$('#form-delete-all').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_umk.delete.detail.all') }}",
+			url  : "{{ route('pembayaran_umk.delete.detail.all') }}",
 			type : "delete",
 			data : $('#form-delete-all').serialize(),
 			dataType : "JSON",
@@ -828,7 +828,7 @@ if($('input[type=radio]').is(':checked')) {
 });
 $('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('pembayaran_umk.update.detail') }}",
+			url  : "{{ route('pembayaran_umk.update.detail') }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

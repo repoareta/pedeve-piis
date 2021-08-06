@@ -133,7 +133,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('pembayaran_pbayar.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                        <a href="{{ route('pembayaran_pbayar.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                     </div>
                 </div>
@@ -174,7 +174,7 @@ $('#form-create').submit(function(){
 	var nomor = $("#nomor").val();
 	var scurrdoc = mp+'-'+bagian+'-'+nomor;
 	$.ajax({
-		url  : "{{route('pembayaran_pbayar.store') }}",
+		url  : "{{ route('pembayaran_pbayar.store') }}",
 		type : "POST",
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
@@ -218,7 +218,7 @@ var mp = $('#mp').val();
 var bulan = $('#bulan').val();
 var bulanbuku = $('#bulanbuku').val();
 	$.ajax({
-		url : "{{route('pembayaran_pbayar.createJson') }}",
+		url : "{{ route('pembayaran_pbayar.createJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -273,7 +273,7 @@ var jk = $('#jk').val();
 	}	
 	var ci = $('#ci').val();
 	$.ajax({
-		url : "{{route('pembayaran_pbayar.lokasiJson') }}",
+		url : "{{ route('pembayaran_pbayar.lokasiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -302,7 +302,7 @@ var lokasi = $('#lokasi').val();
 var mp = $('#mp').val();
 var tahun = $('#tahun').val();
 	$.ajax({
-		url : "{{route('pembayaran_pbayar.nobuktiJson') }}",
+		url : "{{ route('pembayaran_pbayar.nobuktiJson') }}",
 		type : "POST",
 		dataType: 'json',
 		data : {
@@ -358,7 +358,7 @@ $('#nilai').keyup(function(){
 		allowClear: true,
 		tags: true,
 		ajax: {
-			url: "{{route('penerimaan_kas.ajax-kepada') }}",
+			url: "{{ route('penerimaan_kas.ajax-kepada') }}",
 			type : "post",
 			dataType : "JSON",
 			headers: {

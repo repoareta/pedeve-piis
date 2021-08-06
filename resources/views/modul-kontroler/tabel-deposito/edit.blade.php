@@ -150,7 +150,7 @@
 							<div class="row">
 								<div class="col-2"></div>
 								<div class="col-10">
-									<a href="{{route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+									<a href="{{ route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 									@if($status2 <> "Y")
 									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
 									@else
@@ -524,7 +524,7 @@ $("#jk").on("change", function(){
 
 $('#form-edit').submit(function(){
 			$.ajax({
-				url  : "{{route('jurnal_umum.update') }}",
+				url  : "{{ route('jurnal_umum.update') }}",
 				type : "POST",
 				data : $('#form-edit').serialize(),
 				dataType : "JSON",
@@ -568,7 +568,7 @@ $('#form-edit').submit(function(){
 //prosess create detail
  $('#form-tambah-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('jurnal_umum.store.detail') }}",
+			url  : "{{ route('jurnal_umum.store.detail') }}",
 			type : "POST",
 			data : $('#form-tambah-detail').serialize(),
 			dataType : "JSON",
@@ -656,7 +656,7 @@ $('#editRow').on('click', function(e) {
 	//prosess create detail
 	$('#form-edit-detail').submit(function(){
 		$.ajax({
-			url  : "{{route('jurnal_umum.update.detail') }}",
+			url  : "{{ route('jurnal_umum.update.detail') }}",
 			type : "POST",
 			data : $('#form-edit-detail').serialize(),
 			dataType : "JSON",

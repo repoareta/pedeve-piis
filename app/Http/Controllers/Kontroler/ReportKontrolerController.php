@@ -20,7 +20,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_d2_perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_d2_perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function searchAccount(Request $request)
     {
@@ -61,8 +61,8 @@ class ReportKontrolerController extends Controller
 
         // dd($data_list);
         if (!empty($data_list)) {
-            // return view('report_kontroler.export_report1',compact('request','data_list'));
-            $pdf = DomPDF::loadview('report_kontroler.export_report1', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            // return view('modul-kontroler.report-kontroler.export_report1',compact('request','data_list'));
+            $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_report1', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -81,14 +81,14 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_d2_periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_d2_periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function create_d5_report()
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_d5_report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_d5_report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportD5(Request $request)
     {
@@ -122,11 +122,11 @@ class ReportKontrolerController extends Controller
                     $tahun = $data_bln->tahun;
                     $suplesi = $data_bln->suplesi;
                 }
-                $pdf = PDF::loadview('report_kontroler.export_d5_pdf', compact('data_list'))
+                $pdf = PDF::loadview('modul-kontroler.report-kontroler.export_d5_pdf', compact('data_list'))
                 ->setPaper('a4', 'landscape')
                 ->setOption('footer-right', 'Halaman [page] dari [toPage]')
                 ->setOption('footer-font-size', 8)
-                ->setOption('header-html', view('report_kontroler.export_d5_pdf_header', compact('bulan', 'tahun', 'suplesi')))
+                ->setOption('header-html', view('modul-kontroler.report-kontroler.export_d5_pdf_header', compact('bulan', 'tahun', 'suplesi')))
                 ->setOption('margin-top', 30)
                 ->setOption('margin-bottom', 10);
 
@@ -144,7 +144,7 @@ class ReportKontrolerController extends Controller
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('report_kontroler.create_neraca_konsolidasi', compact('data_tahun', 'data_kodelok'));
+        return view('modul-kontroler.report-kontroler.create_neraca_konsolidasi', compact('data_tahun', 'data_kodelok'));
     }
     public function exportNeracaKonsolidasi(Request $request)
     {
@@ -174,7 +174,7 @@ class ReportKontrolerController extends Controller
                     ");
             // dd($data_list);
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_neraca_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_neraca_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
@@ -197,7 +197,7 @@ class ReportKontrolerController extends Controller
     {
         $data_tahun = DB::select("SELECT Tahun, Bulan, Suplesi from bulansuplesi where KodeReport='D5'");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('report_kontroler.create_neraca_detail', compact('data_tahun', 'data_kodelok'));
+        return view('modul-kontroler.report-kontroler.create_neraca_detail', compact('data_tahun', 'data_kodelok'));
     }
     public function exportNeracaDetail(Request $request)
     {
@@ -226,7 +226,7 @@ class ReportKontrolerController extends Controller
                 from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc group by a.jenis, a.sub_akun order by a.sub_akun asc
                 ");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_neraca_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_neraca_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
@@ -250,7 +250,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_laba_rugi_konsolidasi', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_laba_rugi_konsolidasi', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportLabaRugiKonsolidasi(Request $request)
     {
@@ -278,7 +278,7 @@ class ReportKontrolerController extends Controller
                     from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc order by a.sub_akun asc
                     ");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_laba_rugi_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laba_rugi_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             
@@ -299,7 +299,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_laba_rugi_detail', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_laba_rugi_detail', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
     public function exportLabaRugiDetail(Request $request)
     {
@@ -328,7 +328,7 @@ class ReportKontrolerController extends Controller
                     ");
         
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_laba_rugi_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laba_rugi_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             
@@ -349,15 +349,33 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_laporan_keuangan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_laporan_keuangan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function create_biaya_pegawai()
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_biaya_pegawai', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        
+        return view('modul-kontroler.report-kontroler.biaya-pegawai-kantor', compact(
+            'data_tahun', 
+            'data_kodelok', 
+            'data_sanper'
+        ));
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function exportBiayaPegawai(Request $request)
     {
         if ($request->lapangan == "KL") {
@@ -370,9 +388,10 @@ class ReportKontrolerController extends Controller
             $sss = "bulan <= '$request->bulan2' and bulan >= '$request->bulan1'";
             $zzz = ("$bbb and $yyy and $sss");
         }
+
         $data_list = DB::select("SELECT *, substr(sandi,1,2) as duadigit,substr(sandi,1,3) as tigadigit from v_rincibiayakontroler where substr(sandi,1,3) between '500' and '519' and $zzz");
         if (!empty($data_list)) {
-            $pdf = DomPDF::loadview('report_kontroler.export_biaya_pegawai', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.biaya-pegawai-kantor-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
         
@@ -382,7 +401,7 @@ class ReportKontrolerController extends Controller
             return $pdf->stream();
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan $request->bulan1 S/D $request->bulan2 Tahun: $request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('biaya_pegawai.create_biaya_pegawai');
+            return redirect()->route('modul_kontroler.biaya_pegawai.create_biaya_pegawai');
         }
     }
 
@@ -479,7 +498,7 @@ class ReportKontrolerController extends Controller
         })
         ->first();
 
-        $pdf = PDF::loadview('report_kontroler.export_d2_perbulan_pdf', compact(
+        $pdf = PDF::loadview('modul-kontroler.report-kontroler.export_d2_perbulan_pdf', compact(
             'd2_list',
             'd2_total',
             'tahun',
@@ -488,7 +507,7 @@ class ReportKontrolerController extends Controller
         ->setPaper('a4', 'landscape')
         ->setOption('footer-right', 'Halaman [page] dari [toPage]')
         ->setOption('footer-font-size', 7)
-        ->setOption('header-html', view('report_kontroler.export_d2_perbulan_pdf_header', compact('bulan', 'tahun')))
+        ->setOption('header-html', view('modul-kontroler.report-kontroler.export_d2_perbulan_pdf_header', compact('bulan', 'tahun')))
         ->setOption('margin-top', 30)
         ->setOption('margin-bottom', 10);
 
@@ -581,7 +600,7 @@ class ReportKontrolerController extends Controller
         })
         ->first();
 
-        $pdf = PDF::loadview('report_kontroler.export_d2_perperiode_pdf', compact(
+        $pdf = PDF::loadview('modul-kontroler.report-kontroler.export_d2_perperiode_pdf', compact(
             'd2_list',
             'd2_total',
             'tahun',
@@ -591,7 +610,7 @@ class ReportKontrolerController extends Controller
         ->setPaper('a4', 'landscape')
         ->setOption('footer-right', 'Halaman [page] dari [toPage]')
         ->setOption('footer-font-size', 7)
-        ->setOption('header-html', view('report_kontroler.export_d2_perperiode_pdf_header', compact('tahun', 'bulan_mulai', 'bulan_sampai')))
+        ->setOption('header-html', view('modul-kontroler.report-kontroler.export_d2_perperiode_pdf_header', compact('tahun', 'bulan_mulai', 'bulan_sampai')))
         ->setOption('margin-top', 30)
         ->setOption('margin-bottom', 10);
 
@@ -627,7 +646,7 @@ class ReportKontrolerController extends Controller
 
         // dd($account_sc);
 
-        $pdf = DomPDF::loadview('report_kontroler.export_laporan_keuangan_pdf', compact(
+        $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laporan_keuangan_pdf', compact(
             'account_sc',
             'tahun',
             'bulan'

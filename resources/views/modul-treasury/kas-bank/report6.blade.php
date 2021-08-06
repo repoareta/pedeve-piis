@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('kas_bank.cetak6') }}" method="POST" target="_blank">
+        <form class="form" action="{{ route('kas_bank.cetak6') }}" method="POST" target="_blank">
             @csrf
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">C.Judex<span class="text-danger">*</span></label>

@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('pembayaran_gaji.export_rc') }}" method="POST">
+        <form class="form" action="{{ route('pembayaran_gaji.export_rc') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<div class="form-group row">
@@ -117,7 +117,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{ route('pembayaran_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 						</div>
 					</div>

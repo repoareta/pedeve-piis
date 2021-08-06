@@ -88,7 +88,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{route('data_pajak.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+                                <a href="{{ route('data_pajak.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
 
         $('#form-create').submit(function(){
             $.ajax({
-                url  : "{{route('data_pajak.store') }}",
+                url  : "{{ route('data_pajak.store') }}",
                 type : "POST",
                 data : $('#form-create').serialize(),
                 dataType : "JSON",

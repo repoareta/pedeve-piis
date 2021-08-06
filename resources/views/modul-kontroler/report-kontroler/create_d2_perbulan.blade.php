@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('d2_perbulan.export') }}" method="GET" target="_blank">
+		<form class="form" action="{{ route('d2_perbulan.export') }}" method="GET" target="_blank">
 			<div class="portlet__body">
 				<div class="form-group row">
 					<label for="" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>

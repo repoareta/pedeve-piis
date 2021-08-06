@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('biaya_pegawai.export_biaya_pegawai') }}" method="POST">
+		<form class="form" action="{{ route('biaya_pegawai.export_biaya_pegawai') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -70,7 +70,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 				</div>
-				<label for="" class="col-1 col-form-label">S/D</label>
+				<label for="" class="col-1 col-form-label text-center">S/D</label>
 				<div class="col-5">
 						<select class="form-control select2" style="width: 100% !important;" name="bulan2">
 							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>

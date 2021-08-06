@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('laba_rugi_detail.export.laba.rugi.detail') }}" method="POST">
+		<form class="form" action="{{ route('laba_rugi_detail.export.laba.rugi.detail') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">

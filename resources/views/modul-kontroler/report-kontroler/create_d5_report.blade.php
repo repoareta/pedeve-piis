@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('d5_report.export') }}" method="POST">
+		<form class="form" action="{{ route('d5_report.export') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">

@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" action="{{route('kas_bank.cetak7') }}" method="GET" target="_blank">
+        <form class="form" action="{{ route('kas_bank.cetak7') }}" method="GET" target="_blank">
             @csrf
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>

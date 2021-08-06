@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<div class="portlet__body">
-		<form class="form" action="{{route('tabel_deposito.export') }}" method="POST">
+		<form class="form" action="{{ route('tabel_deposito.export') }}" method="POST">
 			@csrf
 			<div class="portlet__body">
 				<input class="form-control" type="hidden" name="userid" value="{{ Auth::user()->userid }}">
@@ -106,7 +106,7 @@
 					<div class="row">
 						<div class="col-2"></div>
 						<div class="col-10">
-							<a href="{{route('tabel_deposito.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
+							<a href="{{ route('tabel_deposito.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 							<button type="submit" id="btn-save" onclick="$('form').attr('target', '_blank')" class="btn btn-primary"><i class="fa fa-print"></i>Cetak</button>
 							{{--<a href="{{ url('perbendaharaan/tabel_deposito/rekap_rc') }}/{{ $no}}/{{ $id}}" class="btn btn-primary"><i class="fa fa-print"></i>Cetak RC</a>--}}
 						</div>
