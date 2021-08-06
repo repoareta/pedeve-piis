@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_kontroler.lokasi_kontroler.create') }}">
+                <a href="{{ route('modul_kontroler.tabel.lokasi_kontroler.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -65,14 +65,14 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('modul_kontroler.lokasi_kontroler.index.json') }}",
+                url: "{{ route('modul_kontroler.tabel.lokasi_kontroler.index.json') }}",
                 data: function (d) {
                     d.pencarian = $('input[name=pencarian]').val();
                 }
             },
             columns: [
                 {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-                {data: 'kode', name: 'kode'},
+                {data: 'kodelokasi', name: 'kodelokasi'},
                 {data: 'nama', name: 'nama'},
             ]
         });
@@ -107,7 +107,7 @@
                         .then((result) => {
                         if (result.value) {
                             $.ajax({
-                                url: "{{ route('modul_kontroler.lokasi_kontroler.delete') }}",
+                                url: "{{ route('modul_kontroler.tabel.lokasi_kontroler.delete') }}",
                                 type: 'DELETE',
                                 dataType: 'json',
                                 data: {
@@ -143,7 +143,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('kode');
-                    location.replace("{{ url('kontroler/lokasi_kontroler/edit') }}"+ '/' +no);
+                    location.replace("{{ url('kontroler/tabel/lokasi-kontroler/edit') }}"+ '/' +no);
                 });
             } else {
                 swalAlertInit('ubah');

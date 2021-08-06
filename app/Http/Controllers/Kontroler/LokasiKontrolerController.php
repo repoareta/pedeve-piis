@@ -11,19 +11,13 @@ class LokasiKontrolerController extends Controller
 {
     public function index()
     {
-        return view('modul-kontroler.lokasi-kontroler.index');
+        return view('modul-kontroler.tabel.lokasi-kontroler.index');
     }
 
-    public function indexJson(Request $request)
+    public function indexJson()
     {
-        $data = DB::select("SELECT a.* from lokasi a ORDER BY a.kodelokasi");
+        $data = Lokasi::orderByDesc('kodelokasi');
         return datatables()->of($data)
-        ->addColumn('kode', function ($data) {
-            return $data->kodelokasi;
-       })
-        ->addColumn('nama', function ($data) {
-            return $data->nama;
-       })
         ->addColumn('radio', function ($data) {
             $radio = '<center><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kodelokasi.'" class="btn-radio" name="btn-radio"><span></span></label></center>'; 
             return $radio;
@@ -34,7 +28,7 @@ class LokasiKontrolerController extends Controller
 
     public function create()
     {
-        return view('modul-kontroler.lokasi-kontroler.create');
+        return view('modul-kontroler.tabel.lokasi-kontroler.create');
     }
     public function store(Request $request)
     {
@@ -61,7 +55,7 @@ class LokasiKontrolerController extends Controller
             $kode = $data->kodelokasi;
             $nama = $data->nama;
         }
-        return view('modul-kontroler.lokasi-kontroler.edit',compact('kode','nama'));
+        return view('modul-kontroler.tabel.lokasi-kontroler.edit',compact('kode','nama'));
     }
     public function update(Request $request)
     {
