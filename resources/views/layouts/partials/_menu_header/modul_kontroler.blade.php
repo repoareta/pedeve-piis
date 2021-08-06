@@ -74,7 +74,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is(['modul_kontroler.neraca_detail.*', 'modul_kontroler.laba_rugi_konsolidasi.*', 'modul_kontroler.neraca_konsolidasi.*']) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -108,7 +108,7 @@
                                 <span class="menu-text">D5</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_kontroler.neraca_konsolidasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -116,7 +116,7 @@
                                 <span class="menu-text">Neraca Konsolidasi</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_kontroler.neraca_detail.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_kontroler.neraca_detail.create_neraca_detail') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -124,7 +124,7 @@
                                 <span class="menu-text">Neraca Detail</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_kontroler.laba_rugi_konsolidasi.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_kontroler.laba_rugi_konsolidasi.create_laba_rugi_konsolidasi') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>

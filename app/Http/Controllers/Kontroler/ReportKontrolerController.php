@@ -142,9 +142,22 @@ class ReportKontrolerController extends Controller
     }
     public function create_neraca_konsolidasi()
     {
-        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_tahun = DB::table('fiosd201')
+                        ->select(DB::raw('max(tahun||bulan||supbln) AS sbulan'))
+                        ->first();
+                        
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('report_kontroler.create_neraca_konsolidasi', compact('data_tahun', 'data_kodelok'));
+
+        $tahun = substr($data_tahun->sbulan, 0, 4);
+        $bulan = substr($data_tahun->sbulan, 4, 2);
+        $suplesi = substr($data_tahun->sbulan, 6);
+
+        return view('modul-kontroler.report-kontroler.create_neraca_konsolidasi', compact(
+            'tahun',
+            'bulan',
+            'suplesi',
+            'data_kodelok',
+        ));
     }
     public function exportNeracaKonsolidasi(Request $request)
     {
@@ -174,7 +187,7 @@ class ReportKontrolerController extends Controller
                     ");
             // dd($data_list);
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_neraca_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_neraca_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
@@ -184,20 +197,33 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+                return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+            return redirect()->route('modul_kontroler.neraca_konsolidasi.create_neraca_konsolidasi');
         }
     }
     
     
     public function create_neraca_detail()
     {
-        $data_tahun = DB::select("SELECT Tahun, Bulan, Suplesi from bulansuplesi where KodeReport='D5'");
+        $data_tahun = DB::table('bulansuplesi')
+                        ->where('kodereport', '=', 'D5')
+                        ->select(['tahun', 'bulan', 'suplesi'])
+                        ->first();
+
+        $tahun = $data_tahun->tahun;
+        $bulan = $data_tahun->bulan;
+        $suplesi = $data_tahun->suplesi;
+
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('report_kontroler.create_neraca_detail', compact('data_tahun', 'data_kodelok'));
+        return view('modul-kontroler.report-kontroler.create_neraca_detail', compact(
+            'tahun',
+            'bulan',
+            'suplesi',
+            'data_kodelok',
+        ));
     }
     public function exportNeracaDetail(Request $request)
     {
@@ -226,7 +252,7 @@ class ReportKontrolerController extends Controller
                 from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc group by a.jenis, a.sub_akun order by a.sub_akun asc
                 ");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_neraca_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_neraca_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
@@ -236,21 +262,35 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+                return redirect()->route('modul_kontroler.neraca_detail.create_neraca_detail');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('neraca_konsolidasi.create_neraca_konsolidasi');
+            return redirect()->route('modul_kontroler.neraca_detail.create_neraca_detail');
         }
     }
 
 
     public function create_laba_rugi_konsolidasi()
     {
-        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_tahun = DB::table('fiosd201')
+                        ->select(DB::raw('max(tahun||bulan||supbln) AS sbulan'))
+                        ->first();
+                        
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+
+        $tahun = substr($data_tahun->sbulan, 0, 4);
+        $bulan = substr($data_tahun->sbulan, 4, 2);
+        $suplesi = substr($data_tahun->sbulan, 6);
+
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('report_kontroler.create_laba_rugi_konsolidasi', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create_laba_rugi_konsolidasi', compact(
+            'tahun',
+            'bulan',
+            'suplesi',
+            'data_kodelok',
+            'data_sanper'
+        ));
     }
     public function exportLabaRugiKonsolidasi(Request $request)
     {
@@ -278,7 +318,7 @@ class ReportKontrolerController extends Controller
                     from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc order by a.sub_akun asc
                     ");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('report_kontroler.export_laba_rugi_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laba_rugi_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             
@@ -286,11 +326,11 @@ class ReportKontrolerController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
+                return redirect()->route('modul_kontroler.laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
             }
         } else {
             Alert::info("Tidak ditemukan data dengan Bulan $request->bulan Tahun: $request->tahun ", 'Failed')->persistent(true);
-            return redirect()->route('laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
+            return redirect()->route('modul_kontroler.laba_rugi_konsolidasi.create_laba_rugi_konsolidasi');
         }
     }
 
