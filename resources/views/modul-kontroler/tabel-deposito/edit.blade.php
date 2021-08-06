@@ -152,9 +152,9 @@
 								<div class="col-10">
 									<a href="{{ route('jurnal_umum.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
 									@if($status2 <> "Y")
-									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
+									<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
 									@else
-									<button type="submit" disabled style="cursor:not-allowed" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
+									<button type="submit" disabled style="cursor:not-allowed" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
 									@endif
 								</div>
 							</div>
@@ -364,7 +364,7 @@
 							<div class="col-2"></div>
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i>Simpan</button>
 							</div>
 						</div>
 					</div>
@@ -481,7 +481,7 @@
 							<div class="col-2"></div>
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-reply"></i>Simpan</button>
 							</div>
 						</div>
 					</div>

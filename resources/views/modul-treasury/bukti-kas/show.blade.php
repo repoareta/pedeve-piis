@@ -270,7 +270,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Save</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Simpan</button>
                 </div>
             </form>
         </div>
@@ -373,7 +373,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Save</button>
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Simpan</button>
                 </div>
             </form>
         </div>

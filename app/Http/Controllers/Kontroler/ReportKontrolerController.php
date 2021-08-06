@@ -156,7 +156,7 @@ class ReportKontrolerController extends Controller
         $bulan = substr($data_tahun->sbulan, 4, 2);
         $suplesi = substr($data_tahun->sbulan, 6);
 
-        return view('modul-kontroler.report-kontroler.create_neraca_konsolidasi', compact(
+        return view('modul-kontroler.report-kontroler.neraca-konsolidasi', compact(
             'tahun',
             'bulan',
             'suplesi',
@@ -191,7 +191,7 @@ class ReportKontrolerController extends Controller
                     ");
             // dd($data_list);
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_neraca_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.neraca-konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
@@ -222,7 +222,7 @@ class ReportKontrolerController extends Controller
         $suplesi = $data_tahun->suplesi;
 
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        return view('modul-kontroler.report-kontroler.create_neraca_detail', compact(
+        return view('modul-kontroler.report-kontroler.neraca-detail', compact(
             'tahun',
             'bulan',
             'suplesi',
@@ -256,7 +256,7 @@ class ReportKontrolerController extends Controller
                 from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc group by a.jenis, a.sub_akun order by a.sub_akun asc
                 ");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_neraca_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.neraca-detail-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
 
@@ -288,7 +288,7 @@ class ReportKontrolerController extends Controller
         $suplesi = substr($data_tahun->sbulan, 6);
 
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_laba_rugi_konsolidasi', compact(
+        return view('modul-kontroler.report-kontroler.laba-rugi-konsolidasi', compact(
             'tahun',
             'bulan',
             'suplesi',
@@ -322,7 +322,7 @@ class ReportKontrolerController extends Controller
                     from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc order by a.sub_akun asc
                     ");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laba_rugi_konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.laba-rugi-konsolidasi-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             

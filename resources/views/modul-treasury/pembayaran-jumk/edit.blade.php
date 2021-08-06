@@ -159,7 +159,7 @@
                     <div class="col-2"></div>
                     <div class="col-10">
                         <a href="{{ route('pembayaran_jumk.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
                     </div>
                 </div>
             </div>
@@ -341,7 +341,7 @@
 							<div class="col-2"></div>
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
 							</div>
 						</div>
 					</div>
@@ -457,7 +457,7 @@
 							<div class="col-2"></div>
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Save</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
 							</div>
 						</div>
 					</div>

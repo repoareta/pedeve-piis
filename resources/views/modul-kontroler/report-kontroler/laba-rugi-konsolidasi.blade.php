@@ -12,7 +12,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Cetak Rugi Laba Konsolidasi
+                Tabel Cetak Laba Rugi Konsolidasi
             </h3>
         </div>
     </div>
