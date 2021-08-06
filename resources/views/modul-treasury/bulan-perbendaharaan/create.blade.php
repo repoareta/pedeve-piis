@@ -116,7 +116,7 @@
                         <a href="{{ route('bulan_perbendaharaan.index') }}" class="btn btn-warning"><i class="fa fa-reply"
                                 aria-hidden="true"></i>Batal</a>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"
-                                aria-hidden="true"></i>Save</button>
+                                aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>
             </div>

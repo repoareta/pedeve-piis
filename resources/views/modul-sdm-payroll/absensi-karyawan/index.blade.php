@@ -107,7 +107,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary font-weight-bold">Save</button>
+					<button type="submit" class="btn btn-primary font-weight-bold">Simpan</button>
 				</div>
 			</form>
         </div>
