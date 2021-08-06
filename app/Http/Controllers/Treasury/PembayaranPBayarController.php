@@ -155,7 +155,7 @@ class PembayaranPBayarController extends Controller
                 if ($data->nilai_dok  == "") {
                     $nilai = 0;
                 } else {
-                    $nilai = number_format($data->nilai_dok, 2, '.', ',');
+                    $nilai = currency_format($data->nilai_dok);
                 }
                 return $nilai;
             })

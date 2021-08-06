@@ -28,7 +28,7 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-trash text-danger" id="deleteRow"></i>
+                        <i class="fas fa-2x fa-times-cirlce text-danger" id="deleteRow"></i>
                     </span>
                 </a>
                 <a href="#">
