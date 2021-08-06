@@ -22,6 +22,7 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('modul-kontroler.report-kontroler.create_d2_perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
+    
     public function searchAccount(Request $request)
     {
         if ($request->has('q')) {
@@ -30,6 +31,7 @@ class ReportKontrolerController extends Controller
             return response()->json($data_account);
         }
     }
+
     public function Cetak1(Request $request)
     {
         $thnbln = $request->tahun.''.$request->bulan;
@@ -83,6 +85,7 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('modul-kontroler.report-kontroler.create_d2_periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
+
     public function create_d5_report()
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
@@ -90,13 +93,14 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         return view('modul-kontroler.report-kontroler.create_d5_report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
+
     public function exportD5(Request $request)
     {
-            $tahun = "$request->tahun";
-            $bulan = "$request->bulan";
-            $suplesi = "$request->suplesi";
-            $thnbln = "2019$request->bulan$request->suplesi";
-            $obpsi  = "obpsi_$request->tahun";
+        $tahun = "$request->tahun";
+        $bulan = "$request->bulan";
+        $suplesi = "$request->suplesi";
+        $thnbln = "2019$request->bulan$request->suplesi";
+        $obpsi  = "obpsi_$request->tahun";
         
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
