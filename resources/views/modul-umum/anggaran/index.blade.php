@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
-    <div class="card-header justify-content-right">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
@@ -15,7 +15,8 @@
             <h3 class="card-label">
                 Tabel Umum Anggaran
             </h3>
-
+        </div>
+        <div class="card-toolbar">
 			<div class="float-left">
                 <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
@@ -38,33 +39,6 @@
 					</span>                    
 				</a>
             </div>
-        </div>
-        <div class="card-toolbar">
-			<div class="float-right">
-				<form action="{{ route('modul_umum.anggaran.rekap.export') }}" class="form-inline form" method="POST" target="_blank">
-					@csrf
-					<div class="form-group">
-						<div class="input-group">
-							<select class="form-control select2" style="width: 100% !important;" name="tahun_cetak" id="tahun_cetak">
-								<option value="">- Pilih Tahun -</option>
-								@foreach ($tahun as $key => $row)
-									<option value="{{ $row->tahun }}"
-										@if($key == 0)
-											selected
-										@endif
-									>{{ $row->tahun }}</option>
-								@endforeach
-							</select>
-							<div class="input-group-append">
-								<button class="btn btn-danger" type="submit">
-									<i class="fa fa-file-pdf" style="color: #ffffff;"></i> Cetak Anggaran .PDF
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			
         </div>
     </div>
     <div class="card-body">
