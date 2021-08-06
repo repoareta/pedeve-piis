@@ -45,7 +45,7 @@
                         @if($suplesi == 0)
                             BULAN BUKU {{ $bln}}
                         @else
-                            BULAN BUKU {{ $bln}} {{ $tahun }} SUPLESI-{{ $suplesi}}
+                            BULAN BUKU {{ $bln}} {{ $tahun }} SUPLESI-{{ $suplesi }}
                         @endif
                         </b>
                     </p>

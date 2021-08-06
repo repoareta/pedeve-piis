@@ -94,7 +94,7 @@
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off">
+								<input class="form-control" type="text" value="{{ $suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>
 						<div class="form-group row">

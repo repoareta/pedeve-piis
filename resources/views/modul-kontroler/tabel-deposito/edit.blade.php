@@ -87,7 +87,7 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Bulan</label>
 							<div class="col-3">
-								<input class="form-control" type="text" value="{{ $bulan }}"   name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+								<input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
 							<div class="col-3" >
@@ -96,7 +96,7 @@
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
 							<div class="col-2" >
-								<input class="form-control" type="text" value="{{ $suplesi}}"   name="suplesi" size="2" maxlength="2" autocomplete="off">
+								<input class="form-control" type="text" value="{{ $suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>
 						<div class="form-group row">

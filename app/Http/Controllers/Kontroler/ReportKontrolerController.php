@@ -344,14 +344,6 @@ class ReportKontrolerController extends Controller
         }
     }
 
-    public function create_laporan_keuangan()
-    {
-        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_laporan_keuangan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
-    }
-
     /**
      * Undocumented function
      *
@@ -617,6 +609,31 @@ class ReportKontrolerController extends Controller
         return $pdf->stream('rekap_d2_perperiode_'.date('Y-m-d H:i:s').'.pdf');
     }
 
+    
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function create_laporan_keuangan()
+    {
+        $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
+        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
+        
+        return view('modul-kontroler.report-kontroler.catatan-laporan-keuangan', compact(
+            'data_tahun', 
+            'data_kodelok', 
+            'data_sanper'
+        ));
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function laporanKeuanganExport(Request $request)
     {
         $tahun = $request->tahun;
