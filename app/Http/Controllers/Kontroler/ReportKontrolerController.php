@@ -18,16 +18,23 @@ class ReportKontrolerController extends Controller
     public function create_d2_perbulan()
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
-        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_d2_perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");        
+        $data_sanper = DB::select("SELECT kodeacct,descacct from 
+                                    account where length(kodeacct)=6 
+                                    and kodeacct not like '%X%' 
+                                    order by kodeacct desc");
+        return view('modul-kontroler.report-kontroler.create-d2-perbulan', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function searchAccount(Request $request)
     {
         if ($request->has('q')) {
             $cari = strtoupper($request->q);
-            $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' and (kodeacct like '$cari%' or descacct like '$cari%') order by kodeacct desc");
+            $data_account = DB::select("SELECT kodeacct,descacct from 
+                                        account where length(kodeacct)=6 
+                                        and kodeacct not like '%x%' and 
+                                        (kodeacct like '$cari%' or descacct 
+                                        like '$cari%') order by kodeacct desc");
             return response()->json($data_account);
         }
     }
@@ -83,7 +90,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_d2_periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create-d2-periode', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function create_d5_report()
@@ -91,7 +98,7 @@ class ReportKontrolerController extends Controller
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
         $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
-        return view('modul-kontroler.report-kontroler.create_d5_report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
+        return view('modul-kontroler.report-kontroler.create-d5-report', compact('data_tahun', 'data_kodelok', 'data_sanper'));
     }
 
     public function exportD5(Request $request)
