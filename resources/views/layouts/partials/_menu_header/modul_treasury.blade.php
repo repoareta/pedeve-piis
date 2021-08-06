@@ -31,16 +31,16 @@
                                 <span class="menu-text">Kas/Bank Per Cash Judex</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('pembayaran_jumk.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                        <li class="menu-item {{ Route::is('cash_flow.perbulan') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                            <a href="{{ route('cash_flow.perbulan') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
                                 <span class="menu-text">CF Per Bulan</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('pembayaran_jumk.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
-                            <a href="javascript:;" class="menu-link">
+                        <li class="menu-item {{ Route::is('cash_flow.perperiode') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                            <a href="{{ route('cash_flow.perperiode') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
