@@ -22,7 +22,7 @@ class TabelDepositoController extends Controller
                 $bulan ='00';
                 $tahun ='0000';
             }
-        return view('tabel_deposito.index',compact('tahun','bulan'));
+        return view('modul-kontroler.tabel-deposito.index',compact('tahun','bulan'));
     }
 
     public function indexJson(Request $request)
@@ -117,47 +117,48 @@ class TabelDepositoController extends Controller
     {
         $data_bank = DB::select("SELECT distinct(a.kdbank),b.descacct from mtrdeposito a, account b where b.kodeacct=a.kdbank");
         $data_lapang = DB::select("SELECT kodelokasi,nama from lokasi");
-        return view('tabel_deposito.rekap',compact('data_bank','data_lapang'));
+        return view('modul-kontroler.tabel-deposito.rekap',compact('data_bank','data_lapang'));
     }
 
     public function export(Request $request)
     {
-            // if($request->lapangan == ""){
-                $lp = "a.asal in ('MD','MS')";
-                $lapangan = "MD,MS";
-            // } else {
-            //     $lp = "a.asal='$request->lapangan'";
-            //     $lapangan = "$request->lapangan";
-            // }
-            if($request->sanper <> ""){
-                $sanper = $request->sanper;
-                $bulan = ltrim($request->bulan,0);
-                $tahun = $request->tahun;
-                $data = "a.kdbank='$sanper' and d.bulan='$bulan' and d.tahun='$tahun'";
-            } else {
-                $sanper ="like '%' ";
-                $bulan = ltrim($request->bulan,0);
-                $tahun = $request->tahun;
-                $data = "a.kdbank $sanper and d.bulan='$bulan' and d.tahun='$tahun'";
-            }
-            $data_list = DB::select("SELECT a.*,b.ci,c.descacct,d.haribunga,d.bungabulan,d.pph20,d.netbulan,d.accharibunga,d.accnetbulan from mtrdeposito a join kasdoc b on a.docno=b.docno join account c on a.kdbank=c.kodeacct, dtldepositotest d where d.docno=a.docno and d.lineno=a.lineno and d.perpanjangan=a.perpanjangan and $data and $lp");
-        if(!empty($data_list)){
-            $pdf = PDF::loadview('tabel_deposito.export_penemdep_pdf', compact(
+        // if($request->lapangan == ""){
+        $lp = "a.asal in ('MD','MS')";
+        $lapangan = "MD,MS";
+        // } else {
+        //     $lp = "a.asal='$request->lapangan'";
+        //     $lapangan = "$request->lapangan";
+        // }
+        if ($request->sanper <> "") {
+            $sanper = $request->sanper;
+            $bulan = ltrim($request->bulan, 0);
+            $tahun = $request->tahun;
+            $data = "a.kdbank='$sanper' and d.bulan='$bulan' and d.tahun='$tahun'";
+        } else {
+            $sanper = "like '%' ";
+            $bulan = ltrim($request->bulan, 0);
+            $tahun = $request->tahun;
+            $data = "a.kdbank $sanper and d.bulan='$bulan' and d.tahun='$tahun'";
+        }
+        
+        $data_list = DB::select("SELECT a.*,b.ci,c.descacct,d.haribunga,d.bungabulan,d.pph20,d.netbulan,d.accharibunga,d.accnetbulan from mtrdeposito a join kasdoc b on a.docno=b.docno join account c on a.kdbank=c.kodeacct, dtldepositotest d where d.docno=a.docno and d.lineno=a.lineno and d.perpanjangan=a.perpanjangan and $data and $lp");
+        if (!empty($data_list)) {
+            $pdf = PDF::loadview('modul-kontroler.tabel-deposito.penempatan-deposito-pdf', compact(
                 'data_list',
                 'request',
                 'lapangan'
             ))
-            ->setPaper('a4', 'landscape')
-            ->setOption('footer-right', 'Halaman [page] dari [toPage]')
-            ->setOption('footer-font-size', 7)
-            ->setOption('header-html', view('tabel_deposito.export_penemdep_pdf_header',compact('request')))
-            ->setOption('margin-top', 30)
-            ->setOption('margin-bottom', 10);
-    
-            return $pdf->stream('rekap_d2_perperiode_'.date('Y-m-d H:i:s').'.pdf');
+                ->setPaper('a4', 'landscape')
+                ->setOption('footer-right', 'Halaman [page] dari [toPage]')
+                ->setOption('footer-font-size', 7)
+                ->setOption('header-html', view('modul-kontroler.tabel-deposito.penempatan-deposito-pdf-header', compact('request')))
+                ->setOption('margin-top', 30)
+                ->setOption('margin-bottom', 10);
+
+            return $pdf->stream('rekap_d2_perperiode_' . date('Y-m-d H:i:s') . '.pdf');
         } else {
             Alert::info("Tidak ditemukan data yang di cari ", 'Failed')->persistent(true);
-            return redirect()->route('tabel_deposito.index');
+            return redirect()->route('modul_kontroler.tabel_deposito.index');
         }
     }
 }

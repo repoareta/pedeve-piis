@@ -159,7 +159,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is(['modul_kontroler.tabel_deposito.*', 'modul_kontroler.cetak_kas_bank.*']) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -177,7 +177,7 @@
                                 <span class="menu-text">Cetak Kas Bank</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_kontroler.tabel_deposito.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_kontroler.tabel_deposito.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
