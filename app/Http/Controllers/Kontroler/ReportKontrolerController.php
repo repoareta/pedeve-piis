@@ -18,7 +18,7 @@ class ReportKontrolerController extends Controller
     public function create_d2_perbulan()
     {
         $data_tahun = DB::select("SELECT max(tahun||bulan||supbln) as sbulan from fiosd201");
-        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");        
+        $data_kodelok = DB::select("SELECT kodelokasi,nama from mdms");
         $data_sanper = DB::select("SELECT kodeacct,descacct from 
                                     account where length(kodeacct)=6 
                                     and kodeacct not like '%X%' 
@@ -50,23 +50,23 @@ class ReportKontrolerController extends Controller
             $jk = "in ('10','11','13','15','18')";
         }
 
-            $tahun = $request->tahun;
-            if ($request->bulan <> "") {
-                $bulan ="in ('$request->bulan')";
-            } else {
-                $bulan ="in ('01','02','03','04','05','06','07','08','09','10','11','12')";
-            }
+        $tahun = $request->tahun;
+        if ($request->bulan <> "") {
+            $bulan ="in ('$request->bulan')";
+        } else {
+            $bulan ="in ('01','02','03','04','05','06','07','08','09','10','11','12')";
+        }
 
-            if ($request->sanper == "") {
-                $data_list = DB::select("SELECT b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
+        if ($request->sanper == "") {
+            $data_list = DB::select("SELECT b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
                                         from kasline a join kasdoc b on b.docno=a.docno 
                                         where b.jk $jk and substring(b.thnbln from 1 for 4)='$tahun' and substring(b.thnbln from 5 for 2) $bulan and a.keterangan <> 'penutup'");
-            } else {
-                $sanper = "like '$request->sanper'";
-                $data_list = DB::select("SELECT b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
+        } else {
+            $sanper = "like '$request->sanper'";
+            $data_list = DB::select("SELECT b.docno,substring(b.thnbln from 1 for 4) as tahun,substring(b.thnbln from 5 for 2) as bulan,b.jk,b.store,b.voucher,b.ci,b.paiddate as tglbayar,b.rate,a.lineno,a.account,a.lokasi,a.bagian,a.cj,round(a.totprice,2) as totprice,a.keterangan 
                                         from kasline a join kasdoc b on b.docno=a.docno 
                                         where b.jk $jk and substring(b.thnbln from 1 for 4)='$tahun' and substring(b.thnbln from 5 for 2) $bulan and a.account $sanper and a.keterangan <> 'penutup'");
-            }
+        }
 
         // dd($data_list);
         if (!empty($data_list)) {
@@ -123,7 +123,6 @@ class ReportKontrolerController extends Controller
             if ($request->sandi <> "") {
                 $yyy = "$request->sandi";
                 $data_list = ViewReportD5::where('sandi', $yyy)->orderBy('sandi', 'asc')->get();
-                
             } else {
                 $data_list = ViewReportD5::orderBy('sandi', 'asc')->get();
             }
@@ -172,11 +171,11 @@ class ReportKontrolerController extends Controller
     }
     public function exportNeracaKonsolidasi(Request $request)
     {
-            $tahun = "$request->tahun";
-            $bulan = "$request->bulan";
-            $suplesi = "$request->suplesi";
-            $thnbln = "2019$request->bulan$request->suplesi";
-            $obpsi  = "obpsi_$request->tahun";
+        $tahun = "$request->tahun";
+        $bulan = "$request->bulan";
+        $suplesi = "$request->suplesi";
+        $thnbln = "2019$request->bulan$request->suplesi";
+        $obpsi  = "obpsi_$request->tahun";
            
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
@@ -238,11 +237,11 @@ class ReportKontrolerController extends Controller
     }
     public function exportNeracaDetail(Request $request)
     {
-            $tahun = "$request->tahun";
-            $bulan = "$request->bulan";
-            $suplesi = "$request->suplesi";
-            $thnbln = "2019$request->bulan$request->suplesi";
-            $obpsi  = "obpsi_$request->tahun";
+        $tahun = "$request->tahun";
+        $bulan = "$request->bulan";
+        $suplesi = "$request->suplesi";
+        $thnbln = "2019$request->bulan$request->suplesi";
+        $obpsi  = "obpsi_$request->tahun";
        
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
@@ -305,12 +304,11 @@ class ReportKontrolerController extends Controller
     }
     public function exportLabaRugiKonsolidasi(Request $request)
     {
-       
-            $tahun = "$request->tahun";
-            $bulan = "$request->bulan";
-            $suplesi = "$request->suplesi";
-            $thnbln = "2019$request->bulan$request->suplesi";
-            $obpsi  = "obpsi_$request->tahun";
+        $tahun = "$request->tahun";
+        $bulan = "$request->bulan";
+        $suplesi = "$request->suplesi";
+        $thnbln = "2019$request->bulan$request->suplesi";
+        $obpsi  = "obpsi_$request->tahun";
         
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
@@ -357,8 +355,8 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         
         return view('modul-kontroler.report-kontroler.laba-rugi-detail', compact(
-            'data_tahun', 
-            'data_kodelok', 
+            'data_tahun',
+            'data_kodelok',
             'data_sanper'
         ));
     }
@@ -371,12 +369,11 @@ class ReportKontrolerController extends Controller
      */
     public function labaRugiDetailExport(Request $request)
     {
-        
-            $tahun = "$request->tahun";
-            $bulan = "$request->bulan";
-            $suplesi = "$request->suplesi";
-            $thnbln = "2019$request->bulan$request->suplesi";
-            $obpsi  = "obpsi_$request->tahun";
+        $tahun = "$request->tahun";
+        $bulan = "$request->bulan";
+        $suplesi = "$request->suplesi";
+        $thnbln = "2019$request->bulan$request->suplesi";
+        $obpsi  = "obpsi_$request->tahun";
         
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
@@ -424,8 +421,8 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         
         return view('modul-kontroler.report-kontroler.biaya-pegawai-kantor', compact(
-            'data_tahun', 
-            'data_kodelok', 
+            'data_tahun',
+            'data_kodelok',
             'data_sanper'
         ));
     }
@@ -691,8 +688,8 @@ class ReportKontrolerController extends Controller
         $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct desc");
         
         return view('modul-kontroler.report-kontroler.catatan-laporan-keuangan', compact(
-            'data_tahun', 
-            'data_kodelok', 
+            'data_tahun',
+            'data_kodelok',
             'data_sanper'
         ));
     }
