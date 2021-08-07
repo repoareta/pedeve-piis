@@ -869,9 +869,9 @@ class PembayaranPBayarController extends Controller
             }
             $mp = substr($docno, 0, 1);
             if ($mp == "M" or $mp == "m") {
-                $reportname = "export_merah";
+                $reportname = "merah-pdf";
             } else {
-                $reportname = "export_putih";
+                $reportname = "putih-pdf";
             }
             $pdf = DomPDF::loadview("pembayaran_pbayar.$reportname", compact(
                 'request',
@@ -949,7 +949,7 @@ class PembayaranPBayarController extends Controller
                 $namkan = "Wasono H";
                 $reg = "-";
             }
-            return view('modul-treasury.pembayaran-pbayar.rekap_rc', compact(
+            return view('modul-treasury.pembayaran-pbayar.rekap-rc', compact(
                 'docno',
                 'lampiran',
                 'perihal',
@@ -977,7 +977,7 @@ class PembayaranPBayarController extends Controller
 
     public function exportRc(Request $request)
     {
-        $pdf = DomPDF::loadview('modul-treasury.pembayaran-pbayar.export_rc', compact('request'))->setPaper('A4', 'Portrait');
+        $pdf = DomPDF::loadview('modul-treasury.pembayaran-pbayar.rc-pdf', compact('request'))->setPaper('A4', 'Portrait');
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
 

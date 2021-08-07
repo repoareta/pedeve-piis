@@ -1044,9 +1044,9 @@ class PembayaranGajiController extends Controller
             }
             $mp = substr($docno, 0, 1);
             if ($mp == "M" or $mp == "m") {
-                $reportname = "export_merah";
+                $reportname = "merah-pdf";
             } else {
-                $reportname = "export_putih";
+                $reportname = "putih-pdf";
             }
             $pdf = DomPDF::loadview("pembayaran_gaji.$reportname", compact(
                 'request',
@@ -1228,7 +1228,7 @@ class PembayaranGajiController extends Controller
         $namkir = "Sjahril Samad";
         $namkan = "Muhammad Suryohadi";
         $reg = "-";
-        return view('modul-treasury.pembayaran-gaji.rekap_rc', compact(
+        return view('modul-treasury.pembayaran-gaji.rekap-rc', compact(
             'docno',
             'lampiran',
             'perihal',
@@ -1260,9 +1260,9 @@ class PembayaranGajiController extends Controller
     {
         $docno = str_replace('-', '/', $request->docno);
         if ($request->kdkepada == "PGO" or $request->kdkepada == "PGM") {
-            $reportname = "export_rcgajikomisaris";
+            $reportname = "rcgajikomisaris-pdf";
         } else {
-            $reportname = "export_rcgaji";
+            $reportname = "rcgaji-pdf";
         }
 
         $pdf = DomPDF::loadview("modul-treasury.pembayaran-gaji.$reportname", compact('request'))->setPaper('A4', 'Portrait');

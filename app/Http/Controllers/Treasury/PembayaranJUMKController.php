@@ -829,9 +829,9 @@ class PembayaranJUMKController extends Controller
             }
             $mp = substr($docno, 0, 1);
             if ($mp == "M" or $mp == "m") {
-                $reportname = "export_merah";
+                $reportname = "merah-pdf";
             } else {
-                $reportname = "export_putih";
+                $reportname = "putih-pdf";
             }
             $pdf = DomPDF::loadview("modul-treasury.pembayaran-jumk.$reportname", compact(
                 'request',
