@@ -56,7 +56,7 @@ class PajakTahunanController extends Controller
                             ");
         $data_list = VParamPajak::all();
         
-        $pdf = PDF::loadview('modul-treasury.pajak-tahunan.export_proses_pajak_pdf', compact('data_list'))
+        $pdf = PDF::loadview('modul-treasury.pajak-tahunan.proses-pajak-pdf', compact('data_list'))
         ->setPaper('A4', 'landscape')
         ->setOption('footer-right', 'Halaman [page] dari [toPage]')
         ->setOption('footer-font-size', 7)
@@ -324,7 +324,7 @@ class PajakTahunanController extends Controller
                              ");
         $data_list = VParampajak::all();
         
-        $pdf = SnappyPdf::loadview('modul-treasury.pajak-tahunan.export_laporan_pajak_pdf', compact('data_list'))
+        $pdf = SnappyPdf::loadview('modul-treasury.pajak-tahunan.laporan-pajak-pdf', compact('data_list'))
         ->setPaper('legal', 'portrait')
         ->setOption('footer-font-size', 7)
         ->setOption('margin-left', 1)

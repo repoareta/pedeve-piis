@@ -445,14 +445,14 @@ class PenerimaanKasController extends Controller
 
         if (substr(strtoupper($request->no_dokumen), 0, 1) == 'P') {
             // return default PDF
-            $pdf = PDF::loadview('modul-treasury.bukti-kas.export_kas_putih_pdf', compact(
+            $pdf = PDF::loadview('modul-treasury.bukti-kas.kas-putih-pdf', compact(
                 'kasdoc'
             ))->setOption("footer-right", "Page [page] from [topage]");
 
             return $pdf->stream('bkp_'.date('Y-m-d H:i:s').'.pdf');
         } else {
             // return default PDF
-            $pdf = PDF::loadview('modul-treasury.bukti-kas.export_kas_merah_pdf', compact(
+            $pdf = PDF::loadview('modul-treasury.bukti-kas.kas-merah-pdf', compact(
                 'kasdoc'
             ))->setOption("footer-right", "Page [page] from [topage]");
 

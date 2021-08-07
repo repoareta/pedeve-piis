@@ -12,7 +12,7 @@ class CashFlowController extends Controller
 {
     public function mutasi()
     {
-        return view('modul-treasury.cash-flow.report_mutasi');
+        return view('modul-treasury.cash-flow.mutasi');
     }
 
     public function mutasiExport(Request $request)
@@ -44,7 +44,7 @@ class CashFlowController extends Controller
         
 
         // return default PDF
-        $pdf = PDF::loadview('modul-treasury.cash-flow.export_mutasi', compact(
+        $pdf = PDF::loadview('modul-treasury.cash-flow.mutasi-pdf', compact(
             'tahun',
             'bulan',
             'data_list'
@@ -56,7 +56,7 @@ class CashFlowController extends Controller
 
     public function perBulan()
     {
-        return view('modul-treasury.cash-flow.report_perbulan');
+        return view('modul-treasury.cash-flow.perbulan');
     }
 
     public function perBulanExport(Request $request)
@@ -85,7 +85,7 @@ class CashFlowController extends Controller
         ->get();
         
         // return default PDF
-        $pdf = PDF::loadview('modul-treasury.cash-flow.export_perbulan', compact(
+        $pdf = PDF::loadview('modul-treasury.cash-flow.perbulan-pdf', compact(
             'tahun',
             'bulan',
             'data_list'
@@ -97,7 +97,7 @@ class CashFlowController extends Controller
 
     public function perPeriode()
     {
-        return view('modul-treasury.cash-flow.report_per_periode');
+        return view('modul-treasury.cash-flow.per-periode');
     }
 
     public function perPeriodeExport(Request $request)
@@ -123,7 +123,7 @@ class CashFlowController extends Controller
         ->get();        
 
         // return default PDF
-        $pdf = PDF::loadview('modul-treasury.cash-flow.export_per_periode', compact(
+        $pdf = PDF::loadview('modul-treasury.cash-flow.per-periode-pdf', compact(
             'tahun',
             'bulan_mulai',
             'bulan_sampai',
@@ -136,7 +136,7 @@ class CashFlowController extends Controller
 
     public function lengkap()
     {
-        return view('modul-treasury.cash-flow.report_lengkap');
+        return view('modul-treasury.cash-flow.lengkap');
     }
 
     public function lengkapExport(Request $request)
@@ -169,7 +169,7 @@ class CashFlowController extends Controller
         
 
         // return default PDF
-        $pdf = PDF::loadview('modul-treasury.cash-flow.export_lengkap', compact(
+        $pdf = PDF::loadview('modul-treasury.cash-flow.lengkap-pdf', compact(
             'tahun',
             'bulan_mulai',
             'bulan_sampai',
@@ -182,7 +182,7 @@ class CashFlowController extends Controller
 
     public function perMataUang()
     {
-        return view('modul-treasury.cash-flow.report_per_mata_uang');
+        return view('modul-treasury.cash-flow.per-mata-uang');
     }
 
     public function perMataUangExport(Request $request)
@@ -214,7 +214,7 @@ class CashFlowController extends Controller
         // dd($data_list);
 
         // return default PDF
-        $pdf = PDF::loadview('modul-treasury.cash-flow.export_per_mata_uang', compact(
+        $pdf = PDF::loadview('modul-treasury.cash-flow.per-mata-uang-pdf', compact(
             'tahun',
             'bulan',
             'data_list'
