@@ -351,7 +351,7 @@ class RekapHarianKasController extends Controller
             ");
         // dd($request->jk);
         if (!empty($data_list)) {
-            $pdf = PDF::loadview('modul-treasury.rekap-harian-kas.export_hariankas', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+            $pdf = PDF::loadview('modul-treasury.rekap-harian-kas.hariankas-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             // $pdf->output();
             // $dom_pdf = $pdf->getDomPDF();
 
