@@ -30,15 +30,21 @@ class PostingKasBankController extends Controller
                             ->where('verified', 'Y')
                             ->where('posted', 'N');
 
-        if($request->bulan && $request->tahun){
+        if(
+            $request->has('bulan') && 
+            $request->bulan != '' &&
+            $request->has('tahun') && 
+            $request->tahun != ''
+        ){
             $dataKasDoc->where('thnbln', $request->tahun.$request->bulan);
         }	
-
         $dataKasDoc->orderBy('store', 'asc')
-                    ->orderBy('voucher', 'asc')
-                    ->orderBy('paiddate', 'asc');
+        ->orderBy('voucher', 'asc')
+        ->orderBy('paiddate', 'asc');
 
-        return datatables()->of($dataKasDoc)
+        $data = $dataKasDoc->get();
+        
+        return datatables()->of($data)
         ->addColumn('paiddate', function ($data) {
             if($data->paiddate <>""){
                 $tgl = date_create($data->paiddate);

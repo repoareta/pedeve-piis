@@ -38,15 +38,15 @@
                 <div class="col-lg-3 col-xl-3">
                     <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan">	
                         <option value="">- Pilih Data -</option>								                        
-                        <option value="1" {{ $bulan  == '01' ? 'selected' : '' }}>Januari</option>
-                        <option value="2" {{ $bulan  == '02' ? 'selected' : '' }}>Februari</option>
-                        <option value="3" {{ $bulan  == '03' ? 'selected' : '' }}>Maret</option>
-                        <option value="4" {{ $bulan  == '04' ? 'selected' : '' }}>April</option>
-                        <option value="5" {{ $bulan  == '05' ? 'selected' : '' }}>Mei</option>
-                        <option value="6" {{ $bulan  == '06' ? 'selected' : '' }}>Juni</option>
-                        <option value="7" {{ $bulan  == '07' ? 'selected' : '' }}>Juli</option>
-                        <option value="8" {{ $bulan  == '08' ? 'selected' : '' }}>Agustus</option>
-                        <option value="9" {{ $bulan  == '09' ? 'selected' : '' }}>September</option>
+                        <option value="01" {{ $bulan  == '01' ? 'selected' : '' }}>Januari</option>
+                        <option value="02" {{ $bulan  == '02' ? 'selected' : '' }}>Februari</option>
+                        <option value="03" {{ $bulan  == '03' ? 'selected' : '' }}>Maret</option>
+                        <option value="04" {{ $bulan  == '04' ? 'selected' : '' }}>April</option>
+                        <option value="05" {{ $bulan  == '05' ? 'selected' : '' }}>Mei</option>
+                        <option value="06" {{ $bulan  == '06' ? 'selected' : '' }}>Juni</option>
+                        <option value="07" {{ $bulan  == '07' ? 'selected' : '' }}>Juli</option>
+                        <option value="08" {{ $bulan  == '08' ? 'selected' : '' }}>Agustus</option>
+                        <option value="09" {{ $bulan  == '09' ? 'selected' : '' }}>September</option>
                         <option value="10" {{ $bulan  == '10' ? 'selected' : '' }}>Oktober</option>
                         <option value="11" {{ $bulan  == '11' ? 'selected' : '' }}>November</option>
                         <option value="12" {{ $bulan  == '12' ? 'selected' : '' }}>Desember</option>
@@ -97,7 +97,8 @@ $(document).ready(function () {
         ajax: {
             url: "{{ route('modul_kontroler.postingan_kas_bank.index.json') }}",
             data: function (d) {
-                d.pencarian = $('input[name=pencarian]').val();
+                d.bulan = $('select[name=bulan]').val();
+                d.tahun = $('input[name=tahun]').val();
             }
         },
         columns: [
