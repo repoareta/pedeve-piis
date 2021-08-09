@@ -421,7 +421,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::get('proses-gaji/slip-gaji', [ProsesGajiController::class, 'slipGaji'])->name('slip_gaji');
         Route::post('proses-gaji/slip-gaji/cetak', [ProsesGajiController::class, 'slipGajiExport'])->name('slip_gaji.export');
         Route::get('proses-gaji/rekap-gaji', [ProsesGajiController::class, 'rekapGaji'])->name('rekap_gaji');
-        Route::post('proses-gaji/rekap-gaji/export', [ProsesGajiController::class, 'rekapGajiExport'])->name('rekap_gaji.export');
+        Route::get('proses-gaji/rekap-gaji/export', [ProsesGajiController::class, 'rekapGajiExport'])->name('rekap_gaji.export');
         Route::get('proses-gaji/daftar-upah', [ProsesGajiController::class, 'daftarUpah'])->name('daftar_upah');
         Route::post('proses-gaji/daftar-upah/export', [ProsesGajiController::class, 'daftarUpahExport'])->name('daftar_upah.export');
     });

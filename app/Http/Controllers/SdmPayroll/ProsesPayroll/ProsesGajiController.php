@@ -4857,7 +4857,7 @@ class ProsesGajiController extends Controller
             sum(CASE WHEN a.aard in ('28','44')  THEN round(a.nilai,0) ELSE '0' END) as pot_koperasi
             from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag where b.status='C' and a.tahun='$request->tahun' and a.bulan='$request->bulan' and c.mulai=(select max(mulai) from sdm_jabatan where nopeg=a.nopek) group by a.nopek,b.nama,b.kodekeluarga,d.nama,d.kode");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_rekapgajitetap', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-gaji-pdf-tetap', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -4867,7 +4867,7 @@ class ProsesGajiController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
+                return redirect()->route('modul_sdm_payroll.proses_gaji.rekap_gaji');
             }
         } elseif ($request->prosesupah == 'K') {
             $data_list = db::select("SELECT a.nopek,b.nama,d.nama as nmbag,d.kode ,
@@ -4890,7 +4890,7 @@ class ProsesGajiController extends Controller
             sum(CASE WHEN a.aard in ('28','44')  THEN round(a.nilai,0) ELSE '0' END) as pot_koperasi
             from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag where b.status='K' and a.tahun='$request->tahun' and a.bulan='$request->bulan' and c.mulai=(select max(mulai) from sdm_jabatan where nopeg=a.nopek) group by a.nopek,b.nama,b.kodekeluarga,d.nama,d.kode;");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_rekapgajikontrak', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-gaji-pdf-kontrak', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -4900,7 +4900,7 @@ class ProsesGajiController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
+                return redirect()->route('modul_sdm_payroll.proses_gaji.rekap_gaji');
             }
         } elseif ($request->prosesupah == 'B') {
             $data_list = db::select("SELECT a.nopek,b.nama,d.nama as nmbag,d.kode ,
@@ -4926,7 +4926,7 @@ class ProsesGajiController extends Controller
             sum(CASE WHEN a.aard in ('28','44')  THEN round(a.nilai,0) ELSE '0' END) as pot_koperasi
             from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag where b.status='B' and a.tahun='$request->tahun' and a.bulan='$request->bulan' and c.mulai=(select max(mulai) from sdm_jabatan where nopeg=a.nopek) group by a.nopek,b.nama,b.kodekeluarga,d.nama,d.kode;");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_rekapgajibantu', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-gaji-pdf-perbantuan', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -4936,7 +4936,7 @@ class ProsesGajiController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
+                return redirect()->route('modul_sdm_payroll.proses_gaji.rekap_gaji');
             }
         } elseif ($request->prosesupah == 'U') {
             $data_list = db::select("SELECT a.nopek,b.nama,d.nama as nmbag,d.kode ,
@@ -4948,7 +4948,7 @@ class ProsesGajiController extends Controller
             sum(CASE WHEN a.aard ='23' THEN round(a.nilai,0) ELSE '0' END) as pembulatan
             from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag where b.status='U' and a.tahun='$request->tahun' and a.bulan='$request->bulan' and c.mulai=(select max(mulai) from sdm_jabatan where nopeg=a.nopek) group by a.nopek,b.nama,b.kodekeluarga,d.nama,d.kode;");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_rekappengurus', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-gaji-pdf-komisaris', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -4958,7 +4958,7 @@ class ProsesGajiController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
+                return redirect()->route('modul_sdm_payroll.proses_gaji.rekap_gaji');
             }
         } else {
             $data_list = db::select("SELECT a.nopek,b.nama,d.nama as nmbag,d.kode ,
@@ -4970,7 +4970,7 @@ class ProsesGajiController extends Controller
             sum(CASE WHEN a.aard ='23' THEN round(a.nilai,0) ELSE '0' END) as pembulatan
             from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag where b.status='O' and a.tahun='$request->tahun' and a.bulan='$request->bulan' and c.mulai=(select max(mulai) from sdm_jabatan where nopeg=a.nopek) group by a.nopek,b.nama,b.kodekeluarga,d.nama,d.kode;");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_rekapkomite', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-gaji-pdf-komite', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -4980,7 +4980,7 @@ class ProsesGajiController extends Controller
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Nopeg: $request->nopek Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);
-                return redirect()->route('modul_sdm_payroll.proses_gaji.ctkrekapgaji');
+                return redirect()->route('modul_sdm_payroll.proses_gaji.rekap_gaji');
             }
         }
     }

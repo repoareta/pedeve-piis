@@ -20,8 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.proses_gaji.rekap_gaji.export') }}" method="POST">
-                    @csrf
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_gaji.rekap_gaji.export') }}" method="GET">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                         <div class="col-4">
@@ -46,8 +45,7 @@
                             </select>
                         </div>
                         <div class="col-4" >
-                            <input class="form-control tahun" type="text" value="{{ $tahun }}" autocomplete="off" required autocomplete="off">
-                            <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
+                            <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -100,7 +98,7 @@
     $(document).ready(function () {    
         $('#tanggal').datepicker({
             todayHighlight: true,
-            // orientation: "bottom left",
+            orientation: "bottom left",
             autoclose: true,
             language : 'id',
             format   : 'dd MM yyyy'
