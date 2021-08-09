@@ -132,15 +132,15 @@ class ReportKontrolerController extends Controller
                     $tahun = $data_bln->tahun;
                     $suplesi = $data_bln->suplesi;
                 }
-                $pdf = PDF::loadview('modul-kontroler.report-kontroler.export_d5_pdf', compact('data_list'))
+                $pdf = PDF::loadview('modul-kontroler.report-kontroler.export-d5-pdf', compact('data_list'))
                 ->setPaper('a4', 'landscape')
                 ->setOption('footer-right', 'Halaman [page] dari [toPage]')
                 ->setOption('footer-font-size', 8)
-                ->setOption('header-html', view('modul-kontroler.report-kontroler.export_d5_pdf_header', compact('bulan', 'tahun', 'suplesi')))
+                ->setOption('header-html', view('modul-kontroler.report-kontroler.export-d5-pdf-header', compact('bulan', 'tahun', 'suplesi')))
                 ->setOption('margin-top', 30)
                 ->setOption('margin-bottom', 10);
 
-                return $pdf->stream('rekap_d5_'.date('Y-m-d H:i:s').'.pdf');
+                return $pdf->stream('rekap-d5-'.date('Y-m-d H:i:s').'.pdf');
             } else {
                 Alert::info("Tidak ditemukan data yang di cari", 'Failed')->persistent(true);
                 return redirect()->route('modul_kontroler.d5_report.create_d5_report');
@@ -150,6 +150,7 @@ class ReportKontrolerController extends Controller
             return redirect()->route('modul_kontroler.d5_report.create_d5_report');
         }
     }
+
     public function create_neraca_konsolidasi()
     {
         $data_tahun = DB::table('fiosd201')
@@ -176,7 +177,7 @@ class ReportKontrolerController extends Controller
         $suplesi = "$request->suplesi";
         $thnbln = "2019$request->bulan$request->suplesi";
         $obpsi  = "obpsi_$request->tahun";
-           
+        
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
@@ -242,7 +243,7 @@ class ReportKontrolerController extends Controller
         $suplesi = "$request->suplesi";
         $thnbln = "2019$request->bulan$request->suplesi";
         $obpsi  = "obpsi_$request->tahun";
-       
+    
         $data_cek = DB::select("SELECT a.tablename as vada from pg_tables a where a.tablename = '$obpsi' ");
         if (!empty($data_cek)) {
             DB::statement("DROP VIEW IF EXISTS v_report_d5 CASCADE");
@@ -564,7 +565,7 @@ class ReportKontrolerController extends Controller
         })
         ->first();
 
-        $pdf = PDF::loadview('modul-kontroler.report-kontroler.export_d2_perbulan_pdf', compact(
+        $pdf = PDF::loadview('modul-kontroler.report-kontroler.export-d2-perbulan-pdf', compact(
             'd2_list',
             'd2_total',
             'tahun',
@@ -573,11 +574,11 @@ class ReportKontrolerController extends Controller
         ->setPaper('a4', 'landscape')
         ->setOption('footer-right', 'Halaman [page] dari [toPage]')
         ->setOption('footer-font-size', 7)
-        ->setOption('header-html', view('modul-kontroler.report-kontroler.export_d2_perbulan_pdf_header', compact('bulan', 'tahun')))
+        ->setOption('header-html', view('modul-kontroler.report-kontroler.export-d2-perbulan-pdf-header', compact('bulan', 'tahun')))
         ->setOption('margin-top', 30)
         ->setOption('margin-bottom', 10);
 
-        return $pdf->stream('rekap_d2_perbulan_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->stream('rekap-d2-perbulan-'.date('Y-m-d H:i:s').'.pdf');
     }
 
     public function d2PerPeriodeExport(Request $request)
@@ -666,7 +667,7 @@ class ReportKontrolerController extends Controller
         })
         ->first();
 
-        $pdf = PDF::loadview('modul-kontroler.report-kontroler.export_d2_perperiode_pdf', compact(
+        $pdf = PDF::loadview('modul-kontroler.report-kontroler.export-d2-perperiode-pdf', compact(
             'd2_list',
             'd2_total',
             'tahun',
@@ -676,11 +677,11 @@ class ReportKontrolerController extends Controller
         ->setPaper('a4', 'landscape')
         ->setOption('footer-right', 'Halaman [page] dari [toPage]')
         ->setOption('footer-font-size', 7)
-        ->setOption('header-html', view('modul-kontroler.report-kontroler.export_d2_perperiode_pdf_header', compact('tahun', 'bulan_mulai', 'bulan_sampai')))
+        ->setOption('header-html', view('modul-kontroler.report-kontroler.export-d2-perperiode-pdf-header', compact('tahun', 'bulan_mulai', 'bulan_sampai')))
         ->setOption('margin-top', 30)
         ->setOption('margin-bottom', 10);
 
-        return $pdf->stream('rekap_d2_perperiode_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->stream('rekap-d2-perperiode-'.date('Y-m-d H:i:s').'.pdf');
     }
 
     

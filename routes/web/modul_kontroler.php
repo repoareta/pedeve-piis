@@ -252,7 +252,7 @@ Route::prefix('kontroler')->name('modul_kontroler.')->group(function () {
     Route::name('d5_report.')->group(function () {
         Route::get('d5-report', [ReportKontrolerController::class, 'create_d5_report'])->name('create_d5_report');
         Route::get('d5-report/search/account', [ReportKontrolerController::class, 'searchAccount'])->name('search.account');
-        Route::post('d5-report/export', [ReportKontrolerController::class, 'exportD5'])->name('export');
+        Route::get('d5-report/export', [ReportKontrolerController::class, 'exportD5'])->name('export');
     });
     //end d5_report
 

@@ -54,7 +54,7 @@
                 </div>
                 <label class="col-xl-1 col-lg-1 col-form-label">Tahun</label>
                 <div class="col-lg-3 col-xl-3">                    
-                    <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" onkeypress="return hanyaAngka(event)" autocomplete="off">                    
+                    <input class="form-control tahun only-number" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">                    
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -128,14 +128,14 @@ $(document).ready(function () {
         e.preventDefault();
         location.replace("{{ route('modul_kontroler.postingan_kas_bank.btlposting') }}");
     });
+
+    $(".only-number").on("keypress keyup blur",function (event) {    
+        $(this).val($(this).val().replace(/[^\d].+/, ""));
+        if ((event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
 });
 
-function hanyaAngka(evt) {
-	var charCode = (evt.which) ? evt.which : event.keyCode
-	if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-	return false;
-	return true;
-}
 </script>
 @endpush

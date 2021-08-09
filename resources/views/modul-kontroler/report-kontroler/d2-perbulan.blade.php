@@ -29,8 +29,7 @@
                         <div class="alert-text">Header Tabel Cetak Rincian Transaksi D2 </div>
                     </div>
                 </div>
-                <form class="form" id="formD2Perbulan" action="{{ route('modul_kontroler.d2_perbulan.export') }}" method="POST">
-					@csrf
+                <form class="form" id="formD2Perbulan" action="{{ route('modul_kontroler.d2_perbulan.export') }}" method="GET" target="_blank">
 					<div class="form-group row">
 						<label for="jk-input" class="col-2 col-form-label">JK<span class="text-danger">*</span></label>
 						<div class="col-10 col-form-label">
