@@ -263,9 +263,8 @@ class PerjalananDinasController extends Controller
         }
 
         // return default PDF
-        $pdf = DomPDF::loadView('modul-umum.perjalanan-dinas.export-pdf', compact('panjar_header_list', 'mulai', 'sampai'))
-        ->setPaper('a4', 'landscape')
-        ->setOptions(['isPhpEnabled' => true]);
+        $pdf = DomPDF::loadView('modul-umum.perjalanan-dinas.rekap-pdf', compact('panjar_header_list', 'mulai', 'sampai'))
+        ->setPaper('a4', 'landscape');;
 
         return $pdf->stream('rekap_spd_'.date('Y-m-d H:i:s').'.pdf');
     }

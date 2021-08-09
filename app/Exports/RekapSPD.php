@@ -35,10 +35,10 @@ class RekapSPD implements FromView, WithDrawings, WithEvents, ShouldAutoSize
         $sampai = $this->sampai;
         
         if ($this->type == 'xlsx') {
-            return view('perjalanan_dinas.export_xlsx', compact('panjar_header_list', 'mulai', 'sampai'));
+            return view('modul-umum.perjalanan-dinas.rekap-xlsx', compact('panjar_header_list', 'mulai', 'sampai'));
         }
         
-        return view('perjalanan_dinas.export_csv', compact('panjar_header_list'));
+        return view('modul-umum.perjalanan-dinas.rekap-csv', compact('panjar_header_list'));
     }
 
     public function drawings()
