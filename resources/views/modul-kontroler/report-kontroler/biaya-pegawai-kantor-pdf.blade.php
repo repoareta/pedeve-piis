@@ -45,11 +45,11 @@
             <table width="100%" >
                 <tr>
                 <td align="center" style="padding-left:200px;">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px"  style="padding-right:30px;"><br>
-                   <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
-                   <font style="font-size: 10pt;font-weight: bold ">RINCIAN BIAYA PEGAWAI DAN KANTOR</font><br>
-                   <font style="font-size: 10pt;"> PERIODE : {{ $request->bulan1}} S/D {{ $request->bulan2}} {{ $request->tahun }} </font><br>
-                    </td>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-right:30px;"><br>
+                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
+                    <font style="font-size: 10pt;font-weight: bold ">RINCIAN BIAYA PEGAWAI DAN KANTOR</font><br>
+                    <font style="font-size: 10pt;"> PERIODE : {{ $request->bulan1}} S/D {{ $request->bulan2}} {{ $request->tahun }} </font><br>
+                </td>
                 </tr>
             </table>
         </header>

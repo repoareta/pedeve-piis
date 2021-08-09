@@ -81,10 +81,10 @@
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Lapangan<span class="text-danger">*</span></label>
 							<div class="col-10" >
-								<select class="" name="" id="">
+								<select class="form-control select2" style="width: 100% !important;" name="lapangan" id="lapangan">
 									<option value="MD">MMD</option>
-									<option value="MD">MMD</option>
-									<option value="MD">MMD</option>
+									<option value="MS">MS</option>
+									<option value="KL">KONSOLIDASI</option>
 								</select>
 							</div>
 						</div>

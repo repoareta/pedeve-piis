@@ -372,6 +372,7 @@ class ReportKontrolerController extends Controller
         $tahun = "$request->tahun";
         $bulan = "$request->bulan";
         $suplesi = "$request->suplesi";
+        $lapangan = "$request->lapangan";
         $thnbln = "2019$request->bulan$request->suplesi";
         $obpsi  = "obpsi_$request->tahun";
         
@@ -386,11 +387,18 @@ class ReportKontrolerController extends Controller
             DB::statement("CREATE VIEW v_neraca AS
                             select tahun,bulan,suplesi,mu,jb,sandi,lapangan,last_rp,last_dl,cur_rp,cur_dl,cum_rp,cum_dl, m.* from v_report_d5 d, v_main_account m where substr(d.sandi,1,length(m.batas_awal)) between m.batas_awal and m.batas_akhir and strpos(m.lokasi,d.lapangan)>0
                             ");
-            $data_list = DB::select("
-                    select 
-                    a.*, c.pengali_tampil as pengali_tmpl
-                    from v_neraca a join v_sub_class_account b on a.urutan_sc=b.urutan join v_class_account c on b.urutan_cs=c.urutan_sc order by a.sub_akun asc
-                    ");
+            $data_list = DB::select("SELECT 
+            a.*, c.pengali_tampil as pengali_tmpl 
+            from v_neraca a 
+            join v_sub_class_account b 
+            on a.urutan_sc=b.urutan 
+            join v_class_account c 
+            on b.urutan_cs=c.urutan_sc
+            WHERE tahun = '$tahun'
+            AND bulan = '$bulan'
+            AND suplesi = '$suplesi'
+            AND lapangan = '$lapangan'
+            order by a.sub_akun asc");
         
             if (!empty($data_list)) {
                 $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.laba-rugi-detail-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
