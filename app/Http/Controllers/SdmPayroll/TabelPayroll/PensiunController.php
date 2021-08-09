@@ -228,7 +228,7 @@ class PensiunController extends Controller
             Alert::info("Tidak ditemukan data Tahun: $request->tahun", 'Failed')->persistent(true);
             return redirect()->route('modul_sdm_payroll.pensiun.rekap_iuran');
         }
-        $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.export-rekap-iuranpensiun',compact('request','data_list'))->setPaper('legal', 'landscape');
+        $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.rekap-iuran-pensiun-pdf',compact('request','data_list'))->setPaper('legal', 'landscape');
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
 
