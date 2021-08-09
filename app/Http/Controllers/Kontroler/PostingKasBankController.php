@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Fiosd201;
 use App\Models\Kasdoc;
 use App\Models\Kasline;
+use App\Models\BulanKontroller;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -13,39 +14,36 @@ use Illuminate\Http\Request;
 class PostingKasBankController extends Controller
 {
     public function index()
- {
-    $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from bulankontroller where status='1' and length(thnbln)='6'");
-    if(!empty($data_tahunbulan)) {
-        foreach ($data_tahunbulan as $data_bul) {
-            $tahun = substr($data_bul->bulan_buku,0,-2); 
-            $bulan = substr($data_bul->bulan_buku,4); 
-        }
-    } else {
-        $bulan ='00';
-        $tahun ='0000';
-    }
-    return view('posting_kas_bank.index',compact('tahun','bulan'));
- }
- public function indexJson(Request $request)
     {
-        $rsbulan = DB::select("SELECT max(thnbln) as thnbln from bulankontroller where status='1' and length(thnbln)=6");
-        if(!empty($rsbulan)){
-            foreach($rsbulan as $dat)
-            {
-                if(is_null($dat->thnbln)){
-                    $thnblopen2 = "";
-                } else {
-                    $thnblopen2 = $dat->thnbln;
-                }
-            }
-        } else {
-            $thnblopen2 = "";
-        }
-        if($request->bulan <>"" and $request->tahun<>""){
-            $data = DB::select("SELECT a.* from kasdoc a where a.thnbln ='$request->tahun$request->bulan' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
-        } else {
-            $data = DB::select("SELECT a.* from kasdoc a where a.thnbln ='$thnblopen2' and a.verified='Y' and a.posted='N' order by a.store,a.voucher,a.paiddate asc");
-        }		
+        $dataTahunBulan = BulanKontroller::select(DB::raw('max(thnbln) as bulan_buku'))
+                                        ->where('status', 1)
+                                        ->first();
+        $tahun = $dataTahunBulan ? substr($dataTahunBulan->bulan_buku,0,-2) : date('Y'); 
+        $bulan = $dataTahunBulan ? substr($dataTahunBulan->bulan_buku,4) : date('m');             
+
+        return view('modul-kontroler.posting-kas-bank.index',compact('tahun','bulan'));
+    }
+
+    public function indexJson(Request $request)
+    {
+        $dataKasDoc = Kasdoc::select('*')
+                            ->where('verified', 'Y')
+                            ->where('posted', 'N');
+
+        if(
+            $request->has('bulan') && 
+            $request->bulan != '' &&
+            $request->has('tahun') && 
+            $request->tahun != ''
+        ){
+            $dataKasDoc->where('thnbln', $request->tahun.$request->bulan);
+        }	
+        $dataKasDoc->orderBy('store', 'asc')
+        ->orderBy('voucher', 'asc')
+        ->orderBy('paiddate', 'asc');
+
+        $data = $dataKasDoc->get();
+        
         return datatables()->of($data)
         ->addColumn('paiddate', function ($data) {
             if($data->paiddate <>""){
@@ -54,37 +52,37 @@ class PostingKasBankController extends Controller
             } else {
                 return '0';
             }
-       })
+        })
         ->addColumn('docno', function ($data) {
             return $data->docno;
-       })
+        })
         ->addColumn('thnbln', function ($data) {
             return $data->thnbln;
-       })
+        })
         ->addColumn('keterangan', function ($data) {
             return $data->kepada;
-       })
+        })
         ->addColumn('jk', function ($data) {
             return $data->jk;
-       })
+        })
         ->addColumn('store', function ($data) {
             return $data->store;
-       })
+        })
         ->addColumn('voucher', function ($data) {
             return $data->voucher;
-       })
+        })
         ->addColumn('nilai', function ($data) {
             return number_format($data->nilai_dok,2,'.',',');
-       })
-        ->addColumn('radio', function ($data) {
+        })
+        ->addColumn('action', function ($data) {
             if($data->verified == 'Y'){
-                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
+                $action = '<a href="'. route('modul_kontroler.postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="Batalkan Verifikasi" style="cursor:hand"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
             } else {
-                $action = '<a href="'. route('postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="" style="cursor:hand"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
+                $action = '<a href="'. route('modul_kontroler.postingan_kas_bank.verkas',['no' => str_replace('/', '-', $data->docno),'id' => $data->verified]).'"><span class="pointer-link" title="" style="cursor:hand"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
             }               
             return $action;
         })
-        ->rawColumns(['radio'])
+        ->rawColumns(['action'])
         ->make(true); 
     }
 
@@ -178,7 +176,7 @@ class PostingKasBankController extends Controller
                 }
             }
             $data_rsjurnal = DB::select("SELECT distinct(store) from kasdoc where paid='Y' and verified='N'");
-            return view('posting_kas_bank.verkas',compact(
+            return view('modul-kontroler.posting-kas-bank.verkas',compact(
                                                         'jumlahnya',
                                                         'verified',
                                                         'data_detail',
@@ -264,7 +262,7 @@ class PostingKasBankController extends Controller
         
             $data_rsjurnal = DB::select("SELECT distinct(store) from kasdoc where paid='Y' and verified='N'");
 
-        return view('posting_kas_bank.verkas',compact(
+        return view('modul-kontroler.posting-kas-bank.verkas',compact(
                                                         'jumlahnya',
                                                         'verified',
                                                         'data_detail',
@@ -323,6 +321,7 @@ class PostingKasBankController extends Controller
         $data = Kasline::where('docno', $docno)->where('lineno', $id)->get();
         return response()->json($data[0]);
     }
+
     public function storeDetail(Request $request)
     {
             $docno = $request->kode;	
@@ -363,6 +362,7 @@ class PostingKasBankController extends Controller
             }
         }
     }
+
     public function updateDetail(Request $request)
     {
             $docno = $request->kode;	
@@ -413,7 +413,7 @@ class PostingKasBankController extends Controller
     public function prsposting()
     {
         $data_kas = DB::select("SELECT distinct(store) as store,(select namabank from storejk where kodestore=store) as bank,(select jeniskartu from storejk where kodestore=store) as jk from kasdoc where verified='Y' and posted='N'");
-        return view('posting_kas_bank.prsposting',compact('data_kas'));
+        return view('modul-kontroler.posting-kas-bank.prsposting',compact('data_kas'));
     }
     public function storePrsposting(Request $request)
     {
@@ -580,7 +580,7 @@ class PostingKasBankController extends Controller
     public function btlposting()
     {
         $data_kas = DB::select("SELECT distinct(store),(select namabank from storejk where kodestore=store) as bank,(select jeniskartu from storejk where kodestore = store) as jk from kasdoc where verified='Y' and posted='Y'");
-        return view('posting_kas_bank.btlposting',compact('data_kas'));
+        return view('modul-kontroler.posting-kas-bank.btlposting',compact('data_kas'));
     }
     public function storeBtlposting(Request $request)
     {
@@ -687,4 +687,4 @@ class PostingKasBankController extends Controller
         }
 
     }
-}
+    }
