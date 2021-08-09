@@ -149,14 +149,15 @@ class PensiunController extends Controller
         $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
         if(!empty($data_cek) and !empty($data_cek1)) {
             $data_list = DB::select("SELECT nopek, nama, 
-                                    SUM(CASE WHEN aard ='15' THEN curramount ELSE '0' END) as aard15,
-                                    SUM(CASE WHEN aard ='46' THEN curramount ELSE '0' END) as aard46,
-                                    SUM(CASE WHEN aard ='14' THEN curramount*-1 ELSE '0' END) as aard14
+                                    sum(CASE WHEN aard ='15'  THEN curramount ELSE '0' END) as aard15,
+                                    sum(CASE WHEN aard ='46'  THEN curramount ELSE '0' END) as aard46,
+                                    sum(CASE WHEN aard ='14'  THEN curramount*-1 ELSE '0' END) as aard14
                                     from (select a.nopek,b.nama,a.aard,a.curramount
                                     from pay_master_bebanprshn a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard in ('15','46') and a.tahun='$request->tahun' and a.bulan='$request->bulan' union all
                                     select c.nopek,d.nama, c.aard, c.nilai as curramount
                                     from pay_master_upah c join sdm_master_pegawai d on c.nopek=d.nopeg where c.aard='14' and c.tahun='$request->tahun' and c.bulan='$request->bulan') d group by nama, nopek order by nama asc");
-            $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.export_iuranpensiun',compact('request','data_list'))->setPaper('a4', 'Portrait');
+                        
+            $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.export-iuran',compact('request','data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -166,7 +167,7 @@ class PensiunController extends Controller
             return $pdf->stream();
         } else {
             Alert::info("Tidak ditemukan data Bulan: $request->bulan dan Tahun: $request->tahun", 'Failed')->persistent(true);
-            return redirect()->route('modul_sdm_payroll.pensiun.ctkiuranpensiun');
+            return redirect()->route('modul_sdm_payroll.pensiun.daftar_iuran');
         }
     }
 
