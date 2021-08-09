@@ -89,7 +89,7 @@ th {
             </div>
     
             <div>
-                <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-top:10px">
+                <img src="data:image/png;base64,{{ $image }}" width="120px" height="60px" style="padding-top:10px" align="right">
             </div>
         </div>
     </header>

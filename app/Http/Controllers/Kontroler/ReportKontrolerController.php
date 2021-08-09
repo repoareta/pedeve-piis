@@ -393,7 +393,7 @@ class ReportKontrolerController extends Controller
                     ");
         
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.export_laba_rugi_detail', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
+                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.laba-rugi-detail-pdf', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
             
@@ -729,10 +729,12 @@ class ReportKontrolerController extends Controller
 
         // dd($account_sc);
 
+        $image = base64_encode(file_get_contents(public_path('/images/pertamina.jpg')));
         $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.catatan-laporan-keuangan-pdf', compact(
             'account_sc',
             'tahun',
-            'bulan'
+            'bulan',
+            'image'
         ))
         ->setPaper('a4', 'potrait')
         ->setOptions(['isPhpEnabled' => true]);
