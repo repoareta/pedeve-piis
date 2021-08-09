@@ -244,8 +244,9 @@ class LemburController extends Controller
     public function rekapLemburExport(Request $request)
     {
         $data_list = DB::select("SELECT a.*, b.* from pay_lembur a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun='$request->tahun' and a.bulan='$request->bulan'");
+        
         if (!empty($data_list)) {
-            $pdf = DomPDF::loadview('lembur.rekap-lembur-pdf', compact('request', 'data_list'))->setPaper('a4', 'landscape');
+            $pdf = DomPDF::loadview('modul-sdm-payroll.lembur.rekap-lembur-pdf', compact('request', 'data_list'))->setPaper('a4', 'landscape');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -254,8 +255,8 @@ class LemburController extends Controller
             // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
             return $pdf->stream();
         } else {
-            Alert::error('Tidak Ada Data Yang Dicari', 'Failed')->persistent(true);
-            return redirect()->route('lembur.rekap_lembur');
+            Alert::error('Data Yang Dicari Tidak Ada', 'Failed')->persistent(true);
+            return redirect()->route('modul_sdm_payroll.lembur.rekap_lembur');
         }
     }
 }
