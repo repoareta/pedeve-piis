@@ -86,7 +86,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::get('uang-muka-kerja/edit-detail/{id}/{no}', [UangMukaKerjaController::class, 'editDetail'])->name('edit.detail');
         Route::get('uang-muka-kerja/approve/{id}', [UangMukaKerjaController::class, 'approve'])->name('approve');
         Route::get('uang-muka-kerja/rekap/{id}', [UangMukaKerjaController::class, 'rekap'])->name('rekap');
-        Route::get('uang-muka-kerja/rekaprange', [UangMukaKerjaController::class, 'rekapRange'])->name('rekap.range');
+        Route::get('uang-muka-kerja/rekap-range', [UangMukaKerjaController::class, 'rekapRange'])->name('rekap.range');
         Route::post('uang-muka-kerja/rekap/export', [UangMukaKerjaController::class, 'rekapExport'])->name('rekap.export');
         Route::post('uang-muka-kerja/rekap/export/range', [UangMukaKerjaController::class, 'rekapExportRange'])->name('rekap.export.range');
         Route::get('uang-muka-kerja/show-json', [UangMukaKerjaController::class, 'showJson'])->name('show.json');

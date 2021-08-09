@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form class="form" action="{{ route('modul_umum.perjalanan_dinas.rekap.export') }}" method="POST" id="formRekapSPD">
+        <form class="form" action="{{ route('modul_umum.uang_muka_kerja.rekap.export.range') }}" method="POST" id="formRekapSPD">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">Mulai</label>
@@ -60,6 +60,7 @@
         $('#date_range_picker').datepicker({
             todayHighlight: true,
             format   : 'yyyy-mm-dd',
+            orientation: "bottom left",
         });
 
         $("#formRekapSPD").on('submit', function(){

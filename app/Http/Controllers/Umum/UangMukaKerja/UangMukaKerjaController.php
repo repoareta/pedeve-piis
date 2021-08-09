@@ -527,14 +527,14 @@ class UangMukaKerjaController extends Controller
         $data_cek = Umk::whereBetween('tgl_panjar', [$request->mulai, $request->sampai])->count();
         if ($data_cek == 0) {
             Alert::error('Tidak Ada Data Pada Tanggal Mulai: '.$request->mulai.' Sampai Tanggal: '.$request->sampai.'', 'Failed')->persistent(true);
-            return redirect()->route('permintaan_bayar.rekap.range');
+            return redirect()->route('modul_umum.uang_muka_kerja.rekap.range');
         } else {
             if ($request->submit == 'pdf') {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
                 $array_bln	 = array(
-                    1 =>   'Januari',
+                    1 => 'Januari',
                     'Februari',
                     'Maret',
                     'April',
@@ -555,8 +555,7 @@ class UangMukaKerjaController extends Controller
                 // dd($umk_header_list);
                 $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
                 ->select('jumlah')->sum('jumlah');
-                $pdf = DomPDF::loadview('modul-umum.umk.exportrange', compact('umk_header_list', 'list_acount', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
-                $pdf->output();
+                $pdf = DomPDF::loadview('modul-umum.umk.export-range', compact('umk_header_list', 'list_acount', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $dom_pdf = $pdf->getDomPDF();
         
                 $canvas = $dom_pdf->getCanvas();
@@ -567,8 +566,8 @@ class UangMukaKerjaController extends Controller
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
-                $array_bln	 = array(
-                    1 =>   'Januari',
+                $array_bln     = array(
+                    1 => 'Januari',
                     'Februari',
                     'Maret',
                     'April',
@@ -581,21 +580,19 @@ class UangMukaKerjaController extends Controller
                     'November',
                     'Desember'
                 );
-                
-                $bulan= strtoupper($array_bln[ (int)$pecahkan[1] ]);
-                $tahun=$pecahkan[0];
-                $umk_header_list = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
-                ->get();
-                $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
-                ->select('jumlah')->sum('jumlah');
-                $excel=new Spreadsheet;
-                return view('modul-umum.umk.exportexcel', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
+
+                $bulan = strtoupper($array_bln[(int)$pecahkan[1]]);
+                $tahun = $pecahkan[0];
+                $umk_header_list = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])->get();
+                $list_acount = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])->select('jumlah')->sum('jumlah');
+                $excel = new Spreadsheet();
+                return view('modul-umum.umk.export-xls', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
                 $array_bln	 = array(
-                    1 =>   'Januari',
+                    1 => 'Januari',
                     'Februari',
                     'Maret',
                     'April',
@@ -616,7 +613,7 @@ class UangMukaKerjaController extends Controller
                 $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
                 ->select('jumlah')->sum('jumlah');
                 $excel= new Spreadsheet;
-                return view('modul-umum.umk.exportcsv', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
+                return view('modul-umum.umk.export-csv', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
             }
         }
     }
