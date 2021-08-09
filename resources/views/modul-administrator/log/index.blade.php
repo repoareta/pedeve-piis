@@ -47,7 +47,7 @@
                         <option value="3" {{ date('m')  == '03' ? 'selected' : '' }}>Maret</option>
                         <option value="4" {{ date('m')  == '04' ? 'selected' : '' }}>April</option>
                         <option value="5" {{ date('m')  == '05' ? 'selected' : '' }}>Mei</option>
-                        <option value="6" {{ date('m')  == '05' ? 'selected' : '' }}>Juni</option>
+                        <option value="6" {{ date('m')  == '06' ? 'selected' : '' }}>Juni</option>
                         <option value="7" {{ date('m')  == '07' ? 'selected' : '' }}>Juli</option>
                         <option value="8" {{ date('m')  == '08' ? 'selected' : '' }}>Agustus</option>
                         <option value="9" {{ date('m')  == '09' ? 'selected' : '' }}>September</option>
