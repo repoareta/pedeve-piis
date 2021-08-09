@@ -29,8 +29,7 @@
                         <div class="alert-text">Header Tabel Cetak D5 (General Ledger)</div>
                     </div>
                 </div>
-                <form class="form" id="formD5Report" action="{{ route('modul_kontroler.d5_report.export') }}" method="POST">
-					@csrf
+                <form class="form" id="formD5Report" action="{{ route('modul_kontroler.d5_report.export') }}" method="GET" target="_blank">					
 					<div class="form-group row">
 						<label for="bulan-tahun-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 						<div class="col-4">

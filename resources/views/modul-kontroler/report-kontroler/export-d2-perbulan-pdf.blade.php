@@ -188,6 +188,5 @@ tr {
         $pdf->page_text($x, $y, 'Halaman {PAGE_NUM} dari {PAGE_COUNT}', $font, $size);
     }
     </script> --}}
-  
 </body>
 </html>

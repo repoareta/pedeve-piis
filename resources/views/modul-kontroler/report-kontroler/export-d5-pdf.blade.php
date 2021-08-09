@@ -105,7 +105,7 @@ tr {
                 $total_saldo_1_rp = $total_saldo_1_dl = $total_saldo_2_rp = $total_saldo_2_dl = $total_saldo_3_rp = $total_saldo_3_dl  = 0;
                 //TOTAL SALDO 2
                 $total_saldo_1_2_rp = $total_saldo_1_2_dl = $total_saldo_2_2_rp = $total_saldo_2_2_dl = $total_saldo_3_2_rp = $total_saldo_3_2_dl  = 0;
-               
+                
                     foreach($data_list as $key=>$row)
                     {
                         //TOTAL CI

@@ -40,30 +40,26 @@ class KasBankKontrolerController extends Controller
 
     public function create()
     {
-        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+        $data_sanper = Account::select('kodeacct', 'descacct')
+                                ->where('kodeacct', 'not like', '%X%')
+                                ->orderBy('kodeacct')
+                                ->get();
+
         return view('modul-kontroler.tabel.kas-bank-kontroler.create',compact('data_sanper'));
     }
     public function store(Request $request)
     {
-        $data_objRs = DB::select("SELECT * from storejk where kodestore='$request->kode'");
-        if(!empty($data_objRs)){
-            $data = 2;
-            return response()->json($data);
-        } else {
-            StoreJK::insert([
-                'jeniskartu' => $request->jk,
-                'kodestore' => $request->kode,
-                'account' => $request->sanper,
-                'ci' => $request->ci,
-                'namabank' => $request->nama,
-                'norekening' => $request->norek,
-                'lokasi' => $request->lokasi,
-                'jenisbiaya' => '000',
-                'bagian' => 'C3010' 
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        StoreJK::insert([
+            'jeniskartu' => $request->jk,
+            'kodestore' => $request->kode,
+            'account' => $request->sanper,
+            'ci' => $request->ci,
+            'namabank' => $request->nama,
+            'norekening' => $request->norek,
+            'lokasi' => $request->lokasi,
+            'jenisbiaya' => '000',
+            'bagian' => 'C3010' 
+        ]);
 
     }
 
