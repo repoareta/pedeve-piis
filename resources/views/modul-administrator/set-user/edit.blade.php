@@ -40,7 +40,7 @@
 					<div class="form-group row">
 						<label for="usernm-input" class="col-2 col-form-label">User Name<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="usernm" id="usernm" onkeyup="this.value = this.value.toUpperCase()" value="{{ $data->userid }}">
+							<input class="form-control" type="text" name="usernm" id="usernm"  value="{{ $data->userid }}">
 						</div>
 					</div>
                     <div class="form-group row">

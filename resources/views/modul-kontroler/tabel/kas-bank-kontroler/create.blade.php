@@ -29,33 +29,33 @@
                         <div class="alert-text">Header Kas Bank Kontroler</div>
                     </div>
                 </div>
-                <form class="form" id="formJenisBiaya" action="{{ route('modul_kontroler.tabel.jenis_biaya.store') }}" method="POST">
+                <form class="form" id="formKasBankKontroler" action="{{ route('modul_kontroler.tabel.kas_bank_kontroler.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="kode-input" class="col-2 col-form-label">
-                            Kode
+						<label for="kode-store-input" class="col-2 col-form-label">
+                            Kode Store
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<input class="form-control only-number" type="text" name="kode" maxlength="2" id="kode">
+							<input class="form-control" type="text" name="kodestore" maxlength="2" id="kodestore">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="nama-input" class="col-2 col-form-label">
-                            Nama
+						<label for="nama-bank-input" class="col-2 col-form-label">
+                            Nama Bank
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="nama" id="nama" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="namabank" id="namabank">
 						</div>
 					</div>
                     <div class="form-group row">
-						<label for="jk-input" class="col-2 col-form-label">
+						<label for="jenis-kartu-input" class="col-2 col-form-label">
                             Jenis Kartu
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<select class="form-control select2" name="jk" id="jk">
+							<select class="form-control select2" name="jeniskartu" id="jeniskartu">
                                 <option value="10">Kas (Rupiah)</option>
                                 <option value="11">Bank (Rupiah)</option>
                                 <option value="13">Bank (Dollar)</option>
@@ -63,12 +63,12 @@
 						</div>
 					</div>
                     <div class="form-group row">
-						<label for="sanper-input" class="col-2 col-form-label">
+						<label for="kodeacct-input" class="col-2 col-form-label">
                             Sandi Perkiraan
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<select class="form-control select2" name="sanper" id="sanper">
+							<select class="form-control select2" name="kodeacct" id="kodeacct">
                                 @foreach ($data_sanper as $data)
                                     <option value="{{ $data->kodeacct }}">
                                         {{ $data->kodeacct }} -- {{ $data->descacct }}
@@ -83,7 +83,7 @@
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<input class="form-control only-number" type="text" name="norek" maxlength="2" id="norek">
+							<input class="form-control" type="text" name="norekening" id="norekening">
 						</div>
 					</div>
                     <div class="form-group row">
@@ -126,11 +126,11 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\JenisBiayaStore', '#formJenisBiaya'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\KasBankKontrolerStore', '#formKasBankKontroler'); !!}
 <script>
     $(document).ready(function () {
         
-        $("#formJenisBiaya").on('submit', function(e){            
+        $("#formKasBankKontroler").on('submit', function(e){            
                 e.preventDefault();
 
                 if($(this).valid()) {
@@ -160,12 +160,6 @@
             }
         });
 
-        $(".only-number").on("keypress keyup blur",function (event) {    
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
     });
     
 </script>

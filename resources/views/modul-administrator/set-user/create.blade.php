@@ -35,13 +35,13 @@
 					<div class="form-group row">
 						<label for="userid-input" class="col-2 col-form-label">User ID<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="userid" id="userid" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="userid" id="userid" >
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="usernm-input" class="col-2 col-form-label">User Name<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="usernm" id="usernm" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="usernm" id="usernm" >
 						</div>
 					</div>
                     <div class="form-group row">

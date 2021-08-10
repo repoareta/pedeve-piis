@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Kontroler;
 use App\Http\Controllers\Controller;
 use App\Models\Lokasi;
 use DB;
+use Alert;
 use Illuminate\Http\Request;
+use App\Http\Requests\LokasiKontrolerStore;
 
 class LokasiKontrolerController extends Controller
 {
@@ -19,7 +21,11 @@ class LokasiKontrolerController extends Controller
         $data = Lokasi::orderByDesc('kodelokasi');
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->kodelokasi.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" kode="'.$data->kodelokasi.'" class="btn-radio" name="btn-radio">
+                        <span></span>
+                    </label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -30,22 +36,18 @@ class LokasiKontrolerController extends Controller
     {
         return view('modul-kontroler.tabel.lokasi-kontroler.create');
     }
-    public function store(Request $request)
-    {
-        $data_objRs = DB::select("SELECT kodelokasi from lokasi where kodelokasi='$request->kode'");
-        if(!empty($data_objRs)){
-            $data = 2;
-            return response()->json($data);
-        } else {
-            Lokasi::insert([
-                'kodelokasi' => $request->kode,
-                'nama' => $request->nama
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
 
+    public function store(LokasiKontrolerStore $request)
+    {
+        Lokasi::insert([
+            'kodelokasi' => $request->kodelokasi,
+            'nama' => $request->nama
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.lokasi_kontroler.index');
     }
+
 
     public function edit($no)
     {

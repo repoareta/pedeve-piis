@@ -32,15 +32,15 @@
                 <form class="form" id="formJenisBiaya" action="{{ route('modul_kontroler.tabel.jenis_biaya.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="userid-input" class="col-2 col-form-label">Kode<span class="text-danger">*</span></label>
+						<label for="kode-input" class="col-2 col-form-label">Kode<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="kode" maxlength="2" id="kode" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="kode" maxlength="2" id="kode" >
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="usernm-input" class="col-2 col-form-label">Nama JB<span class="text-danger">*</span></label>
+						<label for="nama-input" class="col-2 col-form-label">Nama<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="nama" id="nama" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="nama" id="nama" >
 						</div>
 					</div>
 					<div class="row">
@@ -93,12 +93,7 @@
             }
         });
 
-        $("#kode").on("keypress keyup blur",function (event) {    
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
+        
     });
     
 </script>

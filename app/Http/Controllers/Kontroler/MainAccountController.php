@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\MainAccount;
 use DB;
 use Illuminate\Http\Request;
+use Alert;
+use App\Http\Requests\MainAccountStore;
 
 class MainAccountController extends Controller
 {
@@ -25,7 +27,11 @@ class MainAccountController extends Controller
             return number_format($data->pengali_tampil,0,'.',',');
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" kode="'.$data->jenis.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                    </label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -36,35 +42,22 @@ class MainAccountController extends Controller
     {
         return view('modul-kontroler.tabel.main-account.create');
     }
-    public function store(Request $request)
-    {
-        $data_objRs = DB::select("SELECT jenis from main_account where jenis='$request->jenis'");
-        if(!empty($data_objRs)){
-            $data = 2;
-            return response()->json($data);
-        } else {
-            $jenis = $request->jenis;
-            $batasawal= $request->batasawal;
-            $batasakhir= $request->batasakhir;
-            $urutan = $request->urutan;
-            $pengali = $request->pengali;
-            $pengalitampil = $request->pengalitampil;
-            $subakun = $request->subakun;
-            $lokasi = $request->lokasi;
-            MainAccount::insert([
-                'jenis' => $jenis,
-                'batas_awal' => $batasawal,
-                'batas_akhir' => $batasakhir,
-                'urutan' => $urutan,
-                'pengali' => $pengali,
-                'pengali_tampil' => $pengalitampil,
-                'sub_akun' => $subakun,
-                'lokasi' => $lokasi 
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
 
+    public function store(MainAccountStore $request)
+    {
+        MainAccount::insert([
+            'jenis' => $request->jenis,
+            'batas_awal' => $request->batas_awal,
+            'batas_akhir' => $request->batas_akhir,
+            'urutan' => $request->urutan,
+            'pengali' => $request->pengali,
+            'pengali_tampil' => $request->pengali_tampil,
+            'sub_akun' => $request->sub_akun,
+            'lokasi' => $request->lokasi 
+        ]);        
+    
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.main_account.index');
     }
 
     public function edit($no)
