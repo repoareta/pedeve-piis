@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MasterPegawai;
 use App\Models\PayTblRekening;
 use DB;
+use Alert;
 use Illuminate\Http\Request;
 
 class RekeningPekerjaController extends Controller
@@ -21,13 +22,17 @@ class RekeningPekerjaController extends Controller
         
         return datatables()->of($tunjangan_list)
         ->addColumn('radio', function ($row) {
-                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->nopek.'" name="btn-radio"><span></span><label>';
+            return '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" class="btn-radio" kode="'.$row->nopek.'" name="btn-radio">
+                            <span></span>
+                    <label>';
         })
         ->addColumn('namapekerja', function ($row) {
-             return $row->nopek.' -- '.$row->namapekerja;
+            return $row->nopek.' -- '.$row->namapekerja;
         })
         ->addColumn('namabank', function ($row) {
-             return $row->kdbank.' -- '.$row->namabank;
+            return $row->kdbank.' -- '.$row->namabank;
         })
         ->rawColumns(['radio'])
         ->make(true);
@@ -37,37 +42,33 @@ class RekeningPekerjaController extends Controller
     public function create()
     {
         $data_pegawai = MasterPegawai::where('status', '<>', 'P')
-        ->orderBy('nopeg')
-        ->get();
+                        ->orderBy('nopeg')
+                        ->get();
         $data_bank = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank");
+
         return view('modul-sdm-payroll.rekening-pekerja.create',compact('data_pegawai','data_bank'));
     }
 
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_rekening where nopek = '$request->nopek'" ); 			
-        if(!empty($data_cek)) {
-            $data = 2;
-            return response()->json($data);
-        } else {
-            PayTblRekening::insert([
-                'nopek' => $request->nopek,
-                'kdbank' => $request->kdbank,
-                'rekening' => $request->rekening,
-                'atasnama' => $request->atasnama,
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        PayTblRekening::insert([
+            'nopek' => $request->nopek,
+            'kdbank' => $request->kdbank,
+            'rekening' => $request->rekening,
+            'atasnama' => $request->atasnama,
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.rekening_pekerja.index');
     }
 
 
     public function edit($id)
     {
         $data_pegawai = MasterPegawai::where('status', '<>', 'P')
-        ->orderBy('nopeg')
-        ->get();
+                                        ->orderBy('nopeg')
+                                        ->get();
         
         $data_bank = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank");
         

@@ -37,7 +37,7 @@
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="kodestore" maxlength="2" id="kodestore">
+							<input class="form-control" type="text" name="kodestore" maxlength="2" id="kodestore" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -46,7 +46,7 @@
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="namabank" id="namabank">
+							<input class="form-control" type="text" name="namabank" id="namabank" autocomplete="off">
 						</div>
 					</div>
                     <div class="form-group row">
@@ -83,7 +83,7 @@
                             <span class="text-danger">*</span>
                         </label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="norekening" id="norekening">
+							<input class="form-control" type="text" name="norekening" id="norekening" autocomplete="off">
 						</div>
 					</div>
                     <div class="form-group row">

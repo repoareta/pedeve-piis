@@ -5,6 +5,8 @@ namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 use App\Http\Controllers\Controller;
 use App\Models\PayTblAard;
 use DB;
+use Alert;
+use App\Http\Requests\TabelAardStore;
 use Illuminate\Http\Request;
 
 class TabelAardController extends Controller
@@ -20,7 +22,11 @@ class TabelAardController extends Controller
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
-                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
+            return '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio">
+                        <span></span>
+                    <label>';
         })
         ->rawColumns(['radio'])
         ->make(true);
@@ -30,27 +36,23 @@ class TabelAardController extends Controller
     public function create()
     {
         $data_jenisupah = DB::select("SELECT kode,nama,cetak from pay_tbl_jenisupah order by kode");
+        
         return view('modul-sdm-payroll.tabel-aard.create',compact('data_jenisupah'));
     }
 
 
-    public function store(Request $request)
+    public function store(TabelAardStore $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_aard where kode = '$request->kode'" ); 			
-        if(!empty($data_cek)) {
-            $data = 2;
-            return response()->json($data);
-        } else {
-            PayTblAard::insert([
-                'kode' => $request->kode,
-                'nama' => $request->nama,
-                'jenis' => $request->jenis,
-                'kenapajak' => $request->kenapajak,
-                'lappajak' => $request->lappajak,
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        PayTblAard::insert([
+            'kode' => $request->kode,
+            'nama' => $request->nama,
+            'jenis' => $request->jenis,
+            'kenapajak' => $request->kenapajak,
+            'lappajak' => $request->lappajak,
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.tabel_aard.index');
     }
 
 

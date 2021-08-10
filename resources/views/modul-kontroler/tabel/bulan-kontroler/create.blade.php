@@ -60,7 +60,7 @@
 					<div class="form-group row">
 						<label for="keterangan-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="keterangan" id="keterangan" >
+							<input class="form-control" type="text" name="keterangan" id="keterangan" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -74,7 +74,7 @@
 						</div>
                         <label for="opendate-input" class="col-2 col-form-label">Tanggal Opening</label>
 						<div class="col-5">
-							<input class="form-control date-picker" type="text" name="opendate" id="opendate" >
+							<input class="form-control date-picker" type="text" name="opendate" id="opendate" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -88,7 +88,7 @@
 						</div>
                         <label for="stopdate-input" class="col-2 col-form-label">Tanggal Stoping</label>
 						<div class="col-5">
-							<input class="form-control date-picker" type="text" name="stopdate" id="stopdate" >
+							<input class="form-control date-picker" type="text" name="stopdate" id="stopdate" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -102,7 +102,7 @@
 						</div>
                         <label for="closedate-input" class="col-2 col-form-label">Tanggal Closing</label>
 						<div class="col-5">
-							<input class="form-control date-picker" type="text" name="closedate" id="closedate" >
+							<input class="form-control date-picker" type="text" name="closedate" id="closedate" autocomplete="off">
 						</div>
 					</div>
 					<div class="row">
