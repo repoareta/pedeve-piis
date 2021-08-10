@@ -34,49 +34,49 @@
 					<div class="form-group row">
 						<label for="jenis-input" class="col-2 col-form-label">Jenis<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="jenis" id="jenis" >
+							<input class="form-control" type="text" name="jenis" id="jenis" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="batas-awal-input" class="col-2 col-form-label">Batas Awal<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="batas_awal" id="batas_awal" >
+							<input class="form-control" type="text" name="batas_awal" id="batas_awal" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="batas-akhir-input" class="col-2 col-form-label">Batas Akhir<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="batas_akhir" id="batas_akhir" >
+							<input class="form-control" type="text" name="batas_akhir" id="batas_akhir" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="urutan-input" class="col-2 col-form-label">Urutan<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="urutan" id="urutan" >
+							<input class="form-control" type="text" name="urutan" id="urutan" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="pengali-input" class="col-2 col-form-label">Pengali<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="pengali" id="pengali" >
+							<input class="form-control" type="number" name="pengali" id="pengali" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="pengali-input" class="col-2 col-form-label">Pengali Tampil<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="pengali_tampil" id="pengali_tampil" >
+							<input class="form-control" type="number" name="pengali_tampil" id="pengali_tampil" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="sub-akun-input" class="col-2 col-form-label">Sub Akun<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="sub_akun" id="sub_akun" >
+							<input class="form-control" type="text" name="sub_akun" id="sub_akun" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="lokasi-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="lokasi" id="lokasi" >
+							<input class="form-control" type="text" name="lokasi" id="lokasi" autocomplete="off">
 						</div>
 					</div>
 					<div class="row">

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 use App\Http\Controllers\Controller;
 use App\Models\PayTunjangan;
 use DB;
+use Alert;
 use Illuminate\Http\Request;
+use App\Http\Requests\TunjanganGolonganStore;
 
 class TunjanganGolonganController extends Controller
 {
@@ -25,7 +27,11 @@ class TunjanganGolonganController extends Controller
         
         return datatables()->of($tunjangan_list)
         ->addColumn('radio', function ($row) {
-                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" golongan="'.$row->golongan.'" name="btn-radio"><span></span></label>';
+            return '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" class="btn-radio" golongan="'.$row->golongan.'" name="btn-radio">
+                            <span></span>
+                    </label>';
         })
         ->addColumn('nilai', function ($row) {
             return currency_idr($row->nilai);
@@ -58,20 +64,15 @@ class TunjanganGolonganController extends Controller
         return response()->json($data);
     }
 
-    public function store(Request $request)
+    public function store(TunjanganGolonganStore $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_tunjangan where golongan='$request->golongan'"); 			
-        if(!empty($data_cek)) {
-            $data=0;
-            return response()->json($data);
-        } else {
         PayTunjangan::insert([
             'golongan' => $request->golongan,
             'nilai' => str_replace(',', '.', $request->nilai),
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.tunjangan_golongan.index');
     }
 
     /**

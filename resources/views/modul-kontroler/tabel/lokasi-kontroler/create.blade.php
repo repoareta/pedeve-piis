@@ -34,13 +34,13 @@
 					<div class="form-group row">
 						<label for="kode-lokasi-input" class="col-2 col-form-label">Kode<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="kodelokasi" maxlength="2" id="kodelokasi" >
+							<input class="form-control" type="text" name="kodelokasi" maxlength="2" id="kodelokasi" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="nama-input" class="col-2 col-form-label">Nama<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="nama" id="nama" >
+							<input class="form-control" type="text" name="nama" id="nama" autocomplete="off">
 						</div>
 					</div>
 					<div class="row">

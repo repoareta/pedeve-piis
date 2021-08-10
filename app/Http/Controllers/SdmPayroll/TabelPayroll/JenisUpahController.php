@@ -5,6 +5,8 @@ namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 use App\Http\Controllers\Controller;
 use App\Models\PayTblJenisUpah;
 use DB;
+use Alert;
+use App\Http\Requests\JenisUpahStore;
 use Illuminate\Http\Request;
 
 class JenisUpahController extends Controller
@@ -20,7 +22,11 @@ class JenisUpahController extends Controller
         
         return datatables()->of($jenisUpah)
         ->addColumn('radio', function ($row) {
-                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
+                return '
+                        <label class="radio radio-outline radio-outline-2x radio-primary">
+                            <input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio">
+                                <span></span>
+                        <label>';
         })
         ->rawColumns(['radio'])
         ->make(true);
@@ -42,21 +48,16 @@ class JenisUpahController extends Controller
      * @param Request $request
      * @return void
      */
-    public function store(Request $request)
+    public function store(JenisUpahStore $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_jenisupah where kode = '$request->kode'" ); 			
-        if(!empty($data_cek)) {
-            $data = 2;
-            return response()->json($data);
-        } else {
         PayTblJenisUpah::insert([
             'kode' => $request->kode,
             'nama' => $request->nama,
             'cetak' => $request->cetak,
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.jenis_upah.index');
     }
 
     /**

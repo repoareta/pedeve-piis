@@ -34,13 +34,13 @@
 					<div class="form-group row">
 						<label for="menuid-input" class="col-2 col-form-label">Menu ID<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menuid" id="menuid" >
+							<input class="form-control" type="text" name="menuid" id="menuid" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="menunm-input" class="col-2 col-form-label">Nama Menu<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menunm" id="menunm" >
+							<input class="form-control" type="text" name="menunm" id="menunm" autocomplete="off">
 						</div>
 					</div>
                     <div class="form-group row">
