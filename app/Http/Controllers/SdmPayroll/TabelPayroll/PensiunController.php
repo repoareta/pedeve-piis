@@ -23,30 +23,28 @@ class PensiunController extends Controller
 
     public function indexJson(Request $request)
     {
-        if($request->ajax())
-        {               
+        if ($request->ajax()) {
             $data = PayTblPensiun::all();
 
             return datatables()->of($data)
-            ->addColumn('radio', function ($data) {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->pribadi.'" name="btn-radio"><span></span></label>';
-                return $radio;
-            })
-            ->addColumn('pribadi', function ($data) {
-                return currency_format($data->pribadi); 
-            })
-            ->addColumn('perusahaan', function ($data) {
-                return currency_format($data->perusahaan);
-            })
-            ->addColumn('perusahaan2', function ($data) {
-                return currency_format($data->perusahaan2);
-            })
-            ->addColumn('perusahaan3', function ($data) {
-                return currency_format($data->perusahaan3);
-            })
-            ->rawColumns(['radio'])
-            ->make(true);
-        
+                ->addColumn('radio', function ($data) {
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="' . $data->pribadi . '" name="btn-radio"><span></span></label>';
+                    return $radio;
+                })
+                ->addColumn('pribadi', function ($data) {
+                    return currency_format($data->pribadi);
+                })
+                ->addColumn('perusahaan', function ($data) {
+                    return currency_format($data->perusahaan);
+                })
+                ->addColumn('perusahaan2', function ($data) {
+                    return currency_format($data->perusahaan2);
+                })
+                ->addColumn('perusahaan3', function ($data) {
+                    return currency_format($data->perusahaan3);
+                })
+                ->rawColumns(['radio'])
+                ->make(true);
         }
     }
 
@@ -68,8 +66,8 @@ class PensiunController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = PayTblPensiun::all()->count(); 			
-        if(!empty($data_cek)) {
+        $data_cek = PayTblPensiun::all()->count();
+        if (!empty($data_cek)) {
             $data = 0;
             return response()->json($data);
         } else {
@@ -81,7 +79,7 @@ class PensiunController extends Controller
             ]);
             $data = 1;
             return response()->json($data);
-        }   
+        }
     }
 
     /**
@@ -106,12 +104,12 @@ class PensiunController extends Controller
     public function update(Request $request)
     {
         PayTblPensiun::where('pribadi', $request->pribadi)
-        ->update([
-            'pribadi' => str_replace(',', '.', $request->pribadi),
-            'perusahaan' => str_replace(',', '.', $request->perusahaan),
-            'perusahaan2' => str_replace(',', '.', $request->perusahaan2),
-            'perusahaan3' => str_replace(',', '.', $request->perusahaan3),
-        ]);
+            ->update([
+                'pribadi' => str_replace(',', '.', $request->pribadi),
+                'perusahaan' => str_replace(',', '.', $request->perusahaan),
+                'perusahaan2' => str_replace(',', '.', $request->perusahaan2),
+                'perusahaan3' => str_replace(',', '.', $request->perusahaan3),
+            ]);
         return response()->json();
     }
 
@@ -147,7 +145,7 @@ class PensiunController extends Controller
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
         $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun' and bulan='$request->bulan'");
-        if(!empty($data_cek) and !empty($data_cek1)) {
+        if (!empty($data_cek) and !empty($data_cek1)) {
             $data_list = DB::select("SELECT nopek, nama, 
                                     sum(CASE WHEN aard ='15'  THEN curramount ELSE '0' END) as aard15,
                                     sum(CASE WHEN aard ='46'  THEN curramount ELSE '0' END) as aard46,
@@ -156,8 +154,8 @@ class PensiunController extends Controller
                                     from pay_master_bebanprshn a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard in ('15','46') and a.tahun='$request->tahun' and a.bulan='$request->bulan' union all
                                     select c.nopek,d.nama, c.aard, c.nilai as curramount
                                     from pay_master_upah c join sdm_master_pegawai d on c.nopek=d.nopeg where c.aard='14' and c.tahun='$request->tahun' and c.bulan='$request->bulan') d group by nama, nopek order by nama asc");
-                        
-            $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.export-iuran',compact('request','data_list'))->setPaper('a4', 'Portrait');
+
+            $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.export-iuran', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
             $pdf->output();
             $dom_pdf = $pdf->getDomPDF();
 
@@ -191,8 +189,8 @@ class PensiunController extends Controller
     {
         $data_cek = DB::select("SELECT * from pay_master_upah where tahun='$request->tahun'");
         $data_cek1 = DB::select("SELECT * from pay_master_bebanprshn where tahun='$request->tahun'");
-        if(!empty($data_cek) and !empty($data_cek1)) {
-            if($request->dp == 'BK'){        
+        if (!empty($data_cek) and !empty($data_cek1)) {
+            if ($request->dp == 'BK') {
                 $data_list = DB::select("SELECT 
                 count(a.bulan),a.nopek,b.nama as namapegawai, SUM(a.nilai),
                 SUM(CASE WHEN a.bulan ='1' THEN round(a.nilai,0)* -1 ELSE '0' END) as jan, 
@@ -229,7 +227,7 @@ class PensiunController extends Controller
             Alert::info("Tidak ditemukan data Tahun: $request->tahun", 'Failed')->persistent(true);
             return redirect()->route('modul_sdm_payroll.pensiun.rekap_iuran');
         }
-        $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.rekap-iuran-pensiun-pdf',compact('request','data_list'))->setPaper('legal', 'landscape');
+        $pdf = DomPDF::loadview('modul-sdm-payroll.pensiun.rekap-iuran-pensiun-pdf', compact('request', 'data_list'))->setPaper('legal', 'landscape');
         $pdf->output();
         $dom_pdf = $pdf->getDomPDF();
 
