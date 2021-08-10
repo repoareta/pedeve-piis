@@ -50,9 +50,7 @@
                         <label for="nopek-input" class="col-2 col-form-label">Terlampir</label>
                         <div class="col-10">
                             <textarea class="form-control" type="text" name="lampiran" value="" id="lampiran"
-                                onkeyup="this.value = this.value.toUpperCase()" required
-                                oninvalid="this.setCustomValidity('Terlampir Harus Diisi..')"
-                                oninput="setCustomValidity('')">-</textarea>
+                                onkeyup="this.value = this.value.toUpperCase()" required oninput="">-</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -60,8 +58,7 @@
                         <div class="col-10">
                             <textarea class="form-control" type="text" value="" id="keterangan" name="keterangan"
                                 size="50" maxlength="200" onkeyup="this.value = this.value.toUpperCase()" required
-                                oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')"
-                                oninput="setCustomValidity('')">-</textarea>
+                                oninput="">-</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -69,9 +66,7 @@
                                 style="color:red;">*</span></label>
                         <div class="col-10">
                             <select name="dibayar" id="dibayar" class="form-control selectpicker"
-                                data-live-search="true" required
-                                oninvalid="this.setCustomValidity('Dibayar Kepada Harus Diisi..')"
-                                onchange="setCustomValidity('')">
+                                data-live-search="true" required>
                                 <option value="">- Pilih -</option>
                                 @foreach ($vendor as $row)
                                 <option value="{{ $row->nama }}">{{ $row->nama }}</option>
@@ -151,16 +146,12 @@
                         <div class="col-10">
                             <div class="input-daterange input-group" id="date_range_picker">
                                 <input type="text" class="form-control" name="mulai" value="{{ date('d-m-Y') }}"
-                                    required autocomplete='off'
-                                    oninvalid="this.setCustomValidity('Priode Harus Diisi..')"
-                                    onchange="setCustomValidity('')" />
+                                    required autocomplete='off' />
                                 <div class="input-group-append">
                                     <span class="input-group-text">s/d</span>
                                 </div>
                                 <input type="text" class="form-control" name="sampai" value="{{ date('d-m-Y') }}"
-                                    required autocomplete='off'
-                                    oninvalid="this.setCustomValidity('Priode Harus Diisi..')"
-                                    onchange="setCustomValidity('')" />
+                                    required autocomplete='off' />
                             </div>
                         </div>
                     </div>
