@@ -28,12 +28,10 @@ class CashJudexController extends Controller
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
             $radio = '
-                    <center>
                         <label class="radio radio-outline radio-outline-2x radio-primary">
                             <input type="radio" kode="'.$data->kode.'" class="btn-radio" name="btn-radio">
                             <span></span>
-                        </label>
-                    </center>'; 
+                        </label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])

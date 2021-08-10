@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\StoreJK;
 use Illuminate\Http\Request;
-use Auth;
+use App\Http\Requests\KasBankKontrolerStore;
 use Alert;
 use App\Models\Kasdoc;
 use DB;
-use DomPDF;
 
 class KasBankKontrolerController extends Controller
 {
@@ -26,12 +25,10 @@ class KasBankKontrolerController extends Controller
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
             $radio = '
-                    <center>
-                        <label class="radio radio-outline radio-outline-2x radio-primary">
-                            <input type="radio" kode="'.$data->kodestore.'" class="btn-radio" name="btn-radio">
-                                <span></span>
-                        </label>
-                    </center>'; 
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" kode="'.$data->kodestore.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                    </label>'; 
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -47,20 +44,22 @@ class KasBankKontrolerController extends Controller
 
         return view('modul-kontroler.tabel.kas-bank-kontroler.create',compact('data_sanper'));
     }
-    public function store(Request $request)
+    public function store(KasBankKontrolerStore $request)
     {
         StoreJK::insert([
-            'jeniskartu' => $request->jk,
-            'kodestore' => $request->kode,
-            'account' => $request->sanper,
+            'jeniskartu' => $request->jeniskartu,
+            'kodestore' => $request->kodestore,
+            'account' => $request->account,
             'ci' => $request->ci,
-            'namabank' => $request->nama,
-            'norekening' => $request->norek,
+            'namabank' => $request->namabank,
+            'norekening' => $request->norekening,
             'lokasi' => $request->lokasi,
             'jenisbiaya' => '000',
             'bagian' => 'C3010' 
         ]);
 
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.kas_bank_kontroler.index');
     }
 
     public function edit($no)

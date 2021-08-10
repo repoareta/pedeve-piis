@@ -34,13 +34,13 @@
 					<div class="form-group row">
 						<label for="menuid-input" class="col-2 col-form-label">Menu ID<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menuid" id="menuid" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="menuid" id="menuid" >
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="menunm-input" class="col-2 col-form-label">Nama Menu<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menunm" id="menunm" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="menunm" id="menunm" >
 						</div>
 					</div>
                     <div class="form-group row">
