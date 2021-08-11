@@ -47,7 +47,7 @@
                             $tgl  = date_create($request->tanggal);
                             $tgl_per = date_format($tgl, 'd/M/Y');
                         ?>
-                        <font style="font-size: 10pt; "> PER {{strtoupper($tgl_per) }}</font><br>
+                        <font style="font-size: 10pt;"> PER {{strtoupper($tgl_per) }}</font><br>
                     </td>
                 </tr>
             </table>

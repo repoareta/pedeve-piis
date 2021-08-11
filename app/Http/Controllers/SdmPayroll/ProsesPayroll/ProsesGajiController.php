@@ -5028,7 +5028,7 @@ class ProsesGajiController extends Controller
             sum(CASE WHEN a.aard in ('28','44')  THEN round(a.nilai,0) ELSE '0' END) as koperasi
             from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag join pay_tbl_rekening e on a.nopek=e.nopek join pay_tbl_bank f on e.kdbank=f.kode where a.tahun='$request->tahun' and a.bulan='$request->bulan' and c.mulai=(select max(mulai) from sdm_jabatan where nopeg=a.nopek) group by a.nopek,b.nama,b.kodekeluarga,d.nama,d.kode,e.rekening,e.atasnama,f.nama,f.alamat");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_daftarupahtetap', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-daftar-upah-pdf-tetap', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -5049,7 +5049,7 @@ class ProsesGajiController extends Controller
             from  (select a.nopek,b.nama as namapegawai, a.aard,a.nilai,e.rekening,f.nama as namabank from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag join pay_tbl_rekening e on a.nopek=e.nopek join pay_tbl_bank f on e.kdbank=f.kode where a.tahun='$request->tahun' and a.bulan='$request->bulan' and b.status='U'  union all
             select a.nopek,b.nama as namapegawai, a.aard,a.nilai,e.rekening,f.nama as namabank from pay_koreksi a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag join pay_tbl_rekening e on a.nopek=e.nopek join pay_tbl_bank f on e.kdbank=f.kode where a.tahun='$request->tahun' and a.bulan='$request->bulan' and b.status='U' ) a group by nopek, namapegawai,rekening,namabank");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_daftarupahkomisaris', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-daftar-upah-pdf-komisaris', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         
@@ -5070,7 +5070,7 @@ class ProsesGajiController extends Controller
             from  (select a.nopek,b.nama as namapegawai, a.aard,a.nilai,e.rekening,f.nama as namabank from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag join pay_tbl_rekening e on a.nopek=e.nopek join pay_tbl_bank f on e.kdbank=f.kode where a.tahun='$request->tahun' and a.bulan='$request->bulan' and b.status='O'  union all
             select a.nopek,b.nama as namapegawai, a.aard,a.nilai,e.rekening,f.nama as namabank from pay_koreksi a join sdm_master_pegawai b on a.nopek=b.nopeg join sdm_jabatan c on c.nopeg=b.nopeg join sdm_tbl_kdbag d on d.kode=c.kdbag join pay_tbl_rekening e on a.nopek=e.nopek join pay_tbl_bank f on e.kdbank=f.kode where a.tahun='$request->tahun' and a.bulan='$request->bulan' and b.status='O' ) a group by nopek, namapegawai,rekening,namabank");
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.export_daftarupahkomite', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
+                $pdf = DomPDF::loadview('modul-sdm-payroll.proses-gaji.rekap-daftar-upah-pdf-komite', compact('request', 'data_list'))->setPaper('Legal', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
         

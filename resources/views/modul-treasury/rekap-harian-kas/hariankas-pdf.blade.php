@@ -43,7 +43,7 @@
                         <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                         <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                         <font style="font-size: 10pt;font-weight: bold ">(PEDEVE)</font><br>
-                        <font style="font-size: 10pt; "> JL. RADEN SALEH NO.44 - CIKINI, JAKARTA PUSAT</font><br>
+                        <font style="font-size: 10pt;"> JL. RADEN SALEH NO.44 - CIKINI, JAKARTA PUSAT</font><br>
                     </td>
                 </tr>
             </table>

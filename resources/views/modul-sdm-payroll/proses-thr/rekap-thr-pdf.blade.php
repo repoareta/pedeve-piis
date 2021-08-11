@@ -243,12 +243,12 @@
                             <tr style="font-size: 10pt;">
                                 <td align="left" width="200">Jakarta, {{strtoupper($request->tanggal)}}</td><br>
                             </tr>
-                            <tr style="font-size: 10pt; ">
+                            <tr style="font-size: 10pt;">
                                 <td align="left" width="200">{{strtoupper($request->jabatan)}}</td><br>
                             </tr>
                         </table>
                         <table width="100%" style="font-size: 10pt; padding-left:70%">
-                            <tr style="font-size: 10pt; ">
+                            <tr style="font-size: 10pt;">
                                 <td align="left" width="200">{{strtoupper($request->nama)}}</td><br>
                             </tr>
                         </table>
