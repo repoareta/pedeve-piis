@@ -24,7 +24,8 @@ class ProvinsiStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode' => 'required|numeric|digits:2|unique:App\Models\Provinsi,kode',
+            'nama' => 'required|unique:App\Models\Provinsi,nama',
         ];
     }
 }
