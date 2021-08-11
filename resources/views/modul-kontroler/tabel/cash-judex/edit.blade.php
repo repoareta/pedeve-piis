@@ -40,7 +40,7 @@
 					<div class="form-group row">
 						<label for="usernm-input" class="col-2 col-form-label">Nama<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" value="{{ $data->nama }}" type="text" name="nama" id="nama" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" value="{{ $data->nama }}" type="text" name="nama" id="nama" >
 						</div>
 					</div>
 					<div class="row">
@@ -93,12 +93,7 @@
             }
         });
 
-        $("#kode").on("keypress keyup blur",function (event) {    
-            $(this).val($(this).val().replace(/[^\d].+/, ""));
-            if ((event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
+        
     });
     
 </script>

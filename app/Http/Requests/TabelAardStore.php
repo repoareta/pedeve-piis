@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JenisBiayaStore extends FormRequest
+class TabelAardStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,11 @@ class JenisBiayaStore extends FormRequest
     public function rules()
     {
         return [
-            'kode' => 'unique:App\Models\CashJudex,kode|required|numeric',
+            'kode' => 'required|numeric|unique:pay_tbl_aard,kode',
             'nama' => 'required|string',
+            'jenis' => 'required|numeric',
+            'kenapajak' => 'required|string|in:Y,N',
+            'lappajak' => 'required|string|in:Y,N',
         ];
     }
 }

@@ -34,13 +34,13 @@
 					<div class="form-group row">
 						<label for="userid-input" class="col-2 col-form-label">User ID<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="userid" id="userid" value="{{ $data->userid }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
+							<input class="form-control" type="text" name="userid" id="userid" value="{{ $data->userid }}" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="usernm-input" class="col-2 col-form-label">User Name<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="usernm" id="usernm" onkeyup="this.value = this.value.toUpperCase()" value="{{ $data->userid }}">
+							<input class="form-control" type="text" name="usernm" id="usernm"  value="{{ $data->userid }}" autocomplete="off">
 						</div>
 					</div>
                     <div class="form-group row">
@@ -119,41 +119,41 @@
                         </div>
                     </div>
                     <div class="form-group row">
-							<label for="nopeg-input" class="col-2 col-form-label">Nopeg Pekerja</label>
-							<div class="col-10">
-								<select class="form-control select2" style="width: 100% !important;" name="nopeg" id="nopeg">
-                                    <option value="">- Pilih Data -</option>									
-									@foreach ($pegawai_list as $pegawai)
-									    <option value="{{ $pegawai->nopeg }}" {{ $data->nopeg == $pegawai->nopeg ? 'selected' : '' }}>{{ $pegawai->nopeg." - ".$pegawai->nama }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="gcg-fungsi-input" class="col-2 col-form-label">GCG Fungsi</label>
-							<div class="col-10">
-								<select class="form-control select2" style="width: 100% !important;" name="gcg_fungsi_id" id="gcg_fungsi_id">	
-                                    <option value="">- Pilih Data -</option>								
-									@foreach ($gcg_fungsi_list as $fungsi)
-									    <option value="{{ $fungsi->id }}" {{ $data->gcg_fungsi_id == $fungsi->id ? 'selected' : '' }}>{{ $fungsi->nama }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="gcg-jabatan-input" class="col-2 col-form-label">GCG Jabatan</label>
-							<div class="col-10">
-								<select class="form-control select2" style="width: 100% !important;" name="gcg_jabatan_id" id="gcg_jabatan_id">									
-									@foreach ($gcg_jabatan_list as $jabatan)
-									    <option value="{{ $jabatan->id }}" {{ $data->gcg_jabatan_id == $jabatan->id ? 'selected' : '' }}>{{ $jabatan->nama }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
+                        <label for="nopeg-input" class="col-2 col-form-label">Nopeg Pekerja</label>
+                        <div class="col-10">
+                            <select class="form-control select2" style="width: 100% !important;" name="nopeg" id="nopeg">
+                                <option value="">- Pilih Data -</option>									
+                                @foreach ($pegawai_list as $pegawai)
+                                    <option value="{{ $pegawai->nopeg }}" {{ $data->nopeg == $pegawai->nopeg ? 'selected' : '' }}>{{ $pegawai->nopeg." - ".$pegawai->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="gcg-fungsi-input" class="col-2 col-form-label">GCG Fungsi</label>
+                        <div class="col-10">
+                            <select class="form-control select2" style="width: 100% !important;" name="gcg_fungsi_id" id="gcg_fungsi_id">	
+                                <option value="">- Pilih Data -</option>								
+                                @foreach ($gcg_fungsi_list as $fungsi)
+                                    <option value="{{ $fungsi->id }}" {{ $data->gcg_fungsi_id == $fungsi->id ? 'selected' : '' }}>{{ $fungsi->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="gcg-jabatan-input" class="col-2 col-form-label">GCG Jabatan</label>
+                        <div class="col-10">
+                            <select class="form-control select2" style="width: 100% !important;" name="gcg_jabatan_id" id="gcg_jabatan_id">									
+                                @foreach ($gcg_jabatan_list as $jabatan)
+                                    <option value="{{ $jabatan->id }}" {{ $data->gcg_jabatan_id == $jabatan->id ? 'selected' : '' }}>{{ $jabatan->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="user-app-input" class="col-2 col-form-label">Last Updated By</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" value="{{ $data->usrupd }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly="">
+                            <input class="form-control" type="text" value="{{ $data->usrupd }}" readonly="">
                         </div>
                     </div>
 

@@ -17,13 +17,13 @@ class MasterBankController extends Controller
     public function indexJson()
     {
         $data = DB::select("SELECT kode, nama, alamat, kota from pay_tbl_bank order by kode asc");
-        
+
         return datatables()->of($data)
-        ->addColumn('radio', function ($row) {
-                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio"><span></span><label>';
-        })
-        ->rawColumns(['radio'])
-        ->make(true);
+            ->addColumn('radio', function ($row) {
+                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="' . $row->kode . '" name="btn-radio"><span></span><label>';
+            })
+            ->rawColumns(['radio'])
+            ->make(true);
     }
 
     public function create()
@@ -33,16 +33,16 @@ class MasterBankController extends Controller
 
     public function store(Request $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_bank where kode = '$request->kode'" ); 			
-        if(!empty($data_cek)){
-            $data=2;
+        $data_cek = DB::select("SELECT * from pay_tbl_bank where kode = '$request->kode'");
+        if (!empty($data_cek)) {
+            $data = 2;
             return response()->json($data);
-        }else {
-        PayTblBank::insert([
-            'kode' => $request->kode,
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'kota' => $request->kota,
+        } else {
+            PayTblBank::insert([
+                'kode' => $request->kode,
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+                'kota' => $request->kota,
             ]);
             $data = 1;
             return response()->json($data);
@@ -52,14 +52,13 @@ class MasterBankController extends Controller
     public function edit($id)
     {
         $data_list = PayTblBank::where('kode', $id)->get();
-        foreach($data_list as $data)
-        {
+        foreach ($data_list as $data) {
             $kode = $data->kode;
             $nama = $data->nama;
             $alamat = $data->alamat;
             $kota = $data->kota;
         }
-        return view('modul-sdm-payroll.master-bank.edit',compact('kode','nama','alamat','kota'));
+        return view('modul-sdm-payroll.master-bank.edit', compact('kode', 'nama', 'alamat', 'kota'));
     }
 
     public function update(Request $request)
@@ -70,13 +69,13 @@ class MasterBankController extends Controller
                 'alamat' => $request->alamat,
                 'kota' => $request->kota,
             ]);
-            return response()->json();
+        return response()->json();
     }
 
     public function delete(Request $request)
     {
         PayTblBank::where('kode', $request->kode)
-        ->delete();
+            ->delete();
         return response()->json();
     }
 }

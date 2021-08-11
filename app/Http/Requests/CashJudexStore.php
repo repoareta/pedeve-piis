@@ -24,7 +24,7 @@ class CashJudexStore extends FormRequest
     public function rules()
     {
         return [
-            'kode' => 'unique:App\Models\CashJudex,kode|required|integer',
+            'kode' => 'unique:App\Models\CashJudex,kode|required|numeric',
             'nama' => 'required|string',
         ];
     }

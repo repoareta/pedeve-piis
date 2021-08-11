@@ -34,13 +34,13 @@
 					<div class="form-group row">
 						<label for="menuid-input" class="col-2 col-form-label">Menu ID<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menuid" value="{{ $dft_menu->menuid }}" id="menuid" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
+							<input class="form-control" type="text" name="menuid" value="{{ $dft_menu->menuid }}" id="menuid" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="menunm-input" class="col-2 col-form-label">Nama Menu<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menunm" id="menunm" value="{{ $dft_menu->menunm }}" onkeyup="this.value = this.value.toUpperCase()">
+							<input class="form-control" type="text" name="menunm" id="menunm" value="{{ $dft_menu->menunm }}" autocomplete="off">
 						</div>
 					</div>
                     <div class="form-group row">

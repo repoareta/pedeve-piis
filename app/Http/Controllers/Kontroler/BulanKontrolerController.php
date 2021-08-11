@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Kontroler;
 
 use App\Http\Controllers\Controller;
 use App\Models\BulanKontroller;
-use Auth;
+use Alert;
 use DB;
+use App\Http\Requests\BulanKontrolerStore;
 use Illuminate\Http\Request;
 
 class BulanKontrolerController extends Controller
@@ -57,7 +58,11 @@ class BulanKontrolerController extends Controller
             return $data_tutup;
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->thnbln.'" class="btn-radio" name="btn-radio"><span></span></label>';
+            $radio = '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" kode="'.$data->thnbln.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                    </label>';
             return $radio;
         })
         ->rawColumns(['radio'])
@@ -68,53 +73,30 @@ class BulanKontrolerController extends Controller
     {
         return view('modul-kontroler.tabel.bulan-kontroler.create');
     }
-    public function store(Request $request)
+
+    public function store(BulanKontrolerStore $request)
     {
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
-        $thnbln = $tahun.''.$bulan;
-        $suplesi = $request->suplesi;
-        $keterangan = $request->keterangan;
-        $status = $request->status;
-        $opendate = $request->tanggal;
-        $stopdate = $request->tanggal2;
-        $closedate = $request->tanggal3;
+        $thnbln = $request->tahun.''.$request->bulan;
         
-        if ($opendate <> "") {
-            $opendate1 = $request->tanggal;
-        } else {
-            $opendate1 = null;
+        if(BulanKontroller::where('thnbln', $thnbln)->first()){
+            Alert::error('Error', 'Tahun bulan sudah ada')->persistent(true)->autoClose(3000);
+            return redirect()->back();
         }
-        if ($stopdate <> "") {
-            $stopdate1 = $request->tanggal2;
-        } else {
-            $stopdate1 = null;
-        }
-        if ($closedate <> "") {
-            $closedate1 = $request->tanggal3;
-        } else {
-            $closedate1 = null;
-        }
-        $data_objRs = DB::select("SELECT * from bulankontroller where thnbln='$thnbln'");
-        if (!empty($data_objRs)) {
-            $data = 2;
-            return response()->json($data);
-        } else {
-            $userid = Auth::user()->userid;
-            BulanKontroller::insert([
-                'thnbln' => $thnbln,
-                'status' => $status ,
-                'opendate' => $opendate1 ,
-                'stopdate' => $stopdate1 ,
-                'closedate' => $closedate1 ,
-                'description' => $keterangan ,
-                'userid' => $userid,
-                'password' => $userid,
-                'suplesi' => $suplesi
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+
+        BulanKontroller::insert([
+            'thnbln' => $thnbln,
+            'status' => $request->status ,
+            'opendate' => $request->opendate,
+            'stopdate' => $request->stopdate,
+            'closedate' => $request->closedate,
+            'description' => $request->keterangan,
+            'userid' => auth()->user()->userid,
+            'password' => auth()->user()->userpw,
+            'suplesi' => $request->suplesi
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.bulan_kontroler.index');
     }
 
     public function edit($no)
@@ -157,7 +139,6 @@ class BulanKontrolerController extends Controller
         $opendate = $request->tanggal;
         $stopdate = $request->tanggal2;
         $closedate = $request->tanggal3;
-        $userid = Auth::user()->userid;
         
         if ($opendate <> "") {
             $opendate1 = $request->tanggal;
@@ -181,8 +162,8 @@ class BulanKontrolerController extends Controller
             'stopdate' => $stopdate1 ,
             'closedate' => $closedate1 ,
             'description' => $keterangan ,
-            'userid' => $userid,
-            'password' => $userid,
+            'userid' => auth()->user()->userid,
+            'password' => auth()->user()->userpw,
             'suplesi' => $suplesi
         ]);
         return response()->json();

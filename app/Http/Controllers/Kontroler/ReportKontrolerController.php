@@ -198,13 +198,13 @@ class ReportKontrolerController extends Controller
                     ");
             // dd($data_list);
             if (!empty($data_list)) {
-                $pdf = DomPDF::loadview('modul-kontroler.report-kontroler.neraca-konsolidasi', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
-                $pdf->output();
-                $dom_pdf = $pdf->getDomPDF();
+                $pdf = PDF::loadview('modul-kontroler.report-kontroler.neraca-konsolidasi', compact('tahun', 'bulan', 'suplesi', 'request', 'data_list'))->setPaper('a4', 'Portrait');
+                // $pdf->output();
+                // $dom_pdf = $pdf->getDomPDF();
 
-                $canvas = $dom_pdf->getCanvas();
-                $canvas->page_text(485, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
-                // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
+                // $canvas = $dom_pdf->getCanvas();
+                // $canvas->page_text(485, 120, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //lembur landscape
+                // // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
                 return $pdf->stream();
             } else {
                 Alert::info("Tidak ditemukan data dengan Bulan/Tahun: $request->bulan/$request->tahun ", 'Failed')->persistent(true);

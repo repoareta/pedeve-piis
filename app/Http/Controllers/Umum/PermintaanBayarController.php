@@ -422,7 +422,7 @@ class PermintaanBayarController extends Controller
         $data_cek = PermintaanBayarHeader::whereBetween('tgl_bayar', [$request->mulai, $request->sampai])->count();
         if ($data_cek == 0) {
             Alert::error('Tidak Ada Data Pada Tanggal Mulai: '.$request->mulai.' Sampai Tanggal: '.$request->sampai.'', 'Failed')->persistent(true);
-            return redirect()->route('modul-umum.permintaan-bayar.rekap.range');
+            return redirect()->route('modul_umum.permintaan_bayar.rekap.range');
         } else {
             if ($request->submit == 'pdf') {
                 $mulai = date($request->mulai);
@@ -453,7 +453,7 @@ class PermintaanBayarController extends Controller
                 ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
                 ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                 ->get();
-                $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.export-range', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
+                $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.export-range-pdf', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
                 $canvas = $dom_pdf->getCanvas();
@@ -490,7 +490,7 @@ class PermintaanBayarController extends Controller
                 ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                 ->get();
                 $excel=new Spreadsheet;
-                return view('modul-umum.permintaan-bayar.exportexcel', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
+                return view('modul-umum.permintaan-bayar.export-range-excel', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
@@ -521,7 +521,7 @@ class PermintaanBayarController extends Controller
                 ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                 ->get();
                 $excel=new Spreadsheet;
-                return view('modul-umum.permintaan-bayar.exportcsv', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
+                return view('modul-umum.permintaan-bayar.export-range-csv', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
             }
         }
     }

@@ -201,4 +201,29 @@ class JamsostekController extends Controller
         // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();
     }
+
+    public function daftarIuranExport(Request $request)
+    {
+        $data_cek = DB::select("select * from pay_master_upah where tahun='$request->tahun' and bulan='$request->bulan'");
+        if(!empty($data_cek) and $request->ijp == 'v1') {
+            $data_list = DB::select("select a.tahun,a.bulan,a.nopek,a.aard,a.nilai*-1 as pribadi,b.nama as namapegawai,b.status,b.noastek,(SELECT jumlah FROM pay_gapokbulanan WHERE tahun=a.tahun AND bulan=a.bulan AND nopek=a.nopek) gapok,(select curramount from pay_master_bebanprshn where aard='10' and tahun=a.tahun and bulan=a.bulan and nopek=a.nopek)  jkk, (select curramount from pay_master_bebanprshn where aard='11' and tahun=a.tahun and bulan=a.bulan and nopek=a.nopek) pensiun,(select curramount from pay_master_bebanprshn where aard='12' and tahun=a.tahun and bulan=a.bulan and nopek=a.nopek) life,(select curramount from pay_master_bebanprshn where aard='13' and tahun=a.tahun and bulan=a.bulan and nopek=a.nopek) manulife from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg WHERE a.aard='09' and a.tahun='$request->tahun' and a.bulan='$request->bulan'");
+            $pdf = DomPDF::loadview('modul-sdm-payroll.jamsostek.daftar-iuran-pdf-pekerja-satu',compact('request','data_list'))->setPaper('a4', 'landscape');
+            $dom_pdf = $pdf->getDomPDF();
+
+            $canvas = $dom_pdf ->getCanvas();
+            $canvas->page_text(730, 100, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //iuran jamsostek landscape
+            return $pdf->stream();
+        }elseif(!empty($data_cek) and $request->ijp == 'v2'){
+            $data_list = DB::select("select a.tahun, a.bulan, a.nopek,a.aard, a.nilai as gapok, b.noastek,b.nama as namapegawai, b.status from pay_master_upah a join sdm_master_pegawai b on a.nopek=b.nopeg where a.aard='09' and a.tahun='$request->tahun' and a.bulan='$request->bulan' and a.nilai*-1>0");
+            $pdf = DomPDF::loadview('modul-sdm-payroll.jamsostek.daftar-iuran-pdf-pekerja-dua',compact('request','data_list'))->setPaper('a4', 'landscape');
+            $dom_pdf = $pdf->getDomPDF();
+
+            $canvas = $dom_pdf ->getCanvas();
+            $canvas->page_text(730, 100, "Halaman {PAGE_NUM} Dari {PAGE_COUNT}", null, 10, array(0, 0, 0)); //iuran jamsostek landscape
+            return $pdf->stream();
+        }else{
+            Alert::info("Tidak ditemukan data Tahun: $request->tahun dan Bulan: $request->bulan", 'Failed')->persistent(true);
+            return redirect()->route('modul_sdm_payroll.jamsostek.daftar_iuran');
+        }
+    }
 }
