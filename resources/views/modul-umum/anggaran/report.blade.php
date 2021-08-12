@@ -24,7 +24,7 @@
                 <div class="form-group row">
                     <label for="mulai-input" class="col-2 col-form-label">Tahun</label>
                     <div class="col-8">
-                        <input type="text" class="form-control" name="tahun" autocomplete="off" />
+                        <input type="text" class="form-control tahun" name="tahun" autocomplete="off" />
                     </div>
                 </div>
     

@@ -108,7 +108,7 @@ class AnggaranController extends Controller
         $anggaran->save();
 
         Alert::success('Simpan Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('anggaran.index');
+        return redirect()->route('modul_umum.anggaran.index');
     }
 
     /**
@@ -144,7 +144,7 @@ class AnggaranController extends Controller
         $anggaran->save();
 
         Alert::success('Ubah Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('anggaran.index');
+        return redirect()->route('modul_umum.anggaran.index');
     }
 
     /**
@@ -205,9 +205,8 @@ class AnggaranController extends Controller
         // dd($v_anggaran);
 
         // return default PDF
-        $pdf = DomPDF::loadview('modul-umum.anggaran.export_pdf', compact('anggaran_list', 'tahun'))
-        ->setPaper('a4', 'potrait')
-        ->setOptions(['isPhpEnabled' => true]);
+        $pdf = DomPDF::loadview('modul-umum.anggaran.anggaran-pdf', compact('anggaran_list', 'tahun'))
+        ->setPaper('a4', 'potrait');
 
         return $pdf->stream('rekap_anggaran_'.date('Y-m-d H:i:s').'.pdf');
     }
@@ -234,8 +233,13 @@ class AnggaranController extends Controller
         ->get();
 
         // return default PDF
-        $pdf = PDF::loadView('modul-umum.anggaran.report_export_pdf', compact('anggaran_list', 'tahun'))
-        ->setPaper('a4', 'potrait');
+        $pdf = PDF::loadView('modul-umum.anggaran.anggaran-pdf', compact(
+            'anggaran_list', 
+            'tahun')
+        )
+        ->setOption('page-size', 'A4')
+        ->setOption('orientation', 'Portrait')
+        ->setOption('footer-right', 'Halaman [page] dari [toPage]');
 
         return $pdf->stream('rekap_anggaran_'.date('Y-m-d H:i:s').'.pdf');
     }
