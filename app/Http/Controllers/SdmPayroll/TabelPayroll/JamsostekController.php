@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
 use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\JamsostekStoreRequest;
 use App\Models\PayTblJamsostek;
 use DB;
 use DomPDF;
@@ -31,19 +32,19 @@ class JamsostekController extends Controller
             return $radio;
         })
         ->addColumn('pribadi', function ($data) {
-            return currency_format($data->pribadi); 
+            return currency_format($data->pribadi, 2);
         })
         ->addColumn('accident', function ($data) {
-            return currency_format($data->accident);
+            return currency_format($data->accident, 2);
         })
         ->addColumn('pensiun', function ($data) {
-            return currency_format($data->pensiun);
+            return currency_format($data->pensiun, 2);
         })
         ->addColumn('life', function ($data) {
-            return currency_format($data->life);
+            return currency_format($data->life, 2);
         })
         ->addColumn('manulife', function ($data) {
-            return currency_format($data->manulife);
+            return currency_format($data->manulife, 2);
         })
         ->rawColumns(['radio'])
         ->make(true);
@@ -65,23 +66,19 @@ class JamsostekController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JamsostekStoreRequest $request)
     {
-        $data_cek = PayTblJamsostek::all()->count(); 			
+        $data_cek = PayTblJamsostek::all()->count();
+
         if(!empty($data_cek)){
-            $data=0;
-            return response()->json($data);
-        }else {
-        PayTblJamsostek::insert([
-            'pribadi' => str_replace(',', '.', $request->pribadi),
-            'accident' => str_replace(',', '.', $request->accident),
-            'pensiun' => str_replace(',', '.', $request->pensiun),
-            'life' => str_replace(',', '.', $request->life),
-            'manulife' => str_replace(',', '.', $request->manulife)
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }   
+            Alert::info('Failed', 'Duplikasi data, entri dibatalkan.')->persistent(true)->autoClose(3000);
+            return redirect()->route('modul_sdm_payroll.jamsostek.index');
+        }
+        
+        PayTblJamsostek::insert($request->validated());
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.jamsostek.index');
      }
 
     /**
@@ -92,8 +89,17 @@ class JamsostekController extends Controller
      */
     public function edit($id)
     {
-        $data_list =  PayTblJamsostek::where('pribadi', $id)->get();
-        return view('modul-sdm-payroll.jamsostek.edit', compact('data_list'));
+        $jamsostek = PayTblJamsostek::where('pribadi', $id)->first();
+
+        $jamsostek->pribadi = number_format($jamsostek->pribadi, 2);
+        $jamsostek->accident = number_format($jamsostek->accident, 2);
+        $jamsostek->pensiun = number_format($jamsostek->pensiun, 2);
+        $jamsostek->life = number_format($jamsostek->life, 2);
+        $jamsostek->manulife = number_format($jamsostek->manulife, 2);
+
+        return view('modul-sdm-payroll.jamsostek.edit', compact(
+            'jamsostek'
+        ));
     }
 
     /**
@@ -103,17 +109,13 @@ class JamsostekController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(JamsostekStoreRequest $request)
     {
         PayTblJamsostek::where('pribadi', $request->pribadi)
-        ->update([
-            'pribadi' => str_replace(',', '.', $request->pribadi),
-            'accident' => str_replace(',', '.', $request->accident),
-            'pensiun' => str_replace(',', '.', $request->pensiun),
-            'life' => str_replace(',', '.', $request->life),
-            'manulife' => str_replace(',', '.', $request->manulife)
-        ]);
-        return response()->json();
+        ->update($request->validated());
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.jamsostek.index');
     }
 
     /**

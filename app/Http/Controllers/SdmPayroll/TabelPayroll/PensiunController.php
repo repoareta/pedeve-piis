@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
 use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PensiunStoreRequest;
 use App\Models\PayTblPensiun;
 use DB;
 use DomPDF;
@@ -64,22 +65,19 @@ class PensiunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PensiunStoreRequest $request)
     {
         $data_cek = PayTblPensiun::all()->count();
+
         if (!empty($data_cek)) {
-            $data = 0;
-            return response()->json($data);
-        } else {
-            PayTblPensiun::insert([
-                'pribadi' => str_replace(',', '.', $request->pribadi),
-                'perusahaan' => str_replace(',', '.', $request->perusahaan),
-                'perusahaan2' => str_replace(',', '.', $request->perusahaan2),
-                'perusahaan3' => str_replace(',', '.', $request->perusahaan3),
-            ]);
-            $data = 1;
-            return response()->json($data);
+            Alert::info('Failed', 'Duplikasi data, entri dibatalkan.')->persistent(true)->autoClose(3000);
+            return redirect()->route('modul_sdm_payroll.pensiun.index');
         }
+
+        PayTblPensiun::insert($request->validated());
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.pensiun.index');
     }
 
     /**
@@ -90,8 +88,16 @@ class PensiunController extends Controller
      */
     public function edit($id)
     {
-        $data_list =  PayTblPensiun::where('pribadi', $id)->get();
-        return view('modul-sdm-payroll.pensiun.edit', compact('data_list'));
+        $pensiun = PayTblPensiun::where('pribadi', $id)->first();
+
+        $pensiun->pribadi = number_format($pensiun->pribadi, 2);
+        $pensiun->perusahaan = number_format($pensiun->perusahaan, 2);
+        $pensiun->perusahaan2 = number_format($pensiun->perusahaan2, 2);
+        $pensiun->perusahaan3 = number_format($pensiun->perusahaan3, 2);
+
+        return view('modul-sdm-payroll.pensiun.edit', compact(
+            'pensiun'
+        ));
     }
 
     /**
@@ -101,16 +107,13 @@ class PensiunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(PensiunStoreRequest $request)
     {
-        PayTblPensiun::where('pribadi', $request->pribadi)
-            ->update([
-                'pribadi' => str_replace(',', '.', $request->pribadi),
-                'perusahaan' => str_replace(',', '.', $request->perusahaan),
-                'perusahaan2' => str_replace(',', '.', $request->perusahaan2),
-                'perusahaan3' => str_replace(',', '.', $request->perusahaan3),
-            ]);
-        return response()->json();
+        PayTblPensiun::where('pribadi', $request->id)
+            ->update($request->validated());
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.pensiun.index');
     }
 
     /**

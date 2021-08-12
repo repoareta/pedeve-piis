@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Pribadi <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="pribadi" type="number" value="" size="2" maxlength="2" autocomplete='off'>
+                    <input class="form-control" name="pribadi" type="number" size="2" maxlength="2" autocomplete='off'>
                     @error('pribadi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Perusahaan Direksi <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="perusahaan" type="number" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="perusahaan" type="number" size="40" maxlength="50" autocomplete='off'>
                     @error('perusahaan')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Perusahaan Pekerja <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="perusahaan2" type="number" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="perusahaan2" type="number" size="40" maxlength="50" autocomplete='off'>
                     @error('perusahaan2')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Perusahaan Direksi(BNI) <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="perusahaan3" type="number" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="perusahaan3" type="number" size="40" maxlength="50" autocomplete='off'>
                     @error('perusahaan3')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -87,38 +87,38 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PensiunStoreRequest', '#form-create'); !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{ route('modul_sdm_payroll.pensiun.store') }}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				success : function(data){
-                    if(data == 1){
-                        Swal.fire({
-                            icon  : 'success',
-                            title : 'Data Berhasil Ditambah',
-                            text  : 'Berhasil',
-                            timer : 2000
-                        }).then(function() {
-                                location.href = "{{ route('modul_sdm_payroll.pensiun.index')}}";
-                            });
-                    }else{
-                        Swal.fire({
-                            icon  : 'info',
-                            title : 'Duplikasi data, entri dibatalkan.',
-                            text  : 'Failed',
-                        });
+		$('#form-create').submit(function(e){
+			e.preventDefault();
+
+            if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        console.log(result);
+                        $(this).unbind('submit').submit();
                     }
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-            
-			return false;
+                });
+            }
 		});
 	});
 </script>

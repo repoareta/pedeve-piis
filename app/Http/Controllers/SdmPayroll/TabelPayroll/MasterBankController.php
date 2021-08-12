@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MasterBankStoreRequest;
 use App\Models\PayTblBank;
 use DB;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MasterBankController extends Controller
 {
@@ -31,45 +33,30 @@ class MasterBankController extends Controller
         return view('modul-sdm-payroll.master-bank.create');
     }
 
-    public function store(Request $request)
+    public function store(MasterBankStoreRequest $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_bank where kode = '$request->kode'");
-        if (!empty($data_cek)) {
-            $data = 2;
-            return response()->json($data);
-        } else {
-            PayTblBank::insert([
-                'kode' => $request->kode,
-                'nama' => $request->nama,
-                'alamat' => $request->alamat,
-                'kota' => $request->kota,
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        PayTblBank::insert($request->validated());
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_bank.index');
     }
 
     public function edit($id)
     {
-        $data_list = PayTblBank::where('kode', $id)->get();
-        foreach ($data_list as $data) {
-            $kode = $data->kode;
-            $nama = $data->nama;
-            $alamat = $data->alamat;
-            $kota = $data->kota;
-        }
-        return view('modul-sdm-payroll.master-bank.edit', compact('kode', 'nama', 'alamat', 'kota'));
+        $bank = PayTblBank::where('kode', $id)->first();
+        
+        return view('modul-sdm-payroll.master-bank.edit', compact('bank'));
     }
 
     public function update(Request $request)
     {
         PayTblBank::where('kode', $request->kode)
-            ->update([
-                'nama' => $request->nama,
-                'alamat' => $request->alamat,
-                'kota' => $request->kota,
-            ]);
-        return response()->json();
+            ->update(
+                $request->only(['nama', 'alamat', 'kota'])
+            );
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_bank.index');
     }
 
     public function delete(Request $request)
