@@ -83,12 +83,19 @@ class SetUserController extends Controller
             return $userp1.' '.$userp2.' '.$userp4.' '.$userp5.' '.$userp6;
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->userid.'" username="'.$data->usernm.'" class="btn-radio" name="btn-radio"><span></span></label>';
+            $radio = '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" value="'.$data->userid.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                    </label>';
             return $radio;
         })
         ->addColumn('reset', function ($data) {
             // Ini route mas bukan folder / file
-            $radio = '<center><a style="color:blue;" href="'. route('modul_administrator.set_user.reset', ['no' => $data->userid]).'">RESET</a></center>';
+            $radio = '
+                    <a class="btn btn-primary" href="'. route('modul_administrator.set_user.reset', ['no' => $data->userid]).'">
+                        RESET
+                    </a>';
             return $radio;
         })
         ->rawColumns(['radio','userap','reset'])
