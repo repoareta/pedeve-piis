@@ -9,7 +9,6 @@ class Account extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "kodeacct";
     public $timestamps = false;
     protected $table="account";
     protected $fillable=['kodeacct','descacct','userid', 'update_date','flag','jenis'];

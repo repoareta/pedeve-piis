@@ -10,4 +10,6 @@ class StoreJK extends Model
     use HasFactory;
 
     protected $table = 'storejk';
+
+    public $timestamps = false;
 }

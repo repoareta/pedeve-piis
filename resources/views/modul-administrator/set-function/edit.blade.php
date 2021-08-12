@@ -17,7 +17,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Set Function
+                Edit Set Function
             </h3>
         </div>
     </div>
@@ -35,12 +35,6 @@
 						<label for="userid-input" class="col-2 col-form-label">User ID<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="userid" id="userid" value="{{ $user_pdv->userid }}">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="usernm-input" class="col-2 col-form-label">User Name<span class="text-danger">*</span></label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="usernm" id="usernm" value="{{ $user_pdv->usernm }}">
 						</div>
 					</div>
                     <div class="form-group row">

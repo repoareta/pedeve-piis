@@ -7,6 +7,7 @@ use App\Models\Account;
 use App\Models\StoreJK;
 use Illuminate\Http\Request;
 use App\Http\Requests\KasBankKontrolerStore;
+use App\Http\Requests\KasBankKontrolerUpdate;
 use Alert;
 use App\Models\Kasdoc;
 use DB;
@@ -26,7 +27,7 @@ class KasBankKontrolerController extends Controller
         ->addColumn('radio', function ($data) {
             $radio = '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" kode="'.$data->kodestore.'" class="btn-radio" name="btn-radio">
+                        <input type="radio" value="'.$data->kodestore.'" class="btn-radio" name="btn-radio">
                             <span></span>
                     </label>'; 
             return $radio;
@@ -49,7 +50,7 @@ class KasBankKontrolerController extends Controller
         StoreJK::insert([
             'jeniskartu' => $request->jeniskartu,
             'kodestore' => $request->kodestore,
-            'account' => $request->account,
+            'account' => $request->kodeacct,
             'ci' => $request->ci,
             'namabank' => $request->namabank,
             'norekening' => $request->norekening,
@@ -62,43 +63,34 @@ class KasBankKontrolerController extends Controller
         return redirect()->route('modul_kontroler.tabel.kas_bank_kontroler.index');
     }
 
-    public function edit($no)
+    public function edit($kode)
     {
-        $data_cash = DB::select("SELECT * from storejk where kodestore='$no'");
-        foreach($data_cash as $data)
-        {
-            $kode = $data->kodestore;
-            $nama = $data->namabank;
-            $jk = $data->jeniskartu;
-            $sanper = $data->account;
-            $ci = $data->ci;
-            $norek = $data->norekening;
-            $lokasi = $data->lokasi;
-        }
-        $data_sanper = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%X%' order by kodeacct");
+        $data_store = StoreJK::where('kodestore', $kode)->first();
+        $data_sanper = Account::select('kodeacct', 'descacct')
+                                ->where('kodeacct', 'not like', '%X%')
+                                ->orderBy('kodeacct')
+                                ->get();
+                                
         return view('modul-kontroler.tabel.kas-bank-kontroler.edit',compact(
                                                         'data_sanper',
-                                                        'kode',
-                                                        'nama',
-                                                        'jk',
-                                                        'sanper',
-                                                        'ci',
-                                                        'norek',
-                                                        'lokasi'
-                                                                ));
+                                                        'data_store'
+                                                        ));
     }
-    public function update(Request $request)
+
+    public function update(KasBankKontrolerUpdate $request)
     {
-        Storejk::where('kodestore',$request->kode)
+        Storejk::where('kodestore',$request->kodestore)
         ->update([
-            'jeniskartu' => $request->jk,
-            'account' => $request->sanper,
+            'jeniskartu' => $request->jeniskartu,
+            'account' => $request->kodeacct,
             'ci' => $request->ci,
-            'namabank' => $request->nama,
-            'norekening' => $request->norek,
+            'namabank' => $request->namabank,
+            'norekening' => $request->norekening,
             'lokasi' => $request->lokasi
         ]);
-        return response()->json();
+        
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.kas_bank_kontroler.index');
     }
 
     public function delete(Request $request)

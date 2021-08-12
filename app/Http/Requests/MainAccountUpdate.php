@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TabelMenuUpdate extends FormRequest
+class MainAccountUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,14 @@ class TabelMenuUpdate extends FormRequest
     public function rules()
     {
         return [
-            'menuid'      => 'required|numeric',
-            'menunm'      => 'required',
-            'userap'      => 'required',
+            'jenis' => 'required|string',
+            'batas_awal' => 'required|numeric',
+            'batas_akhir' => 'required|numeric',
+            'urutan' => 'required|string',
+            'pengali' => 'required|numeric',
+            'pengali_tampil' => 'required|numeric',
+            'sub_akun' => 'required|numeric',
+            'lokasi' => 'required|string'
         ];
     }
 }

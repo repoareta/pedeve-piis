@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BulanKontroller;
 use Alert;
 use DB;
+use Carbon\Carbon;
 use App\Http\Requests\BulanKontrolerStore;
 use Illuminate\Http\Request;
 
@@ -60,7 +61,7 @@ class BulanKontrolerController extends Controller
         ->addColumn('radio', function ($data) {
             $radio = '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" kode="'.$data->thnbln.'" class="btn-radio" name="btn-radio">
+                        <input type="radio" value="'.$data->thnbln.'" class="btn-radio" name="btn-radio">
                             <span></span>
                     </label>';
             return $radio;
@@ -99,74 +100,35 @@ class BulanKontrolerController extends Controller
         return redirect()->route('modul_kontroler.tabel.bulan_kontroler.index');
     }
 
-    public function edit($no)
+    public function edit($kode)
     {
-        $data_cash = DB::select("SELECT * from bulankontroller where thnbln='$no'");
-        foreach ($data_cash as $data) {
-            $thnbln =     $data->thnbln;
-            $status  =     $data->status;
-            if ($data->opendate<>"") {
-                $tgl = date_create($data->opendate);
-                $tanggal  =   date_format($tgl, 'Y-m-d');
-            } else {
-                $tanggal  =   "";
-            }
-            if ($data->stopdate<>"") {
-                $tgl2 = date_create($data->stopdate);
-                $tanggal2 =   date_format($tgl2, 'Y-m-d');
-            } else {
-                $tanggal2 =   "";
-            }
-            if ($data->closedate<>"") {
-                $tgl3 = date_create($data->closedate);
-                $tanggal3 =  date_format($tgl3, 'Y-m-d');
-            } else {
-                $tanggal3 =  "";
-            }
-            $keterangan  =$data->description;
-            $suplesi =    $data->suplesi;
-        }
-        return view('modul-kontroler.tabel.bulan-kontroler.edit', compact('thnbln', 'status', 'tanggal', 'tanggal2', 'tanggal3', 'keterangan', 'suplesi'));
+        $data = BulanKontroller::where('thnbln', $kode)->first();
+        $data->opendate = $data->opendate ? Carbon::parse($data->opendate)->format('d-m-Y') : '';
+        $data->stopdate = $data->stopdate ? Carbon::parse($data->stopdate)->format('d-m-Y') : '';
+        $data->closedate = $data->closedate ? Carbon::parse($data->closingdate)->format('d-m-Y') : '';
+        
+        return view('modul-kontroler.tabel.bulan-kontroler.edit', compact('data'));
     }
+
     public function update(Request $request)
     {
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
-        $thnbln = $tahun.''.$bulan;
-        $suplesi = $request->suplesi;
-        $keterangan = $request->keterangan;
-        $status = $request->status;
-        $opendate = $request->tanggal;
-        $stopdate = $request->tanggal2;
-        $closedate = $request->tanggal3;
-        
-        if ($opendate <> "") {
-            $opendate1 = $request->tanggal;
-        } else {
-            $opendate1 = null;
-        }
-        if ($stopdate <> "") {
-            $stopdate1 = $request->tanggal2;
-        } else {
-            $stopdate1 = null;
-        }
-        if ($closedate <> "") {
-            $closedate1 = $request->tanggal3;
-        } else {
-            $closedate1 = null;
-        }
-        Bulankontroller::where('thnbln', $thnbln)
+        $thnbln = $request->tahun.''.$request->bulan;
+
+        BulanKontroller::where('thnbln', $thnbln)
         ->update([
-            'status' => $status ,
-            'opendate' => $opendate1 ,
-            'stopdate' => $stopdate1 ,
-            'closedate' => $closedate1 ,
-            'description' => $keterangan ,
+            'thnbln' => $thnbln,
+            'status' => $request->status ,
+            'opendate' => $request->opendate,
+            'stopdate' => $request->stopdate,
+            'closedate' => $request->closedate,
+            'description' => $request->keterangan,
             'userid' => auth()->user()->userid,
             'password' => auth()->user()->userpw,
-            'suplesi' => $suplesi
+            'suplesi' => $request->suplesi
         ]);
-        return response()->json();
+        
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.bulan_kontroler.index');
     }
 
     public function delete(Request $request)

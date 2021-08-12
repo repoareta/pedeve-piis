@@ -118,12 +118,15 @@
                 })
                 .then((result) => {
                     if (result.value == true) {
-                        var checked = $('.checkbox-menuid:checked').map(function() {
+                        let checked = $('.checkbox-menuid:checked').map(function() {
                             return this.value;
                         }).get();
+                        let route = '{{ route("modul_administrator.set_menu.update", ":menuid") }}';
+                        // go to page edit
+                        let url = route.replace(':menuid',id);
                         $.ajax({
                             method: "POST",
-                            url:"{{ url('administrator/set-menu/update') }}" + '/' + id,
+                            url: url,
                             data: {
                                 "_token": "{{ csrf_token() }}",
                                 'menus': checked,                                    

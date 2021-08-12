@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JenisBiayaUpdate extends FormRequest
+class BulanKontrolerUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,14 @@ class JenisBiayaUpdate extends FormRequest
     public function rules()
     {
         return [
-            'kode' => 'required|numeric',
+            'bulan' => 'required|numeric',
+            'tahun' => 'required|numeric',
+            'suplesi' => 'required|numeric',
+            'status' => 'required|in:1,2,3',
+            'status' => 'required|in:1,2,3',
+            'opendate' => 'nullable|date',
+            'stopdate' => 'nullable|date',
+            'closedate' => 'nullable|date',
             'keterangan' => 'required|string',
         ];
     }

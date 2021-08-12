@@ -138,11 +138,12 @@
         //edit 
         $('#editRow').click(function(e) {
             e.preventDefault();
-
-            if($('input[class=btn-radio]').is(':checked')) { 
-                $("input[class=btn-radio]:checked").each(function(){
-                    var no = $(this).attr('kode');
-                    location.replace("{{ url('kontroler/tabel/jenis-biaya/edit') }}"+ '/' +no);
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var id = $('input[type=radio]:checked').val();
+                    var url = '{{ route("modul_kontroler.tabel.jenis_biaya.edit", ":kode") }}';
+                    // go to page edit
+                    window.location.href = url.replace(':kode',id);
                 });
             } else {
                 swalAlertInit('ubah');

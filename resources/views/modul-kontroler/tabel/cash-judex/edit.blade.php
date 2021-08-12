@@ -34,7 +34,7 @@
                     <div class="form-group row">
 						<label for="userid-input" class="col-2 col-form-label">Kode<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="kode" id="kode" value="{{ $data->kode }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly>
+							<input class="form-control" type="text" name="kode" id="kode" value="{{ $data->kode }}">
 						</div>
 					</div>
 					<div class="form-group row">

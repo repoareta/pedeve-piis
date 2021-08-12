@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TabelMenuUpdate extends FormRequest
+class KasBankKontrolerUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,15 @@ class TabelMenuUpdate extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'menuid'      => 'required|numeric',
-            'menunm'      => 'required',
-            'userap'      => 'required',
+            'kodestore' => 'required|numeric',
+            'jeniskartu' => 'required|numeric|in:10,11,13', 
+            'kodeacct' => 'required|numeric|unique:account',
+            'ci' => 'required|numeric|in:1,2',
+            'namabank' => 'required|string',
+            'norekening' => 'required|numeric',
+            'lokasi' => 'required|string|in:MD,MS'
         ];
     }
 }

@@ -24,6 +24,7 @@ class SetUserUpdate extends FormRequest
     public function rules()
     {
         return [
+            'userid' => 'required', 
             'usernm'      => 'required',
             'kode'        => 'required',
             'userlv'      => 'required',
