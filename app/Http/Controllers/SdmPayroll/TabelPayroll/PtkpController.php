@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MasterPTKPStoreRequest;
 use App\Models\PayTblPtkp;
 use DB;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PtkpController extends Controller
 {
@@ -34,34 +36,20 @@ class PtkpController extends Controller
         return view('modul-sdm-payroll.master-ptkp.create');
     }
 
-    public function store(Request $request)
+    public function store(MasterPTKPStoreRequest $request)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_ptkp where kdkel = '$request->kdkel'" ); 			
-        if(!empty($data_cek)) {
-            $data = 2;
-            
-            return response()->json($data);
-        } else {
-            PayTblPtkp::insert([
-                'kdkel' => $request->kdkel,
-                'nilai' => str_replace(',', '.', $request->nilai),
-            ]);
-            $data = 1;
+        PayTblPtkp::insert($request->validated());
 
-            return response()->json($data);
-        }
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_ptkp.index');
     }
 
 
     public function edit($id)
     {
-        $data_list = PayTblPtkp::where('kdkel', $id)->get();
-        foreach($data_list as $data)
-        {
-            $kdkel = $data->kdkel;
-            $nilai = $data->nilai;
-        }
-        return view('modul-sdm-payroll.master-ptkp.edit',compact('kdkel','nilai'));
+        $ptkp = PayTblPtkp::where('kdkel', $id)->first();
+
+        return view('modul-sdm-payroll.master-ptkp.edit',compact('ptkp'));
     }
 
     /**
@@ -72,12 +60,15 @@ class PtkpController extends Controller
      */
     public function update(Request $request)
     {
-        PayTblPtkp::where('kdkel', $request->kdkel)
-        ->update([
-            'nilai' => str_replace(',', '.', $request->nilai),
-        ]);
+        $request->nilai = str_replace(',', '.', $request->nilai);
 
-        return response()->json();
+        PayTblPtkp::where('kdkel', $request->kdkel)
+                ->update(
+                    $request->only('nilai')
+                );
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_ptkp.index');
     }
 
 

@@ -85,7 +85,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function(){
 					var dataid = $(this).attr('data-id');
-					location.replace("{{ url('sdm-payroll/jamsostek/edit') }}"+ '/' +dataid);
+					location.href = "{{ url('sdm-payroll/jamsostek/edit') }}"+ '/' + parseInt(dataid).toFixed(2);
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -108,7 +108,7 @@
 						})
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
-							text: "Dedail data jamsostek: "+dataid,
+							text: "Dedail data jamsostek: " + dataid,
 							type: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,

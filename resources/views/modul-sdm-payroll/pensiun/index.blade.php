@@ -83,7 +83,7 @@
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function(){
 					var dataid = $(this).attr('data-id');
-					location.replace("{{ url('sdm/pensiun/edit') }}"+ '/' +dataid);
+					location.href = "{{ url('sdm-payroll/pensiun/edit') }}"+ '/' + parseInt(dataid).toFixed(2);
 				});
 			} else {
 				swalAlertInit('ubah');

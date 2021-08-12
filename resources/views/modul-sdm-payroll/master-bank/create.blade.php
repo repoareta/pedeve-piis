@@ -88,39 +88,38 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\MasterBankStoreRequest', '#form-create'); !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{ route('modul_sdm_payroll.master_bank.store') }}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				success : function(data){
-				console.log(data);
-				if(data == 1){
-					Swal.fire({
-						icon  : 'success',
-						title : 'Data Berhasil Ditambah',
-						text  : 'Berhasil',
-						timer : 2000
-					}).then(function() {
-							location.href = "{{ route('modul_sdm_payroll.master_bank.index')}}";
-						});
-				}else{
-					Swal.fire({
-						icon  : 'info',
-						title : 'Duplikasi data, entri dibatalkan.',
-						text  : 'Failed',
-					});
-				}
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-            
-			return false;
+		$('#form-create').submit(function(e){
+            e.preventDefault();
+
+            if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        console.log(result);
+                        $(this).unbind('submit').submit();
+                    }
+                });
+            }
 		});
 	});
 </script>

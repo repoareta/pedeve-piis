@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Kode <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="kdkel" type="text" value="" size="2" maxlength="2" autocomplete='off'>
+                    <input class="form-control" name="kdkel" type="text" autocomplete='off'>
                     @error('kdkel')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="nilai" type="text" autocomplete='off'>
                     @error('nilai')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -65,39 +65,39 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\MasterPTKPStoreRequest', '#form-create'); !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{ route('modul_sdm_payroll.master_ptkp.store') }}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				success : function(data){
-                    if(data == 1){
-                        Swal.fire({
-                            icon  : 'success',
-                            title : 'Data Berhasil Ditambah',
-                            text  : 'Berhasil',
-                            timer : 2000
-                        }).then(function() {
-                                location.href = "{{ route('modul_sdm_payroll.master_ptkp.index')}}";
-                            });
-                    }else{
-                        Swal.fire({
-                            icon  : 'info',
-                            title : 'Duplikasi data, entri dibatalkan.',
-                            text  : 'Failed',
-                        });
+            e.preventDefault();
+
+            if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        console.log(result);
+                        $(this).unbind('submit').submit();
                     }
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-            
-			return false;
-		});
+                });
+            }
+        });
 	});
 </script>
 @endpush
