@@ -24,7 +24,7 @@ class TabelMenuStore extends FormRequest
     public function rules()
     {
         return [
-            'menuid'      => 'required|unique:App\Models\DftMenu,menuid|max:3',
+            'menuid'      => 'required|unique:App\Models\DftMenu,menuid|max:3|numeric',
             'menunm'      => 'required',
             'userap'      => 'required',
         ];

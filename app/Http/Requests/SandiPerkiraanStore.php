@@ -24,7 +24,7 @@ class SandiPerkiraanStore extends FormRequest
     public function rules()
     {
         return [
-            'kodeacct' => 'unique:account,kodeacct|required|numeric',
+            'kodeacct' => 'unique:account,kodeacct|required|string',
             'descacct' => 'required|string',
         ];
     }

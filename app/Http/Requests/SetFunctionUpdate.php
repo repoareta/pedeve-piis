@@ -24,7 +24,8 @@ class SetFunctionUpdate extends FormRequest
     public function rules()
     {
         return [
-            'menuid'      => 'required',
+            'userid'      => 'required',
+            'menuid'      => 'required|numeric',
         ];
     }
 }

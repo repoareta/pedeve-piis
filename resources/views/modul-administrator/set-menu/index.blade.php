@@ -17,7 +17,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-            Set User
+            Set Menu
             </h3>
         </div>
         <div class="card-toolbar">

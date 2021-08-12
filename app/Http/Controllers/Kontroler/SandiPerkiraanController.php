@@ -8,6 +8,7 @@ use DB;
 use Alert;
 use Illuminate\Http\Request;
 use App\Http\Requests\SandiPerkiraanStore;
+use App\Http\Requests\SandiPerkiraanUpdate;
 
 class SandiPerkiraanController extends Controller
 {
@@ -18,12 +19,12 @@ class SandiPerkiraanController extends Controller
 
     public function indexJson()
     {
-        $data = Account::where('kodeacct', '01')->orderByDesc('kodeacct');
+        $data = Account::orderByDesc('kodeacct');
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
             $radio = '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" kode="'.$data->kodeacct.'" class="btn-radio" name="btn-radio">
+                        <input type="radio" value="'.$data->kodeacct.'" class="btn-radio" name="btn-radio">
                         <span></span>
                     </label>'; 
             return $radio;
@@ -48,24 +49,22 @@ class SandiPerkiraanController extends Controller
         return redirect()->route('modul_kontroler.tabel.sandi_perkiraan.index');
     }
 
-    public function edit($no)
+    public function edit($kode)
     {
-        $data_cash = DB::select("SELECT * from account where kodeacct='$no'");
-        foreach($data_cash as $data)
-        {
-            $kode = $data->kodeacct;
-            $nama = $data->descacct;
-        }
-        return view('modul-kontroler.tabel.sandi-perkiraan.edit',compact('kode','nama'));
+        $data_sanper = Account::where('kodeacct', $kode)->firstOrFail();
+        return view('modul-kontroler.tabel.sandi-perkiraan.edit', compact('data_sanper'));
     }
-    public function update(Request $request)
+
+    public function update(SandiPerkiraanUpdate $request)
     {
-        Account::where('kodeacct',$request->kode)
+        Account::where('kodeacct',$request->kodeacct)
         ->update([
-            'descacct' => $request->nama,
+            'descacct' => $request->descacct,
             'userid' => auth()->user()->userid
         ]);
-        return response()->json();
+        
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.sandi_perkiraan.index');
     }
 
     public function delete(Request $request)

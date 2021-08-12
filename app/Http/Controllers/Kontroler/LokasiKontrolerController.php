@@ -8,6 +8,7 @@ use DB;
 use Alert;
 use Illuminate\Http\Request;
 use App\Http\Requests\LokasiKontrolerStore;
+use App\Http\Requests\LokasiKontrolerUpdate;
 
 class LokasiKontrolerController extends Controller
 {
@@ -23,7 +24,7 @@ class LokasiKontrolerController extends Controller
         ->addColumn('radio', function ($data) {
             $radio = '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" kode="'.$data->kodelokasi.'" class="btn-radio" name="btn-radio">
+                        <input type="radio" value="'.$data->kodelokasi.'" class="btn-radio" name="btn-radio">
                         <span></span>
                     </label>'; 
             return $radio;
@@ -49,23 +50,21 @@ class LokasiKontrolerController extends Controller
     }
 
 
-    public function edit($no)
+    public function edit($kode)
     {
-        $data_cash = DB::select("SELECT * from lokasi where kodelokasi='$no'");
-        foreach($data_cash as $data)
-        {
-            $kode = $data->kodelokasi;
-            $nama = $data->nama;
-        }
-        return view('modul-kontroler.tabel.lokasi-kontroler.edit',compact('kode','nama'));
+        $data_lokasi = Lokasi::where('kodelokasi', $kode)->first();
+        return view('modul-kontroler.tabel.lokasi-kontroler.edit',compact('data_lokasi'));
     }
-    public function update(Request $request)
+
+    public function update(LokasiKontrolerUpdate $request)
     {
-        Lokasi::where('kodelokasi',$request->kode)
+        Lokasi::where('kodelokasi',$request->kodelokasi)
         ->update([
             'nama' => $request->nama
         ]);
-        return response()->json();
+        
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_kontroler.tabel.lokasi_kontroler.index');
     }
 
     public function delete(Request $request)
