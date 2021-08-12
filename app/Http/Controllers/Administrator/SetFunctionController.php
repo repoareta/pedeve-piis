@@ -65,7 +65,11 @@ class SetFunctionController extends Controller
             return $userp1.' '.$userp2.' '.$userp4.' '.$userp5.' '.$userp6;
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->userid.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" value="'.$data->userid.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                    </label>';
             return $radio;
         })
         ->rawColumns(['radio'])

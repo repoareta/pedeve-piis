@@ -42,7 +42,11 @@ class TabelMenuController extends Controller
             return $userap;
         })
         ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" kode="'.$data->menuid.'" class="btn-radio" name="btn-radio"><span></span></label>'; 
+            $radio = '
+                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                        <input type="radio" value="'.$data->menuid.'" class="btn-radio" name="btn-radio">
+                            <span></span>
+                    </label>';
             return $radio;
         })
         ->rawColumns(['radio'])
