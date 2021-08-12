@@ -95,7 +95,7 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\MainAccountStore', '#formMainAccount'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\MainAccountUpdate', '#formMainAccount'); !!}
 <script>
     $(document).ready(function () {
         
