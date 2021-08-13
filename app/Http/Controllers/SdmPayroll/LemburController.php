@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\SdmPayroll;
 
-use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LemburStoreRequest;
+use App\Http\Requests\LemburUpdateRequest;
 use App\Models\MasterPegawai;
+use App\Models\PayLembur;
 use DB;
 use DomPDF;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LemburController extends Controller
 {
@@ -132,7 +135,18 @@ class LemburController extends Controller
             ->orderBy('nopeg')
             ->get();
         $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
-        return view('lembur.create', compact('data_pegawai', 'data_potongan'));
+
+        $tgl = date_create(now());
+        $tahun = date_format($tgl, 'Y');
+        $bulan = date_format($tgl, 'n');
+
+        return view('modul-sdm-payroll.lembur.create', compact(
+            'data_pegawai',
+            'data_potongan',
+            'tgl',
+            'tahun',
+            'bulan',
+        ));
     }
 
     /**
@@ -141,39 +155,12 @@ class LemburController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LemburStoreRequest $request)
     {
-        $data_cek = DB::select("SELECT * from pay_lembur where to_char(tanggal, 'dd/mm/YYYY') = '$request->tanggal' and nopek='$request->nopek'");
-        if (!empty($data_cek)) {
-            $data = 0;
-            return response()->json($data);
-        } else {
-            DB::table('pay_lembur')->insert([
-                'tanggal' => $request->tanggal,
-                'nopek' => $request->nopek,
-                'makanpg' => str_replace(',', '.', $request->makanpg),
-                'makansg' => str_replace(',', '.', $request->makansg),
-                'makanml' => str_replace(',', '.', $request->makanml),
-                'transport' => str_replace(',', '.', $request->transport),
-                'lembur' => str_replace(',', '.', $request->lembur),
-                'userid' => $request->userid,
-                'bulan' => $request->bulan,
-                'tahun' => $request->tahun,
-            ]);
-            $data = 1;
-            return response()->json($data);
-            # code...
-        }
-    }
+        PayLembur::insert($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
-    {
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.lembur.index');
     }
 
     /**
@@ -184,12 +171,19 @@ class LemburController extends Controller
      */
     public function edit($tanggal, $nopek)
     {
-        $data_list = DB::select("SELECT bulan,tahun,tanggal,nopek,makanpg, makansg, makanml, transport,lembur, userid from pay_lembur where  to_char(tanggal, 'dd-mm-YYYY')= '$tanggal' and nopek = '$nopek'");
+        // $data_list = DB::select("SELECT bulan,tahun,tanggal,nopek,makanpg, makansg, makanml, transport,lembur, userid from pay_lembur where  to_char(tanggal, 'dd-mm-YYYY')= '$tanggal' and nopek = '$nopek'");
+
+        $dataLembur = PayLembur::where('tanggal', $tanggal)
+            ->where('nopek', $nopek)
+            ->first();
+
         $data_pegawai = MasterPegawai::where('status', '<>', 'P')
             ->orderBy('nopeg')
-            ->get();
+            ->first();
+        
         $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
-        return view('lembur.edit', compact('data_list', 'data_pegawai', 'data_potongan'));
+
+        return view('modul-sdm-payroll.lembur.edit', compact('dataLembur', 'data_pegawai', 'data_potongan'));
     }
 
     /**
@@ -199,16 +193,20 @@ class LemburController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(LemburUpdateRequest $request)
     {
-        $mapg = str_replace(',', '.', $request->makanpg);
-        $masi = str_replace(',', '.', $request->makansg);
-        $maml = str_replace(',', '.', $request->makanml);
-        $trans = str_replace(',', '.', $request->transport);
-        $lem = str_replace(',', '.', $request->lembur);
-        DB::update("update pay_lembur set makanpg='$mapg', makansg='$masi', makanml='$maml', transport='$trans',lembur='$lem', userid='$request->userid',bulan='$request->bulan',tahun='$request->tahun' where to_char(tanggal, 'dd/mm/YYYY') = '$request->tanggal' and nopek='$request->nopek'");
+        $request->makanpg = str_replace(',', '.', $request->makanpg);
+        $request->makansg = str_replace(',', '.', $request->makansg);
+        $request->makanml = str_replace(',', '.', $request->makanml);
+        $request->transport = str_replace(',', '.', $request->transport);
+        $request->lembur = str_replace(',', '.', $request->lembur);
+        
+        PayLembur::where('tanggal', $request->tanggal)
+            ->where('nopek', $request->nopek)
+            ->update($request->validated());
 
-        return response()->json();
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.lembur.index');
     }
 
     /**

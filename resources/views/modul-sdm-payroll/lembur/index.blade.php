@@ -149,7 +149,7 @@
                 $("input[class=btn-radio]:checked").each(function(){
                     var tanggal = $(this).attr('data-tanggal');
                     var nopek = $(this).attr('data-nopek');
-                    location.replace("{{ url('sdm/lembur/edit') }}"+ '/' +tanggal+ '/'+nopek);
+                    location.href = "{{ url('sdm-payroll/lembur/edit') }}" + '/' + tanggal + '/' + nopek;
                 });
             } else {
                 swalAlertInit('ubah');
