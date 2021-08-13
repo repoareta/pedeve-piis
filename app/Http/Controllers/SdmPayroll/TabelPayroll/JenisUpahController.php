@@ -7,6 +7,7 @@ use App\Models\PayTblJenisUpah;
 use DB;
 use Alert;
 use App\Http\Requests\JenisUpahStore;
+use App\Http\Requests\JenisUpahUpdate;
 use Illuminate\Http\Request;
 
 class JenisUpahController extends Controller
@@ -24,7 +25,7 @@ class JenisUpahController extends Controller
         ->addColumn('radio', function ($row) {
                 return '
                         <label class="radio radio-outline radio-outline-2x radio-primary">
-                            <input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio">
+                            <input type="radio" class="btn-radio" value="'.$row->kode.'" name="btn-radio">
                                 <span></span>
                         <label>';
         })
@@ -66,16 +67,10 @@ class JenisUpahController extends Controller
      * @param [type] $id
      * @return void
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        $data_list = PayTblJenisUpah::where('kode', $id)->get();
-        foreach($data_list as $data)
-        {
-            $kode = $data->kode;
-            $nama = $data->nama;
-            $cetak = $data->cetak;
-        }
-        return view('modul-sdm-payroll.jenis-upah.edit',compact('kode','nama','cetak'));
+        $data = PayTblJenisUpah::where('kode', $kode)->first();
+        return view('modul-sdm-payroll.jenis-upah.edit',compact('data'));
     }
 
     /**
@@ -84,7 +79,7 @@ class JenisUpahController extends Controller
      * @param Request $request
      * @return void
      */
-    public function update(Request $request)
+    public function update(JenisUpahUpdate $request)
     {
         PayTblJenisUpah::where('kode', $request->kode)
         ->update([
@@ -92,7 +87,8 @@ class JenisUpahController extends Controller
             'cetak' => $request->cetak,
         ]);
 
-        return response()->json();
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.jenis_upah.index');
     }
 
     /**

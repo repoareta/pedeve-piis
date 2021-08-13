@@ -7,6 +7,7 @@ use App\Models\PayTblAard;
 use DB;
 use Alert;
 use App\Http\Requests\TabelAardStore;
+use App\Http\Requests\TabelAardUpdate;
 use Illuminate\Http\Request;
 
 class TabelAardController extends Controller
@@ -24,7 +25,7 @@ class TabelAardController extends Controller
         ->addColumn('radio', function ($row) {
             return '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" class="btn-radio" kode="'.$row->kode.'" name="btn-radio">
+                        <input type="radio" class="btn-radio" value="'.$row->kode.'" name="btn-radio">
                         <span></span>
                     <label>';
         })
@@ -56,23 +57,16 @@ class TabelAardController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($kode)
     {
         $data_jenisupah = DB::select("SELECT kode,nama,cetak from pay_tbl_jenisupah order by kode");
-        $data_list = PayTblAard::where('kode', $id)->get();
-        foreach($data_list as $data)
-        {
-            $kode = $data->kode;
-            $nama = $data->nama;
-            $jenis = $data->jenis;
-            $kenapajak = $data->kenapajak;
-            $lappajak = $data->lappajak;
-        }
-        return view('modul-sdm-payroll.tabel-aard.edit',compact('kode','nama','jenis','kenapajak','lappajak','data_jenisupah'));
+        $data_list = PayTblAard::where('kode', $kode)->first();
+
+        return view('modul-sdm-payroll.tabel-aard.edit',compact('data_list','data_jenisupah'));
     }
 
 
-    public function update(Request $request)
+    public function update(TabelAardUpdate $request)
     {
         PayTblAard::where('kode', $request->kode)
         ->update([
@@ -82,7 +76,8 @@ class TabelAardController extends Controller
             'lappajak' => $request->lappajak,
         ]);
 
-        return response()->json();
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.tabel_aard.index');
     }
 
 

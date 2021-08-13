@@ -79,11 +79,12 @@
 		//edit potongan Manual
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-
 			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function(){
-					var kode = $(this).attr('kode');
-					location.replace("{{ url('sdm-payroll/rekening-pekerja/edit') }}"+ '/' +kode);
+				$("input[type=radio]:checked").each(function() {
+					var id = $('input[type=radio]:checked').val();
+					var url = '{{ route("modul_sdm_payroll.rekening_pekerja.edit", ":kode") }}';
+					// go to page edit
+					window.location.href = url.replace(':kode',id);
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -95,7 +96,7 @@
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
-					var kode = $(this).attr('kode');
+					var kode = $(this).val();
 					// delete stuff
 					const swalWithBootstrapButtons = Swal.mixin({
 						customClass: {
