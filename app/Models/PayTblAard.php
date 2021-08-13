@@ -10,4 +10,5 @@ class PayTblAard extends Model
     use HasFactory;
 
     protected $table = 'pay_tbl_aard';
+    public $timestamps = false;
 }

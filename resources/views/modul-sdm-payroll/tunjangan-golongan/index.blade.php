@@ -75,11 +75,12 @@ $(document).ready(function () {
     //edit potongan Manual
     $('#editRow').click(function(e) {
         e.preventDefault();
-
         if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function(){
-                var golongan = $(this).attr('golongan');
-                location.replace("{{ url('sdm-payroll/tunjangan-golongan/edit') }}"+ '/' +golongan);
+            $("input[type=radio]:checked").each(function() {
+                var id = $('input[type=radio]:checked').val();
+                var url = '{{ route("modul_sdm_payroll.tunjangan_golongan.edit", ":kode") }}';
+                // go to page edit
+                window.location.href = url.replace(':kode',id);
             });
         } else {
             swalAlertInit('ubah');

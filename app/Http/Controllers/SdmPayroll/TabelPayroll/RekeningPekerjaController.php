@@ -7,6 +7,8 @@ use App\Models\MasterPegawai;
 use App\Models\PayTblRekening;
 use DB;
 use Alert;
+use App\Http\Requests\RekeningPekerjaStore;
+use App\Http\Requests\RekeningPekerjaUpdate;
 use Illuminate\Http\Request;
 
 class RekeningPekerjaController extends Controller
@@ -24,7 +26,7 @@ class RekeningPekerjaController extends Controller
         ->addColumn('radio', function ($row) {
             return '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" class="btn-radio" kode="'.$row->nopek.'" name="btn-radio">
+                        <input type="radio" class="btn-radio" value="'.$row->nopek.'" name="btn-radio">
                             <span></span>
                     <label>';
         })
@@ -50,7 +52,7 @@ class RekeningPekerjaController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(RekeningPekerjaStore $request)
     {
         PayTblRekening::insert([
             'nopek' => $request->nopek,
@@ -78,7 +80,7 @@ class RekeningPekerjaController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(RekeningPekerjaUpdate $request)
     {
         PayTblRekening::where('nopek', $request->nopek)
         ->update([
@@ -87,7 +89,8 @@ class RekeningPekerjaController extends Controller
             'atasnama' => $request->atasnama,
         ]);
         
-        return response()->json();
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.rekening_pekerja.index');
     }
 
 

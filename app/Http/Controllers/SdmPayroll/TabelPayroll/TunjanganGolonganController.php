@@ -29,7 +29,7 @@ class TunjanganGolonganController extends Controller
         ->addColumn('radio', function ($row) {
             return '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
-                        <input type="radio" class="btn-radio" golongan="'.$row->golongan.'" name="btn-radio">
+                        <input type="radio" class="btn-radio" value="'.$row->golongan.'" name="btn-radio">
                             <span></span>
                     </label>';
         })
@@ -81,10 +81,10 @@ class TunjanganGolonganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($kode)
     {
-        $data_list = PayTunjangan::where('golongan', $id)->get();
-        return view('modul-sdm-payroll.tunjangan-golongan.edit',compact('data_list'));
+        $data = PayTunjangan::where('golongan', $kode)->first();
+        return view('modul-sdm-payroll.tunjangan-golongan.edit',compact('data'));
     }
 
     /**
@@ -100,7 +100,9 @@ class TunjanganGolonganController extends Controller
             ->update([
                 'nilai' => str_replace(',', '.', $request->nilai),
             ]);
-            return response()->json();
+
+        Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.tunjangan_golongan.index');
     }
 
     /**

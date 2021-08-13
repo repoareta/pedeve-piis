@@ -86,7 +86,7 @@ $(document).ready(function () {
         e.preventDefault();
         if($('input[class=btn-radio]').is(':checked')) { 
             $("input[class=btn-radio]:checked").each(function() {
-                var kode = $(this).attr('kode');
+                var kode = $(this).val();
                 // delete stuff
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
