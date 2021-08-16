@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_sdm_payroll.pinjaman_pekerja.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -110,7 +110,7 @@ $(document).ready(function () {
         if($('input[class=btn-radio]').is(':checked')) { 
             $("input[class=btn-radio]:checked").each(function(){
                 var id = $(this).attr('id_pinjaman');
-                location.replace("{{ url('sdm/pinjaman_pekerja/edit') }}"+ '/' +id);
+                location.href = "{{ url('sdm-payroll/pinjaman-pekerja/edit') }}" + '/' + id;
             });
         } else {
             swalAlertInit('ubah');
@@ -127,7 +127,7 @@ $(document).ready(function () {
                 // delete stuff
                 if(cair == 'Y'){
                     Swal.fire({
-                                type  : 'info',
+                                icon  : 'info',
                                 title : 'Status cair tidak bisa dihapus.',
                                 text  : 'Info',
                             });
@@ -142,7 +142,7 @@ $(document).ready(function () {
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
                             text: "ID Pinjaman : " + id_pinjaman,
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',

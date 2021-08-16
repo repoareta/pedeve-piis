@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\SdmPayroll;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PinjamanKerjaStoreRequest;
 use App\Models\PayMtrPkpp;
 use DB;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PinjamanPekerjaController extends Controller
 {
@@ -88,45 +90,38 @@ class PinjamanPekerjaController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(PinjamanKerjaStoreRequest $request)
     {
-        PayMtrPkpp::insert([
-            'id_pinjaman' => $request->id_pinjaman,
-            'nopek' => $request->nopek,
-            'jml_pinjaman' => str_replace(',', '.', $request->pinjaman),
-            'tenor' => $request->tenor,
-            'mulai' => $request->mulai,
-            'sampai' => $request->sampai,
-            'angsuran' => str_replace(',', '.', $request->angsuran),
-            'cair' => 'N',
-            'lunas' => 'N',
-            'no_kontrak' => $request->no_kontrak
-        ]);
-        return response()->json();
+        $validated = collect($request->validated())
+            ->put('cair', 'N')
+            ->put('lunas', 'N')
+            ->toArray();
+
+        PayMtrPkpp::insert($validated);
+        
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.pinjaman_pekerja.index');
     }
 
     public function edit($no)
     {
-        $data_list = DB::select("SELECT a.*,b.nama as namapegawai from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg where a.id_pinjaman='$no'");
+        $data_list = DB::select("SELECT a.*,b.nama as nama_pegawai from pay_mtrpkpp a join sdm_master_pegawai b on a.nopek=b.nopeg where a.id_pinjaman='$no'")[0];
         $data_detail = DB::select("SELECT id_pinjaman,nopek,tahun,bulan,pokok,bunga,realpokok,realbunga,(realpokok+realbunga) as jumlah2,(pokok+bunga) as jumlah,tahun||bulan as thnbln,nodoc from pay_skdpkpp where id_pinjaman='$no' order by tahun||bulan");
         $count = DB::select("SELECT sum(pokok) jml,sum(bunga) bunga,sum(realpokok) realpokok,sum(realbunga) realbunga  from pay_skdpkpp where id_pinjaman='$no'");
+
+        // dd(collect($count)->toArray(), $data_list);
         return view('modul-sdm-payroll.pinjaman-pekerja.edit', compact('data_list', 'data_detail', 'count'));
     }
 
-    public function update(Request $request)
+    public function update(PinjamanKerjaStoreRequest $request)
     {
         PayMtrPkpp::where('id_pinjaman', $request->id_pinjaman)
-            ->update([
-                'jml_pinjaman' => str_replace(',', '.', $request->pinjaman),
-                'tenor' => $request->tenor,
-                'mulai' => $request->mulai,
-                'sampai' => $request->sampai,
-                'angsuran' => str_replace(',', '.', $request->angsuran),
-                'no_kontrak' => $request->no_kontrak
-            ]);
-        return response()->json();
+            ->update($request->validated());
+        
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.pinjaman_pekerja.index');
     }
-    
+
     public function delete(Request $request)
     {
         PayMtrPkpp::where('id_pinjaman', $request->id_pinjaman)->delete();
