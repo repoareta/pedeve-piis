@@ -182,8 +182,6 @@ class PotonganKoreksiGajiController extends Controller
             ->where('nopek', $request->nopek)
             ->where('aard', $request->aard)
             ->update([
-                'jmlcc' => 0,
-                'ccl' => 0,
                 'nilai' => str_replace(',', '.', $request->nilai),
                 'userid' => $request->userid,
             ]);
