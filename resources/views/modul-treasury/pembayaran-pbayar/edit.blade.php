@@ -64,7 +64,7 @@
                     <select name="bagian" id="bagian" class="form-control select2">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $row)
-                        <option value="{{ $row->kode }}" <?php if($row->kode == $bagian ) echo 'selected'; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
+                        <option value="{{ $row->kode }}" <?php if($row->kode == $bagian) echo 'selected'; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
                         @endforeach
                         
                     </select>
