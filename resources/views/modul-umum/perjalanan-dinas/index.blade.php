@@ -121,10 +121,20 @@
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
-					var id = $(this).val().split("/").join("-");
-					var url = '{{ route("provinsi.edit", ":kode") }}';
-					// go to page edit
-					window.location.href = url.replace(':kode',id);
+					var data_ppanjar = $(this).data('ppanjar');
+					if (data_ppanjar === true) {
+						Swal.fire({
+							type: 'warning',
+							timer: 2000,
+							title: 'Oops...',
+							text: 'Data tidak bisa diubah'
+						});
+					} else {
+						var id = $(this).val().split("/").join("-");
+						var url = '{{ route("modul_umum.perjalanan_dinas.edit", ":no_panjar") }}';
+						// go to page edit
+						window.location.href = url.replace(':no_panjar',id);
+					}
 				});
 			} else {
 				swalAlertInit('ubah');
