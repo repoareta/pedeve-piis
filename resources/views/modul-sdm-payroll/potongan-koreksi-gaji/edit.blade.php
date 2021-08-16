@@ -8,7 +8,7 @@
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
     <div class="card-header justify-content-start">
         <div class="card-title">
-            <span class="card-icon">
+             <span class="card-icon">
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route('modul_sdm_payroll.potongan_koreksi_gaji.update') }}" method="post" id="form-create">
+        <form action="{{ route('modul_sdm_payroll.potongan_koreksi_gaji.update') }}" method="post" id="form-edit">
             @csrf
             <div class="form-group mb-8">
                 <div class="alert alert-secondary" role="alert">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group row">
-            <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+            <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun <span class="text-danger">*</span></label>
             <div class="col-4">
                 <?php 
                 $array_bln	 = array (
@@ -49,33 +49,34 @@
                         );
                         $bulan= strtoupper($array_bln[$data_list->bulan]);
                 ?>
-            <input class="form-control" type="text" value="{{$bulan}}"readonly style="background-color:#DCDCDC; cursor:not-allowed">
+            <input class="form-control" type="text" value="{{$bulan}}" disabled>
             <input class="form-control" type="hidden" value="{{$data_list->bulan}}" name="bulan">
+            <input class="form-control" type="hidden" value="{{$data_list->tahun}}" name="tahun">
                     
             </div>
-                    <div class="col-6" >
-                        <input class="form-control" type="text" value="{{$data_list->tahun}}" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
-                    </div>
+                <div class="col-6" >
+                    <input class="form-control" type="text" value="{{$data_list->tahun}}" disabled>
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Pegawai<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Pegawai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$data_list->nopek}} - {{$data_list->nama_nopek}}"  readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" value="{{$data_list->nopek}} - {{$data_list->nama_nopek}}"  disabled>
                     <input class="form-control" type="hidden" value="{{$data_list->nopek}}" name="nopek">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">AARD<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">AARD <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="hidden" value="{{$data_list->aard}}" name="aard">
-                    <input class="form-control" type="text" value="{{$data_list->aard}} - {{$data_list->nama_aard}}"  readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" value="{{$data_list->aard}} - {{$data_list->nama_aard}}"  disabled>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 col-form-label">Nilai<span style="color:red;">*</span></label>
+                <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" value="<?php echo number_format($data_list->nilai, 2, '.', ''); ?>"  required oninvalid="this.setCustomValidity('Nilai Harus Diisi..')" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');setCustomValidity('')" autocomplete='off' >
+                    <input class="form-control" name="nilai" type="number" value="{{ $data_list->nilai }}" required autocomplete='off'>
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -97,7 +98,7 @@
     $(document).ready(function () {
         $('#bulan').select2();
 
-        $('#form-create').submit(function(e){
+        $('#form-edit').submit(function(e){
 			e.preventDefault();
 
             if($(this).valid()) {
