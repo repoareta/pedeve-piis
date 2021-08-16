@@ -31,7 +31,7 @@
                             {{ $data_rsj->store }}
                             <ul>
                                 @foreach (DB::table('kasdoc')->where('store',$data_rsj->store)->where('paid', 'Y')->where('verified','N')->orderBy('docno', 'asc')->get() as $data_doc)
-                                <li data-jstree='{ "type" : "file", @if(str_replace('/', '-',$data_doc->docno) == Request::segment(4)) "selected": true @endif  }'>
+                                <li data-jstree='{ "type" : "file" @if(str_replace('/', '-',$data_doc->docno) == Request::segment(4)) , "selected": true @endif  }'>
                                     <a href="{{ route('modul_kontroler.postingan_kas_bank.verkas',['no' => str_replace('/', '-',$data_doc->docno),'id' =>$data_doc->verified])}}">
                                         {{ $data_doc->docno }}
                                     </a>
