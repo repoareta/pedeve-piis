@@ -47,41 +47,41 @@
                         );
                         $bulan= strtoupper($array_bln[$data_list->bulan]);
                 ?>
-            <input class="form-control" type="text" value="{{$bulan}}" disabled>
-            <input class="form-control" type="hidden" value="{{$data_list->bulan}}" name="bulan">
-            <input class="form-control" type="hidden" value="{{$data_list->tahun}}" name="tahun">
+            <input class="form-control" type="text" value="{{ $bulan}}" disabled>
+            <input class="form-control" type="hidden" value="{{ $data_list->bulan}}" name="bulan">
+            <input class="form-control" type="hidden" value="{{ $data_list->tahun}}" name="tahun">
                     
             </div>
                 <div class="col-6" >
-                    <input class="form-control" type="text" value="{{$data_list->tahun}}" disabled>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{ $data_list->tahun}}" disabled>
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Pegawai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{$data_list->nopek}} - {{$data_list->nama_nopek}}"  disabled>
-                    <input class="form-control" type="hidden" value="{{$data_list->nopek}}" name="nopek">
+                    <input class="form-control" type="text" value="{{ $data_list->nopek}} - {{ $data_list->nama_nopek}}"  disabled>
+                    <input class="form-control" type="hidden" value="{{ $data_list->nopek}}" name="nopek">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">AARD <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="hidden" value="{{$data_list->aard}}" name="aard">
-                    <input class="form-control" type="text" value="{{$data_list->aard}} - {{$data_list->nama_aard}}"  disabled>
+                    <input class="form-control" type="hidden" value="{{ $data_list->aard}}" name="aard">
+                    <input class="form-control" type="text" value="{{ $data_list->aard}} - {{ $data_list->nama_aard}}"  disabled>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="number" value="{{ $data_list->nilai }}" required autocomplete='off'>
+                    <input class="form-control" name="nilai" type="number" value="{{ $data_list->nilai }}" required autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('modul_sdm_payroll.potongan_koreksi_gaji.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <a href="{{ route('modul_sdm_payroll.potongan_koreksi_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
                         <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>

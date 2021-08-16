@@ -94,7 +94,7 @@
             <div class="col-xl-12">
                 <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
-                        <tr >
+                        <tr>
                             <th rowspan="3">No</th>
                             <th rowspan="3" class="no-wrap">Perusahaan</th>
                             <th rowspan="3" class="no-wrap">BULAN/TAHUN</th>

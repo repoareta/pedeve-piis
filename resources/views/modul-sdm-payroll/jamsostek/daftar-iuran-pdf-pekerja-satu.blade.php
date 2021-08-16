@@ -66,7 +66,7 @@
                                 <td><font style="font-size: 12pt;font-weight: bold ">DAFTAR IURAN JAMSOSTEK PEKERJA</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 12pt;font-weight: bold ">BULAN {{$bulan}} {{$request->tahun}}</font></td>
+                                <td><font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan}} {{ $request->tahun}}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -99,16 +99,16 @@
                             <?php $a=0; ?>
                             @foreach($data_list as $data)
                             <?php $a++; ?>
-                            <tr >
-                                <td style="text-align:center;">{{$a}}</td>
-                                <td style="text-align:left;">{{$data->noastek}}</td>
-                                <td style="text-align:left;">{{$data->nopek}}</td>
-                                <td style="text-align:left;">{{$data->namapegawai}}</td>
-                                <td style="text-align:right;">{{number_format(round($data->gapok,0))}}</td>
-                                <td style="text-align:right;">{{number_format(round($data->jkk,0))}}</td>
-                                <td style="text-align:right;">{{number_format(round($data->pensiun,0))}}</td>
-                                <td style="text-align:right;">{{number_format(round($data->pribadi,0))}}</td>
-                                <td style="text-align:right;">{{number_format(round($data->life,0))}}</td>
+                            <tr>
+                                <td style="text-align:center;">{{ $a}}</td>
+                                <td style="text-align:left;">{{ $data->noastek}}</td>
+                                <td style="text-align:left;">{{ $data->nopek}}</td>
+                                <td style="text-align:left;">{{ $data->namapegawai}}</td>
+                                <td style="text-align:right;">{{ number_format(round($data->gapok,0))}}</td>
+                                <td style="text-align:right;">{{ number_format(round($data->jkk,0))}}</td>
+                                <td style="text-align:right;">{{ number_format(round($data->pensiun,0))}}</td>
+                                <td style="text-align:right;">{{ number_format(round($data->pribadi,0))}}</td>
+                                <td style="text-align:right;">{{ number_format(round($data->life,0))}}</td>
                             <?php
                                 $total = round($data->jkk,0)+round($data->pensiun,0)+round($data->pribadi,0)+round($data->life,0);
                                 $totalgapok[$a] = round($data->gapok,0);
@@ -118,17 +118,17 @@
                                 $totallife[$a] = round($data->life,0);
                                 $totaltotal[$a] = $total;
                             ?>
-                                <td style="text-align:right;">{{number_format(round($total,0))}}</td>
+                                <td style="text-align:right;">{{ number_format(round($total,0))}}</td>
                             </tr>
                             @endforeach
                             <tr style="font-weight: bold;" >
                                <td style="text-align:right;" colspan="4">TOTAL</td>
-                               <td style="text-align:right;" >{{number_format(array_sum($totalgapok),0)}}</td>
-                               <td style="text-align:right;" >{{number_format(array_sum($totaljkk),0)}}</td>
-                               <td style="text-align:right;" >{{number_format(array_sum($totalpensiun),0)}}</td>
-                               <td style="text-align:right;" >{{number_format(array_sum($totalpribadi),0)}}</td>
-                               <td style="text-align:right;" >{{number_format(array_sum($totallife),0)}}</td>
-                               <td style="text-align:right;" >{{number_format(array_sum($totaltotal),0)}}</td>
+                               <td style="text-align:right;" >{{ number_format(array_sum($totalgapok),0)}}</td>
+                               <td style="text-align:right;" >{{ number_format(array_sum($totaljkk),0)}}</td>
+                               <td style="text-align:right;" >{{ number_format(array_sum($totalpensiun),0)}}</td>
+                               <td style="text-align:right;" >{{ number_format(array_sum($totalpribadi),0)}}</td>
+                               <td style="text-align:right;" >{{ number_format(array_sum($totallife),0)}}</td>
+                               <td style="text-align:right;" >{{ number_format(array_sum($totaltotal),0)}}</td>
                             </tr>
                         </table>
                     </td>

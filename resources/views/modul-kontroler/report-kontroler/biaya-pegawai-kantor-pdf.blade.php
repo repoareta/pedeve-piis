@@ -300,7 +300,7 @@
 
                  ?>
                 @endforeach
-                    <tr >
+                    <tr>
                         <th width="70%" style="text-align:left;font-size: 9pt;font-weight: bold">{{array_sum($biayapegawai) > 0 ? 'BIAYA PEGAWAI' : "BIAYA PEGAWAI"}}</th>
                         <td width="5%" style="text-align:right;" ></td>
                         <th width="20%" ></th>
@@ -379,7 +379,7 @@
                     </tr>
 
 
-                    <tr >
+                    <tr>
                         <td width="5%" style="text-align:right;font-size: 9pt;font-weight: bold" colspan="2">SUB TOTAL:</td>
                         <?php
                             $subtotalmd = array_sum($mdupah)+array_sum($mdupah1)+array_sum($mdupah2)+array_sum($mdupah3)+array_sum($mdupah4)+array_sum($mdupah5)+array_sum($mdupah6)+array_sum($mdupah7)+array_sum($mdupah8)+array_sum($mdupah9);
@@ -391,7 +391,7 @@
                     </tr>
 
                     <!-- kantor -->
-                    <tr >
+                    <tr>
                         <th width="70%" style="text-align:left;font-size: 9pt;font-weight: bold">{{array_sum($biayakantor) > 0 ? 'BIAYA KANTOR' : "BIAYA KANTOR"}}</th>
                         <td width="5%" style="text-align:right;" ></td>
                         <th width="20%" ></th>
@@ -470,7 +470,7 @@
                     </tr>
 
 
-                    <tr >
+                    <tr>
                         <td width="5%" style="text-align:right;font-size: 9pt;font-weight: bold" colspan="2">SUB TOTAL:</td>
                         <?php
                             $subtotalmd1 = array_sum($mdupah10)+array_sum($mdupah11)+array_sum($mdupah12)+array_sum($mdupah13)+array_sum($mdupah14)+array_sum($mdupah15)+array_sum($mdupah16)+array_sum($mdupah17)+array_sum($mdupah18)+array_sum($mdupah19);
@@ -480,7 +480,7 @@
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalms1 == 0 ? '0.00' : number_format($subtotalms1,2) }}</th>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold">{{ $subtotalmd1+$subtotalms1 == 0 ? '0.00' : number_format($subtotalmd1+$subtotalms1,2) }}</th>
                     </tr>
-                    <tr >
+                    <tr>
                         <td width="5%" style="text-align:right;font-size: 9pt;font-weight: bold" colspan="2">TOTAL:</td>
                         <?php
                             $totalmd = $subtotalmd+$subtotalmd1;

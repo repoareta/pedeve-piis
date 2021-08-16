@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font style="font-size: 12pt;font-weight: bold ">BULAN {{$bulan}} {{$request->tahun}}
+                                <font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan}} {{ $request->tahun}}
                                 </font>
                             </td>
                         </tr>
@@ -121,23 +121,23 @@
                         @foreach($data_list as $data)
                         <?php $a++; ?>
                         <tr>
-                            <td style="text-align:center;">{{$a}}</td>
-                            <td style="text-align:left;">{{$data->noastek}}</td>
-                            <td style="text-align:left;">{{$data->nopek}}</td>
-                            <td style="text-align:left;">{{$data->namapegawai}}</td>
-                            <td style="text-align:right;">{{number_format(round($data->gapok,0)/(2.35*(2/100))*-1,0)}}
+                            <td style="text-align:center;">{{ $a}}</td>
+                            <td style="text-align:left;">{{ $data->noastek}}</td>
+                            <td style="text-align:left;">{{ $data->nopek}}</td>
+                            <td style="text-align:left;">{{ $data->namapegawai}}</td>
+                            <td style="text-align:right;">{{ number_format(round($data->gapok,0)/(2.35*(2/100))*-1,0)}}
                             </td>
                             <td style="text-align:right;">
-                                {{$data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.008)*(2.35),0) : number_format((0.008)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
+                                {{ $data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.008)*(2.35),0) : number_format((0.008)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
                             </td>
                             <td style="text-align:right;">
-                                {{$data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.037)*2.35,0) : number_format((0.037)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
+                                {{ $data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.037)*2.35,0) : number_format((0.037)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
                             </td>
                             <td style="text-align:right;">
-                                {{$data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.02)*2.35,0) : number_format((0.02)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
+                                {{ $data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.02)*2.35,0) : number_format((0.02)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
                             </td>
                             <td style="text-align:right;">
-                                {{$data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.003)*2.35,0) : number_format((0.003)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
+                                {{ $data->status == 'B' ? number_format((round($data->gapok,0)/(2.35*(2/100))*-1)*(0.003)*2.35,0) : number_format((0.003)*(round($data->gapok,0)/(2.35*(2/100))*-1),0)}}
                             </td>
                             <?php
                                 $gaji = round($data->gapok,0)/(2.35*(2/100))*-1;
@@ -153,17 +153,17 @@
                                 $totaljk[$a] = $jk;
                                 $totaltotal[$a] = $total;
                             ?>
-                            <td style="text-align:right;">{{number_format($total,0)}}</td>
+                            <td style="text-align:right;">{{ number_format($total,0)}}</td>
                         </tr>
                         @endforeach
                         <tr style="font-weight: bold;">
                             <td style="text-align:right;" colspan="4">TOTAL</td>
-                            <td style="text-align:right;">{{number_format(array_sum($gajipeg),0)}}</td>
-                            <td style="text-align:right;">{{number_format(array_sum($totaljkk),0)}}</td>
-                            <td style="text-align:right;">{{number_format(array_sum($totalptp),0)}}</td>
-                            <td style="text-align:right;">{{number_format(array_sum($totalpg),0)}}</td>
-                            <td style="text-align:right;">{{number_format(array_sum($totaljk),0)}}</td>
-                            <td style="text-align:right;">{{number_format(array_sum($totaltotal),0)}}</td>
+                            <td style="text-align:right;">{{ number_format(array_sum($gajipeg),0)}}</td>
+                            <td style="text-align:right;">{{ number_format(array_sum($totaljkk),0)}}</td>
+                            <td style="text-align:right;">{{ number_format(array_sum($totalptp),0)}}</td>
+                            <td style="text-align:right;">{{ number_format(array_sum($totalpg),0)}}</td>
+                            <td style="text-align:right;">{{ number_format(array_sum($totaljk),0)}}</td>
+                            <td style="text-align:right;">{{ number_format(array_sum($totaltotal),0)}}</td>
                         </tr>
                     </table>
                 </td>

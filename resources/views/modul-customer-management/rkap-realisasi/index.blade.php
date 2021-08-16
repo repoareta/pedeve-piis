@@ -68,7 +68,7 @@
             <div class="col-xl-12">
                 <table id="kt_table" class="table table-bordered" width="100%">
                     <thead class="thead-light">
-                        <tr >
+                        <tr>
                             <th rowspan="2">No</th>
                             <th rowspan="2" class="text-center">Perusahaan</th>
                             <th rowspan="2">TAHUN</th>

@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Kode <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="kode" type="text" value="" size="2" maxlength="2" autocomplete='off'>
+                    <input class="form-control" name="kode" type="text" value="" size="2" maxlength="2" autocomplete="off">
                     @error('kode')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nama <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nama" type="text" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="nama" type="text" value="" size="40" maxlength="50" autocomplete="off">
                     @error('nama')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Alamat <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="alamat" type="text" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="alamat" type="text" value="" size="40" maxlength="50" autocomplete="off">
                     @error('alamat')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Kota <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="kota" type="text" value="" size="40" maxlength="50" autocomplete='off'>
+                    <input class="form-control" name="kota" type="text" value="" size="40" maxlength="50" autocomplete="off">
                     @error('kota')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('modul_sdm_payroll.master_bank.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <a  href="{{ route('modul_sdm_payroll.master_bank.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
                         <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>

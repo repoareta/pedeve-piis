@@ -28,8 +28,8 @@
             <div class="form-group row">
                 <label for="example-email-input" class="col-2 col-form-label">Tgl. Lembur<span style="color:red;">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{ date('d-m-Y') }}" id="tanggal" name="tanggal" autocomplete='off'>
-                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{ date('d-m-Y') }}" id="tanggal" name="tanggal" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -60,7 +60,7 @@
                     <select name="nopek"  class="form-control kt-select2" style="width: 100% !important;" required>
                         <option value="">- Pilih -</option>
                         @foreach($data_pegawai as $data)
-                        <option value="{{$data->nopeg}}">{{$data->nopeg}} - {{$data->nama}}</option>
+                        <option value="{{ $data->nopeg}}">{{ $data->nopeg}} - {{ $data->nama }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -68,38 +68,38 @@
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Pagi</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="0" name="makanpg" id="mapg" autocomplete='off'>
+                    <input class="form-control" type="number" value="0" name="makanpg" id="mapg" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Siang</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="0" name="makansg" id="masi" autocomplete='off'>
+                    <input class="form-control" type="number" value="0" name="makansg" id="masi" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Malam</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="0" name="makanml" id="maml" autocomplete='off'>
+                    <input class="form-control" type="number" value="0" name="makanml" id="maml" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Transport</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="0" name="transport" id="trans" autocomplete='off'>
+                    <input class="form-control" type="number" value="0" name="transport" id="trans" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Lembur</label>
                 <div class="col-10">
-                    <input class="form-control" type="number" value="0"  name="lembur" id="lem" autocomplete='off'>
+                    <input class="form-control" type="number" value="0"  name="lembur" id="lem" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('modul_sdm_payroll.lembur.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <a  href="{{ route('modul_sdm_payroll.lembur.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
                         <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>

@@ -67,7 +67,7 @@
                     <td align="left" style="padding-left:50px;font-family: sans-serif">
                         <table>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">PANJAR INSENTIF 1 TAHUN {{$request->tahun}} </font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">PANJAR INSENTIF 1 TAHUN {{ $request->tahun}} </font></td>
                             </tr>
                             <tr>
                                 <td><font style="font-size: 10pt;font-weight: bold ">PEKERJA WAKTU TERTENTU (PWTT) DAN PEKERJA WAKTU TERTENTU (PWT) </font></td>
@@ -76,7 +76,7 @@
                                 <td><font style="font-size: 10pt;font-weight: bold ">PT. PERTAMINA DANA VENTURA (PDV) </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{$request->tahun}}</font></td>
+                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -110,9 +110,9 @@
                             <?php  if($data->status == 'C') { 
                             $a++; ?>
                             <tr style="font-size: 10pt;">
-                                <td>{{$a}}</td>
-                                <td>{{$data->nopek}}</td>
-                                <td>{{$data->namapegawai}}</td>
+                                <td>{{ $a}}</td>
+                                <td>{{ $data->nopek}}</td>
+                                <td>{{ $data->namapegawai}}</td>
                                 <?php
                                     $bruto = $data->pajakins+$data->nilai;
                                     $subtotala[$a] = $data->ut;
@@ -120,19 +120,19 @@
                                     $subtotala2[$a] = $data->pajakins;
                                     $subtotala3[$a] = $bruto;
                                 ?>
-                                <td class="text-right;">{{number_format($data->ut,2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format($data->nilai,2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format($data->pajakins,2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format($bruto,2,'.',',')}}</td>
+                                <td class="text-right;">{{ number_format($data->ut,2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format($data->nilai,2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format($data->pajakins,2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format($bruto,2,'.',',') }}</td>
                             </tr>
                             <?php } ?>
                             @endforeach
                             <tr style="font-size: 10pt;font-weight: bold">
                                 <td class="text-right;" colspan="3">SUB TOTAL</td>
-                                <td class="text-right;">{{number_format(array_sum($subtotala),2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format(array_sum($subtotala1),2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format(array_sum($subtotala2),2,'.',',')}}</td>              
-                                <td class="text-right;">{{number_format(array_sum($subtotala3),2,'.',',')}}</td>              
+                                <td class="text-right;">{{ number_format(array_sum($subtotala),2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format(array_sum($subtotala1),2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format(array_sum($subtotala2),2,'.',',') }}</td>              
+                                <td class="text-right;">{{ number_format(array_sum($subtotala3),2,'.',',') }}</td>              
                             </tr>
                             <tr>
                                 <td style="font-size: 10pt;font-weight: bold" colspan="7">PWT</td>
@@ -142,9 +142,9 @@
                             <?php  if($data->status == 'K') { 
                             $a++; ?>
                             <tr style="font-size: 10pt;">
-                                <td>{{$a}}</td>
-                                <td>{{$data->nopek}}</td>
-                                <td>{{$data->namapegawai}}</td>
+                                <td>{{ $a}}</td>
+                                <td>{{ $data->nopek}}</td>
+                                <td>{{ $data->namapegawai}}</td>
                                 <?php
                                    $bruto = $data->pajakins+$data->nilai;
                                    $subtotalb[$a] = $data->ut;
@@ -152,19 +152,19 @@
                                    $subtotalb2[$a] = $data->pajakins;
                                    $subtotalb3[$a] = $bruto;
                                 ?>
-                                <td class="text-right;">{{number_format($data->ut,2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format($data->nilai,2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format($data->pajakins,2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format($bruto,2,'.',',')}}</td>
+                                <td class="text-right;">{{ number_format($data->ut,2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format($data->nilai,2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format($data->pajakins,2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format($bruto,2,'.',',') }}</td>
                             </tr>
                             <?php } ?>
                             @endforeach
                             <tr style="font-size: 10pt;font-weight: bold">
                                 <td class="text-right;" colspan="3">SUB TOTAL</td>
-                                <td class="text-right;">{{number_format(array_sum($subtotalb),2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format(array_sum($subtotalb1),2,'.',',')}}</td>
-                                <td class="text-right;">{{number_format(array_sum($subtotalb2),2,'.',',')}}</td>              
-                                <td class="text-right;">{{number_format(array_sum($subtotalb3),2,'.',',')}}</td>              
+                                <td class="text-right;">{{ number_format(array_sum($subtotalb),2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format(array_sum($subtotalb1),2,'.',',') }}</td>
+                                <td class="text-right;">{{ number_format(array_sum($subtotalb2),2,'.',',') }}</td>              
+                                <td class="text-right;">{{ number_format(array_sum($subtotalb3),2,'.',',') }}</td>              
                             </tr>
                             <tr style="font-size: 10pt;font-weight: bold">
                                 <td class="text-right;" colspan="3">TOTAL</td>
@@ -174,10 +174,10 @@
                                     $suba3 = array_sum($subtotala2)+array_sum($subtotalb2);
                                     $suba4 = array_sum($subtotala3)+array_sum($subtotalb3);
                                 ?>
-                                <td class="text-right;">{{number_format($suba1,2,'.',',')}}</td>             
-                                <td class="text-right;">{{number_format($suba2,2,'.',',')}}</td>             
-                                <td class="text-right;">{{number_format($suba3,2,'.',',')}}</td>             
-                                <td class="text-right;">{{number_format($suba4,2,'.',',')}}</td>             
+                                <td class="text-right;">{{ number_format($suba1,2,'.',',') }}</td>             
+                                <td class="text-right;">{{ number_format($suba2,2,'.',',') }}</td>             
+                                <td class="text-right;">{{ number_format($suba3,2,'.',',') }}</td>             
+                                <td class="text-right;">{{ number_format($suba4,2,'.',',') }}</td>             
                             </tr>
                         </table>
                     </td>

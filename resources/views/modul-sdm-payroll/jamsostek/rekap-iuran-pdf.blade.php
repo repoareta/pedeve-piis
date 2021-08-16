@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font style="font-size: 12pt;font-weight: bold ">TAHUN {{$request->tahun}}</font>
+                                <font style="font-size: 12pt;font-weight: bold ">TAHUN {{ $request->tahun}}</font>
                             </td>
                         </tr>
                     </table>
@@ -73,7 +73,7 @@
         <table width="100%" style="padding-top:4%; padding-left:30px;;padding-right:30px;">
             <tr>
                 <td>
-                    <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+                    <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
                 </td>
             </tr>
             <tr>

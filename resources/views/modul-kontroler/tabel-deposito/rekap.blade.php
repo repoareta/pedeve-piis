@@ -30,7 +30,7 @@
 							oninvalid="this.setCustomValidity('Bank Harus Diisi..')">
 							<option value="">- All -</option>
 							@foreach($data_bank as $data)
-							<option value="{{ $data->kdbank }}">{{ $data->kdbank }} -- {{ $data->descacct}}</option>
+							<option value="{{ $data->kdbank }}">{{ $data->kdbank }} -- {{ $data->descacct }}</option>
 							@endforeach
 						</select>
 					</div>

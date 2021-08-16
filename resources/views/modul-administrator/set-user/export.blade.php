@@ -65,9 +65,9 @@
                 </tr>
                 @foreach($data_user as $row)
                 <tr style="font-size: 9pt;">
-                    <td>{{$row->userid}}</td>
-                    <td>{{$row->usernm}}</td>
-                    <td>{{$row->kode}}</td>
+                    <td>{{ $row->userid}}</td>
+                    <td>{{ $row->usernm}}</td>
+                    <td>{{ $row->kode }}</td>
                     <td>
                     <?php
                         if ($row->userlv == 0) {

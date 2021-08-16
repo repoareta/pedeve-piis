@@ -37,7 +37,7 @@
 						<input size="3" maxlength="3"  class="form-control" type="text" value="{{ $lampiran }}" name="lampiran" autocomplete="off">
 						<input size="30" maxlength="30" type="hidden" value="{{ $jumangka}}" name="jumangka" >
 						<input size="30" maxlength="30" type="hidden" value="{{ $kepada}}" name="kepada" >
-						<input size="30" maxlength="30" type="hidden" value="{{ $keterangan}}" name="keterangan" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $keterangan }}" name="keterangan" >
 						<input size="30" maxlength="30" type="hidden" value="{{ $ci}}" name="ci" >
 					</div>
 					<label class="col-2 col-form-label">No.Bilyet Giro</label>

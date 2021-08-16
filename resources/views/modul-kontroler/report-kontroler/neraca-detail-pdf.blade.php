@@ -102,14 +102,14 @@
                     </tr>
                 <thead>
                 <tbody style="border: 1px solid black;">
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;font-weight: bold;padding-top:20px;border-left:1px solid black;">AKTIVA</td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>LANCAR</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -141,7 +141,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{array_sum($kons) < 0 ? '('.number_format(array_sum($kons)*-1,2).')':number_format(array_sum($kons),2) }}</td>
                     </tr>
 
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>INVESTASI</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -173,7 +173,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{array_sum($kons1) < 0 ? '('.number_format(array_sum($kons1)*-1,2).')':number_format(array_sum($kons1),2) }}</td>
                     </tr>
 
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>AKTIVA TETAP</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -205,7 +205,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{array_sum($kons2) < 0 ? '('.number_format(array_sum($kons2)*-1,2).')':number_format(array_sum($kons2),2) }}</td>
                     </tr>
 
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>AKTIVA LAIN-LAIN</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -253,14 +253,14 @@
 //step 2
 
                    
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;font-weight: bold;padding-top:20px;border-left:1px solid black;">PASIVA</td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>KEWAJIBAN LANCAR</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -292,7 +292,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{array_sum($kons4) < 0 ? '('.number_format(array_sum($kons4)*-1,2).')':number_format(array_sum($kons4),2) }}</td>
                     </tr>
 
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>KEWAJIB. MANFAAT MASA DEPAN</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -324,7 +324,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{array_sum($kons5) < 0 ? '('.number_format(array_sum($kons5)*-1,2).')':number_format(array_sum($kons5),2) }}</td>
                     </tr>
 
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 8pt;padding-left:20px;border-left:1px solid black;"><u>EKUITAS</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>

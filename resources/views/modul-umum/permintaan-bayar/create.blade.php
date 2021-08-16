@@ -34,7 +34,7 @@
                         <label for="spd-input" class="col-2 col-form-label">No. Permintaan</label>
                         <div class="col-5">
                             <?php $data_no_bayar = str_replace('/', '-', $permintaan_header_count); ?>
-                            <input class="form-control" type="hidden" value="{{$data_no_bayar}}" id="noumk" size="25"
+                            <input class="form-control" type="hidden" value="{{ $data_no_bayar}}" id="noumk" size="25"
                                 maxlength="25" readonly>
                             <input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text"
                                 name="nobayar" value="{{ $permintaan_header_count }}" id="nobayar" readonly>
@@ -62,8 +62,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label">Dibayar Kepada<span
-                                style="color:red;">*</span></label>
+                        <label for="" class="col-2 col-form-label">Dibayar Kepada<span class="text-danger">*</span></label>
                         <div class="col-10">
                             <select name="dibayar" id="dibayar" class="form-control selectpicker"
                                 data-live-search="true" required>
@@ -99,12 +98,12 @@
                         <label class="col-2 col-form-label">No. Debet</label>
                         <div class="col-5">
                             <input class="form-control" type="text" name="nodebet" id="nodebet" value="-" size="15"
-                                maxlength="15" onkeyup="this.value = this.value.toUpperCase()" autocomplete='off'>
+                                maxlength="15" onkeyup="this.value = this.value.toUpperCase()" autocomplete="off">
                         </div>
                         <label class="col-2 col-form-label">Tgl Debet</label>
                         <div class="col-3">
                             <input class="form-control" type="text" name="tgldebet" value="{{ date('d-m-Y') }}"
-                                id="tgldebet" size="15" maxlength="15" autocomplete='off'>
+                                id="tgldebet" size="15" maxlength="15" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -112,13 +111,12 @@
                         <div class="col-5">
                             <input style="background-color:#DCDCDC; cursor:not-allowed" readonly class="form-control"
                                 name="nokas" type="text" value="" id="nokas" size="10" maxlength="25"
-                                autocomplete='off'>
+                                autocomplete="off">
                         </div>
-                        <label for="spd-input" class="col-2 col-form-label">Bulan Buku<span
-                                style="color:red;">*</span></label>
+                        <label for="spd-input" class="col-2 col-form-label">Bulan Buku<span class="text-danger">*</span></label>
                         <div class="col-3">
                             <input style="background-color:#DCDCDC; cursor:not-allowed" readonly class="form-control"
-                                type="text" value="{{$bulan_buku}}" name="bulanbuku" size="6" maxlength="6">
+                                type="text" value="{{ $bulan_buku}}" name="bulanbuku" size="6" maxlength="6">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -133,25 +131,23 @@
                                 <span></span>
                             </label>
                         </div>
-                        <label for="spd-input" class="col-2 col-form-label">Kurs<span style="color:red;display:none"
-                                id="simbol-kurs">*</span></label>
+                        <label for="spd-input" class="col-2 col-form-label">Kurs<span class="text-danger" id="simbol-kurs">*</span></label>
                         <div class="col-3">
                             <input class="form-control" type="text" value="1" name="kurs" id="kurs" size="10"
-                                maxlength="10" autocomplete='off' onkeypress="return hanyaAngka(event)">
+                                maxlength="10" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="mulai-input" class="col-2 col-form-label">Periode <span
-                                style="color:red;">*</span></label>
+                        <label for="mulai-input" class="col-2 col-form-label">Periode <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <div class="input-daterange input-group" id="date_range_picker">
                                 <input type="text" class="form-control" name="mulai" value="{{ date('d-m-Y') }}"
-                                    required autocomplete='off' />
+                                    required autocomplete="off" />
                                 <div class="input-group-append">
                                     <span class="input-group-text">s/d</span>
                                 </div>
                                 <input type="text" class="form-control" name="sampai" value="{{ date('d-m-Y') }}"
-                                    required autocomplete='off' />
+                                    required autocomplete="off" />
                             </div>
                         </div>
                     </div>
@@ -168,10 +164,8 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
-                                <a href="{{route('modul_umum.permintaan_bayar.index')}}" class="btn btn-warning"><i
-                                        class="fa fa-reply" aria-hidden="true"></i>Batal</a>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"
-                                        aria-hidden="true"></i>Simpan</button>
+                                <a href="{{ route('modul_umum.permintaan_bayar.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -234,13 +228,9 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-		$('#tabel-detail-permintaan').DataTable({
-			scrollX   : true,
-			processing: true,
-			serverSide: false,
-		});
+		$('#tabel-detail-permintaan').DataTable();
 
-		$("input[name=ci]:checked").each(function() {  
+		$("input[name=ci]:checked").each(function() {
 			var ci = $(this).val();
 			if(ci == 1)
 			{
@@ -265,7 +255,7 @@
 		$('#form-create-permintaan-bayar').submit(function(){
         	var no_umk = $("#noumk").val();
 			$.ajax({
-				url  : "{{route('modul_umum.permintaan_bayar.store')}}",
+				url  : "{{ route('modul_umum.permintaan_bayar.store') }}",
 				type : "POST",
 				data : $('#form-create-permintaan-bayar').serialize(),
 				dataType : "JSON",
@@ -290,62 +280,54 @@
 			return false;
 		});
 	
-   
-	// range picker
-	$('#date_range_picker').datepicker({
-		todayHighlight: true,
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	// minimum setup
-	$('#tanggal').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	// minimum setup
-	$('#tgldebet').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	$('#bulanbuku').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'yyyymm'
-	});
-	});
-		function displayResult(ci){ 
-			if(ci == 1)
-			{
-				$('#kurs').val(1);
-				$('#simbol-kurs').hide();
-				$( "#kurs" ).prop( "required", false );
-				$( "#kurs" ).prop( "readonly", true );
-				$('#kurs').css("background-color","#DCDCDC");
-				$('#kurs').css("cursor","not-allowed");
-			}else{
-				$('#kurs').val("");
-				$('#simbol-kurs').show();
-				$( "#kurs" ).prop( "required", true );
-				$( "#kurs" ).prop( "readonly", false );
-				$('#kurs').css("background-color","#ffffff");
-				$('#kurs').css("cursor","text");
-			}
-		}
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
+        // range picker
+        $('#date_range_picker').datepicker({
+            todayHighlight: true,
+            autoclose: true,
+            // language : 'id',
+            format   : 'dd-mm-yyyy'
+        });
+        // minimum setup
+        $('#tanggal').datepicker({
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            // language : 'id',
+            format   : 'dd-mm-yyyy'
+        });
+        // minimum setup
+        $('#tgldebet').datepicker({
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            // language : 'id',
+            format   : 'dd-mm-yyyy'
+        });
+        $('#bulanbuku').datepicker({
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            // language : 'id',
+            format   : 'yyyymm'
+        });
+    });
+    function displayResult(ci){ 
+        if(ci == 1)
+        {
+            $('#kurs').val(1);
+            $('#simbol-kurs').hide();
+            $( "#kurs" ).prop( "required", false );
+            $( "#kurs" ).prop( "readonly", true );
+            $('#kurs').css("background-color","#DCDCDC");
+            $('#kurs').css("cursor","not-allowed");
+        }else{
+            $('#kurs').val("");
+            $('#simbol-kurs').show();
+            $( "#kurs" ).prop( "required", true );
+            $( "#kurs" ).prop( "readonly", false );
+            $('#kurs').css("background-color","#ffffff");
+            $('#kurs').css("cursor","text");
+        }
+    }
 </script>
 @endpush

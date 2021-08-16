@@ -153,7 +153,7 @@
                                 $total[$no] = $data->totprice; 
                             ?>
                         <tr>
-                            <td>{{ $data->keterangan}}</td>
+                            <td>{{ $data->keterangan }}</td>
                             <td style="text-align:center;">{{ $data->lokasi}}</td>
                             <td style="text-align:center;">{{ $data->account}}</td>
                             <td style="text-align:center;">{{ $data->bagian}}</td>

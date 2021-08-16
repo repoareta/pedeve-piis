@@ -230,7 +230,7 @@
                 <tr class="table-info">
                     <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno}}" nourut="{{ $data_d->lineno}}"  class="btn-radio"><span></span></label></td>
                     <td scope="row" align="center">{{ $data_d->lineno}}</td>
-                    <td>{{ $data_d->keterangan}}</td>
+                    <td>{{ $data_d->keterangan }}</td>
                     <td align="center">{{ $data_d->account}}</td>
                     <td align="center">{{ $data_d->bagian}}</td>
                     <td align="center">{{ $data_d->pk}}</td>

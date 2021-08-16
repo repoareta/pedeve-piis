@@ -31,7 +31,7 @@
                     <select name="sanper" class="form-control select2">
                         <option value="">- All -</option>
                         @foreach($data_bank as $data)
-                        <option value="{{ $data->kdbank }}">{{ $data->kdbank }} -- {{ $data->descacct}}</option>
+                        <option value="{{ $data->kdbank }}">{{ $data->kdbank }} -- {{ $data->descacct }}</option>
                         @endforeach
                     </select>								
                 </div>
@@ -71,7 +71,7 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="kurs" value="{{$kurs}}" size="15" maxlength="15"
+                    <input class="form-control" type="text" name="kurs" value="{{ $kurs}}" size="15" maxlength="15"
                         autocomplete="off">
                 </div>
             </div>

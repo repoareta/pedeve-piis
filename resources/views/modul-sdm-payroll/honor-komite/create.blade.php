@@ -51,17 +51,17 @@
                     </select>
                 </div>
                 <div class="col-5" >
-                    <input class="form-control" type="number" value="{{$tahun}}" name="tahun" size="4" maxlength="4" autocomplete='off' required>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+                    <input class="form-control" type="number" value="{{ $tahun}}" name="tahun" size="4" maxlength="4" autocomplete="off" required>
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="nopek"  class="form-control select2" style="width: 100% !important;" required autocomplete='off'>
+                    <select name="nopek"  class="form-control select2" style="width: 100% !important;" required autocomplete="off">
                         <option value="">- Pilih -</option>
                         @foreach($data_pegawai as $data)
-                        <option value="{{$data->nopeg}}">{{$data->nopeg}} - {{$data->nama}}</option>
+                        <option value="{{ $data->nopeg}}">{{ $data->nopeg}} - {{ $data->nama }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -69,7 +69,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" required autocomplete='off'>
+                    <input class="form-control" name="nilai" type="text" required autocomplete="off">
                     <input type="hidden" value="0" name="pajak" id="pajak">
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a href="{{route('modul_sdm_payroll.potongan_koreksi_gaji.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <a href="{{ route('modul_sdm_payroll.potongan_koreksi_gaji.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
                         <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>

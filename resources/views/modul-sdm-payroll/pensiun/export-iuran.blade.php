@@ -52,7 +52,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                     <font style="font-size: 12pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                     <font style="font-size: 12pt;font-weight: bold ">DAFTAR SETORAN IURAN PENSIUN PEKERJA</font><br>
-                    <font style="font-size: 12pt;font-weight: bold "> BULAN {{strtoupper($bulan)}} {{$request->tahun}} </font><br>
+                    <font style="font-size: 12pt;font-weight: bold "> BULAN {{strtoupper($bulan)}} {{ $request->tahun}} </font><br>
                     </td>
                 </tr>
             </table>           
@@ -88,22 +88,22 @@
                                     $totalbni[$a] = $bni;
                                     $totaltotal[$a] = $total;
                                 ?>
-                            <tr >
-                                <td style="text-align:center;">{{$a}}</td>
-                                <td style="text-align:left;">{{$data->nopek}}</td>
-                                <td style="text-align:left;">{{$data->nama}}</td>
-                                <td style="text-align:right;">{{$iuranpekerja == '0' ? '0': number_format($iuranpekerja,0)}}</td>
-                                <td style="text-align:right;">{{$danapensiun == '0' ? '0': number_format($danapensiun,0)}}</td>
-                                <td style="text-align:right;">{{$bni == '0' ? '0': number_format($bni,0)}}</td>
-                                <td style="text-align:right;">{{number_format($total,0)}}</td>
+                            <tr>
+                                <td style="text-align:center;">{{ $a}}</td>
+                                <td style="text-align:left;">{{ $data->nopek}}</td>
+                                <td style="text-align:left;">{{ $data->nama }}</td>
+                                <td style="text-align:right;">{{ $iuranpekerja == '0' ? '0': number_format($iuranpekerja,0)}}</td>
+                                <td style="text-align:right;">{{ $danapensiun == '0' ? '0': number_format($danapensiun,0)}}</td>
+                                <td style="text-align:right;">{{ $bni == '0' ? '0': number_format($bni,0)}}</td>
+                                <td style="text-align:right;">{{ number_format($total,0)}}</td>
                             </tr>
                             @endforeach
                             <tr style="font-weight: bold">
                                 <td style="text-align:right;" colspan="3">Total</td>
-                                <td style="text-align:right;" >{{number_format(array_sum($totaliuranpekerja),0)}}</td>
-                                <td style="text-align:right;" >{{number_format(array_sum($totaldanapensiun),0)}}</td>
-                                <td style="text-align:right;" >{{number_format(array_sum($totalbni),0)}}</td>
-                                <td style="text-align:right;" >{{number_format(array_sum($totaltotal),0)}}</td>
+                                <td style="text-align:right;" >{{ number_format(array_sum($totaliuranpekerja),0)}}</td>
+                                <td style="text-align:right;" >{{ number_format(array_sum($totaldanapensiun),0)}}</td>
+                                <td style="text-align:right;" >{{ number_format(array_sum($totalbni),0)}}</td>
+                                <td style="text-align:right;" >{{ number_format(array_sum($totaltotal),0)}}</td>
                             </tr>
                         </table>
                     </td>
@@ -135,7 +135,7 @@
             </table>
         </main>
         <footer>
-        <font style="padding-left:20px;font-size: 10pt;font-style: italic">Cetak: {{$request->tanggal}}</font>
+        <font style="padding-left:20px;font-size: 10pt;font-style: italic">Cetak: {{ $request->tanggal}}</font>
         </footer>
     </body>
 </html>

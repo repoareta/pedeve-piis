@@ -50,7 +50,7 @@
                         $tglpanjar=$umk->tgl_panjar;
                     }
                    ?>
-                   <font style="font-size: 12pt;font-weight: bold ">BULAN {{$bulan}} {{$tahun}}</font><br>
+                   <font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan}} {{ $tahun}}</font><br>
                     </td>
                 </tr>
             </table>

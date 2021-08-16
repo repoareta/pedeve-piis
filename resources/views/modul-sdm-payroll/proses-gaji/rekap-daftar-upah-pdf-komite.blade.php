@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 12pt;font-weight: bold ">PT. PERTAMINA DANA VENTURA (PDV) </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{$request->tahun}}</font></td>
+                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -87,7 +87,7 @@
         <table width="100%"  style="padding-top:6%;font-family: sans-serif">
                 <tr>
                     <td>
-                        <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+                        <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
                     </td>
                 </tr>
                 <tr>
@@ -109,9 +109,9 @@
                             @foreach($data_list as $data)
                             <?php $a++; ?>
                             <tr style="font-size: 7pt;">
-                                <td style="text-align:center;">{{$a}}</td>
-                                <td style="text-align:center;">{{$data->nopek}}</td>
-                                <td style="text-align:left;">{{$data->namapegawai}}</td>
+                                <td style="text-align:center;">{{ $a}}</td>
+                                <td style="text-align:center;">{{ $data->nopek}}</td>
+                                <td style="text-align:left;">{{ $data->namapegawai}}</td>
                                 <?php 
                                     $jumpajak = $data->tunpajak+$data->potpajak;
                                     $hon = $data->allin+$jumpajak;
@@ -119,16 +119,16 @@
                                     $subtotala1[$a] = $hon;
                                     $subtotala2[$a] = $jumtransfer;
                                 ?>                                
-                                <td style="text-align:right;">{{number_format($hon,0)}}</td>
-                                <td style="text-align:right;">{{number_format($jumtransfer,0)}}</td>
-                                <td style="text-align:center;">{{$data->rekening}}</td>
-                                <td style="text-align:left;">{{$data->namabank}}</td>
+                                <td style="text-align:right;">{{ number_format($hon,0)}}</td>
+                                <td style="text-align:right;">{{ number_format($jumtransfer,0)}}</td>
+                                <td style="text-align:center;">{{ $data->rekening}}</td>
+                                <td style="text-align:left;">{{ $data->namabank}}</td>
                             </tr>
                             @endforeach
                             <tr style="font-size: 7pt;font-weight: bold">
                                 <td style="text-align:right;" colspan="3">JUMLAH</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala1),0)}}</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala2),0)}}</td>              
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala1),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala2),0)}}</td>              
                                 <td style="text-align:right;" colspan="2"></td>
                             </tr>
                         </table>

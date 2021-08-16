@@ -141,7 +141,7 @@
 						<div class="form-group row">
 							<label for="id-pekerja;-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
 							<div class="col-10">
-								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')">{{ $keterangan}}</textarea>
+								<textarea class="form-control" type="text" value="" id="kepada" name="kepada" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')">{{ $keterangan }}</textarea>
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" size="15" maxlength="15">
 							</div>
 						</div>
@@ -242,7 +242,7 @@
 								<td>{{ number_format($data_d->debet,2,'.',',') }}</td>
 								<td>{{ number_format($data_d->kredit,2,'.',',') }}</td>
 								<td>{{ number_format($data_d->rate,0) }}</td>
-								<td>{{ $data_d->keterangan}}</td>
+								<td>{{ $data_d->keterangan }}</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -270,7 +270,7 @@
 			<span id="form_result"></span>
                 <form class="form" id="form-tambah-detail"  enctype="multipart/form-data">
 					@csrf
-					<input  class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
+					<input class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-8">
@@ -282,7 +282,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')">
+							<input class="form-control" type="text" value="" name="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')">
 						</div>
 					</div>
 									
@@ -304,7 +304,7 @@
 							<select name="sanper"  class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_sandi as $data_san)
-								<option value="{{ $data_san->kodeacct}}">{{ $data_san->kodeacct}} - {{ $data_san->descacct}}</option>
+								<option value="{{ $data_san->kodeacct }}">{{ $data_san->kodeacct }} - {{ $data_san->descacct }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -324,7 +324,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja<span class="text-danger">*</span></label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="000000"  name="wo" required oninvalid="this.setCustomValidity('Wo Harus Diisi..')">
+							<input class="form-control" type="text" value="000000"  name="wo" required oninvalid="this.setCustomValidity('Wo Harus Diisi..')">
 						</div>
 					</div>	
 					<div class="form-group row">
@@ -333,7 +333,7 @@
 							<select name="jnsbiaya" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000') echo 'selected'; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}" <?php if($data_jen->kode  == '000000') echo 'selected'; ?>>{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -342,19 +342,19 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Debet</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="debet" size="16" maxlength="16" autocomplete="off">
+							<input class="form-control" type="text" value="" name="debet" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kredit</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="kredit" size="16" maxlength="16"  autocomplete="off">
+							<input class="form-control" type="text" value="" name="kredit" size="16" maxlength="16"  autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off">
+							<input class="form-control" type="text" value="" name="rate" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 
@@ -387,7 +387,7 @@
 			<span id="form_result"></span>
 			<form class="form" id="form-edit-detail"  enctype="multipart/form-data">
 					@csrf
-					<input  class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
+					<input class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-8">
@@ -399,7 +399,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rincian" id="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')">
+							<input class="form-control" type="text" value="" name="rincian" id="rincian" autocomplete="off" required oninvalid="this.setCustomValidity('Rincian Harus Diisi..')">
 						</div>
 					</div>
 									
@@ -421,7 +421,7 @@
 							<select name="sanper" id="sanper" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_sandi as $data_san)
-								<option value="{{ $data_san->kodeacct}}">{{ $data_san->kodeacct}} - {{ $data_san->descacct}}</option>
+								<option value="{{ $data_san->kodeacct }}">{{ $data_san->kodeacct }} - {{ $data_san->descacct }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -441,7 +441,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja<span class="text-danger">*</span></label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" id="wo"  name="wo" required oninvalid="this.setCustomValidity('Wo Harus Diisi..')">
+							<input class="form-control" type="text" value="" id="wo"  name="wo" required oninvalid="this.setCustomValidity('Wo Harus Diisi..')">
 						</div>
 					</div>	
 					<div class="form-group row">
@@ -450,7 +450,7 @@
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -459,19 +459,19 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Debet</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="debet" id="debet" size="16" maxlength="16" autocomplete="off">
+							<input class="form-control" type="text" value="" name="debet" id="debet" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kredit</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="kredit" id="kredit" size="16" maxlength="16"  autocomplete="off">
+							<input class="form-control" type="text" value="" name="kredit" id="kredit" size="16" maxlength="16"  autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kurs</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off">
+							<input class="form-control" type="text" value="" name="rate" id="rate" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 

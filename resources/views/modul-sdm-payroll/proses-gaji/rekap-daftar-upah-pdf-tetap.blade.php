@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 12pt;font-weight: bold ">PT. PERTAMINA DANA VENTURA (PDV) </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{$request->tahun}}</font></td>
+                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -87,7 +87,7 @@
         <table width="100%"  style="padding-top:6%;font-family: sans-serif">
                 <tr>
                     <td>
-                        <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{$request->tanggal}}</font>
+                        <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
                     </td>
                 </tr>
                 <tr>
@@ -110,9 +110,9 @@
                             @foreach($data_list as $data)
                             <?php $a++; ?>
                             <tr style="font-size: 7pt;">
-                                <td style="text-align:center;">{{$a}}</td>
-                                <td style="text-align:center;">{{$data->nopek}}</td>
-                                <td style="text-align:left;">{{$data->nama}}</td>
+                                <td style="text-align:center;">{{ $a}}</td>
+                                <td style="text-align:center;">{{ $data->nopek}}</td>
+                                <td style="text-align:left;">{{ $data->nama }}</td>
                                 <?php 
                                     $upah = ($data->a_01+$data->a_02+$data->a_03+$data->a_04+$data->a_05+$data->a_06+$data->a_07+$data->a_08+$data->a_09+$data->a_14+$data->a_16+$data->a_18+$data->a_19+$data->a_23+$data->a_26+$data->a_27+$data->a_29+$data->a_32+$data->a_34+$data->a_35+$data->a_37+$data->a_38+$data->a_45+$data->a_17);
                                     $jum  =$upah+$data->a_28+$data->koperasi;
@@ -123,23 +123,23 @@
                                     $subtotala4[$a] = $data->koperasi;
                                     $subtotala5[$a] = $jum;
                                 ?>
-                                <td style="text-align:right;">{{number_format($upah,0)}}</td>
+                                <td style="text-align:right;">{{ number_format($upah,0)}}</td>
                                 <td style="text-align:right;">0</td>
-                                <td style="text-align:right;">{{number_format($data->a_28,0)}}</td>
-                                <td style="text-align:right;">{{number_format($data->koperasi,0)}}</td>
-                                <td style="text-align:right;">{{number_format($jum,0)}}</td>
-                                <td style="text-align:center;">{{$data->rekening}}</td>
-                                <td style="text-align:left;">{{$data->atasnama}}</td>
-                                <td style="text-align:left;">{{$data->namabank}}    -    {{$data->alamat}}</td>
+                                <td style="text-align:right;">{{ number_format($data->a_28,0)}}</td>
+                                <td style="text-align:right;">{{ number_format($data->koperasi,0)}}</td>
+                                <td style="text-align:right;">{{ number_format($jum,0)}}</td>
+                                <td style="text-align:center;">{{ $data->rekening}}</td>
+                                <td style="text-align:left;">{{ $data->atasnama}}</td>
+                                <td style="text-align:left;">{{ $data->namabank}}    -    {{ $data->alamat}}</td>
                             </tr>
                             @endforeach
                             <tr style="font-size: 7pt;font-weight: bold">
                                 <td style="text-align:right;" colspan="3">JUMLAH</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala1),0)}}</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala2),0)}}</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala3),0)}}</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala4),0)}}</td>
-                                <td style="text-align:right;">{{number_format(array_sum($subtotala5),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala1),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala2),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala3),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala4),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($subtotala5),0)}}</td>
                                 <td style="text-align:left;" colspan="3"></td>
                                 
                             </tr>

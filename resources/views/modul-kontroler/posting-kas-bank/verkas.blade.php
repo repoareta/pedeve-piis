@@ -185,7 +185,7 @@
                             <tbody>
                             @foreach($data_detail as $data_d)
                                 <tr>
-                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{$data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio" ><span></span></label></td>
                                     <td>{{ $data_d->lineno }}</td>
                                     <td>{{ $data_d->keterangan }}</td>
                                     <td>{{ $data_d->lokasi }}</td>
@@ -231,18 +231,18 @@
 			<span id="form_result"></span>
 			<form class="kt-form " id="form-edit-detail"  enctype="multipart/form-data">
 			@csrf
-				<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
+				<input class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="{{$nu}}"  name="nourut" id="nourut" readonly>
+							<input class="form-control" type="text" value="{{ $nu}}"  name="nourut" id="nourut" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="-"  size="35" maxlength="35" name="rincian" id="rincian" autocomplete='off' >
+							<input class="form-control" type="text" value="-"  size="35" maxlength="35" name="rincian" id="rincian" autocomplete="off" >
 						</div>
 					</div>	
 					<div class="form-group row">
@@ -251,7 +251,7 @@
 							<select name="sanper" id="sanper" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_sandi as $data_san)
-								<option value="{{$data_san->kodeacct}}">{{$data_san->kodeacct}} - {{$data_san->descacct}}</option>
+								<option value="{{ $data_san->kodeacct }}">{{ $data_san->kodeacct }} - {{ $data_san->descacct }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -262,7 +262,7 @@
 							<select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" >
 								<option value="">-Pilih-</option>
 									@foreach($data_bagian as $data_bag)
-								<option value="{{$data_bag->kode}}">{{$data_bag->kode}} - {{$data_bag->nama}}</option>
+								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -271,7 +271,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="000000" size="6" maxlength="6" name="wo" id="wo">
+							<input class="form-control" type="text" value="000000" size="6" maxlength="6" name="wo" id="wo">
 						</div>
 					</div>	
 					<div class="form-group row">
@@ -280,7 +280,7 @@
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -289,7 +289,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="jumlah" id="jumlah" size="16" maxlength="16" autocomplete='off' oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');">
+							<input class="form-control" type="text" value="" name="jumlah" id="jumlah" size="16" maxlength="16" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -298,20 +298,20 @@
 							<select name="cjudex"  id="cjudex" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_cjudex as $data_judex)
-								<option value="{{$data_judex->kode}}">{{$data_judex->kode}} - {{$data_judex->nama}}</option>
+								<option value="{{ $data_judex->kode }}">{{ $data_judex->kode }} - {{ $data_judex->nama }}</option>
 									@endforeach
 							</select>
 						</div>
 					</div>	
 					@else
-					<input  class="form-control" type="hidden"  size="6" maxlength="6" name="wo" id="wo">
+					<input class="form-control" type="hidden"  size="6" maxlength="6" name="wo" id="wo">
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<div  class="col-8" >
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
-								<option value="{{$data_jen->kode}}">{{$data_jen->kode}} - {{$data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -320,7 +320,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="jumlah" id="jumlah" size="16" maxlength="16" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete='off'>
+							<input class="form-control" type="text" value="" name="jumlah" id="jumlah" size="16" maxlength="16" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
@@ -329,7 +329,7 @@
 							<select name="cjudex"  id="cjudex" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_cjudex as $data_judex)
-								<option value="{{$data_judex->kode}}">{{$data_judex->kode}} - {{$data_judex->nama}}</option>
+								<option value="{{ $data_judex->kode }}">{{ $data_judex->kode }} - {{ $data_judex->nama }}</option>
 									@endforeach
 							</select>
 						</div>
@@ -485,7 +485,7 @@
 					var no = $(this).attr('docno');
 					var id = $(this).attr('lineno');
 					$.ajax({
-						url :"{{url('kontroler/postingan_kas_bank/editdetail')}}"+'/'+no+'/'+id,
+						url :"{{url('kontroler/postingan_kas_bank/editdetail') }}"+'/'+no+'/'+id,
 						type : 'get',
 						dataType:"json",
 						headers: {
@@ -517,7 +517,7 @@
 		//prosess create detail
 		$('#form-edit-detail').submit(function(){
 			$.ajax({
-				url  : "{{route('modul_kontroler.postingan_kas_bank.update.detail')}}",
+				url  : "{{ route('modul_kontroler.postingan_kas_bank.update.detail') }}",
 				type : "POST",
 				data : $('#form-edit-detail').serialize(),
 				dataType : "JSON",

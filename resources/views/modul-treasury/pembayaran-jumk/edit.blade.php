@@ -217,7 +217,7 @@
                 <tr class="table-info">
                     <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno}}" nourut="{{ $data_d->lineno}}"  class="btn-radio"><span></span></label></td>
                     <td scope="row" align="center">{{ $data_d->lineno}}</td>
-                    <td>{{ $data_d->keterangan}}</td>
+                    <td>{{ $data_d->keterangan }}</td>
                     {{-- <td>{{ $data_d->lokasi}}</td> --}}
                     <td align="center">{{ $data_d->account}}</td>
                     <td align="center">{{ $data_d->bagian}}</td>
@@ -271,7 +271,7 @@
 							<select name="sanper"  class="form-control select2">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
-								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
+								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
 								
 							</select>
@@ -295,7 +295,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="000000"  name="pk" size="6" maxlength="6">
+							<input class="form-control" type="text" value="000000"  name="pk" size="6" maxlength="6">
 						</div>
 					</div>
 
@@ -306,7 +306,7 @@
 							<select name="jb"  class="form-control select2">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 								@endforeach
 							
 							</select>
@@ -331,7 +331,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="number" value="" name="nilai" size="25" maxlength="25"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control" type="number" value="" name="nilai" size="25" maxlength="25"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
 						</div>
 					</div>
 
@@ -387,7 +387,7 @@
 							<select name="sanper" id="select-sanper" class="form-control select2" style="width: 100% !important;" >
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
-								<option value="{{ $data_acc->kodeacct}}">{{ $data_acc->kodeacct}} - {{ $data_acc->descacct}}</option>
+								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
 								
 							</select>
@@ -411,7 +411,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="text"   name="pk" id="pk" size="6" maxlength="6">
+							<input class="form-control" type="text"   name="pk" id="pk" size="6" maxlength="6">
 						</div>
 					</div>
 
@@ -422,7 +422,7 @@
 							<select name="jb" id="select-jb"  class="form-control select2" style="width: 100% !important;" >
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
-								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan}}</option>
+								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 								@endforeach
 							
 							</select>
@@ -447,7 +447,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
 						</div>
 					</div>
 

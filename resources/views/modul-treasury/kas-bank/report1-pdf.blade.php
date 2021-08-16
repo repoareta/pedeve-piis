@@ -124,7 +124,7 @@
                         <td style="text-align:right;">{{ $jmlrp < 0 ? $jmlrp : $jmlrp}}</td>
                         <td style="text-align:right;">{{ $jmldl < 0 ? $jmldl : $jmldl}}</td>
                         <td style="text-align:right;">{{ $data->ci == 1 ? '' : $data->rate}}</td>
-                        <td>{{ $data->keterangan}}</td>
+                        <td>{{ $data->keterangan }}</td>
                         <td>{{ $data->tglbayar}}</td>
 
                     </tr>

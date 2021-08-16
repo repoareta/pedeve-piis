@@ -99,14 +99,14 @@
             </table>
             <table width="100%" style="font-family: sans-serif;table-layout: fixed;width: 100%; border-collapse: collapse;border: 1px solid black;">
                 <tbody>
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold;padding-top:20px;border-left:1px solid black;">HASIL HASIL</td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;padding-left:20px;border-left:1px solid black;"><u>PENDAPATAN OPERASI</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -172,7 +172,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;">{{array_sum($msupah3) < 0 ? "(".number_format(array_sum($msupah3)*-1,2).")" : number_format(array_sum($msupah3),2) }}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{ number_format(array_sum($mdupah3) + array_sum($msupah3),2) < 0 ? "(".number_format((array_sum($mdupah3) + array_sum($msupah3))*-1,2).")" : number_format(array_sum($mdupah3) + array_sum($msupah3),2) }} </td>
                     </tr>
-                    <tr >
+                    <tr>
                     <?php
                             $subtotalmd = array_sum($mdupah1)+array_sum($mdupah2)+array_sum($mdupah3);
                             $subtotalms = array_sum($msupah1)+array_sum($msupah2)+array_sum($msupah3);
@@ -278,14 +278,14 @@
                             
                         ?>
                     @endforeach
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold;padding-top:20px;border-left:1px solid black;">BIAYA-BIAYA</td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                         <td width="30%"  style="border-left:1px solid black;"></td>
                     </tr>
-                    <tr >
+                    <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;padding-left:20px;border-left:1px solid black;"><u>BIAYA OPERASI</u></td>
                         <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -334,7 +334,7 @@
                         <td width="30%" style="text-align:right;border-left:1px solid black;padding-bottom:10px;">{{array_sum($msupah9) >= 0 ? number_format(array_sum($msupah9),2) : "(".number_format(array_sum($msupah9)*-1,2).")"}}</td>
                         <td width="30%" style="text-align:right;padding-left:20px;border-left:1px solid black;">{{ number_format(array_sum($mdupah9) + array_sum($msupah9),2) >= 0 ? number_format(array_sum($mdupah9) + array_sum($msupah9),2) : "(".number_format(array_sum($mdupah9) + array_sum($msupah9)*-1,2).")"}}</td>
                     </tr>
-                    <tr >
+                    <tr>
                     <?php
                             $subtotalmd1 = array_sum($mdupah4)+array_sum($mdupah5)+array_sum($mdupah6)+array_sum($mdupah7)+array_sum($mdupah8)+array_sum($mdupah9);
                             $subtotalms1 = array_sum($msupah4)+array_sum($msupah5)+array_sum($msupah6)+array_sum($msupah7)+array_sum($msupah8)+array_sum($msupah9);
@@ -345,7 +345,7 @@
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalms1 >= 0 ? number_format($subtotalms1,2) : "(".number_format($subtotalms1*-1,2).")"}}</th>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd1+$subtotalms1 >= 0 ? number_format($subtotalmd1+$subtotalms1,2) : "(".number_format(($subtotalmd1+$subtotalms1)*-1,2).")"}}</th>
                     </tr>
-                    <tr >
+                    <tr>
                     <?php
                             $totalmd = $subtotalmd+$subtotalmd1;
                             $totalms = $subtotalms+$subtotalms1;

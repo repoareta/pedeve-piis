@@ -81,7 +81,7 @@ tr {
                 @foreach($data_list as $key=>$row)
                     <tr>
                         <td class="text-center">{{ $key+1}}</td>
-                        <td>{{ $row->descacct}}</td>
+                        <td>{{ $row->descacct }}</td>
                         <td class="text-center">{{ $row->asal}}</td>
                         <td class="text-right">
                            <?php

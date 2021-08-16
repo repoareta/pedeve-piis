@@ -31,7 +31,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Kode <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="kdkel" type="text" autocomplete='off' value="{{ $ptkp->kdkel }}">
+                    <input class="form-control" name="kdkel" type="text" autocomplete="off" value="{{ $ptkp->kdkel }}">
                     @error('kdkel')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" autocomplete='off' value="{{ $ptkp->nilai }}">
+                    <input class="form-control" name="nilai" type="text" autocomplete="off" value="{{ $ptkp->nilai }}">
                     @error('nilai')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('modul_sdm_payroll.master_ptkp.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <a  href="{{ route('modul_sdm_payroll.master_ptkp.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
                         <button type="submit" id="btn-save" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>

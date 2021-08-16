@@ -52,7 +52,7 @@
 							<select class="form-control select2" name="jenis" id="jenis">
                                 @foreach ($data_jenisupah as $data)
 									<option value="{{ $data->kode }}" {{ $data_list->jenis == $data->kode ? 'selected' : '' }}>
-                                        {{ $data->kode }} -- {{$data->nama}}  -- Cetak {{$data->cetak}}
+                                        {{ $data->kode }} -- {{ $data->nama }}  -- Cetak {{ $data->cetak}}
                                     </option>
 								@endforeach
 							</select>

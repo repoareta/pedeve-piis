@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Nama Vendor<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input  class="form-control" type="text" name="nama" value="{{ $vendor->nama }}">
+                            <input class="form-control" type="text" name="nama" value="{{ $vendor->nama }}">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -48,7 +48,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Cabang Bank<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input  class="form-control" type="text" name="cabang_bank" value="{{ $vendor->cabang_bank }}">
+                            <input class="form-control" type="text" name="cabang_bank" value="{{ $vendor->cabang_bank }}">
                         </div>
                     </div>
                     <div class="form-group row">

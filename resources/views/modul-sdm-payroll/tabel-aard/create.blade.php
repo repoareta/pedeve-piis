@@ -51,7 +51,7 @@
 						<div class="col-10">
 							<select class="form-control select2" name="jenis" id="jenis">
                                 @foreach ($data_jenisupah as $data)
-									<option value="{{ $data->kode }}">{{ $data->kode }} -- {{$data->nama}}  -- Cetak {{$data->cetak}}</option>
+									<option value="{{ $data->kode }}">{{ $data->kode }} -- {{ $data->nama }}  -- Cetak {{ $data->cetak}}</option>
 								@endforeach
 							</select>
 						</div>
