@@ -44,6 +44,14 @@ class HonorKomiteController extends Controller
 
     public function indexJson(Request $request)
     {
+        if ($request->nopek == "- Pilih -") {
+            $request->nopek = null;
+        }
+
+        if ($request->bulan == "- Pilih -") {
+            $request->bulan = null;
+        }
+
         $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         foreach($data_tahunbulan as $data_bul)
         {
@@ -94,10 +102,10 @@ class HonorKomiteController extends Controller
             return $data->nopek.' -- '.$data->nama_nopek;
        })
         ->addColumn('nilai', function ($data) {
-             return number_format($data->nilai,2,'.',',');
+             return currency_format($data->nilai,2,'.',',');
        })
         ->addColumn('pajak', function ($data) {
-             return number_format($data->pajak,2,'.',',');
+             return currency_format($data->pajak,2,'.',',');
        })
 
         ->addColumn('radio', function ($data) {
@@ -116,7 +124,7 @@ class HonorKomiteController extends Controller
     public function create()
     {
         $data_pegawai = MasterPegawai::all();
-        return view('honor_komite.create', compact('data_pegawai'));
+        return view('modul-sdm-payroll.honor-komite.create', compact('data_pegawai'));
     }
 
     /**
@@ -183,9 +191,9 @@ class HonorKomiteController extends Controller
      */
     public function edit($bulan,$tahun,$nopek)
     {
-        $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where nopek='$nopek' and bulan='$bulan' and tahun='$tahun' order by a.tahun,a.bulan,a.nopek");
+        $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where nopek='$nopek' and bulan='$bulan' and tahun='$tahun' order by a.tahun,a.bulan,a.nopek")[0];
         $data_pegawai = MasterPegawai::all();
-        return view('honor_komite.edit',compact('data_list','data_pegawai'));
+        return view('modul-sdm-payroll.honor-komite.edit',compact('data_list','data_pegawai'));
     }
 
     

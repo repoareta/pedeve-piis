@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_sdm_payroll.honor_komite.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -43,7 +43,7 @@
 				<div class="form-group row">
 					<label for="" class="col-form-label">Pegawai</label>
 					<div class="col-4">
-						<select name="nopek" class="form-control select2" style="width: 100% !important;" id="nopek">
+						<select name="nopek" class="form-control select2" style="width: 100% !important;">
 						<option>- Pilih -</option>
 							@foreach($pegawai_list as $pegawai)
 							    <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg }} - {{ $pegawai->nama }}</option>
@@ -147,7 +147,7 @@ $(document).ready(function () {
                 var nopek = $(this).attr('nopek');
                 var aard  = $(this).attr('aard');
                 var nama  = $(this).attr('nama');
-                location.replace("{{ url('sdm/honor_komite/edit') }}"+ '/' +bulan+'/' +tahun+ '/' +nopek);
+                location.replace("{{ url('sdm-payroll/honor-komite/edit') }}"+ '/' +bulan+'/' +tahun+ '/' +nopek);
             });
         } else {
             swalAlertInit('ubah');
