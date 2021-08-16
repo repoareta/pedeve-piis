@@ -4,10 +4,6 @@
     {{ Breadcrumbs::render('set-user') }}
 @endsection
 
-@push('page-styles')
-
-@endpush
-
 @section('content')
 
 <div class="card card-custom card-sticky" id="kt_page_sticky_card">
