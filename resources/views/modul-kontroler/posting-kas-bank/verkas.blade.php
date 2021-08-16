@@ -23,204 +23,197 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-12">
-                <div class="form-group row">
-                    <div class="col-2 alert alert-secondary pl-2">
-                        <div id="treeview" class="tree-demo">
+            <div class="col-3 alert alert-secondary">
+                <div id="treeview" class="tree-demo">
+                    <ul>
+                        @foreach ($data_rsjurnal as $data_rsj)
+                        <li>
+                            {{ $data_rsj->store }}
                             <ul>
-                                @foreach ($data_rsjurnal as $data_rsj)
-                                <li>
-                                    {{ $data_rsj->store }}
-                                    <ul>
-                                        @foreach (DB::table('kasdoc')->where('store',$data_rsj->store)->where('paid', 'Y')->where('verified','N')->orderBy('docno', 'asc')->get() as $data_doc)
-                                        <li data-jstree='{ "type" : "file", @if(str_replace('/', '-',$data_doc->docno) == Request::segment(4)) "selected": true @endif  }'>
-                                            <a href="{{ route('modul_kontroler.postingan_kas_bank.verkas',['no' => str_replace('/', '-',$data_doc->docno),'id' =>$data_doc->verified])}}">
-                                                {{ $data_doc->docno }}
-                                            </a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
+                                @foreach (DB::table('kasdoc')->where('store',$data_rsj->store)->where('paid', 'Y')->where('verified','N')->orderBy('docno', 'asc')->get() as $data_doc)
+                                <li data-jstree='{ "type" : "file", @if(str_replace('/', '-',$data_doc->docno) == Request::segment(4)) "selected": true @endif  }'>
+                                    <a href="{{ route('modul_kontroler.postingan_kas_bank.verkas',['no' => str_replace('/', '-',$data_doc->docno),'id' =>$data_doc->verified])}}">
+                                        {{ $data_doc->docno }}
+                                    </a>
                                 </li>
                                 @endforeach
                             </ul>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col-9">
+                <form class="form" id="form-create">
+                    @csrf
+                    <div class="alert alert-secondary" role="alert">
+                        <div class="alert-text">
+                            Header Verifikasi Kas Bank
                         </div>
                     </div>
-                    <div class="col-10">
-                        <!--begin: Datatable -->
-                        <form  class="kt-form kt-form--label-right" id="form-create">
-                            @csrf
-                            <div class="alert alert-secondary" role="alert">
-                                <div class="alert-text">
-                                    Header Verifikasi Kas Bank
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="spd-input" class="col-2 col-form-label">No</label>
-                                <div class="col-2">
-                                    <input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" disabled="disabled">
-                                    <input class="form-control" type="text" name="mp" id="mp1" value="{{ $mp }}" disabled="disabled">
-                                </div>
-                                <div class="col-4">
-                                    <input class="form-control" type="text" name="nomor" id="nomor1" value="{{ $nomor }}" disabled="disabled">
-                                </div>
-                                <label for="spd-input" class="col-1 col-form-label">Sejumlah</label>
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="nilai" value="{{ $nilai }}" disabled="disabled">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="spd-input" class="col-2 col-form-label">Kode Bagian</label>
-                                <div class="col-2">
-                                    <input class="form-control" type="text" name="bagian" id="bagian1" value="{{ $bagian }}" disabled="disabled">
-                                </div>
-                                <div class="col-4">
-                                    <input class="form-control" type="text" name="nama_bagian" value="{{ $nama_bagian }}" disabled="disabled">
-                                </div>
-                                <label for="spd-input" class="col-1 col-form-label">Kurs</label>
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="kurs" value="{{ $kurs }}" disabled="disabled">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="spd-input" class="col-2 col-form-label">Jenis Kartu</label>
-                                <div class="col-2">
-                                    <input class="form-control" type="text" name="jk" value="{{ $jk }}" disabled="disabled">
-                                </div>
-                                <div class="col-4">
-                                    <input class="form-control" type="text" name="namajk" value="{{ $namajk }}" disabled="disabled">
-                                </div>
-                                <label for="spd-input" class="col-1 col-form-label">Currency</label>
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="ci" value="{{ $namaci }}" disabled="disabled">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun</label>
-                                <div class="col-2">
-                                    <input class="form-control" type="text" name="bulan" value="{{ $bulan }}" disabled="disabled">
-                                </div>
-                                <div class="col-2">
-                                    <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" disabled="disabled">
-                                </div>
-                                <label for="spd-input" class="col-1 col-form-label">No Kas</label>
-                                <div class="col-2">
-                                    <input class="form-control" type="text" name="nokas" value="{{ $nokas }}" disabled="disabled">
-                                </div>
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="namakas" value="{{ $nama_kas }}" disabled="disabled">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="spd-input" class="col-2 col-form-label">{{ $darkep }}</label>
-                                <div class="col-5">
-                                    <input class="form-control" type="text" name="kepada" value="{{ $kepada }}" disabled="disabled">
-                                </div>
-                                <label for="spd-input" class="col-2 col-form-label">Bo.Bukti</label>
-                                <div class="col-3">
-                                    <input class="form-control" type="text" name="nobukti" value="{{ $nobukti }}" disabled="disabled">
-                                </div>
-                            </div>
-                            <div class="kt-form__actions">
-                                <div class="row">
-                                    <div class="col-2"></div>
-                                    <div class="col-10">
-                                        <a  href="{{ route('modul_kontroler.postingan_kas_bank.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-                                    </div>
-                                </div>
-                            </div>
-                                
-                            <div class="mt-10">
-                                <div class="kt-portlet__head-label">
-                                    <h3 class="kt-portlet__head-title">
-                                        Tabel Detail Kas Bank
-                                    </h3>			
-                                    <div class="kt-portlet__head-toolbar">
-                                        <div class="kt-portlet__head-wrapper">
-                                            <div class="kt-portlet__head-actions">
-                                            @foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',202)->limit(1)->get() as $data_akses)
-                                            @if($docno<>"")
-                                                @if($data_akses->tambah == 1)
-                                                <a href="#" data-toggle="modal" data-target="#kt_modal_4">
-                                                    <span style="font-size: 2em;" class="kt-font-success">
-                                                        <i class="fas fa-plus-circle"></i>
-                                                    </span>
-                                                </a>
-                                                @endif
-
-                                                @if($data_akses->rubah == 1)					
-                                                <a href="#" id="editRow">
-                                                    <span style="font-size: 2em;" class="kt-font-warning">
-                                                        <i class="fas fa-edit"></i>
-                                                    </span>
-                                                </a>
-                                                @endif
-
-                                            @endif
-                                                @if($verified == "N")
-                                                    @if($data_akses->hapus == 1)
-                                                    <a href="#" id="deleteRow">
-                                                        <span style="font-size: 2em;" class="kt-font-danger">
-                                                            <i class="fas fa-times-circle"></i>
-                                                        </span>
-                                                    </a>
-                                                    @endif
-                                                @endif
-                                            @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kt-portlet__body">
-                                <table class="table table-bordered" id="kt_table">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th></th>
-                                            <th>NO</th>
-                                            <th>RINCIAN</th>	
-                                            <th>KL</th>
-                                            <th>SANPER</th>
-                                            <th>BAGIAN</th>
-                                            <th>PK</th>
-                                            <th>JB</th>
-                                            <th>JUMLAH</th>
-                                            <th>CJ</th>	
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($data_detail as $data_d)
-                                        <tr>
-                                            <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{$data_d->lineno}}" class="btn-radio" ><span></span></label></td>
-                                            <td>{{ $data_d->lineno }}</td>
-                                            <td>{{ $data_d->keterangan }}</td>
-                                            <td>{{ $data_d->lokasi }}</td>
-                                            <td>{{ $data_d->account }}</td>
-                                            <td>{{ $data_d->bagian }}</td>
-                                            <td>{{ $data_d->pk }}</td>
-                                            <td>{{ $data_d->jb }}</td>
-                                            <td>{{ number_format($data_d->totprice,2,'.',',') }}</td>
-                                            <td>{{ $data_d->cj }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tr>
-                                        @if($docno<>"")
-                                        <td colspan="2" align="left">
-                                            @if($status1 == 'Y')
-                                            <input id="status1" name="status1" value="N"  type="checkbox" <?php if($status1  == 'Y' ) echo 'checked' ; ?> > Verifikasi
-                                            @else
-                                            <input id="status1" name="status1" value="Y"  type="checkbox" > Verifikasi
-                                            @endif
-                                        </td>
-                                        <td colspan="6" align="right">Jumlah Total : </td>
-                                        <td colspan="2" ><?php echo number_format($jumlahnya, 2, ',', '.'); ?></td>
-                                        @endif
-                                    </tr>
-                                </table>
-                            </div>
-                        </form>
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">No</label>
+                        <div class="col-2">
+                            <input class="form-control" type="hidden" name="tanggal" value="{{ date('Y-m-d') }}" disabled="disabled">
+                            <input class="form-control" type="text" name="mp" id="mp1" value="{{ $mp }}" disabled="disabled">
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="nomor" id="nomor1" value="{{ $nomor }}" disabled="disabled">
+                        </div>
+                        <label for="" class="col-2 col-form-label">Sejumlah</label>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="nilai" value="{{ $nilai }}" disabled="disabled">
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">Kode Bagian</label>
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="bagian" id="bagian1" value="{{ $bagian }}" disabled="disabled">
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="nama_bagian" value="{{ $nama_bagian }}" disabled="disabled">
+                        </div>
+                        <label for="" class="col-2 col-form-label">Kurs</label>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="kurs" value="{{ $kurs }}" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">Jenis Kartu</label>
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="jk" value="{{ $jk }}" disabled="disabled">
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="namajk" value="{{ $namajk }}" disabled="disabled">
+                        </div>
+                        <label for="" class="col-2 col-form-label">Currency</label>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="ci" value="{{ $namaci }}" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">Bulan/Tahun</label>
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="bulan" value="{{ $bulan }}" disabled="disabled">
+                        </div>
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" disabled="disabled">
+                        </div>
+                        <label for="" class="col-1 col-form-label">No Kas</label>
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="nokas" value="{{ $nokas }}" disabled="disabled">
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="namakas" value="{{ $nama_kas }}" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-2 col-form-label">{{ $darkep }}</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="kepada" value="{{ $kepada }}" disabled="disabled">
+                        </div>
+                        <label for="" class="col-2 col-form-label">Bo.Bukti</label>
+                        <div class="col-3">
+                            <input class="form-control" type="text" name="nobukti" value="{{ $nobukti }}" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-10">
+                            <a  href="{{ route('modul_kontroler.postingan_kas_bank.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+                        </div>
+                    </div>
+                        
+                    <div class="mt-10">
+                        <div class="kt-portlet__head-label">
+                            <h5>
+                                Tabel Detail Kas Bank
+                            </h5>
+                            <div class="kt-portlet__head-toolbar">
+                                <div class="kt-portlet__head-wrapper">
+                                    <div class="kt-portlet__head-actions">
+                                    @foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',202)->limit(1)->get() as $data_akses)
+                                    @if($docno<>"")
+                                        @if($data_akses->tambah == 1)
+                                        <a href="#" data-toggle="modal" data-target="#kt_modal_4">
+                                            <span style="font-size: 2em;" class="kt-font-success">
+                                                <i class="fas fa-plus-circle"></i>
+                                            </span>
+                                        </a>
+                                        @endif
+
+                                        @if($data_akses->rubah == 1)					
+                                        <a href="#" id="editRow">
+                                            <span style="font-size: 2em;" class="kt-font-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                        </a>
+                                        @endif
+
+                                    @endif
+                                        @if($verified == "N")
+                                            @if($data_akses->hapus == 1)
+                                            <a href="#" id="deleteRow">
+                                                <span style="font-size: 2em;" class="kt-font-danger">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </span>
+                                            </a>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        <table class="table table-bordered" id="kt_table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th></th>
+                                    <th>NO</th>
+                                    <th>RINCIAN</th>	
+                                    <th>KL</th>
+                                    <th>SANPER</th>
+                                    <th>BAGIAN</th>
+                                    <th>PK</th>
+                                    <th>JB</th>
+                                    <th>JUMLAH</th>
+                                    <th>CJ</th>	
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data_detail as $data_d)
+                                <tr>
+                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{$data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+                                    <td>{{ $data_d->lineno }}</td>
+                                    <td>{{ $data_d->keterangan }}</td>
+                                    <td>{{ $data_d->lokasi }}</td>
+                                    <td>{{ $data_d->account }}</td>
+                                    <td>{{ $data_d->bagian }}</td>
+                                    <td>{{ $data_d->pk }}</td>
+                                    <td>{{ $data_d->jb }}</td>
+                                    <td>{{ number_format($data_d->totprice,2,'.',',') }}</td>
+                                    <td>{{ $data_d->cj }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tr>
+                                @if($docno<>"")
+                                <td colspan="2" align="left">
+                                    @if($status1 == 'Y')
+                                    <input id="status1" name="status1" value="N"  type="checkbox" <?php if($status1  == 'Y' ) echo 'checked' ; ?> > Verifikasi
+                                    @else
+                                    <input id="status1" name="status1" value="Y"  type="checkbox" > Verifikasi
+                                    @endif
+                                </td>
+                                <td colspan="6" align="right">Jumlah Total : </td>
+                                <td colspan="2" ><?php echo number_format($jumlahnya, 2, ',', '.'); ?></td>
+                                @endif
+                            </tr>
+                        </table>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -236,7 +229,7 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-			<form  class="kt-form " id="form-edit-detail"  enctype="multipart/form-data">
+			<form class="kt-form " id="form-edit-detail"  enctype="multipart/form-data">
 			@csrf
 				<input  class="form-control" hidden type="text" value="{{$docno}}"  name="kode">
                     <div class="form-group row">
