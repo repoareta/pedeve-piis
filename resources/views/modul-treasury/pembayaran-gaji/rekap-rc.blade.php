@@ -28,7 +28,7 @@
 				<div class="form-group row">
 					<label class="col-2 col-form-label">No.Dokumen</label>
 					<div class="col-8">
-						<input size="30" maxlength="30"  class="form-control" type="text" value="{{ $docno}}" name="docno" readonly>
+						<input size="30" maxlength="30"  class="form-control" type="text" value="{{ $docno }}" name="docno" readonly>
 					</div>
 				</div>
 				<div class="form-group row">

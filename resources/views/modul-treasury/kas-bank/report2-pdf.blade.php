@@ -106,7 +106,7 @@
                             </tr>
                             @foreach($data_list as $data)
                             <tr>
-                                <td>{{ $data->bulan}}</td>
+                                <td>{{ $data->bulan }}</td>
                                 <td>{{ $data->jk}}</td>
                                 <td>{{ $data->store }}</td>
                                 <td>{{ $data->ci}}</td>

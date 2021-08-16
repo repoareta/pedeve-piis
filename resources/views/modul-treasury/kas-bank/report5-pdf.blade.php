@@ -109,7 +109,7 @@
                     ?>
                     <tr style="text-align:center;font-size: 8pt;">
                         <td>{{ $data->jk}}</td>
-                        <td>{{ $data->bulan}}</td>
+                        <td>{{ $data->bulan }}</td>
                         <td>{{ $data->cj}}</td>
                         <td>{{ $data->voucher }}</td>
                         <td>{{ $data->pk}}</td>
@@ -118,7 +118,7 @@
                         <td>{{ $data->jb}}</td>
                         <td>{{ $data->lokasi}}</td>
                         <td>{{ $data->bagian}}</td>
-                        <td>{{ $data->lineno}}</td>
+                        <td>{{ $data->lineno }}</td>
                         <td style="text-align:right;">{{ $rupiah < 0 ? '('.number_format($rupiah*-1,2).')' : number_format($rupiah,2) }}</td>
                         <td style="text-align:right;">{{ $dolar < 0 ? '('.number_format($dolar*-1,2).')' : number_format($dolar,2) }}</td>
                     </tr>

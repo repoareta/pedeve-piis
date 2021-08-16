@@ -301,7 +301,7 @@
                  ?>
                 @endforeach
                     <tr>
-                        <th width="70%" style="text-align:left;font-size: 9pt;font-weight: bold">{{array_sum($biayapegawai) > 0 ? 'BIAYA PEGAWAI' : "BIAYA PEGAWAI"}}</th>
+                        <th width="70%" style="text-align:left;font-size: 9pt;font-weight: bold">{{ array_sum($biayapegawai) > 0 ? 'BIAYA PEGAWAI' : "BIAYA PEGAWAI"}}</th>
                         <td width="5%" style="text-align:right;" ></td>
                         <th width="20%" ></th>
                         <th width="30%" ></th>
@@ -310,71 +310,71 @@
                     <tr style="font-size:9pt;">
                         <td width="70%" style="text-align:left;padding-left:20px;">UPAH TETAP</td>
                         <td width="5%" style="text-align:right;" >500</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah) == 0 ? '0.00' : number_format(array_sum($mdupah),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah) == 0 ? '0.00' : number_format(array_sum($msupah),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah) == 0 ? '0.00' : number_format(array_sum($mdupah),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah) == 0 ? '0.00' : number_format(array_sum($msupah),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah) + array_sum($msupah),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">TUNJANGAN NON PAJAK</td>
                         <td width="5%" style="text-align:right;" >501</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah1) == 0 ? '0.00' : number_format(array_sum($mdupah1),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah1) == 0 ? '0.00' : number_format(array_sum($msupah1),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah1) == 0 ? '0.00' : number_format(array_sum($mdupah1),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah1) == 0 ? '0.00' : number_format(array_sum($msupah1),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah1) + array_sum($msupah1),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">TUNJANGAN PAJAK PENGHASILAN</td>
                         <td width="5%" style="text-align:right;" >502</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah2) == 0 ? '0.00' : number_format(array_sum($mdupah2),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah2) == 0 ? '0.00' : number_format(array_sum($msupah2),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah2) == 0 ? '0.00' : number_format(array_sum($mdupah2),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah2) == 0 ? '0.00' : number_format(array_sum($msupah2),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah2) + array_sum($msupah2),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">UANG CUTI,LEMBUR,BIAYA HAJI,THR & UTD</td>
                         <td width="5%" style="text-align:right;" >503</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah3) == 0 ? '0.00' : number_format(array_sum($mdupah3),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah3) == 0 ? '0.00' : number_format(array_sum($msupah3),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah3) == 0 ? '0.00' : number_format(array_sum($mdupah3),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah3) == 0 ? '0.00' : number_format(array_sum($msupah3),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah3) + array_sum($msupah3),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">BONUS/INSENTIF DAN TANTIEM</td>
                         <td width="5%" style="text-align:right;" >504</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah4) == 0 ? '0.00' : number_format(array_sum($mdupah4),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah4) == 0 ? '0.00' : number_format(array_sum($msupah4),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah4) == 0 ? '0.00' : number_format(array_sum($mdupah4),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah4) == 0 ? '0.00' : number_format(array_sum($msupah4),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah4) + array_sum($msupah4),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">BIAYA KESEHATAN</td>
                         <td width="5%" style="text-align:right;" >505</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah5) == 0 ? '0.00' : number_format(array_sum($mdupah5),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah5) == 0 ? '0.00' : number_format(array_sum($msupah5),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah5) == 0 ? '0.00' : number_format(array_sum($mdupah5),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah5) == 0 ? '0.00' : number_format(array_sum($msupah5),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah5) + array_sum($msupah5),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">BIAYA PENDIDIKAN</td>
                         <td width="5%" style="text-align:right;" >506</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah6) == 0 ? '0.00' : number_format(array_sum($mdupah6),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah6) == 0 ? '0.00' : number_format(array_sum($msupah6),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah6) == 0 ? '0.00' : number_format(array_sum($mdupah6),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah6) == 0 ? '0.00' : number_format(array_sum($msupah6),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah6) + array_sum($msupah6),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">PESANGON DAN IMBALAN MASA KERJA</td>
                         <td width="5%" style="text-align:right;" >507</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah7) == 0 ? '0.00' : number_format(array_sum($mdupah7),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah7) == 0 ? '0.00' : number_format(array_sum($msupah7),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah7) == 0 ? '0.00' : number_format(array_sum($mdupah7),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah7) == 0 ? '0.00' : number_format(array_sum($msupah7),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah7) + array_sum($msupah7),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">HONOR DEKOM DAN KOMITE</td>
                         <td width="5%" style="text-align:right;" >508</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah8) == 0 ? '0.00' : number_format(array_sum($mdupah8),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah8) == 0 ? '0.00' : number_format(array_sum($msupah8),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah8) == 0 ? '0.00' : number_format(array_sum($mdupah8),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah8) == 0 ? '0.00' : number_format(array_sum($msupah8),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah8) + array_sum($msupah8),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">PERJALANAN DINAS</td>
                         <td width="5%" style="text-align:right;" >509</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah9) == 0 ? '0.00' : number_format(array_sum($mdupah9),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah9) == 0 ? '0.00' : number_format(array_sum($msupah9),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah9) == 0 ? '0.00' : number_format(array_sum($mdupah9),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah9) == 0 ? '0.00' : number_format(array_sum($msupah9),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah9) + array_sum($msupah9),2) }}</td>
                     </tr>
 
@@ -392,7 +392,7 @@
 
                     <!-- kantor -->
                     <tr>
-                        <th width="70%" style="text-align:left;font-size: 9pt;font-weight: bold">{{array_sum($biayakantor) > 0 ? 'BIAYA KANTOR' : "BIAYA KANTOR"}}</th>
+                        <th width="70%" style="text-align:left;font-size: 9pt;font-weight: bold">{{ array_sum($biayakantor) > 0 ? 'BIAYA KANTOR' : "BIAYA KANTOR"}}</th>
                         <td width="5%" style="text-align:right;" ></td>
                         <th width="20%" ></th>
                         <th width="30%" ></th>
@@ -401,71 +401,71 @@
                     <tr style="font-size:9pt;">
                         <td width="70%" style="text-align:left;padding-left:20px;">SEWA KANTOR</td>
                         <td width="5%" style="text-align:right;" >510</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah10) == 0 ? '0.00' : number_format(array_sum($mdupah10),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah10) == 0 ? '0.00' : number_format(array_sum($msupah10),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah10) == 0 ? '0.00' : number_format(array_sum($mdupah10),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah10) == 0 ? '0.00' : number_format(array_sum($msupah10),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah10) + array_sum($msupah10),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">INVENTARIS KANTOR</td>
                         <td width="5%" style="text-align:right;" >511</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah11) == 0 ? '0.00' : number_format(array_sum($mdupah11),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah11) == 0 ? '0.00' : number_format(array_sum($msupah11),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah11) == 0 ? '0.00' : number_format(array_sum($mdupah11),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah11) == 0 ? '0.00' : number_format(array_sum($msupah11),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah11) + array_sum($msupah11),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">KONSULTAN</td>
                         <td width="5%" style="text-align:right;" >512</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah12) == 0 ? '0.00' : number_format(array_sum($mdupah12),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah12) == 0 ? '0.00' : number_format(array_sum($msupah12),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah12) == 0 ? '0.00' : number_format(array_sum($mdupah12),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah12) == 0 ? '0.00' : number_format(array_sum($msupah12),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah12) + array_sum($msupah12),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">LISTRIK,AIR,TELP DAN INTERNET</td>
                         <td width="5%" style="text-align:right;" >513</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah13) == 0 ? '0.00' : number_format(array_sum($mdupah13),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah13) == 0 ? '0.00' : number_format(array_sum($msupah13),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah13) == 0 ? '0.00' : number_format(array_sum($mdupah13),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah13) == 0 ? '0.00' : number_format(array_sum($msupah13),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah13) + array_sum($msupah13),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">OPERASI DAN PEMELIHARAAN KENDARAAN</td>
                         <td width="5%" style="text-align:right;" >514</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah14) == 0 ? '0.00' : number_format(array_sum($mdupah14),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah14) == 0 ? '0.00' : number_format(array_sum($msupah14),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah14) == 0 ? '0.00' : number_format(array_sum($mdupah14),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah14) == 0 ? '0.00' : number_format(array_sum($msupah14),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah14) + array_sum($msupah14),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">OLAHRAGA,REKREASI DAN SERAGAM</td>
                         <td width="5%" style="text-align:right;" >515</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah15) == 0 ? '0.00' : number_format(array_sum($mdupah15),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah15) == 0 ? '0.00' : number_format(array_sum($msupah15),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah15) == 0 ? '0.00' : number_format(array_sum($mdupah15),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah15) == 0 ? '0.00' : number_format(array_sum($msupah15),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah15) + array_sum($msupah15),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">BIAYA PENYUSUTAN</td>
                         <td width="5%" style="text-align:right;" >516</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah16) == 0 ? '0.00' : number_format(array_sum($mdupah16),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah16) == 0 ? '0.00' : number_format(array_sum($msupah16),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah16) == 0 ? '0.00' : number_format(array_sum($mdupah16),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah16) == 0 ? '0.00' : number_format(array_sum($msupah16),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah16) + array_sum($msupah16),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">BIAYA BANK</td>
                         <td width="5%" style="text-align:right;" >517</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah17) == 0 ? '0.00' : number_format(array_sum($mdupah17),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah17) == 0 ? '0.00' : number_format(array_sum($msupah17),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah17) == 0 ? '0.00' : number_format(array_sum($mdupah17),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah17) == 0 ? '0.00' : number_format(array_sum($msupah17),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah17) + array_sum($msupah17),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">SUPPLIES</td>
                         <td width="5%" style="text-align:right;" >518</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah18) == 0 ? '0.00' : number_format(array_sum($mdupah18),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah18) == 0 ? '0.00' : number_format(array_sum($msupah18),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah18) == 0 ? '0.00' : number_format(array_sum($mdupah18),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah18) == 0 ? '0.00' : number_format(array_sum($msupah18),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah18) + array_sum($msupah18),2) }}</td>
                     </tr>
                     <tr style="font-size:9pt">
                         <td width="70%" style="text-align:left;padding-left:20px;">LAIN-LAIN</td>
                         <td width="5%" style="text-align:right;" >519</td>
-                        <td width="20%" style="text-align:right;">{{array_sum($mdupah19) == 0 ? '0.00' : number_format(array_sum($mdupah19),2) }}</td>
-                        <td width="30%" style="text-align:right;">{{array_sum($msupah19) == 0 ? '0.00' : number_format(array_sum($msupah19),2) }}</td>
+                        <td width="20%" style="text-align:right;">{{ array_sum($mdupah19) == 0 ? '0.00' : number_format(array_sum($mdupah19),2) }}</td>
+                        <td width="30%" style="text-align:right;">{{ array_sum($msupah19) == 0 ? '0.00' : number_format(array_sum($msupah19),2) }}</td>
                         <td width="30%" style="text-align:right;">{{ number_format(array_sum($mdupah19) + array_sum($msupah19),2) }}</td>
                     </tr>
 

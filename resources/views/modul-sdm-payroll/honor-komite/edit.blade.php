@@ -48,13 +48,13 @@
 
                     $bulan= strtoupper($array_bln[$data_list->bulan]);
                 ?>
-                <input class="form-control" type="text" value="{{ $bulan}}" disabled>
-                <input class="form-control" type="hidden" value="{{ $data_list->bulan}}" name="bulan"> 
-                <input class="form-control" type="hidden" value="{{ $data_list->tahun}}" name="tahun"> 
+                <input class="form-control" type="text" value="{{ $bulan }}" disabled>
+                <input class="form-control" type="hidden" value="{{ $data_list->bulan }}" name="bulan"> 
+                <input class="form-control" type="hidden" value="{{ $data_list->tahun }}" name="tahun"> 
             </div>
                 <div class="col-5" >
-                    <input class="form-control" type="text" value="{{ $data_list->tahun}}" name="tahun" disabled>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                    <input class="form-control" type="text" value="{{ $data_list->tahun }}" name="tahun" disabled>
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid }}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">

@@ -52,7 +52,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                     <font style="font-size: 12pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                     <font style="font-size: 12pt;font-weight: bold ">DAFTAR SETORAN IURAN PENSIUN PEKERJA</font><br>
-                    <font style="font-size: 12pt;font-weight: bold "> BULAN {{strtoupper($bulan)}} {{ $request->tahun}} </font><br>
+                    <font style="font-size: 12pt;font-weight: bold "> BULAN {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
                     </td>
                 </tr>
             </table>           

@@ -50,7 +50,7 @@
         <td><font style="font-size: 12pt;font-weight: bold ">REKAP IURAN DANA PENSIUN <?php if($request->dp == 'BK'){ ?> (BEBAN PEKERJA) <?php }else{ ?> (BEBAN PERUSAHAAN) <?php } ?>  </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 12pt;font-weight: bold ">TAHUN {{ $request->tahun}}</font></td>
+                                <td><font style="font-size: 12pt;font-weight: bold ">TAHUN {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>

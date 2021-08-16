@@ -109,7 +109,7 @@
                     <?php $a++ ?>
                     <tr style="text-align:center;font-size: 8pt;">
                         <td>{{ $data->jk}}</td>
-                        <td>{{ $data->bulan}}</td>
+                        <td>{{ $data->bulan }}</td>
                         <td>{{ $data->cj}}</td>
                         <td>{{ $data->voucher }}</td>
                         <td>{{ $data->pk}}</td>
@@ -118,7 +118,7 @@
                         <td>{{ $data->jb}}</td>
                         <td>{{ $data->lokasi}}</td>
                         <td>{{ $data->bagian}}</td>
-                        <td>{{ $data->lineno}}</td>
+                        <td>{{ $data->lineno }}</td>
                         <td style="text-align:right;">{{ $data->rate <= 0 ? number_format($data->totprice,0) : number_format($data->totprice) }}</td>
                         <td style="text-align:right;">{{ $data->ci == 2 ? number_format($data->totprice) : '0'}}</td>
                     </tr>

@@ -35,7 +35,7 @@
                 <div class="col-10" >
                     <input class="form-control" type="text" name="tanggal" value="{{ $tanggal}}" id="tanggal" size="15" maxlength="15" autocomplete="off" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 <input class="form-control" type="hidden" name="tglctk" value="{{ date('d F Y') }}" id="tglctk" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off">
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid }}"  name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">

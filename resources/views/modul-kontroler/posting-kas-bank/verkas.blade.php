@@ -185,7 +185,7 @@
                             <tbody>
                             @foreach($data_detail as $data_d)
                                 <tr>
-                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno}}" class="btn-radio" ><span></span></label></td>
+                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno }}" class="btn-radio" ><span></span></label></td>
                                     <td>{{ $data_d->lineno }}</td>
                                     <td>{{ $data_d->keterangan }}</td>
                                     <td>{{ $data_d->lokasi }}</td>
@@ -231,11 +231,11 @@
 			<span id="form_result"></span>
 			<form class="kt-form " id="form-edit-detail"  enctype="multipart/form-data">
 			@csrf
-				<input class="form-control" hidden type="text" value="{{ $docno}}"  name="kode">
+				<input class="form-control" hidden type="text" value="{{ $docno }}"  name="kode">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="{{ $nu}}"  name="nourut" id="nourut" readonly>
+							<input class="form-control" type="text" value="{{ $nu }}"  name="nourut" id="nourut" readonly>
 						</div>
 					</div>
 
@@ -485,7 +485,7 @@
 					var no = $(this).attr('docno');
 					var id = $(this).attr('lineno');
 					$.ajax({
-						url :"{{url('kontroler/postingan_kas_bank/editdetail') }}"+'/'+no+'/'+id,
+						url :"{{ url('kontroler/postingan_kas_bank/editdetail') }}"+'/'+no+'/'+id,
 						type : 'get',
 						dataType:"json",
 						headers: {

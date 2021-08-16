@@ -28,7 +28,7 @@
                             <select name="nopek" id="select-debetdari" class="form-control select2"  style="width: 100% !important;">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
-                                <option value="{{ $data->nopeg}}">{{ $data->nopeg}} - {{ $data->nama }}</option>
+                                <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
                                 @endforeach
                             </select>								
                         </div>

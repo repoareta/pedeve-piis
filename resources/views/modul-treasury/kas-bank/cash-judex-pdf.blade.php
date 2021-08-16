@@ -94,7 +94,7 @@ tr {
                     $total[$no] = $data->totprice;
                 ?>
                     <tr>
-                        <td class="row-td text-left">{{ $data->docno}}</td>
+                        <td class="row-td text-left">{{ $data->docno }}</td>
                         <td class="row-td text-center">{{ $data->voucher }}</td>
                         <td class="row-td text-center">{{ $data->thnbln}}</td>
                         <td class="row-td text-center">{{ $data->account}}</td>
@@ -107,7 +107,7 @@ tr {
                 </tbody>
                     <tr style="font-weight: bold">
                         <td colspan="7" class="text-right">TOTAL</td>
-                        <td class="text-right">{{array_sum($total) < 0 ? "(".number_format(array_sum($total)*-1,2).")" : number_format(array_sum($total),2) }}</td>
+                        <td class="text-right">{{ array_sum($total) < 0 ? "(".number_format(array_sum($total)*-1,2).")" : number_format(array_sum($total),2) }}</td>
                     </tr>
             </table>
         </div>

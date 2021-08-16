@@ -66,7 +66,7 @@
                                 <td><font style="font-size: 12pt;font-weight: bold ">DAFTAR IURAN JAMSOSTEK PEKERJA</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan}} {{ $request->tahun}}</font></td>
+                                <td><font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan }} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>

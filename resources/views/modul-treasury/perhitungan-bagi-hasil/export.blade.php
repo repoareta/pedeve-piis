@@ -142,7 +142,7 @@
                 @endforeach
                 <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
                         <th colspan="9" style="text-align:right;border:1px solid black;">TOTAL RATA TERTIMBANG :</th>
-                        <th style="text-align:center;border:1px solid black;">{{array_sum($tertim) }} </th>
+                        <th style="text-align:center;border:1px solid black;">{{ array_sum($tertim) }} </th>
                     </tr>
                 </tbody>
             </table>

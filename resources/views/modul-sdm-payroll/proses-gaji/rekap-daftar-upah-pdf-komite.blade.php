@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 12pt;font-weight: bold ">PT. PERTAMINA DANA VENTURA (PDV) </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
+                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>

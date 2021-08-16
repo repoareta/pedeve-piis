@@ -71,7 +71,7 @@
                                 <td>Payroll Area</td>
                             </tr>
                             <tr>
-                                <td>{{ $bulan}} {{strtoupper($request->tahun)}}</td>
+                                <td>{{ $bulan }} {{strtoupper($request->tahun)}}</td>
                                 <td>PDV</td>
                             </tr>
                         </table>

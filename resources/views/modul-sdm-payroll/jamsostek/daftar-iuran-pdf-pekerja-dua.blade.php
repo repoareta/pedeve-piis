@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan}} {{ $request->tahun}}
+                                <font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan }} {{ $request->tahun }}
                                 </font>
                             </td>
                         </tr>

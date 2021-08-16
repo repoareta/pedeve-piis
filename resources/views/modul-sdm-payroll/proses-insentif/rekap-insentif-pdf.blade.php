@@ -67,7 +67,7 @@
                     <td align="left" style="padding-left:50px;font-family: sans-serif">
                         <table>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">PANJAR INSENTIF 1 TAHUN {{ $request->tahun}} </font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">PANJAR INSENTIF 1 TAHUN {{ $request->tahun }} </font></td>
                             </tr>
                             <tr>
                                 <td><font style="font-size: 10pt;font-weight: bold ">PEKERJA WAKTU TERTENTU (PWTT) DAN PEKERJA WAKTU TERTENTU (PWT) </font></td>
@@ -76,7 +76,7 @@
                                 <td><font style="font-size: 10pt;font-weight: bold ">PT. PERTAMINA DANA VENTURA (PDV) </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
+                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>

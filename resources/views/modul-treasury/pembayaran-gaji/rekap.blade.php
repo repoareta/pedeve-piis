@@ -128,7 +128,7 @@
 					</div>
 				</div>
 				@endif
-                <input type="hidden" value="{{ $docno}}" name="docno">
+                <input type="hidden" value="{{ $docno }}" name="docno">
                 <input type="hidden" value="{{ $nilai_dok}}" name="nilai">
                 <input type="hidden" value="{{ $ci}}" name="ci">
                 <input type="hidden" value="{{ $kd_kepada}}" name="kd_kepada">

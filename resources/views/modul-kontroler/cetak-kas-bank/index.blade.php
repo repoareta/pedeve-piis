@@ -135,7 +135,7 @@
                 $("input[class=btn-radio]:checked").each(function() {  
                     e.preventDefault();
                     var dataid = $(this).attr('kode');
-                        location.replace("{{url('kontroler/cetak-kas-bank/rekap') }}"+ '/' +dataid);
+                        location.replace("{{ url('kontroler/cetak-kas-bank/rekap') }}"+ '/' +dataid);
                 });
             } else{
                 swalAlertInit('cetak');

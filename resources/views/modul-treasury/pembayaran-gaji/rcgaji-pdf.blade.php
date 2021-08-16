@@ -119,15 +119,15 @@
             ?>
                 <td style="text-align: justify;">Mohon bantuan Saudara untuk mendebet dari Rekening PT Pertamina Pedeve
                     Indonesia No. {{ $request->norek }} sebesar {{ number_format($request->total,2) }}
-                    {{ucwords(terbilang(number_format($request->total,0))) }} @if($request->ci == 1) Rupiah @else Dollar
-                    @endif dan melaksanakan transfer tanggal 25/{{ $request->bulan}}/{{ $request->tahun }} kepada :</td>
+                    {{ ucwords(terbilang(number_format($request->total,0))) }} @if($request->ci == 1) Rupiah @else Dollar
+                    @endif dan melaksanakan transfer tanggal 25/{{ $request->bulan }}/{{ $request->tahun }} kepada :</td>
             </tr>
         </table>
         <table width="100%">
             <tr>
                 <td style="padding-top:2%;padding-left:5%;text-align: justify;">Rekening Tabungan masing-masing Pekerja
                     PT. Pertamina Pedeve Indonesia sesuai daftar terlampir, sebesar Rp.
-                    {{ number_format($request->transfer,2) }} {{ucwords(terbilang(number_format($request->transfer,0))) }}
+                    {{ number_format($request->transfer,2) }} {{ ucwords(terbilang(number_format($request->transfer,0))) }}
                     @if($request->ci == 1) Rupiah @else Dollar @endif untuk pembayaran gaji bulan {{ $bulan_}}
                     {{ $request->tahun }}.</td>
             </tr>

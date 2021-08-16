@@ -99,7 +99,7 @@
                     <?php $a++ ?>
                     <tr style="text-align:center;font-size: 8pt;">
                         <td>{{ $data->tglbayar}}</td>
-                        <td>{{ $data->docno}}</td>
+                        <td>{{ $data->docno }}</td>
                         <td>{{ $data->jk}}</td>
                         <td>{{ $data->store }}</td>
                         <td>{{ $data->voucher }}</td>

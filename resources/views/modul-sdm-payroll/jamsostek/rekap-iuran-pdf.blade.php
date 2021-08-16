@@ -58,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font style="font-size: 12pt;font-weight: bold ">TAHUN {{ $request->tahun}}</font>
+                                <font style="font-size: 12pt;font-weight: bold ">TAHUN {{ $request->tahun }}</font>
                             </td>
                         </tr>
                     </table>

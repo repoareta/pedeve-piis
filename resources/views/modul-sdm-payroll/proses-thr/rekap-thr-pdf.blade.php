@@ -65,13 +65,13 @@
                     <td align="left" style="padding-left:50px;font-family: sans-serif">
                         <table>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">PEMBAYARAN THR TAHUN {{ $request->tahun}} </font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">PEMBAYARAN THR TAHUN {{ $request->tahun }} </font></td>
                             </tr>
                             <tr>
                                 <td><font style="font-size: 10pt;font-weight: bold ">PT. PERTAMINA DANA VENTURA (PDV) </font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 10pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
+                                <td><font style="font-size: 10pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -133,7 +133,7 @@
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala),2,'.',',') }}</td>
                                 <td></td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala1),2,'.',',') }}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala2) <= 0 ? '('.number_format(array_sum($subtotala2)*-1,0).')' : number_format(array_sum($subtotala2),2,'.',',') }}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala2) <= 0 ? '('.number_format(array_sum($subtotala2)*-1,0).')' : number_format(array_sum($subtotala2),2,'.',',') }}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala3),2,'.',',') }}</td>              
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala4),2,'.',',') }}</td>              
                             </tr>
@@ -172,7 +172,7 @@
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalb),2,'.',',') }}</td>
                                 <td></td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalb1),2,'.',',') }}</td>
-                                <td style="text-align:right;">{{array_sum($subtotalb2) <= 0 ? '('.number_format(array_sum($subtotalb2)*-1,0).')' : number_format(array_sum($subtotalb2),2,'.',',') }}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotalb2) <= 0 ? '('.number_format(array_sum($subtotalb2)*-1,0).')' : number_format(array_sum($subtotalb2),2,'.',',') }}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalb3),2,'.',',') }}</td>              
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalb4),2,'.',',') }}</td>              
                             </tr>
@@ -212,7 +212,7 @@
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalc),2,'.',',') }}</td>
                                 <td></td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalc1),2,'.',',') }}</td>
-                                <td style="text-align:right;">{{array_sum($subtotalc2) <= 0 ? '('.number_format(array_sum($subtotalc2)*-1,0).')' : number_format(array_sum($subtotalc2),2,'.',',') }}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotalc2) <= 0 ? '('.number_format(array_sum($subtotalc2)*-1,0).')' : number_format(array_sum($subtotalc2),2,'.',',') }}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalc3),2,'.',',') }}</td>              
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalc4),2,'.',',') }}</td>              
                             </tr>

@@ -46,8 +46,8 @@
                     </select>
                 </div>
                 <div class="col-6">
-                    <input class="form-control" type="text" value="{{ $tahun}}" name="tahun" size="4" maxlength="4" autocomplete="off" required>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete="off">
+                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete="off" required>
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid }}" name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -56,7 +56,7 @@
                     <select name="nopek" class="form-control selectpicker" data-live-search="true" required autocomplete="off">
                         <option value="">- Pilih -</option>
                         @foreach($data_pegawai as $data)
-                        <option value="{{ $data->nopeg}}">{{ $data->nopeg}} - {{ $data->nama }}</option>
+                        <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
                         @endforeach
                     </select>
                 </div>

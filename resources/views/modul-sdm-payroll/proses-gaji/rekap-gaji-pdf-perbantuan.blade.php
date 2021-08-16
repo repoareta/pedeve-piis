@@ -71,7 +71,7 @@
                                 <td><font style="font-size: 12pt;font-weight: bold ">PT.PERTAMINA PEDEVE INDONESIA</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun}}</font></td>
+                                <td><font style="font-size: 11pt;font-weight: bold ">BULAN {{strtoupper($bulan)}} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>
@@ -206,17 +206,17 @@
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala3),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala4),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala16),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala5) <= 0 ? '('.number_format(array_sum($subtotala5)*-1,0).')' : number_format(array_sum($subtotala5),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala6) <= 0 ? '('.number_format(array_sum($subtotala6)*-1,0).')' : number_format(array_sum($subtotala6),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala5) <= 0 ? '('.number_format(array_sum($subtotala5)*-1,0).')' : number_format(array_sum($subtotala5),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala6) <= 0 ? '('.number_format(array_sum($subtotala6)*-1,0).')' : number_format(array_sum($subtotala6),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala7),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala8),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala9),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala10),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala11) <= 0 ? '('.number_format(array_sum($subtotala11)*-1,0).')' : number_format(array_sum($subtotala11),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala12) <= 0 ? '('.number_format(array_sum($subtotala12)*-1,0).')' : number_format(array_sum($subtotala12),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala13) <= 0 ? '('.number_format(array_sum($subtotala13)*-1,0).')' : number_format(array_sum($subtotala13),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala14) <= 0 ? '('.number_format(array_sum($subtotala14)*-1,0).')' : number_format(array_sum($subtotala14),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala15) <= 0 ? '('.number_format(array_sum($subtotala15)*-1,0).')' : number_format(array_sum($subtotala15),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala11) <= 0 ? '('.number_format(array_sum($subtotala11)*-1,0).')' : number_format(array_sum($subtotala11),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala12) <= 0 ? '('.number_format(array_sum($subtotala12)*-1,0).')' : number_format(array_sum($subtotala12),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala13) <= 0 ? '('.number_format(array_sum($subtotala13)*-1,0).')' : number_format(array_sum($subtotala13),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala14) <= 0 ? '('.number_format(array_sum($subtotala14)*-1,0).')' : number_format(array_sum($subtotala14),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala15) <= 0 ? '('.number_format(array_sum($subtotala15)*-1,0).')' : number_format(array_sum($subtotala15),0)}}</td>
                             </tr>
                             <tr style="font-size: 7pt;font-weight: bold">
                                 <td colspan="3" style="text-align:right;">GRAND TOTAL</td>
@@ -227,17 +227,17 @@
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala3),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala4),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala16),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala5) <= 0 ? '('.number_format(array_sum($subtotala5)*-1,0).')' : number_format(array_sum($subtotala5),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala6) <= 0 ? '('.number_format(array_sum($subtotala6)*-1,0).')' : number_format(array_sum($subtotala6),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala5) <= 0 ? '('.number_format(array_sum($subtotala5)*-1,0).')' : number_format(array_sum($subtotala5),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala6) <= 0 ? '('.number_format(array_sum($subtotala6)*-1,0).')' : number_format(array_sum($subtotala6),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala7),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala8),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala9),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala10),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala11) <= 0 ? '('.number_format(array_sum($subtotala11)*-1,0).')' : number_format(array_sum($subtotala11),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala12) <= 0 ? '('.number_format(array_sum($subtotala12)*-1,0).')' : number_format(array_sum($subtotala12),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala13) <= 0 ? '('.number_format(array_sum($subtotala13)*-1,0).')' : number_format(array_sum($subtotala13),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala14) <= 0 ? '('.number_format(array_sum($subtotala14)*-1,0).')' : number_format(array_sum($subtotala14),0)}}</td>
-                                <td style="text-align:right;">{{array_sum($subtotala15) <= 0 ? '('.number_format(array_sum($subtotala15)*-1,0).')' : number_format(array_sum($subtotala15),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala11) <= 0 ? '('.number_format(array_sum($subtotala11)*-1,0).')' : number_format(array_sum($subtotala11),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala12) <= 0 ? '('.number_format(array_sum($subtotala12)*-1,0).')' : number_format(array_sum($subtotala12),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala13) <= 0 ? '('.number_format(array_sum($subtotala13)*-1,0).')' : number_format(array_sum($subtotala13),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala14) <= 0 ? '('.number_format(array_sum($subtotala14)*-1,0).')' : number_format(array_sum($subtotala14),0)}}</td>
+                                <td style="text-align:right;">{{ array_sum($subtotala15) <= 0 ? '('.number_format(array_sum($subtotala15)*-1,0).')' : number_format(array_sum($subtotala15),0)}}</td>
                             </tr>
 
                            
