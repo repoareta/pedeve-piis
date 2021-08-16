@@ -24,9 +24,7 @@
                     @csrf
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            <h5 class="kt-portlet__head-title">
-                                Header Permintaan Bayar
-                            </h5>
+                            Header Permintaan Bayar
                         </div>
                     </div>
 

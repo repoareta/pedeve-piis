@@ -21,11 +21,9 @@
     <div class="card-body">
         <form action="{{ route('modul_sdm_payroll.master_bank.store') }}" method="post" id="form-create">
             @csrf
-            <div class="alert alert-secondary" role="alert">
+            <div class="alert alert-custom alert-default" role="alert">
                 <div class="alert-text">
-                    <h5 class="kt-portlet__head-title">
-                        Header Master Bank
-                    </h5>	
+                    Header Master Bank	
                 </div>
             </div>
             <div class="form-group row">

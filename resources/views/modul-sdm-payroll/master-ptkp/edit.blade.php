@@ -21,11 +21,9 @@
     <div class="card-body">
         <form action="{{ route('modul_sdm_payroll.master_ptkp.update') }}" method="post" id="form-edit">
             @csrf
-            <div class="alert alert-secondary" role="alert">
+            <div class="alert alert-custom alert-default" role="alert">
                 <div class="alert-text">
-                    <h5 class="kt-portlet__head-title">
-                        Header Master PTKP
-                    </h5>	
+                    Header Master PTKP
                 </div>
             </div>
             <div class="form-group row">
