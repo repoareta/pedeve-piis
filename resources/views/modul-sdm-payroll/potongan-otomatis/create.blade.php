@@ -73,7 +73,7 @@
                             <option value="12" <?php if($bulan == 12 ) echo 'selected'; ?>>Desember</option>
                         </select>
                     </div>
-                        <div class="col-5" >
+                        <div class="col-5">
                             <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>

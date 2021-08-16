@@ -43,7 +43,7 @@
         <!-- Define header and footer blocks before your content -->
         <header>
         <!-- pegawai tetap -->
-            <table width="100%" >
+            <table width="100%">
                 <?php 
                     $array_bln	 = array (
                         1 =>   'Januari',
@@ -78,14 +78,14 @@
                     </td>
                    
                     <td align="center" style="">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:40px;">
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:40px;">
                     </td>
                 </tr>
             </table>
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-        <table width="100%"  style="padding-top:3%;font-family: sans-serif">
+        <table width="100%" style="padding-top:3%;font-family: sans-serif">
                 <tr>
                     <td>
                         <font style="font-size: 10pt;font-style: italic">Tanggal Cetak: {{ $request->tanggal}}</font>
@@ -402,7 +402,7 @@
             </table>
 
 
-            <table width="100%"  style=" padding-left:30px;;padding-right:30px;">
+            <table width="100%" style=" padding-left:30px;;padding-right:30px;">
                 <tr>
                     <td>
                         <table width="100%" style="font-size: 10pt; padding-left:75%;">

@@ -25,7 +25,7 @@
                     <div class="form-group row">
                         <label for="dari-input" class="col-2 col-form-label">Nama Pegawai<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select name="nopek" id="select-debetdari" class="form-control select2"  style="width: 100% !important;">
+                            <select name="nopek" id="select-debetdari" class="form-control select2" style="width: 100% !important;">
                                 <option value="">- Pilih -</option>
                                 @foreach($data_pegawai as $data)
                                 <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
@@ -56,7 +56,7 @@
                             <option value="12" <?php if($bulan == 12 ) echo 'selected'; ?>>Desember</option>
                         </select>
                     </div>
-                    <div class="col-5" >
+                    <div class="col-5">
                         <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                         <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                     </div>

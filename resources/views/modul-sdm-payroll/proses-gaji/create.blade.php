@@ -74,7 +74,7 @@
                             <div class="col-2"></div>
                             <div class="col-10">
                                 <a href="#" class="btn btn-warning"><i class="fa fa-reply"></i>Batal</a>
-                                <button class="btn btn-primary" type="submit" id="btn-save" ><i class="fa fa-check"></i>Proses</button>
+                                <button class="btn btn-primary" type="submit" id="btn-save"><i class="fa fa-check"></i>Proses</button>
                             </div>
                         </div>
                     </div>

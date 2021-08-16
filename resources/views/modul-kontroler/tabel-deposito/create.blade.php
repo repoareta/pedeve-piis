@@ -88,12 +88,12 @@
 								</select>
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
-							<div class="col-3" >
+							<div class="col-3">
 								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
 								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
-							<div class="col-2" >
+							<div class="col-2">
 								<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>

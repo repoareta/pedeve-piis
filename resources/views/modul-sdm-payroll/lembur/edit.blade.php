@@ -50,7 +50,7 @@
                         <option value="12" <?php if($dataLembur->bulan  == 12 ) echo 'selected' ; ?>>Desember</option>
                     </select>
                 </div>
-                <div class="col-5" >
+                <div class="col-5">
                     <input class="form-control" type="text" value="{{ $dataLembur->tahun }}" name="tahun">
                 </div>
             </div>

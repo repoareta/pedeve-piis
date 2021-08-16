@@ -52,7 +52,7 @@
             <input class="form-control" type="hidden" value="{{ $data_list->tahun }}" name="tahun">
                     
             </div>
-                <div class="col-6" >
+                <div class="col-6">
                     <input class="form-control" type="text" value="{{ $data_list->tahun }}" disabled>
                     <input class="form-control" type="hidden" value="{{Auth::user()->userid }}"  name="userid" autocomplete="off">
                 </div>

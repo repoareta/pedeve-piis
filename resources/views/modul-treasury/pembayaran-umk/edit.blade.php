@@ -52,7 +52,7 @@
                 <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 
             </div>
-                <div class="col-6" >
+                <div class="col-6">
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
@@ -82,12 +82,12 @@
                         
                     </select>							</div>
                 <label class="col-2 col-form-label">Currency Index</label>
-                <div class="col-2" >
+                <div class="col-2">
                     <input class="form-control" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 <label class="col-1 col-form-label">Kurs<span class="text-danger">*</span></label>
-                <div class="col-2" >
-                    <input class="form-control" type="text" name="kurs" value="{{ number_format($data->rate,0) }}" id="kurs" size="7" maxlength="7" >
+                <div class="col-2">
+                    <input class="form-control" type="text" name="kurs" value="{{ number_format($data->rate,0) }}" id="kurs" size="7" maxlength="7">
                 </div>
             </div>
             
@@ -103,19 +103,19 @@
                 </div>
                 @if($mp == 'P')
                 <label class="col-1 col-form-label">No Bukti</label>
-                <div class="col-2" >
+                <div class="col-2">
                     <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 <label class="col-1 col-form-label">No Ver</label>
-                <div class="col-2" >
+                <div class="col-2">
                     <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 @else
                 <label class="col-1 col-form-label">No Bukti</label>
-                <div class="col-5" >
+                <div class="col-5">
                     <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
-                <div class="col-1" >
+                <div class="col-1">
                     <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                 </div>
                 @endif
@@ -384,7 +384,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper" id="select-sanper" class="form-control select2" style="width: 100% !important;" >
+							<select name="sanper" id="select-sanper" class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
@@ -397,7 +397,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian" id="select-bagian" class="form-control select2" style="width: 100% !important;" >
+							<select name="bagian" id="select-bagian" class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -419,7 +419,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb" id="select-jb"  class="form-control select2" style="width: 100% !important;" >
+							<select name="jb" id="select-jb"  class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
@@ -433,7 +433,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" id="select-cj" class="form-control select2" style="width: 100% !important;" >
+							<select name="cj" id="select-cj" class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>

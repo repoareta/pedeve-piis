@@ -204,7 +204,7 @@ tr {
                     } else {
                         
                         echo '<tr>
-                            <td class="th-small text-left"  style="padding-left:5%;">- '.$urutan.'</td>
+                            <td class="th-small text-left" style="padding-left:5%;">- '.$urutan.'</td>
                             <td class=" text-right">Rp. </td>
                             <td class="th-small text-right">'.$data_02_1.'</td>
                             <td class="th-small text-right">'.$data_02_2.'</td>

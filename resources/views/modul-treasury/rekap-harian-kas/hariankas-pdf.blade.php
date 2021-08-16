@@ -37,10 +37,10 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
                 <tr>
                     <td align="center" style="padding-left:200px;">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;"><br>
                         <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                         <font style="font-size: 10pt;font-weight: bold ">(PEDEVE)</font><br>
                         <font style="font-size: 10pt;"> JL. RADEN SALEH NO.44 - CIKINI, JAKARTA PUSAT</font><br>
@@ -50,10 +50,10 @@
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-        <table width="100%" style="font-family: sans-serif;border-collapse: collapse;" >
+        <table width="100%" style="font-family: sans-serif;border-collapse: collapse;">
                 <thead>
                     <tr style="text-align:center;font-size: 8pt;">
-                        <td colspan="3" >
+                        <td colspan="3">
                             <table>
                             <?php 
                                 foreach($data_list as $data)
@@ -121,7 +121,7 @@
                     </tr>
                 </thead>
             </table>
-            <table width="100%" style="font-family: sans-serif;border-collapse: collapse;" >
+            <table width="100%" style="font-family: sans-serif;border-collapse: collapse;">
                 <thead>
                     <tr style="text-align:center;font-size: 8pt;border: 1px solid black;">
                         <th width="5%" style="text-align:center;border:1px solid black;">NO.<br>URUT</th>
@@ -184,7 +184,7 @@
             
             <table width="100%" style="font-size: 10pt; padding-top:10px;">
                     <tr>
-                        <td align="center" ></td><td align="center" width="200">JAKARTA, {{date('d/m/Y') }}</td>
+                        <td align="center"></td><td align="center" width="200">JAKARTA, {{date('d/m/Y') }}</td>
                     </tr>
                     <tr style="font-size: 10pt;">
                         <td align="center" width="200">DIBUAT OLEH,</td><td align="center" width="200">DISETUJUI OLEH,</td><br>

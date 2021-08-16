@@ -185,7 +185,7 @@
                             <tbody>
                             @foreach($data_detail as $data_d)
                                 <tr>
-                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno }}" class="btn-radio" ><span></span></label></td>
+                                    <td class="text-center"><label class="radio"><input type="radio" name="btn-radio" docno="{{str_replace('/', '-', $data_d->docno)}}" lineno="{{ $data_d->lineno }}" class="btn-radio"><span></span></label></td>
                                     <td>{{ $data_d->lineno }}</td>
                                     <td>{{ $data_d->keterangan }}</td>
                                     <td>{{ $data_d->lokasi }}</td>
@@ -204,11 +204,11 @@
                                     @if($status1 == 'Y')
                                     <input id="status1" name="status1" value="N"  type="checkbox" <?php if($status1  == 'Y' ) echo 'checked' ; ?> > Verifikasi
                                     @else
-                                    <input id="status1" name="status1" value="Y"  type="checkbox" > Verifikasi
+                                    <input id="status1" name="status1" value="Y"  type="checkbox"> Verifikasi
                                     @endif
                                 </td>
                                 <td colspan="6" align="right">Jumlah Total : </td>
-                                <td colspan="2" ><?php echo number_format($jumlahnya, 2, ',', '.'); ?></td>
+                                <td colspan="2"><?php echo number_format($jumlahnya, 2, ',', '.'); ?></td>
                                 @endif
                             </tr>
                         </table>
@@ -242,12 +242,12 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="-"  size="35" maxlength="35" name="rincian" id="rincian" autocomplete="off" >
+							<input class="form-control" type="text" value="-"  size="35" maxlength="35" name="rincian" id="rincian" autocomplete="off">
 						</div>
 					</div>	
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="sanper" id="sanper" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_sandi as $data_san)
@@ -258,8 +258,8 @@
 					</div>			
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
-						<div  class="col-8" >
-							<select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true" >
+						<div  class="col-8">
+							<select name="bagian" id="bagian" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -276,7 +276,7 @@
 					</div>	
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
@@ -294,7 +294,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C.Judex</label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="cjudex"  id="cjudex" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_cjudex as $data_judex)
@@ -307,7 +307,7 @@
 					<input class="form-control" type="hidden"  size="6" maxlength="6" name="wo" id="wo">
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_jenis as $data_jen)
@@ -325,7 +325,7 @@
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C.Judex</label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="cjudex"  id="cjudex" class="form-control selectpicker" data-live-search="true">
 								<option value="">-Pilih-</option>
 									@foreach($data_cjudex as $data_judex)

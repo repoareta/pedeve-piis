@@ -45,8 +45,8 @@
         <table width="100%">
             <tr>
                 <td align="center" style="padding-left:200px;">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"
-                        style="padding-right:30px;"><br>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px"
+                       style="padding-right:30px;"><br>
                     <font style="font-size: 12pt;font-weight: bold "><u> BUKTI PENGELUARAN KAS/BANK</u></font><br>
                 </td>
             </tr>

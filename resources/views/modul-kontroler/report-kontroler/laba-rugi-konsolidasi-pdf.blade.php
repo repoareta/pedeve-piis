@@ -42,7 +42,7 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
             <?php 
                     $array_bln	 = array (
                         1 =>   'Januari',
@@ -63,7 +63,7 @@
                 ?>
                 <tr>
                 <td align="center" style="padding-left:200px;">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">LAPORAN RUGI LABA</font><br>
                    <font style="font-size: 10pt;"> BULAN BUKU : {{strtoupper($bulan) }} {{ $request->tahun }} </font><br>
@@ -101,14 +101,14 @@
                 <tbody>
                     <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold;padding-top:20px;border-left:1px solid black;">HASIL HASIL</td>
-                        <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
-                        <td width="30%"  style="border-left:1px solid black;"></td>
-                        <td width="30%"  style="border-left:1px solid black;"></td>
-                        <td width="30%"  style="border-left:1px solid black;"></td>
+                        <td width="15%" style="text-align:right;border-left:1px solid black;"></td>
+                        <td width="30%" style="border-left:1px solid black;"></td>
+                        <td width="30%" style="border-left:1px solid black;"></td>
+                        <td width="30%" style="border-left:1px solid black;"></td>
                     </tr>
                     <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;padding-left:20px;border-left:1px solid black;"><u>PENDAPATAN OPERASI</u></td>
-                        <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
+                        <td width="15%" style="text-align:right;border-left:1px solid black;"></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -178,7 +178,7 @@
                             $subtotalms = array_sum($msupah1)+array_sum($msupah2)+array_sum($msupah3);
                         ?>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold; border:1px solid black;padding-left:10px;"><u>JUMLAH</u></td>
-                        <td width="15%" style="text-align:right;border:1px solid black;" ></td>
+                        <td width="15%" style="text-align:right;border:1px solid black;"></td>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd < 0 ? "(".number_format($subtotalmd*-1,2).")" : number_format($subtotalmd,2) }}</th>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalms < 0 ? "(".number_format($subtotalms*-1,2).")" : number_format($subtotalms,2) }}</th>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd+$subtotalms < 0 ? "(".number_format($subtotalmd+$subtotalms*-1,2).")" : number_format($subtotalmd+$subtotalms,2) }}</th>
@@ -280,14 +280,14 @@
                     @endforeach
                     <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold;padding-top:20px;border-left:1px solid black;">BIAYA-BIAYA</td>
-                        <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
-                        <td width="30%"  style="border-left:1px solid black;"></td>
-                        <td width="30%"  style="border-left:1px solid black;"></td>
-                        <td width="30%"  style="border-left:1px solid black;"></td>
+                        <td width="15%" style="text-align:right;border-left:1px solid black;"></td>
+                        <td width="30%" style="border-left:1px solid black;"></td>
+                        <td width="30%" style="border-left:1px solid black;"></td>
+                        <td width="30%" style="border-left:1px solid black;"></td>
                     </tr>
                     <tr>
                         <td width="70%" style="text-align:left;font-size: 9pt;padding-left:20px;border-left:1px solid black;"><u>BIAYA OPERASI</u></td>
-                        <td width="15%" style="text-align:right;border-left:1px solid black;" ></td>
+                        <td width="15%" style="text-align:right;border-left:1px solid black;"></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
                         <td width="30%" style="border-left:1px solid black;"></td>
@@ -340,7 +340,7 @@
                             $subtotalms1 = array_sum($msupah4)+array_sum($msupah5)+array_sum($msupah6)+array_sum($msupah7)+array_sum($msupah8)+array_sum($msupah9);
                         ?>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold; border:1px solid black;padding-left:10px;"><u>JUMLAH</u></td>
-                        <td width="15%" style="text-align:right;border:1px solid black;" ></td>
+                        <td width="15%" style="text-align:right;border:1px solid black;"></td>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd1 >= 0 ? number_format($subtotalmd1,2) : "(".number_format($subtotalmd1*-1,2).")"}}</th>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalms1 >= 0 ? number_format($subtotalms1,2) : "(".number_format($subtotalms1*-1,2).")"}}</th>
                         <th width="20%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $subtotalmd1+$subtotalms1 >= 0 ? number_format($subtotalmd1+$subtotalms1,2) : "(".number_format(($subtotalmd1+$subtotalms1)*-1,2).")"}}</th>
@@ -351,7 +351,7 @@
                             $totalms = $subtotalms+$subtotalms1;
                         ?>
                         <td width="70%" style="text-align:left;font-size: 9pt;font-weight: bold; border:1px solid black;">JUMLAH</td>
-                        <td width="15%" style="text-align:right;border:1px solid black;" ></td>
+                        <td width="15%" style="text-align:right;border:1px solid black;"></td>
                         <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $totalmd >= 0 ? number_format($totalmd,2) : "(".number_format($totalmd*-1,2).")"}}</td>
                         <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $totalms >= 0 ? number_format($totalms,2) : "(".number_format($totalms*-1,2).")"}}</td>
                         <td width="30%" style="text-align:right;font-size: 9pt;font-weight: bold;border:1px solid black;">{{ $totalmd+$totalms >= 0 ?  number_format($totalmd+$totalms,2) : "(".number_format(($totalmd+$totalms)*-1,2).")"}}</td>
@@ -359,7 +359,7 @@
                 </tbody>
             </table>
 
-            <table width="100%"  style=" padding-left:30px;;padding-right:20px;">
+            <table width="100%" style=" padding-left:30px;;padding-right:20px;">
                 <tr>
                     <td>
                         <table width="100%" style="font-size: 10pt; padding-left:50%;">

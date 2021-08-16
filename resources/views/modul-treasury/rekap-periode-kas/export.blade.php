@@ -45,8 +45,8 @@
         <table width="100%">
             <tr>
                 <td align="center" style="padding-left:200px;">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"
-                        style="padding-right:30px;"><br>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px"
+                       style="padding-right:30px;"><br>
                     <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                     <font style="font-size: 10pt;font-weight: bold ">(PEDEVE)</font><br>
                 </td>

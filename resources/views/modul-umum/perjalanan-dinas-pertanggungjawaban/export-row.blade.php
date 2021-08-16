@@ -60,7 +60,7 @@
             </p>
           </div>
           <div>
-            <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px">
+            <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px">
           </div>
         </div>
         <div class="row" style="margin-bottom:20px;">

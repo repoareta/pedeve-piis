@@ -93,7 +93,7 @@
                             </tr>
                         </table>
                             <td align="center" style="padding-left:150px;">
-                            <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;">
+                            <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;">
                     </td>
 
                 </tr>
@@ -107,7 +107,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <table width="100%" style="border-collapse: collapse;" border="1" >
+                        <table width="100%" style="border-collapse: collapse;" border="1">
                             <tr style=" font-size: 10pt;text-align:center;font-weight: bold">
                                 <td>Jenis</td>
                                 <td>AARD</td>
@@ -120,7 +120,7 @@
                             @foreach($data_list as $data)
                             
                             <tr style=" font-size: 8pt;">
-                                <td  style=" text-align:left;">{{ $data->nama_upah}}</td>
+                                <td style=" text-align:left;">{{ $data->nama_upah}}</td>
                                 <td style=" text-align:center;">{{ $data->aard}}</td>
                                 <td style=" text-align:left;">{{ $data->nama_aard}}</td>
                                 <td style=" text-align:center;">{{ $data->jmlcc == 0 ? '-' : $data->jmlcc}}</td>
@@ -131,13 +131,13 @@
                                 $total[$a] = $data->nilai; ?>
                             @endforeach
                             <tr>
-                                <td style=" font-size: 10pt;text-align:right;" colspan="5" ><font style=" text-align:right; padding-right:2%;">Sub Total : </td>
+                                <td style=" font-size: 10pt;text-align:right;" colspan="5"><font style=" text-align:right; padding-right:2%;">Sub Total : </td>
                                 <td style=" font-size: 10pt;text-align:right;font-weight: bold"   >{{ number_format(array_sum($total),2,',','.') }} </td>
                             </tr>
                             <?php $a=0; ?>
                             @foreach($data_detail as $data)
                             <tr style=" font-size: 8pt;">
-                                <td  style=" text-align:left;">{{ $data->nama_upah}}</td>
+                                <td style=" text-align:left;">{{ $data->nama_upah}}</td>
                                 <td style=" text-align:center;">{{ $data->aard}}</td>
                                 <td style=" text-align:left;">{{ $data->nama_aard}}</td>
                                 <td style=" text-align:center;">{{ $data->jmlcc == 0 ? '-' : $data->jmlcc}}</td>
@@ -149,7 +149,7 @@
                             @endforeach
                             <tr>
                             <?php $total_bersih = array_sum($total) - array_sum($totaldetail); ?>
-                                <td style=" font-size: 10pt;text-align:right;" colspan="5" ><font style=" text-align:right; padding-right:2%;">Penghasilan Bersih : </td>
+                                <td style=" font-size: 10pt;text-align:right;" colspan="5"><font style=" text-align:right; padding-right:2%;">Penghasilan Bersih : </td>
                                 <td style=" font-size: 10pt;text-align:right;font-weight: bold"   >{{ number_format($total_bersih,2,',','.') }} </td>
                             </tr>
                         </table>
@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <table width="100%" style="border-collapse: collapse;" border="1" >
+                        <table width="100%" style="border-collapse: collapse;" border="1">
                             <tr style=" font-size: 10pt;text-align:center; font-weight: bold">
                                 <td>Jenis</td>
                                 <td>AARD</td>
@@ -186,9 +186,9 @@
                                 $totalakumulasi[$a] = $data->total;?>
                             @endforeach
                             <tr>
-                                <td style=" font-size: 10pt;text-align:right; padding-right:2%;" colspan="3" >Sub Total Iuran Wajib Beban Perusahaan : </td>
-                                <td style=" font-size: 10pt;text-align:right;font-weight: bold"  width="15%" >{{ number_format(array_sum($totallain),2,',','.') }} </td>
-                                <td style=" font-size: 10pt;text-align:right;font-weight: bold"  width="15%" >{{ number_format(array_sum($totalakumulasi),2,',','.') }}</td>
+                                <td style=" font-size: 10pt;text-align:right; padding-right:2%;" colspan="3">Sub Total Iuran Wajib Beban Perusahaan : </td>
+                                <td style=" font-size: 10pt;text-align:right;font-weight: bold"  width="15%">{{ number_format(array_sum($totallain),2,',','.') }} </td>
+                                <td style=" font-size: 10pt;text-align:right;font-weight: bold"  width="15%">{{ number_format(array_sum($totalakumulasi),2,',','.') }}</td>
                             </tr>
                         </table>
                     </td>

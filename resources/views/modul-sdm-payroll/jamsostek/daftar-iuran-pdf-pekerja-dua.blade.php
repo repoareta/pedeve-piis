@@ -84,8 +84,8 @@
                 </td>
 
                 <td align="center" style="">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"
-                        style="padding-right:40px;">
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px"
+                       style="padding-right:40px;">
                 </td>
             </tr>
         </table>

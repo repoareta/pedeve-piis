@@ -62,7 +62,7 @@ class PermintaanBayarController extends Controller
         })
         ->addColumn('radio', function ($data) {
             if ($data->app_pbd == 'Y') {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio" ><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
             } else {
                 if ($data->app_sdm == 'Y') {
                     $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';

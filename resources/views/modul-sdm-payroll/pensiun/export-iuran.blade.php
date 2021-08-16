@@ -49,7 +49,7 @@
                 ?>
                 <tr>
                     <td align="center" style="padding-left:200px;">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;"><br>
                     <font style="font-size: 12pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                     <font style="font-size: 12pt;font-weight: bold ">DAFTAR SETORAN IURAN PENSIUN PEKERJA</font><br>
                     <font style="font-size: 12pt;font-weight: bold "> BULAN {{strtoupper($bulan)}} {{ $request->tahun }} </font><br>
@@ -59,7 +59,7 @@
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-            <table width="100%"  style="padding-top:5%;">
+            <table width="100%" style="padding-top:5%;">
                 <tr>
                     <td>
                         <table width="100%" style="font-size: 10pt;border-collapse: collapse;" border="1">
@@ -100,10 +100,10 @@
                             @endforeach
                             <tr style="font-weight: bold">
                                 <td style="text-align:right;" colspan="3">Total</td>
-                                <td style="text-align:right;" >{{ number_format(array_sum($totaliuranpekerja),0)}}</td>
-                                <td style="text-align:right;" >{{ number_format(array_sum($totaldanapensiun),0)}}</td>
-                                <td style="text-align:right;" >{{ number_format(array_sum($totalbni),0)}}</td>
-                                <td style="text-align:right;" >{{ number_format(array_sum($totaltotal),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($totaliuranpekerja),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($totaldanapensiun),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($totalbni),0)}}</td>
+                                <td style="text-align:right;">{{ number_format(array_sum($totaltotal),0)}}</td>
                             </tr>
                         </table>
                     </td>
@@ -111,7 +111,7 @@
             </table>
 
 
-            <table width="100%"  style=" padding-left:30px;;padding-right:30px;">
+            <table width="100%" style=" padding-left:30px;;padding-right:30px;">
                 <tr>
                     <td>
                         <table width="100%" style="font-size: 10pt; padding-left:70%;">

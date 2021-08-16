@@ -42,7 +42,7 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
             <?php 
                     $array_bln	 = array (
                         1 =>   'Januari',
@@ -77,7 +77,7 @@
                     </td>
                    
                     <td align="center" style="">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:45px;">
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:45px;">
                     </td>
                 </tr>
             </table>
@@ -120,7 +120,7 @@
                         <td>{{ $data->bagian}}</td>
                         <td>{{ $data->lineno }}</td>
                         <td style="text-align:right;">{{ $data->rate <= 0 ? number_format($data->totprice,0) : number_format($data->totprice) }}</td>
-                        <td style="text-align:right;">{{ $data->ci == 2 ? number_format($data->totprice) : '0'}}</td>
+                        <td style="text-align:right;">{{ $data->ci == 2 ? number_format($data->totprice) : '0' }}</td>
                     </tr>
                     <?php 
                         $rup[$a] = $data->rate <= 0 ? number_format($data->totprice,0) : number_format($data->totprice);

@@ -69,7 +69,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
-						<div class="col-5" >
+						<div class="col-5">
 							<input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"  autocomplete="off">
 						</div>
                 </div>

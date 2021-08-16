@@ -40,7 +40,7 @@
 					<div class="form-group row">
 						<label for="usernm-input" class="col-2 col-form-label">Nama JB<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" value="{{ $data->keterangan }}" type="text" name="keterangan" id="keterangan" >
+							<input class="form-control" value="{{ $data->keterangan }}" type="text" name="keterangan" id="keterangan">
 						</div>
 					</div>
 					<div class="row">

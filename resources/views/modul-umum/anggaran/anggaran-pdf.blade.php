@@ -70,7 +70,7 @@ header {
             </div>
     
             <div>
-                <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-top:10px">
+                <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-top:10px">
             </div>
         </div>
     </header>

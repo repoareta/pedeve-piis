@@ -42,7 +42,7 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
             <?php 
                     $array_bln	 = array (
                         1 =>   'Januari',
@@ -63,7 +63,7 @@
                 ?>
                 <tr>
                 <td align="center" style="padding-left:200px;">
-                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px"  style="padding-right:30px;"><br>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;"><br>
                    <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                    <font style="font-size: 10pt;font-weight: bold ">LAPORAN - ARUS KAS</font><br>
                    <font style="font-size: 10pt;font-weight: bold "> PERIODE: {{ Carbon\Carbon::parse($mulai)->format('d F Y')." s/d ".Carbon\Carbon::parse($sampai)->format('d F Y') }} </font><br>

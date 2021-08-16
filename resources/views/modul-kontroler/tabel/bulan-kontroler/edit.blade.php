@@ -50,10 +50,10 @@
                                 <option value="12" {{ substr($data->thnbln, 4) == '12' ? 'selected' : '' }} >Desember</option>
                             </select>
 						</div>
-                        <div class="col-4" >
+                        <div class="col-4">
                             <input class="form-control" type="text" value="{{ substr($data->thnbln, 0,4) }}" name="tahun" autocomplete="off"> 
                         </div>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="suplesi" value="{{ $data->suplesi }}" autocomplete="off">
                         </div>
 					</div>

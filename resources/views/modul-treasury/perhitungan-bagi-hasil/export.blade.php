@@ -37,10 +37,10 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
                 <tr>
                     <td align="left" style="padding-left:50px;">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;"><br>
                         <font style="font-size: 10pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br>
                         <font style="font-size: 10pt;font-weight: bold ">POSISI SALDO PENEMPATAN DEPOSITO</font><br>
                         <?php 
@@ -54,7 +54,7 @@
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-            <table width="100%" style="font-family: sans-serif;border-collapse: collapse;" >
+            <table width="100%" style="font-family: sans-serif;border-collapse: collapse;">
                 <thead>
                     <tr>
                         <td colspan="10" style="text-align:left;font-size: 8pt">Tgl. Cetak : {{date('d-M-Y') }}</td>
@@ -146,9 +146,9 @@
                     </tr>
                 </tbody>
             </table>
-            <table width="100%" style="font-family: sans-serif;border-collapse: collapse;" >
+            <table width="100%" style="font-family: sans-serif;border-collapse: collapse;">
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
-                        <th  style="text-align:center;border:1px solid black;">RP</th>
+                        <th style="text-align:center;border:1px solid black;">RP</th>
                         <th style="text-align:center;border:1px solid black;">BRI</th>
                         <th style="text-align:center;border:1px solid black;">BNI</th>
                         <th style="text-align:center;border:1px solid black;">MANDIRI</th>
@@ -180,7 +180,7 @@
                     </tr>
                     @endforeach
                     <tr style="text-align:center;font-size: 7pt;border: 1px solid black;">
-                        <th  style="text-align:center;border:1px solid black;">USD</th>
+                        <th style="text-align:center;border:1px solid black;">USD</th>
                         <th style="text-align:center;border:1px solid black;">BRI</th>
                         <th style="text-align:center;border:1px solid black;">BNI</th>
                         <th style="text-align:center;border:1px solid black;">MANDIRI</th>
@@ -227,25 +227,25 @@
             <table width="100%" style="font-size: 8pt; padding-top:10px;font-weight: bold">
                     <tr style="font-size: 8pt;">
                         <td width="50%" colspa="5"></td>
-                        <td align="right" >TOTAL RUPIAH </td>
+                        <td align="right">TOTAL RUPIAH </td>
                         <td align="right">:</td>
                         <td align="right">{{ number_format(array_sum($total_rupiah),2) }}</td>
                     </tr>
                     <tr style="font-size: 8pt;">
                         <td colspa="5"></td>
-                        <td align="right" >TOTAL DOLAR </td>
+                        <td align="right">TOTAL DOLAR </td>
                         <td align="right">:</td>
                         <td align="right">{{ number_format(array_sum($total_dolar),2) }}</td>
                     </tr>
                     <tr style="font-size: 8pt;">
                         <td colspa="5"></td>
-                        <td align="right" >EKIVALEN </td>
+                        <td align="right">EKIVALEN </td>
                         <td align="right">:</td>
                         <td align="right">{{ number_format(array_sum($total_eki),2) }}</td>
                     </tr>
                     <tr style="font-size: 8pt;">
                         <td colspa="5"></td>
-                        <td align="right" >TOTAL </td>
+                        <td align="right">TOTAL </td>
                         <td align="right">:</td>
                         <td align="right">{{ number_format(array_sum($total_eki)+array_sum($total_rupiah),2) }}</td>
                     </tr>

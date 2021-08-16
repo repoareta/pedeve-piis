@@ -49,10 +49,10 @@
                                 <option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
                             </select>
                         </div>
-                        <div class="col-4" >
+                        <div class="col-4">
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
                         </div>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" autocomplete="off">
                             <input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" autocomplete="off">
                         </div>
@@ -60,7 +60,7 @@
 
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Lapangan<span class="text-danger">*</span></label>
-                        <div class="col-10" >
+                        <div class="col-10">
                             <select class="form-control select2" style="width: 100% !important;" name="lapangan" id="lapangan">
                                 <option value="MD">MMD</option>
                                 <option value="MS">MS</option>

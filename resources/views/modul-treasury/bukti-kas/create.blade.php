@@ -78,12 +78,12 @@
                             </select>
                         </div>
                         <label class="col-2 col-form-label text-right">Currency Index</label>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="currency_index" id="currency_index" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label text-right">Kurs <span class="text-danger">*</span></label>
-                        <div class="col-2" >
-                            <input class="form-control" type="text" name="kurs" id="kurs" size="7" maxlength="7" >
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="kurs" id="kurs" size="7" maxlength="7">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -94,11 +94,11 @@
                             </select>
                         </div>
                         <label class="col-1 col-form-label text-right">No Bukti</label>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="no_bukti" id="no_bukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label text-right">No Ver</label>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                     </div>

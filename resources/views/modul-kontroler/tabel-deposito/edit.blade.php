@@ -78,7 +78,7 @@
 							<label for="" class="col-2 col-form-label">No.Dokumen</label>
 							<div class="col-5">
 								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="mp" value="{{ $mp}}" id="mp" readonly>
-								<input  type="hidden" name="docno" value="{{ $docno }}" >
+								<input  type="hidden" name="docno" value="{{ $docno }}">
 							</div>
 							<div class="col-5">
 								<input style="background-color:#DCDCDC; cursor:not-allowed" class="form-control" type="text" name="nomor" value="{{ $nomor}}" id="nomor" readonly>
@@ -90,12 +90,12 @@
 								<input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 							</div>
 							<label for="" class="col-1 col-form-label">Tahun</label>
-							<div class="col-3" >
+							<div class="col-3">
 								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
 								<input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
 							</div>
 							<label for="" class="col-1 col-form-label">suplesi</label>
-							<div class="col-2" >
+							<div class="col-2">
 								<input class="form-control" type="text" name="suplesi" value="{{ $suplesi }}" size="2" maxlength="2" autocomplete="off">
 							</div>
 						</div>
@@ -249,7 +249,7 @@
 						<tr>
 							<td colspan="2" align="left"><input id="status2" name="status2" type="checkbox" <?php if($status2  == 'Y') echo 'checked' ; ?>> Posting</td>
 							<td colspan="6" align="right">Out of Balance : </td>
-							<td colspan="3" ><?php echo number_format($jumlahnya, 2, ',', '.').' '.$lab2; ?></td>
+							<td colspan="3"><?php echo number_format($jumlahnya, 2, ',', '.').' '.$lab2; ?></td>
 						</tr>
 					</table>
 				</div>
@@ -289,7 +289,7 @@
 																					
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kd.Lapangan<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="lapangan"  class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_lapang as $data_lap)
@@ -300,7 +300,7 @@
 					</div>			
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="sanper"  class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_sandi as $data_san)
@@ -311,7 +311,7 @@
 					</div>			
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="bagian"  class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_bagian as $data_bag)
@@ -329,7 +329,7 @@
 					</div>	
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="jnsbiaya" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_jenis as $data_jen)
@@ -406,7 +406,7 @@
 																					
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kd.Lapangan<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="lapangan" id="lapangan"  class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Kd.Lapangan Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_lapang as $data_lap)
@@ -417,7 +417,7 @@
 					</div>			
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="sanper" id="sanper" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Sandi Perkiraan Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_sandi as $data_san)
@@ -428,7 +428,7 @@
 					</div>			
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="bagian" id="bagian" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Kode Bagian Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_bagian as $data_bag)
@@ -446,7 +446,7 @@
 					</div>	
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
-						<div  class="col-8" >
+						<div  class="col-8">
 							<select name="jnsbiaya" id="jnsbiaya" class="form-control select2" style="width: 100% !important;" required oninvalid="this.setCustomValidity('Jenis Biaya Harus Diisi..')">
 								<option value="">- Pilih -</option>
 									@foreach($data_jenis as $data_jen)

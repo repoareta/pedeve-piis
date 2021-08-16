@@ -50,10 +50,10 @@
                                 <option value="12" {{ date('m') == '12' ? 'selected' : '' }} >Desember</option>
                             </select>
 						</div>
-                        <div class="col-4" >
+                        <div class="col-4">
                             <input class="form-control" type="text" value="{{ date('Y') }}" name="tahun" autocomplete="off"> 
                         </div>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="suplesi" autocomplete="off">
                         </div>
 					</div>

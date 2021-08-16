@@ -47,13 +47,13 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Tahun</label>
-                        <div class="col-8" >
+                        <div class="col-8">
                             <input class="form-control" type="text" value="{{ $rkapRealisasi->tahun }}" name="tahun"> 
                         </div>
                     </div>
                     <div class="form-group row" id="bulan-group" @if($rkapRealisasi->bulan === null) style="display: none;" @endif>
                         <label class="col-2 col-form-label">Bulan</label>
-                        <div class="col-8" >
+                        <div class="col-8">
                             <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan" style="width: 100%">
                                 <option value="">- Pilih -</option>
                                 <option value="01" @if($rkapRealisasi->bulan == '01') selected @endif>Januari</option>
@@ -119,7 +119,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Laba Bersih</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->laba_bersih_r) }}" name="laba_bersih" id="laba_bersih" >
+                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->laba_bersih_r) }}" name="laba_bersih" id="laba_bersih">
                         </div>
                     </div>
                     <div class="form-group row">

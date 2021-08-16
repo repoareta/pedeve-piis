@@ -35,43 +35,43 @@
 					<label class="col-2 col-form-label">Lampiran</label>
 					<div class="col-3">
 						<input size="3" maxlength="3"  class="form-control" type="text" value="{{ $lampiran }}" name="lampiran" autocomplete="off">
-						<input size="30" maxlength="30" type="hidden" value="{{ $total}}" name="total" >
-						<input size="30" maxlength="30" type="hidden" value="{{ $bulan }}" name="bulan" >
-						<input size="30" maxlength="30" type="hidden" value="{{ $tahun }}" name="tahun" >
-						<input size="30" maxlength="30" type="hidden" value="{{ $ci}}" name="ci" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $total}}" name="total">
+						<input size="30" maxlength="30" type="hidden" value="{{ $bulan }}" name="bulan">
+						<input size="30" maxlength="30" type="hidden" value="{{ $tahun }}" name="tahun">
+						<input size="30" maxlength="30" type="hidden" value="{{ $ci}}" name="ci">
 					</div>
 					<label class="col-2 col-form-label">No.Bilyet Giro</label>
 					<div class="col-3">
 						<input size="10" maxlength="10"  class="form-control" type="text" value="{{ $reg}}" name="reg" autocomplete="off">
-						<input size="30" maxlength="30" type="hidden" value="{{ $transfer}}" name="transfer" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $transfer}}" name="transfer">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-2 col-form-label">Perihal</label>
 					<div class="col-8">
 						<input size="30" maxlength="30"  class="form-control" type="text" value="{{ $perihal }}" name="perihal" autocomplete="off">
-						<input size="30" maxlength="30" type="hidden" value="{{ $pkpp}}" name="pkpp" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $pkpp}}" name="pkpp">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-2 col-form-label">Nama Bank</label>
 					<div class="col-8">
 						<input size="30" maxlength="30"  class="form-control" type="text" value="{{ $bank}}" name="bank" autocomplete="off">
-						<input size="30" maxlength="30" type="hidden" value="{{ $bazma}}" name="bazma" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $bazma}}" name="bazma">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-2 col-form-label">Cabang</label>
 					<div class="col-8">
 						<input size="30" maxlength="30"  class="form-control" type="text" value="{{ $cabang}}" name="cabang" autocomplete="off">
-						<input size="30" maxlength="30" type="hidden" value="{{ $koperasi}}" name="koperasi" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $koperasi}}" name="koperasi">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-2 col-form-label">No. Rekening</label>
 					<div class="col-8">
 						<input size="30" maxlength="30"  class="form-control" type="text" value="{{ $norek }}" name="norek" autocomplete="off">
-						<input size="30" maxlength="30" type="hidden" value="{{ $sukaduka}}" name="sukaduka" >
+						<input size="30" maxlength="30" type="hidden" value="{{ $sukaduka}}" name="sukaduka">
 					</div>
 				</div>
 				<div class="form-group row">

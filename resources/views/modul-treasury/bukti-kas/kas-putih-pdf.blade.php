@@ -102,7 +102,7 @@ content: counter(pages);
     
             <div class="row">
                 <div class="text-right" style="width: 100%;">
-                    <img src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-right: 20px;">
+                    <img src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-right: 20px;">
                 </div>
             </div>
         </div>

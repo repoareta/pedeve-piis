@@ -28,7 +28,7 @@
                                 $tahun = date_format($tgl, 'Y'); 
                             ?>
                         <label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
-                        <div class="col-4" >
+                        <div class="col-4">
                             <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>

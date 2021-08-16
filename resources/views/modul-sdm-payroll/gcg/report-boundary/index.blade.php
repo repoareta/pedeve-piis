@@ -68,7 +68,7 @@
                     </div>
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
-                        <div class="col-10" >
+                        <div class="col-10">
                             <input class="form-control tahun" type="text" value="{{ date('Y') }}" name="tahun"> 
                         </div>
                     </div>

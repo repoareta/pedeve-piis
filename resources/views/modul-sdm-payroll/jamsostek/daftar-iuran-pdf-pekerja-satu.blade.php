@@ -37,7 +37,7 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
                 <tr>
                     <td align="left" style="padding-left:40px;">
                         <table>
@@ -72,12 +72,12 @@
                     </td>
                    
                     <td align="center" style="">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:40px;">
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:40px;">
                     </td>
                 </tr>
             </table>
 
-            <table width="100%"  style="padding-top:6%; padding-left:30px;;padding-right:30px;">
+            <table width="100%" style="padding-top:6%; padding-left:30px;;padding-right:30px;">
                 <tr>
                     <td>
                         <table width="100%" style="font-size: 10pt;border-collapse: collapse;" border="1">
@@ -121,14 +121,14 @@
                                 <td style="text-align:right;">{{ number_format(round($total,0))}}</td>
                             </tr>
                             @endforeach
-                            <tr style="font-weight: bold;" >
+                            <tr style="font-weight: bold;">
                                <td style="text-align:right;" colspan="4">TOTAL</td>
-                               <td style="text-align:right;" >{{ number_format(array_sum($totalgapok),0)}}</td>
-                               <td style="text-align:right;" >{{ number_format(array_sum($totaljkk),0)}}</td>
-                               <td style="text-align:right;" >{{ number_format(array_sum($totalpensiun),0)}}</td>
-                               <td style="text-align:right;" >{{ number_format(array_sum($totalpribadi),0)}}</td>
-                               <td style="text-align:right;" >{{ number_format(array_sum($totallife),0)}}</td>
-                               <td style="text-align:right;" >{{ number_format(array_sum($totaltotal),0)}}</td>
+                               <td style="text-align:right;">{{ number_format(array_sum($totalgapok),0)}}</td>
+                               <td style="text-align:right;">{{ number_format(array_sum($totaljkk),0)}}</td>
+                               <td style="text-align:right;">{{ number_format(array_sum($totalpensiun),0)}}</td>
+                               <td style="text-align:right;">{{ number_format(array_sum($totalpribadi),0)}}</td>
+                               <td style="text-align:right;">{{ number_format(array_sum($totallife),0)}}</td>
+                               <td style="text-align:right;">{{ number_format(array_sum($totaltotal),0)}}</td>
                             </tr>
                         </table>
                     </td>
@@ -136,7 +136,7 @@
             </table>
 
 
-            <table width="100%"  style=" padding-left:30px;;padding-right:30px;">
+            <table width="100%" style=" padding-left:30px;;padding-right:30px;">
                 <tr>
                     <td>
                         <table width="100%" style="font-size: 10pt; padding-left:50%;">

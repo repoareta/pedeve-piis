@@ -34,7 +34,7 @@
 					<div class="form-group row">
 						<label for="golongan-input" class="col-2 col-form-label">Golongan<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="golongan" maxlength="2" id="golongan" value="{{ $data->golongan }}" autocomplete="off" >
+							<input class="form-control" type="text" name="golongan" maxlength="2" id="golongan" value="{{ $data->golongan }}" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">

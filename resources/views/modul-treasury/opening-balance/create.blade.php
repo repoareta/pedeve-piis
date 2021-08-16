@@ -103,13 +103,13 @@
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Tahun<span class="text-danger">*</span></label>
-                            <div class="col-10" >
+                            <div class="col-10">
                                 <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                             </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Suplesi<span class="text-danger">*</span></label>
-                            <div class="col-10" >
+                            <div class="col-10">
                                 <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2" autocomplete="off">
                             </div>
                     </div>

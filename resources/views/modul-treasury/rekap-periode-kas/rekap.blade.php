@@ -60,7 +60,7 @@
                     <input class="form-control" type="text" value="" name="setuju" id="setuju" size="50" maxlength="50" required autocomplete="off">
                 </div>
                 <label class="col-2 col-form-label text-right">Dibuat Oleh<span class="text-danger">*</span></label>
-                <div class="col-4" >
+                <div class="col-4">
                     <input class="form-control" type="text" value="" name="dibuat" id="dibuat" size="50" maxlength="50" required autocomplete="off">
                 </div>
             </div>

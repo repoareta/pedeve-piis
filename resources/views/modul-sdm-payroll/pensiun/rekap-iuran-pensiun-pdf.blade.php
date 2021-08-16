@@ -39,7 +39,7 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
                 <tr>
                     <td align="left" style="padding-left:80px;">
                         <table>
@@ -56,7 +56,7 @@
                     </td>
                    
                     <td align="center" style="">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:40px;">
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:40px;">
                     </td>
                 </tr>
             </table>
@@ -93,33 +93,33 @@
                     <td style="text-align:center;">{{ $data->nopek}}</td>
                     <td style="text-align:left;">{{ $data->namapegawai}}</td>
                     <td style="text-align:right;">{{ number_format($data->jan,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->feb,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->mar,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->apr,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->mei,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->jun,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->jul,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->agu,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->sep,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->okt,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->nov,2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format($data->des,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->feb,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->mar,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->apr,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->mei,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->jun,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->jul,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->agu,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->sep,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->okt,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->nov,2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format($data->des,2,',','.') }}</td>
                 </tr>
                 @endforeach
                 <tr style="font-weight: bold">
                     <td colspan="3" style="text-align:right;">Total:</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($JAN),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($FEB),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($MAR),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($APR),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($MEI),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($JUN),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($JUL),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($AGU),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($SEP),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($OKT),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($NOV),2,',','.') }}</td>
-                    <td style="text-align:right;" >{{ number_format(array_sum($DES),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($JAN),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($FEB),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($MAR),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($APR),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($MEI),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($JUN),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($JUL),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($AGU),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($SEP),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($OKT),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($NOV),2,',','.') }}</td>
+                    <td style="text-align:right;">{{ number_format(array_sum($DES),2,',','.') }}</td>
                 </tr>
             </table>         
         </main>

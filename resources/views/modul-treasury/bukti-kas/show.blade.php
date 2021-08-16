@@ -64,11 +64,11 @@
                         <input type="text" class="form-control" value="{{ $document->jk == '10' ? 'Kas(Rupiah)' : ($document->jk == '11' ? 'Bank(Rupiah)' : 'Bank(Dollar)') }}" name="jenis_kartu" id="jenis_kartu" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                     <label class="col-2 col-form-label text-right">Currency Index</label>
-                    <div class="col-2" >
+                    <div class="col-2">
                         <input class="form-control" type="text" value="{{ $document->ci }}" name="currency_index" id="currency_index" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                     <label class="col-1 col-form-label text-right">Kurs</label>
-                    <div class="col-2" >
+                    <div class="col-2">
                         <input class="form-control" type="text" value="{{ number_format($document->rate, 0) }}" name="kurs" id="kurs" size="7" maxlength="7" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                 </div>
@@ -78,11 +78,11 @@
                         <input type="text" class="form-control" value="{{ $document->storejk->namabank . ' - ' . $document->storejk->norekening }}" name="lokasi" id="lokasi" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                     <label class="col-1 col-form-label text-right">No Bukti</label>
-                    <div class="col-2" >
+                    <div class="col-2">
                         <input class="form-control" value="{{ $document->voucher }}" type="text" name="no_bukti" id="no_bukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                     <label class="col-1 col-form-label text-right">No Ver</label>
-                    <div class="col-2" >
+                    <div class="col-2">
                         <input class="form-control" value="{{ $document->mrs_no }}" type="text" name="no_ver" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                 </div>
@@ -324,7 +324,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;" >
+							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -343,7 +343,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;" >
+							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
@@ -355,7 +355,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;" >
+							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>

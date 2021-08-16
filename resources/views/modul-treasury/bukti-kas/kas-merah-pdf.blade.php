@@ -123,7 +123,7 @@
 
             <div class="row">
                 <div class="text-right" style="width: 100%;">
-                    <img src="{{public_path() . '/images/pertamina.jpg'}}" width="120px" height="60px" style="padding-right: 20px;">
+                    <img src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-right: 20px;">
                 </div>
             </div>
         </div>
@@ -258,7 +258,7 @@
                             {{ request('membukukan_jabatan') }}
                         </td>
                         <td colspan="4" class="text-center" valign="top"
-                            style="border-top: 2px solid #FFFFFF; border-bottom: 2px solid #FFFFFF;">
+                           style="border-top: 2px solid #FFFFFF; border-bottom: 2px solid #FFFFFF;">
                             <br>
                             {{ request('kasbank_jabatan') }}
                         </td>

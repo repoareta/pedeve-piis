@@ -70,17 +70,17 @@
 
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
-							<div class="col-10" >
+							<div class="col-10">
 								<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off"> 
 							</div>
-							<div class="col-3" >
+							<div class="col-3">
 								<input class="form-control" type="hidden" name="tanggal" value="{{ date('d-m-Y') }}" autocomplete="off">
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label for="" class="col-2 col-form-label">Lapangan<span class="text-danger">*</span></label>
-							<div class="col-10" >
+							<div class="col-10">
 								<select class="form-control select2" style="width: 100% !important;" name="lapangan" id="lapangan">
 									<option value="MD">MMD</option>
 									<option value="MS">MS</option>

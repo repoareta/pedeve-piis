@@ -38,7 +38,7 @@
     </div>
     <div class="card-body">
         <div class="col-12">
-			<form class="form" id="search-form" >
+			<form class="form" id="search-form">
 				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">

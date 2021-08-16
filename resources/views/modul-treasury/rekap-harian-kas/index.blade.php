@@ -41,7 +41,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" id="search-form" >
+        <form class="form" id="search-form">
             <div class="form-group row">
                 <label for="" class="col-1 col-form-label">No. Kas</label>
                 <div class="col-2">

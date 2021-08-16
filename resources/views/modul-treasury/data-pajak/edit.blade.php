@@ -38,7 +38,7 @@
                     <div class="col-4">
                         <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
-                        <div class="col-6" >
+                        <div class="col-6">
                             <input class="form-control tahun" type="text" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed" value="{{ $tahun }}">
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>

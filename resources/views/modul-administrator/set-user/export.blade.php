@@ -45,7 +45,7 @@
             <table width="100%"  >
                 <tr>
                     <td align="center" style="padding-left:150px;">
-                    <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
+                    <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;"><br>
                     <font style="font-size: 12pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br><br>
                     <font style="font-size: 12pt;font-weight: bold ">USER APPLICATION</font><br>
                     </td>
@@ -57,7 +57,7 @@
         <main>
             <table width="100%" style=" border-collapse: collapse;padding-top:10px;" border="1">
                 <tr style="font-size: 11pt;">
-                    <th width="10%" >USER ID</th>
+                    <th width="10%">USER ID</th>
                     <th width="20%">USER NAME</th>
                     <th width="20%">USER GROUP</th>
                     <th width="20%">USER LEVEL</th>

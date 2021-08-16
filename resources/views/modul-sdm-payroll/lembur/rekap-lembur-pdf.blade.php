@@ -42,7 +42,7 @@
     <body>
         <!-- Define header and footer blocks before your content -->
         <header>
-            <table width="100%" >
+            <table width="100%">
                 <tr>
                     <td align="left" style="padding-left:40px;">
                         <table>
@@ -55,12 +55,12 @@
                         </table>
                     </td>
                     <td align="center" style="">
-                        <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:40px;">
+                        <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:40px;">
                     </td>
                 </tr>
             </table>
 
-            <table width="100%"  style="padding-top:10%; padding-left:30px;;padding-right:30px;">
+            <table width="100%" style="padding-top:10%; padding-left:30px;;padding-right:30px;">
                 <tr>
                     <td>
                         <table width="100%" style="border-collapse: collapse;" border="1">
@@ -124,22 +124,22 @@
                                 <td style="text-align:left;"></td>
                                 <td style="text-align:right;"></td>
                                 <td style="text-align:right;"></td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totallembur),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totalmakanpg),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totalmakansg),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totalmakanml),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totaltransport),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totaltotal),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totallembur),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totalmakanpg),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totalmakansg),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totalmakanml),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totaltransport),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totaltotal),2,',','.') }}</td>
 
                             </tr> -->
                             <tr style="font-weight: bold">
                                 <td style="text-align:right;" colspan="6">Total</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totallembur),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totalmakanpg),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totalmakansg),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totalmakanml),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totaltransport),2,',','.') }}</td>
-                                <td style="text-align:right;" > {{ number_format(array_sum($totaltotal),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totallembur),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totalmakanpg),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totalmakansg),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totalmakanml),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totaltransport),2,',','.') }}</td>
+                                <td style="text-align:right;"> {{ number_format(array_sum($totaltotal),2,',','.') }}</td>
                             </tr>
                         </table>
                     </td>

@@ -64,7 +64,7 @@
                         <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         
                     </div>
-                        <div class="col-6" >
+                        <div class="col-6">
                             <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
@@ -94,12 +94,12 @@
                                 
                             </select>							</div>
                         <label class="col-2 col-form-label">Currency Index</label>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label">Kurs<span class="text-danger">*</span></label>
-                        <div class="col-2" >
-                            <input class="form-control" type="text" name="kurs" value="{{ number_format($data->rate,0) }}" id="kurs" size="7" maxlength="7" >
+                        <div class="col-2">
+                            <input class="form-control" type="text" name="kurs" value="{{ number_format($data->rate,0) }}" id="kurs" size="7" maxlength="7">
                         </div>
                     </div>
                     
@@ -115,19 +115,19 @@
                         </div>
                         @if($mp == 'P')
                         <label class="col-1 col-form-label">No Bukti</label>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         <label class="col-1 col-form-label">No Ver</label>
-                        <div class="col-2" >
+                        <div class="col-2">
                             <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         @else
                         <label class="col-1 col-form-label">No Bukti</label>
-                        <div class="col-5" >
+                        <div class="col-5">
                             <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
-                        <div class="col-1" >
+                        <div class="col-1">
                             <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                         </div>
                         @endif
