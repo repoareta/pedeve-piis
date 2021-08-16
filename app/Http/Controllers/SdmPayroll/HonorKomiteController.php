@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\SdmPayroll;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\HonorKomiteStoreRequest;
 use App\Models\PayHonor;
 use App\Models\MasterPegawai;
 use DB;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HonorKomiteController extends Controller
 {
@@ -133,21 +135,17 @@ class HonorKomiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HonorKomiteStoreRequest $request)
     {
-        $data_cek = DB::select("SELECT * from pay_honorarium   where nopek='$request->nopek' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
-        if(!empty($data_cek)){
-            $data=0;
-            return response()->json($data);
-        }else {
         $nilai = str_replace(',', '.', $request->nilai);
         $pajak = (35/65) * $nilai;
         $data_tahun = $request->tahun;
         $data_bulan = $request->bulan;
         $nopek = $request->nopek;
+
         PayHonor::insert([
-            'tahun' => $data_tahun,
-            'bulan' => $data_bulan,
+            'tahun' => $request->tahun,
+            'bulan' => $request->bulan,
             'nopek' => $request->nopek,
             'aard' => 30,
             'jmlcc' => 0,
@@ -155,21 +153,19 @@ class HonorKomiteController extends Controller
             'nilai' => $nilai,
             'userid' => $request->userid,
             'pajak' => $pajak,
-            ]);
+        ]);
 
-        $data_pajak = DB::select("SELECT round(pajak,-2) as pajaknya from pay_honorarium where tahun='$data_tahun' and bulan='$data_bulan' and nopek='$nopek'");
-        foreach($data_pajak as $data_p)
-        {
-            PayHonor::where('tahun', $request->tahun)
-            ->where('bulan',$request->bulan)
-            ->where('nopek',$request->nopek)
-            ->update([
-                'pajak' => $data_p->pajaknya,
-            ]);
-        }
-            $data = 1;
-            return response()->json($data);
-        }
+        $data_pajak = DB::select("SELECT round(pajak,-2) as pajaknya from pay_honorarium where tahun='$data_tahun' and bulan='$data_bulan' and nopek='$nopek'")[0];
+
+        PayHonor::where('tahun', $request->tahun)
+        ->where('bulan',$request->bulan)
+        ->where('nopek',$request->nopek)
+        ->update([
+            'pajak' => $data_pajak->pajaknya,
+        ]);
+        
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.honor_komite.index');
     }
 
     /**
@@ -236,7 +232,9 @@ class HonorKomiteController extends Controller
                 'pajak' => $data_p->pajaknya,
             ]);
         }
-        return response()->json();
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.honor_komite.index');
     }
    
 

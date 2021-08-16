@@ -21,11 +21,9 @@
         <form action="{{ route('modul_sdm_payroll.honor_komite.store') }}" method="post" id="form-create">
             @csrf
             <div class="form-group mb-8">
-                <div class="alert alert-secondary" role="alert">
+                <div class="alert alert-custom alert-default" role="alert">
                     <div class="alert-text">
-                        <h5 class="kt-portlet__head-title">
-                            Header Honorarium Komite/Rapat
-                        </h5>
+                        Header Honorarium Komite/Rapat
                     </div>
                 </div>
             </div>
@@ -90,55 +88,49 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\HonorKomiteStoreRequest', '#form-create'); !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('.kt-select2').select2().on('change', function() {
 			// $(this).valid();
 		});
-		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{route('modul_sdm_payroll.honor_komite.store')}}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				success : function(data){
-				console.log(data);
-				if(data == 1){
-					Swal.fire({
-						icon  : 'success',
-						title : 'Data Berhasil Ditambah',
-						text  : 'Berhasil',
-						timer : 2000
-					}).then(function() {
-							window.location.href = "{{ route('modul_sdm_payroll.honor_komite.index')}}";
-						});
-				}else{
-					Swal.fire({
-						icon  : 'error',
-						title : 'Data Honor Komite Yang Diinput Sudah Ada.',
-						text  : 'Failed',
-					});
-				}
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-			return false;
+
+		$('#form-create').submit(function(e){
+			e.preventDefault();
+
+            if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        $(this).unbind('submit').submit();
+                    }
+                });
+            }
 		});
+
 		$('#nilai').keyup(function(){
-             var nilai=parseInt($('#nilai').val());
+            var nilai=parseInt($('#nilai').val());
             var pajak=(35/65)*nilai;
 			var a =parseInt(pajak);
-             $('#pajak').val(a);
+            $('#pajak').val(a);
         });
-});
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
+    });
 </script>
 @endpush

@@ -21,11 +21,9 @@
         <form action="{{ route('modul_sdm_payroll.potongan_koreksi_gaji.update') }}" method="post" id="form-edit">
             @csrf
             <div class="form-group mb-8">
-                <div class="alert alert-secondary" role="alert">
+                <div class="alert alert-custom alert-default" role="alert">
                     <div class="alert-text">
-                        <h5 class="kt-portlet__head-title">
-                            Header Koreksi Gaji
-                        </h5>
+                        Header Koreksi Gaji
                     </div>
                 </div>
             </div>

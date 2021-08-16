@@ -21,11 +21,9 @@
         <form action="{{ route('modul_sdm_payroll.honor_komite.update') }}" method="post" id="form-edit">
             @csrf
             <div class="form-group mb-8">
-                <div class="alert alert-secondary" role="alert">
+                <div class="alert alert-custom alert-default" role="alert">
                     <div class="alert-text">
-                        <h5 class="kt-portlet__head-title">
-                            Header Honorarium Komite/Rapat
-                        </h5>
+                        Header Honorarium Komite/Rapat
                     </div>
                 </div>
             </div>
@@ -96,36 +94,35 @@
 			var a =parseInt(pajak);
             $('#pajak').val(a);
         });
-		$('#form-edit').submit(function(){
-			$.ajax({
-				url  : "{{route('modul_sdm_payroll.honor_komite.update')}}",
-				type : "POST",
-				data : $('#form-edit').serialize(),
-				dataType : "JSON",
-				success : function(data){
-                    console.log(data);
-                    Swal.fire({
-                        icon  : 'success',
-                        title : 'Data Berhasil Diubah',
-                        text  : 'Berhasil',
-                        timer : 2000
-                    }).then(function() {
-                        window.location.href = "{{ route('modul_sdm_payroll.honor_komite.index')}}";
-                    });
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-			return false;
+
+		$('#form-edit').submit(function(e){
+			e.preventDefault();
+
+            if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        $(this).unbind('submit').submit();
+                    }
+                });
+            }
 		});
     });
-		function hanyaAngka(evt) {
-		  var charCode = (evt.which) ? evt.which : event.keyCode
-		   if (charCode > 31 && (charCode < 48 || charCode > 57))
- 
-		    return false;
-		  return true;
-		}
 </script>
 @endpush
