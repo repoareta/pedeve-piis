@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Pribadi <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" value="0" name="pribadi" type="text" size="2" maxlength="2" autocomplete="off">
+                    <input class="form-control" name="pribadi" type="number" size="2" maxlength="2" autocomplete="off">
                     @error('pribadi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Perusahaan Direksi <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" value="0" name="perusahaan" type="text" size="40" maxlength="50" autocomplete="off">
+                    <input class="form-control" name="perusahaan" type="number" size="40" maxlength="50" autocomplete="off">
                     @error('perusahaan')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Perusahaan Pekerja <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" value="0" name="perusahaan2" type="text" size="40" maxlength="50" autocomplete="off">
+                    <input class="form-control" name="perusahaan2" type="number" size="40" maxlength="50" autocomplete="off">
                     @error('perusahaan2')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Perusahaan Direksi(BNI) <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" value="0" name="perusahaan3" type="text" size="40" maxlength="50" autocomplete="off">
+                    <input class="form-control" name="perusahaan3" type="number" size="40" maxlength="50" autocomplete="off">
                     @error('perusahaan3')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
