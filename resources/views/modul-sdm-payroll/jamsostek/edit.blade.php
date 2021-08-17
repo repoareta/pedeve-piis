@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Pribadi <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="pribadi" type="number" size="2" maxlength="2" autocomplete="off" value="{{ $jamsostek->pribadi }}">
+                    <input class="form-control money" name="pribadi" type="text" size="2" maxlength="2" autocomplete="off" value="{{ $jamsostek->pribadi }}">
                     @error('pribadi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Accident <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="accident" type="number" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->accident }}">
+                    <input class="form-control money" name="accident" type="text" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->accident }}">
                     @error('accident')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Pensiun <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="pensiun" type="number" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->pensiun }}">
+                    <input class="form-control money" name="pensiun" type="text" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->pensiun }}">
                     @error('pensiun')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Life <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="life" type="number" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->life }}">
+                    <input class="form-control money" name="life" type="text" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->life }}">
                     @error('life')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -73,7 +73,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Manulife <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="manulife" type="number" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->manulife }}">
+                    <input class="form-control money" name="manulife" type="text" size="40" maxlength="50" autocomplete="off" value="{{ $jamsostek->manulife }}">
                     @error('manulife')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
