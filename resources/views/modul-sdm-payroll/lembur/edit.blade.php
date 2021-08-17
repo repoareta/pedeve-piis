@@ -26,14 +26,14 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-email-input" class="col-2 col-form-label">Tgl. Lembur<span style="color:red;">*</span></label>
+                <label for="example-email-input" class="col-2 col-form-label">Tgl. Lembur<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="{{ date('d/m/Y') }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly id="tanggal" name="tanggal" autocomplete="off">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span style="color:red;">*</span></label>
+                <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-5">
                     <select class="form-control kt-select2" style="width: 100% !important;" name="bulan" id="nopek" required>
                         <option value="1" <?php if($dataLembur->bulan  == 1) echo 'selected' ; ?>>Januari</option>
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Pegawai<span style="color:red;">*</span></label>
+                <label for="" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="{{ $dataLembur->nopek }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly name="nopek" autocomplete="off">
                 </div>

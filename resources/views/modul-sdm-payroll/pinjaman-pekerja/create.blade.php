@@ -28,9 +28,9 @@
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">ID Pinjaman<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" name="no_pinjaman" id="no_pinjaman" size="8" maxlength="8" autocomplete='off' disabled>
-                    <input class="form-control" type="hidden" name="id_pinjaman" id="id_pinjaman" autocomplete='off'>
-                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete='off'>
+                    <input  class="form-control" type="text" name="no_pinjaman" id="no_pinjaman" size="8" maxlength="8" autocomplete="off" disabled>
+                    <input class="form-control" type="hidden" name="id_pinjaman" id="id_pinjaman" autocomplete="off">
+                    <input class="form-control" type="hidden" value="{{Auth::user()->userid}}" name="userid" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -47,7 +47,7 @@
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">NO. Kontrak<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value=""  name="no_kontrak" size="16" maxlength="16" autocomplete='off'>
+                    <input  class="form-control" type="text" value=""  name="no_kontrak" size="16" maxlength="16" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -66,19 +66,19 @@
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">Tenor<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value=""  name="tenor" size="4" maxlength="4" autocomplete='off'>
+                    <input  class="form-control" type="text" value=""  name="tenor" size="4" maxlength="4" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">Angsuran<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value="0"  name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete='off'>
+                    <input  class="form-control" type="text" value="0"  name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">Pinjaman<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value="0"  name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete='off'>
+                    <input  class="form-control" type="text" value="0"  name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">

@@ -545,8 +545,8 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::get('master-tabungan/create', [MasterTabunganController::class, 'create'])->name('create');
         Route::post('master-tabungan/cek-golongan/json', [MasterTabunganController::class, 'cekGolonganJson'])->name('golongan.json');
         Route::post('master-tabungan/store', [MasterTabunganController::class, 'store'])->name('store');
-        Route::get('master-tabungan/edit/{id}', [MasterTabunganController::class, 'edit'])->name('edit');
-        Route::post('master-tabungan/update', [MasterTabunganController::class, 'update'])->name('update');
+        Route::get('master-tabungan/edit/{master_tabungan}', [MasterTabunganController::class, 'edit'])->name('edit');
+        Route::post('master-tabungan/update/{master_tabungan}', [MasterTabunganController::class, 'update'])->name('update');
         Route::delete('master-tabungan/delete', [MasterTabunganController::class, 'delete'])->name('delete');
     });
     //end master-ptkp

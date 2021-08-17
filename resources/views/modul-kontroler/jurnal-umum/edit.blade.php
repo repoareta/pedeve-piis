@@ -54,11 +54,11 @@
                 <div class="col-3" >
                     <input class="form-control" type="text" value="{{ $data_jur->tahun }}" disabled>
                     <input class="form-control" type="hidden" value="{{ $data_jur->tahun }}" name="tahun">
-                    <input class="form-control" type="hidden" name="inputid" value="{{ auth()->user()->userid }}" autocomplete='off'>
+                    <input class="form-control" type="hidden" name="inputid" value="{{ auth()->user()->userid }}" autocomplete="off">
                 </div>
                 <label for="spd-input" class="col-1 col-form-label">suplesi</label>
                 <div class="col-2" >
-                    <input class="form-control" type="text" value="{{ $data_jur->suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete='off' required>
+                    <input class="form-control" type="text" value="{{ $data_jur->suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete="off" required>
                 </div>
             </div>
             <div class="form-group row">

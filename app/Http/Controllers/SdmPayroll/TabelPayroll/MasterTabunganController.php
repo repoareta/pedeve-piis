@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Models\PayTblTabungan;
 use DB;
@@ -14,40 +15,51 @@ class MasterTabunganController extends Controller
         return view('modul-sdm-payroll.master-tabungan.index');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function indexJson()
     {
         $data = PayTblTabungan::all();
         
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
-                return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan,0).'" name="btn-radio"><span></span><label>';
+            return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan, 0).'" name="btn-radio"><span></span><label>';
         })
         ->addColumn('perusahaan', function ($row) {
-             return number_format($row->perusahaan,0);
+            return number_format($row->perusahaan, 0);
         })
         ->rawColumns(['radio'])
         ->make(true);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function create()
     {
         return view('modul-sdm-payroll.master-tabungan.create');
     }
 
-
-    public function store(Request $request)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param PayTblTabungan $masterTabungan
+     * @return void
+     */
+    public function store(Request $request, PayTblTabungan $masterTabungan)
     {
-        $data_cek = DB::select("SELECT * from pay_tbl_tabungan"); 			
-        if(!empty($data_cek)) {
-            $data = 2;
-            return response()->json($data);
-        } else {
-        PayTblTabungan::insert([
-            'perusahaan' => $request->perusahaan,
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+        $masterTabungan->perusahaan = $request->perusahaan;
+
+        $masterTabungan->save();
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_tabungan.index');
     }
 
     /**
@@ -56,11 +68,9 @@ class MasterTabunganController extends Controller
      * @param [type] $id
      * @return void
      */
-    public function edit($id)
+    public function edit(PayTblTabungan $masterTabungan)
     {
-        $data_list = PayTblTabungan::where('perusahaan', $id)->first();
-        
-        return view('modul-sdm-payroll.master-tabungan.edit',compact('perusahaan'));
+        return view('modul-sdm-payroll.master-tabungan.edit', compact('masterTabungan'));
     }
 
     /**
@@ -69,16 +79,22 @@ class MasterTabunganController extends Controller
      * @param Request $request
      * @return void
      */
-    public function update(Request $request)
+    public function update(Request $request, PayTblTabungan $masterTabungan)
     {
-        PayTblTabungan::where('perusahaan', $request->kode)
-        ->update([
-            'perusahaan' => $request->perusahaan,
-        ]);
+        $masterTabungan->perusahaan = $request->perusahaan;
+        
+        $masterTabungan->save();
 
-        return response()->json();
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_tabungan.index');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function delete(Request $request)
     {
         PayTblTabungan::where('perusahaan', $request->kode)

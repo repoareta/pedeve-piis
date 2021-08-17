@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_sdm_payroll.master_tabungan.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -70,14 +70,14 @@
 			]
 		});
 
-		//edit potongan Manual
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-
 			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function(){
+				$("input[type=radio]:checked").each(function() {
 					var kode = $(this).attr('kode');
-					location.replace("{{ url('sdm-payroll/master-tabungan/edit') }}"+ '/' +kode);
+					var url = '{{ route("modul_sdm_payroll.master_tabungan.edit", ":perusahaan") }}';
+					// go to page edit
+					window.location.href = url.replace(':perusahaan', kode);
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -124,7 +124,7 @@
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {
-										location.reload();
+										t.ajax.reload();
 									});
 								},
 								error: function () {

@@ -9,8 +9,9 @@ class PayTblTabungan extends Model
 {
     use HasFactory;
 
-    protected $table="pay_tbl_tabungan";
-    protected $primaryKey = null;
+    protected $table= "pay_tbl_tabungan";
+    protected $primaryKey = "perusahaan";
     public $incrementing = false;
+    public $keyType = 'string';
     public $timestamps = false;
 }
