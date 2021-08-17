@@ -118,14 +118,14 @@ class DataPerkaraController extends Controller
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="' . $data->kd_pihak . '" value="' . $data->kd_pihak . '" name="btn-radio"><span></span></label>';
                 return $radio;
             })
-
-
             ->rawColumns(['radio'])
             ->make(true);
     }
 
     public function pihak(Request $request)
     {
+        $latestId = DB::table('tbl_pihak')->latest('kd_pihak')->first()->kd_pihak + 1;
+
         if ($request->cek == 'A') {
             DB::table('tbl_pihak')->where('kd_pihak', $request->kd_pihak)
                 ->update([
@@ -139,6 +139,7 @@ class DataPerkaraController extends Controller
             return response()->json();
         } else {
             DB::table('tbl_pihak')->insert([
+                'kd_pihak' => $latestId,
                 'no_perkara' => $request->no_perkara,
                 'nama' => $request->nama,
                 'alamat' => $request->alamat,
@@ -150,7 +151,7 @@ class DataPerkaraController extends Controller
         }
     }
 
-    public function showpihak(Request $request)
+    public function showPihak(Request $request)
     {
         $data = DB::select("SELECT * from tbl_pihak where kd_pihak='$request->kd'");
         return response()->json($data[0]);
@@ -211,6 +212,8 @@ class DataPerkaraController extends Controller
 
     public function hakim(Request $request)
     {
+        $latestId = DB::table('tbl_hakim')->latest('kd_hakim')->first()->kd_hakim + 1;
+
         if ($request->cekhakim == 'A') {
             DB::table('tbl_hakim')->where('kd_hakim', $request->kd_hakim)
                 ->update([
@@ -224,6 +227,7 @@ class DataPerkaraController extends Controller
             return response()->json(1);
         } else {
             DB::table('tbl_hakim')->insert([
+                'kd_hakim' => $latestId,
                 'kd_pihak' => $request->kd_pihak,
                 'nama' => $request->nama,
                 'alamat' => $request->alamat,
@@ -334,10 +338,8 @@ class DataPerkaraController extends Controller
         ]);
 
         $folderPath = public_path('/data_perkara/' . $request->no_perkara);
-
-        if (!File::isDirectory($folderPath)) {
-            File::makeDirectory($folderPath);
-        }
+        
+        File::ensureDirectoryExists($folderPath);
 
         if ($request->hasfile('filedok')) {
             foreach ($request->file('filedok') as $key => $file) {

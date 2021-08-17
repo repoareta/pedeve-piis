@@ -26,7 +26,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
         Route::post('data-perkara/update', [DataPerkaraController::class, 'update'])->name('update');
         Route::delete('data-perkara/delete', [DataPerkaraController::class, 'delete'])->name('delete');
         Route::get('data-perkara/pihak/index-json', [DataPerkaraController::class, 'searchPihak'])->name('search.pihak');
-        Route::post('data-perkara/show', [DataPerkaraController::class, 'showPihakJson'])->name('show.pihak.json');
+        Route::post('data-perkara/show', [DataPerkaraController::class, 'showPihak'])->name('show.pihak.json');
         Route::post('data-perkara/pihak', [DataPerkaraController::class, 'pihak'])->name('store.pihak');
         Route::delete('data-perkara/delete/pihak', [DataPerkaraController::class, 'deletePihak'])->name('delete.pihak');
 
@@ -38,7 +38,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
         
         Route::post('data-perkara/dokumen', [DataPerkaraController::class, 'dokumen'])->name('store.dokumen');
         Route::get('data-perkara/dokumen/index-json', [DataPerkaraController::class, 'searchDokumen'])->name('search.dokumen');
-        Route::post('data-perkara/dokumen/pihak', [DataPerkaraController::class, 'dokumenPihak'])->name('pihakJson');
+        Route::post('data-perkara/dokumen/pihak', [DataPerkaraController::class, 'dokumenPihak'])->name('dokumenPihak');
         Route::delete('data-perkara/dokumen/delete', [DataPerkaraController::class, 'deleteDokumen'])->name('delete.dokumen');
     });
     //end data-perkara
