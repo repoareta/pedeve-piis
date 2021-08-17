@@ -177,7 +177,7 @@ class PermintaanBayarController extends Controller
             'no' => $request->no,
             'keterangan' => $request->keterangan,
             'account' => $request->acc,
-            'nilai' => str_replace(',', '.', $request->nilai),
+            'nilai' => str_replace([',', '.'], '', $request->nilai),
             'cj' => $request->cj,
             'jb' => $request->jb,
             'bagian' => $request->bagian,
@@ -190,7 +190,7 @@ class PermintaanBayarController extends Controller
             'no' => $request->no,
             'keterangan' => $request->keterangan,
             'account' => $request->acc,
-            'nilai' => str_replace(',', '.', $request->nilai),
+            'nilai' => str_replace([',', '.'], '', $request->nilai),
             'cj' => $request->cj,
             'jb' => $request->jb,
             'bagian' => $request->bagian,
@@ -249,7 +249,7 @@ class PermintaanBayarController extends Controller
     public function edit($nobayar)
     {
         $nobayars=str_replace('-', '/', $nobayar);
-        $data_bayars =  PermintaanBayarHeader::where('no_bayar', $nobayars)->get();
+        $data_bayar =  PermintaanBayarHeader::where('no_bayar', $nobayars)->first();
         $debit_nota = UmuDebetNota::all();
         $no_uruts =  DB::select("SELECT max(no) as no from umu_bayar_detail where no_bayar = '$nobayars'");
         $data_bayar_details = PermintaanBayarDetail::where('no_bayar', $nobayars)->get();
@@ -267,7 +267,7 @@ class PermintaanBayarController extends Controller
             $no_bayar_details= 1;
         }
         return view('modul-umum.permintaan-bayar.edit', compact(
-            'data_bayars',
+            'data_bayar',
             'debit_nota',
             'data_account',
             'data_bagian',

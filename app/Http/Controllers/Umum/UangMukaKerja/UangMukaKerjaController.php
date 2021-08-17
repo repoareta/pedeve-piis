@@ -17,7 +17,8 @@ use App\Models\Kasline;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use DB;
 use DomPDF;
-use Alert;
+use App\Http\Requests\UMKStoreRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UangMukaKerjaController extends Controller
 {
@@ -58,53 +59,53 @@ class UangMukaKerjaController extends Controller
                     $bulan_buku = $data_bul->bulan_buku;
                 }
             } else {
-                $bulan_buku ='000000';
+                $bulan_buku = '000000';
             }
             $data = DB::select("SELECT  a.no_umk,a.jenis_um,a.app_pbd,a.app_sdm,a.tgl_panjar,a.no_kas,a.keterangan,a.jumlah from kerja_header a where a.bulan_buku ='$bulan_buku' order by a.bulan_buku desc,a.no_umk desc");
         }
         return datatables()->of($data)
-        ->addColumn('jenis_um', function ($data) {
-            if ($data->jenis_um == 'K') {
-                $UM = 'UM Kerja</p>';
-            } else {
-                $UM = 'UM Dinas</p>';
-            }
-            return $UM;
-        })
-        ->addColumn('tgl_panjar', function ($data) {
-            $tgl = date_create($data->tgl_panjar);
-            return date_format($tgl, 'd F Y');
-        })
-        ->addColumn('jumlah', function ($data) {
-            return number_format($data->jumlah, 2, '.', ',');
-        })
+            ->addColumn('jenis_um', function ($data) {
+                if ($data->jenis_um == 'K') {
+                    $UM = 'UM Kerja</p>';
+                } else {
+                    $UM = 'UM Dinas</p>';
+                }
+                return $UM;
+            })
+            ->addColumn('tgl_panjar', function ($data) {
+                $tgl = date_create($data->tgl_panjar);
+                return date_format($tgl, 'd F Y');
+            })
+            ->addColumn('jumlah', function ($data) {
+                return number_format($data->jumlah, 2, '.', ',');
+            })
 
-        ->addColumn('radio', function ($data) {
-            if ($data->app_pbd == 'Y') {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="Y" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" class="btn-radio" name="btn-radio"><span></span></label>';
-            } else {
-                if ($data->app_sdm == 'Y') {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio" class="btn-radio"><span></span></label>';
+            ->addColumn('radio', function ($data) {
+                if ($data->app_pbd == 'Y') {
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="Y" dataumk="' . $data->no_umk . '" data-id="' . str_replace('/', '-', $data->no_umk) . '" class="btn-radio" name="btn-radio"><span></span></label>';
                 } else {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" class="btn-radio" dataumk="'.$data->no_umk.'" data-id="'.str_replace('/', '-', $data->no_umk).'" name="btn-radio"><span></span></label>';
+                    if ($data->app_sdm == 'Y') {
+                        $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" dataumk="' . $data->no_umk . '" data-id="' . str_replace('/', '-', $data->no_umk) . '" name="btn-radio" class="btn-radio"><span></span></label>';
+                    } else {
+                        $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" data-s="N" class="btn-radio" dataumk="' . $data->no_umk . '" data-id="' . str_replace('/', '-', $data->no_umk) . '" name="btn-radio"><span></span></label>';
+                    }
                 }
-            }
-            return $radio;
-        })
-        ->addColumn('approval', function ($data) {
-            if ($data->app_pbd == 'Y') {
-                $action = '<span class="pointer-link" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
-            } else {
-                if ($data->app_sdm == 'Y') {
-                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="pointer-link" title="Batalkan Approval"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
+                return $radio;
+            })
+            ->addColumn('approval', function ($data) {
+                if ($data->app_pbd == 'Y') {
+                    $action = '<span class="pointer-link" title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x text-success"></i></span>';
                 } else {
-                    $action = '<a href="'. route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]).'"><span class="pointer-link" title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
+                    if ($data->app_sdm == 'Y') {
+                        $action = '<a href="' . route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]) . '"><span class="pointer-link" title="Batalkan Approval"><i class="fas fa-check-circle fa-2x text-success"></i></span></a>';
+                    } else {
+                        $action = '<a href="' . route('modul_umum.uang_muka_kerja.approve', ['id' => str_replace('/', '-', $data->no_umk)]) . '"><span class="pointer-link" title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
+                    }
                 }
-            }
-            return $action;
-        })
-        ->rawColumns(['radio','approval','jenis_um'])
-        ->make(true);
+                return $action;
+            })
+            ->rawColumns(['radio', 'approval', 'jenis_um'])
+            ->make(true);
     }
     /**
      * Show the form for creating a new resource.
@@ -113,10 +114,7 @@ class UangMukaKerjaController extends Controller
      */
     public function create()
     {
-        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-        foreach ($data_tahunbulan as $data_bul) {
-            $bulan_buku = $data_bul->bulan_buku;
-        }
+        $bulan_buku = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'")[0]->bulan_buku;
         $awal = "CS";
         $data = DB::select("SELECT left(max(no_umk),-14) as no_umk from kerja_header where  date_part('year', tgl_panjar)  = date_part('year', CURRENT_DATE)");
         foreach ($data as $data_no_umk) {
@@ -124,9 +122,9 @@ class UangMukaKerjaController extends Controller
         }
         $no_umk_max = $data_no_umk->no_umk;
         if (!empty($no_umk_max)) {
-            $no_umk= sprintf("%03s", abs($no_umk_max + 1)). '/' . $awal .'/' . date('d/m/Y');
+            $no_umk = sprintf("%03s", abs($no_umk_max + 1)) . '/' . $awal . '/' . date('d/m/Y');
         } else {
-            $no_umk= sprintf("%03s", 1). '/' . $awal .'/' . date('d/m/Y');
+            $no_umk = sprintf("%03s", 1) . '/' . $awal . '/' . date('d/m/Y');
         }
         $vendor = Vendor::all();
         return view('modul-umum.umk.create', compact('no_umk', 'vendor', 'bulan_buku'));
@@ -135,40 +133,27 @@ class UangMukaKerjaController extends Controller
     /**
      * melakukan insert ke umk
      */
-    public function store(Request $request)
+    public function store(UMKStoreRequest $request)
     {
-        $check_data = DB::select("SELECT * from kerja_header where no_umk = '$request->no_umk'");
+        $validated = collect($request->validated())
+            ->forget('jumlah')
+            ->put('jumlah', str_replace([',', '.'], '', $request->jumlah));
+
+        $check_data = DB::select("SELECT * FROM kerja_header WHERE no_umk = '$request->no_umk'");
+
         if (!empty($check_data)) {
             DB::table('kerja_header')
-            ->where('no_umk', $request->no_umk)
-            ->update([
-            'kepada' => $request->kepada,
-            'tgl_panjar' => $request->tgl_panjar,
-            'bulan_buku' => $request->bulan_buku,
-            'keterangan' => $request->untuk,
-            'ci' => $request->ci,
-            'rate' => $request->kurs,
-            'jenis_um' => $request->jenis_um,
-            'no_umk' => $request->no_umk,
-            'jumlah' => str_replace(',', '.', $request->jumlah)
-            ]);
-            return response()->json();
-        } else {
-            DB::table('kerja_header')->insert([
-                'kepada' => $request->kepada,
-                'tgl_panjar' => $request->tgl_panjar,
-                'app_sdm' => 'N',
-                'bulan_buku' => $request->bulan_buku,
-                'keterangan' => $request->untuk,
-                'ci' => $request->ci,
-                'app_pbd' => 'N',
-                'rate' => $request->kurs,
-                'jenis_um' => $request->jenis_um,
-                'no_umk' => $request->no_umk,
-                'jumlah' => str_replace(',', '.', $request->jumlah),
-                ]);
-            return response()->json();
+                ->where('no_umk', $request->no_umk)
+                ->update($validated->forget('no_umk')->toArray());
+
+            Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+            return redirect()->route('modul_umum.uang_muka_kerja.index');
         }
+
+        DB::table('kerja_header')->insert($validated->toArray());
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_umum.uang_muka_kerja.edit', [str_replace('/', '-', $request->no_umk)]);
     }
 
     public function storeDetail(Request $request)
@@ -176,50 +161,50 @@ class UangMukaKerjaController extends Controller
         $check_data =  DB::select("SELECT * from kerja_detail where no = '$request->no' and  no_umk = '$request->no_umk'");
         if (!empty($check_data)) {
             DetailUmk::where('no_umk', $request->no_umk)
-            ->where('no', $request->no)
-            ->update([
-            'no' => $request->no,
-            'keterangan' => $request->keterangan,
-            'account' => $request->acc,
-            'nilai' =>   str_replace(',', '.', $request->nilai),
-            'cj' => $request->cj,
-            'jb' => $request->jb,
-            'bagian' => $request->bagian,
-            'pk' => $request->pk,
-            'no_umk' => $request->no_umk
-            ]);
-            $count= DetailUmk::where('no_umk', $request->no_umk)->select('no_umk')->sum('nilai');
+                ->where('no', $request->no)
+                ->update([
+                    'no' => $request->no,
+                    'keterangan' => $request->keterangan,
+                    'account' => $request->acc,
+                    'nilai' =>   str_replace(',', '.', $request->nilai),
+                    'cj' => $request->cj,
+                    'jb' => $request->jb,
+                    'bagian' => $request->bagian,
+                    'pk' => $request->pk,
+                    'no_umk' => $request->no_umk
+                ]);
+            $count = DetailUmk::where('no_umk', $request->no_umk)->select('no_umk')->sum('nilai');
             $jumlah = number_format($count, 0, '', '');
             Umk::where('no_umk', $request->no_umk)
-            ->update([
-                'jumlah' => $jumlah
-            ]);
+                ->update([
+                    'jumlah' => $jumlah
+                ]);
             return response()->json();
         } else {
             DetailUmk::insert([
-            'no' => $request->no,
-            'keterangan' => $request->keterangan,
-            'account' => $request->acc,
-            'nilai' =>    str_replace(',', '.', $request->nilai),
-            'cj' => $request->cj,
-            'jb' => $request->jb,
-            'bagian' => $request->bagian,
-            'pk' => $request->pk,
-            'no_umk' => $request->no_umk
+                'no' => $request->no,
+                'keterangan' => $request->keterangan,
+                'account' => $request->acc,
+                'nilai' =>    str_replace(',', '.', $request->nilai),
+                'cj' => $request->cj,
+                'jb' => $request->jb,
+                'bagian' => $request->bagian,
+                'pk' => $request->pk,
+                'no_umk' => $request->no_umk
             ]);
-            $count= DetailUmk::where('no_umk', $request->no_umk)->select('no_umk')->sum('nilai');
+            $count = DetailUmk::where('no_umk', $request->no_umk)->select('no_umk')->sum('nilai');
             $jumlah = number_format($count, 0, '', '');
             Umk::where('no_umk', $request->no_umk)
-            ->update([
-                'jumlah' => $jumlah
-            ]);
+                ->update([
+                    'jumlah' => $jumlah
+                ]);
             return response()->json();
         }
     }
 
     public function storeApp(Request $request)
     {
-        $noumk=str_replace('-', '/', $request->noumk);
+        $noumk = str_replace('-', '/', $request->noumk);
         $data_app = Umk::where('no_umk', $noumk)->select('*')->get();
         foreach ($data_app as $data) {
             $check_data = $data->app_sdm;
@@ -231,13 +216,13 @@ class UangMukaKerjaController extends Controller
                 Kasline::where('docno', $data_del->no_kas)->delete();
             }
             Umk::where('no_umk', $noumk)
-            ->update([
-                'app_sdm' => 'N',
-                'app_sdm_oleh' => $request->userid,
-                'app_sdm_tgl' => $request->tgl_app,
-                'no_kas' => ''
-            ]);
-            Alert::success('No. UMK : '.$noumk.' Berhasil Dibatalkan Approval', 'Berhasil')->persistent(true)->autoClose(2000);
+                ->update([
+                    'app_sdm' => 'N',
+                    'app_sdm_oleh' => $request->userid,
+                    'app_sdm_tgl' => $request->tgl_app,
+                    'no_kas' => ''
+                ]);
+            Alert::success('No. UMK : ' . $noumk . ' Berhasil Dibatalkan Approval', 'Berhasil')->persistent(true)->autoClose(2000);
             return redirect()->route('uang_muka_kerja.index');
         } else {
             $timestamp = date("Y-m-d H:i:s");
@@ -247,7 +232,7 @@ class UangMukaKerjaController extends Controller
                     $bulan_buku = $data_bul->bulan_buku;
                 }
             } else {
-                $bulan_buku ='000000';
+                $bulan_buku = '000000';
             }
             $bulan = substr($bulan_buku, 4);
             $tahun = substr($bulan_buku, 0, -2);
@@ -260,17 +245,17 @@ class UangMukaKerjaController extends Controller
                         $v_no = sprintf("%03s", abs($data_vn->v_no + 1));
                     }
                 } else {
-                    $v_no='001';
+                    $v_no = '001';
                 }
-                $v_docno = 'P/'.$v_bagian.'/'.substr($bulan_buku, 2, 2).''.substr($bulan_buku, 4, 2).''.$v_no;
-            
+                $v_docno = 'P/' . $v_bagian . '/' . substr($bulan_buku, 2, 2) . '' . substr($bulan_buku, 4, 2) . '' . $v_no;
+
                 $data_nobukti = DB::select("SELECT max(voucher) as vnomorbukti  from kasdoc where thnbln= '$bulan_buku' and store='10' and substring(docno,1,1)='P'");
                 if (!empty($data_nobukti)) {
                     foreach ($data_nobukti as $data_nobuk) {
                         $vnomorbukti = sprintf("%03s", abs($data_nobuk->vnomorbukti + 1));
                     }
                 } else {
-                    $vnomorbukti='001';
+                    $vnomorbukti = '001';
                 }
                 $data_nover = DB::select("SELECT max(left(mrs_no,4)) as v_nover  from kasdoc where thnbln='$bulan_buku' and substring(docno,1,1)='P'");
                 if (!empty($data_nover)) {
@@ -278,33 +263,33 @@ class UangMukaKerjaController extends Controller
                         $v_nover  = sprintf("%03s", abs($data_nov->v_nover + 1));
                     }
                 } else {
-                    $v_nover ='001';
+                    $v_nover = '001';
                 }
                 Kasdoc::insert([
-                'docno' => $v_docno,
-                'thnbln' => $bulan_buku,
-                'jk' => '10',
-                'store' => '10',
-                'ci' => '1',
-                'voucher' => $vnomorbukti,
-                'kepada' => 'SDR.ANGGRAINI GITTA LESTARI',
-                'debet' => '0',
-                'kredit' => '0',
-                'original' => 'Y',
-                'originaldate' => $timestamp,
-                'verified' => 'N',
-                'paid' => 'N',
-                'posted' => 'N',
-                'inputdate' => $timestamp,
-                'inputpwd' => $request->userid,
-                'rate' => $t->rate,
-                'nilai_dok' => $t->jumlah,
-                'kd_kepada' => 'PUMK',
-                'originalby' => $request->userid,
-                'ket1' => 'PUMK ' .$noumk,
-                'ket2' => '(Terlampir)',
-                'ref_no' => $noumk,
-                'mrs_no' => $v_nover
+                    'docno' => $v_docno,
+                    'thnbln' => $bulan_buku,
+                    'jk' => '10',
+                    'store' => '10',
+                    'ci' => '1',
+                    'voucher' => $vnomorbukti,
+                    'kepada' => 'SDR.ANGGRAINI GITTA LESTARI',
+                    'debet' => '0',
+                    'kredit' => '0',
+                    'original' => 'Y',
+                    'originaldate' => $timestamp,
+                    'verified' => 'N',
+                    'paid' => 'N',
+                    'posted' => 'N',
+                    'inputdate' => $timestamp,
+                    'inputpwd' => $request->userid,
+                    'rate' => $t->rate,
+                    'nilai_dok' => $t->jumlah,
+                    'kd_kepada' => 'PUMK',
+                    'originalby' => $request->userid,
+                    'ket1' => 'PUMK ' . $noumk,
+                    'ket2' => '(Terlampir)',
+                    'ref_no' => $noumk,
+                    'mrs_no' => $v_nover
                 ]);
                 $data_crd = DB::select("SELECT * from kerja_detail where upper(no_umk)=upper('$noumk') order by no");
                 foreach ($data_crd as $d) {
@@ -324,40 +309,42 @@ class UangMukaKerjaController extends Controller
                 }
             }
             Umk::where('no_umk', $noumk)
-            ->update([
-                'no_kas' => $v_docno,
-                'app_sdm' => 'Y',
-                'app_sdm_oleh' => $request->userid,
-                'app_sdm_tgl' => $timestamp,
-                'app_pbd' => 'N'
-            ]);
-            Alert::success('No. UMK : '.$noumk.' Berhasil Diapproval', 'Berhasil')->persistent(true)->autoClose(2000);
+                ->update([
+                    'no_kas' => $v_docno,
+                    'app_sdm' => 'Y',
+                    'app_sdm_oleh' => $request->userid,
+                    'app_sdm_tgl' => $timestamp,
+                    'app_pbd' => 'N'
+                ]);
+            Alert::success('No. UMK : ' . $noumk . ' Berhasil Diapproval', 'Berhasil')->persistent(true)->autoClose(2000);
             return redirect()->route('uang_muka_kerja.index');
         }
     }
 
     public function edit($no)
     {
-        $noumk=str_replace('-', '/', $no);
-        $data_umks = DB::select("SELECT * from kerja_header where no_umk = '$noumk'");
+        $noumk = str_replace('-', '/', $no);
+        $data_umk = DB::select("SELECT * from kerja_header where no_umk = '$noumk'")[0];
+
+        // dd($data_umk);
         $no_uruts = DB::select("SELECT max(no) as no from kerja_detail where no_umk = '$noumk'");
         $data_umk_details = DetailUmk::where('no_umk', $noumk)->get();
         $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%' order by kodeacct desc");
         $data_bagian = DB::select("SELECT a.kode,a.nama from sdm_tbl_kdbag a order by a.kode");
         $data_jenisbiaya = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
         $data_cj = DB::select("SELECT kode,nama from cashjudex order by kode");
-        $count= DetailUmk::where('no_umk', $noumk)->select('no_umk')->sum('nilai');
-        $vendor=Vendor::all();
+        $count = DetailUmk::where('no_umk', $noumk)->select('no_umk')->sum('nilai');
+        $vendor = Vendor::all();
         if (!empty($no_urut) == null) {
             foreach ($no_uruts as $no_urut) {
-                $no_umk_details=$no_urut->no + 1;
+                $no_umk_details = $no_urut->no + 1;
             }
         } else {
-            $no_umk_details= 1;
+            $no_umk_details = 1;
         }
-        
+
         return view('modul-umum.umk.edit', compact(
-            'data_umks',
+            'data_umk',
             'data_umk_details',
             'no_umk_details',
             'data_account',
@@ -365,7 +352,8 @@ class UangMukaKerjaController extends Controller
             'data_jenisbiaya',
             'data_cj',
             'count',
-            'vendor'
+            'vendor',
+            'noumk'
         ));
     }
 
@@ -402,7 +390,7 @@ class UangMukaKerjaController extends Controller
         }
     }
 
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -412,7 +400,7 @@ class UangMukaKerjaController extends Controller
      */
     public function edit_detail($dataid, $datano)
     {
-        $noumk=str_replace('-', '/', $dataid);
+        $noumk = str_replace('-', '/', $dataid);
 
         $data = DetailUmk::where('no', $datano)->where('no_umk', $noumk)->distinct()->get();
         return response()->json($data[0]);
@@ -446,9 +434,9 @@ class UangMukaKerjaController extends Controller
     public function deleteDetail(Request $request)
     {
         DetailUmk::where('no', $request->no)
-        ->where('no_umk', $request->id)
-        ->delete();
-        $count= DetailUmk::where('no_umk', $request->id)->select('no_umk')->sum('nilai');
+            ->where('no_umk', $request->id)
+            ->delete();
+        $count = DetailUmk::where('no_umk', $request->id)->select('no_umk')->sum('nilai');
         $jumlah = number_format($count, 0, '', '');
         Umk::where('no_umk', $request->id)
             ->update([
@@ -460,14 +448,14 @@ class UangMukaKerjaController extends Controller
 
     public function approve($id)
     {
-        $noumk=str_replace('-', '/', $id);
+        $noumk = str_replace('-', '/', $id);
         $data_app = Umk::where('no_umk', $noumk)->select('*')->get();
         return view('modul-umum.umk.approve', compact('data_app'));
     }
 
     public function rekap($id)
     {
-        $noumk=str_replace('-', '/', $id);
+        $noumk = str_replace('-', '/', $id);
         $data_cekjb = DB::select("SELECT a.no_umk,(select sum(nilai) from kerja_detail where upper(no_umk)=upper(a.no_umk)) as total from kerja_header a where upper(a.no_umk)='$noumk'");
         foreach ($data_cekjb as $data_cek) {
             $data_c = $data_cek->total;
@@ -500,13 +488,13 @@ class UangMukaKerjaController extends Controller
 
     public function rekapExport(Request $request)
     {
-        $noumk=$request->noumk;
+        $noumk = $request->noumk;
         $header_list = Umk::where('no_umk', $noumk)->get();
         foreach ($header_list as $data_report) {
             $data_report;
         }
         $detail_list = DetailUmk::where('no_umk', $noumk)->get();
-        $list_acount =DetailUmk::where('no_umk', $noumk)->select('nilai')->sum('nilai');
+        $list_acount = DetailUmk::where('no_umk', $noumk)->select('nilai')->sum('nilai');
         $pdf = DomPDF::loadview('modul-umum.umk.export', compact(
             'list_acount',
             'data_report',
@@ -526,14 +514,14 @@ class UangMukaKerjaController extends Controller
     {
         $data_cek = Umk::whereBetween('tgl_panjar', [$request->mulai, $request->sampai])->count();
         if ($data_cek == 0) {
-            Alert::error('Tidak Ada Data Pada Tanggal Mulai: '.$request->mulai.' Sampai Tanggal: '.$request->sampai.'', 'Failed')->persistent(true);
+            Alert::error('Tidak Ada Data Pada Tanggal Mulai: ' . $request->mulai . ' Sampai Tanggal: ' . $request->sampai . '', 'Failed')->persistent(true);
             return redirect()->route('modul_umum.uang_muka_kerja.rekap.range');
         } else {
             if ($request->submit == 'pdf') {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
-                $array_bln	 = array(
+                $array_bln     = array(
                     1 => 'Januari',
                     'Februari',
                     'Maret',
@@ -547,17 +535,17 @@ class UangMukaKerjaController extends Controller
                     'November',
                     'Desember'
                 );
-                
-                $bulan= strtoupper($array_bln[ (int)$pecahkan[1] ]);
-                $tahun=$pecahkan[0];
+
+                $bulan = strtoupper($array_bln[(int)$pecahkan[1]]);
+                $tahun = $pecahkan[0];
                 $umk_header_list = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
-                ->get();
+                    ->get();
                 // dd($umk_header_list);
-                $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
-                ->select('jumlah')->sum('jumlah');
+                $list_acount = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
+                    ->select('jumlah')->sum('jumlah');
                 $pdf = DomPDF::loadview('modul-umum.umk.export-range', compact('umk_header_list', 'list_acount', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $dom_pdf = $pdf->getDomPDF();
-        
+
                 $canvas = $dom_pdf->getCanvas();
                 $canvas->page_text(690, 100, "Page {PAGE_NUM} of {PAGE_COUNT}", null, 10, array(0, 0, 0));
                 // return $pdf->download('rekap_umk_'.date('Y-m-d H:i:s').'.pdf');
@@ -591,7 +579,7 @@ class UangMukaKerjaController extends Controller
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
-                $array_bln	 = array(
+                $array_bln     = array(
                     1 => 'Januari',
                     'Februari',
                     'Maret',
@@ -605,14 +593,14 @@ class UangMukaKerjaController extends Controller
                     'November',
                     'Desember'
                 );
-                
-                $bulan= strtoupper($array_bln[ (int)$pecahkan[1] ]);
-                $tahun=$pecahkan[0];
+
+                $bulan = strtoupper($array_bln[(int)$pecahkan[1]]);
+                $tahun = $pecahkan[0];
                 $umk_header_list = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
-                ->get();
-                $list_acount =Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
-                ->select('jumlah')->sum('jumlah');
-                $excel= new Spreadsheet;
+                    ->get();
+                $list_acount = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
+                    ->select('jumlah')->sum('jumlah');
+                $excel = new Spreadsheet;
                 return view('modul-umum.umk.export-csv', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
             }
         }

@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_umum.uang_muka_kerja.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -152,13 +152,12 @@
                 swalAlertInit('cetak'); 
             } else { 
                 location.replace("{{ url('umum/uang-muka-kerja/rekap') }}"+ '/' +dataid);
-            }	
-                        
+            }
         });
     });    
     
     //edit
-    $('#btn-edit-umk').on('click', function(e) {
+    $('#editRow').on('click', function(e) {
         e.preventDefault();
         var allVals = [];  
         $(".btn-radio:checked").each(function() {  
@@ -166,13 +165,11 @@
             var dataid = $(this).attr('data-id');
             var dataa = $(this).attr('kt_table');
         
-            if(dataid == 1) 
-            {
+            if(dataid == 1) {
                 swalAlertInit('ubah');  
             } else {  
-                location.replace("{{ url('umum/uang-muka-kerja/edit') }}"+ '/' +dataid);
-            }	
-                        
+                location.href = "{{ url('umum/uang-muka-kerja/edit') }}" + '/' + dataid ;
+            }
         });
     });
     
@@ -190,7 +187,7 @@
                     // delete stuff
                     if(status == 'Y'){
                         Swal.fire({
-                            type  : 'info',
+                            icon  : 'info',
                             title : 'Data Tidak Bisa Dihapus, Data Sudah di Proses Perbendaharaan.',
                             text  : 'Failed',
                         });
@@ -205,7 +202,7 @@
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
                             text: "No. UMK : " + id,
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',
@@ -223,7 +220,7 @@
                                     },
                                     success: function () {
                                         Swal.fire({
-                                            type  : 'success',
+                                            icon  : 'success',
                                             title : 'Hapus No. UMK ' + id,
                                             text  : 'Berhasil',
                                             timer : 2000
