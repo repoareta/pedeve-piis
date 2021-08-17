@@ -106,9 +106,9 @@ class ThrController extends Controller
         $thr->bulan  = $request->bulan;
         $thr->nopek  = $request->pegawai;
         $thr->aard   = $request->aard;
-        $thr->jmlcc  = $request->jumlah_cicilan;
-        $thr->ccl    = $request->cicilan;
-        $thr->nilai  = $request->nilai;
+        $thr->jmlcc  = str_replace(',', '', $request->jumlah_cicilan);
+        $thr->ccl    = str_replace(',', '', $request->cicilan);
+        $thr->nilai  = str_replace(',', '', $request->nilai);
         $thr->userid = Auth::user()->userid;
 
         $thr->save();
@@ -159,9 +159,9 @@ class ThrController extends Controller
         $thr->bulan  = $request->bulan;
         $thr->nopek  = $request->pegawai;
         $thr->aard   = $request->aard;
-        $thr->jmlcc  = $request->jumlah_cicilan;
-        $thr->ccl    = $request->cicilan;
-        $thr->nilai  = $request->nilai;
+        $thr->jmlcc  = str_replace(',', '', $request->jumlah_cicilan);
+        $thr->ccl    = str_replace(',', '', $request->cicilan);
+        $thr->nilai  = str_replace(',', '', $request->nilai);
         $thr->userid = Auth::user()->userid;
 
         $thr->save();

@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form class="kt-form kt-form--label-right" id="formMasterBebanPerusahaan" action="{{ route('modul_sdm_payroll.master_beban_perusahaan.store') }}" method="POST">
+                <form class="form" id="formMasterBebanPerusahaan" action="{{ route('modul_sdm_payroll.master_beban_perusahaan.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Bulan</label>

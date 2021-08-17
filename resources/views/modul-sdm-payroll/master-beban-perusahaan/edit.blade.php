@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form class="kt-form kt-form--label-right" id="formMasterBebanPerusahaan" action="{{ route('modul_sdm_payroll.master_beban_perusahaan.update', [
+                <form class="form" id="formMasterBebanPerusahaan" action="{{ route('modul_sdm_payroll.master_beban_perusahaan.update', [
 					'tahun' => $beban_perusahaan->tahun,
 					'bulan' => $beban_perusahaan->bulan,
 					'nopek' => $beban_perusahaan->nopek,
