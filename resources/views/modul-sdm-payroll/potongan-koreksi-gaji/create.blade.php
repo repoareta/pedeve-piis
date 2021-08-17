@@ -30,7 +30,7 @@
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
-                    <select class="form-control kt-select2" style="width: 100% !important;" name="bulan" id="bulan" required>
+                    <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan" required>
                         <option value="1" <?php if($bulan == 1) echo 'selected' ; ?>>Januari</option>
                         <option value="2" <?php if($bulan == 2) echo 'selected' ; ?>>Februari</option>
                         <option value="3" <?php if($bulan == 3) echo 'selected' ; ?>>Maret</option>

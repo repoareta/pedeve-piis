@@ -207,7 +207,7 @@
 								success: function () {
 									Swal.fire({
 										type  : 'success',
-										title : 'Hapus Upah Master ' + nopek + " " + aard,
+										title : 'Hapus Master Upah ' + nopek + " " + aard,
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {

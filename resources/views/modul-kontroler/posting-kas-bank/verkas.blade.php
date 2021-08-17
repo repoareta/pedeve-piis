@@ -341,7 +341,7 @@
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</button>
 								@if($verified == "N")
-								<button type="submit" name="update" value="update" class="btn btn-brand"><i class="fa fa-reply" aria-hidden="true"></i>Save</button>
+								<button type="submit" name="update" value="update" class="btn btn-primary"><i class="fa fa-reply" aria-hidden="true"></i>Save</button>
 								@endif
 							</div>
 						</div>
