@@ -61,90 +61,90 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-$(document).ready(function () {
-    var t = $('#kt_table').DataTable({
-        scrollX   : true,
-        processing: true,
-        serverSide: true,
-        ajax      : "{{ route('modul_cm.perusahaan_afiliasi.index.json') }}",
-        columns: [
-            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-            {data: 'nama', name: 'nama', class:'no-wrap'},
-            {data: 'telepon', name: 'telepon'},
-            {data: 'alamat', name: 'alamat'},
-            {data: 'bidang_usaha', name: 'bidang_usaha'}
-        ]
-    });
+    $(document).ready(function () {
+        var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax      : "{{ route('modul_cm.perusahaan_afiliasi.index.json') }}",
+            columns: [
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+                {data: 'nama', name: 'nama', class:'no-wrap'},
+                {data: 'telepon', name: 'telepon'},
+                {data: 'alamat', name: 'alamat'},
+                {data: 'bidang_usaha', name: 'bidang_usaha'}
+            ]
+        });
 
-    $('#editRow').click(function(e) {
-        e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function() {
-                var id = $(this).val().split("/").join("-");
-                var url = '{{ route("modul_cm.perusahaan_afiliasi.edit", ":no_panjar") }}';
-                // go to page edit
-                window.location.href = url.replace(':no_panjar',id);
-            });
-        } else {
-            swalAlertInit('ubah');
-        }
-    });
-
-    $('#deleteRow').click(function(e) {
-        e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function() {
-                var id = $(this).val();
-                var nama = $(this).attr('nama');
-                // delete stuff
-                const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-danger'
-                },
-                    buttonsStyling: false
-                })
-
-                swalWithBootstrapButtons.fire({
-                    title: "Data yang akan dihapus?",
-                    text: "Nama Perusahaan : " + nama,
-                    type: 'warning',
-                    showCancelButton: true,
-                    reverseButtons: true,
-                    confirmButtonText: 'Ya, hapus',
-                    cancelButtonText: 'Batalkan'
-                })
-                .then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: "{{ route('modul_cm.perusahaan_afiliasi.delete') }}",
-                            type: 'DELETE',
-                            dataType: 'json',
-                            data: {
-                                "id": id,
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success: function () {
-                                Swal.fire({
-                                    type  : 'success',
-                                    title : 'Hapus Perusahaan ' + nama,
-                                    text  : 'Berhasil',
-                                    timer : 2000
-                                }).then(function() {
-                                    t.ajax.reload();
-                                });
-                            },
-                            error: function () {
-                                alert("Terjadi kesalahan, coba lagi nanti");
-                            }
-                        });
-                    }
+        $('#editRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var id = $(this).val().split("/").join("-");
+                    var url = '{{ route("modul_cm.perusahaan_afiliasi.edit", ":no_panjar") }}';
+                    // go to page edit
+                    window.location.href = url.replace(':no_panjar',id);
                 });
-            });
-        } else {
-            swalAlertInit('hapus');
-        }
-    });		
-});
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var id = $(this).val();
+                    var nama = $(this).attr('nama');
+                    // delete stuff
+                    const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Data yang akan dihapus?",
+                        text: "Nama Perusahaan : " + nama,
+                        type: 'warning',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batalkan'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_cm.perusahaan_afiliasi.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "id": id,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : 'Hapus Perusahaan ' + nama,
+                                        text  : 'Berhasil',
+                                        timer : 2000
+                                    }).then(function() {
+                                        t.ajax.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
+    });
 </script>
 @endpush
