@@ -11,6 +11,7 @@ use App\Models\Userpdv;
 // load plugin
 use DB;
 use Alert;
+use App\Http\Requests\DataPerkaraStoreRequest;
 use Illuminate\Support\Facades\File;
 
 class DataPerkaraController extends Controller
@@ -25,35 +26,35 @@ class DataPerkaraController extends Controller
         $data = DB::select("SELECT * from tbl_perkara");
 
         return datatables()->of($data)
-        ->addColumn('no_perkara', function ($data) {
-            return $data->no_perkara;
-        })
-        ->addColumn('tanggal', function ($data) {
-            $tgl = date_create($data->tgl_perkara);
-            $tanggal = date_format($tgl, 'd/m/Y');
+            ->addColumn('no_perkara', function ($data) {
+                return $data->no_perkara;
+            })
+            ->addColumn('tanggal', function ($data) {
+                $tgl = date_create($data->tgl_perkara);
+                $tanggal = date_format($tgl, 'd/m/Y');
 
-            return $tanggal;
-        })
-        ->addColumn('jenis_perkara', function ($data) {
-            return $data->jenis_perkara;
-        })
-        ->addColumn('klasifikasi_perkara', function ($data) {
-            return $data->klasifikasi_perkara;
-        })
-        ->addColumn('status_perkara', function ($data) {
-            return $data->status_perkara;
-        })
-        ->addColumn('detail', function ($data) {
-            return  '<a href="'.route('modul_cm.data_perkara.detail', ['no' => str_replace('/', '--', $data->no_perkara)]).'">Detail</a>';
-        })
-        ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.str_replace('/', '--', $data->no_perkara).'" value="'.str_replace('/', '--', $data->no_perkara).'" name="btn-radio"><span></span></label>';
-            return $radio;
-        })
-        ->rawColumns(['radio','view','detail'])
-        ->make(true);
+                return $tanggal;
+            })
+            ->addColumn('jenis_perkara', function ($data) {
+                return $data->jenis_perkara;
+            })
+            ->addColumn('klasifikasi_perkara', function ($data) {
+                return $data->klasifikasi_perkara;
+            })
+            ->addColumn('status_perkara', function ($data) {
+                return $data->status_perkara;
+            })
+            ->addColumn('detail', function ($data) {
+                return  '<a href="' . route('modul_cm.data_perkara.detail', ['no' => str_replace('/', '--', $data->no_perkara)]) . '">Detail</a>';
+            })
+            ->addColumn('radio', function ($data) {
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="' . str_replace('/', '--', $data->no_perkara) . '" value="' . str_replace('/', '--', $data->no_perkara) . '" name="btn-radio"><span></span></label>';
+                return $radio;
+            })
+            ->rawColumns(['radio', 'view', 'detail'])
+            ->make(true);
     }
-    
+
 
     public function detail($no)
     {
@@ -70,25 +71,19 @@ class DataPerkaraController extends Controller
         return view('modul-customer-management.data-perkara.create');
     }
 
-    public function store(Request $request)
+    public function store(DataPerkaraStoreRequest $request)
     {
-        // dd($nama_file);
-        DB::table('tbl_perkara')->insert([
-            'no_perkara'          => $request->no_perkara,
-            'tgl_perkara'         => $request->tanggal,
-            'jenis_perkara'       => $request->jenis_perkara,
-            'klasifikasi_perkara' => $request->klasifikasi_perkara,
-            'status_perkara'      => $request->status_perkara,
-            'r_perkara'           => $request->ringkasan_perkara,
-            'r_patitum'           => $request->ringkasan_petitum,
-            'r_putusan'           => $request->ringkasan_putusan,
-            'nilai_perkara'       => str_replace(',', '.', $request->nilai_perkara),
-            'file'                => '0',
-            'rate'                => 1,
-            'ci'                  => $request->ci,
-        ]);
+        $validated = collect($request->validated())
+            ->put('file', '0')
+            ->put('rate', 1)
+            ->forget('nilai_perkara')
+            ->put('nilai_perkara', (string) str_replace([',', '.'], '', $request->nilai_perkara))
+            ->toArray();
+
+        DB::table('tbl_perkara')->insert($validated);
+
         Alert::success('Data berhasil di simpan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('data_perkara.index');
+        return redirect()->route('modul_cm.data_perkara.index');
     }
 
     //pihak
@@ -96,60 +91,60 @@ class DataPerkaraController extends Controller
     {
         $data = DB::select("SELECT * from tbl_pihak where no_perkara='$request->no_perkara'");
         return datatables()->of($data)
-        ->addColumn('nama', function ($data) {
-            return $data->nama;
-        })
-        ->addColumn('alamat', function ($data) {
-            return $data->alamat;
-        })
-        ->addColumn('telp', function ($data) {
-            return $data->telp;
-        })
-        ->addColumn('keterangan', function ($data) {
-            return $data->keterangan;
-        })
-        ->addColumn('status', function ($data) {
-            if ($data->status == 1) {
-                return "Penggugat";
-            } elseif ($data->status == 2) {
-                return "Tergugat";
-            } elseif ($data->status == 3) {
-                return "Turut Tergugat";
-            } else {
-                return "";
-            }
-        })
-        ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_pihak.'" value="'.$data->kd_pihak.'" name="btn-radio"><span></span></label>';
-            return $radio;
-        })
-        
-        
-        ->rawColumns(['radio'])
-        ->make(true);
+            ->addColumn('nama', function ($data) {
+                return $data->nama;
+            })
+            ->addColumn('alamat', function ($data) {
+                return $data->alamat;
+            })
+            ->addColumn('telp', function ($data) {
+                return $data->telp;
+            })
+            ->addColumn('keterangan', function ($data) {
+                return $data->keterangan;
+            })
+            ->addColumn('status', function ($data) {
+                if ($data->status == 1) {
+                    return "Penggugat";
+                } elseif ($data->status == 2) {
+                    return "Tergugat";
+                } elseif ($data->status == 3) {
+                    return "Turut Tergugat";
+                } else {
+                    return "";
+                }
+            })
+            ->addColumn('radio', function ($data) {
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="' . $data->kd_pihak . '" value="' . $data->kd_pihak . '" name="btn-radio"><span></span></label>';
+                return $radio;
+            })
+
+
+            ->rawColumns(['radio'])
+            ->make(true);
     }
 
     public function pihak(Request $request)
     {
         if ($request->cek == 'A') {
             DB::table('tbl_pihak')->where('kd_pihak', $request->kd_pihak)
-            ->update([
-            'no_perkara' => $request->no_perkara,
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'telp' => $request->telp,
-            'keterangan' => $request->keterangan,
-            'status' => $request->status,
-            ]);
+                ->update([
+                    'no_perkara' => $request->no_perkara,
+                    'nama' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'telp' => $request->telp,
+                    'keterangan' => $request->keterangan,
+                    'status' => $request->status,
+                ]);
             return response()->json();
         } else {
             DB::table('tbl_pihak')->insert([
-            'no_perkara' => $request->no_perkara,
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'telp' => $request->telp,
-            'keterangan' => $request->keterangan,
-            'status' => $request->status,
+                'no_perkara' => $request->no_perkara,
+                'nama' => $request->nama,
+                'alamat' => $request->alamat,
+                'telp' => $request->telp,
+                'keterangan' => $request->keterangan,
+                'status' => $request->status,
             ]);
             return response()->json();
         }
@@ -172,40 +167,40 @@ class DataPerkaraController extends Controller
     {
         $data = DB::select("SELECT a.*,b.nama nama_p from tbl_hakim a join tbl_pihak b on a.kd_pihak=b.kd_pihak where b.no_perkara='$request->no_perkara'");
         return datatables()->of($data)
-        ->addColumn('nama_p', function ($data) {
-            return $data->nama_p;
-        })
-        ->addColumn('nama', function ($data) {
-            return $data->nama;
-        })
-        ->addColumn('alamat', function ($data) {
-            return $data->alamat;
-        })
-        ->addColumn('telp', function ($data) {
-            return $data->telp;
-        })
-        ->addColumn('keterangan', function ($data) {
-            return $data->keterangan;
-        })
-        ->addColumn('status', function ($data) {
-            if ($data->status == 1) {
-                return "Penggugat";
-            } elseif ($data->status == 2) {
-                return "Tergugat";
-            } elseif ($data->status == 3) {
-                return "Turut Tergugat";
-            } else {
-                return "";
-            }
-        })
-        ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="'.$data->kd_hakim.'" value="'.$data->kd_hakim.'" name="btn-radio"><span></span></label>';
-            return $radio;
-        })
-        
-        
-        ->rawColumns(['radio'])
-        ->make(true);
+            ->addColumn('nama_p', function ($data) {
+                return $data->nama_p;
+            })
+            ->addColumn('nama', function ($data) {
+                return $data->nama;
+            })
+            ->addColumn('alamat', function ($data) {
+                return $data->alamat;
+            })
+            ->addColumn('telp', function ($data) {
+                return $data->telp;
+            })
+            ->addColumn('keterangan', function ($data) {
+                return $data->keterangan;
+            })
+            ->addColumn('status', function ($data) {
+                if ($data->status == 1) {
+                    return "Penggugat";
+                } elseif ($data->status == 2) {
+                    return "Tergugat";
+                } elseif ($data->status == 3) {
+                    return "Turut Tergugat";
+                } else {
+                    return "";
+                }
+            })
+            ->addColumn('radio', function ($data) {
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="' . $data->kd_hakim . '" value="' . $data->kd_hakim . '" name="btn-radio"><span></span></label>';
+                return $radio;
+            })
+
+
+            ->rawColumns(['radio'])
+            ->make(true);
     }
 
     public function pihakJson(Request $request)
@@ -213,18 +208,18 @@ class DataPerkaraController extends Controller
         $data = DB::select("SELECT a.* from tbl_pihak a  where a.status='$request->status' and a.no_perkara='$request->no_perkara'");
         return response()->json($data);
     }
-    
+
     public function hakim(Request $request)
     {
         if ($request->cekhakim == 'A') {
             DB::table('tbl_hakim')->where('kd_hakim', $request->kd_hakim)
                 ->update([
-                'kd_pihak' => $request->kd_pihak,
-                'nama' => $request->nama,
-                'alamat' => $request->alamat,
-                'telp' => $request->telp,
-                'keterangan' => $request->keterangan,
-                'status' => $request->status,
+                    'kd_pihak' => $request->kd_pihak,
+                    'nama' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'telp' => $request->telp,
+                    'keterangan' => $request->keterangan,
+                    'status' => $request->status,
                 ]);
             return response()->json(1);
         } else {
@@ -235,7 +230,7 @@ class DataPerkaraController extends Controller
                 'telp' => $request->telp,
                 'keterangan' => $request->keterangan,
                 'status' => $request->status,
-                ]);
+            ]);
             return response()->json(2);
         }
     }
@@ -254,48 +249,27 @@ class DataPerkaraController extends Controller
 
     public function edit($no)
     {
-        $noperkara=str_replace('--', '/', $no);
-        $data_list = DB::select("SELECT * from tbl_perkara where no_perkara='$noperkara'");
+        $noperkara = str_replace('--', '/', $no);
+        $data = DB::select("SELECT * FROM tbl_perkara WHERE no_perkara = '$noperkara'")[0];
 
-        return view('modul-customer-management.data-perkara.edit', compact('data_list'));
+        return view('modul-customer-management.data-perkara.edit', compact('data'));
     }
 
-    public function update(Request $request)
+    public function update(DataPerkaraStoreRequest $request)
     {
-        if ($request->file == null) {
-            DB::table('tbl_perkara')->where('no_perkara', $request->no_perkara)
-            ->update([
-            'tgl_perkara' => $request->tanggal,
-            'jenis_perkara' => $request->jenis_perkara,
-            'klasifikasi_perkara' => $request->klasifikasi_perkara,
-            'status_perkara' => $request->status_perkara,
-            'r_perkara' => $request->ringkasan_perkara,
-            'r_patitum' => $request->ringkasan_petitum,
-            'r_putusan' => $request->ringkasan_putusan,
-            'nilai_perkara' => str_replace(',', '.', $request->nilai_perkara),
-            'file' => '0',
-            'rate' => 1,
-            'ci' => $request->ci,
-            ]);
-        } else {
-            DB::table('tbl_perkara')->where('no_perkara', $request->no_perkara)
-            ->update([
-            'tgl_perkara' => $request->tanggal,
-            'jenis_perkara' => $request->jenis_perkara,
-            'klasifikasi_perkara' => $request->klasifikasi_perkara,
-            'status_perkara' => $request->status_perkara,
-            'r_perkara' => $request->ringkasan_perkara,
-            'r_patitum' => $request->ringkasan_petitum,
-            'r_putusan' => $request->ringkasan_putusan,
-            'nilai_perkara' => str_replace(',', '.', $request->nilai_perkara),
-            'file' => '0',
-            'rate' => 1,
-            'ci' => $request->ci,
-            ]);
-            File::delete('data_perkara/'.$request->file_1);
-        }
+        $validated = collect($request->validated())
+            ->put('file', '0')
+            ->put('rate', 1)
+            ->forget(['nilai_perkara', 'no_perkara'])
+            ->put('nilai_perkara', (string) str_replace([',', '.'], '', $request->nilai_perkara))
+            ->toArray();
+
+        DB::table('tbl_perkara')
+            ->where('no_perkara', $request->no_perkara)
+            ->update($validated);
+
         Alert::success('Data berhasil di simpan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('data_perkara.index');
+        return redirect()->route('modul_cm.data_perkara.index');
     }
 
     public function delete(Request $request)
@@ -308,8 +282,8 @@ class DataPerkaraController extends Controller
         DB::table('tbl_perkara')->where('no_perkara', $request->kode)->delete();
         DB::table('tbl_pihak')->where('no_perkara', $request->kode)->delete();
         DB::table('tbl_dokumen_perkara')->where('no_perkara', $request->kode)->delete();
-        if (File::isDirectory(public_path('/data_perkara/'.$request->kode))) {
-            File::deleteDirectory(public_path('/data_perkara/'.$request->kode));
+        if (File::isDirectory(public_path('/data_perkara/' . $request->kode))) {
+            File::deleteDirectory(public_path('/data_perkara/' . $request->kode));
         }
         return response()->json();
     }
@@ -321,7 +295,7 @@ class DataPerkaraController extends Controller
             $tglexp = $data_tgl->tglexp;
         }
         $tglupd = date('Y-m-d');
-        $userpw ="v3ntur4";
+        $userpw = "v3ntur4";
         Userpdv::where('userid', $request->no)
             ->update([
                 'userpw' => $userpw,
@@ -329,28 +303,28 @@ class DataPerkaraController extends Controller
                 'passexp' => $tglexp
             ]);
         Alert::success('Password telah di Reset.', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('data_perkara.index');
+        return redirect()->route('modul_cm.data_perkara.index');
     }
 
     public function searchdokumen(Request $request)
     {
         $data = DB::select("SELECT *  from tbl_dokumen_perkara where no_perkara='$request->no_perkara'");
         return datatables()->of($data)
-        ->addColumn('nama', function ($data) {
-            $dat= '<embed align="center"  width="800" height="400" src="'.asset('/data_perkara/'.$data->no_perkara.'/'.$data->file).'" type="application/pdf"></embed>';
-            return $dat;
-        })
-        ->addColumn('file', function ($data) {
-            return $data->file;
-        })
-        ->addColumn('radio', function ($data) {
-            $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" no-perkara="'.$data->no_perkara.'" data-id="'.$data->kd_dok.'" file-id="'.$data->file.'" name="btn-radio"><span></span></label>';
-            return $radio;
-        })
-        
-        
-        ->rawColumns(['radio','nama'])
-        ->make(true);
+            ->addColumn('nama', function ($data) {
+                $dat = '<embed align="center"  width="800" height="400" src="' . asset('/data_perkara/' . $data->no_perkara . '/' . $data->file) . '" type="application/pdf"></embed>';
+                return $dat;
+            })
+            ->addColumn('file', function ($data) {
+                return $data->file;
+            })
+            ->addColumn('radio', function ($data) {
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" no-perkara="' . $data->no_perkara . '" data-id="' . $data->kd_dok . '" file-id="' . $data->file . '" name="btn-radio"><span></span></label>';
+                return $radio;
+            })
+
+
+            ->rawColumns(['radio', 'nama'])
+            ->make(true);
     }
 
     public function dokumen(Request $request)
@@ -358,23 +332,23 @@ class DataPerkaraController extends Controller
         $this->validate($request, [
             'file' => 'required|mimes:pdf,jpg,jpeg,png',
         ]);
-        
-        $folderPath = public_path('/data_perkara/'.$request->no_perkara);
+
+        $folderPath = public_path('/data_perkara/' . $request->no_perkara);
 
         if (!File::isDirectory($folderPath)) {
             File::makeDirectory($folderPath);
         }
 
         if ($request->hasfile('filedok')) {
-            foreach ($request->file('filedok') as $key=>$file) {
-                $name = time().$key.'_'.$file->getClientOriginalName();
+            foreach ($request->file('filedok') as $key => $file) {
+                $name = time() . $key . '_' . $file->getClientOriginalName();
                 $tujuan_upload = $folderPath;
                 $file->move($tujuan_upload, $name);
                 $data = $name;
                 DB::table('tbl_dokumen_perkara')->insert([
-                   'no_perkara' => $request->no_perkara,
-                   'file' => $data,
-               ]);
+                    'no_perkara' => $request->no_perkara,
+                    'file' => $data,
+                ]);
             }
         }
         return response()->json();
@@ -383,7 +357,7 @@ class DataPerkaraController extends Controller
     public function deletedokumen(Request $request)
     {
         DB::table('tbl_dokumen_perkara')->where('kd_dok', $request->kd_dok)->delete();
-        File::delete('data_perkara/'.$request->noperkara.'/'.$request->filed);
+        File::delete('data_perkara/' . $request->noperkara . '/' . $request->filed);
         return response()->json();
     }
 }

@@ -17,7 +17,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_cm.rkap_realisasi.create') }}">
+                <a href="{{ route('modul_cm.data_perkara.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -145,7 +145,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('data-id');
-                    location.replace("{{ url('customer_management/data_perkara/edit') }}"+ '/' +no);
+                    location.href = "{{ url('customer-management/data-perkara/edit') }}" + '/' + no;
                 });
             } else {
                 swalAlertInit('ubah');
