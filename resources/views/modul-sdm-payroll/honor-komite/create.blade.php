@@ -51,7 +51,7 @@
                     </select>
                 </div>
                 <div class="col-5">
-                    <input class="form-control" type="number" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete="off" required>
+                    <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete="off" required>
                     <input class="form-control" type="hidden" value="{{Auth::user()->userid }}"  name="userid" autocomplete="off">
                 </div>
             </div>

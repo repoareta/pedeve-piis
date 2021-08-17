@@ -58,13 +58,13 @@
 					<div class="form-group row">
 						<label for="pengali-input" class="col-2 col-form-label">Pengali<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="pengali" id="pengali" autocomplete="off">
+							<input class="form-control" type="text" name="pengali" id="pengali" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="pengali-input" class="col-2 col-form-label">Pengali Tampil<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="pengali_tampil" id="pengali_tampil" autocomplete="off">
+							<input class="form-control" type="text" name="pengali_tampil" id="pengali_tampil" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">

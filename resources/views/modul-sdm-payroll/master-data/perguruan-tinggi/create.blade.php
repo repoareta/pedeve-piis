@@ -23,14 +23,14 @@
                 <form class="form" id="formPerguruanTinggi" action="{{ route('modul_sdm_payroll.perguruan_tinggi.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="kode" class="col-2 col-form-label">Kode Perguruan Tinggi</label>
+						<label for="" class="col-2 col-form-label">Kode Perguruan Tinggi</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="kode" id="kode">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">Nama Perguruan Tinggi</label>
+						<label for="" class="col-2 col-form-label">Nama Perguruan Tinggi</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nama" id="nama">
 						</div>

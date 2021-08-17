@@ -40,7 +40,7 @@
 					<div class="form-group row">
 						<label for="nilai-input" class="col-2 col-form-label">Nilai<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="nilai" id="nilai" value="{{ $data->niilai }}" autocomplete="off">
+							<input class="form-control" type="text" name="nilai" id="nilai" value="{{ $data->niilai }}" autocomplete="off">
 						</div>
 					</div>
 					<div class="row">

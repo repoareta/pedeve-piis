@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_sdm_payroll.master_hutang.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -116,121 +116,121 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-$(document).ready(function () {
-    var t = $('#kt_table').DataTable({
-        scrollX   : true,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "{{ route('modul_sdm_payroll.master_hutang.index.json') }}",
-            data: function (d) {
-                d.no_pekerja = $('select[name=no_pekerja]').val();
-                d.bulan = $('select[name=bulan]').val();
-                d.tahun = $('select[name=tahun]').val();
-            }
-        },
-        columns: [
-            {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-            {data: 'bulan_tahun', name: 'bulan_tahun'},
-            {data: 'pekerja', name: 'pekerja'},
-            {data: 'aard', name: 'aard'},
-            {data: 'lastamount', name: 'lastamount', class: 'text-right'},
-            {data: 'curramount', name: 'curramount', class: 'no-wrap text-right'}
-        ]
-    });
+    $(document).ready(function () {
+        var t = $('#kt_table').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('modul_sdm_payroll.master_hutang.index.json') }}",
+                data: function (d) {
+                    d.no_pekerja = $('select[name=no_pekerja]').val();
+                    d.bulan = $('select[name=bulan]').val();
+                    d.tahun = $('select[name=tahun]').val();
+                }
+            },
+            columns: [
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+                {data: 'bulan_tahun', name: 'bulan_tahun'},
+                {data: 'pekerja', name: 'pekerja'},
+                {data: 'aard', name: 'aard'},
+                {data: 'lastamount', name: 'lastamount', class: 'text-right'},
+                {data: 'curramount', name: 'curramount', class: 'no-wrap text-right'}
+            ]
+        });
 
-    $('#search-form').on('submit', function(e) {
-        t.draw();
-        e.preventDefault();
-    });
+        $('#search-form').on('submit', function(e) {
+            t.draw();
+            e.preventDefault();
+        });
 
-    $('#editRow').click(function(e) {
-        e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function() {
-                var tahun = $(this).val().split("-")[0];
-                var bulan = $(this).val().split("-")[1];
-                var nopek = $(this).val().split("-")[2];
-                var aard = $(this).val().split("-")[3];
+        $('#editRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var tahun = $(this).val().split("-")[0];
+                    var bulan = $(this).val().split("-")[1];
+                    var nopek = $(this).val().split("-")[2];
+                    var aard = $(this).val().split("-")[3];
 
-                var url = '{{ route("modul_sdm_payroll.master_hutang.edit", [
-                    ":tahun",
-                    ":bulan",
-                    ":nopek",
-                    ":aard"
-                ]) }}';
-                // go to page edit
-                window.location.href = url
-                .replace(':tahun', tahun)
-                .replace(':bulan', bulan)
-                .replace(':nopek', nopek)
-                .replace(':aard', aard);
-            });
-        } else {
-            swalAlertInit('ubah');
-        }
-    });
-
-    $('#deleteRow').click(function(e) {
-        e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
-            $("input[type=radio]:checked").each(function() {
-                var tahun = $(this).val().split("-")[0];
-                var bulan = $(this).val().split("-")[1];
-                var nopek = $(this).val().split("-")[2];
-                var aard = $(this).val().split("-")[3];
-                // delete stuff
-                const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-danger'
-                },
-                    buttonsStyling: false
-                })
-
-                swalWithBootstrapButtons.fire({
-                    title: "Data yang akan dihapus?",
-                    text: "Nopek : " + nopek + " AARD : " + aard,
-                    type: 'warning',
-                    showCancelButton: true,
-                    reverseButtons: true,
-                    confirmButtonText: 'Ya, hapus',
-                    cancelButtonText: 'Batalkan'
-                })
-                .then((result) => {
-                    if (result.value) {
-                        $.ajax({
-                            url: "{{ route('modul_sdm_payroll.master_hutang.delete') }}",
-                            type: 'DELETE',
-                            dataType: 'json',
-                            data: {
-                                "tahun": tahun,
-                                "bulan": bulan,
-                                "nopek": nopek,
-                                "aard" : aard,
-                                "_token": "{{ csrf_token() }}",
-                            },
-                            success: function () {
-                                Swal.fire({
-                                    type  : 'success',
-                                    title : "Hapus Nopek : " + nopek + " AARD : " + aard,
-                                    text  : 'Berhasil',
-                                    timer : 2000
-                                }).then(function() {
-                                    t.ajax.reload();
-                                });
-                            },
-                            error: function () {
-                                alert("Terjadi kesalahan, coba lagi nanti");
-                            }
-                        });
-                    }
+                    var url = '{{ route("modul_sdm_payroll.master_hutang.edit", [
+                        ":tahun",
+                        ":bulan",
+                        ":nopek",
+                        ":aard"
+                    ]) }}';
+                    // go to page edit
+                    window.location.href = url
+                    .replace(':tahun', tahun)
+                    .replace(':bulan', bulan)
+                    .replace(':nopek', nopek)
+                    .replace(':aard', aard);
                 });
-            });
-        } else {
-            swalAlertInit('hapus');
-        }
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var tahun = $(this).val().split("-")[0];
+                    var bulan = $(this).val().split("-")[1];
+                    var nopek = $(this).val().split("-")[2];
+                    var aard = $(this).val().split("-")[3];
+                    // delete stuff
+                    const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Data yang akan dihapus?",
+                        text: "Nopek : " + nopek + " AARD : " + aard,
+                        type: 'warning',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batalkan'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_sdm_payroll.master_hutang.delete') }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "tahun": tahun,
+                                    "bulan": bulan,
+                                    "nopek": nopek,
+                                    "aard" : aard,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : "Hapus Nopek : " + nopek + " AARD : " + aard,
+                                        text  : 'Berhasil',
+                                        timer : 2000
+                                    }).then(function() {
+                                        t.ajax.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
     });
-});
 </script>
 @endpush

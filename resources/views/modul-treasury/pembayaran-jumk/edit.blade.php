@@ -331,7 +331,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control" type="number" value="" name="nilai" size="25" maxlength="25"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control" type="text" value="" name="nilai" size="25" maxlength="25"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
 						</div>
 					</div>
 

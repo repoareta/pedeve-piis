@@ -97,7 +97,7 @@
                             <input class="form-control" type="text" name="bulan" value="{{ $bulan }}" disabled="disabled">
                         </div>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="tahun" value="{{ $tahun }}" disabled="disabled">
+                            <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" disabled="disabled">
                         </div>
                         <label for="" class="col-1 col-form-label">No Kas</label>
                         <div class="col-2">

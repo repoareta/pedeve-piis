@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" id="formMasterUpah" action="{{ route('modul_sdm_payroll.master_upah.update', [
+                <form class="form" id="formMasterUpah" action="{{ route('modul_sdm_payroll.master_upah.update', [
 					'tahun' => $upah->tahun, 
 					'bulan' => $upah->bulan, 
 					'nopek'=> $upah->nopek, 
@@ -29,7 +29,7 @@
 					@csrf
 
 					<div class="form-group row">
-						<label for="tahun" class="col-2 col-form-label">Bulan</label>
+						<label for="" class="col-2 col-form-label">Bulan</label>
 						<div class="col-4">
 							<select class="form-control select2" name="bulan" id="bulan">
 								<option value="">- Pilih Bulan -</option>
@@ -49,14 +49,14 @@
 							<div id="bulan-nya"></div>
 						</div>
 
-						<label for="tahun" class="col-2 col-form-label">Tahun</label>
+						<label for="" class="col-2 col-form-label">Tahun</label>
 						<div class="col-4">
-							<input class="form-control" type="text" name="tahun" id="tahun" value="{{ $upah->tahun }}">
+							<input class="form-control tahun" type="text" name="tahun" id="tahun" value="{{ $upah->tahun }}">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="kode" class="col-2 col-form-label">Pegawai</label>
+						<label for="" class="col-2 col-form-label">Pegawai</label>
 						<div class="col-10">
 							<select class="form-control select2" name="pegawai" id="pegawai">
 								<option value="">- Pilih Pegawai -</option>
@@ -69,7 +69,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">AARD</label>
+						<label for="" class="col-2 col-form-label">AARD</label>
 						<div class="col-10">
 							<select class="form-control select2" name="aard" id="aard">
 								<option value="">- Pilih AARD -</option>
@@ -82,21 +82,21 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="nilai" class="col-2 col-form-label">Jumlah Cicilan</label>
+						<label for="" class="col-2 col-form-label">Jumlah Cicilan</label>
 						<div class="col-10">
 							<input class="form-control money" type="text" name="jumlah_cicilan" id="jumlah_cicilan" value="{{ currency_format($upah->jmlcc) }}">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nilai" class="col-2 col-form-label">Cicilan</label>
+						<label for="" class="col-2 col-form-label">Cicilan</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="cicilan" id="cicilan" value="{{ abs($upah->ccl) }}">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nilai" class="col-2 col-form-label">Nilai</label>
+						<label for="" class="col-2 col-form-label">Nilai</label>
 						<div class="col-10">
 							<input class="form-control money" type="text" name="nilai" id="nilai" value="{{ currency_format($upah->nilai) }}">
 						</div>

@@ -232,7 +232,7 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">No. Urut</label>
 						<div class="col-10">
-							<input class="form-control" type="number" name="no_urut" id="no_urut">
+							<input class="form-control" type="text" name="no_urut" id="no_urut">
 						</div>
 					</div>
 

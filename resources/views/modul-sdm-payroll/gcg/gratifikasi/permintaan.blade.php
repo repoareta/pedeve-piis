@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="nilai" class="col-3 col-form-label">Nilai yang diberi (Rp)</label>
+						<label for="" class="col-3 col-form-label">Nilai yang diberi (Rp)</label>
 						<div class="col-9">
 							<input class="form-control money" type="text" name="nilai" id="nilai">
 						</div>

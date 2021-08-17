@@ -23,14 +23,14 @@
                 <form class="form" id="formProvinsi" action="{{ route('modul_sdm_payroll.provinsi.update', ['provinsi' => $provinsi->kode]) }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="kode" class="col-2 col-form-label">Kode Provinsi</label>
+						<label for="" class="col-2 col-form-label">Kode Provinsi</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="kode" id="kode" value="{{ $provinsi->kode }}">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">Nama Provinsi</label>
+						<label for="" class="col-2 col-form-label">Nama Provinsi</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nama" id="nama" value="{{ $provinsi->nama }}">
 						</div>

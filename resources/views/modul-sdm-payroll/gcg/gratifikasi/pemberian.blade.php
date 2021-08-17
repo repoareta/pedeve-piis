@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="nilai" class="col-3 col-form-label">Nilai Pemberian</label>
+						<label for="" class="col-3 col-form-label">Nilai Pemberian</label>
 						<div class="col-9">
 							<input class="form-control money" type="text" name="nilai" id="nilai">
 						</div>

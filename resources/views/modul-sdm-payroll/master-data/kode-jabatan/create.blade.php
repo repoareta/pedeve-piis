@@ -23,7 +23,7 @@
                 <form class="form" id="formKodeJabatan" action="{{ route('modul_sdm_payroll.kode_jabatan.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="kode" class="col-2 col-form-label">Kode Bagian</label>
+						<label for="" class="col-2 col-form-label">Kode Bagian</label>
 						<div class="col-10">
 							<select class="form-control select2" name="kode_bagian" id="kode_bagian">
 								<option value="">- Pilih Kode Bagian -</option>
@@ -35,28 +35,28 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="kode" class="col-2 col-form-label">Kode Jabatan</label>
+						<label for="" class="col-2 col-form-label">Kode Jabatan</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="kode_jabatan" id="kode_jabatan">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">Nama</label>
+						<label for="" class="col-2 col-form-label">Nama</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nama" id="nama">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">Golongan</label>
+						<label for="" class="col-2 col-form-label">Golongan</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="golongan" id="golongan">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">Tunjangan</label>
+						<label for="" class="col-2 col-form-label">Tunjangan</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="tunjangan" id="tunjangan">
 						</div>
