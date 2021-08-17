@@ -143,8 +143,8 @@
                         })
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
-                            text: "No Dokumen  : " +docno,
-                            type: 'warning',
+                            text: "No Dokumen  : " + docno,
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',
@@ -158,29 +158,27 @@
                                 dataType: 'json',
                                 data: {
                                     "docno": docno,
-                                    "_token": "{{ csrf_token() }}",
                                 },
                                 success: function (data) {
                                     if(data == 1){
                                         Swal.fire({
-                                            type  : 'success',
-                                            title : "Data Jurnal Umum dengan No Dokumen  : " +docno+" Berhasil Dihapus.",
-                                            text  : 'Berhasil',
-                                            
+                                            icon: 'success',
+                                            title: "Data Jurnal Umum dengan No Dokumen  : " + docno +" Berhasil Dihapus.",
+                                            text: 'Berhasil',
                                         }).then(function() {
                                             location.reload();
                                         });
                                     }else if(data == 2){
                                         Swal.fire({
-                                        type  : 'info',
-                                        title : 'Penghapusan Gagal, Data Tidak Dalam Status Opening.',
-                                        text  : 'Info',
+                                            icon: 'info',
+                                            title: 'Penghapusan Gagal, Data Tidak Dalam Status Opening.',
+                                            text: 'Info',
                                         });
                                     } else {
                                         Swal.fire({
-                                        type  : 'info',
-                                        title : 'Data Sudah Di Posting, Tidak Bisa Di Update/Hapus.',
-                                        text  : 'Info',
+                                            icon: 'info',
+                                            title: 'Data Sudah Di Posting, Tidak Bisa Di Update/Hapus.',
+                                            text: 'Info',
                                         });
                                         
                                     }
@@ -204,7 +202,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('docno');
-                    location.replace("{{ url('kontroler/jurnal_umum/edit') }}"+ '/' +no);
+                    location.href = "{{ url('kontroler/jurnal-umum/edit') }}" + '/' + no;
                 });
             } else {
                 swalAlertInit('ubah');
@@ -217,7 +215,7 @@
             if($('input[class=btn-radio]').is(':checked')) { 
                 $("input[class=btn-radio]:checked").each(function(){
                     var docno = $(this).attr('docno');
-                    location.replace("{{ url('kontroler/jurnal_umum/rekap') }}"+ '/' +docno);
+                    location.href = "{{ url('kontroler/jurnal-umum/rekap') }}" + '/' + docno;
                 });
             } else {
                 swalAlertInit('cetak');
