@@ -83,7 +83,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::delete('uang-muka-kerja/delete', [UangMukaKerjaController::class, 'delete'])->name('delete');
         Route::delete('uang-muka-kerja/delete-detail', [UangMukaKerjaController::class, 'deleteDetail'])->name('delete.detail');
         Route::get('uang-muka-kerja/edit/{no}', [UangMukaKerjaController::class, 'edit'])->name('edit');
-        Route::get('uang-muka-kerja/edit-detail/{id}/{no}', [UangMukaKerjaController::class, 'editDetail'])->name('edit.detail');
+        Route::get('uang-muka-kerja/edit-detail/{id}/{no}', [UangMukaKerjaController::class, 'edit_detail'])->name('edit.detail');
         Route::get('uang-muka-kerja/approve/{id}', [UangMukaKerjaController::class, 'approve'])->name('approve');
         Route::get('uang-muka-kerja/rekap/{id}', [UangMukaKerjaController::class, 'rekap'])->name('rekap');
         Route::get('uang-muka-kerja/rekap-range', [UangMukaKerjaController::class, 'rekapRange'])->name('rekap.range');
