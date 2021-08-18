@@ -101,7 +101,7 @@
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "Dedail data Master Tabungan Kode: "+kode,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',
@@ -119,7 +119,7 @@
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
+										icon  : 'success',
 										title : "Dedail data Master Tabungan Kode: "+kode,
 										text  : 'Berhasil',
 										timer : 2000

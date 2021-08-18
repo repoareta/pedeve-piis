@@ -156,7 +156,7 @@ $(document).ready(function () {
 				swalWithBootstrapButtons.fire({
 					title: "Data yang akan dihapus?",
 					text: "Kode : " + id,
-					type: 'warning',
+					icon: 'warning',
 					showCancelButton: true,
 					reverseButtons: true,
 					confirmButtonText: 'Ya, hapus',
@@ -174,7 +174,7 @@ $(document).ready(function () {
 							},
 							success: function () {
 								Swal.fire({
-									type  : 'success',
+									icon  : 'success',
 									title : 'Hapus Anggaran ' + id,
 									text  : 'Berhasil',
 									timer : 2000
@@ -211,7 +211,7 @@ $(document).ready(function () {
 				swalWithBootstrapButtons.fire({
 					title: "Data yang akan dicetak?",
 					text: "No. Panjar : " + id,
-					type: 'warning',
+					icon: 'warning',
 					showCancelButton: true,
 					reverseButtons: true,
 					confirmButtonText: 'Cetak',

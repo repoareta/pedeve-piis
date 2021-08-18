@@ -647,7 +647,7 @@
 								},
 								success: function (data) {
 									Swal.fire({
-										icon : 'success',
+										icon  : 'success',
 										title: 'Hapus detail Berhasil',
 										text : 'Berhasil',
 										timer: 2000

@@ -99,7 +99,8 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
             // Route assigned name "perusahaan-afiliasi.pemegang_saham.index"...
             Route::name('pemegang_saham.')->group(function () {
                 Route::get('{perusahaan_afiliasi}/pemegang-saham', [PemegangSahamController::class, 'indexJson'])->name('index.json');
-                Route::get('{perusahaan_afiliasi}/pemegang-saham/{pemegang_saham}', [PemegangSahamController::class, 'show'])->name('show.json');
+                // Route::get('{perusahaan_afiliasi}/pemegang-saham/{pemegang_saham}', [PemegangSahamController::class, 'show'])->name('show.json');
+                Route::get('{perusahaan_afiliasi}/pemegang-saham/create', [PemegangSahamController::class, 'create'])->name('create');
                 Route::post('{perusahaan_afiliasi}/pemegang-saham/store', [PemegangSahamController::class, 'store'])->name('store');
                 Route::post('{perusahaan_afiliasi}/pemegang-saham/update/{pemegang_saham}', [PemegangSahamController::class, 'update'])->name('update');
                 Route::delete('{perusahaan_afiliasi}/pemegang-saham/{pemegang_saham}', [PemegangSahamController::class, 'delete'])->name('delete');

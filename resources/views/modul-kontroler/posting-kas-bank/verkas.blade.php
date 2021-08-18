@@ -405,7 +405,7 @@
 				success : function(data){
 					if(data == 1){
 						Swal.fire({
-							type  : 'success',
+							icon  : 'success',
 							title : 'Data Berhasil Diverifikasi',
 							text  : 'Berhasil',
 							timer : 2000
@@ -423,7 +423,7 @@
 							});
 					}else{
 						Swal.fire({
-							type  : 'success',
+							icon  : 'success',
 							title : 'Verifikasi Berhasil Dibatalkan.',
 							text  : 'Berhasil',
 							timer : 2000
@@ -452,7 +452,7 @@
 				success : function(data){
 					if(data == 1){
 						Swal.fire({
-							type  : 'success',
+							icon  : 'success',
 							title : 'Data Detail Berhasil Ditambah',
 							text  : 'Berhasil',
 							timer : 2000
@@ -527,7 +527,7 @@
 				success : function(data){
 					if(data == 1){
 						Swal.fire({
-							type  : 'success',
+							icon  : 'success',
 							title : 'Data Detail Kas Bank Sudah Update.',
 							text  : 'Berhasil',
 							timer : 2000
@@ -569,7 +569,7 @@
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
                             text: "Nourut  : " +id,
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',
@@ -588,7 +588,7 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : "Detail Kas Bank Dengan Nourut : " +id+" Berhasil Dihapus.",
                                         text  : 'Berhasil',
                                         

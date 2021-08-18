@@ -562,7 +562,7 @@ $('#form-edit').submit(function(){
 		},
 		success : function(data){
 		Swal.fire({
-			type  : 'success',
+			icon  : 'success',
 			title : 'Data Berhasil Diproses',
 			text  : 'Berhasil',
 			timer : 2000
@@ -741,7 +741,7 @@ $('#btn-delete-all').on('click', function(e) {
 		console.log(data);
 				if(data == 1){
 					Swal.fire({
-						type  : 'success',
+						icon  : 'success',
 						title : 'Data Berhasil Ditambah',
 						text  : 'Berhasil',
 						timer : 2000
@@ -775,7 +775,7 @@ $('#btn-delete-all').on('click', function(e) {
             },
 			success : function(data){
 				Swal.fire({
-					type  : 'success',
+					icon  : 'success',
 					title : 'Data Berhasil Dihapus',
 					text  : 'Berhasil',
 					timer : 2000
@@ -838,7 +838,7 @@ $('#form-edit-detail').submit(function(){
             },
 			success : function(data){
 				Swal.fire({
-					type  : 'success',
+					icon  : 'success',
 					title : 'Data Berhasil Diubah',
 					text  : 'Berhasil',
 					timer : 2000
@@ -870,7 +870,7 @@ $('#form-edit-detail').submit(function(){
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
 						text: "No. Dokumen : " + nodok+ " No Detail : "+nourut,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Ya, hapus',

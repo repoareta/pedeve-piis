@@ -142,7 +142,7 @@
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
 						text: "No. PJ Panjar : " + id,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Ya, hapus',
@@ -196,7 +196,7 @@
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dicetak?",
 						text: "No. PPanjar : " + id,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Cetak',

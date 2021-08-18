@@ -255,7 +255,7 @@
 				success : function(data){
 				if(data == 1){
 					Swal.fire({
-						type  : 'success',
+						icon  : 'success',
 						title : 'Data Berhasil Ditambah',
 						text  : 'Berhasil',
 						timer : 2000

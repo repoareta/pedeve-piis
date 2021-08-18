@@ -94,7 +94,7 @@
 
     function swalSuccessInit(title) {
         Swal.fire({
-            icon : 'success',
+            icon  : 'success',
             title: title,
             text : 'Berhasil',
             timer: 2000

@@ -109,7 +109,7 @@
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "Dedail data jamsostek: " + dataid,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',
@@ -127,7 +127,7 @@
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
+										icon  : 'success',
 										title :"Dedail data jamsostek: "+dataid,
 										text  : 'Berhasil',
 										timer : 2000

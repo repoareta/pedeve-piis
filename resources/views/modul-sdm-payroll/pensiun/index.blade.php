@@ -107,7 +107,7 @@
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "Dedail data Pensiun: "+dataid,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',
@@ -125,7 +125,7 @@
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
+										icon  : 'success',
 										title :"Dedail data Pensiun: "+dataid,
 										text  : 'Berhasil',
 										timer : 2000

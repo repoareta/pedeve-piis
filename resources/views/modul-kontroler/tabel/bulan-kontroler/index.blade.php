@@ -108,7 +108,7 @@ $(document).ready(function () {
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Kode  : " +kode,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -126,7 +126,7 @@ $(document).ready(function () {
                             },
                             success: function (data) {
                                 Swal.fire({
-                                    type  : 'success',
+                                    icon  : 'success',
                                     title : "Data Bulan Kontroler dengan kode  : " +kode+" Berhasil Dihapus.",
                                     text  : 'Berhasil',
                                     

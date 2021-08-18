@@ -178,7 +178,7 @@
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
 						text: "No. P UMK : " + id,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Ya, hapus',
@@ -196,7 +196,7 @@
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
+										icon  : 'success',
 										title : 'Hapus P UMK ' + id,
 										text  : 'Berhasil',
 										timer : 2000
@@ -233,7 +233,7 @@
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dicetak?",
 						text: "No. PUMK : " + id,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Cetak',

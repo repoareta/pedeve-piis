@@ -486,7 +486,7 @@
 								},
 								success: function () {
 									Swal.fire({
-										icon : 'success',
+										icon  : 'success',
 										title: 'Hapus detail Panjar',
 										text : 'Berhasil',
 										timer: 2000

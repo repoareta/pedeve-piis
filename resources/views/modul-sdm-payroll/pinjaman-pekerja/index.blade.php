@@ -160,7 +160,7 @@ $(document).ready(function () {
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : 'Hapus ID Pinjaman ' + id_pinjaman,
                                         text  : 'Berhasil',
                                         timer : 2000

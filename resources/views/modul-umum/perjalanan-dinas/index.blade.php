@@ -124,7 +124,7 @@
 					var data_ppanjar = $(this).data('ppanjar');
 					if (data_ppanjar === true) {
 						Swal.fire({
-							type: 'warning',
+							icon: 'warning',
 							timer: 2000,
 							title: 'Oops...',
 							text: 'Data tidak bisa diubah'

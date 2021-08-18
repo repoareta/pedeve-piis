@@ -122,7 +122,7 @@
 			swalWithBootstrapButtons.fire({
 				title: "Ingin melanjutkan isi detail perusahaan afiliasi?",
 				text: "",
-				type: 'warning',
+				icon: 'warning',
 				showCancelButton: true,
 				reverseButtons: true,
 				confirmButtonText: 'Ya, Lanjut Isi Detail Perusahaan Afiliasi',

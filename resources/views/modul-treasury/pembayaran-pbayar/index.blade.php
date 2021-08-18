@@ -176,7 +176,7 @@
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "No Dokumen: "+nodok,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',
@@ -195,7 +195,7 @@
 								success: function (data) {
 									if(data == 1){
 										Swal.fire({
-											type  : 'success',
+											icon  : 'success',
 											title : "No Dokumen: "+nodok,
 											text  : 'Berhasil',
 											timer : 2000

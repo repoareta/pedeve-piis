@@ -176,7 +176,7 @@
 				dataType : "JSON",
 				success : function(data){
 					Swal.fire({
-                        icon : 'success',
+                        icon  : 'success',
                         title: "Data Berhasil Ditambah",
                         text : 'Success',
                         timer: 2000
@@ -252,7 +252,7 @@
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "Dengan Kode : " + id,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',

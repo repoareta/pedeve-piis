@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CustomerManagement\PerusahaanAfiliasi;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PemegangSahamStore;
 use App\Http\Requests\PemegangSahamUpdate;
@@ -29,6 +30,13 @@ class PemegangSahamController extends Controller
             ->make(true);
     }
 
+    public function create(PerusahaanAfiliasi $perusahaan_afiliasi)
+    {
+        return view('modul-customer-management.perusahaan-afiliasi.pemegang-saham.create', compact(
+            'perusahaan_afiliasi'
+        ));
+    }
+
     /**
      * Insert Pemegang Saham Ke Database
      *
@@ -50,7 +58,11 @@ class PemegangSahamController extends Controller
 
         $pemegang_saham->save();
 
-        return response()->json($pemegang_saham, 200);
+        Alert::success('Tambah Pemegang Saham', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', 
+        [
+            'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+        ]);
     }
 
     /**
@@ -60,9 +72,12 @@ class PemegangSahamController extends Controller
      * @param PemegangSaham $pemegang_saham
      * @return void
      */
-    public function show(PerusahaanAfiliasi $perusahaan_afiliasi, PemegangSaham $pemegang_saham)
+    public function edit(PerusahaanAfiliasi $perusahaan_afiliasi, PemegangSaham $pemegang_saham)
     {
-        return response()->json($pemegang_saham, 200);
+        return view('modul-customer-management.perusahaan-afiliasi.pemegang-saham.edit', compact(
+            'perusahaan_afiliasi',
+            'pemegang_saham'
+        ));
     }
 
     /**
@@ -86,7 +101,11 @@ class PemegangSahamController extends Controller
 
         $pemegang_saham->save();
 
-        return response()->json($pemegang_saham, 200);
+        Alert::success('Tambah Pemegang Saham', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', 
+        [
+            'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+        ]);
     }
 
     /**

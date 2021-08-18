@@ -9,19 +9,19 @@
     </div>
     <div class="card-toolbar">
         <div class="float-left">
-            <a href="{{ route('modul_cm.perusahaan_afiliasi.create') }}">
+            <a href="{{ route('modul_cm.perusahaan_afiliasi.pemegang_saham.create', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]) }}">
                 <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                     <i class="fas fa-2x fa-plus-circle text-success"></i>
                 </span>
             </a>
             <a href="#">
                 <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                    <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
+                    <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
                 </span>
             </a>
             <a href="#">
                 <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                    <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
+                    <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
                 </span>
             </a>
         </div>
@@ -64,6 +64,19 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#kt_table_pemegang_saham tbody').on( 'click', 'tr', function (event) {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            } else {
+                $('#kt_table_pemegang_saham tbody tr.selected').removeClass('selected');
+                // $(':radio', this).trigger('click');
+                if (event.target.type !== 'radio') {
+                    $(':radio', this).trigger('click');
+                }
+                $(this).addClass('selected');
+            }
+        });
+
         $('#deletePemegangSaham').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_pemegang_saham]').is(':checked')) { 
@@ -90,7 +103,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Pemegang Saham : " + nama,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -107,7 +120,7 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : 'Hapus Detail Pemegang Saham ' + nama,
                                         text  : 'Berhasil',
                                         timer : 2000

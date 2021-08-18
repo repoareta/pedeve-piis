@@ -110,7 +110,7 @@
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
                             text: "Jenis  : " +kode,
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',
@@ -128,7 +128,7 @@
                                     },
                                     success: function (data) {
                                         Swal.fire({
-                                            type  : 'success',
+                                            icon  : 'success',
                                             title : "Data Main Account dengan jenis  : " +kode+" Berhasil Dihapus.",
                                             text  : 'Berhasil',
                                             

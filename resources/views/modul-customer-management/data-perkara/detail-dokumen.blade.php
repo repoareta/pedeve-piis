@@ -163,7 +163,7 @@
 				processData: false,
 				success : function(data){
 						Swal.fire({
-							icon : 'success',
+							icon  : 'success',
 							title: "Berhasil di tambah",
 							text : 'Success',
 						});

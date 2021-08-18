@@ -174,7 +174,7 @@
                         swalWithBootstrapButtons.fire({
                             title: "Data yang akan dihapus?",
                             text: "Tanggal  : " + tanggal + " nopek : " + nopek,
-                            type: 'warning',
+                            icon: 'warning',
                             showCancelButton: true,
                             reverseButtons: true,
                             confirmButtonText: 'Ya, hapus',
@@ -193,7 +193,7 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : "Data Lembur Tanggal  : " +tanggal+ " Nopek : " +nopek+ " Berhasil DIhapus.",
                                         text  : 'Berhasil',
                                         

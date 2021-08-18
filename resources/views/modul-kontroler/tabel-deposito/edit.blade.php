@@ -534,7 +534,7 @@ $('#form-edit').submit(function(){
 				success : function(data){
 					if(data == 1){
 						Swal.fire({
-							type  : 'success',
+							icon  : 'success',
 							title : 'Data Berhasil Diedit',
 							text  : 'Berhasil',
 							timer : 2000
@@ -578,7 +578,7 @@ $('#form-edit').submit(function(){
 			success : function(data){
                 if(data == 1){
 					Swal.fire({
-						type  : 'success',
+						icon  : 'success',
 						title : 'Data Detail Berhasil Ditambah',
 						text  : 'Berhasil',
 						timer : 2000
@@ -665,7 +665,7 @@ $('#editRow').on('click', function(e) {
             },
 			success : function(data){
 					Swal.fire({
-						type  : 'success',
+						icon  : 'success',
 						title : 'Data Detail Berhasil Diedit',
 						text  : 'Berhasil',
 						timer : 2000
@@ -698,7 +698,7 @@ $('#editRow').on('click', function(e) {
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
 						text: "Nourut  : " +id,
-						type: 'warning',
+						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
 						confirmButtonText: 'Ya, hapus',
@@ -717,7 +717,7 @@ $('#editRow').on('click', function(e) {
 							},
 							success: function () {
 								Swal.fire({
-									type  : 'success',
+									icon  : 'success',
 									title : "Detail Jurnal Umum Dengan Nourut : " +id+" Berhasil Dihapus.",
 									text  : 'Berhasil',
 									

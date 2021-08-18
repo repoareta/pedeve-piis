@@ -472,7 +472,7 @@
             },
 			success : function(data){
                 Swal.fire({
-					type  : 'success',
+					icon  : 'success',
 					title : 'Data Detail UMK Berhasil Ditambah',
 					text  : 'Berhasil',
 					timer : 2000
@@ -498,7 +498,7 @@
             },
 			success : function(data){
                 Swal.fire({
-					type  : 'success',
+					icon  : 'success',
 					title : 'Data Detail UMK Berhasil Diubah',
 					text  : 'Berhasil',
 					timer : 2000
@@ -573,7 +573,7 @@ $(".btn-radio:checked").each(function() {
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
 							text: "No. UMK : " + id+" dan NO urut : "+no,
-							type: 'warning',
+							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
 							confirmButtonText: 'Ya, hapus',
@@ -592,7 +592,7 @@ $(".btn-radio:checked").each(function() {
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
+										icon  : 'success',
 										title : 'Hapus Data Detail UMK',
 										text  : 'Berhasil',
 										timer : 2000

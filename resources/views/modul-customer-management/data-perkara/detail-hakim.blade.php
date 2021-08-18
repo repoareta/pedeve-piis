@@ -191,7 +191,7 @@
 				success : function(data){
 					if(data == 1){
 						Swal.fire({
-							icon : 'success',
+							icon  : 'success',
 							title: "Berhasil di ubah",
 							text : 'Success',
 							timer: 2000
@@ -205,7 +205,7 @@
 						t.ajax.reload();
 					}else if(data == 2){
 						Swal.fire({
-							icon : 'success',
+							icon  : 'success',
 							title: "Berhasil di tambah",
 							text : 'Success',
 							timer: 2000

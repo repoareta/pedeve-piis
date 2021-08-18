@@ -247,7 +247,7 @@ $('#deleteRow').click(function(e) {
 						},
 						success: function () {
 							Swal.fire({
-								type  : 'success',
+								icon  : 'success',
 								title : "Detail data No. dokumen : "+ nodok + ' nomer lineno : '  +lineno,
 								text  : 'Berhasil',
 								timer : 2000
