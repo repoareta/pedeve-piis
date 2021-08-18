@@ -342,6 +342,48 @@ class RkapRealisasiController extends Controller
             COALESCE(trk_nov.laba_bersih_r, 0) AS trk_nov_laba_bersih_r,
             COALESCE(trk_des.laba_bersih_r, 0) AS trk_des_laba_bersih_r,
 
+            COALESCE(trk.ebitda, 0) AS ebitda,
+            COALESCE(trk_jan.ebitda, 0) AS trk_jan_ebitda,
+            COALESCE(trk_feb.ebitda, 0) AS trk_feb_ebitda,
+            COALESCE(trk_mar.ebitda, 0) AS trk_mar_ebitda,
+            COALESCE(trk_apr.ebitda, 0) AS trk_apr_ebitda,
+            COALESCE(trk_mei.ebitda, 0) AS trk_mei_ebitda,
+            COALESCE(trk_jun.ebitda, 0) AS trk_jun_ebitda,
+            COALESCE(trk_jul.ebitda, 0) AS trk_jul_ebitda,
+            COALESCE(trk_agu.ebitda, 0) AS trk_agu_ebitda,
+            COALESCE(trk_sep.ebitda, 0) AS trk_sep_ebitda,
+            COALESCE(trk_okt.ebitda, 0) AS trk_okt_ebitda,
+            COALESCE(trk_nov.ebitda, 0) AS trk_nov_ebitda,
+            COALESCE(trk_des.ebitda, 0) AS trk_des_ebitda,
+
+            COALESCE(trk.investasi_bd, 0) AS investasi_bd,
+            COALESCE(trk_jan.investasi_bd, 0) AS trk_jan_investasi_bd,
+            COALESCE(trk_feb.investasi_bd, 0) AS trk_feb_investasi_bd,
+            COALESCE(trk_mar.investasi_bd, 0) AS trk_mar_investasi_bd,
+            COALESCE(trk_apr.investasi_bd, 0) AS trk_apr_investasi_bd,
+            COALESCE(trk_mei.investasi_bd, 0) AS trk_mei_investasi_bd,
+            COALESCE(trk_jun.investasi_bd, 0) AS trk_jun_investasi_bd,
+            COALESCE(trk_jul.investasi_bd, 0) AS trk_jul_investasi_bd,
+            COALESCE(trk_agu.investasi_bd, 0) AS trk_agu_investasi_bd,
+            COALESCE(trk_sep.investasi_bd, 0) AS trk_sep_investasi_bd,
+            COALESCE(trk_okt.investasi_bd, 0) AS trk_okt_investasi_bd,
+            COALESCE(trk_nov.investasi_bd, 0) AS trk_nov_investasi_bd,
+            COALESCE(trk_des.investasi_bd, 0) AS trk_des_investasi_bd,
+
+            COALESCE(trk.investasi_nbd, 0) AS investasi_nbd,
+            COALESCE(trk_jan.investasi_nbd, 0) AS trk_jan_investasi_nbd,
+            COALESCE(trk_feb.investasi_nbd, 0) AS trk_feb_investasi_nbd,
+            COALESCE(trk_mar.investasi_nbd, 0) AS trk_mar_investasi_nbd,
+            COALESCE(trk_apr.investasi_nbd, 0) AS trk_apr_investasi_nbd,
+            COALESCE(trk_mei.investasi_nbd, 0) AS trk_mei_investasi_nbd,
+            COALESCE(trk_jun.investasi_nbd, 0) AS trk_jun_investasi_nbd,
+            COALESCE(trk_jul.investasi_nbd, 0) AS trk_jul_investasi_nbd,
+            COALESCE(trk_agu.investasi_nbd, 0) AS trk_agu_investasi_nbd,
+            COALESCE(trk_sep.investasi_nbd, 0) AS trk_sep_investasi_nbd,
+            COALESCE(trk_okt.investasi_nbd, 0) AS trk_okt_investasi_nbd,
+            COALESCE(trk_nov.investasi_nbd, 0) AS trk_nov_investasi_nbd,
+            COALESCE(trk_des.investasi_nbd, 0) AS trk_des_investasi_nbd,
+
             COALESCE(trk.tkp_r) AS tkp_r,
             COALESCE(trk_jan.tkp_r, 0) AS trk_jan_tkp_r,
             COALESCE(trk_feb.tkp_r, 0) AS trk_feb_tkp_r,
@@ -384,6 +426,10 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
+            SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -406,6 +452,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -427,6 +476,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -448,6 +500,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -469,6 +524,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -490,6 +548,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -511,6 +572,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -532,6 +596,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -553,6 +620,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -574,6 +644,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -595,6 +668,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
@@ -616,6 +692,9 @@ class RkapRealisasiController extends Controller
             SUM(beban_usaha) AS beban_usaha,
             SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
+            SUM(ebitda) AS ebitda,
+            SUM(investasi_bd) AS investasi_bd,
+            SUM(investasi_nbd) AS investasi_nbd,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja

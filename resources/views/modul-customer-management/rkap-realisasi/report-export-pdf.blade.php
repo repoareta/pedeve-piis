@@ -117,38 +117,38 @@
                         <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_aset_r) }}</td>
                     </tr>
                     <tr>
-                        <td class="no-wrap">Revenue</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->revenue_r) }}</td>
+                        <td class="no-wrap">Pendapatan Usaha</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->pendapatan_usaha) }}</td>
                         <td class="text-center">{{ $rkapRealiasi->ci_r }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_revenue_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_revenue_r) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_pendapatan_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_pendapatan_usaha) }}</td>
                     </tr>
                     <tr>
-                        <td class="no-wrap">Beban Pokok</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->beban_pokok_r) }}</td>
+                        <td class="no-wrap">Beban Usaha</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->beban_usaha) }}</td>
                         <td class="text-center">{{ $rkapRealiasi->ci_r }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_beban_pokok_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_beban_pokok_r) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_beban_usaha) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_beban_usaha) }}</td>
                     </tr>
                     <tr>
                         <td class="no-wrap">Laba Kotor</td>
@@ -168,21 +168,21 @@
                         <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_laba_kotor_r) }}</td>
                     </tr>
                     <tr>
-                        <td class="no-wrap">Biaya Operasi</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->biaya_operasi_r) }}</td>
+                        <td class="no-wrap">Pendapatan/Beban Lain</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->pendapatan_or_beban_lain) }}</td>
                         <td class="text-center">{{ $rkapRealiasi->ci_r }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_biaya_operasi_r) }}</td>
-                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_biaya_operasi_r) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_pendapatan_or_beban_lain) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_pendapatan_or_beban_lain) }}</td>
                     </tr>
                     <tr>
                         <td class="no-wrap">Laba Operasi</td>
@@ -217,6 +217,57 @@
                         <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_laba_bersih_r) }}</td>
                         <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_laba_bersih_r) }}</td>
                         <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_laba_bersih_r) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="no-wrap">EBITDA</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->ebitda) }}</td>
+                        <td class="text-center">{{ $rkapRealiasi->ci_r }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_ebitda) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_ebitda) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="no-wrap">Investasi BD</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->investasi_bd) }}</td>
+                        <td class="text-center">{{ $rkapRealiasi->ci_r }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_investasi_bd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_investasi_bd) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="no-wrap">Investasi NBD</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->investasi_nbd) }}</td>
+                        <td class="text-center">{{ $rkapRealiasi->ci_r }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jan_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_feb_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mar_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_apr_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_mei_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jun_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_jul_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_agu_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_sep_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_okt_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_nov_investasi_nbd) }}</td>
+                        <td class="text-right">{{ currency_format($rkapRealiasi->trk_des_investasi_nbd) }}</td>
                     </tr>
                     <tr>
                         <td class="no-wrap">TKP</td>
