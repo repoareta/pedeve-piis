@@ -8,6 +8,7 @@ use App\Http\Requests\PerizinanUpdate;
 use App\Models\Perizinan;
 use App\Models\PerusahaanAfiliasi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 
 class PerizinanController extends Controller
@@ -35,6 +36,21 @@ class PerizinanController extends Controller
             ->make(true);
     }
 
+    public function create(PerusahaanAfiliasi $perusahaan_afiliasi)
+    {
+        return view('modul-customer-management.perusahaan-afiliasi.perizinan.create', compact(
+            'perusahaan_afiliasi'
+        ));
+    }
+
+    public function edit(PerusahaanAfiliasi $perusahaan_afiliasi, Perizinan $perizinan)
+    {
+        return view('modul-customer-management.perusahaan-afiliasi.perizinan.edit', compact(
+            'perusahaan_afiliasi',
+            'perizinan',
+        ));
+    }
+
     /**
      * Insert Pemegang Saham Ke Database
      *
@@ -49,9 +65,9 @@ class PerizinanController extends Controller
         Perizinan $perizinan
     ) {
         $perizinan->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
-        $perizinan->keterangan = $request->keterangan_perizinan;
-        $perizinan->nomor = $request->nomor_perizinan;
-        $perizinan->masa_berlaku_akhir = $request->masa_berlaku_akhir_perizinan;
+        $perizinan->keterangan = $request->keterangan;
+        $perizinan->nomor = $request->nomor;
+        $perizinan->masa_berlaku_akhir = $request->masa_berlaku_akhir;
         $perizinan->created_by = auth()->user()->nopeg;
 
         $file = $request->file('dokumen_perizinan');
@@ -68,7 +84,8 @@ class PerizinanController extends Controller
 
         $perizinan->save();
 
-        return response()->json($perizinan, 200);
+        Alert::success('Berhasil', 'Data berhasil di simpan')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]);
     }
 
     /**
@@ -97,9 +114,9 @@ class PerizinanController extends Controller
         Perizinan $perizinan
     ) {
         $perizinan->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
-        $perizinan->keterangan = $request->keterangan_perizinan;
-        $perizinan->nomor = $request->nomor_perizinan;
-        $perizinan->masa_berlaku_akhir = $request->masa_berlaku_akhir_perizinan;
+        $perizinan->keterangan = $request->keterangan;
+        $perizinan->nomor = $request->nomor;
+        $perizinan->masa_berlaku_akhir = $request->masa_berlaku_akhir;
         $perizinan->created_by = auth()->user()->nopeg;
 
         $file = $request->file('dokumen_perizinan');
@@ -120,7 +137,8 @@ class PerizinanController extends Controller
 
         $perizinan->save();
 
-        return response()->json($perizinan, 200);
+        Alert::success('Berhasil', 'Data berhasil di simpan')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]);
     }
 
     /**
