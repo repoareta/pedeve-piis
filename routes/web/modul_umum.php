@@ -156,6 +156,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::post('anggaran/rekap/export', [AnggaranController::class, 'rekapExport'])->name('rekap.export');
         Route::get('anggaran/report', [AnggaranController::class, 'report'])->name('report');
         Route::post('anggaran/report/export', [AnggaranController::class, 'reportExport'])->name('report.export');
+        Route::get('anggaran/get-by-tahun', [AnggaranController::class, 'getByTahun'])->name('get_by_tahun');
     
         // ANGGARAN SUBMAIN START
         Route::name('submain.')->group(function () {

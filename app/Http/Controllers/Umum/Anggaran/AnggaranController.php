@@ -158,6 +158,8 @@ class AnggaranController extends Controller
         ->anggaran_submain()
         ->delete();
 
+        AnggaranMain::find($request->id)->delete();
+
         return response()->json();
     }
 
@@ -237,5 +239,18 @@ class AnggaranController extends Controller
         ->setOption('footer-right', 'Halaman [page] dari [toPage]');
 
         return $pdf->stream('rekap_anggaran_'.date('Y-m-d H:i:s').'.pdf');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Type $var
+     * @return void
+     */
+    public function getByTahun(Request $request)
+    {
+        $anggaran_list = AnggaranMain::where('tahun', $request->tahun)->get();
+        
+        return response()->json($anggaran_list);
     }
 }
