@@ -8,6 +8,7 @@ use App\Http\Requests\AktaUpdate;
 use App\Models\Akta;
 use App\Models\PerusahaanAfiliasi;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 
 class AktaController extends Controller
@@ -23,16 +24,32 @@ class AktaController extends Controller
 
         return datatables()->of($akta_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_akta" nama="'.$row->jenis.'" value="'.$row->id.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_akta" nama="' . $row->jenis . '" value="' . $row->id . '"><span></span></label>';
                 return $radio;
             })
             ->addColumn('dokumen', function ($row) {
                 $file_path = asset("storage/$row->perusahaan_afiliasi_id/akta/$row->dokumen");
-                $dokumen = '<a href="'.$file_path.'" target=_blank>'.$row->dokumen.'</a>';
+                $dokumen = '<a href="' . $file_path . '" target=_blank>' . $row->dokumen . '</a>';
                 return $dokumen;
             })
             ->rawColumns(['radio', 'dokumen'])
             ->make(true);
+    }
+
+    public function create(PerusahaanAfiliasi $perusahaan_afiliasi)
+    {
+        return view('modul-customer-management.perusahaan-afiliasi.akta.create', compact(
+            'perusahaan_afiliasi'
+        ));
+    }
+
+    public function edit(PerusahaanAfiliasi $perusahaan_afiliasi, Akta $akta)
+    {
+        // dd($akta);
+        return view('modul-customer-management.perusahaan-afiliasi.akta.edit', compact(
+            'perusahaan_afiliasi',
+            'akta',
+        ));
     }
 
     /**
@@ -48,6 +65,8 @@ class AktaController extends Controller
         PerusahaanAfiliasi $perusahaan_afiliasi,
         Akta $akta
     ) {
+        // dd($request->validated());
+
         $akta->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
         $akta->jenis = $request->jenis_akta;
         $akta->nomor_akta = $request->nomor_akta;
@@ -63,7 +82,7 @@ class AktaController extends Controller
             $file_name = $file->getClientOriginalName();
             $akta->dokumen = $file_name;
             $file_path = $file->storeAs(
-                $perusahaan_afiliasi->id.'/akta',
+                $perusahaan_afiliasi->id . '/akta',
                 $akta->dokumen,
                 'public'
             );
@@ -71,7 +90,8 @@ class AktaController extends Controller
 
         $akta->save();
 
-        return response()->json($akta, 200);
+        Alert::success('Berhasil', 'Data berhasil di simpan')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]);
     }
 
     /**
@@ -114,11 +134,11 @@ class AktaController extends Controller
             // Value is not URL but directory file path
             $file_path = "public/$perusahaan_afiliasi->id/akta/$akta->dokumen";
             Storage::delete($file_path);
-        
+
             $file_name = $file->getClientOriginalName();
             $akta->dokumen = $file_name;
             $file_path = $file->storeAs(
-                $perusahaan_afiliasi->id.'/akta',
+                $perusahaan_afiliasi->id . '/akta',
                 $akta->dokumen,
                 'public'
             );
@@ -126,7 +146,8 @@ class AktaController extends Controller
 
         $akta->save();
 
-        return response()->json($akta, 200);
+        Alert::success('Berhasil', 'Data berhasil di simpan')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]);
     }
 
     /**

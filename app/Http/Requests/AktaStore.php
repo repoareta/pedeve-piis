@@ -24,7 +24,15 @@ class AktaStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'perusahaan_afiliasi_id' => 'required|string',
+            'jenis_akta' => 'required|string',
+            'nomor_akta' => 'required|string',
+            'tanggal_akta' => 'required|date_format:d-m-Y',
+            'notaris' => 'required|string',
+            'tmt_berlaku' => 'required|date_format:d-m-Y',
+            'tmt_berakhir' => 'required|date_format:d-m-Y',
+            'created_by' => 'required|string',
+            'dokumen_akta' => 'required|file',
         ];
     }
 }

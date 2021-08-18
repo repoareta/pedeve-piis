@@ -129,11 +129,11 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
             // Route assigned name "perusahaan-afiliasi.perizinan.index"...
             Route::name('perizinan.')->group(function () {
                 Route::get('{perusahaan_afiliasi}/perizinan', [PerizinanController::class, 'indexJson'])->name('index.json');
-                Route::get('{perusahaan_afiliasi}/perizinan/create', [KomisarisController::class, 'create'])->name('create');
-                Route::post('{perusahaan_afiliasi}/perizinan/store', [KomisarisController::class, 'store'])->name('store');
-                Route::get('{perusahaan_afiliasi}/perizinan/edit/{perizinan}', [KomisarisController::class, 'edit'])->name('edit');
-                Route::post('{perusahaan_afiliasi}/perizinan/update/{perizinan}', [KomisarisController::class, 'update'])->name('update');
-                Route::delete('{perusahaan_afiliasi}/perizinan/{perizinan}', [KomisarisController::class, 'delete'])->name('delete');
+                Route::get('{perusahaan_afiliasi}/perizinan/create', [PerizinanController::class, 'create'])->name('create');
+                Route::post('{perusahaan_afiliasi}/perizinan/store', [PerizinanController::class, 'store'])->name('store');
+                Route::get('{perusahaan_afiliasi}/perizinan/edit/{perizinan}', [PerizinanController::class, 'edit'])->name('edit');
+                Route::post('{perusahaan_afiliasi}/perizinan/update/{perizinan}', [PerizinanController::class, 'update'])->name('update');
+                Route::delete('{perusahaan_afiliasi}/perizinan/{perizinan}', [PerizinanController::class, 'delete'])->name('delete');
             });
 
             // Route assigned name "perusahaan-afiliasi.akta.index"...
