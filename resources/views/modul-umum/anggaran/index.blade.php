@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
 			<div class="float-left">
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_umum.anggaran.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -97,140 +97,140 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-$(document).ready(function () {
-	var t = $('#kt_table').DataTable({
-		scrollX   : true,
-		processing: true,
-		serverSide: true,
-		ajax: {
-			url: "{{ route('modul_umum.anggaran.index.json') }}",
-			data: function (d) {
-				d.kode_anggaran = $('input[name=kode_anggaran]').val();
-				d.tahun = $('select[name=tahun]').val();
+	$(document).ready(function () {
+		var t = $('#kt_table').DataTable({
+			scrollX   : true,
+			processing: true,
+			serverSide: true,
+			ajax: {
+				url: "{{ route('modul_umum.anggaran.index.json') }}",
+				data: function (d) {
+					d.kode_anggaran = $('input[name=kode_anggaran]').val();
+					d.tahun = $('select[name=tahun]').val();
+				}
+			},
+			columns: [
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+				{data: 'kode_main', name: 'kode_main', class:'no-wrap'},
+				{data: 'nama_main', name: 'nama_main'},
+				{data: 'tahun', name: 'tahun'},
+				{data: 'nilai_real', name: 'nilai_real', class: 'no-wrap text-right'},
+				{data: 'realisasi', name: 'realisasi', class:'no-wrap text-right'},
+				{data: 'sisa', name: 'sisa', class:'no-wrap text-right'}
+			]
+		});
+
+		$('#search-form').on('submit', function(e) {
+			t.draw();
+			e.preventDefault();
+		});
+
+		$('#editRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var id = $(this).val().split("/").join("-");
+					var url = '{{ route("modul_umum.anggaran.edit", ":kode_main") }}';
+					// go to page edit
+					window.location.href = url.replace(':kode_main',id);
+				});
+			} else {
+				swalAlertInit('ubah');
 			}
-		},
-		columns: [
-			{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-			{data: 'kode_main', name: 'kode_main', class:'no-wrap'},
-			{data: 'nama_main', name: 'nama_main'},
-			{data: 'tahun', name: 'tahun'},
-			{data: 'nilai_real', name: 'nilai_real', class: 'no-wrap text-right'},
-			{data: 'realisasi', name: 'realisasi', class:'no-wrap text-right'},
-			{data: 'sisa', name: 'sisa', class:'no-wrap text-right'}
-		]
-	});
+		});
 
-	$('#search-form').on('submit', function(e) {
-		t.draw();
-		e.preventDefault();
-	});
+		$('#deleteRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var id = $(this).val();
+					// delete stuff
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
 
-	$('#editRow').click(function(e) {
-		e.preventDefault();
-		if($('input[type=radio]').is(':checked')) { 
-			$("input[type=radio]:checked").each(function() {
-				var id = $(this).val().split("/").join("-");
-				var url = '{{ route("modul_umum.anggaran.edit", ":kode_main") }}';
-				// go to page edit
-				window.location.href = url.replace(':kode_main',id);
-			});
-		} else {
-			swalAlertInit('ubah');
-		}
-	});
-
-	$('#deleteRow').click(function(e) {
-		e.preventDefault();
-		if($('input[type=radio]').is(':checked')) { 
-			$("input[type=radio]:checked").each(function() {
-				var id = $(this).val();
-				// delete stuff
-				const swalWithBootstrapButtons = Swal.mixin({
-				customClass: {
-					confirmButton: 'btn btn-primary',
-					cancelButton: 'btn btn-danger'
-				},
-					buttonsStyling: false
-				})
-
-				swalWithBootstrapButtons.fire({
-					title: "Data yang akan dihapus?",
-					text: "Kode : " + id,
-					icon: 'warning',
-					showCancelButton: true,
-					reverseButtons: true,
-					confirmButtonText: 'Ya, hapus',
-					cancelButtonText: 'Batalkan'
-				})
-				.then((result) => {
-					if (result.value) {
-						$.ajax({
-							url: "{{ route('modul_umum.anggaran.delete') }}",
-							type: 'DELETE',
-							dataType: 'json',
-							data: {
-								"id": id,
-								"_token": "{{ csrf_token() }}",
-							},
-							success: function () {
-								Swal.fire({
-									icon  : 'success',
-									title : 'Hapus Anggaran ' + id,
-									text  : 'Berhasil',
-									timer : 2000
-								}).then(function() {
-									t.ajax.reload();
-								});
-							},
-							error: function () {
-								alert("Terjadi kesalahan, coba lagi nanti");
-							}
-						});
-					}
+					swalWithBootstrapButtons.fire({
+						title: "Data yang akan dihapus?",
+						text: "Kode : " + id,
+						icon: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Ya, hapus',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							$.ajax({
+								url: "{{ route('modul_umum.anggaran.delete') }}",
+								type: 'DELETE',
+								dataType: 'json',
+								data: {
+									"id": id,
+									"_token": "{{ csrf_token() }}",
+								},
+								success: function () {
+									Swal.fire({
+										icon  : 'success',
+										title : 'Hapus Anggaran ' + id,
+										text  : 'Berhasil',
+										timer : 2000
+									}).then(function() {
+										t.ajax.reload();
+									});
+								},
+								error: function () {
+									alert("Terjadi kesalahan, coba lagi nanti");
+								}
+							});
+						}
+					});
 				});
-			});
-		} else {
-			swalAlertInit('hapus');
-		}
-	});
+			} else {
+				swalAlertInit('hapus');
+			}
+		});
 
-	$('#exportRow').click(function(e) {
-		e.preventDefault();
-		if($('input[type=radio]').is(':checked')) { 
-			$("input[type=radio]:checked").each(function() {
-				var id = $(this).val();
-				
-				const swalWithBootstrapButtons = Swal.mixin({
-				customClass: {
-					confirmButton: 'btn btn-primary',
-					cancelButton: 'btn btn-danger'
-				},
-					buttonsStyling: false
-				})
+		$('#exportRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var id = $(this).val();
+					
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
 
-				swalWithBootstrapButtons.fire({
-					title: "Data yang akan dicetak?",
-					text: "No. Panjar : " + id,
-					icon: 'warning',
-					showCancelButton: true,
-					reverseButtons: true,
-					confirmButtonText: 'Cetak',
-					cancelButtonText: 'Batalkan'
-				})
-				.then((result) => {
-					if (result.value) {
-						var id = $(this).val().split("/").join("-");
-						// go to page edit
-						var url = "{{ url('umum/perjalanan_dinas/export') }}" + '/' + id;
-						window.open(url, '_blank');
-					}
+					swalWithBootstrapButtons.fire({
+						title: "Data yang akan dicetak?",
+						text: "No. Panjar : " + id,
+						icon: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Cetak',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							var id = $(this).val().split("/").join("-");
+							// go to page edit
+							var url = "{{ url('umum/perjalanan_dinas/export') }}" + '/' + id;
+							window.open(url, '_blank');
+						}
+					});
 				});
-			});
-		} else {
-			swalAlertInit('cetak');
-		}
-	});
+			} else {
+				swalAlertInit('cetak');
+			}
+		});
 
-});
+	});
 </script>
 @endpush

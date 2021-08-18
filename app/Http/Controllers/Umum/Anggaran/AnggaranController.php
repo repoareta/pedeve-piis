@@ -94,20 +94,18 @@ class AnggaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AnggaranStore $request)
+    public function store(AnggaranStore $request, AnggaranMain $anggaran)
     {
-        $anggaran = new AnggaranMain;
-
         $anggaran->kode_main = $request->kode;
         $anggaran->nama_main = $request->nama;
-        $anggaran->nilai_real = $request->nilai;
+        $anggaran->nilai_real = str_replace(',', '', $request->nilai);
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
 
         $anggaran->save();
 
-        Alert::success('Simpan Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success('Tambah Master Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.anggaran.index');
     }
 
@@ -117,10 +115,9 @@ class AnggaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($kode_main)
+    public function edit(AnggaranMain $anggaran)
     {
-        $anggaran = AnggaranMain::find($kode_main);
-        return view('modul-umum.anggaran.edit', compact('anggaran', 'kode_main'));
+        return view('modul-umum.anggaran.edit', compact('anggaran'));
     }
 
     /**
@@ -130,20 +127,18 @@ class AnggaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $kode_main)
+    public function update(Request $request, AnggaranMain $anggaran)
     {
-        $anggaran = AnggaranMain::find($kode_main);
-
         $anggaran->kode_main = $request->kode;
         $anggaran->nama_main = $request->nama;
-        $anggaran->nilai_real = $request->nilai;
+        $anggaran->nilai_real = str_replace(',', '', $request->nilai);
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
 
         $anggaran->save();
 
-        Alert::success('Ubah Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success('Ubah Master Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.anggaran.index');
     }
 

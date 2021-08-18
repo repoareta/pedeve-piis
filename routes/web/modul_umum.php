@@ -150,8 +150,8 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::get('anggaran/index-json', [AnggaranController::class, 'indexJson'])->name('index.json');
         Route::get('anggaran/create', [AnggaranController::class, 'create'])->name('create');
         Route::post('anggaran/store', [AnggaranController::class, 'store'])->name('store');
-        Route::get('anggaran/edit/{kode_main}', [AnggaranController::class, 'edit'])->name('edit');
-        Route::post('anggaran/update/{kode_main}', [AnggaranController::class, 'update'])->name('update');
+        Route::get('anggaran/edit/{anggaran}', [AnggaranController::class, 'edit'])->name('edit');
+        Route::post('anggaran/update/{anggaran}', [AnggaranController::class, 'update'])->name('update');
         Route::delete('anggaran/delete', [AnggaranController::class, 'delete'])->name('delete');
         Route::post('anggaran/rekap/export', [AnggaranController::class, 'rekapExport'])->name('rekap.export');
         Route::get('anggaran/report', [AnggaranController::class, 'report'])->name('report');
