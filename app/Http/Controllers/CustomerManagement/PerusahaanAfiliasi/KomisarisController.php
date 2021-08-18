@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CustomerManagement\PerusahaanAfiliasi;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KomisarisStore;
 use App\Http\Requests\KomisarisUpdate;
@@ -30,6 +31,22 @@ class KomisarisController extends Controller
     }
 
     /**
+     * Undocumented function
+     *
+     * @param PerusahaanAfiliasi $perusahaan_afiliasi
+     * @return void
+     */
+    public function create(PerusahaanAfiliasi $perusahaan_afiliasi)
+    {
+        return view(
+            'modul-customer-management.perusahaan-afiliasi.komisaris.create',
+            compact(
+                'perusahaan_afiliasi'
+            )
+        );
+    }
+
+    /**
      * Insert Pemegang Saham Ke Database
      *
      * @param KomisarisStore $request
@@ -43,26 +60,37 @@ class KomisarisController extends Controller
         Komisaris $komisaris
     ) {
         $komisaris->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
-        $komisaris->nama = $request->nama_komisaris;
-        $komisaris->tmt_dinas = $request->tmt_dinas_komisaris;
-        $komisaris->akhir_masa_dinas = $request->akhir_masa_dinas_komisaris;
+        $komisaris->nama = $request->nama;
+        $komisaris->tmt_dinas = $request->tmt_dinas;
+        $komisaris->akhir_masa_dinas = $request->akhir_masa_dinas;
         $komisaris->created_by = auth()->user()->nopeg;
 
         $komisaris->save();
 
-        return response()->json($komisaris, 200);
+        Alert::success('Tambah Komisaris', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route(
+            'modul_cm.perusahaan_afiliasi.edit',
+            [
+            'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+        ]
+        );
     }
 
     /**
-     * menampilkan detail satu data pemegang saham
+     * Undocumented function
      *
      * @param PerusahaanAfiliasi $perusahaan_afiliasi
-     * @param Komisaris $komisaris
      * @return void
      */
-    public function show(PerusahaanAfiliasi $perusahaan_afiliasi, Komisaris $komisaris)
+    public function edit(PerusahaanAfiliasi $perusahaan_afiliasi, Komisaris $komisaris)
     {
-        return response()->json($komisaris, 200);
+        return view(
+            'modul-customer-management.perusahaan-afiliasi.komisaris.edit',
+            compact(
+                'perusahaan_afiliasi',
+                'komisaris'
+            )
+        );
     }
 
     /**
@@ -79,14 +107,20 @@ class KomisarisController extends Controller
         Komisaris $komisaris
     ) {
         $komisaris->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
-        $komisaris->nama = $request->nama_komisaris;
-        $komisaris->tmt_dinas = $request->tmt_dinas_komisaris;
-        $komisaris->akhir_masa_dinas = $request->akhir_masa_dinas_komisaris;
+        $komisaris->nama = $request->nama;
+        $komisaris->tmt_dinas = $request->tmt_dinas;
+        $komisaris->akhir_masa_dinas = $request->akhir_masa_dinas;
         $komisaris->created_by = auth()->user()->nopeg;
 
         $komisaris->save();
 
-        return response()->json($komisaris, 200);
+        Alert::success('Ubah Komisaris', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route(
+            'modul_cm.perusahaan_afiliasi.edit',
+            [
+                'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+            ]
+        );
     }
 
     /**

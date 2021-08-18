@@ -57,7 +57,7 @@
             serverSide: true,
             ajax: "{{ route('modul_cm.perusahaan_afiliasi.direksi.index.json', ['perusahaan_afiliasi' => $perusahaan_afiliasi]) }}",
             columns: [
-                {data: 'radio', name: 'radio', class:'radio-button'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'nama', name: 'nama'},
                 {data: 'tmt_dinas', name: 'tmt_dinas'},
                 {data: 'akhir_masa_dinas', name: 'akhir_masa_dinas'}

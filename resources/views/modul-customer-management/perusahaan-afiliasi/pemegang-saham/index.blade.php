@@ -56,7 +56,7 @@
             serverSide: true,
             ajax: "{{ route('modul_cm.perusahaan_afiliasi.pemegang_saham.index.json', ['perusahaan_afiliasi' => $perusahaan_afiliasi]) }}",
             columns: [
-                {data: 'radio', name: 'radio', class:'radio-button'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'nama', name: 'nama'},
                 {data: 'kepemilikan', name: 'kepemilikan'},
                 {data: 'jumlah_lembar_saham', name: 'jumlah_lembar_saham'}
