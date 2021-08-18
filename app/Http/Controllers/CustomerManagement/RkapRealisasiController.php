@@ -431,7 +431,6 @@ class RkapRealisasiController extends Controller
             SUM(ebitda) AS ebitda,
             SUM(investasi_bd) AS investasi_bd,
             SUM(investasi_nbd) AS investasi_nbd,
-            SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
         FROM tbl_rencana_kerja
