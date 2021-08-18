@@ -114,27 +114,37 @@
         //     reverse: true
         // });
 
-        var doptions = {
-            reverse: true,
-            translation: {
-                'D': {
-                    pattern: /\./,
-                    optional: true,
-                    fallback: '.'
-                }
-            },
-            onKeyPress: function (cep, e, field, options) {
-                var masks = ['#,##0D', '#,##0D99'];
-                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
-                $('.money').mask(mask, options);
-            }
-        };
+        // var doptions = {
+        //     reverse: true,
+        //     translation: {
+        //         'D': {
+        //             pattern: /\./,
+        //             optional: true,
+        //             fallback: '.'
+        //         }
+        //     },
+        //     onKeyPress: function (cep, e, field, options) {
+        //         var masks = ['#,##0D', '#,##0D99'];
+        //         var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+        //         $('.money').mask(mask, options);
+        //     }
+        // };
 
-        $('.money').mask('#,##0D', doptions);
+        // $('.money').mask('#,##0D', doptions);
 
         // $('.money').mask('000000000000000', {
         //     reverse: true
         // });
+
+        $('.money').inputmask({
+			alias: 'decimal',
+            groupSeparator: ',',
+            autoGroup: true, 
+            digits: 2,
+            digitsOptional: true,
+            placeholder: '0.00',
+            rightAlign: false
+        });
 
         $('.tahun').mask('0000', {
             reverse: true
