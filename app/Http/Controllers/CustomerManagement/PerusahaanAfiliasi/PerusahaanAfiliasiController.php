@@ -60,6 +60,7 @@ class PerusahaanAfiliasiController extends Controller
     {
         $perusahaan_afiliasi->nama = $request->nama_perusahaan;
         $perusahaan_afiliasi->telepon = $request->no_telepon;
+        $perusahaan_afiliasi->npwp = $request->npwp;
         $perusahaan_afiliasi->alamat = $request->alamat;
         $perusahaan_afiliasi->bidang_usaha = $request->bidang_usaha;
         $perusahaan_afiliasi->modal_dasar = str_replace(',', '', $request->modal_dasar);
@@ -111,6 +112,7 @@ class PerusahaanAfiliasiController extends Controller
     {
         $perusahaan_afiliasi->nama = $request->nama_perusahaan;
         $perusahaan_afiliasi->telepon = $request->no_telepon;
+        $perusahaan_afiliasi->npwp = $request->npwp;
         $perusahaan_afiliasi->alamat = $request->alamat;
         $perusahaan_afiliasi->bidang_usaha = $request->bidang_usaha;
         $perusahaan_afiliasi->modal_dasar = str_replace(',', '', $request->modal_dasar);
