@@ -13,7 +13,7 @@
     <div class="card-header">
         <div class="card-title">
             <span class="card-icon">
-                <i class="flaticon2-line-chart text-primary"></i>
+                <i class="flaticon2-pen text-primary"></i>
             </span>
             <h3 class="card-label">
                 Menu Edit Pembayaran Pertanggungjawaban UMK
@@ -169,7 +169,7 @@
     <div class="card-header">
         <div class="card-title">
             <span class="card-icon">
-                <i class="flaticon2-line-chart text-primary"></i>
+                <i class="flaticon2-pen text-primary"></i>
             </span>
             <h3 class="card-label">
                 Detail Pembayaran Pertanggungjawaban UMK

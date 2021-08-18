@@ -9,7 +9,7 @@
     <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
-                <i class="flaticon2-line-chart text-primary"></i>
+                <i class="flaticon2-pen text-primary"></i>
             </span>
             <h3 class="card-label">
                 Edit Pinjaman Pekerja
@@ -95,7 +95,7 @@
     <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
-                <i class="flaticon2-line-chart text-primary"></i>
+                <i class="flaticon2-pen text-primary"></i>
             </span>
             <h3 class="card-label">
                 Detail Pinjaman Pekerja
