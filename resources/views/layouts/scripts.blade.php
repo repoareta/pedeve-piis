@@ -114,7 +114,7 @@
         //     reverse: true
         // });
 
-        $('.money').mask('000,000,000,000,000', {
+        $('.money').mask('000000000000000', {
             reverse: true
         });
 

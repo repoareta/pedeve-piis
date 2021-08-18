@@ -104,7 +104,7 @@
     @include('modul-customer-management.perusahaan-afiliasi.direksi.index')
     @include('modul-customer-management.perusahaan-afiliasi.komisaris.index')
     @include('modul-customer-management.perusahaan-afiliasi.perizinan.index')
-    @include('modul-customer-management.perusahaan-afiliasi.akta.edit')
+    @include('modul-customer-management.perusahaan-afiliasi.akta.index')
 
 </div>
 
