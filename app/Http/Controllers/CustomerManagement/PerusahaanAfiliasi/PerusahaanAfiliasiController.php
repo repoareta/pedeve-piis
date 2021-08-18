@@ -62,10 +62,10 @@ class PerusahaanAfiliasiController extends Controller
         $perusahaan_afiliasi->telepon = $request->no_telepon;
         $perusahaan_afiliasi->alamat = $request->alamat;
         $perusahaan_afiliasi->bidang_usaha = $request->bidang_usaha;
-        $perusahaan_afiliasi->modal_dasar = $request->modal_dasar;
-        $perusahaan_afiliasi->modal_disetor = $request->modal_disetor;
-        $perusahaan_afiliasi->jumlah_lembar_saham = $request->jumlah_lembar_saham;
-        $perusahaan_afiliasi->nilai_nominal_per_saham = $request->nilai_nominal_per_saham;
+        $perusahaan_afiliasi->modal_dasar = str_replace(',', '', $request->modal_dasar);
+        $perusahaan_afiliasi->modal_disetor = str_replace(',', '', $request->modal_disetor);
+        $perusahaan_afiliasi->jumlah_lembar_saham = str_replace(',', '', $request->jumlah_lembar_saham);
+        $perusahaan_afiliasi->nilai_nominal_per_saham = str_replace(',', '', $request->nilai_nominal_per_saham);
         $perusahaan_afiliasi->created_by = auth()->user()->nopeg;
 
         $perusahaan_afiliasi->save();
@@ -113,10 +113,10 @@ class PerusahaanAfiliasiController extends Controller
         $perusahaan_afiliasi->telepon = $request->no_telepon;
         $perusahaan_afiliasi->alamat = $request->alamat;
         $perusahaan_afiliasi->bidang_usaha = $request->bidang_usaha;
-        $perusahaan_afiliasi->modal_dasar = $request->modal_dasar;
-        $perusahaan_afiliasi->modal_disetor = $request->modal_disetor;
-        $perusahaan_afiliasi->jumlah_lembar_saham = $request->jumlah_lembar_saham;
-        $perusahaan_afiliasi->nilai_nominal_per_saham = $request->nilai_nominal_per_saham;
+        $perusahaan_afiliasi->modal_dasar = str_replace(',', '', $request->modal_dasar);
+        $perusahaan_afiliasi->modal_disetor = str_replace(',', '', $request->modal_disetor);
+        $perusahaan_afiliasi->jumlah_lembar_saham = str_replace(',', '', $request->jumlah_lembar_saham);
+        $perusahaan_afiliasi->nilai_nominal_per_saham = str_replace(',', '', $request->nilai_nominal_per_saham);
         $perusahaan_afiliasi->created_by = auth()->user()->nopeg;
 
         $perusahaan_afiliasi->save();
