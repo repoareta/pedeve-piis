@@ -26,9 +26,9 @@ class PerusahaanAfiliasiStore extends FormRequest
         return [
             'nama_perusahaan' => 'required|unique:App\Models\PerusahaanAfiliasi,nama',
             'alamat' => 'required',
-            'no_telepon' => 'required|string|digits_between:6,15',
+            'no_telepon' => 'string|digits_between:6,15',
             'bidang_usaha' => 'required',
-            'npwp' => 'required',
+            'npwp' => 'string',
             'modal_dasar' => 'required|numeric|min:0',
             'modal_disetor' => 'required|numeric|min:0',
             'jumlah_lembar_saham' => 'required|integer|min:0',
