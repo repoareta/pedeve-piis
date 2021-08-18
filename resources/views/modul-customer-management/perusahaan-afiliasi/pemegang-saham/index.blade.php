@@ -77,6 +77,26 @@
             }
         });
 
+        $('#editPemegangSaham').click(function(e) {
+            e.preventDefault();
+
+            if($('input[name=radio_pemegang_saham]').is(':checked')) { 
+                $("input[name=radio_pemegang_saham]:checked").each(function() {
+                    // get value from row					
+                    var id = $(this).val();
+
+                    var url = "{{ route('modul_cm.perusahaan_afiliasi.pemegang_saham.edit', 
+                        [
+                            'perusahaan_afiliasi' => $perusahaan_afiliasi,
+                            'pemegang_saham' => ':id',
+                        ]) }}";
+                    window.location.href = url.replace(':id', id);				
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deletePemegangSaham').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_pemegang_saham]').is(':checked')) { 

@@ -101,7 +101,7 @@ class PemegangSahamController extends Controller
 
         $pemegang_saham->save();
 
-        Alert::success('Tambah Pemegang Saham', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success('Ubah Pemegang Saham', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_cm.perusahaan_afiliasi.edit', 
         [
             'perusahaan_afiliasi' => $perusahaan_afiliasi->id
