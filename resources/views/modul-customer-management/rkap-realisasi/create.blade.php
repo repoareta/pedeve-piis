@@ -95,61 +95,61 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Aset</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="aset" id="aset">
+                            <input class="form-control money1" type="text" value="0" name="aset" id="aset">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="pendapatan_usaha" id="pendapatan_usaha">
+                            <input class="form-control money1" type="text" value="0" name="pendapatan_usaha" id="pendapatan_usaha">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Beban Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="beban_usaha" id="beban_usaha">
+                            <input class="form-control money1" type="text" value="0" name="beban_usaha" id="beban_usaha">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan/Beban Lain</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
+                            <input class="form-control money1" type="text" value="0" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Laba Bersih</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="laba_bersih" id="laba_bersih">
+                            <input class="form-control money1" type="text" value="0" name="laba_bersih" id="laba_bersih">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">EBITDA</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="ebitda" id="ebitda">
+                            <input class="form-control money1" type="text" value="0" name="ebitda" id="ebitda">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi BD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="investasi_bd" id="investasi_bd">
+                            <input class="form-control money1" type="text" value="0" name="investasi_bd" id="investasi_bd">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi NBD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="investasi_nbd" id="investasi_nbd">
+                            <input class="form-control money1" type="text" value="0" name="investasi_nbd" id="investasi_nbd">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">TKP</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="tkp" id="tkp">
+                            <input class="form-control money1" type="text" value="0" name="tkp" id="tkp">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">KPI</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="kpi" id="kpi">
+                            <input class="form-control money1" type="text" value="0" name="kpi" id="kpi">
                         </div>
                     </div>
 
@@ -171,8 +171,6 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function(){
-        
-
         $("input[name=kategori]").change(function(){
             if($("#realisasi").is(':checked')){
                 $("#bulan-group").show();
@@ -188,6 +186,187 @@
                 $("#kurs-group").hide();
             }
         });
+
+        var doptions3 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#aset').mask(mask, options);
+            }
+        };
+
+        $('#aset').mask('#,##0D', doptions3);
+
+        var doptions4 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#pendapatan_usaha').mask(mask, options);
+            }
+        };
+
+        $('#pendapatan_usaha').mask('#,##0D', doptions4);
+
+        var doptions5 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#beban_usaha').mask(mask, options);
+            }
+        };
+
+        $('#beban_usaha').mask('#,##0D', doptions5);
+
+        var doptions6 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#pendapatan_beban_lain').mask(mask, options);
+            }
+        };
+
+        $('#pendapatan_beban_lain').mask('#,##0D', doptions6);
+
+        var doptions7 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#laba_bersih').mask(mask, options);
+            }
+        };
+
+        $('#laba_bersih').mask('#,##0D', doptions7);
+
+        var doptions8 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#ebitda').mask(mask, options);
+            }
+        };
+
+        $('#ebitda').mask('#,##0D', doptions8);
+
+        var doptions9 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#investasi_bd').mask(mask, options);
+            }
+        };
+
+        $('#investasi_bd').mask('#,##0D', doptions9);
+
+        var doptions10 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#investasi_nbd').mask(mask, options);
+            }
+        };
+
+        $('#investasi_nbd').mask('#,##0D', doptions10);
+
+        var doptions11 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#tkp').mask(mask, options);
+            }
+        };
+
+        $('#tkp').mask('#,##0D', doptions11);
+
+        var doptions12 = {
+            reverse: true,
+            translation: {
+                'D': {
+                    pattern: /\./,
+                    optional: true,
+                    fallback: '.'
+                }
+            },
+            onKeyPress: function (cep, e, field, options) {
+                var masks = ['#,##0D', '#,##0D99'];
+                var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
+                $('#kpi').mask(mask, options);
+            }
+        };
+
+        $('#kpi').mask('#,##0D', doptions12);
+
     });		
 </script>
 @endpush
