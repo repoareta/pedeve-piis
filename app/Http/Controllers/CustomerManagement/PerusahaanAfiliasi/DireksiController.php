@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CustomerManagement\PerusahaanAfiliasi;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DireksiStore;
 use App\Http\Requests\DireksiUpdate;
@@ -30,6 +31,19 @@ class DireksiController extends Controller
     }
 
     /**
+     * Undocumented function
+     *
+     * @param PerusahaanAfiliasi $perusahaan_afiliasi
+     * @return void
+     */
+    public function create(PerusahaanAfiliasi $perusahaan_afiliasi)
+    {
+        return view('modul-customer-management.perusahaan-afiliasi.direksi.create', compact(
+            'perusahaan_afiliasi'
+        ));
+    }
+
+    /**
      * Insert Pemegang Saham Ke Database
      *
      * @param DireksiStore $request
@@ -50,19 +64,26 @@ class DireksiController extends Controller
 
         $direksi->save();
 
-        return response()->json($direksi, 200);
+        Alert::success('Tambah Direksi', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', 
+        [
+            'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+        ]);
     }
 
     /**
-     * menampilkan detail satu data pemegang saham
+     * Undocumented function
      *
      * @param PerusahaanAfiliasi $perusahaan_afiliasi
      * @param Direksi $direksi
      * @return void
      */
-    public function show(PerusahaanAfiliasi $perusahaan_afiliasi, Direksi $direksi)
+    public function edit(PerusahaanAfiliasi $perusahaan_afiliasi, Direksi $direksi)
     {
-        return response()->json($direksi, 200);
+        return view('modul-customer-management.perusahaan-afiliasi.direksi.edit', compact(
+            'perusahaan_afiliasi',
+            'direksi'
+        ));
     }
 
     /**
@@ -86,7 +107,11 @@ class DireksiController extends Controller
 
         $direksi->save();
 
-        return response()->json($direksi, 200);
+        Alert::success('Ubah Direksi', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_cm.perusahaan_afiliasi.edit', 
+        [
+            'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+        ]);
     }
 
     /**

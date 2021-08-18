@@ -9,19 +9,19 @@
     </div>
     <div class="card-toolbar">
         <div class="float-left">
-            <a href="{{ route('modul_cm.perusahaan_afiliasi.create') }}">
+            <a href="{{ route('modul_cm.perusahaan_afiliasi.direksi.create', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]) }}">
                 <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                     <i class="fas fa-2x fa-plus-circle text-success"></i>
                 </span>
             </a>
             <a href="#">
                 <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                    <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
+                    <i class="fas fa-2x fa-edit text-warning" id="editDireksi"></i>
                 </span>
             </a>
             <a href="#">
                 <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                    <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
+                    <i class="fas fa-2x fa-times-circle text-danger" id="deleteDireksi"></i>
                 </span>
             </a>
         </div>
@@ -63,6 +63,39 @@
                 {data: 'akhir_masa_dinas', name: 'akhir_masa_dinas'}
             ],
             order: [[ 0, "asc" ], [ 1, "asc" ]]
+        });
+
+        $('#kt_table_direksi tbody').on( 'click', 'tr', function (event) {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            } else {
+                $('#kt_table_direksi tbody tr.selected').removeClass('selected');
+                // $(':radio', this).trigger('click');
+                if (event.target.type !== 'radio') {
+                    $(':radio', this).trigger('click');
+                }
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#editDireksi').click(function(e) {
+            e.preventDefault();
+
+            if($('input[name=radio_direksi]').is(':checked')) { 
+                $("input[name=radio_direksi]:checked").each(function() {
+                    // get value from row					
+                    var id = $(this).val();
+
+                    var url = "{{ route('modul_cm.perusahaan_afiliasi.direksi.edit', 
+                        [
+                            'perusahaan_afiliasi' => $perusahaan_afiliasi,
+                            'direksi' => ':id',
+                        ]) }}";
+                    window.location.href = url.replace(':id', id);				
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
         });
 
         $('#deleteDireksi').click(function(e) {
