@@ -164,6 +164,8 @@ class RkapRealisasiController extends Controller
         $rkapRealisasi = RencanaKerja::find($id);
         $perusahaanList = PerusahaanAfiliasi::all();
 
+        // dd($rkapRealisasi);
+
         return view('modul-customer-management.rkap-realisasi.edit', compact('rkapRealisasi', 'perusahaanList'));
     }
 
