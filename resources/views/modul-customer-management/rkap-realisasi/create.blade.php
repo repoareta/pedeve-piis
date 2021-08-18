@@ -99,27 +99,45 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Revenue</label>
+                        <label class="col-2 col-form-label">Pendapatan Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="revenue" id="revenue">
+                            <input class="form-control money" type="text" value="0" name="pendapatan_usaha" id="pendapatan_usaha">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Beban Pokok</label>
+                        <label class="col-2 col-form-label">Beban Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="beban_pokok" id="beban_pokok">
+                            <input class="form-control money" type="text" value="0" name="beban_usaha" id="beban_usaha">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Biaya Operasi</label>
+                        <label class="col-2 col-form-label">Pendapatan/Beban Lain</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="biaya_operasi" id="biaya_operasi">
+                            <input class="form-control money" type="text" value="0" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Laba Bersih</label>
                         <div class="col-8">
                             <input class="form-control money" type="text" value="0" name="laba_bersih" id="laba_bersih">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">EBITDA</label>
+                        <div class="col-8">
+                            <input class="form-control money" type="text" value="0" name="ebitda" id="ebitda">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Investasi BD</label>
+                        <div class="col-8">
+                            <input class="form-control money" type="text" value="0" name="investasi_bd" id="investasi_bd">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Investasi NBD</label>
+                        <div class="col-8">
+                            <input class="form-control money" type="text" value="0" name="investasi_nbd" id="investasi_nbd">
                         </div>
                     </div>
                     <div class="form-group row">

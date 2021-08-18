@@ -74,16 +74,19 @@
                             <th rowspan="2">TAHUN</th>
                             <th rowspan="2">BULAN</th>
                             <th rowspan="2">CI</th>
-                            <th colspan="9" class="text-center">RKAP & REALISASI</th>
+                            <th colspan="12" class="text-center">RKAP & REALISASI</th>
                         </tr>
                         <tr>
                             <th class="no-wrap">Aset</th>
-                            <th class="no-wrap">Revenue</th>
-                            <th class="no-wrap">Beban Pokok</th>
+                            <th class="no-wrap">Pendapatan Usaha</th>
+                            <th class="no-wrap">Beban Usaha</th>
                             <th class="no-wrap">Laba Kotor</th>
-                            <th class="no-wrap">Biaya Operasi</th>
+                            <th class="no-wrap">Pendapatan/Beban Lain</th>
                             <th class="no-wrap">Laba Operasi</th>
                             <th class="no-wrap">Laba Bersih</th>
+                            <th class="no-wrap">EBITDA</th>
+                            <th class="no-wrap">Investasi BD</th>
+                            <th class="no-wrap">Investasi NBD</th>
                             <th class="no-wrap">TKP</th>
                             <th class="no-wrap">KPI</th>
                         </tr>
@@ -121,12 +124,15 @@
                 {data: 'bulan', name: 'bulan'},
                 {data: 'ci', name: 'ci'},
                 {data: 'aset', name: 'aset', class: 'text-right'},
-                {data: 'revenue', name: 'revenue', class: 'text-right'},
-                {data: 'beban_pokok', name: 'beban_pokok', class: 'text-right'},
+                {data: 'pendapatan_usaha', name: 'pendapatan_usaha', class: 'text-right'},
+                {data: 'beban_usaha', name: 'beban_usaha', class: 'text-right'},
                 {data: 'laba_kotor', name: 'laba_kotor', class: 'text-right'},
-                {data: 'biaya_operasi', name: 'biaya_operasi', class: 'text-right'},
+                {data: 'pendapatan_or_beban_lain', name: 'pendapatan_or_beban_lain', class: 'text-right'},
                 {data: 'laba_operasi', name: 'laba_operasi', class: 'text-right'},
                 {data: 'laba_bersih', name: 'laba_bersih', class: 'text-right'},
+                {data: 'ebitda', name: 'ebitda', class: 'text-right'},
+                {data: 'investasi_bd', name: 'investasi_bd', class: 'text-right'},
+                {data: 'investasi_nbd', name: 'investasi_nbd', class: 'text-right'},
                 {data: 'tkp', name: 'tkp', class: 'text-right'},
                 {data: 'kpi', name: 'kpi', class: 'text-right'},
             ]
@@ -170,8 +176,6 @@
 			});
 
 		});
-
-        
 
         $('#editRow').click(function(e) {
 			e.preventDefault();
@@ -260,7 +264,6 @@
 				swalAlertInit('hapus');
 			}
 		});
-
     });		
 </script>
 @endpush

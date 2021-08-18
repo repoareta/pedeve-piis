@@ -29,6 +29,12 @@ class RkapRealisasiController extends Controller
         return view('modul-customer-management.rkap-realisasi.index', compact('rkapRealisasiTahunList', 'perusahaanList'));
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
     public function indexJson(Request $request)
     {
         if ($request->perusahaan) {
@@ -69,23 +75,32 @@ class RkapRealisasiController extends Controller
         ->addColumn('aset', function ($data) {
             return currency_format($data->aset_r);
         })
-        ->addColumn('revenue', function ($data) {
-            return currency_format($data->revenue_r);
+        ->addColumn('pendapatan_usaha', function ($data) {
+            return currency_format($data->pendapatan_usaha);
         })
-        ->addColumn('beban_pokok', function ($data) {
-            return currency_format($data->beban_pokok_r);
+        ->addColumn('beban_usaha', function ($data) {
+            return currency_format($data->beban_usaha);
         })
         ->addColumn('laba_kotor', function ($data) {
-            return currency_format($data->beban_pokok_r + $data->revenue_r);
+            return currency_format($data->beban_usaha + $data->pendapatan_usaha);
         })
-        ->addColumn('biaya_operasi', function ($data) {
-            return currency_format($data->biaya_operasi_r);
+        ->addColumn('pendapatan_or_beban_lain', function ($data) {
+            return currency_format($data->pendapatan_or_beban_lain);
         })
         ->addColumn('laba_operasi', function ($data) {
-            return currency_format($data->biaya_operasi_r + ($data->beban_pokok_r + $data->revenue_r));
+            return currency_format($data->pendapatan_or_beban_lain + ($data->beban_usaha + $data->pendapatan_usaha));
         })
         ->addColumn('laba_bersih', function ($data) {
             return currency_format($data->laba_bersih_r);
+        })
+        ->addColumn('ebitda', function ($data) {
+            return currency_format($data->ebitda);
+        })
+        ->addColumn('investasi_bd', function ($data) {
+            return currency_format($data->investasi_bd);
+        })
+        ->addColumn('investasi_nbd', function ($data) {
+            return currency_format($data->investasi_nbd);
         })
         ->addColumn('tkp', function ($data) {
             return currency_format($data->tkp_r);
@@ -122,10 +137,13 @@ class RkapRealisasiController extends Controller
         $rencanaKerja->bulan = $request->bulan;
         $rencanaKerja->rate_r = $request->kurs;
         $rencanaKerja->aset_r = str_replace(',', '', $request->aset);
-        $rencanaKerja->revenue_r = str_replace(',', '', $request->revenue);
-        $rencanaKerja->beban_pokok_r = str_replace(',', '', $request->beban_pokok);
-        $rencanaKerja->biaya_operasi_r = str_replace(',', '', $request->biaya_operasi);
+        $rencanaKerja->pendapatan_usaha = str_replace(',', '', $request->pendapatan_usaha);
+        $rencanaKerja->beban_usaha = str_replace(',', '', $request->beban_usaha);
+        $rencanaKerja->pendapatan_or_beban_lain = str_replace(',', '', $request->pendapatan_beban_lain);
         $rencanaKerja->laba_bersih_r = str_replace(',', '', $request->laba_bersih);
+        $rencanaKerja->ebitda = str_replace(',', '', $request->ebitda);
+        $rencanaKerja->investasi_bd = str_replace(',', '', $request->investasi_bd);
+        $rencanaKerja->investasi_nbd = str_replace(',', '', $request->investasi_nbd);
         $rencanaKerja->tkp_r = str_replace(',', '', $request->tkp);
         $rencanaKerja->kpi_r = str_replace(',', '', $request->kpi);
 
@@ -164,10 +182,13 @@ class RkapRealisasiController extends Controller
         $rencanaKerja->bulan = $request->bulan;
         $rencanaKerja->rate_r = $request->kurs;
         $rencanaKerja->aset_r = str_replace(',', '', $request->aset);
-        $rencanaKerja->revenue_r = str_replace(',', '', $request->revenue);
-        $rencanaKerja->beban_pokok_r = str_replace(',', '', $request->beban_pokok);
-        $rencanaKerja->biaya_operasi_r = str_replace(',', '', $request->biaya_operasi);
+        $rencanaKerja->pendapatan_usaha = str_replace(',', '', $request->pendapatan_usaha);
+        $rencanaKerja->beban_usaha = str_replace(',', '', $request->beban_usaha);
+        $rencanaKerja->pendapatan_or_beban_lain = str_replace(',', '', $request->pendapatan_beban_lain);
         $rencanaKerja->laba_bersih_r = str_replace(',', '', $request->laba_bersih);
+        $rencanaKerja->ebitda = str_replace(',', '', $request->ebitda);
+        $rencanaKerja->investasi_bd = str_replace(',', '', $request->investasi_bd);
+        $rencanaKerja->investasi_nbd = str_replace(',', '', $request->investasi_nbd);
         $rencanaKerja->tkp_r = str_replace(',', '', $request->tkp);
         $rencanaKerja->kpi_r = str_replace(',', '', $request->kpi);
 
@@ -237,75 +258,75 @@ class RkapRealisasiController extends Controller
             COALESCE(trk_nov.aset_r, 0) AS trk_nov_aset_r,
             COALESCE(trk_des.aset_r, 0) AS trk_des_aset_r,
 
-            COALESCE(trk.revenue_r, 0) AS revenue_r,
-            COALESCE(trk_jan.revenue_r, 0) AS trk_jan_revenue_r,
-            COALESCE(trk_feb.revenue_r, 0) AS trk_feb_revenue_r,
-            COALESCE(trk_mar.revenue_r, 0) AS trk_mar_revenue_r,
-            COALESCE(trk_apr.revenue_r, 0) AS trk_apr_revenue_r,
-            COALESCE(trk_mei.revenue_r, 0) AS trk_mei_revenue_r,
-            COALESCE(trk_jun.revenue_r, 0) AS trk_jun_revenue_r,
-            COALESCE(trk_jul.revenue_r, 0) AS trk_jul_revenue_r,
-            COALESCE(trk_agu.revenue_r, 0) AS trk_agu_revenue_r,
-            COALESCE(trk_sep.revenue_r, 0) AS trk_sep_revenue_r,
-            COALESCE(trk_okt.revenue_r, 0) AS trk_okt_revenue_r,
-            COALESCE(trk_nov.revenue_r, 0) AS trk_nov_revenue_r,
-            COALESCE(trk_des.revenue_r, 0) AS trk_des_revenue_r,
+            COALESCE(trk.pendapatan_usaha, 0) AS pendapatan_usaha,
+            COALESCE(trk_jan.pendapatan_usaha, 0) AS trk_jan_pendapatan_usaha,
+            COALESCE(trk_feb.pendapatan_usaha, 0) AS trk_feb_pendapatan_usaha,
+            COALESCE(trk_mar.pendapatan_usaha, 0) AS trk_mar_pendapatan_usaha,
+            COALESCE(trk_apr.pendapatan_usaha, 0) AS trk_apr_pendapatan_usaha,
+            COALESCE(trk_mei.pendapatan_usaha, 0) AS trk_mei_pendapatan_usaha,
+            COALESCE(trk_jun.pendapatan_usaha, 0) AS trk_jun_pendapatan_usaha,
+            COALESCE(trk_jul.pendapatan_usaha, 0) AS trk_jul_pendapatan_usaha,
+            COALESCE(trk_agu.pendapatan_usaha, 0) AS trk_agu_pendapatan_usaha,
+            COALESCE(trk_sep.pendapatan_usaha, 0) AS trk_sep_pendapatan_usaha,
+            COALESCE(trk_okt.pendapatan_usaha, 0) AS trk_okt_pendapatan_usaha,
+            COALESCE(trk_nov.pendapatan_usaha, 0) AS trk_nov_pendapatan_usaha,
+            COALESCE(trk_des.pendapatan_usaha, 0) AS trk_des_pendapatan_usaha,
 
-            COALESCE(trk.beban_pokok_r, 0) AS beban_pokok_r,
-            COALESCE(trk_jan.beban_pokok_r, 0) AS trk_jan_beban_pokok_r,
-            COALESCE(trk_feb.beban_pokok_r, 0) AS trk_feb_beban_pokok_r,
-            COALESCE(trk_mar.beban_pokok_r, 0) AS trk_mar_beban_pokok_r,
-            COALESCE(trk_apr.beban_pokok_r, 0) AS trk_apr_beban_pokok_r,
-            COALESCE(trk_mei.beban_pokok_r, 0) AS trk_mei_beban_pokok_r,
-            COALESCE(trk_jun.beban_pokok_r, 0) AS trk_jun_beban_pokok_r,
-            COALESCE(trk_jul.beban_pokok_r, 0) AS trk_jul_beban_pokok_r,
-            COALESCE(trk_agu.beban_pokok_r, 0) AS trk_agu_beban_pokok_r,
-            COALESCE(trk_sep.beban_pokok_r, 0) AS trk_sep_beban_pokok_r,
-            COALESCE(trk_okt.beban_pokok_r, 0) AS trk_okt_beban_pokok_r,
-            COALESCE(trk_nov.beban_pokok_r, 0) AS trk_nov_beban_pokok_r,
-            COALESCE(trk_des.beban_pokok_r, 0) AS trk_des_beban_pokok_r,
+            COALESCE(trk.beban_usaha, 0) AS beban_usaha,
+            COALESCE(trk_jan.beban_usaha, 0) AS trk_jan_beban_usaha,
+            COALESCE(trk_feb.beban_usaha, 0) AS trk_feb_beban_usaha,
+            COALESCE(trk_mar.beban_usaha, 0) AS trk_mar_beban_usaha,
+            COALESCE(trk_apr.beban_usaha, 0) AS trk_apr_beban_usaha,
+            COALESCE(trk_mei.beban_usaha, 0) AS trk_mei_beban_usaha,
+            COALESCE(trk_jun.beban_usaha, 0) AS trk_jun_beban_usaha,
+            COALESCE(trk_jul.beban_usaha, 0) AS trk_jul_beban_usaha,
+            COALESCE(trk_agu.beban_usaha, 0) AS trk_agu_beban_usaha,
+            COALESCE(trk_sep.beban_usaha, 0) AS trk_sep_beban_usaha,
+            COALESCE(trk_okt.beban_usaha, 0) AS trk_okt_beban_usaha,
+            COALESCE(trk_nov.beban_usaha, 0) AS trk_nov_beban_usaha,
+            COALESCE(trk_des.beban_usaha, 0) AS trk_des_beban_usaha,
 
-            COALESCE(trk.beban_pokok_r + trk.revenue_r, 0) AS laba_kotor_r,
-            COALESCE(trk_jan.beban_pokok_r + trk_jan.revenue_r, 0) AS trk_jan_laba_kotor_r,
-            COALESCE(trk_feb.beban_pokok_r + trk_feb.revenue_r, 0) AS trk_feb_laba_kotor_r,
-            COALESCE(trk_mar.beban_pokok_r + trk_mar.revenue_r, 0) AS trk_mar_laba_kotor_r,
-            COALESCE(trk_apr.beban_pokok_r + trk_apr.revenue_r, 0) AS trk_apr_laba_kotor_r,
-            COALESCE(trk_mei.beban_pokok_r + trk_mei.revenue_r, 0) AS trk_mei_laba_kotor_r,
-            COALESCE(trk_jun.beban_pokok_r + trk_jun.revenue_r, 0) AS trk_jun_laba_kotor_r,
-            COALESCE(trk_jul.beban_pokok_r + trk_jul.revenue_r, 0) AS trk_jul_laba_kotor_r,
-            COALESCE(trk_agu.beban_pokok_r + trk_agu.revenue_r, 0) AS trk_agu_laba_kotor_r,
-            COALESCE(trk_sep.beban_pokok_r + trk_sep.revenue_r, 0) AS trk_sep_laba_kotor_r,
-            COALESCE(trk_okt.beban_pokok_r + trk_okt.revenue_r, 0) AS trk_okt_laba_kotor_r,
-            COALESCE(trk_nov.beban_pokok_r + trk_nov.revenue_r, 0) AS trk_nov_laba_kotor_r,
-            COALESCE(trk_des.beban_pokok_r + trk_des.revenue_r, 0) AS trk_des_laba_kotor_r,
+            COALESCE(trk.beban_usaha + trk.pendapatan_usaha, 0) AS laba_kotor_r,
+            COALESCE(trk_jan.beban_usaha + trk_jan.pendapatan_usaha, 0) AS trk_jan_laba_kotor_r,
+            COALESCE(trk_feb.beban_usaha + trk_feb.pendapatan_usaha, 0) AS trk_feb_laba_kotor_r,
+            COALESCE(trk_mar.beban_usaha + trk_mar.pendapatan_usaha, 0) AS trk_mar_laba_kotor_r,
+            COALESCE(trk_apr.beban_usaha + trk_apr.pendapatan_usaha, 0) AS trk_apr_laba_kotor_r,
+            COALESCE(trk_mei.beban_usaha + trk_mei.pendapatan_usaha, 0) AS trk_mei_laba_kotor_r,
+            COALESCE(trk_jun.beban_usaha + trk_jun.pendapatan_usaha, 0) AS trk_jun_laba_kotor_r,
+            COALESCE(trk_jul.beban_usaha + trk_jul.pendapatan_usaha, 0) AS trk_jul_laba_kotor_r,
+            COALESCE(trk_agu.beban_usaha + trk_agu.pendapatan_usaha, 0) AS trk_agu_laba_kotor_r,
+            COALESCE(trk_sep.beban_usaha + trk_sep.pendapatan_usaha, 0) AS trk_sep_laba_kotor_r,
+            COALESCE(trk_okt.beban_usaha + trk_okt.pendapatan_usaha, 0) AS trk_okt_laba_kotor_r,
+            COALESCE(trk_nov.beban_usaha + trk_nov.pendapatan_usaha, 0) AS trk_nov_laba_kotor_r,
+            COALESCE(trk_des.beban_usaha + trk_des.pendapatan_usaha, 0) AS trk_des_laba_kotor_r,
 
-            COALESCE(trk.biaya_operasi_r) AS biaya_operasi_r,
-            COALESCE(trk_jan.biaya_operasi_r, 0) AS trk_jan_biaya_operasi_r,
-            COALESCE(trk_feb.biaya_operasi_r, 0) AS trk_feb_biaya_operasi_r,
-            COALESCE(trk_mar.biaya_operasi_r, 0) AS trk_mar_biaya_operasi_r,
-            COALESCE(trk_apr.biaya_operasi_r, 0) AS trk_apr_biaya_operasi_r,
-            COALESCE(trk_mei.biaya_operasi_r, 0) AS trk_mei_biaya_operasi_r,
-            COALESCE(trk_jun.biaya_operasi_r, 0) AS trk_jun_biaya_operasi_r,
-            COALESCE(trk_jul.biaya_operasi_r, 0) AS trk_jul_biaya_operasi_r,
-            COALESCE(trk_agu.biaya_operasi_r, 0) AS trk_agu_biaya_operasi_r,
-            COALESCE(trk_sep.biaya_operasi_r, 0) AS trk_sep_biaya_operasi_r,
-            COALESCE(trk_okt.biaya_operasi_r, 0) AS trk_okt_biaya_operasi_r,
-            COALESCE(trk_nov.biaya_operasi_r, 0) AS trk_nov_biaya_operasi_r,
-            COALESCE(trk_des.biaya_operasi_r, 0) AS trk_des_biaya_operasi_r,
+            COALESCE(trk.pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
+            COALESCE(trk_jan.pendapatan_or_beban_lain, 0) AS trk_jan_pendapatan_or_beban_lain,
+            COALESCE(trk_feb.pendapatan_or_beban_lain, 0) AS trk_feb_pendapatan_or_beban_lain,
+            COALESCE(trk_mar.pendapatan_or_beban_lain, 0) AS trk_mar_pendapatan_or_beban_lain,
+            COALESCE(trk_apr.pendapatan_or_beban_lain, 0) AS trk_apr_pendapatan_or_beban_lain,
+            COALESCE(trk_mei.pendapatan_or_beban_lain, 0) AS trk_mei_pendapatan_or_beban_lain,
+            COALESCE(trk_jun.pendapatan_or_beban_lain, 0) AS trk_jun_pendapatan_or_beban_lain,
+            COALESCE(trk_jul.pendapatan_or_beban_lain, 0) AS trk_jul_pendapatan_or_beban_lain,
+            COALESCE(trk_agu.pendapatan_or_beban_lain, 0) AS trk_agu_pendapatan_or_beban_lain,
+            COALESCE(trk_sep.pendapatan_or_beban_lain, 0) AS trk_sep_pendapatan_or_beban_lain,
+            COALESCE(trk_okt.pendapatan_or_beban_lain, 0) AS trk_okt_pendapatan_or_beban_lain,
+            COALESCE(trk_nov.pendapatan_or_beban_lain, 0) AS trk_nov_pendapatan_or_beban_lain,
+            COALESCE(trk_des.pendapatan_or_beban_lain, 0) AS trk_des_pendapatan_or_beban_lain,
 
-            COALESCE(trk.biaya_operasi_r + (trk.beban_pokok_r + trk.revenue_r)) AS laba_operasi_r,
-            COALESCE(trk_jan.biaya_operasi_r + (trk_jan.beban_pokok_r + trk_jan.revenue_r), 0) AS trk_jan_laba_operasi_r,
-            COALESCE(trk_feb.biaya_operasi_r + (trk_feb.beban_pokok_r + trk_feb.revenue_r), 0) AS trk_feb_laba_operasi_r,
-            COALESCE(trk_mar.biaya_operasi_r + (trk_mar.beban_pokok_r + trk_mar.revenue_r), 0) AS trk_mar_laba_operasi_r,
-            COALESCE(trk_apr.biaya_operasi_r + (trk_apr.beban_pokok_r + trk_apr.revenue_r), 0) AS trk_apr_laba_operasi_r,
-            COALESCE(trk_mei.biaya_operasi_r + (trk_mei.beban_pokok_r + trk_mei.revenue_r), 0) AS trk_mei_laba_operasi_r,
-            COALESCE(trk_jun.biaya_operasi_r + (trk_jun.beban_pokok_r + trk_jun.revenue_r), 0) AS trk_jun_laba_operasi_r,
-            COALESCE(trk_jul.biaya_operasi_r + (trk_jul.beban_pokok_r + trk_jul.revenue_r), 0) AS trk_jul_laba_operasi_r,
-            COALESCE(trk_agu.biaya_operasi_r + (trk_agu.beban_pokok_r + trk_agu.revenue_r), 0) AS trk_agu_laba_operasi_r,
-            COALESCE(trk_sep.biaya_operasi_r + (trk_sep.beban_pokok_r + trk_sep.revenue_r), 0) AS trk_sep_laba_operasi_r,
-            COALESCE(trk_okt.biaya_operasi_r + (trk_okt.beban_pokok_r + trk_okt.revenue_r), 0) AS trk_okt_laba_operasi_r,
-            COALESCE(trk_nov.biaya_operasi_r + (trk_nov.beban_pokok_r + trk_nov.revenue_r), 0) AS trk_nov_laba_operasi_r,
-            COALESCE(trk_des.biaya_operasi_r + (trk_des.beban_pokok_r + trk_des.revenue_r), 0) AS trk_des_laba_operasi_r,
+            COALESCE(trk.pendapatan_or_beban_lain + (trk.beban_usaha + trk.pendapatan_usaha)) AS laba_operasi_r,
+            COALESCE(trk_jan.pendapatan_or_beban_lain + (trk_jan.beban_usaha + trk_jan.pendapatan_usaha), 0) AS trk_jan_laba_operasi_r,
+            COALESCE(trk_feb.pendapatan_or_beban_lain + (trk_feb.beban_usaha + trk_feb.pendapatan_usaha), 0) AS trk_feb_laba_operasi_r,
+            COALESCE(trk_mar.pendapatan_or_beban_lain + (trk_mar.beban_usaha + trk_mar.pendapatan_usaha), 0) AS trk_mar_laba_operasi_r,
+            COALESCE(trk_apr.pendapatan_or_beban_lain + (trk_apr.beban_usaha + trk_apr.pendapatan_usaha), 0) AS trk_apr_laba_operasi_r,
+            COALESCE(trk_mei.pendapatan_or_beban_lain + (trk_mei.beban_usaha + trk_mei.pendapatan_usaha), 0) AS trk_mei_laba_operasi_r,
+            COALESCE(trk_jun.pendapatan_or_beban_lain + (trk_jun.beban_usaha + trk_jun.pendapatan_usaha), 0) AS trk_jun_laba_operasi_r,
+            COALESCE(trk_jul.pendapatan_or_beban_lain + (trk_jul.beban_usaha + trk_jul.pendapatan_usaha), 0) AS trk_jul_laba_operasi_r,
+            COALESCE(trk_agu.pendapatan_or_beban_lain + (trk_agu.beban_usaha + trk_agu.pendapatan_usaha), 0) AS trk_agu_laba_operasi_r,
+            COALESCE(trk_sep.pendapatan_or_beban_lain + (trk_sep.beban_usaha + trk_sep.pendapatan_usaha), 0) AS trk_sep_laba_operasi_r,
+            COALESCE(trk_okt.pendapatan_or_beban_lain + (trk_okt.beban_usaha + trk_okt.pendapatan_usaha), 0) AS trk_okt_laba_operasi_r,
+            COALESCE(trk_nov.pendapatan_or_beban_lain + (trk_nov.beban_usaha + trk_nov.pendapatan_usaha), 0) AS trk_nov_laba_operasi_r,
+            COALESCE(trk_des.pendapatan_or_beban_lain + (trk_des.beban_usaha + trk_des.pendapatan_usaha), 0) AS trk_des_laba_operasi_r,
 
             COALESCE(trk.laba_bersih_r, 0) AS laba_bersih_r,
             COALESCE(trk_jan.laba_bersih_r, 0) AS trk_jan_laba_bersih_r,
@@ -359,9 +380,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -381,9 +402,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -402,9 +423,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -423,9 +444,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -444,9 +465,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -465,9 +486,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -486,9 +507,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -507,9 +528,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -528,9 +549,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -549,9 +570,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -570,9 +591,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
@@ -591,9 +612,9 @@ class RkapRealisasiController extends Controller
         SELECT 
             kd_perusahaan, 
             SUM(aset_r) AS aset_r,
-            SUM(revenue_r) AS revenue_r,
-            SUM(beban_pokok_r) AS beban_pokok_r,
-            SUM(biaya_operasi_r) AS biaya_operasi_r,
+            SUM(pendapatan_usaha) AS pendapatan_usaha,
+            SUM(beban_usaha) AS beban_usaha,
+            SUM(pendapatan_or_beban_lain) AS pendapatan_or_beban_lain,
             SUM(laba_bersih_r) AS laba_bersih_r,
             SUM(tkp_r) AS tkp_r,
             SUM(kpi_r) AS kpi_r
