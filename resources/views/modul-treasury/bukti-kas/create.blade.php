@@ -42,18 +42,18 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">No.Dokumen</label>
                         <div class="col-10">
-                            <input type="hidden" class="form-control" value="{{ date('Y-m-d') }}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
-                            <input type="text" class="form-control" value="{{ request()->mp }}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                            <input type="hidden" class="form-control disabled bg-secondary" value="{{ date('Y-m-d') }}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly></td>
+                            <input type="text" class="form-control disabled bg-secondary" value="{{ request()->mp }}" size="1" maxlength="1" name="mp" id="mp" readonly></td>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Bulan/Tahun <span class="text-danger">*</span></label>
                         <div class="col-4">
-                            <input class="form-control" type="text" value="{{ $bulan_buku }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" value="{{ $bulan_buku }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" type="text" value="{{ $tahun_buku }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" value="{{ $tahun_buku }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -79,7 +79,7 @@
                         </div>
                         <label class="col-2 col-form-label text-right">Currency Index</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="currency_index" id="currency_index" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="currency_index" id="currency_index" size="6" maxlength="6" readonly>
                         </div>
                         <label class="col-1 col-form-label text-right">Kurs <span class="text-danger">*</span></label>
                         <div class="col-2">
@@ -95,11 +95,11 @@
                         </div>
                         <label class="col-1 col-form-label text-right">No Bukti</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="no_bukti" id="no_bukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="no_bukti" id="no_bukti" readonly>
                         </div>
                         <label class="col-1 col-form-label text-right">No Ver</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="no_ver" value="{{ $noVer }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="no_ver" value="{{ $noVer }}" id="nover" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -114,7 +114,7 @@
                         <label class="col-2 col-form-label text-right">Sejumlah</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="nilai" id="nilai" value="0" size="16" maxlength="16" autocomplete="off" readonly>
-                            <input class="form-control" type="hidden" name="iklan" id="iklan" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="hidden" name="iklan" id="iklan" readonly>
                         </div>
                     </div>
                     <div class="form-group row">

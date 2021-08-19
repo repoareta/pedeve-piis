@@ -29,10 +29,10 @@
                     $tahun = substr($thnbln,0,-2); 
                     $bulan = substr($thnbln,4); 
                 ?>
-                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control disabled bg-secondary" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly>
                 </div>
                         <div class="col-4">
-                            <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary tahun" type="text" name="tahun" value="{{ $tahun }}" readonly>
                         </div>
                         <div class="col-2">
                             <input class="form-control" type="text" value="{{ $suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete="off">

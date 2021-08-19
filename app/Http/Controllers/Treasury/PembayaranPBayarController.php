@@ -873,7 +873,7 @@ class PembayaranPBayarController extends Controller
             } else {
                 $reportname = "putih-pdf";
             }
-            $pdf = DomPDF::loadview("pembayaran_pbayar.$reportname", compact(
+            $pdf = DomPDF::loadview("modul-treasury.pembayaran-pbayar.$reportname", compact(
                 'request',
                 'data_list',
                 'jk',

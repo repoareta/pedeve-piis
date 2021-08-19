@@ -49,23 +49,23 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">No.Dokumen</label>
                         <div class="col-6">
-                            <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
-                            <input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+                            <input type="text" class="form-control disabled bg-secondary" value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly>
+                            <input class="form-control" type="hidden" value="{{ $nodok}}" name="nodok" readonly>
                         </div>
                         <div class="col-4">
-                            <input type="text" class="form-control"  value="{{ $nomor}}" size="1" maxlength="1" name="nomor" id="nomor" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                            <input type="text" class="form-control disabled bg-secondary" value="{{ $nomor }}" size="1" maxlength="1" name="nomor" id="nomor" readonly>
                         </div>
                     </div>
 
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                        <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control disabled bg-secondary" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly>
+                        <input class="form-control disabled bg-secondary" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly>
                         
                     </div>
                         <div class="col-6">
-                            <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly>
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             </select>							</div>
                         <label class="col-2 col-form-label">Currency Index</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly>
                         </div>
                         <label class="col-1 col-form-label">Kurs<span class="text-danger">*</span></label>
                         <div class="col-2">
@@ -116,19 +116,19 @@
                         @if($mp == 'P')
                         <label class="col-1 col-form-label">No Bukti</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly>
                         </div>
                         <label class="col-1 col-form-label">No Ver</label>
                         <div class="col-2">
-                            <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly>
                         </div>
                         @else
                         <label class="col-1 col-form-label">No Bukti</label>
                         <div class="col-5">
-                            <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly>
                         </div>
                         <div class="col-1">
-                            <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                            <input class="form-control disabled bg-secondary" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly>
                         </div>
                         @endif
                     </div>
@@ -143,8 +143,8 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Sejumlah</label>
                         <div class="col-10">
-                            <input class="form-control" type="text"  value="{{ number_format($count,2,'.',',') }}" size="16" maxlength="16" readonly autocomplete="off">
-                            <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{ number_format($count, 2, '.', '') }}" size="16" maxlength="16" autocomplete="off">
+                            <input class="form-control money disabled bg-secondary" type="text"  value="{{ $count }}" size="16" maxlength="16" readonly autocomplete="off">
+                            <input class="form-control money" type="hidden" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">

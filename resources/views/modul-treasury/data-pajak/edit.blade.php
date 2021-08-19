@@ -36,10 +36,10 @@
                     <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control disabled bg-secondary" type="text" value="{{ $bulan }}" name="bulan" size="2" maxlength="2" readonly>
                     </div>
                         <div class="col-6">
-                            <input class="form-control tahun" type="text" name="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed" value="{{ $tahun }}">
+                            <input class="form-control disabled bg-secondary tahun" type="text" name="tahun" readonly value="{{ $tahun }}">
                             <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                         </div>
                     </div>
@@ -75,13 +75,13 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Nilai</label>
                         <div class="col-10">
-                            <input class="form-control" name="nilai" type="text" value="{{ number_format($nilai ,2 ,'.' ,'') }}" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                            <input class="form-control money" name="nilai" type="text" value="{{ $nilai }}" size="25" maxlength="25" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pajak</label>
                         <div class="col-10">
-                            <input class="form-control" name="pajak" type="text" value="{{ number_format($pajak, 2,'.' ,'') }}" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                            <input class="form-control money" name="pajak" type="text" value="{{ $pajak }}" size="25" maxlength="25" autocomplete="off">
                         </div>
                     </div>
                     <div class="form__actions">
