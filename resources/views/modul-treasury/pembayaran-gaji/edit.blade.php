@@ -144,19 +144,19 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 1</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket1" id="ket1" value="{{ $data->ket1 }}"></textarea>
+                            <textarea class="form-control" type="text" name="ket1" id="ket1">{{ $data->ket1 }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 2</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket2" id="ket2" value="{{ $data->ket2}}"></textarea>
+                            <textarea class="form-control" type="text" name="ket2" id="ket2">{{ $data->ket2 }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 3</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket3" id="ket3" value="{{ $data->ket3}}"></textarea>
+                            <textarea class="form-control" type="text" name="ket3" id="ket3">{{ $data->ket3 }}</textarea>
                         </div>
                     </div>
                     <div class="form__actions">
