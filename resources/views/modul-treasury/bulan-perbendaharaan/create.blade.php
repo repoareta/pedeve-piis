@@ -24,11 +24,6 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bulan/Tahun<span class="text-danger">*</span></label>
                 <div class="col-4">
-                    <?php 
-                    $tgl = date_create(now());
-                    $tahun = date_format($tgl, 'Y'); 
-                    $bulan = date_format($tgl, 'n'); 
-                ?>
                     <select class="form-control select2" style="width: 100% !important;" name="bulan">
                         <option value="01" <?php if($bulan == 1) echo 'selected'; ?>>Januari</option>
                         <option value="02" <?php if($bulan == 2) echo 'selected'; ?>>Februari</option>
@@ -45,12 +40,10 @@
                     </select>
                 </div>
                 <div class="col-4">
-                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun"
-                        autocomplete="off">
+                    <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
                 </div>
                 <div class="col-2">
-                    <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2"
-                        autocomplete="off">
+                    <input class="form-control" type="text" value="0" name="suplesi" size="2" maxlength="2" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -72,8 +65,7 @@
                 </div>
                 <label for="" class="col-2 col-form-label text-right">Tanggal Opening</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="" name="tanggal" id="tanggal" size="11" maxlength="11"
-                        title="Tanggal Opening" autocomplete="off">
+                    <input class="form-control" type="text" value="" name="tanggal" id="tanggal" size="11" maxlength="11" title="Tanggal Opening" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -126,41 +118,45 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\BulanPerbendaharaanStoreRequest', '#form-create'); !!}
+
 <script>
     $(document).ready(function () {
-		        
-		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{ route('bulan_perbendaharaan.store') }}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-				success : function(data){
-				if(data == 1){
-					Swal.fire({
-						icon  : 'success',
-						title : 'Data Berhasil Ditambah',
-						text  : 'Berhasil',
-						timer : 2000
-					}).then(function(data) {
-						location.href = "{{ route('bulan_perbendaharaan.index') }}";
-						});
-				} else {
-					Swal.fire({
-						icon  : 'info',
-						title : 'Duplikasi data dokumen, entri dibatalkan.',
-						text  : 'Info',
-					});
-				}
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-			return false;
+		$('#form-create').submit(function(e){
+            e.preventDefault();
+            
+            if($(this).valid()) {
+                $.ajax({
+                    url  : "{{ route('bulan_perbendaharaan.store') }}",
+                    type : "POST",
+                    data : $('#form-create').serialize(),
+                    dataType : "JSON",
+                    headers: {
+                    'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    success : function(data){
+                    if(data == 1){
+                        Swal.fire({
+                            icon  : 'success',
+                            title : 'Data Berhasil Ditambah',
+                            text  : 'Berhasil',
+                            timer : 2000
+                        }).then(function(data) {
+                            location.href = "{{ route('bulan_perbendaharaan.index') }}";
+                            });
+                    } else {
+                        Swal.fire({
+                            icon  : 'info',
+                            title : 'Duplikasi data dokumen, entri dibatalkan.',
+                            text  : 'Info',
+                        });
+                    }
+                    }, 
+                    error : function(){
+                        alert("Terjadi kesalahan, coba lagi nanti");
+                    }
+                });
+            }
 		});
 
 		$('#tanggal').datepicker({
