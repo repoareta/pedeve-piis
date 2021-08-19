@@ -164,8 +164,8 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
             Route::get('anggaran/submain/index-json', [AnggaranSubMainController::class, 'indexJson'])->name('index.json');
             Route::get('anggaran/submain/create', [AnggaranSubMainController::class, 'create'])->name('create');
             Route::post('anggaran/submain/store', [AnggaranSubMainController::class, 'store'])->name('store');
-            Route::get('anggaran/submain/edit/{kode_main}/{kode_submain}', [AnggaranSubMainController::class, 'edit'])->name('edit');
-            Route::post('anggaran/submain/update/{kode_main}/{kode_submain}', [AnggaranSubMainController::class, 'update'])->name('update');
+            Route::get('anggaran/submain/edit/{kode_main}/{anggaran_submain}', [AnggaranSubMainController::class, 'edit'])->name('edit');
+            Route::post('anggaran/submain/update/{kode_main}/{anggaran_submain}', [AnggaranSubMainController::class, 'update'])->name('update');
             Route::delete('anggaran/submain/delete', [AnggaranSubMainController::class, 'delete'])->name('delete');
             // ANGGARAN SUBMAIN END
 

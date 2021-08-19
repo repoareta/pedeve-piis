@@ -108,9 +108,9 @@
                 {data: 'main', name: 'main', class:'no-wrap'},
                 {data: 'sub_anggaran', name: 'sub_anggaran', class:'no-wrap'},
                 {data: 'tahun', name: 'tahun'},
-                {data: 'nilai', name: 'nilai'},
-                {data: 'nilai_real', name: 'nilai_real'},
-                {data: 'sisa', name: 'sisa'},
+                {data: 'nilai', name: 'nilai', class: 'text-right'},
+                {data: 'nilai_real', name: 'nilai_real', class: 'text-right'},
+                {data: 'sisa', name: 'sisa', class: 'text-right'},
             ]
         });
 
@@ -140,7 +140,8 @@
             e.preventDefault();
             if($('input[type=radio]').is(':checked')) { 
                 $("input[type=radio]:checked").each(function() {
-                    var id = $(this).val();
+                    var kode_main = $(this).val().split("-")[0];
+                    var kode_submain = $(this).val().split("-")[1];
                     // delete stuff
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -152,7 +153,7 @@
 
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
-                        text: "Kode : " + id,
+                        text: "Kode : " + kode_submain,
                         icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
@@ -166,13 +167,14 @@
                                 type: 'DELETE',
                                 dataType: 'json',
                                 data: {
-                                    "id": id,
+                                    "kode_main": kode_main,
+                                    "kode_submain": kode_submain,
                                     "_token": "{{ csrf_token() }}",
                                 },
                                 success: function () {
                                     Swal.fire({
                                         icon  : 'success',
-                                        title : 'Hapus Kode ' + id,
+                                        title : 'Hapus Kode ' + kode_submain,
                                         text  : 'Berhasil',
                                         timer : 2000
                                     }).then(function() {

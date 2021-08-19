@@ -25,15 +25,18 @@
 					<div class="form-group row">
 						<label for="tahun" class="col-2 col-form-label">Tahun</label>
 						<div class="col-10">
-							<input class="form-control tahun" type="text" name="tahun" id="tahun" value="{{ date('Y') }}" onkeyup="getMasterAnggaran(this.value)">
+							<input class="form-control tahun" type="text" name="tahun" id="tahun" value="{{ date('Y') }}" onkeyup="getMasterAnggaran(this.value)" autocomplete="off">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="kode_main" class="col-2 col-form-label">Master Anggaran</label>
 						<div class="col-10">
-							<select class="form-control master-anggaran" name="kode_main" id="kode_main">
+							<select class="form-control select2" name="kode_main" id="kode_main">
 								<option value="">- Pilih Master Anggaran -</option>
+                                @foreach ($anggaran_main_list as $anggaran)
+									<option value="{{ $anggaran->kode_main }}">{{ $anggaran->kode_main.' - '.$anggaran->nama_main }}</option>
+								@endforeach
 							</select>
 							<div id="kode_main-nya"></div>
 						</div>
@@ -42,21 +45,21 @@
 					<div class="form-group row">
 						<label for="kode" class="col-2 col-form-label">Kode Sub</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="kode" id="kode">
+							<input class="form-control" type="text" name="kode" id="kode" autocomplete="off">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="nama" class="col-2 col-form-label">Nama Sub</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="nama" id="nama">
+							<input class="form-control" type="text" name="nama" id="nama" autocomplete="off">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="nilai" class="col-2 col-form-label">Nilai</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="nilai" id="nilai">
+							<input class="form-control money" type="text" name="nilai" id="nilai" autocomplete="off">
 						</div>
 					</div>
 
@@ -88,8 +91,8 @@
 	});
 
 	function getMasterAnggaran(tahun) {
-		$('.master-anggaran').select2({
-            placeholder: 'Cari...',
+		$('.select2').select2({
+            placeholder: '- Pilih Master Anggaran -',
             ajax: {
                 url: "{{ route('modul_umum.anggaran.get_by_tahun') }}",
                 dataType: 'json',
@@ -101,7 +104,7 @@
                     return {
                         results:  $.map(data, function (item) {
                             return {
-                                text: item.nama_main,
+                                text: item.kode_main + " - " + item.nama_main,
                                 id: item.kode_main
                             }
                         })

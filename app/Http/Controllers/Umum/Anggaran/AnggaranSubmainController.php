@@ -98,14 +98,12 @@ class AnggaranSubmainController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AnggaranSubmainStore $request, $kode_main)
+    public function store(AnggaranSubmainStore $request, AnggaranSubMain $anggaran)
     {
-        $anggaran = new AnggaranSubMain;
-
-        $anggaran->kode_main = $kode_main;
+        $anggaran->kode_main = $request->kode_main;
         $anggaran->kode_submain = $request->kode;
         $anggaran->nama_submain = $request->nama;
-        $anggaran->nilai = $request->nilai;
+        $anggaran->nilai = str_replace(',', '', $request->nilai);
         $anggaran->nilai_real = $request->nilai_real;
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
@@ -113,8 +111,8 @@ class AnggaranSubmainController extends Controller
 
         $anggaran->save();
 
-        Alert::success('Simpan Anggaran Submain', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('anggaran.submain.index', ['kode_main' => $kode_main]);
+        Alert::success('Tambah Submain Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_umum.anggaran.submain.index');
     }
 
     /**
@@ -123,11 +121,10 @@ class AnggaranSubmainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($kode_main, $kode_submain)
+    public function edit($kode_main, AnggaranSubMain $anggaranSubmain)
     {
-        $anggaran_main_list = AnggaranMain::all();
-        $anggaran = AnggaranSubMain::find($kode_submain);
-        return view('modul-umum.anggaran-submain.edit', compact('anggaran', 'kode_main', 'kode_submain', 'anggaran_main_list'));
+        $anggaran_main_list = AnggaranMain::where('tahun', $anggaranSubmain->tahun)->get();
+        return view('modul-umum.anggaran-submain.edit', compact('anggaranSubmain',  'anggaran_main_list'));
     }
 
     /**
@@ -146,16 +143,15 @@ class AnggaranSubmainController extends Controller
         $anggaran->kode_main = $kode_main;
         $anggaran->kode_submain = $request->kode;
         $anggaran->nama_submain = $request->nama;
-        $anggaran->nilai = $request->nilai;
+        $anggaran->nilai = str_replace(',', '', $request->nilai);
         // $anggaran->nilai_real = $request->nilai_real;
-        // $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
 
         $anggaran->save();
 
-        Alert::success('Ubah Anggaran Submain', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('anggaran.submain.index', ['kode_main' => $kode_main]);
+        Alert::success('Ubah Submain Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_umum.anggaran.submain.index');
     }
 
     /**
@@ -166,12 +162,15 @@ class AnggaranSubmainController extends Controller
      */
     public function delete(Request $request)
     {
-        $anggaran = AnggaranSubMain::find($request->id);
-        $anggaran->anggaran_detail()->delete();
+        $anggaranSubmain = AnggaranSubMain::where('kode_main', $request->kode_main)
+        ->where('kode_submain', $request->kode_submain)
+        ->first();
 
-        $anggaran->delete();
+        $anggaranSubmain->anggaran_detail()->delete();
 
-        if ($anggaran) {
+        $anggaranSubmain->delete();
+
+        if ($anggaranSubmain) {
             return response()->json();
         }
     }
