@@ -95,7 +95,7 @@
                 <div class="form-group row">
                     <label class="col-2 col-form-label text-right">Sejumlah</label>
                     <div class="col-10">
-                        <input class="form-control" type="text" name="nilai" id="nilai" value="{{ number_format($count, 2, '.', ',') }}" size="16" maxlength="16" autocomplete="off" readonly>
+                        <input class="form-control money" type="text" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" autocomplete="off" readonly>
                         <input class="form-control" type="hidden" name="iklan" id="iklan" readonly style="background-color:#DCDCDC; cursor:not-allowed">
                     </div>
                 </div>
@@ -264,7 +264,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class="col-1 col-form-label">:</label>
 						<div class="col-9">
-							<input class="form-control" type="text" value="" id="nilai-line" name="nilai" size="16" maxlength="16"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control money" type="text" value="" id="nilai-line" name="nilai" size="16" maxlength="16"  required autocomplete="off">
 						</div>
 					</div>
                 </div>
@@ -367,7 +367,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="" name="nilai" id="nilai1"  size="16" maxlength="16"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control money" type="text" value="" name="nilai" id="nilai1"  size="16" maxlength="16"  required autocomplete="off">
 						</div>
 					</div>
                 </div>

@@ -27,7 +27,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="nodok" id="nodok" class="form-control select2">
+                    <select name="nodok" id="nodok" class="form-control select2" required>
                         <option value="">- Pilih -</option>
                         @foreach($data_dok as $data)
                         <option data-lineno="{{ $data->lineno }}" value="{{ $data->docno }}">{{ $data->docno }} - {{ $data->keterangan }}</option>
@@ -50,7 +50,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value=""  name="nominal" size="25" maxlength="25" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                    <input class="form-control money" type="text" value=""  name="nominal" size="25" maxlength="25" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">

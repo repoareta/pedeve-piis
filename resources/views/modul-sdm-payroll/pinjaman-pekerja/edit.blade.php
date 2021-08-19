@@ -124,7 +124,7 @@
                 <?php $no=0; ?>
                 @foreach($data_detail as $data_d)
                 <?php $no++; ?>
-                <tr class="table-info">
+                <tr>
                     <td scope="row" align="center"><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="btn-radio" data-no="" class="btn-radio" ><span></span></label></td>
                     <td scope="row" align="center">{{$no}}</td>
                     <td align="center">{{$data_d->tahun}}</td>

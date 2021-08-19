@@ -227,7 +227,7 @@
                 <?php $no=0; ?>
                 @foreach($data_detail as $data_d)
                 <?php $no++; ?>
-                <tr class="table-info">
+                <tr>
                     <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno }}" nourut="{{ $data_d->lineno }}"  class="btn-radio"><span></span></label></td>
                     <td scope="row" align="center">{{ $data_d->lineno }}</td>
                     <td>{{ $data_d->keterangan }}</td>
