@@ -113,7 +113,7 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan/Beban Lain</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_beban_lain }}" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_or_beban_lain }}" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
                         </div>
                     </div>
                     <div class="form-group row">
