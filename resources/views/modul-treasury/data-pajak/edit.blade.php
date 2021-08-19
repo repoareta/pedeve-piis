@@ -25,11 +25,9 @@
         <form method="POST" id="form-edit">
             <div class="portlet__body">
                 <div class="form-group form-group-last">
-                    <div class="alert alert-secondary" role="alert">
+                    <div class="alert alert-custom alert-default" role="alert">
                         <div class="alert-text">
-                            <h5 class="portlet__head-title">
-                                Header Menu Edit - Data Pajak Tahunan
-                            </h5>	
+                            Header Menu Edit - Data Pajak Tahunan
                         </div>
                     </div>
                 
