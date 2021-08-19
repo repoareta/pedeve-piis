@@ -95,61 +95,61 @@
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Aset</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->aset_r) }}" name="aset" id="aset">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->aset_r }}" name="aset" id="aset">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->pendapatan_usaha) }}" name="pendapatan_usaha" id="pendapatan_usaha">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_usaha }}" name="pendapatan_usaha" id="pendapatan_usaha">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Beban Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->beban_usaha) }}" name="beban_usaha" id="beban_usaha">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->beban_usaha }}" name="beban_usaha" id="beban_usaha">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan/Beban Lain</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->pendapatan_beban_lain) }}" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_beban_lain }}" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Laba Bersih</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->laba_bersih_r) }}" name="laba_bersih" id="laba_bersih">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->laba_bersih_r }}" name="laba_bersih" id="laba_bersih">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">EBITDA</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->ebitda) }}" name="ebitda" id="ebitda">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->ebitda }}" name="ebitda" id="ebitda">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi BD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->investasi_bd) }}" name="investasi_bd" id="investasi_bd">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->investasi_bd }}" name="investasi_bd" id="investasi_bd">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi NBD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->investasi_nbd) }}" name="investasi_nbd" id="investasi_nbd">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->investasi_nbd }}" name="investasi_nbd" id="investasi_nbd">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">TKP</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->tkp_r) }}" name="tkp" id="tkp">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->tkp_r }}" name="tkp" id="tkp">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">KPI</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ currency_format($rkapRealisasi->kpi_r) }}" name="kpi" id="kpi">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->kpi_r }}" name="kpi" id="kpi">
                         </div>
                     </div>
 
