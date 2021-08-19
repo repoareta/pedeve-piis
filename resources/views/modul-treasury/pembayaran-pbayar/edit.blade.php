@@ -166,7 +166,7 @@
         </form>
     </div>
 
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-pen text-primary"></i>
@@ -174,24 +174,26 @@
             <h3 class="card-label">
                 Detail Pembayaran Permintaan Bayar
             </h3>
-            <div class="text-right">
-                <button id="btn-create" class="btn p-0">
+        </div>
+		<div class="card-toolbar">
+			<div class="float-left">
+				<button id="btn-create" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
-                        <i class="fas fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button id="btn-edit" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
-                        <i class="fas fa-edit text-warning"></i>
+                        <i class="fas fa-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 <button id="btn-delete" class="btn p-0">
                     <span class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data Detail">
-                        <i class="fas fa-trash text-danger"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger"></i>
                     </span>
                 </button>
-            </div>
-        </div>
+			</div>
+		</div>
     </div>
 
     <div class="card-body">
@@ -214,7 +216,7 @@
                 <?php $no=0; ?>
                 @foreach($data_detail as $data_d)
                 <?php $no++; ?>
-                <tr class="table-info">
+                <tr>
                     <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno }}" nourut="{{ $data_d->lineno }}"  class="btn-radio"><span></span></label></td>
                     <td scope="row" align="center">{{ $data_d->lineno }}</td>
                     <td>{{ $data_d->keterangan }}</td>

@@ -16,7 +16,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Pembayaran UMK
+                Tambah Pembayaran Permintaan Bayar
             </h3>
         </div>
     </div>
@@ -84,7 +84,6 @@
                 <div class="col-4">
                     <select name="lokasi" id="lokasi" class="form-control select2" style="width: 100% !important;">
                         <option value="">- Pilih -</option>
-                        
                     </select>
                 </div>
                 <label class="col-1 col-form-label">No Bukti</label>
@@ -101,7 +100,7 @@
                 <label class="col-2 col-form-label">
                 @if($mp == "M") {{ $darkep}} @else {{ $darkep}} @endif<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select class="kepada form-control" style="width: 100% !important;" name="kepada"></select>
+                    <select class="kepada form-control" style="width: 100% !important;" name="kepada" id="kepada"></select>
                 </div>
             </div>
             <div class="form-group row">
@@ -337,7 +336,6 @@ $('#nilai').keyup(function(){
 		rtl: KTUtil.isRTL(),
 		todayHighlight: true,
 		orientation: "bottom left",
-		templates: arrows,
 		autoclose: true,
 		language : 'id',
 		format   : 'dd-mm-yyyy'
@@ -347,37 +345,36 @@ $('#nilai').keyup(function(){
 		rtl: KTUtil.isRTL(),
 		todayHighlight: true,
 		orientation: "bottom left",
-		templates: arrows,
 		autoclose: true,
 		language : 'id',
 		format   : 'yyyymm'
 	});
-});
 	$('.kepada').select2({
 		placeholder: '- Pilih -',
 		allowClear: true,
 		tags: true,
 		ajax: {
 			url: "{{ route('penerimaan_kas.ajax-kepada') }}",
-			type : "post",
+			type : "POST",
 			dataType : "JSON",
-			headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
 			delay: 250,
-		processResults: function (data) {
-			console.log(data.length);
-			return {
-			results:  $.map(data, function (item) {
+			headers: {
+				'X-CSRF-Token': '{{ csrf_token() }}',
+			},
+			processResults: function (data) {
+				console.log(data.length);
 				return {
-				text: item.kepada,
-				id: item.kepada
-				}
-			})
+				results:  $.map(data, function (item) {
+					return {
+					text: item.kepada,
+					id: item.kepada
+					}
+				})
 			};
 		},
 		cache: true
 		}
 	});
+});
 </script>
 @endpush

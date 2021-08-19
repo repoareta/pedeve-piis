@@ -171,7 +171,7 @@ class PenempatanDepositoController extends Controller
         $tgltempo = $request->tanggal2;
         $tahunbunga = str_replace(',', '.', $request->tahunbunga);
         $noseri = $request->noseri;
-        $nominal = str_replace(',', '.', $request->nominal);
+        $nominal = str_replace(',', '', $request->nominal);
         $namabank = $request->namabank;
         $perpanjangan = $request->perpanjangan;
         $keterangan = $request->keterangan;
@@ -363,7 +363,7 @@ class PenempatanDepositoController extends Controller
         $tgltempo = $request->tanggal2;
         $tahunbunga = str_replace(',', '.', $request->tahunbunga);
         $noseri = $request->noseri;
-        $nominal = str_replace(',', '.', $request->nominal);
+        $nominal = str_replace(',', '', $request->nominal);
         $namabank = $request->namabank;
         $perpanjangan = $request->perpanjangan;
         $keterangan = $request->keterangan;
@@ -562,7 +562,7 @@ class PenempatanDepositoController extends Controller
         $tgltempo = $request->tanggal2;
         $tahunbunga = str_replace(',', '.', $request->tahunbunga);
         $noseri = $request->noseri;
-        $nominal = str_replace(',', '.', $request->nominal);
+        $nominal = str_replace(',', '', $request->nominal);
         $namabank = $request->namabank;
         $perpanjangan = $request->perpanjangan+1;
         $keterangan = $request->keterangan;

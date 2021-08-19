@@ -394,7 +394,7 @@ class PenerimaanKasService
                     'pk' =>  $attributes['pk'],
                     'jb' =>  $attributes['jb'],
                     'cj' =>  $attributes['cj'],
-                    'totprice'  =>  str_replace(',', '.', $attributes['nilai']),
+                    'totprice'  =>  str_replace(',', '', $attributes['nilai']),
                     'keterangan'  =>  $attributes['rincian'],
                 ]);
 
@@ -406,7 +406,7 @@ class PenerimaanKasService
                 'docno' =>  $attributes['nodok'],
                 'lineno' =>  $attributes['nourut'],
                 'kdbank' =>  $attributes['sanper'],
-                'nominal' =>  str_replace(',', '.', $attributes['nilai']),
+                'nominal' =>  str_replace(',', '', $attributes['nilai']),
                 'asal' =>  $attributes['lapangan'] ?? null,
                 'keterangan' =>  $attributes['rincian'],
                 'proses' =>  'N',
@@ -423,7 +423,7 @@ class PenerimaanKasService
             'pk' =>  $attributes['pk'],
             'jb' =>  $attributes['jb'],
             'cj' =>  $attributes['cj'],
-            'totprice'  =>  str_replace(',', '.', $attributes['nilai']),
+            'totprice'  =>  str_replace(',', '', $attributes['nilai']),
             'keterangan'  =>  $attributes['rincian'],
         ]);
 
@@ -487,7 +487,7 @@ class PenerimaanKasService
             'updatedate' => $attributes['tanggal'],
             'updatepwd' => $attributes['user_id'],
             'rate' => $attributes['kurs'],
-            'nilai_dok' => str_replace(',', '.', $attributes['nilai']),
+            'nilai_dok' => str_replace(',', '', $attributes['nilai']),
             'originalby' => $attributes['user_id'],
             'ket1' => $attributes['keterangan-1'],
             'ket2' => $attributes['keterangan-2'],

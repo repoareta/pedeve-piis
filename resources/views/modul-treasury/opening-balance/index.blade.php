@@ -28,7 +28,7 @@
                 @endif
                 @if($data_akses->rubah == 1)
                 <button id="editRow" class="btn p-0">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah atau Lihat Data">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data">
                         <i class="fas fa-2x fa-times-cirlce text-danger"></i>
                     </span>
                 </button>

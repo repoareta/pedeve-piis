@@ -327,7 +327,7 @@ class PembayaranGajiController extends Controller
         $updatedate = $request->tanggal;
         $updatepwd = $request->userid;
         $rate = $request->kurs;
-        $nilai_dok = str_replace(',', '.', $request->nilai);
+        $nilai_dok = str_replace(',', '', $request->nilai);
         $originalby = $request->userid;
         $ket1 = $request->ket1;
         $ket2 = $request->ket2;
@@ -381,11 +381,11 @@ class PembayaranGajiController extends Controller
     public function edit($id)
     {
         $nodoc = str_replace('-', '/', $id);
-        $data_list = DB::table('kasdoc')
+        $data = DB::table('kasdoc')
             ->join('storejk', 'kasdoc.store', '=', 'storejk.kodestore')
             ->select('kasdoc.*', 'storejk.*')
-            ->where('kasdoc.docno', $nodoc)
-            ->get();
+            ->where('docno', $nodoc)
+            ->first();
         $datenew = date('Y-m-d');
         $tgl = date_create($datenew);
         $tahuns = date_format($tgl, 'Y');
@@ -409,9 +409,10 @@ class PembayaranGajiController extends Controller
         } else {
             $no_urut = 1;
         }
+
         return view('modul-treasury.pembayaran-gaji.edit', compact(
             'data_rincian',
-            'data_list',
+            'data',
             'data_bagian',
             'data_detail',
             'count',
@@ -435,7 +436,7 @@ class PembayaranGajiController extends Controller
                 'voucher' =>  $request->nobukti,
                 'kepada' =>  $request->kepada,
                 'rate' =>  $request->kurs,
-                'nilai_dok' =>  str_replace(',', '.', $request->nilai),
+                'nilai_dok' =>  str_replace(',', '', $request->nilai),
                 'ket1' =>  $request->ket1,
                 'ket2' =>  $request->ket2,
                 'ket3' =>  $request->ket3,
