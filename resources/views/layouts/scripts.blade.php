@@ -110,32 +110,6 @@
             }
         });
 
-        // $('.money').mask('000,000,000,000,000.00', {
-        //     reverse: true
-        // });
-
-        // var doptions = {
-        //     reverse: true,
-        //     translation: {
-        //         'D': {
-        //             pattern: /\./,
-        //             optional: true,
-        //             fallback: '.'
-        //         }
-        //     },
-        //     onKeyPress: function (cep, e, field, options) {
-        //         var masks = ['#,##0D', '#,##0D99'];
-        //         var mask = (cep.indexOf('.') >= 1) ? masks[1] : masks[0];
-        //         $('.money').mask(mask, options);
-        //     }
-        // };
-
-        // $('.money').mask('#,##0D', doptions);
-
-        // $('.money').mask('000000000000000', {
-        //     reverse: true
-        // });
-
         $('.money').inputmask({
 			alias: 'decimal',
             groupSeparator: ',',
@@ -247,9 +221,6 @@
             $.ajax({
                 url: url,
                 type: "GET",
-                data: {
-                    _token:"{{ csrf_token() }}"		
-                },
                 success: function(response){
                     // console.log(response);
                     // isi jabatan

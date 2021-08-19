@@ -188,7 +188,6 @@ class PegawaiController extends Controller
      */
     public function showJson(MasterPegawai $pegawai)
     {
-        // SHOW
         // Nopeg, Nama Jabatan dan Golongan
         $pegawai_jabatan = $pegawai->jabatan_latest()->first();
         $kode_jabatan = KodeJabatan::where('kdjab', $pegawai_jabatan->kdjab)
