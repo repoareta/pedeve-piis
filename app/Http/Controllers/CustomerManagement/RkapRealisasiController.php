@@ -712,6 +712,28 @@ class RkapRealisasiController extends Controller
         AND $perusahaan_trk
         AND bulan IS NULL");
 
+        if($request->perusahaan){
+            // return default PDF
+            $headerHtml = view()->make(
+                'modul-customer-management.rkap-realisasi.report-export-pdf-header',
+                compact('tahun_pdf', 'perusahaan_pdf')
+            )->render();
+
+            $pdf = PDF::loadView(
+                'modul-customer-management.rkap-realisasi.report-export-pdf',
+                compact('rkapRealisasiList', 'tahun_pdf')
+            )
+            ->setPaper('a4', 'landscape')
+            ->setOption('margin-top', '10mm')
+            ->setOption('margin-bottom', '10mm')
+            ->setOption('header-html', $headerHtml)
+            ->setOption('footer-right', 'Halaman [page] dari [topage]')
+            ->setOption('footer-font-name', 'sans-serif')
+            ->setOption('footer-font-size', 8);
+
+            return $pdf->download('report_rkap_realisasi_'.date('Y-m-d H:i:s').'.pdf');
+        }
+
         // return default PDF
         $headerHtml = view()->make(
             'modul-customer-management.rkap-realisasi.report-export-pdf-header',
@@ -719,7 +741,7 @@ class RkapRealisasiController extends Controller
         )->render();
 
         $pdf = PDF::loadView(
-            'modul-customer-management.rkap-realisasi.report-export-pdf',
+            'modul-customer-management.rkap-realisasi.report-all-pdf',
             compact('rkapRealisasiList', 'tahun_pdf')
         )
         ->setPaper('a4', 'landscape')
