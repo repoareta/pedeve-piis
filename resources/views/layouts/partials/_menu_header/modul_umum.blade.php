@@ -5,7 +5,7 @@
     </a>
     <div class="menu-submenu menu-submenu-classic menu-submenu-left">
         <ul class="menu-subnav">
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is('modul_umum.perjalanan_dinas.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -15,7 +15,11 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ 
+                            Route::is('modul_umum.perjalanan_dinas.index') ||
+                            Route::is('modul_umum.perjalanan_dinas.create') ||
+                            Route::is('modul_umum.perjalanan_dinas.edit')
+                             ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_umum.perjalanan_dinas.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -23,7 +27,11 @@
                                 <span class="menu-text">Permintaan Panjar Dinas</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ 
+                            Route::is('modul_umum.perjalanan_dinas.pertanggungjawaban.index*') ||
+                            Route::is('modul_umum.perjalanan_dinas.pertanggungjawaban.create') ||
+                            Route::is('modul_umum.perjalanan_dinas.pertanggungjawaban.edit')
+                            ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -63,7 +71,7 @@
                     </ul>
                 </div>
             </li>								
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is('modul_umum.anggaran.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>

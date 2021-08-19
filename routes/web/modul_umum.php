@@ -33,37 +33,44 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::post('perjalanan-dinas/rekap/export', [PerjalananDinasController::class, 'rekapExport'])->name('rekap.export');
         // PERJALANAN DINAS END
 
-        // PERJALANAN DINAS DETAIL START
-        Route::name('detail.')->group(function () {
-            Route::get('perjalanan-dinas/detail/index-json/{no_panjar?}', [PerjalananDinasDetailController::class, 'indexJson'])->name('index.json');
-            Route::post('perjalanan-dinas/detail/store/{no_panjar?}', [PerjalananDinasDetailController::class, 'store'])->name('store');
-            Route::get('perjalanan-dinas/detail/show', [PerjalananDinasDetailController::class, 'show'])->name('show.json');
-            Route::post('perjalanan-dinas/detail/update/{no_panjar}/{no_urut}/{nopek}', [PerjalananDinasController::class, 'update'])->name('update');
-            Route::delete('perjalanan-dinas/detail/delete', [PerjalananDinasDetailController::class, 'delete'])->name('delete');
-        });
-        
-        // PERJALANAN DINAS DETAIL END
+        // Matches The "/perusahaan-afiliasi/xxx" URL
+        Route::prefix('perjalanan-dinas')->group(function () {
+            // PERJALANAN DINAS DETAIL START
+            Route::name('detail.')->group(function () {
+                Route::get('{no_panjar}/detail/index-json', [PerjalananDinasDetailController::class, 'indexJson'])->name('index.json');
+                Route::get('{no_panjar}/detail/create', [PerjalananDinasDetailController::class, 'create'])->name('create');
+                Route::post('{no_panjar}/detail/store', [PerjalananDinasDetailController::class, 'store'])->name('store');
+                Route::get('{no_panjar}/detail/show', [PerjalananDinasDetailController::class, 'show'])->name('show.json');
+                Route::get('{no_panjar}/detail/edit/{no_urut}/{nopek}', [PerjalananDinasDetailController::class, 'edit'])->name('edit');
+                Route::post('{no_panjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasController::class, 'update'])->name('update');
+                Route::delete('{no_panjar}/detail/delete', [PerjalananDinasDetailController::class, 'delete'])->name('delete');
+            });
+            
+            // PERJALANAN DINAS DETAIL END
 
-        // Route assigned name "perjalanan_dinas.pertanggungjawaban.index"...
-        // P PERJALANAN DINAS START
-        Route::name('pertanggungjawaban.')->group(function () {
-            Route::get('perjalanan-dinas/pertanggungjawaban', [PerjalananDinasPertanggungjawabanController::class, 'index'])->name('index');
-            Route::get('perjalanan-dinas/pertanggungjawaban/index-json', [PerjalananDinasPertanggungjawabanController::class, 'indexJson'])->name('index.json');
-            Route::get('perjalanan-dinas/pertanggungjawaban/create', [PerjalananDinasPertanggungjawabanController::class, 'create'])->name('create');
-            Route::post('perjalanan-dinas/pertanggungjawaban/store', [PerjalananDinasPertanggungjawabanController::class, 'store'])->name('store');
-            Route::get('perjalanan-dinas/pertanggungjawaban/edit/{no_ppanjar}', [PerjalananDinasPertanggungjawabanController::class, 'edit'])->name('edit');
-            Route::post('perjalanan-dinas/pertanggungjawaban/update/{no_ppanjar}', [PerjalananDinasPertanggungjawabanController::class, 'update'])->name('update');
-            Route::delete('perjalanan-dinas/pertanggungjawaban/delete', [PerjalananDinasPertanggungjawabanController::class, 'delete'])->name('delete');
-            Route::get('perjalanan-dinas/pertanggungjawaban/export/{no_ppanjar}', [PerjalananDinasPertanggungjawabanController::class, 'exportRow'])->name('export');
-            // P PERJALANAN DINAS END
+            // Route assigned name "perjalanan_dinas.pertanggungjawaban.index"...
+            // P PERJALANAN DINAS START
+            Route::name('pertanggungjawaban.')->group(function () {
+                Route::get('pertanggungjawaban', [PerjalananDinasPertanggungjawabanController::class, 'index'])->name('index');
+                Route::get('pertanggungjawaban/index-json', [PerjalananDinasPertanggungjawabanController::class, 'indexJson'])->name('index.json');
+                Route::get('pertanggungjawaban/create', [PerjalananDinasPertanggungjawabanController::class, 'create'])->name('create');
+                Route::post('pertanggungjawaban/store', [PerjalananDinasPertanggungjawabanController::class, 'store'])->name('store');
+                Route::get('pertanggungjawaban/edit/{no_ppanjar}', [PerjalananDinasPertanggungjawabanController::class, 'edit'])->name('edit');
+                Route::post('pertanggungjawaban/update/{no_ppanjar}', [PerjalananDinasPertanggungjawabanController::class, 'update'])->name('update');
+                Route::delete('pertanggungjawaban/delete', [PerjalananDinasPertanggungjawabanController::class, 'delete'])->name('delete');
+                Route::get('pertanggungjawaban/export/{no_ppanjar}', [PerjalananDinasPertanggungjawabanController::class, 'exportRow'])->name('export');
+                // P PERJALANAN DINAS END
 
-            // P PERJALANAN DINAS DETAIL START
-            Route::get('perjalanan-dinas/pertanggungjawaban/detail/index-json', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'indexJson'])->name('detail.index.json');
-            Route::get('perjalanan-dinas/pertanggungjawaban/detail/show', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'show'])->name('detail.show');
-            Route::post('perjalanan-dinas/pertanggungjawaban/detail/store', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'store'])->name('detail.store');
-            Route::post('perjalanan-dinas/pertanggungjawaban/detail/update/{no_ppanjar}/{no_urut}/{nopek}', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'update'])->name('detail.update');
-            Route::delete('perjalanan-dinas/pertanggungjawaban/detail/delete', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'delete'])->name('detail.delete');
-            // P PERJALANAN DINAS DETAIL END
+                Route::prefix('pertanggungjawaban')->group(function () {
+                    // P PERJALANAN DINAS DETAIL START
+                    Route::get('{no_ppanjar}/detail/index-json', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'indexJson'])->name('detail.index.json');
+                    Route::get('{no_ppanjar}/detail/show', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'show'])->name('detail.show');
+                    Route::post('{no_ppanjar}/detail/store', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'store'])->name('detail.store');
+                    Route::post('{no_ppanjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'update'])->name('detail.update');
+                    Route::delete('{no_ppanjar}/detail/delete', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'delete'])->name('detail.delete');
+                    // P PERJALANAN DINAS DETAIL END
+                }); 
+            });
         });
     });
     

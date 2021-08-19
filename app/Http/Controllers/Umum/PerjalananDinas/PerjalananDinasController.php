@@ -116,11 +116,10 @@ class PerjalananDinasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PerjalananDinasStore $request)
+    public function store(PerjalananDinasStore $request, PanjarHeader $panjar_header)
     {
         $pegawai = MasterPegawai::find($request->nopek);
         
-        $panjar_header = new PanjarHeader;
         $panjar_header->no_panjar = $request->no_spd;
         $panjar_header->tgl_panjar = date('Y-m-d H:i:s', strtotime(date('H:i:s'), strtotime($request->tanggal)));
         $panjar_header->nopek = $request->nopek;
@@ -136,7 +135,7 @@ class PerjalananDinasController extends Controller
         $panjar_header->kendaraan = $request->kendaraan;
         $panjar_header->ditanggung_oleh = $request->biaya;
         $panjar_header->keterangan = $request->keterangan;
-        $panjar_header->jum_panjar = currency_format($request->jumlah);
+        $panjar_header->jum_panjar = str_replace(',', '', $request->jumlah);
 
         // Save Panjar Header
         $panjar_header->save();
@@ -163,7 +162,7 @@ class PerjalananDinasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($no_panjar)
+    public function edit(PanjarHeader $no_panjar)
     {
         $no_panjar = str_replace('-', '/', $no_panjar);
         $panjar_header = PanjarHeader::where('no_panjar', $no_panjar)->first();
