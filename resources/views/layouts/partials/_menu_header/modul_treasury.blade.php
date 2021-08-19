@@ -76,7 +76,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ Route::is('rekap_harian_kas.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('rekap_harian_kas.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('rekap_harian_kas.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -84,7 +84,7 @@
                                 <span class="menu-text">Rekap Harian Kas</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('rekap_periode_kas.create') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('rekap_periode_kas.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('rekap_periode_kas.create') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -105,7 +105,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ Route::is('data_pajak.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('data_pajak.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('data_pajak.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -113,7 +113,7 @@
                                 <span class="menu-text">Data Pajak</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('proses_pajak.rekap') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('proses_pajak.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('proses_pajak.rekap') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -121,7 +121,7 @@
                                 <span class="menu-text">Form 1721-A1</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('laporan_pajak.rekap') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('laporan_pajak.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('laporan_pajak.rekap') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -142,7 +142,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ Route::is('pembayaran_gaji.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('pembayaran_gaji.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('pembayaran_gaji.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -150,7 +150,7 @@
                                 <span class="menu-text">Pembayaran Gaji</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('pembayaran_umk.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('pembayaran_umk.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('pembayaran_umk.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -158,7 +158,7 @@
                                 <span class="menu-text">Uang Muka Kerja</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('pembayaran_jumk.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('pembayaran_jumk.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('pembayaran_jumk.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -166,7 +166,7 @@
                                 <span class="menu-text">Pertanggungjawaban UMK</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('pembayaran_pbayar.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('pembayaran_pbayar.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('pembayaran_pbayar.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -187,7 +187,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ Route::is('informasi_saldo.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('informasi_saldo.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('informasi_saldo.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -208,7 +208,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ Route::is('bulan_perbendaharaan.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('bulan_perbendaharaan.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('bulan_perbendaharaan.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -216,7 +216,7 @@
                                 <span class="menu-text">Setting Bulan Buku</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('opening_balance.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('opening_balance.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('opening_balance.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -227,7 +227,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu {{ Route::is('penempatan_deposito.*') ? 'menu-item-active' : null }}" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is(['penempatan_deposito.*', 'perhitungan_bagihasil.*']) ? 'menu-item-active' : null }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -237,7 +237,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ Route::is('penempatan_deposito.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('penempatan_deposito.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('penempatan_deposito.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -245,7 +245,7 @@
                                 <span class="menu-text">Penempatan</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('perhitungan_bagihasil.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('perhitungan_bagihasil.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                             <a href="{{ route('perhitungan_bagihasil.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -256,7 +256,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item {{ Route::is('penerimaan_kas.index') ? 'menu-item-active' : null }}" aria-haspopup="true">
+            <li class="menu-item {{ Route::is('penerimaan_kas.*') ? 'menu-item-active' : null }}" aria-haspopup="true">
                 <a href="{{ route('penerimaan_kas.index') }}" class="menu-link">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
