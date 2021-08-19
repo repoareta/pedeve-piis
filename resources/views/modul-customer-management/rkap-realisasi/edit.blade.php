@@ -88,68 +88,68 @@
                     <div class="form-group row" id="kurs-group" @if($rkapRealisasi->ci_r == 1) style="display: none;" @endif>
                         <label class="col-2 col-form-label">Kurs</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" value="1" name="kurs" id="kurs">
+                            <input class="form-control money" type="text" value="@if($rkapRealisasi->ci_r == 1) 1 @else {{ $rkapRealisasi->rate_r }} @endif" name="kurs" id="kurs" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Aset</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->aset_r }}" name="aset" id="aset">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->aset_r }}" name="aset" id="aset" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_usaha }}" name="pendapatan_usaha" id="pendapatan_usaha">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_usaha }}" name="pendapatan_usaha" id="pendapatan_usaha" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Beban Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->beban_usaha }}" name="beban_usaha" id="beban_usaha">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->beban_usaha }}" name="beban_usaha" id="beban_usaha" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan/Beban Lain</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_or_beban_lain }}" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->pendapatan_or_beban_lain }}" name="pendapatan_beban_lain" id="pendapatan_beban_lain" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Laba Bersih</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->laba_bersih_r }}" name="laba_bersih" id="laba_bersih">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->laba_bersih_r }}" name="laba_bersih" id="laba_bersih" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">EBITDA</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->ebitda }}" name="ebitda" id="ebitda">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->ebitda }}" name="ebitda" id="ebitda" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi BD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->investasi_bd }}" name="investasi_bd" id="investasi_bd">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->investasi_bd }}" name="investasi_bd" id="investasi_bd" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi NBD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->investasi_nbd }}" name="investasi_nbd" id="investasi_nbd">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->investasi_nbd }}" name="investasi_nbd" id="investasi_nbd" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">TKP</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->tkp_r }}" name="tkp" id="tkp">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->tkp_r }}" name="tkp" id="tkp" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">KPI</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->kpi_r }}" name="kpi" id="kpi">
+                            <input class="form-control money" type="text" value="{{ $rkapRealisasi->kpi_r }}" name="kpi" id="kpi" autocomplete="off">
                         </div>
                     </div>
 

@@ -88,68 +88,68 @@
                     <div class="form-group row" id="kurs-group" style="display: none;">
                         <label class="col-2 col-form-label">Kurs</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" value="1" name="kurs" id="kurs">
+                            <input class="form-control money" type="text" value="1" name="kurs" id="kurs" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Aset</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="aset" id="aset">
+                            <input class="form-control money" type="text" value="0" name="aset" id="aset" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="pendapatan_usaha" id="pendapatan_usaha">
+                            <input class="form-control money" type="text" value="0" name="pendapatan_usaha" id="pendapatan_usaha" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Beban Usaha</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="beban_usaha" id="beban_usaha">
+                            <input class="form-control money" type="text" value="0" name="beban_usaha" id="beban_usaha" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Pendapatan/Beban Lain</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="pendapatan_beban_lain" id="pendapatan_beban_lain">
+                            <input class="form-control money" type="text" value="0" name="pendapatan_beban_lain" id="pendapatan_beban_lain" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Laba Bersih</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="laba_bersih" id="laba_bersih">
+                            <input class="form-control money" type="text" value="0" name="laba_bersih" id="laba_bersih" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">EBITDA</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="ebitda" id="ebitda">
+                            <input class="form-control money" type="text" value="0" name="ebitda" id="ebitda" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi BD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="investasi_bd" id="investasi_bd">
+                            <input class="form-control money" type="text" value="0" name="investasi_bd" id="investasi_bd" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Investasi NBD</label>
                         <div class="col-8">
-                            <input class="form-control money" type="text" value="0" name="investasi_nbd" id="investasi_nbd">
+                            <input class="form-control money" type="text" value="0" name="investasi_nbd" id="investasi_nbd" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">TKP</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="tkp" id="tkp">
+                            <input class="form-control money" type="text" value="0" name="tkp" id="tkp" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">KPI</label>
                         <div class="col-8">						
-                            <input class="form-control money" type="text" value="0" name="kpi" id="kpi">
+                            <input class="form-control money" type="text" value="0" name="kpi" id="kpi" autocomplete="off">
                         </div>
                     </div>
 

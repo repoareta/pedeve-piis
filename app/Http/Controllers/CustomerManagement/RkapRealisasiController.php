@@ -135,7 +135,7 @@ class RkapRealisasiController extends Controller
         $rencanaKerja->ci_r = $request->ci;
         $rencanaKerja->tahun = $request->tahun;
         $rencanaKerja->bulan = $request->bulan;
-        $rencanaKerja->rate_r = $request->kurs;
+        $rencanaKerja->rate_r = str_replace(',', '', $request->kurs);
         $rencanaKerja->aset_r = str_replace(',', '', $request->aset);
         $rencanaKerja->pendapatan_usaha = str_replace(',', '', $request->pendapatan_usaha);
         $rencanaKerja->beban_usaha = str_replace(',', '', $request->beban_usaha);
@@ -182,7 +182,7 @@ class RkapRealisasiController extends Controller
         $rencanaKerja->ci_r = $request->ci;
         $rencanaKerja->tahun = $request->tahun;
         $rencanaKerja->bulan = $request->bulan;
-        $rencanaKerja->rate_r = $request->kurs;
+        $rencanaKerja->rate_r = str_replace(',', '', $request->kurs);
         $rencanaKerja->aset_r = str_replace(',', '', $request->aset);
         $rencanaKerja->pendapatan_usaha = str_replace(',', '', $request->pendapatan_usaha);
         $rencanaKerja->beban_usaha = str_replace(',', '', $request->beban_usaha);
