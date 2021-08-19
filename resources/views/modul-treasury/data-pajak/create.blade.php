@@ -74,13 +74,13 @@
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Nilai</label>
                         <div class="col-10">
-                            <input class="form-control" name="nilai" type="text" value="" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                            <input class="form-control money" name="nilai" type="text" value="" size="25" maxlength="25" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="jenis-dinas-input" class="col-2 col-form-label">Pajak</label>
                         <div class="col-10">
-                            <input class="form-control" name="pajak" type="text" value="" size="25" maxlength="25" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                            <input class="form-control money" name="pajak" type="text" value="" size="25" maxlength="25" autocomplete="off">
                         </div>
                     </div>
     
