@@ -18,7 +18,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Jenis Kas/Bank
+                Perbendaharaan - Kas/Bank
             </h3>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            Header Jenis Kas/Bank
+                            Header Perbendaharaan - Kas/Bank
                         </div>
                     </div>
                 </div>
@@ -311,7 +311,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper" id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
+							<select name="sanper" id="select-sanper" class="cariaccount form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
@@ -324,7 +324,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;">
+							<select name="bagian" id="select-bagian" class="caribagian form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -343,7 +343,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;">
+							<select name="jb" id="select-jb"  class="carijb form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
@@ -355,7 +355,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;">
+							<select name="cj" id="select-cj" class="caricj form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
@@ -367,7 +367,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control money" type="text" value="" name="nilai" id="nilai1"  size="16" maxlength="16"  required autocomplete="off">
+							<input class="form-control money" type="text" name="nilai" id="nilai1"  size="16" maxlength="16"  required autocomplete="off">
 						</div>
 					</div>
                 </div>
