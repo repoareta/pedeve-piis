@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" id="form-create">
+        <form class="form" id="form-create" method="POST" action="{{ route('pembayaran_gaji.store') }}">
             @csrf
             <div class="portlet__body">
                 <div class="form-group form-group-last">
@@ -153,260 +153,273 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PembayaranGajiStoreRequest', '#form-create'); !!}
+
 <script>
-    $(document).ready(function () {
-		
-		
-		$("#jk").on("change", function(){ 
-		var ci = $(this).val();
-		console.log(ci);
-		if(ci != 13)
-		{
-			$('#kurs').val(1);
-			$('#simbol-kurs').hide();
-			$( "#kurs" ).prop( "required", false );
-			$( "#kurs" ).prop( "readonly", true );
-			$('#kurs').css("background-color","#e4e6ef");
-			$('#kurs').css("cursor","not-allowed");
-		} else {
-			var kurs1 = $('#data-kurs').val();
-			$('#kurs').val(kurs1);
-			$('#simbol-kurs').show();
-			$( "#kurs" ).prop( "required", true );
-			$( "#kurs" ).prop( "readonly", false );
-			$('#kurs').css("background-color","#ffffff");
-			$('#kurs').css("cursor","text");
-		}
-			
-	});
-$('#form-create').submit(function(){
-	var mp = $("#mp").val();
-	var bagian = $("#bagian").val();
-	var nomor = $("#nomor").val();
-	var scurrdoc = mp+'-'+bagian+'-'+nomor;
-	$.ajax({
-		url  : "{{ route('pembayaran_gaji.store') }}",
-		type : "POST",
-		data : $('#form-create').serialize(),
-		dataType : "JSON",
-		headers: {
-		'X-CSRF-Token': '{{ csrf_token() }}',
-		},
-		success : function(data){
-		console.log(data);
-		if(data == 1){
-			Swal.fire({
-				icon  : 'success',
-				title : 'Data Berhasil Ditambah',
-				text  : 'Berhasil',
-				timer : 2000
-			}).then(function() {
-                location.href = "{{ url('perbendaharaan/pembayaran-gaji/edit') }}"+ '/' +scurrdoc;
-            });
-		}else if(data = 2){
-			Swal.fire({
-				type  : 'info',
-				title : 'Bulan Buku Tidak Ada Atau Sudah Di Posting.',
-				text  : 'Failed',
-			});
-		} else {
-			Swal.fire({
-				type  : 'info',
-				title : 'Data Yang Diinput Sudah Ada.',
-				text  : 'Failed',
-			});
-		}
-		}, 
-		error : function(){
-			alert("Terjadi kesalahan, coba lagi nanti");
-		}
-	});	
-	return false;
-});
-$("#bagian").on("change", function(){
-var bagian = $('#bagian').val();
-var mp = $('#mp').val();
-var bulan = $('#bulan').val();
-var bulanbuku = $('#bulanbuku').val();
-	$.ajax({
-		url : "{{ route('pembayaran_gaji.createJson') }}",
-		type : "POST",
-		dataType: 'json',
-		data : {
-			bagian:bagian,
-			mp:mp,
-			bulanbuku:bulanbuku
-			},
-		headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
-		success : function(data){
-			var tahun = bulanbuku.substr(2,2);
-			var nodata = tahun+''+bulan+''+data;
-			var nomor = parseInt(nodata)+parseInt(1);
-			$("#nomor").val(nomor);
-		},
-		error : function(){
-			alert("Ada kesalahan controller!");
-		}
-	})
-});
-$("#jk").on("change", function(){
-var jk = $('#jk').val();
-	if(jk == '13'){
-		$("#ci").val('2');
-		$("#kurs").val('0');
-		$("#jnskas").val('2');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	} else if (jk == '11'){
-		$("#ci").val('1');
-		$("#kurs").val('1');
-		$("#jnskas").val('2');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	}else if (jk == '10'){
-		$("#ci").val('1');
-		$("#kurs").val('1');
-		$("#jnskas").val('1');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	} else {
-		$("#ci").val("");
-		$("#kurs").val("");
-		$("#jnskas").val("");
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	}	
-	var ci = $('#ci').val();
-	$.ajax({
-		url : "{{ route('pembayaran_gaji.lokasiJson') }}",
-		type : "POST",
-		dataType: 'json',
-		data : {
-			jk:jk,
-			ci:ci
-			},
-		headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
-		success : function(data){
-					var html = '';
-                    var i;
-						html += '<option value="">- Pilih - </option>';
-                    for(i=0; i<data.length; i++){
-                        html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
-                    }
-                    $('#lokasi').html(html);		
-		},
-		error : function(){
-			alert("Ada kesalahan controller!");
-		}
-	})
-});
-$("#lokasi").on("change", function(){
-var lokasi = $('#lokasi').val();
-var mp = $('#mp').val();
-var tahun = $('#tahun').val();
-	$.ajax({
-		url : "{{ route('pembayaran_gaji.nobuktiJson') }}",
-		type : "POST",
-		dataType: 'json',
-		data : {
-			lokasi:lokasi,
-			mp:mp,
-			tahun:tahun
-			},
-		headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
-		success : function(data){
-		var nobukti = data;
-			$("#nobukti").val(nobukti);
-		},
-		error : function(){
-			alert("Ada kesalahan controller!");
-		}
-	})
-});
-$('#nilai').keyup(function(){
-	var nilai = $('#nilai').val();
-	if(nilai < '0'){
-		$("#iklan").val('CR');
-	}else if(nilai > '0'){
-		$("#iklan").val('DR');
-	} else {
-		$("#iklan").val('');
-	}
-});
-	// minimum setup
-	$('#tanggal').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	
-	$('#bulanbuku').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		language : 'id',
-		format   : 'yyyymm'
-	});
-	$('.kepada').select2({
-		placeholder: '- Pilih -',
-		allowClear: true,
-		tags: true,
-		ajax: {
-			url: "{{ route('penerimaan_kas.ajax-kepada') }}",
-			type : "post",
-			dataType : "JSON",
-			headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
-			delay: 250,
-		processResults: function (data) {
-			console.log(data.length);
-			return {
-			results:  $.map(data, function (item) {
-				return {
-				text: item.kepada,
-				id: item.kepada
+	$(document).ready(function () {
+
+		$("#jk").on("change", function(e){ 
+			var ci = $(this).val();
+			console.log(ci);
+			if(ci != 13) {
+				$('#kurs').val(1);
+				$('#simbol-kurs').hide();
+				$( "#kurs" ).prop( "required", false );
+				$( "#kurs" ).prop( "readonly", true );
+				$('#kurs').css("background-color","#e4e6ef");
+				$('#kurs').css("cursor","not-allowed");
+			} else {
+				var kurs1 = $('#data-kurs').val();
+				$('#kurs').val(kurs1);
+				$('#simbol-kurs').show();
+				$( "#kurs" ).prop( "required", true );
+				$( "#kurs" ).prop( "readonly", false );
+				$('#kurs').css("background-color","#ffffff");
+				$('#kurs').css("cursor","text");
+			}
+		});
+
+		$('#form-create').submit(function(e) {
+			e.preventDefault();
+			var mp = $("#mp").val();
+			var bagian = $("#bagian").val();
+			var nomor = $("#nomor").val();
+			var scurrdoc = mp+'-'+bagian+'-'+nomor;
+					
+			if($(this).valid()) {
+				$.ajax({
+					url  : "{{ route('pembayaran_gaji.store') }}",
+					type : "POST",
+					data : $('#form-create').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						console.log(data);
+						if(data == 1){
+							Swal.fire({
+								icon  : 'success',
+								title : 'Data Berhasil Ditambah',
+								text  : 'Berhasil',
+								timer : 2000
+							}).then(function() {
+								location.href = "{{ url('perbendaharaan/pembayaran-gaji/edit') }}"+ '/' +scurrdoc;
+							});
+						}else if(data = 2){
+							Swal.fire({
+								icon  : 'info',
+								title : 'Bulan Buku Tidak Ada Atau Sudah Di Posting.',
+								text  : 'Failed',
+							});
+						} else {
+							Swal.fire({
+								icon  : 'info',
+								title : 'Data Yang Diinput Sudah Ada.',
+								text  : 'Failed',
+							});
+						}
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});	
+			}
+		});
+
+		$("#bagian").on("change", function(){
+			var bagian = $('#bagian').val();
+			var mp = $('#mp').val();
+			var bulan = $('#bulan').val();
+			var bulanbuku = $('#bulanbuku').val();
+			$.ajax({
+				url : "{{ route('pembayaran_gaji.createJson') }}",
+				type : "POST",
+				dataType: 'json',
+				data : {
+					bagian:bagian,
+					mp:mp,
+					bulanbuku:bulanbuku
+					},
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+				success : function(data){
+					var tahun = bulanbuku.substr(2,2);
+					var nodata = tahun+''+bulan+''+data;
+					var nomor = parseInt(nodata)+parseInt(1);
+					$("#nomor").val(nomor);
+				},
+				error : function(){
+					alert("Ada kesalahan controller!");
 				}
 			})
-			};
-		},
-		cache: true
-		}
-	});
-});
-		var nilai = document.getElementById('nilai');
-		nilai.addEventListener('keyup', function(e){
-			// tambahkan 'Rp.' pada saat form di ketik
-			// gunakan fungsi formatnilai() untuk mengubah angka yang di ketik menjadi format angka
-			nilai.value = formatRupiah(this.value, '');
 		});
-		/* Fungsi formatRupiah */
-		function formatRupiah(angka, prefix){
-			var number_string = angka.replace(/[^,\d]/g, '').toString(),
-			split   		= number_string.split(','),
-			sisa     		= split[0].length % 3,
-			nilai     		= split[0].substr(0, sisa),
-			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
-			// tambahkan titik jika yang di input sudah menjadi angka ribuan
-			if(ribuan){
-				separator = sisa ? '.' : '';
-				nilai += separator + ribuan.join('.');
+
+		$("#jk").on("change", function(){
+			var jk = $('#jk').val();
+			if(jk == '13'){
+				$("#ci").val('2');
+				$("#kurs").val('0');
+				$("#jnskas").val('2');
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			} else if (jk == '11'){
+				$("#ci").val('1');
+				$("#kurs").val('1');
+				$("#jnskas").val('2');
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			}else if (jk == '10'){
+				$("#ci").val('1');
+				$("#kurs").val('1');
+				$("#jnskas").val('1');
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			} else {
+				$("#ci").val("");
+				$("#kurs").val("");
+				$("#jnskas").val("");
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			}	
+			
+			var ci = $('#ci').val();
+			$.ajax({
+				url : "{{ route('pembayaran_gaji.lokasiJson') }}",
+				type : "POST",
+				dataType: 'json',
+				data : {
+					jk:jk,
+					ci:ci
+				},
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				success : function(data){
+					var html = '';
+					var i;
+						html += '<option value="">- Pilih - </option>';
+					for(i=0; i<data.length; i++){
+						html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
+					}
+					$('#lokasi').html(html);		
+				},
+				error : function(){
+					alert("Ada kesalahan controller!");
+				}
+			})
+		});
+
+		$("#lokasi").on("change", function(){
+			var lokasi = $('#lokasi').val();
+			var mp = $('#mp').val();
+			var tahun = $('#tahun').val();
+			$.ajax({
+				url : "{{ route('pembayaran_gaji.nobuktiJson') }}",
+				type : "POST",
+				dataType: 'json',
+				data : {
+					lokasi:lokasi,
+					mp:mp,
+					tahun:tahun
+				},
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				success : function(data){
+					var nobukti = data;
+					$("#nobukti").val(nobukti);
+				},
+				error : function(){
+					alert("Ada kesalahan controller!");
+				}
+			})
+		});
+
+		$('#nilai').keyup(function(){
+			var nilai = $('#nilai').val();
+			if(nilai < '0'){
+				$("#iklan").val('CR');
+			}else if(nilai > '0'){
+				$("#iklan").val('DR');
+			} else {
+				$("#iklan").val('');
 			}
-			nilai = split[1] != undefined ? nilai + ',' + split[1] : nilai;
-			$a= prefix == undefined ? nilai : (nilai ? nilai: '');
-         return $a;
+		});
+
+		// minimum setup
+		$('#tanggal').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
+		});
+		
+		$('#bulanbuku').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'yyyymm'
+		});
+
+		$('.kepada').select2({
+			placeholder: '- Pilih -',
+			allowClear: true,
+			tags: true,
+			ajax: {
+				url: "{{ route('penerimaan_kas.ajax-kepada') }}",
+				type : "post",
+				dataType : "JSON",
+				headers: {
+				'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				delay: 250,
+			processResults: function (data) {
+				console.log(data.length);
+				return {
+				results:  $.map(data, function (item) {
+					return {
+					text: item.kepada,
+					id: item.kepada
+					}
+				})
+				};
+			},
+			cache: true
+			}
+		});
+
+	});
+
+	var nilai = document.getElementById('nilai');
+	nilai.addEventListener('keyup', function(e){
+		// tambahkan 'Rp.' pada saat form di ketik
+		// gunakan fungsi formatnilai() untuk mengubah angka yang di ketik menjadi format angka
+		nilai.value = formatRupiah(this.value, '');
+	});
+	/* Fungsi formatRupiah */
+	function formatRupiah(angka, prefix){
+		var number_string = angka.replace(/[^,\d]/g, '').toString(),
+		split = number_string.split(','),
+		sisa = split[0].length % 3,
+		nilai = split[0].substr(0, sisa),
+		ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+		// tambahkan titik jika yang di input sudah menjadi angka ribuan
+		if(ribuan){
+			separator = sisa ? '.' : '';
+			nilai += separator + ribuan.join('.');
 		}
+
+		nilai = split[1] != undefined ? nilai + ',' + split[1] : nilai;
+		$a = prefix == undefined ? nilai : (nilai ? nilai: '');
+		return $a;
+	}
 </script>
 @endpush
