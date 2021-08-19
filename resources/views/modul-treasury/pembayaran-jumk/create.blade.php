@@ -155,7 +155,7 @@
 			$('#simbol-kurs').hide();
 			$( "#kurs" ).prop( "required", false );
 			$( "#kurs" ).prop( "readonly", true );
-			$('#kurs').css("background-color","#DCDCDC");
+			$('#kurs').css("background-color","#e4e6ef");
 			$('#kurs').css("cursor","not-allowed");
 		} else {
 			var kurs1 = $('#data-kurs').val();
@@ -337,7 +337,6 @@ $('#nilai').keyup(function(){
 		rtl: KTUtil.isRTL(),
 		todayHighlight: true,
 		orientation: "bottom left",
-		templates: arrows,
 		autoclose: true,
 		language : 'id',
 		format   : 'dd-mm-yyyy'
@@ -347,12 +346,10 @@ $('#nilai').keyup(function(){
 		rtl: KTUtil.isRTL(),
 		todayHighlight: true,
 		orientation: "bottom left",
-		templates: arrows,
 		autoclose: true,
 		language : 'id',
 		format   : 'yyyymm'
 	});
-});
 	$('.kepada').select2({
 		placeholder: '- Pilih -',
 		allowClear: true,
@@ -379,5 +376,6 @@ $('#nilai').keyup(function(){
 		cache: true
 		}
 	});
+});
 </script>
 @endpush

@@ -166,7 +166,7 @@
 			$('#simbol-kurs').hide();
 			$( "#kurs" ).prop( "required", false );
 			$( "#kurs" ).prop( "readonly", true );
-			$('#kurs').css("background-color","#DCDCDC");
+			$('#kurs').css("background-color","#e4e6ef");
 			$('#kurs').css("cursor","not-allowed");
 		} else {
 			var kurs1 = $('#data-kurs').val();

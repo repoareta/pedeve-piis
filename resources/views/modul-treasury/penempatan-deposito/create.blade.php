@@ -33,10 +33,10 @@
                         <option data-lineno="{{ $data->lineno }}" value="{{ $data->docno }}">{{ $data->docno }} - {{ $data->keterangan }}</option>
                         @endforeach
                     </select>
-                    <input class="form-control" type="hidden" value="0" name="perpanjangan" id="perpanjangan" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="0" name="perpanjangan" id="perpanjangan" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="" name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="" name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
+                    <input class="form-control" type="hidden" value="" name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off">
                 </div>
             </div>

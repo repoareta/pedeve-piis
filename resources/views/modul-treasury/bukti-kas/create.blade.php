@@ -158,7 +158,7 @@
     function disableInput(instance) {
         instance.prop("disabled", true);
         instance.prop("readonly", true);
-        instance.css("background-color", "#DCDCDC");
+        instance.css("background-color", "#e4e6ef");
         instance.css("cursor", "not-allowed");
     }
 
@@ -255,7 +255,7 @@
                     kurs.val('1');
                     kurs.prop("required", false);
                     kurs.prop("readonly", true);
-                    kurs.css("background-color", "#DCDCDC");
+                    kurs.css("background-color", "#e4e6ef");
                     kurs.css("cursor", "not-allowed");
                     break;
                 case '10':
@@ -263,7 +263,7 @@
                     kurs.val('1');
                     kurs.prop("required", false);
                     kurs.prop("readonly", true);
-                    kurs.css("background-color", "#DCDCDC");
+                    kurs.css("background-color", "#e4e6ef");
                     kurs.css("cursor", "not-allowed");
                     break;
                 default:
@@ -271,7 +271,7 @@
                     kurs.val(null);
                     kurs.prop("required", false);
                     kurs.prop("readonly", true);
-                    kurs.css("background-color", "#DCDCDC");
+                    kurs.css("background-color", "#e4e6ef");
                     kurs.css("cursor", "not-allowed");
                     break;
             }

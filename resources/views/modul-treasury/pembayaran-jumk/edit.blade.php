@@ -61,7 +61,7 @@
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <select name="bagian" id="bagian" class="form-control select2">
+                    <select name="bagian" id="bagian" class="form-control select2" style="width: 100%;">
                         <option value="">- Pilih -</option>
                         @foreach($data_bagian as $row)
                         <option value="{{ $row->kode }}" <?php if($row->kode == $bagian) echo 'selected'; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
@@ -125,13 +125,13 @@
                 <label class="col-2 col-form-label">
                 @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" required autocomplete="off">
+                    <input class="form-control disabled bg-secondary" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" required readonly autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Sejumlah<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control disabled bg-secondary" type="text"  value="{{ $data->nilai_dok }}" size="16" maxlength="16" readonly required autocomplete="off">
+                    <input class="form-control disabled bg-secondary money" type="text"  value="{{ $data->nilai_dok }}" size="16" maxlength="16" readonly required autocomplete="off">
                     <input class="form-control disabled bg-secondary" type="hidden" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" required autocomplete="off">
                 </div>
             </div>
@@ -166,7 +166,7 @@
         </form>
     </div>
 
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-pen text-primary"></i>
@@ -174,24 +174,26 @@
             <h3 class="card-label">
                 Detail Pembayaran Pertanggungjawaban UMK
             </h3>
-            <div class="text-right">
-                <button id="btn-create" class="btn p-0">
+        </div>
+		<div class="card-toolbar">
+			<div class="float-left">
+				<button id="btn-create" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
-                        <i class="fas fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button id="btn-edit" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
-                        <i class="fas fa-edit text-warning"></i>
+                        <i class="fas fa-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 <button id="btn-delete" class="btn p-0">
                     <span class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data Detail">
-                        <i class="fas fa-trash text-danger"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger"></i>
                     </span>
                 </button>
-            </div>
-        </div>
+			</div>
+		</div>
     </div>
 
     <div class="card-body">
@@ -252,8 +254,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
 						</div>
 					</div>
 
@@ -268,7 +270,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper"  class="form-control select2">
+							<select name="sanper"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
@@ -281,7 +283,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian"  class="form-control select2">
+							<select name="bagian"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -303,7 +305,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb"  class="form-control select2">
+							<select name="jb"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
@@ -317,7 +319,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" class="form-control select2">
+							<select name="cj" class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
@@ -331,7 +333,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="" name="nilai" size="25" maxlength="25"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control money" type="text" value="" name="nilai" size="25" maxlength="25" required autocomplete="off">
 						</div>
 					</div>
 
@@ -369,8 +371,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -447,7 +449,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control money" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required autocomplete="off">
 						</div>
 					</div>
 
@@ -494,7 +496,7 @@ $(document).ready(function () {
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('2');
 		$("#nokas").val("");
@@ -505,7 +507,7 @@ $(document).ready(function () {
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('1');
 		$("#nokas").val("");
@@ -623,7 +625,7 @@ var jk = $('#jk').val();
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('2');
 		$("#nokas").val("");
@@ -634,7 +636,7 @@ var jk = $('#jk').val();
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('1');
 		$("#nokas").val("");

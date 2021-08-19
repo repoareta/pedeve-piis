@@ -37,23 +37,23 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-6">
-                    <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
-                    <input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+                    <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#e4e6ef; cursor:not-allowed"></td>
+                    <input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
                 </div>
                 <div class="col-4">
-                    <input type="text" class="form-control"  value="{{ $nomor}}" size="1" maxlength="1" name="nomor" id="nomor" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                    <input type="text" class="form-control"  value="{{ $nomor}}" size="1" maxlength="1" name="nomor" id="nomor" readonly style="background-color:#e4e6ef; cursor:not-allowed"></td>
                 </div>
             </div>
 
             <div class="form-group row">
             <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
             <div class="col-4">
-                <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#e4e6ef; cursor:not-allowed">
+                <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 
             </div>
                 <div class="col-6">
-                    <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>
@@ -83,7 +83,7 @@
                     </select>							</div>
                 <label class="col-2 col-form-label">Currency Index</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="ci" value="{{ $data->ci}}" id="ci" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
                 <label class="col-1 col-form-label">Kurs<span class="text-danger">*</span></label>
                 <div class="col-2">
@@ -104,19 +104,19 @@
                 @if($mp == 'P')
                 <label class="col-1 col-form-label">No Bukti</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
                 <label class="col-1 col-form-label">No Ver</label>
                 <div class="col-2">
-                    <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
                 @else
                 <label class="col-1 col-form-label">No Bukti</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nobukti" value="{{ $data->voucher }}" id="nobukti" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
                 <div class="col-1">
-                    <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="hidden" name="nover" value="{{ $data->mrs_no }}" id="nover" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
                 @endif
             </div>
@@ -125,14 +125,14 @@
                 <label class="col-2 col-form-label">
                 @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" required autocomplete="off">
+                    <input class="form-control disabled bg-secondary" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Sejumlah<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text"  value="{{ number_format($data->nilai_dok,0,',','.') }}" size="16" maxlength="16" readonly required autocomplete="off">
-                    <input class="form-control" type="hidden" name="nilai" id="nilai" value="{{ number_format($count,0,'','') }}" size="16" maxlength="16" required autocomplete="off">
+                    <input class="form-control money disabled bg-secondary" type="text"  value="{{ $data->nilai_dok }}" size="16" maxlength="16" readonly required autocomplete="off">
+                    <input class="form-control money" type="hidden" name="nilai" id="nilai" value="{{ number_format($count,0,'','') }}" size="16" maxlength="16" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -166,7 +166,7 @@
         </form>
     </div>
 
-    <div class="card-header">
+    <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
                 <i class="flaticon2-pen text-primary"></i>
@@ -174,24 +174,26 @@
             <h3 class="card-label">
                 Detail Permintaan Pembayaran UMK
             </h3>
-            <div class="text-right">
-                <button id="btn-create" class="btn p-0">
+        </div>
+		<div class="card-toolbar">
+			<div class="float-left">
+				<button id="btn-create" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data Detail">
-                        <i class="fas fa-plus-circle text-success"></i>
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </button>
                 <button id="btn-edit" class="btn p-0">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Ubah Data Detail">
-                        <i class="fas fa-edit text-warning"></i>
+                        <i class="fas fa-2x fa-edit text-warning"></i>
                     </span>
                 </button>
                 <button id="btn-delete" class="btn p-0">
                     <span class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus Data Detail">
-                        <i class="fas fa-trash text-danger"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger"></i>
                     </span>
                 </button>
-            </div>
-        </div>
+			</div>
+		</div>
     </div>
 
     <div class="card-body">
@@ -252,8 +254,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
 						</div>
 					</div>
 
@@ -331,7 +333,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="" name="nilai" size="25" maxlength="25" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control money" type="text" value="" name="nilai" size="25" maxlength="25" required autocomplete="off">
 						</div>
 					</div>
 
@@ -369,8 +371,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -447,7 +449,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+							<input class="form-control money" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required autocomplete="off">
 						</div>
 					</div>
 
@@ -493,7 +495,7 @@ $(document).ready(function () {
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('2');
 		$("#nokas").val("");
@@ -504,7 +506,7 @@ $(document).ready(function () {
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('1');
 		$("#nokas").val("");
@@ -622,7 +624,7 @@ var jk = $('#jk').val();
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('2');
 		$("#nokas").val("");
@@ -633,7 +635,7 @@ var jk = $('#jk').val();
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('1');
 		$("#nokas").val("");
