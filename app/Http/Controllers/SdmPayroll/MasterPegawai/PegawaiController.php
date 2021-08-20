@@ -55,15 +55,15 @@ class PegawaiController extends Controller
                 return $radio;
             })
             ->addColumn('bagian', function ($row) {
-                $kode_bagian = optional($row->jabatan_latest())->kdbag;
+                $kode_bagian = optional($row->jabatan_latest[0])->kdbag;
                 $bagian = KodeBagian::find($kode_bagian);
                 $nama_bagian = optional($bagian)->nama ? ' - '.optional($bagian)->nama : null;
                 
                 return $kode_bagian.$nama_bagian;
             })
             ->addColumn('jabatan', function ($row) {
-                $kode_bagian = optional($row->jabatan_latest())->kdbag;
-                $kode_jabatan = optional($row->jabatan_latest())->kdjab;
+                $kode_bagian = optional($row->jabatan_latest[0])->kdbag;
+                $kode_jabatan = optional($row->jabatan_latest[0])->kdjab;
                 $jabatan = KodeJabatan::where('kdbag', $kode_bagian)
                     ->where('kdjab', $kode_jabatan)
                     ->first();
@@ -120,7 +120,7 @@ class PegawaiController extends Controller
         $agama_list = Agama::all();
         $pendidikan_list = Pendidikan::all();
 
-        return view('pekerja.create', compact(
+        return view('modul-sdm-payroll.master-pegawai.create', compact(
             'kode_bagian_list',
             'kode_jabatan_list',
             'provinsi_list',
@@ -168,16 +168,17 @@ class PegawaiController extends Controller
             $photo = $request->file('photo')->getClientOriginalName();
             $extension = $request->file('photo')->getClientOriginalExtension();
             $pegawai->photo = str_replace($photo, $pegawai->nopeg.".".$extension, $photo);
-            $photo_path = $request->file('photo')->storeAs('pekerja_img', $pegawai->photo, 'public');
+            $photo_path = $request->file('photo')->storeAs('img_pegawai', $pegawai->photo, 'public');
         }
-
+        // SIMPAN PEGAWAI
         $pegawai->save();
 
         if ($request->url == 'edit') {
-            return redirect()->route('pekerja.edit', ['pekerja' => $pegawai->nopeg]);
+            return redirect()->route('modul_sdm_payroll.master_pegawai.edit', ['pekerja' => $pegawai->nopeg]);
         }
+
         Alert::success('Simpan Pekerja', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('pekerja.index');
+        return redirect()->route('modul_sdm_payroll.master_pegawai.index');
     }
 
     /**
@@ -189,7 +190,8 @@ class PegawaiController extends Controller
     public function showJson(MasterPegawai $pegawai)
     {
         // Nopeg, Nama Jabatan dan Golongan
-        $pegawai_jabatan = $pegawai->jabatan_latest()->first();
+        // $pegawai_jabatan = $pegawai->jabatan_latest->first();
+        $pegawai_jabatan = $pegawai->jabatan_latest[0];
         $kode_jabatan = KodeJabatan::where('kdjab', $pegawai_jabatan->kdjab)
         ->where('kdbag', $pegawai_jabatan->kdbag)
         ->firstOrFail();
@@ -219,7 +221,7 @@ class PegawaiController extends Controller
         $perguruan_tinggi_list = PerguruanTinggi::all();
         $golongan_gaji_list = PayTunjangan::all();
 
-        return view('pekerja.edit', compact(
+        return view('modul_sdm_payroll.master_pegawai.edit', compact(
             'kode_bagian_list',
             'kode_jabatan_list',
             'provinsi_list',
@@ -275,13 +277,13 @@ class PegawaiController extends Controller
             $photo = $request->file('photo')->getClientOriginalName();
             $extension = $request->file('photo')->getClientOriginalExtension();
             $pegawai->photo = str_replace($photo, $pegawai->nopeg.".".$extension, $photo);
-            $photo_path = $request->file('photo')->storeAs('pekerja_img', $pegawai->photo, 'public');
+            $photo_path = $request->file('photo')->storeAs('img_pegawai', $pegawai->photo, 'public');
         }
 
         $pegawai->save();
         
         Alert::success('Ubah Pekerja', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('pekerja.index');
+        return redirect()->route('modul_sdm_payroll.master_pegawai.index');
     }
 
     /**
@@ -294,8 +296,8 @@ class PegawaiController extends Controller
     {
         $pegawai = MasterPegawai::find($request->id);
         
-        // $image_path = "public/pekerja_img/$pegawai->photo";  // Value is not URL but directory file path
-        // Storage::delete($image_path);
+        $image_path = "public/img_pegawai/$pegawai->photo";  // Value is not URL but directory file path
+        Storage::delete($image_path);
 
         $pegawai->delete();
 

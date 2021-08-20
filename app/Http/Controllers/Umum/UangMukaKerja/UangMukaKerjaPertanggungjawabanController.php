@@ -191,7 +191,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         $pumk_header = PUmkHeader::find($no_pumk);
         $jabatan_latest = DB::table('sdm_jabatan')->where('nopeg', $pumk_header->nopek)->latest('kdjab')->first();
 
-        // dd($pumk_header->pekerja->jabatan_latest(), );
+        // dd($pumk_header->pekerja->jabatan_latest[0], );
 
         $no_umk = $pumk_header->umk_header->no_umk;
 
@@ -284,8 +284,8 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         
         $pumk_header = PUmkHeader::where('no_pumk', $no_pumk)->first();
 
-        $pegawai_jabatan = KodeJabatan::where('kdbag', $pumk_header->pekerja->jabatan_latest()->kdbag)
-        ->where('kdjab', $pumk_header->pekerja->jabatan_latest()->kdjab)
+        $pegawai_jabatan = KodeJabatan::where('kdbag', $pumk_header->pekerja->jabatan_latest[0]->kdbag)
+        ->where('kdjab', $pumk_header->pekerja->jabatan_latest[0]->kdjab)
         ->first();
 
         $pdf = DomPDF::loadview('modul-umum.umk-pertanggungjawaban.export_row', [
