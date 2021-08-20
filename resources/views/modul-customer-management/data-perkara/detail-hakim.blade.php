@@ -112,7 +112,6 @@
 						<div class="col-10">
 							<select class="form-control select2" name="kd_pihak" id="pihak_hakim" style="width: 100% !important;" required>
 								<option value=""> - Pilih - </option>
-                               
 							</select>
 						</div>
 					</div>
@@ -129,6 +128,8 @@
 <!--end::Modal-->
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\DetailKuasaHukumStoreRequest', '#form-create-hakim'); !!}
+
 <script>
     $(document).ready(function () {
 		var t = $('#hakim').DataTable({
@@ -179,52 +180,57 @@
 			$('#hakimModal').modal('show');
 			$('#title_modal_hakim').data('state', 'add');
 		});
-		$('#form-create-hakim').submit(function(){
-			$.ajax({
-				url  : "{{route('modul_cm.data_perkara.store.hakim')}}",
-				type : "POST",
-				data : $('#form-create-hakim').serialize(),
-				dataType : "JSON",
-				headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-				success : function(data){
-					if(data == 1){
-						Swal.fire({
-							icon  : 'success',
-							title: "Berhasil di ubah",
-							text : 'Success',
-							timer: 2000
-						});
-						$('#hakimModal').modal('toggle');
-						// clear form
-						$('#hakimModal').on('hidden.bs.modal', function () {
-							$('#status_hakim').trigger('reset');
-						});
-						// append to datatable
-						t.ajax.reload();
-					}else if(data == 2){
-						Swal.fire({
-							icon  : 'success',
-							title: "Berhasil di tambah",
-							text : 'Success',
-							timer: 2000
-						});
-						$('#hakimModal').modal('toggle');
-						// clear form
-						$('#hakimModal').on('hidden.bs.modal', function () {
-							$('#status_hakim').trigger('reset');
-						});
-						// append to datatable
-						t.ajax.reload();
+
+		$('#form-create-hakim').submit(function(e) {
+			e.preventDefault();
+
+			if ($(this).valid()) {
+				$.ajax({
+					url  : "{{ route('modul_cm.data_perkara.store.hakim') }}",
+					type : "POST",
+					data : $('#form-create-hakim').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						if(data == 1){
+							Swal.fire({
+								icon  : 'success',
+								title: "Berhasil di ubah",
+								text : 'Success',
+								timer: 2000
+							});
+							$('#hakimModal').modal('toggle');
+							// clear form
+							$('#hakimModal').on('hidden.bs.modal', function () {
+								$('#status_hakim').trigger('reset');
+							});
+							// append to datatable
+							t.ajax.reload();
+						}else if(data == 2){
+							Swal.fire({
+								icon  : 'success',
+								title: "Berhasil di tambah",
+								text : 'Success',
+								timer: 2000
+							});
+							$('#hakimModal').modal('toggle');
+							// clear form
+							$('#hakimModal').on('hidden.bs.modal', function () {
+								$('#status_hakim').trigger('reset');
+							});
+							// append to datatable
+							t.ajax.reload();
+						}
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
 					}
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-			return false;
+				});
+			}
 		});
+
 		$("#status_hakim").on("change", function(){
 			var status = $('#status_hakim').val();
 			var no_perkara = $('#no_perkara_hakim').val();
@@ -240,13 +246,13 @@
 					'X-CSRF-Token': '{{ csrf_token() }}',
                 },
 				success : function(data){
-							var html = '';
-							var i;
-							html += '<option value="">- Pilih - </option>';
-							for(i=0; i<data.length; i++){
-								html += '<option value="'+data[i].kd_pihak+'">'+data[i].nama+'</option>';
-							}
-							$('#pihak_hakim').html(html);		
+					var html = '';
+					var i;
+					html += '<option value="">- Pilih - </option>';
+					for(i=0; i<data.length; i++){
+						html += '<option value="'+data[i].kd_pihak+'">'+data[i].nama+'</option>';
+					}
+					$('#pihak_hakim').html(html);		
 				},
 				error : function(){
 					alert("Ada kesalahan controller!");
@@ -288,17 +294,17 @@
 								data : {
 									status:status,
 									no_perkara:no_perkara
-									},
+								},
 								headers: {
 									'X-CSRF-Token': '{{ csrf_token() }}',
-									},
+								},
 								success : function(data){
-											var html = '1';
-											var i;
-											for(i=0; i<data.length; i++){
-												html += '<option value="'+data[i].kd_pihak+'">'+data[i].nama+'</option>';
-											}
-											$('#pihak_hakim').html(html);		
+									var html = '1';
+									var i;
+									for(i=0; i<data.length; i++){
+										html += '<option value="'+data[i].kd_pihak+'">'+data[i].nama+'</option>';
+									}
+									$('#pihak_hakim').html(html);		
 								},
 								error : function(){
 									alert("Ada kesalahan controller!");
