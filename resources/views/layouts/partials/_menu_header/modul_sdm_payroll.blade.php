@@ -106,10 +106,12 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu {{ 
-                Route::is('modul_sdm_payroll.proses_gaji.index') || 
-                Route::is('modul_sdm_payroll.proses_thr.index') ||
-                Route::is('modul_sdm_payroll.proses_insentif.index') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu 
+                {{ Route::is([
+                    'modul_sdm_payroll.proses_gaji.index',
+                    'modul_sdm_payroll.proses_thr.index',
+                    'modul_sdm_payroll.proses_insentif.index'
+                ]) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -146,16 +148,18 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu {{ 
-            Route::is('modul_sdm_payroll.tunjangan_golongan.*') || 
-            Route::is('modul_sdm_payroll.jenis_upah.*') ||
-            Route::is('modul_sdm_payroll.rekening_pekerja.*') ||
-            Route::is('modul_sdm_payroll.tabel_aard.*') ||
-            Route::is('modul_sdm_payroll.master_bank.*') ||
-            Route::is('modul_sdm_payroll.master_ptkp.*') ||
-            Route::is('modul_sdm_payroll.jamsostek.*') ||
-            Route::is('modul_sdm_payroll.pensiun.*') ||
-            Route::is('modul_sdm_payroll.master_tabungan.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu 
+                {{ Route::is([
+                    'modul_sdm_payroll.tunjangan_golongan.*',
+                    'modul_sdm_payroll.jenis_upah.*',
+                    'modul_sdm_payroll.rekening_pekerja.*',
+                    'modul_sdm_payroll.tabel_aard.*',
+                    'modul_sdm_payroll.master_bank.*',
+                    'modul_sdm_payroll.master_ptkp.*',
+                    'modul_sdm_payroll.jamsostek.*',
+                    'modul_sdm_payroll.pensiun.*',
+                    'modul_sdm_payroll.master_tabungan.*'
+                ]) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -240,12 +244,14 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu {{ 
-                Route::is('modul_sdm_payroll.provinsi.*') || 
-                Route::is('modul_sdm_payroll.perguruan_tinggi.*') ||
-                Route::is('modul_sdm_payroll.kode_bagian.*') ||
-                Route::is('modul_sdm_payroll.kode_jabatan.*') ||
-                Route::is('modul_sdm_payroll.agama.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu 
+                {{ Route::is([
+                    'modul_sdm_payroll.provinsi.*', 
+                    'modul_sdm_payroll.perguruan_tinggi.*',
+                    'modul_sdm_payroll.kode_bagian.*',
+                    'modul_sdm_payroll.kode_jabatan.*',
+                    'modul_sdm_payroll.agama.*'
+                ]) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -368,12 +374,13 @@
                 </div>
             </li>						
             <li class="menu-item menu-item-submenu 
-            {{ Route::is('modul_sdm_payroll.master_upah.*') ||
-                Route::is('modul_sdm_payroll.master_insentif.*') ||
-                Route::is('modul_sdm_payroll.master_hutang.*') ||
-                Route::is('modul_sdm_payroll.master_beban_perusahaan.*') ||
-                Route::is('modul_sdm_payroll.master_thr.*')
-                ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
+                {{ Route::is([
+                    'modul_sdm_payroll.master_upah.*',
+                    'modul_sdm_payroll.master_insentif.*',
+                    'modul_sdm_payroll.master_hutang.*',
+                    'modul_sdm_payroll.master_beban_perusahaan.*',
+                    'modul_sdm_payroll.master_thr.*'
+                ]) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
@@ -426,10 +433,12 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu {{ 
-            Route::is('modul_sdm_payroll.potongan_manual.*') ||
-            Route::is('modul_sdm_payroll.potongan_otomatis.*') ||
-            Route::is('modul_sdm_payroll.potongan_insentif.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu 
+                {{ Route::is([
+                    'modul_sdm_payroll.potongan_manual.*',
+                    'modul_sdm_payroll.potongan_otomatis.*',
+                    'modul_sdm_payroll.potongan_insentif.*'
+                ]) ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">	
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
