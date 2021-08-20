@@ -29,7 +29,7 @@
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">No. Dokumen</label>
                 <div class="col-10">
-                    <input style="background-color:#DCDCDC; cursor:not-allowed" type="text" class="form-control" name="no_dokumen" value="{{ $kasDocument->docno }}" readonly />
+                    <input style="background-color:#e4e6ef; cursor:not-allowed" type="text" class="form-control" name="no_dokumen" value="{{ $kasDocument->docno }}" readonly />
                     <input type="hidden" class="form-control" name="userid" value="{{ auth()->user()->userid }}" />
                 </div>
             </div>

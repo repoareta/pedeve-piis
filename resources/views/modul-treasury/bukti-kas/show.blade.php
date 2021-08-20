@@ -18,7 +18,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Jenis Kas/Bank
+                Perbendaharaan - Kas/Bank
             </h3>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            Header Jenis Kas/Bank
+                            Header Perbendaharaan - Kas/Bank
                         </div>
                     </div>
                 </div>
@@ -39,82 +39,82 @@
                 <div class="form-group row">
                     <label for="" class="col-2 col-form-label text-right">No. Dokumen</label>
                     <div class="col-10">
-                        <input type="text" class="form-control" value="{{ $document->docno }}" name="nodoc" id="nodoc" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                        <input type="text" class="form-control" value="{{ $document->docno }}" name="nodoc" id="nodoc" readonly style="background-color:#e4e6ef; cursor:not-allowed"></td>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="" class="col-2 col-form-label text-right">Bulan/Tahun</label>
                     <div class="col-4">
-                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $bulan }}" name="bulan_buku" id="bulan_buku" size="2" maxlength="2" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                     <div class="col-6">
-                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun_buku" id="tahun_buku" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="bagian" class="col-2 col-form-label text-right">Bagian</label>
                     <div class="col-10">
-                        <input type="text" class="form-control" value="{{ $bagian->kode . ' - ' . $bagian->nama }}" name="bagian" id="bagian" readonly style="background-color:#DCDCDC; cursor:not-allowed"></td>
+                        <input type="text" class="form-control" value="{{ $bagian->kode . ' - ' . $bagian->nama }}" name="bagian" id="bagian" readonly style="background-color:#e4e6ef; cursor:not-allowed"></td>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-2 col-form-label text-right">Jenis Kartu</label>
                     <div class="col-3">
-                        <input type="text" class="form-control" value="{{ $document->jk == '10' ? 'Kas(Rupiah)' : ($document->jk == '11' ? 'Bank(Rupiah)' : 'Bank(Dollar)') }}" name="jenis_kartu" id="jenis_kartu" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input type="text" class="form-control" value="{{ $document->jk == '10' ? 'Kas(Rupiah)' : ($document->jk == '11' ? 'Bank(Rupiah)' : 'Bank(Dollar)') }}" name="jenis_kartu" id="jenis_kartu" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                     <label class="col-2 col-form-label text-right">Currency Index</label>
                     <div class="col-2">
-                        <input class="form-control" type="text" value="{{ $document->ci }}" name="currency_index" id="currency_index" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ $document->ci }}" name="currency_index" id="currency_index" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                     <label class="col-1 col-form-label text-right">Kurs</label>
                     <div class="col-2">
-                        <input class="form-control" type="text" value="{{ number_format($document->rate, 0) }}" name="kurs" id="kurs" size="7" maxlength="7" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="text" value="{{ number_format($document->rate, 0) }}" name="kurs" id="kurs" size="7" maxlength="7" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="jenis-dinas-input" class="col-2 col-form-label text-right">Lokasi</label>
                     <div class="col-4">
-                        <input type="text" class="form-control" value="{{ $document->storejk->namabank . ' - ' . $document->storejk->norekening }}" name="lokasi" id="lokasi" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input type="text" class="form-control" value="{{ $document->storejk->namabank . ' - ' . $document->storejk->norekening }}" name="lokasi" id="lokasi" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                     <label class="col-1 col-form-label text-right">No Bukti</label>
                     <div class="col-2">
-                        <input class="form-control" value="{{ $document->voucher }}" type="text" name="no_bukti" id="no_bukti" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" value="{{ $document->voucher }}" type="text" name="no_bukti" id="no_bukti" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                     <label class="col-1 col-form-label text-right">No Ver</label>
                     <div class="col-2">
-                        <input class="form-control" value="{{ $document->mrs_no }}" type="text" name="no_ver" id="nover" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" value="{{ $document->mrs_no }}" type="text" name="no_ver" id="nover" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label text-right">{{ $document->mp == 'M' ? 'Dari' : 'Kepada' }}</label>
                     <div class="col-10">
-                        <input class="form-control" value="{{ $document->kepada }}" type="text" name="{{ $document->mp == 'M' ? 'dari' : 'kepada' }}" id="{{ $document->mp == 'M' ? 'dari' : 'kepada' }}" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" value="{{ $document->kepada }}" type="text" name="{{ $document->mp == 'M' ? 'dari' : 'kepada' }}" id="{{ $document->mp == 'M' ? 'dari' : 'kepada' }}" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label text-right">Sejumlah</label>
                     <div class="col-10">
                         <input class="form-control money" type="text" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" autocomplete="off" readonly>
-                        <input class="form-control" type="hidden" name="iklan" id="iklan" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                        <input class="form-control" type="hidden" name="iklan" id="iklan" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label text-right">Catatan 1</label>
                     <div class="col-10">
-                        <textarea class="form-control" type="text" name="ket1" id="ket1" readonly style="background-color:#DCDCDC; cursor:not-allowed">{{ $document->ket1 }}</textarea>
+                        <textarea class="form-control" type="text" name="ket1" id="ket1" readonly style="background-color:#e4e6ef; cursor:not-allowed">{{ $document->ket1 }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label text-right">Catatan 2</label>
                     <div class="col-10">
-                        <textarea class="form-control" type="text" name="ket2" id="ket2" readonly style="background-color:#DCDCDC; cursor:not-allowed">{{ $document->ket2 }}</textarea>
+                        <textarea class="form-control" type="text" name="ket2" id="ket2" readonly style="background-color:#e4e6ef; cursor:not-allowed">{{ $document->ket2 }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-2 col-form-label text-right">Catatan 3</label>
                     <div class="col-10">
-                        <textarea class="form-control" type="text" name="ket3" id="ket3" readonly style="background-color:#DCDCDC; cursor:not-allowed">{{ $document->ket3 }}</textarea>
+                        <textarea class="form-control" type="text" name="ket3" id="ket3" readonly style="background-color:#e4e6ef; cursor:not-allowed">{{ $document->ket3 }}</textarea>
                     </div>
                 </div>
 
@@ -214,8 +214,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
 						<label for="example-text-input" class="col-1 col-form-label">:</label>
 						<div class="col-9">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{ $lineNumber }}"  name="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $document->docno }}"  name="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="{{ $lineNumber }}"  name="nourut" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $document->docno }}"  name="nodok" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -295,8 +295,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
 
@@ -311,7 +311,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="sanper" id="select-sanper" class="cariaccount form-control" style="width: 100% !important;">
+							<select name="sanper" id="select-sanper" class="cariaccount form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
@@ -324,7 +324,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="bagian" id="select-bagian" class="caribagian form-control" style="width: 100% !important;">
+							<select name="bagian" id="select-bagian" class="caribagian form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
@@ -343,7 +343,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div  class="col-8">
-							<select name="jb" id="select-jb"  class="carijb form-control" style="width: 100% !important;">
+							<select name="jb" id="select-jb"  class="carijb form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
@@ -355,7 +355,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;">
+							<select name="cj" id="select-cj" class="caricj form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
 								<option value="{{ $data_cas->kode }}">{{ $data_cas->kode }} - {{ $data_cas->nama }}</option>
@@ -367,7 +367,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input class="form-control money" type="text" value="" name="nilai" id="nilai1"  size="16" maxlength="16"  required autocomplete="off">
+							<input class="form-control money" type="text" name="nilai" id="nilai1"  size="16" maxlength="16"  required autocomplete="off">
 						</div>
 					</div>
                 </div>

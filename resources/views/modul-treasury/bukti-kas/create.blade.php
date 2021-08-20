@@ -18,7 +18,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Pilih Jenis Kas/Bank
+                Menu Tambah Perbendaharaan - Kas/Bank
             </h3>
         </div>
     </div>
@@ -29,7 +29,7 @@
                 <div class="form-group form-group-last">
                     <div class="alert alert-secondary" role="alert">
                         <div class="alert-text">
-                            Header Pilih Jenis Kas/Bank
+                            Header Tambah Perbendaharaan - Kas/Bank
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label text-right">Jenis Kartu <span class="text-danger">*</span></label>
                         <div class="col-3">
-                            <select name="jenis_kartu" id="jenis_kartu" class="form-control">
+                            <select name="jenis_kartu" id="jenis_kartu" class="form-control select2" style="width: 100%;">
                                 <option value="">- Pilih -</option>
                                 <option value="10">Kas(Rupiah)</option>
                                 <option value="11">Bank(Rupiah)</option>
@@ -153,22 +153,23 @@
 @endsection
 
 @push('page-scripts')
-<script>
+{!! JsValidator::formRequest('App\Http\Requests\PenerimaanKasStoreRequest', '#form-create'); !!}
 
+<script>
     function disableInput(instance) {
         instance.prop("disabled", true);
         instance.prop("readonly", true);
-        instance.css("background-color", "#DCDCDC");
+        instance.css("background-color", "#e4e6ef");
         instance.css("cursor", "not-allowed");
     }
 
     $(document).ready(function () {
-        
-
         $('#bagian').select2();
         $('#lokasi').select2();
 
-        $('#form-create').on('submit', function () {
+        $('#form-create').on('submit', function (e) {
+            e.preventDefault();
+
             let mp = $("#mp").val();
             let bagian = $("#bagian").val();
             let nomor = $("#nomor").val();
@@ -176,35 +177,37 @@
             let dataSerialized = $(this).serialize();
             $('#btn-save').prop('disabled', true);
 
-            $.ajax({
-                url  : "{{ route('penerimaan_kas.store') }}",
-                type : "POST",
-                data : dataSerialized,
-                dataType : "JSON",
-                headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                },
-                success: function (result) {
-                    Swal.fire({
-                        icon: result.type,
-                        title: result.message,
-                        text: result.text
-                    }).then(function () {
-                        if (result.status == 1) {
-                            location.href = `{{ url('perbendaharaan/penerimaan-kas/') }}/${currentDocumentNumber}/input-detail`;
-                        }
-                    });
-                },
-                error: function (error) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'ERROR! Ada kesalahan pada server!',
-                        text: 'ERROR'
-                    });
-                }
-            })
+            if($(this).valid()) {
+                $.ajax({
+                    url  : "{{ route('penerimaan_kas.store') }}",
+                    type : "POST",
+                    data : dataSerialized,
+                    dataType : "JSON",
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}',
+                    },
+                    success: function (result) {
+                        Swal.fire({
+                            icon: result.type,
+                            title: result.message,
+                            text: result.text
+                        }).then(function () {
+                            if (result.status == 1) {
+                                location.href = `{{ url('perbendaharaan/penerimaan-kas/') }}/${currentDocumentNumber}/input-detail`;
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ERROR! Ada kesalahan pada server!',
+                            text: 'ERROR'
+                        });
+                    }
+                });
+            }
 
-            return false;
+            $('#btn-save').prop('disabled', false);
         });
 
         $('#bagian').on('change', function() {
@@ -255,7 +258,7 @@
                     kurs.val('1');
                     kurs.prop("required", false);
                     kurs.prop("readonly", true);
-                    kurs.css("background-color", "#DCDCDC");
+                    kurs.css("background-color", "#e4e6ef");
                     kurs.css("cursor", "not-allowed");
                     break;
                 case '10':
@@ -263,7 +266,7 @@
                     kurs.val('1');
                     kurs.prop("required", false);
                     kurs.prop("readonly", true);
-                    kurs.css("background-color", "#DCDCDC");
+                    kurs.css("background-color", "#e4e6ef");
                     kurs.css("cursor", "not-allowed");
                     break;
                 default:
@@ -271,7 +274,7 @@
                     kurs.val(null);
                     kurs.prop("required", false);
                     kurs.prop("readonly", true);
-                    kurs.css("background-color", "#DCDCDC");
+                    kurs.css("background-color", "#e4e6ef");
                     kurs.css("cursor", "not-allowed");
                     break;
             }

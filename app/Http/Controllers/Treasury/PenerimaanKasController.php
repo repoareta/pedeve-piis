@@ -18,6 +18,7 @@ use App\Services\TimeTransactionService;
 use DB;
 use Illuminate\Http\Request;
 use PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenerimaanKasController extends Controller
 {
@@ -323,29 +324,28 @@ class PenerimaanKasController extends Controller
      */
     public function edit($documentId)
     {
-        $nodoc=str_replace('-', '/', $documentId);
-        $data_list =DB::table('kasdoc')
-        ->join('storejk', 'kasdoc.store', '=', 'storejk.kodestore')
-        ->select('kasdoc.*', 'storejk.*')
-        ->where('kasdoc.docno', $nodoc)
-        ->get();
+        $nodoc = str_replace('-', '/', $documentId);
+        $data = DB::table('kasdoc')
+            ->join('storejk', 'kasdoc.store', '=', 'storejk.kodestore')
+            ->select('kasdoc.*', 'storejk.*')
+            ->where('kasdoc.docno', $nodoc)
+            ->first();
+
         $lokasi = Lokasi::all();
         $data_jenis = JenisBiaya::all();
         $data_casj = Cashjudex::all();
         $data_bagian = SdmKdbag::all();
-        $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
-        $count= Kasline::where('docno', $nodoc)->where('keterangan','<>','PENUTUP')->sum('totprice');
-        $data_detail = DB::select("SELECT * from kasline where docno ='$nodoc' and keterangan <> 'PENUTUP' order by lineno");
+        $data_account = DB::select("select kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
+        $count = Kasline::where('docno', $nodoc)->where('keterangan', '<>', 'PENUTUP')->sum('totprice');
+        $data_detail = DB::select("select * from kasline where docno ='$nodoc' and keterangan <> 'PENUTUP' order by lineno");
         $no_detail = Kasline::where('docno', $nodoc)->max('lineno');
-
         if ($no_detail <> null) {
             $no_urut = $no_detail + 1;
         } else {
             $no_urut = 1;
         }
-
         return view('modul-treasury.bukti-kas.edit', compact(
-            'data_list',
+            'data',
             'data_bagian',
             'data_detail',
             'count',
@@ -381,7 +381,9 @@ class PenerimaanKasController extends Controller
                 'ket3' =>  $request->ket3,
                 'mrs_no' =>  $request->nover ,
             ]);
-        return response()->json();
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('penerimaan_kas.index');
     }
 
     /**

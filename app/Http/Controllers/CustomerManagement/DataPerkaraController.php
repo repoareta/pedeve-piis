@@ -12,6 +12,8 @@ use App\Models\Userpdv;
 use DB;
 use Alert;
 use App\Http\Requests\DataPerkaraStoreRequest;
+use App\Http\Requests\DetailDokumenStoreRequest;
+use App\Http\Requests\DetailPihakStoreRequest;
 use Illuminate\Support\Facades\File;
 
 class DataPerkaraController extends Controller
@@ -122,7 +124,7 @@ class DataPerkaraController extends Controller
             ->make(true);
     }
 
-    public function pihak(Request $request)
+    public function pihak(DetailPihakStoreRequest $request)
     {
         $latestId = DB::table('tbl_pihak')->latest('kd_pihak')->first()->kd_pihak + 1;
 
@@ -331,12 +333,8 @@ class DataPerkaraController extends Controller
             ->make(true);
     }
 
-    public function dokumen(Request $request)
+    public function dokumen(DetailDokumenStoreRequest $request)
     {
-        $this->validate($request, [
-            'file' => 'required|mimes:pdf,jpg,jpeg,png',
-        ]);
-
         $folderPath = public_path('/data_perkara/' . $request->no_perkara);
         
         File::ensureDirectoryExists($folderPath);
@@ -353,6 +351,7 @@ class DataPerkaraController extends Controller
                 ]);
             }
         }
+        
         return response()->json();
     }
 

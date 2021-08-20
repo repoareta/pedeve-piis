@@ -33,24 +33,24 @@
                         <option data-lineno="{{ $data->lineno }}" value="{{ $data->docno }}">{{ $data->docno }} - {{ $data->keterangan }}</option>
                         @endforeach
                     </select>
-                    <input class="form-control" type="hidden" value="0" name="perpanjangan" id="perpanjangan" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" name="kurs" id="kurs" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" name="lineno" id="lineno" size="6" maxlength="6" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" name="keterangan" id="keterangan" size="50" maxlength="50" readonly style="background-color:#DCDCDC; cursor:not-allowed">
-                    <input class="form-control" type="hidden" value="" id="asal" name="asal" size="2" maxlength="2" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off">
+                    <input type="hidden" value="0" name="perpanjangan" id="perpanjangan" size="6" maxlength="6" readonly>
+                    <input type="hidden" value="" name="kurs" id="kurs" size="6" maxlength="6" readonly>
+                    <input type="hidden" value="" name="lineno" id="lineno" size="6" maxlength="6" readonly>
+                    <input type="hidden" value="" name="keterangan" id="keterangan" size="50" maxlength="50" readonly>
+                    <input type="hidden" value="" id="asal" name="asal" size="2" maxlength="2">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bank <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off">
+                    <input class="form-control" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" required autocomplete="off">
                     <input class="form-control" type="hidden" value="" id="kdbank" name="kdbank" size="30" maxlength="30" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" value=""  name="nominal" size="25" maxlength="25" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                    <input class="form-control money" type="text" value=""  name="nominal" size="25" maxlength="25" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -74,7 +74,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">No. Seri <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="" id="noseri" name="noseri" size="15" maxlength="15" onkeyup="this.value = this.value.toUpperCase()" required autocomplete="off">
+                    <input class="form-control" type="text" value="" id="noseri" name="noseri" size="15" maxlength="15" required autocomplete="off">
                 </div>
             </div>
             
@@ -94,6 +94,7 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PenempatanDepositoStoreRequest', '#form-create'); !!}
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#nodok").on("change", function(){
@@ -134,6 +135,16 @@
 			})
 		});
 
+		// onkeyup="this.value = this.value.toUpperCase()" 
+
+		$('#namabank').on('keyup', function () {
+			$(this).val($(this).val().toUpperCase());
+		});
+
+		$('#noseri').on('keyup', function () {
+			$(this).val($(this).val().toUpperCase());
+		});
+
 		$("#nodok").on("change", function(){
 			var nodok = $(this).val();
 			$.ajax({
@@ -155,32 +166,34 @@
 			})
 		});
 
-		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{ route('penempatan_deposito.store') }}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				headers: {
-				    'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-				success : function(data) {
-				console.log(data);
-					Swal.fire({
-						icon  : 'success',
-						title : 'Data Berhasil Ditambah',
-						text  : 'Berhasil',
-						timer : 2000
-					}).then(function() {
-                        location.href = "{{ route('penempatan_deposito.index') }}";
-                    });
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
+		$('#form-create').submit(function(e) {
+			e.preventDefault();
 
-			return false;
+			if($(this).valid()) {
+				$.ajax({
+					url  : "{{ route('penempatan_deposito.store') }}",
+					type : "POST",
+					data : $('#form-create').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data) {
+					console.log(data);
+						Swal.fire({
+							icon  : 'success',
+							title : 'Data Berhasil Ditambah',
+							text  : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							location.href = "{{ route('penempatan_deposito.index') }}";
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});	
+			}
 		});
 
 		$('#tanggal').datepicker({

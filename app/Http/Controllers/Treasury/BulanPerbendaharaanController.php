@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Treasury;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BulanPerbendaharaanStoreRequest;
 use App\Models\TimeTrans;
 use DB;
 use Illuminate\Http\Request;
@@ -84,7 +85,13 @@ class BulanPerbendaharaanController extends Controller
      */
     public function create()
     {
-        return view('modul-treasury.bulan-perbendaharaan.create');
+        $tgl = date_create(now());
+        $tahun = date_format($tgl, 'Y');
+        $bulan = date_format($tgl, 'n');
+        return view('modul-treasury.bulan-perbendaharaan.create', compact(
+            'tahun',
+            'bulan',
+        ));
     }
 
     /**
@@ -93,7 +100,7 @@ class BulanPerbendaharaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BulanPerbendaharaanStoreRequest $request)
     {
         $tahun = $request->tahun;
         $bulan = $request->bulan;
@@ -150,9 +157,12 @@ class BulanPerbendaharaanController extends Controller
      */
     public function edit($id)
     {
+        $tgl = date_create(now());
         $data = TimeTrans::where('thnbln', '=', $id)->first();
 
         $thnbln = $data->thnbln;
+        $tahun = substr($thnbln, 0, -2);
+        $bulan = substr($thnbln, 4);
         $status  = $data->status;
 
         if ($data->opendate <> "") {
@@ -187,6 +197,8 @@ class BulanPerbendaharaanController extends Controller
             'tanggal3',
             'keterangan',
             'suplesi',
+            'tahun',
+            'bulan',
         ));
     }
 

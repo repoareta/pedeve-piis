@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Treasury;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PembayaranUMKStoreRequest;
 use App\Models\CashJudex;
 use App\Models\JenisBiaya;
 use App\Models\Kasdoc;
@@ -267,7 +268,7 @@ class PembayaranUMKController extends Controller
         return response()->json($data);
     }
 
-    public function store(Request $request)
+    public function store(PembayaranUMKStoreRequest $request)
     {
         $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
@@ -375,11 +376,11 @@ class PembayaranUMKController extends Controller
     public function edit($id)
     {
         $nodoc = str_replace('-', '/', $id);
-        $data_list = DB::table('kasdoc')
+        $data = DB::table('kasdoc')
             ->join('storejk', 'kasdoc.store', '=', 'storejk.kodestore')
             ->select('kasdoc.*', 'storejk.*')
             ->where('kasdoc.docno', $nodoc)
-            ->get();
+            ->first();
         $datenew = date('Y-m-d');
         $tgl = date_create($datenew);
         $tahuns = date_format($tgl, 'Y');
@@ -400,7 +401,7 @@ class PembayaranUMKController extends Controller
         }
         return view('modul-treasury.pembayaran-umk.edit', compact(
             'data_rincian',
-            'data_list',
+            'data',
             'data_bagian',
             'data_detail',
             'count',
@@ -455,7 +456,7 @@ class PembayaranUMKController extends Controller
                 'pk' =>  $request->pk,
                 'jb' =>  $request->jb,
                 'cj' =>  $request->cj,
-                'totprice'  =>  str_replace(',', '.', $request->nilai),
+                'totprice'  =>  str_replace(',', '', $request->nilai),
                 'keterangan'  =>  $request->rincian
             ]);
             $data_sum = DB::select("SELECT sum(totprice) as v_total from kasline where docno='$docno'");
@@ -486,7 +487,7 @@ class PembayaranUMKController extends Controller
                 'bagian' =>  $request->bagian,
                 'pk' =>  $request->pk,
                 'jb' =>  $request->jb,
-                'totprice' =>  str_replace(',', '.', $request->nilai),
+                'totprice' =>  str_replace(',', '', $request->nilai),
                 'cj' =>  $request->cj,
                 'keterangan' =>  $request->rincian,
             ]);

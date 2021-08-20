@@ -43,13 +43,6 @@
                     </span>
                 </a>
                 @endif
-                @if($data_akses->cetak == 1)
-                <a href="#">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
-                        <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
-                    </span>
-                </a>
-                @endif
             </div>
         </div>
     </div>
