@@ -118,6 +118,8 @@
 <!--end::Modal-->
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\DetailPihakStoreRequest', '#form-create'); !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		var t = $('#pihak').DataTable({
@@ -168,32 +170,35 @@
 			$('#title_modal_pihak').data('state', 'add');
 		});
         
-		$('#form-create').submit(function(){
-			$.ajax({
-				url  : "{{route('modul_cm.data_perkara.store.pihak')}}",
-				type : "POST",
-				data : $('#form-create').serialize(),
-				dataType : "JSON",
-				success : function(data){
-					Swal.fire({
-                        icon  : 'success',
-                        title: "Data Berhasil Ditambah",
-                        text : 'Success',
-                        timer: 2000
-                    });
-                    $('#pihakModal').modal('toggle');
-                    // clear form
-                    $('#pihakModal').on('hidden.bs.modal', function () {
-                        $(this).find('form').trigger('reset');
-                    });
-                    // append to datatable
-                    t.ajax.reload();
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-			return false;
+		$('#form-create').submit(function(e) {
+			e.preventDefault();
+
+			if ($(this).valid()) {
+				$.ajax({
+					url  : "{{route('modul_cm.data_perkara.store.pihak')}}",
+					type : "POST",
+					data : $('#form-create').serialize(),
+					dataType : "JSON",
+					success : function(data){
+						Swal.fire({
+							icon  : 'success',
+							title: "Data Berhasil Ditambah",
+							text : 'Success',
+							timer: 2000
+						});
+						$('#pihakModal').modal('toggle');
+						// clear form
+						$('#pihakModal').on('hidden.bs.modal', function () {
+							$(this).find('form').trigger('reset');
+						});
+						// append to datatable
+						t.ajax.reload();
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
 		});
 		$('#editRowPihak').click(function(e) {
 		    e.preventDefault();

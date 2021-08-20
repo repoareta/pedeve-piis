@@ -62,10 +62,6 @@
                                     <button class="btn btn-primary add-more" type="button"><i class="fas fa-plus"></i> Tambah</button>
                                 </div>
 							</div>
-                            {{-- <div class="custom-file after-add-more">
-                                <input type="file" class="custom-file-input" name="filedok[]" title="Dokumen" accept=".pdf,.jpg,.jpeg">
-                                <label class="custom-file-label" for="customFile">Pilih File</label>
-                            </div> --}}
 							@if(count($errors) > 0)
 								@foreach ($errors->all() as $error)
 								<span class="text-danger">Frotmat harus pdf, jpeg, jpg dan png</span>
@@ -97,6 +93,8 @@
 <!--end::Modal-->
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\DetailDokumenStoreRequest', '#form-create-dokumen'); !!}
+
 <script>
     $(document).ready(function () {
 		var t = $('#dokumen').DataTable({
