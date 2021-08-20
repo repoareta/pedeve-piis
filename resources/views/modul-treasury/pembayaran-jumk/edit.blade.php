@@ -200,16 +200,15 @@
         <table class="table table-bordered" id="kt_table">
             <thead class="thead-light">
                 <tr>
-                    <th ></th>
-                    <th>No</th>
-                    <th>Rincian</th>	
-                    {{-- <th>KL</th> --}}
-                    <th>Sanper</th>
-                    <th>Bagian</th>
-                    <th>PK</th>
-                    <th>JB</th>
-                    <th>CJ</th>	
-                    <th>Jumlah</th>
+                    <th class="text-center"></th>
+                    <th class="text-center">No</th>
+                    <th>Rincian</th>
+                    <th class="text-center">Sanper</th>
+                    <th class="text-center">Bagian</th>
+                    <th class="text-center">PK</th>
+                    <th class="text-center">JB</th>
+                    <th class="text-center">CJ</th>	
+                    <th class="text-center">Jumlah</th>
                 </tr>
             </thead>
             <tbody>
@@ -217,108 +216,98 @@
                 @foreach($data_detail as $data_d)
                 <?php $no++; ?>
                 <tr>
-                    <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno }}" nourut="{{ $data_d->lineno }}"  class="btn-radio"><span></span></label></td>
-                    <td scope="row" align="center">{{ $data_d->lineno }}</td>
+                    <td scope="row" class="text-center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" nodok="{{ $data_d->docno }}" nourut="{{ $data_d->lineno }}"  class="btn-radio"><span></span></label></td>
+                    <td scope="row" class="text-center">{{ $data_d->lineno }}</td>
                     <td>{{ $data_d->keterangan }}</td>
-                    {{-- <td>{{ $data_d->lokasi}}</td> --}}
-                    <td align="center">{{ $data_d->account}}</td>
-                    <td align="center">{{ $data_d->bagian}}</td>
-                    <td align="center">{{ $data_d->pk}}</td>
-                    <td align="center">{{ $data_d->jb}}</td>
-                    <td align="center">{{ $data_d->cj}}</td>
-                    <td align="center">{{ number_format($data_d->totprice,2,'.',',') }}</td>
+                    <td class="text-center">{{ $data_d->account}}</td>
+                    <td class="text-center">{{ $data_d->bagian}}</td>
+                    <td class="text-center">{{ $data_d->pk}}</td>
+                    <td class="text-center">{{ $data_d->jb}}</td>
+                    <td class="text-center">{{ $data_d->cj}}</td>
+                    <td class="text-center">{{ number_format($data_d->totprice,2,'.',',') }}</td>
                 </tr>
                 @endforeach
             </tbody>
+			<tfoot>
                 <tr>
                     <td colspan="8" align="right">Jumlah Total : </td>
                     <td >Rp. <?php echo number_format($count, 0, '.', ','); ?></td>
                 </tr>
+			</tfoot>
         </table>
     </div>
 </div>
 
 <!--begin::Modal creaate--> 
-<div class="modal fade modal-create"   tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="title-detail"></h5>
 			</div>
 			<div class="modal-body">
-			<span id="form_result"></span>
+				<span id="form_result"></span>
 				<form class="form" id="form-create-detail"  enctype="multipart/form-data">
 					@csrf
-                        
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
-							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
-							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+						<div class="col-10">
+							<input class="form-control disabled bg-secondary" type="text" value="{{ $no_urut }}"  name="nourut" readonly>
+							<input class="form-control disabled bg-secondary" type="hidden" value="{{ $nodok }}"  name="nodok" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<textarea  class="form-control" type="text" value=""  name="rincian" size="50" maxlength="250"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<select name="sanper"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
-								
 							</select>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div  class="col-8">
+						<div  class="col-10">
 							<select name="bagian"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
-								
 							</select>
 						</div>
 					</div>
 	
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<input class="form-control" type="text" value="000000"  name="pk" size="6" maxlength="6">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div  class="col-8">
+						<div  class="col-10">
 							<select name="jb"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 								@endforeach
-							
 							</select>
 						</div>
 					</div>
 									
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<select name="cj" class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
@@ -327,17 +316,14 @@
 							</select>
 						</div>
 					</div>
-									
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
-							<input class="form-control money" type="text" value="" name="nilai" size="25" maxlength="25" required autocomplete="off">
+						<div class="col-10">
+							<input class="form-control money" type="text" name="nilai" size="25" maxlength="25" required autocomplete="off">
 						</div>
 					</div>
 
-																					
 					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -363,78 +349,70 @@
 				<h5 class="modal-title" id="title-edit-detail"></h5>
 			</div>
 			<div class="modal-body">
-			<span id="form_result"></span>
-                <form class="form" id="form-edit-detail"  enctype="multipart/form-data">
+				<span id="form_result"></span>
+                <form class="form" id="form-edit-detail"  enctype="multipart/form-data" autocomplete="off">
 					@csrf
-                        
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
-							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
-							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
+						<div class="col-10">
+							<input class="form-control disabled bg-secondary" type="text" value="" name="nourut" id="nourut" readonly>
+							<input class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<textarea  class="form-control" type="text" value=""  name="rincian" id="rincian" size="50" maxlength="250"></textarea>
 						</div>
 					</div>
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Sandi Perkiraan</label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<select name="sanper" id="select-sanper" class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
-								
 							</select>
 						</div>
 					</div>
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div  class="col-8">
+						<div  class="col-10">
 							<select name="bagian" id="select-bagian" class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
-								
 							</select>
 						</div>
 					</div>
-	
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<input class="form-control" type="text"   name="pk" id="pk" size="6" maxlength="6">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div  class="col-8">
+						<div  class="col-10">
 							<select name="jb" id="select-jb"  class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 								@endforeach
-							
 							</select>
 						</div>
 					</div>
-									
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<select name="cj" id="select-cj" class="form-control select2" style="width: 100% !important;">
 								<option value="">- Pilih -</option>
 								@foreach($data_casj as $data_cas)
@@ -443,17 +421,14 @@
 							</select>
 						</div>
 					</div>
-									
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
+						<div class="col-10">
 							<input class="form-control money" type="text" value="" name="nilai" id="nilai1" size="16" maxlength="16" required autocomplete="off">
 						</div>
 					</div>
-
-																					
+												
 					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -471,8 +446,10 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PembayaranGajiStoreRequest', '#form-edit'); !!}
+
 <script>
-$(document).ready(function () {
+	$(document).ready(function () {
 		var t = $('#kt_table').DataTable({
 			scrollX   : true,
 			processing: true,
@@ -480,67 +457,69 @@ $(document).ready(function () {
 		});
 		
 		var jk = $('#jk').val();
-	if(jk == '13'){
-		$("#ci").val('2');
-		$("#kurs").val('0');
-		$( "#kurs" ).prop( "required", true );
-		$( "#kurs" ).prop( "readonly", false );
-		$('#kurs').css("background-color","#ffffff");
-		$('#kurs').css("cursor","text");
-		$("#jnskas").val('2');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	} else if (jk == '11'){
-		$("#ci").val('1');
-		$("#kurs").val('1');
-		$( "#kurs" ).prop( "required", false );
-		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#e4e6ef");
-		$('#kurs').css("cursor","not-allowed");
-		$("#jnskas").val('2');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	}else if (jk == '10'){
-		$("#ci").val('1');
-		$("#kurs").val('1');
-		$( "#kurs" ).prop( "required", false );
-		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#e4e6ef");
-		$('#kurs').css("cursor","not-allowed");
-		$("#jnskas").val('1');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	} else {
-		$("#ci").val("");
-		$("#kurs").val("");
-		$( "#kurs" ).prop( "required", true );
-		$( "#kurs" ).prop( "readonly", false );
-		$('#kurs').css("background-color","#ffffff");
-		$('#kurs').css("cursor","text");
-		$("#jnskas").val("");
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	}	
-var jk = $('#jk').val();
-var ci = $('#ci').val();
-var lokasi1 = $('#lokasi1').val();
-var lokasi2 = $('#lokasi2').val();
-$.ajax({
-	url : "{{ route('pembayaran_jumk.lokasiJson') }}",
-	type : "POST",
-	dataType: 'json',
-	data : {
-		jk:jk,
-		ci:ci
-		},
-	headers: {
-		'X-CSRF-Token': '{{ csrf_token() }}',
-		},
-	success : function(data){
+		if(jk == '13'){
+			$("#ci").val('2');
+			$("#kurs").val('0');
+			$( "#kurs" ).prop( "required", true );
+			$( "#kurs" ).prop( "readonly", false );
+			$('#kurs').css("background-color","#ffffff");
+			$('#kurs').css("cursor","text");
+			$("#jnskas").val('2');
+			$("#nokas").val("");
+			$("#nobukti1").val("");
+			$("#nama_kas").val("");
+		} else if (jk == '11'){
+			$("#ci").val('1');
+			$("#kurs").val('1');
+			$( "#kurs" ).prop( "required", false );
+			$( "#kurs" ).prop( "readonly", true );
+			$('#kurs').css("background-color","#e4e6ef");
+			$('#kurs').css("cursor","not-allowed");
+			$("#jnskas").val('2');
+			$("#nokas").val("");
+			$("#nobukti1").val("");
+			$("#nama_kas").val("");
+		}else if (jk == '10'){
+			$("#ci").val('1');
+			$("#kurs").val('1');
+			$( "#kurs" ).prop( "required", false );
+			$( "#kurs" ).prop( "readonly", true );
+			$('#kurs').css("background-color","#e4e6ef");
+			$('#kurs').css("cursor","not-allowed");
+			$("#jnskas").val('1');
+			$("#nokas").val("");
+			$("#nobukti1").val("");
+			$("#nama_kas").val("");
+		} else {
+			$("#ci").val("");
+			$("#kurs").val("");
+			$( "#kurs" ).prop( "required", true );
+			$( "#kurs" ).prop( "readonly", false );
+			$('#kurs').css("background-color","#ffffff");
+			$('#kurs').css("cursor","text");
+			$("#jnskas").val("");
+			$("#nokas").val("");
+			$("#nobukti1").val("");
+			$("#nama_kas").val("");
+		}
+
+		var jk = $('#jk').val();
+		var ci = $('#ci').val();
+		var lokasi1 = $('#lokasi1').val();
+		var lokasi2 = $('#lokasi2').val();
+
+		$.ajax({
+			url : "{{ route('pembayaran_jumk.lokasiJson') }}",
+			type : "POST",
+			dataType: 'json',
+			data : {
+				jk:jk,
+				ci:ci
+			},
+			headers: {
+				'X-CSRF-Token': '{{ csrf_token() }}',
+			},
+			success : function(data){
 				var html = '';
 				var i;
 					html += '<option value="'+lokasi2+'">'+lokasi1+'</option>';
@@ -548,314 +527,334 @@ $.ajax({
 					html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
 				}
 				$('#lokasi').html(html);		
-	},
-	error : function(){
-		alert("Ada kesalahan controller!");
-	}
-})
-$('#form-edit').submit(function(){
-	$.ajax({
-		url  : "{{ route('pembayaran_jumk.update') }}",
-		type : "POST",
-		data : $('#form-edit').serialize(),
-		dataType : "JSON",
-		headers: {
-		'X-CSRF-Token': '{{ csrf_token() }}',
-		},
-		success : function(data){
-		Swal.fire({
-			icon  : 'success',
-			title : 'Data Berhasil Diproses',
-			text  : 'Berhasil',
-			timer : 2000
-		}).then(function() {
-				window.location.replace("{{ route('pembayaran_jumk.index') }}");;
-			});
-		}, 
-		error : function(){
-			alert("Terjadi kesalahan, coba lagi nanti");
-		}
-	});	
-	return false;
-});
-$("#bagian").on("change", function(e){
-	e.preventDefault();
-var bagian = $('#bagian').val();
-var mp = $('#mp').val();
-var bulan = $('#bulan').val();
-var bulanbuku = $('#bulanbuku').val();
-	$.ajax({
-		url : "{{ route('pembayaran_jumk.createJson') }}",
-		type : "POST",
-		dataType: 'json',
-		data : {
-			bagian:bagian,
-			mp:mp,
-			bulanbuku:bulanbuku
-			},
-		headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
-		success : function(data){
-			var tahun = bulanbuku.substr(2,2);
-			var nodata = tahun+''+bulan+''+data;
-			var nomor = parseInt(nodata)+parseInt(1);
-			$("#nomor").val(nomor);
-		},
-		error : function(){
-			alert("Ada kesalahan controller!");
-		}
-	})
-});
-$("#jk").on("change", function(){
-var jk = $('#jk').val();
-	if(jk == '13'){
-		$("#ci").val('2');
-		$("#kurs").val('0');
-		$( "#kurs" ).prop( "required", true );
-		$( "#kurs" ).prop( "readonly", false );
-		$('#kurs').css("background-color","#ffffff");
-		$('#kurs').css("cursor","text");
-		$("#jnskas").val('2');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	} else if (jk == '11'){
-		$("#ci").val('1');
-		$("#kurs").val('1');
-		$( "#kurs" ).prop( "required", false );
-		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#e4e6ef");
-		$('#kurs').css("cursor","not-allowed");
-		$("#jnskas").val('2');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	}else if (jk == '10'){
-		$("#ci").val('1');
-		$("#kurs").val('1');
-		$( "#kurs" ).prop( "required", false );
-		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#e4e6ef");
-		$('#kurs').css("cursor","not-allowed");
-		$("#jnskas").val('1');
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	} else {
-		$("#ci").val("");
-		$("#kurs").val("");
-		$( "#kurs" ).prop( "required", true );
-		$( "#kurs" ).prop( "readonly", false );
-		$('#kurs').css("background-color","#ffffff");
-		$('#kurs').css("cursor","text");
-		$("#jnskas").val("");
-		$("#nokas").val("");
-		$("#nobukti1").val("");
-		$("#nama_kas").val("");
-	}	
-	var ci = $('#ci').val();
-	$.ajax({
-		url : "{{ route('pembayaran_jumk.lokasiJson') }}",
-		type : "POST",
-		dataType: 'json',
-		data : {
-			jk:jk,
-			ci:ci
-			},
-		headers: {
-			'X-CSRF-Token': '{{ csrf_token() }}',
-			},
-		success : function(data){
-					var html = '';
-                    var i;
-						html += '<option value="">- Pilih - </option>';
-                    for(i=0; i<data.length; i++){
-                        html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
-                    }
-                    $('#lokasi').html(html);		
-		},
-		error : function(){
-			alert("Ada kesalahan controller!");
-		}
-	})
-});
-$("#lokasi").on("click", function(){
-	$("#lokasi").on("change", function(){
-		
-	var lokasi = $('#lokasi').val();
-	var mp = $('#mp').val();
-	var tahun = $('#tahun').val();
-		$.ajax({
-			url : "{{ route('pembayaran_jumk.nobuktiJson') }}",
-			type : "POST",
-			dataType: 'json',
-			data : {
-				lokasi:lokasi,
-				mp:mp,
-				tahun:tahun
-				},
-			headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-			success : function(data){
-			var nobukti = data;
-				$("#nobukti").val(nobukti);
 			},
 			error : function(){
 				alert("Ada kesalahan controller!");
 			}
-		})
-	});
-});
-$('#nilai').keyup(function(){
-	var nilai = $('#nilai').val();
-	if(nilai < '0'){
-		$("#iklan").val('CR');
-	}else if(nilai > '0'){
-		$("#iklan").val('DR');
-	} else {
-		$("#iklan").val('');
-	}
-});
-//detail
-$('#btn-create').on('click', function(e) {
-	e.preventDefault();
-	$('#title-detail').html("Tambah Detail Pembayaran UMK");
-	$('.modal-create').modal('show');
-});
-$('#btn-delete-all').on('click', function(e) {
-	e.preventDefault();
-	$('#title-delete-detail').html("Hapus Detail Pembayaran UMK All");
-	$('.modal-delete-all').modal('show');
-});
-	//prosess create detail
-	$('#form-create-detail').submit(function(){
-		$.ajax({
-			url  : "{{ route('pembayaran_jumk.store.detail') }}",
-			type : "POST",
-			data : $('#form-create-detail').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-		console.log(data);
-				if(data == 1){
+		});
+
+		$('#form-edit').submit(function(e){
+			e.preventDefault();
+
+			if ($(this).valid()) {
+				$.ajax({
+					url  : "{{ route('pembayaran_jumk.update') }}",
+					type : "POST",
+					data : $('#form-edit').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						Swal.fire({
+							icon  : 'success',
+							title : 'Data Berhasil Diproses',
+							text  : 'Berhasil',
+							timer : 2000
+						})
+						.then(function() {
+							location.href = "{{ route('pembayaran_jumk.index') }}";
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
+		});
+		$("#bagian").on("change", function(e){
+			e.preventDefault();
+			var bagian = $('#bagian').val();
+			var mp = $('#mp').val();
+			var bulan = $('#bulan').val();
+			var bulanbuku = $('#bulanbuku').val();
+			$.ajax({
+				url : "{{ route('pembayaran_jumk.createJson') }}",
+				type : "POST",
+				dataType: 'json',
+				data : {
+					bagian:bagian,
+					mp:mp,
+					bulanbuku:bulanbuku
+					},
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+				success : function(data){
+					var tahun = bulanbuku.substr(2,2);
+					var nodata = tahun+''+bulan+''+data;
+					var nomor = parseInt(nodata)+parseInt(1);
+					$("#nomor").val(nomor);
+				},
+				error : function(){
+					alert("Ada kesalahan controller!");
+				}
+			})
+		});
+
+		$("#jk").on("change", function(){
+			var jk = $('#jk').val();
+			if(jk == '13'){
+				$("#ci").val('2');
+				$("#kurs").val('0');
+				$( "#kurs" ).prop( "required", true );
+				$( "#kurs" ).prop( "readonly", false );
+				$('#kurs').css("background-color","#ffffff");
+				$('#kurs').css("cursor","text");
+				$("#jnskas").val('2');
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			} else if (jk == '11'){
+				$("#ci").val('1');
+				$("#kurs").val('1');
+				$( "#kurs" ).prop( "required", false );
+				$( "#kurs" ).prop( "readonly", true );
+				$('#kurs').css("background-color","#e4e6ef");
+				$('#kurs').css("cursor","not-allowed");
+				$("#jnskas").val('2');
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			}else if (jk == '10'){
+				$("#ci").val('1');
+				$("#kurs").val('1');
+				$( "#kurs" ).prop( "required", false );
+				$( "#kurs" ).prop( "readonly", true );
+				$('#kurs').css("background-color","#e4e6ef");
+				$('#kurs').css("cursor","not-allowed");
+				$("#jnskas").val('1');
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			} else {
+				$("#ci").val("");
+				$("#kurs").val("");
+				$( "#kurs" ).prop( "required", true );
+				$( "#kurs" ).prop( "readonly", false );
+				$('#kurs').css("background-color","#ffffff");
+				$('#kurs').css("cursor","text");
+				$("#jnskas").val("");
+				$("#nokas").val("");
+				$("#nobukti1").val("");
+				$("#nama_kas").val("");
+			}	
+
+			var ci = $('#ci').val();
+
+			$.ajax({
+				url : "{{ route('pembayaran_jumk.lokasiJson') }}",
+				type : "POST",
+				dataType: 'json',
+				data : {
+					jk:jk,
+					ci:ci
+					},
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				success : function(data) {
+					var html = '';
+					var i;
+					html += '<option value="">- Pilih - </option>';
+					for(i = 0; i < data.length; i++){
+						html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
+					}
+					$('#lokasi').html(html);		
+				},
+				error : function(){
+					alert("Ada kesalahan controller!");
+				}
+			})
+		});
+
+		$("#lokasi").on("click", function(){
+			$("#lokasi").on("change", function(){
+				
+			var lokasi = $('#lokasi').val();
+			var mp = $('#mp').val();
+			var tahun = $('#tahun').val();
+				$.ajax({
+					url : "{{ route('pembayaran_jumk.nobuktiJson') }}",
+					type : "POST",
+					dataType: 'json',
+					data : {
+						lokasi:lokasi,
+						mp:mp,
+						tahun:tahun
+					},
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						var nobukti = data;
+						$("#nobukti").val(nobukti);
+					},
+					error : function(){
+						alert("Ada kesalahan controller!");
+					}
+				})
+			});
+		});
+
+		$('#nilai').keyup(function(){
+			var nilai = $('#nilai').val();
+			if(nilai < '0'){
+				$("#iklan").val('CR');
+			}else if(nilai > '0'){
+				$("#iklan").val('DR');
+			} else {
+				$("#iklan").val('');
+			}
+		});
+		
+		//detail
+		$('#btn-create').on('click', function(e) {
+			e.preventDefault();
+			$('#title-detail').html("Tambah Detail Pembayaran UMK");
+			$('.modal-create').modal('show');
+		});
+
+		$('#btn-delete-all').on('click', function(e) {
+			e.preventDefault();
+			$('#title-delete-detail').html("Hapus Detail Pembayaran UMK All");
+			$('.modal-delete-all').modal('show');
+		});
+
+		//prosess create detail
+		$('#form-create-detail').submit(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url  : "{{ route('pembayaran_jumk.store.detail') }}",
+				type : "POST",
+				data : $('#form-create-detail').serialize(),
+				dataType : "JSON",
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				success : function(data){ 
+					console.log(data);
+					if(data == 1){
+						Swal.fire({
+							icon  : 'success',
+							title : 'Data Berhasil Ditambah',
+							text  : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							location.reload();
+						});
+					} else {
+						Swal.fire({
+							icon  : 'info',
+							title : 'Duplikasi data dokumen detail, entri dibatalkan',
+							text  : 'Failed',
+							timer : 2000
+						});
+					}
+				}, 
+				error : function(){
+					alert("Terjadi kesalahan, coba lagi nanti");
+				}
+			});	
+			return false;
+		});
+
+		//prosess delete all detail
+		$('#form-delete-all').submit(function(e) {
+			e.preventDefault();
+
+			$.ajax({
+				url  : "{{ route('pembayaran_jumk.delete.detail.all') }}",
+				type : "delete",
+				data : $('#form-delete-all').serialize(),
+				dataType : "JSON",
+				headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+				},
+				success : function(data){
 					Swal.fire({
-						icon  : 'success',
-						title : 'Data Berhasil Ditambah',
-						text  : 'Berhasil',
+						icon : 'success',
+						title : 'Data Berhasil Dihapus',
+						text : 'Berhasil',
 						timer : 2000
 					}).then(function() {
 						location.reload();
 						});
-				} else {
-					Swal.fire({
-						type  : 'info',
-						title : 'Duplikasi data dokumen detail, entri dibatalkan',
-						text  : 'Failed',
-						timer : 2000
-					});
+				}, 
+				error : function(){
+					alert("Terjadi kesalahan, coba lagi nanti");
 				}
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
-			}
-		});	
-		return false;
-	});
-	//prosess delete all detail
-	$('#form-delete-all').submit(function(){
-		$.ajax({
-			url  : "{{ route('pembayaran_jumk.delete.detail.all') }}",
-			type : "delete",
-			data : $('#form-delete-all').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-				Swal.fire({
-					icon  : 'success',
-					title : 'Data Berhasil Dihapus',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-					location.reload();
-					});
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
-			}
-		});	
-		return false;
-	});
-//tampil edit detail
-$('#btn-edit').on('click', function(e) {
-	e.preventDefault();
-var allVals = []; 
-if($('input[type=radio]').is(':checked')) {  
-	$("input[type=radio]:checked").each(function() {  
-		var nodok = $(this).attr('nodok').split("/").join("-");
-		var nourut = $(this).attr('nourut');
+			});
+		});
+
+		//tampil edit detail
+		$('#btn-edit').on('click', function(e) {
+			e.preventDefault();
+			var allVals = []; 
+			if($('input[type=radio]').is(':checked')) {  
+				$("input[type=radio]:checked").each(function() {  
+					var nodok = $(this).attr('nodok').split("/").join("-");
+					var nourut = $(this).attr('nourut');
+					$.ajax({
+						url :"{{ url('perbendaharaan/pembayaran-jumk/editdetail') }}"+ '/' +nodok+ '/' +nourut,
+						type : 'get',
+						dataType:"json",
+						headers: {
+							'X-CSRF-Token': '{{ csrf_token() }}',
+						},
+						success:function(data) {
+							$('#nodok').val(data.docno);
+							$('#nourut').val(data.lineno);
+							$('#rincian').val(data.keterangan);
+							$('#pk').val(data.pk);
+							var d=parseFloat(data.totprice);
+							var rupiah = d.toFixed(2);
+							$('#nilai1').val(rupiah);
+							$('#title-edit-detail').html("Edit Detail Pembayaran UMK");
+							$('#select-lapangan').val(data.lokasi).trigger('change');
+							$('#select-sanper').val(data.account).trigger('change');
+							$('#select-bagian').val(data.bagian).trigger('change');
+							$('#select-jb').val(data.jb).trigger('change');
+							$('#select-cj').val(data.cj).trigger('change');
+							$('.modal-edit').modal('show');
+						}
+					})
+				});
+			} else {
+				swalAlertInit('ubah'); 
+			}			
+		});
+
+		$('#form-edit-detail').submit(function(e) {
+			e.preventDefault();
+
 			$.ajax({
-				url :"{{ url('perbendaharaan/pembayaran-jumk/editdetail') }}"+ '/' +nodok+ '/' +nourut,
-				type : 'get',
-				dataType:"json",
+				url  : "{{ route('pembayaran_jumk.update.detail') }}",
+				type : "POST",
+				data : $('#form-edit-detail').serialize(),
+				dataType : "JSON",
 				headers: {
 					'X-CSRF-Token': '{{ csrf_token() }}',
-					},
-				success:function(data)
-				{
-					$('#nodok').val(data.docno);
-					$('#nourut').val(data.lineno);
-					$('#rincian').val(data.keterangan);
-					$('#pk').val(data.pk);
-					var d=parseFloat(data.totprice);
-					var rupiah = d.toFixed(2);
-					$('#nilai1').val(rupiah);
-					$('#title-edit-detail').html("Edit Detail Pembayaran UMK");
-					$('#select-lapangan').val(data.lokasi).trigger('change');
-					$('#select-sanper').val(data.account).trigger('change');
-					$('#select-bagian').val(data.bagian).trigger('change');
-					$('#select-jb').val(data.jb).trigger('change');
-					$('#select-cj').val(data.cj).trigger('change');
-					$('.modal-edit').modal('show');
-				}
-			})
-	});
-} else {
-	swalAlertInit('ubah'); 
-}			
-});
-$('#form-edit-detail').submit(function(){
-		$.ajax({
-			url  : "{{ route('pembayaran_jumk.update.detail') }}",
-			type : "POST",
-			data : $('#form-edit-detail').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-				Swal.fire({
-					icon  : 'success',
-					title : 'Data Berhasil Diubah',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-					location.reload();
+				},
+				success : function(data){
+					Swal.fire({
+						icon  : 'success',
+						title : 'Data Berhasil Diubah',
+						text  : 'Berhasil',
+						timer : 2000
+					}).then(function() {
+						location.reload();
 					});
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
-			}
-		});	
-		return false;
-	});
-	//delete
-	$('#btn-delete').click(function(e) {
+				}, 
+				error : function(){
+					alert("Terjadi kesalahan, coba lagi nanti");
+				}
+			});
+		});
+
+		//delete
+		$('#btn-delete').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
@@ -891,7 +890,7 @@ $('#form-edit-detail').submit(function(){
 								},
 								success: function (data) {
 									Swal.fire({
-										type : 'success',
+										icon : 'success',
 										title: 'Hapus detail Berhasil',
 										text : 'Berhasil',
 										timer: 2000
@@ -910,22 +909,24 @@ $('#form-edit-detail').submit(function(){
 				swalAlertInit('hapus');
 			}
 		});
-	// minimum setup
-	$('#tanggal').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		language : 'id',
-		format   : 'dd-mm-yyyy'
+
+		// minimum setup
+		$('#tanggal').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
+		});
+		
+		$('#bulanbuku').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'yyyymm'
+		});
+
 	});
-	
-	$('#bulanbuku').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		language : 'id',
-		format   : 'yyyymm'
-	});
-});
 </script>
 @endpush
