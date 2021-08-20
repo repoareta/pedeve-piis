@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Treasury;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PenempatanDepositoStoreRequest;
 use App\Models\DtlDepositoTest;
 use App\Models\Kasline;
 use App\Models\MtrDeposito;
@@ -133,26 +134,26 @@ class PenempatanDepositoController extends Controller
      */
     public function create()
     {
-        $data_dok = DB::select("SELECT a.docno,a.lineno,a.asal,a.nominal,a.kdbank,a.keterangan,b.descacct from mtrdeposito  a join account b on a.kdbank=b.kodeacct where proses='N' order by docno");
+        $data_dok = DB::select("SELECT a.docno,a.lineno,a.asal,a.nominal,a.kdbank,a.keterangan,b.descacct from mtrdeposito a join account b on a.kdbank=b.kodeacct where proses='N' order by docno");
         return view('modul-treasury.penempatan-deposito.create', compact('data_dok'));
     }
 
     public function linenoJson(Request $request)
     {
-        $datas = DB::select("SELECT a.docno,a.lineno,a.asal,round(a.nominal,0) as nominal,a.kdbank,a.keterangan,b.descacct from mtrdeposito  a join account b on a.kdbank=b.kodeacct  where a.docno='$request->nodok' and a.lineno='$request->lineno' and proses='N' order by docno");
-        return response()->json($datas[0]);
+        $data = DB::select("SELECT a.docno,a.lineno,a.asal,round(a.nominal,0) as nominal,a.kdbank,a.keterangan,b.descacct from mtrdeposito  a join account b on a.kdbank=b.kodeacct  where a.docno='$request->nodok' and a.lineno='$request->lineno' and proses='N' order by docno");
+        return response()->json($data[0]);
     }
 
     public function kursJson(Request $request)
     {
-        $datas = DB::select("SELECT rate from kasdoc where docno='$request->nodok'");
-        return response()->json($datas[0]);
+        $data = DB::select("SELECT rate from kasdoc where docno='$request->nodok'");
+        return response()->json($data[0]);
     }
 
     public function kdbankJson(Request $request)
     {
-        $datas = DB::select("SELECT * from mtrdeposito where docno='$request->nodok' and lineno='$request->lineno' and perpanjangan='$request->pjg'");
-        return response()->json($datas[0]);
+        $data = DB::select("SELECT * from mtrdeposito where docno='$request->nodok' and lineno='$request->lineno' and perpanjangan='$request->pjg'");
+        return response()->json($data[0]);
     }
 
     /**
@@ -161,7 +162,7 @@ class PenempatanDepositoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PenempatanDepositoStoreRequest $request)
     {
         $docno = $request->nodok;
         $lineno = $request->lineno;

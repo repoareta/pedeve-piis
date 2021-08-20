@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form class="form" id="form-edit">
+        <form class="form" id="form-edit" action="{{ route('pembayaran_gaji.update') }}">
             @csrf
             <div class="portlet__body">
                 <div class="form-group form-group-last">
@@ -44,6 +44,7 @@
                         <label for="" class="col-2 col-form-label">No.Dokumen</label>
                         <div class="col-6">
                             <input type="text" class="form-control disabled bg-secondary"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly>
+							<input type="hidden" class="form-control disabled bg-secondary"  value="{{date('Y-m-d') }}" size="1" maxlength="1" name="tanggal" id="tanggal" readonly>
                             <input class="form-control disabled bg-secondary" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
                         </div>
                         <div class="col-4">
@@ -72,7 +73,6 @@
                                 @foreach($data_bagian as $row)
                                 <option value="{{ $row->kode }}" <?php if($row->kode == $bagian) echo 'selected'; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
                                 @endforeach
-                                
                             </select>
                         </div>
                     </div>
@@ -131,32 +131,32 @@
                         <label class="col-2 col-form-label">
                         @if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" required autocomplete="off">
+                            <input class="form-control disabled bg-secondary" type="text" name="kepada" id="kepada" value="{{ $data->kepada }}" size="40" maxlength="40" readonly required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Sejumlah<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input class="form-control money" type="text"  value="{{ $data->nilai_dok }}" size="16" maxlength="16" readonly required autocomplete="off">
+                            <input class="form-control money disabled bg-secondary" type="text"  value="{{ $data->nilai_dok }}" size="16" maxlength="16" readonly required autocomplete="off">
                             <input class="form-control money" type="hidden" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" required autocomplete="off">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 1</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket1" id="ket1" value="{{ $data->ket1 }}"></textarea>
+                            <textarea class="form-control" type="text" name="ket1" id="ket1">{{ $data->ket1 }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 2</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket2" id="ket2" value="{{ $data->ket2}}"></textarea>
+                            <textarea class="form-control" type="text" name="ket2" id="ket2">{{ $data->ket2 }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Catatan 3</label>
                         <div class="col-10">
-                            <textarea class="form-control" type="text" name="ket3" id="ket3" value="{{ $data->ket3}}"></textarea>
+                            <textarea class="form-control" type="text" name="ket3" id="ket3">{{ $data->ket3 }}</textarea>
                         </div>
                     </div>
                     <div class="form__actions">
@@ -266,8 +266,8 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+							<input class="form-control disabled bg-secondary" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
+							<input class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
 						</div>
 					</div>
 
@@ -289,12 +289,8 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
-								@if($data_akses->rubah == 1)
+								<button type="reset" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
 								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
-								@endif
-								@endforeach
 							</div>
 						</div>
 					</div>
@@ -305,7 +301,7 @@
 </div>
 
 <!--begin::Modal Delete--> 
-<div class="modal fade modal-delete-all"   tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-delete-all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -320,7 +316,7 @@
 						<label for="example-text-input" class="col-2 col-form-label">No. Dokumen<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="{{ $nodok}}"  name="nodok" readonly>
+							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="{{ $nodok}}"  name="nodok" readonly>
 							<input type="hidden" name="tahun" value="{{ $tahuns}}">
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
@@ -330,11 +326,7 @@
 							<div class="col-2"></div>
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
-								@if($data_akses->rubah == 1)
 								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Delete</button>
-								@endif
-								@endforeach
 							</div>
 						</div>
 					</div>
@@ -356,13 +348,12 @@
 			<span id="form_result"></span>
                 <form class="form" id="form-edit-detail"  enctype="multipart/form-data">
 					@csrf
-                        
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
 						<div class="col-8">
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="text" value="" name="nourut" id="nourut" readonly>
-							<input style="background-color:#DCDCDC; cursor:not-allowed"  class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
+							<input class="form-control disabled bg-secondary" type="text" value="" name="nourut" id="nourut" readonly>
+							<input class="form-control" type="hidden" value="" name="nodok" id="nodok" readonly>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -461,11 +452,7 @@
 							<div class="col-2"></div>
 							<div class="col-10">
 								<button type="reset"  class="btn btn-warning"  data-dismiss="modal"><i class="fa fa-reply"></i>Cancel</button>
-								@foreach(DB::table('usermenu')->where('userid',Auth::user()->userid)->where('menuid',502)->limit(1)->get() as $data_akses)
-								@if($data_akses->rubah == 1)
 								<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>Simpan</button>
-								@endif
-								@endforeach
 							</div>
 						</div>
 					</div>
@@ -477,6 +464,8 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PembayaranGajiStoreRequest', '#form-edit'); !!}
+
 <script>
 $(document).ready(function () {
 		var t = $('#kt_table').DataTable({
@@ -502,7 +491,7 @@ $(document).ready(function () {
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('2');
 		$("#nokas").val("");
@@ -513,7 +502,7 @@ $(document).ready(function () {
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('1');
 		$("#nokas").val("");
@@ -631,7 +620,7 @@ var jk = $('#jk').val();
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('2');
 		$("#nokas").val("");
@@ -642,7 +631,7 @@ var jk = $('#jk').val();
 		$("#kurs").val('1');
 		$( "#kurs" ).prop( "required", false );
 		$( "#kurs" ).prop( "readonly", true );
-		$('#kurs').css("background-color","#DCDCDC");
+		$('#kurs').css("background-color","#e4e6ef");
 		$('#kurs').css("cursor","not-allowed");
 		$("#jnskas").val('1');
 		$("#nokas").val("");

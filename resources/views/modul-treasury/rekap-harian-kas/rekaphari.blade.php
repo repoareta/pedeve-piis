@@ -27,13 +27,13 @@
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="jk" value="{{ $jk}}"  size="15" maxlength="15" autocomplete="off" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="jk" value="{{ $jk}}"  size="15" maxlength="15" autocomplete="off" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">Tanggal<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="tanggal" value="{{ $tanggal}}" id="tanggal" size="15" maxlength="15" autocomplete="off" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="tanggal" value="{{ $tanggal}}" id="tanggal" size="15" maxlength="15" autocomplete="off" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 <input class="form-control" type="hidden" name="tglctk" value="{{ date('d F Y') }}" id="tglctk" size="15" maxlength="15" autocomplete="off" required oninvalid="this.setCustomValidity('Tanggal Cetak Harus Diisi..')" onchange="setCustomValidity('')" autocomplete="off">
                     <input class="form-control" type="hidden" value="{{Auth::user()->userid }}"  name="userid" autocomplete="off">
                 </div>
@@ -41,7 +41,7 @@
             <div class="form-group row">
                 <label for="spd-input" class="col-2 col-form-label">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="nokas" value="{{ $nokas}}"  size="15" maxlength="15" autocomplete="off" readonly style="background-color:#DCDCDC; cursor:not-allowed">
+                    <input class="form-control" type="text" name="nokas" value="{{ $nokas}}"  size="15" maxlength="15" autocomplete="off" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
             </div>
             <div class="form-group row">

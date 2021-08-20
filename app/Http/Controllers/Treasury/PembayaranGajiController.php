@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Treasury;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PembayaranGajiStoreRequest;
 use App\Models\CashJudex;
 use App\Models\JenisBiaya;
 use App\Models\Kasdoc;
@@ -273,7 +274,7 @@ class PembayaranGajiController extends Controller
         return response()->json($data);
     }
 
-    public function store(Request $request)
+    public function store(PembayaranGajiStoreRequest $request)
     {
         $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
         if (!empty($data_tahunbulan)) {
@@ -425,7 +426,7 @@ class PembayaranGajiController extends Controller
             'bulans'
         ));
     }
-    public function update(Request $request)
+    public function update(PembayaranGajiStoreRequest $request)
     {
         Kasdoc::where('docno', $request->nodok)
             ->update([
