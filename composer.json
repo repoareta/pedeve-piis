@@ -47,14 +47,14 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/currency_idr_helper.php",
+            "app/Helpers/bulan_helper.php",
             "app/Helpers/currency_format_helper.php",
+            "app/Helpers/currency_idr_helper.php",
             "app/Helpers/float_two_helper.php",
             "app/Helpers/pajak_helper.php",
             "app/Helpers/pekerja_status_helper.php",
-            "app/Helpers/aside_active_helper.php",
-            "app/Helpers/terbilang_helper.php",
-            "app/Helpers/bulan_helper.php"
+            "app/Helpers/sanitize_nominal.php",
+            "app/Helpers/terbilang_helper.php"
         ]
     },
     "autoload-dev": {
