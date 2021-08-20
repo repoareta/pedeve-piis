@@ -135,17 +135,17 @@ class RkapRealisasiController extends Controller
         $rencanaKerja->ci_r = $request->ci;
         $rencanaKerja->tahun = $request->tahun;
         $rencanaKerja->bulan = $request->bulan;
-        $rencanaKerja->rate_r = str_replace(',', '', $request->kurs);
-        $rencanaKerja->aset_r = str_replace(',', '', $request->aset);
-        $rencanaKerja->pendapatan_usaha = str_replace(',', '', $request->pendapatan_usaha);
-        $rencanaKerja->beban_usaha = str_replace(',', '', $request->beban_usaha);
-        $rencanaKerja->pendapatan_or_beban_lain = str_replace(',', '', $request->pendapatan_beban_lain);
-        $rencanaKerja->laba_bersih_r = str_replace(',', '', $request->laba_bersih);
-        $rencanaKerja->ebitda = str_replace(',', '', $request->ebitda);
-        $rencanaKerja->investasi_bd = str_replace(',', '', $request->investasi_bd);
-        $rencanaKerja->investasi_nbd = str_replace(',', '', $request->investasi_nbd);
-        $rencanaKerja->tkp_r = str_replace(',', '', $request->tkp);
-        $rencanaKerja->kpi_r = str_replace(',', '', $request->kpi);
+        $rencanaKerja->rate_r = sanitize_nominal($request->kurs);
+        $rencanaKerja->aset_r = sanitize_nominal($request->aset);
+        $rencanaKerja->pendapatan_usaha = sanitize_nominal($request->pendapatan_usaha);
+        $rencanaKerja->beban_usaha = sanitize_nominal($request->beban_usaha);
+        $rencanaKerja->pendapatan_or_beban_lain = sanitize_nominal($request->pendapatan_beban_lain);
+        $rencanaKerja->laba_bersih_r = sanitize_nominal($request->laba_bersih);
+        $rencanaKerja->ebitda = sanitize_nominal($request->ebitda);
+        $rencanaKerja->investasi_bd = sanitize_nominal($request->investasi_bd);
+        $rencanaKerja->investasi_nbd = sanitize_nominal($request->investasi_nbd);
+        $rencanaKerja->tkp_r = sanitize_nominal($request->tkp);
+        $rencanaKerja->kpi_r = sanitize_nominal($request->kpi);
 
         $rencanaKerja->save();
 
@@ -182,17 +182,17 @@ class RkapRealisasiController extends Controller
         $rencanaKerja->ci_r = $request->ci;
         $rencanaKerja->tahun = $request->tahun;
         $rencanaKerja->bulan = $request->bulan;
-        $rencanaKerja->rate_r = str_replace(',', '', $request->kurs);
-        $rencanaKerja->aset_r = str_replace(',', '', $request->aset);
-        $rencanaKerja->pendapatan_usaha = str_replace(',', '', $request->pendapatan_usaha);
-        $rencanaKerja->beban_usaha = str_replace(',', '', $request->beban_usaha);
-        $rencanaKerja->pendapatan_or_beban_lain = str_replace(',', '', $request->pendapatan_beban_lain);
-        $rencanaKerja->laba_bersih_r = str_replace(',', '', $request->laba_bersih);
-        $rencanaKerja->ebitda = str_replace(',', '', $request->ebitda);
-        $rencanaKerja->investasi_bd = str_replace(',', '', $request->investasi_bd);
-        $rencanaKerja->investasi_nbd = str_replace(',', '', $request->investasi_nbd);
-        $rencanaKerja->tkp_r = str_replace(',', '', $request->tkp);
-        $rencanaKerja->kpi_r = str_replace(',', '', $request->kpi);
+        $rencanaKerja->rate_r = sanitize_nominal($request->kurs);
+        $rencanaKerja->aset_r = sanitize_nominal($request->aset);
+        $rencanaKerja->pendapatan_usaha = sanitize_nominal($request->pendapatan_usaha);
+        $rencanaKerja->beban_usaha = sanitize_nominal($request->beban_usaha);
+        $rencanaKerja->pendapatan_or_beban_lain = sanitize_nominal($request->pendapatan_beban_lain);
+        $rencanaKerja->laba_bersih_r = sanitize_nominal($request->laba_bersih);
+        $rencanaKerja->ebitda = sanitize_nominal($request->ebitda);
+        $rencanaKerja->investasi_bd = sanitize_nominal($request->investasi_bd);
+        $rencanaKerja->investasi_nbd = sanitize_nominal($request->investasi_nbd);
+        $rencanaKerja->tkp_r = sanitize_nominal($request->tkp);
+        $rencanaKerja->kpi_r = sanitize_nominal($request->kpi);
 
         $rencanaKerja->save();
 

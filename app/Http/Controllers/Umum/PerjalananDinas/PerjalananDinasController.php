@@ -135,7 +135,7 @@ class PerjalananDinasController extends Controller
         $panjar_header->kendaraan = $request->kendaraan;
         $panjar_header->ditanggung_oleh = $request->biaya;
         $panjar_header->keterangan = $request->keterangan;
-        $panjar_header->jum_panjar = str_replace(',', '', $request->jumlah);
+        $panjar_header->jum_panjar = sanitize_nominal($request->jumlah);
 
         // Save Panjar Header
         $panjar_header->save();

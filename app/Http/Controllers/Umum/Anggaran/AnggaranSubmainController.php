@@ -103,7 +103,7 @@ class AnggaranSubmainController extends Controller
         $anggaran->kode_main = $request->kode_main;
         $anggaran->kode_submain = $request->kode;
         $anggaran->nama_submain = $request->nama;
-        $anggaran->nilai = str_replace(',', '', $request->nilai);
+        $anggaran->nilai = sanitize_nominal($request->nilai);
         $anggaran->nilai_real = $request->nilai_real;
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
@@ -143,7 +143,7 @@ class AnggaranSubmainController extends Controller
         $anggaran->kode_main = $kode_main;
         $anggaran->kode_submain = $request->kode;
         $anggaran->nama_submain = $request->nama;
-        $anggaran->nilai = str_replace(',', '', $request->nilai);
+        $anggaran->nilai = sanitize_nominal($request->nilai);
         // $anggaran->nilai_real = $request->nilai_real;
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;

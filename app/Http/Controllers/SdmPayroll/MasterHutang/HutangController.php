@@ -103,8 +103,8 @@ class HutangController extends Controller
         $hutang->bulan      = $request->bulan;
         $hutang->nopek      = $request->pegawai;
         $hutang->aard       = $request->aard;
-        $hutang->lastamount = str_replace(',', '', $request->last_amount);
-        $hutang->curramount = str_replace(',', '', $request->current_amount);
+        $hutang->lastamount = sanitize_nominal($request->last_amount);
+        $hutang->curramount = sanitize_nominal($request->current_amount);
         $hutang->userid     = Auth::user()->userid;
 
         $hutang->save();
@@ -155,8 +155,8 @@ class HutangController extends Controller
         $hutang->bulan      = $request->bulan;
         $hutang->nopek      = $request->pegawai;
         $hutang->aard       = $request->aard;
-        $hutang->lastamount = str_replace(',', '', $request->last_amount);
-        $hutang->curramount = str_replace(',', '', $request->current_amount);
+        $hutang->lastamount = sanitize_nominal($request->last_amount);
+        $hutang->curramount = sanitize_nominal($request->current_amount);
         $hutang->userid     = Auth::user()->userid;
 
         $hutang->save();

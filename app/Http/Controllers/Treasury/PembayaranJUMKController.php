@@ -457,7 +457,7 @@ class PembayaranJUMKController extends Controller
                 'pk' =>  $request->pk,
                 'jb' =>  $request->jb,
                 'cj' =>  $request->cj,
-                'totprice'  =>  str_replace(',', '', $request->nilai),
+                'totprice'  =>  sanitize_nominal($request->nilai),
                 'keterangan'  =>  $request->rincian
             ]);
             $data_sum = DB::select("SELECT sum(totprice) as v_total from kasline where docno='$docno'");
@@ -488,7 +488,7 @@ class PembayaranJUMKController extends Controller
                 'bagian' =>  $request->bagian,
                 'pk' =>  $request->pk,
                 'jb' =>  $request->jb,
-                'totprice' =>  str_replace(',', '', $request->nilai),
+                'totprice' =>  sanitize_nominal($request->nilai),
                 'cj' =>  $request->cj,
                 'keterangan' =>  $request->rincian,
             ]);
