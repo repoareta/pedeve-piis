@@ -27,4 +27,11 @@ class DetailDokumenStoreRequest extends FormRequest
             'filedok.*' => 'required|mimes:pdf,jpg,jpeg,png',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'filedok.*' => 'Dokumen Perkara'
+        ];
+    }
 }

@@ -64,10 +64,10 @@
 							</div>
 							@if(count($errors) > 0)
 								@foreach ($errors->all() as $error)
-								<span class="text-danger">Frotmat harus pdf, jpeg, jpg dan png</span>
+								<span class="text-danger">Format harus pdf, jpeg, jpg dan png</span>
 								@endforeach
 							@else
-								<span>Frotmat file pdf, jpeg, jpg dan png</span>
+								<span>Format file pdf, jpeg, jpg dan png</span>
 							@endif
 						</div>
 					</div>
