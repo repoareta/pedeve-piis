@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DetailDokumenStoreRequest extends FormRequest
+class UMKApprovalStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,9 @@ class DetailDokumenStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'filedok.*' => 'required|mimes:pdf,jpg,jpeg,png',
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'filedok.*' => 'Dokumen Perkara'
+            'noumk' => 'required',
+            'userid' => 'required|string',
+            'tgl_app' => 'required|date_format:d-m-Y',
         ];
     }
 }

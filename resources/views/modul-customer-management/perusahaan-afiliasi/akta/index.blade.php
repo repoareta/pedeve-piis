@@ -94,6 +94,19 @@
             }
         });
 
+        $('#kt_table_akta tbody').on( 'click', 'tr', function (event) {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            } else {
+                $('#kt_table_akta tbody tr.selected').removeClass('selected');
+                // $(':radio', this).trigger('click');
+                if (event.target.type !== 'radio') {
+                    $(':radio', this).trigger('click');
+                }
+                $(this).addClass('selected');
+            }
+        });
+
         $('#deleteAkta').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_akta]').is(':checked')) { 
