@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Umum\UangMukaKerja;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UMKApprovalStoreRequest;
+use App\Http\Requests\UMKDetailStoreRequest;
 use Illuminate\Http\Request;
 
 // load Model
@@ -156,7 +158,7 @@ class UangMukaKerjaController extends Controller
         return redirect()->route('modul_umum.uang_muka_kerja.edit', [str_replace('/', '-', $request->no_umk)]);
     }
 
-    public function storeDetail(Request $request)
+    public function storeDetail(UMKDetailStoreRequest $request)
     {
         $check_data =  DB::select("SELECT * from kerja_detail where no = '$request->no' and  no_umk = '$request->no_umk'");
         if (!empty($check_data)) {
@@ -166,7 +168,7 @@ class UangMukaKerjaController extends Controller
                     'no' => $request->no,
                     'keterangan' => $request->keterangan,
                     'account' => $request->acc,
-                    'nilai' =>   str_replace(',', '.', $request->nilai),
+                    'nilai' =>   str_replace(',', '', $request->nilai),
                     'cj' => $request->cj,
                     'jb' => $request->jb,
                     'bagian' => $request->bagian,
@@ -185,7 +187,7 @@ class UangMukaKerjaController extends Controller
                 'no' => $request->no,
                 'keterangan' => $request->keterangan,
                 'account' => $request->acc,
-                'nilai' =>    str_replace(',', '.', $request->nilai),
+                'nilai' =>    str_replace(',', '', $request->nilai),
                 'cj' => $request->cj,
                 'jb' => $request->jb,
                 'bagian' => $request->bagian,
@@ -202,7 +204,7 @@ class UangMukaKerjaController extends Controller
         }
     }
 
-    public function storeApp(Request $request)
+    public function storeApp(UMKApprovalStoreRequest $request)
     {
         $noumk = str_replace('-', '/', $request->noumk);
         $data_app = Umk::where('no_umk', $noumk)->select('*')->get();
@@ -317,7 +319,7 @@ class UangMukaKerjaController extends Controller
                     'app_pbd' => 'N'
                 ]);
             Alert::success('No. UMK : ' . $noumk . ' Berhasil Diapproval', 'Berhasil')->persistent(true)->autoClose(2000);
-            return redirect()->route('uang_muka_kerja.index');
+            return redirect()->route('modul_umum.uang_muka_kerja.index');
         }
     }
 
@@ -449,8 +451,8 @@ class UangMukaKerjaController extends Controller
     public function approve($id)
     {
         $noumk = str_replace('-', '/', $id);
-        $data_app = Umk::where('no_umk', $noumk)->select('*')->get();
-        return view('modul-umum.umk.approve', compact('data_app'));
+        $data = Umk::where('no_umk', $noumk)->select('*')->first();
+        return view('modul-umum.umk.approv', compact('data'));
     }
 
     public function rekap($id)

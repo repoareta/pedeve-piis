@@ -37,7 +37,7 @@
             <div class="form-group row">
                 <label for="nopek-input" class="col-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="tgl_panjar" value="{{ date('d-m-Y', strtotime($data_umk->tgl_panjar)) }}" id="datepicker" id="tgl_panjar" size="15" maxlength="15" required>
+                    <input class="form-control" type="text" name="tgl_panjar" value="{{ date('d-m-Y', strtotime($data_umk->tgl_panjar)) }}" id="tgl_panjar" size="15" maxlength="15" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -102,7 +102,7 @@
             <div class="form-group row">
                 <label for="example-datetime-local-input" class="col-2 col-form-label">Jumlah</label>
                 <div class="col-10">
-                    <input class="form-control disabled bg-secondary" type="text" value="Rp. {{ currency_format($data_umk->jumlah) }}" readonly>
+                    <input class="form-control disabled bg-secondary money" type="text" value="{{ $data_umk->jumlah }}" readonly>
                     <input class="form-control" type="hidden" value="{{ number_format($data_umk->jumlah, 0, '', '') }}" name="jumlah" id="jumlah" size="70" maxlength="200" readonly>
                 </div>
             </div>
@@ -110,8 +110,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('modul_umum.uang_muka_kerja.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('modul_umum.uang_muka_kerja.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>
             </div>
@@ -199,21 +199,21 @@
                     <input  class="form-control" hidden type="text" value="{{ $data_umk->no_umk }}" name="no_umk">
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
-						<div class="col-8">
+						<div class="col-10">
 							<input class="form-control disabled bg-secondary" type="text" value="{{$no_umk_details}}" name="no">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
-						<div class="col-8">
+						<div class="col-10">
 							<textarea  class="form-control" type="text" value="" id="keterangan-create" name="keterangan" required>-</textarea>
 						</div>
 					</div>
                     		
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
-						<div  class="col-8" >
+						<div  class="col-10" >
 							<select class="cariaccount form-control select2" style="width: 100% !important;" name="acc">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_account as $row)
@@ -225,7 +225,7 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
-						<div  class="col-8">
+						<div  class="col-10">
 							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_bagian as $row)
@@ -237,14 +237,14 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
-						<div class="col-8">
+						<div class="col-10">
 							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete='off'>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
-						<div  class="col-8">
+						<div  class="col-10">
 							<select class="carijb form-control select2" style="width: 100% !important;" name="jb">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_jenisbiaya as $row)
@@ -256,7 +256,7 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
-						<div class="col-8">
+						<div class="col-10">
 							<select class="caricj form-control select2" style="width: 100% !important;" name="cj">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_cj as $row)
@@ -268,8 +268,8 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah <span class="text-danger">*</span></label>
-						<div class="col-8">
-							<input class="form-control" type="text" value="" name="nilai" required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete='off'>
+						<div class="col-10">
+							<input class="form-control money" type="text" value="" name="nilai" required autocomplete='off'>
 						</div>
 					</div>
                     
@@ -297,19 +297,19 @@
 			</div>
 			<div class="modal-body">
 			<span id="form_result"></span>
-                <form  class="kt-form " id="form-edit-tambah-umk-detail"  enctype="multipart/form-data">
+                <form class="kt-form" id="form-edit-tambah-umk-detail" enctype="multipart/form-data">
 					{{csrf_field()}}
                     <input  class="form-control" hidden type="text" value="{{$data_umk->no_umk}}"  name="no_umk">
                     <div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut</label>
-						<div class="col-8">
+						<div class="col-10">
 							<input class="form-control disabled bg-secondary" type="text" id="no-edit" name="no">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Keterangan</label>
-						<div class="col-8">
+						<div class="col-10">
 							<textarea  class="form-control" type="text" value="" id="keterangan-edit" name="keterangan"></textarea>
 						</div>
 					</div>
@@ -317,7 +317,7 @@
 																					
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
-						<div id="div-acc" class="col-8">
+						<div id="div-acc" class="col-10">
 							<select name="acc" id="select-acc" class="cariaccount form-control" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_account as $row)
@@ -329,7 +329,7 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
-						<div id="div-bagian" class="col-8">
+						<div id="div-bagian" class="col-10">
 							<select name="bagian" id="select-bagian"  class="caribagian form-control kt-select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_bagian as $row)
@@ -341,14 +341,14 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
-						<div class="col-8">
+						<div class="col-10">
 							<input  class="form-control" type="text" value="000" id="pk" name="pk" size="6" maxlength="6" autocomplete='off'>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
-						<div id="div-jb" class="col-8">
+						<div id="div-jb" class="col-10">
 							<select name="jb" id="select-jb"  class="carijb form-control kt-select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_jenisbiaya as $row)
@@ -360,7 +360,7 @@
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
-						<div class="col-8" id="div-cj">
+						<div class="col-10" id="div-cj">
 							<select name="cj" id="select-cj" class="caricj form-control kt-select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_cj as $row)
@@ -372,8 +372,8 @@
                     
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah</label>
-						<div class="col-8">
-							<input  class="form-control" type="text" value="" name="nilai" id="nilai" oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete='off'>
+						<div class="col-10">
+							<input  class="form-control money" type="text" value="" name="nilai" id="nilai" autocomplete='off'>
 						</div>
 					</div>
 					<div class="kt-form__actions">
@@ -394,6 +394,8 @@
 
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\UMKStoreRequest', '#form-edit'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\UMKDetailStoreRequest', '#form-tambah-umk-detail'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\UMKDetailStoreRequest', '#form-edit-tambah-umk-detail'); !!}
 
 <script>
     $(document).ready(function () {
@@ -420,7 +422,213 @@
 			}
 				
 		});
-	});
+
+		// minimum setup
+		$('#tgl_panjar').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
+		});
+
+		$('#btn-create-detail').on('click', function(e) {
+			e.preventDefault();
+			$('#title-detail').html("Tambah Detail Uang Muka Kerja");
+			$('.modal-create-detail-umk').modal('show');
+		});
+
+		//create detail
+		$('#form-tambah-umk-detail').submit(function(e) {
+			e.preventDefault();
+
+			if($(this).valid()) {
+				$.ajax({
+					url  : "{{route('modul_umum.uang_muka_kerja.store.detail')}}",
+					type : "POST",
+					data : $('#form-tambah-umk-detail').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						Swal.fire({
+							icon : 'success',
+							title : 'Data Detail UMK Berhasil Ditambah',
+							text : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							location.reload();
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
+		});
+
+		//proses update detail
+		$('#form-edit-tambah-umk-detail').submit(function(e){
+			e.preventDefault();
+
+			if($(this).valid()) {
+				$.ajax({
+					url  : "{{route('modul_umum.uang_muka_kerja.store.detail')}}",
+					type : "POST",
+					data : $('#form-edit-tambah-umk-detail').serialize(),
+					dataType : "JSON",
+					headers: {
+					'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						Swal.fire({
+							icon  : 'success',
+							title : 'Data Detail UMK Berhasil Diubah',
+							text  : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							location.reload();
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
+		});
+
+		//tampil edit detail
+		$('#btn-edit-detail').on('click', function(e) {
+			e.preventDefault();
+			var allVals = [];  
+			$(".btn-radio:checked").each(function() {  
+				var dataid = $(this).attr('data-id');
+				var datano = $(this).attr('data-no');
+				if(dataid == 1)  
+				{  
+					swalAlertInit('ubah');  
+				}  else { 
+					$.ajax({
+						url :"{{url('umum/uang-muka-kerja/edit-detail')}}"+ '/' + dataid + '/' + datano,
+						type : 'get',
+						dataType:"json",
+						headers: {
+							'X-CSRF-Token': '{{ csrf_token() }}',
+							},
+						success:function(data)
+						{
+							$('#no-edit').val(data.no);
+							$('#keterangan-edit').val(data.keterangan);
+							$('#pk').val(data.pk);
+							var d=parseFloat(data.nilai);
+							var rupiah = d.toFixed(2);
+							$('#nilai').val(rupiah);
+							$('#title-detail').html("Edit Detail Uang Muka Kerja");
+							$('.modal-edit-detail-umk').modal('show');
+							$('#select-bagian').val(data.bagian).trigger('change');
+							$('#select-acc').val(data.account).trigger('change');
+							$('#select-jb').val(data.jb).trigger('change');
+							$('#select-cj').val(data.cj).trigger('change');
+						}
+					})
+				}
+							
+			});
+		});
+
+		$('#deleteRow').click(function(e) {
+			e.preventDefault();
+			$(".btn-radio:checked").each(function() {  
+				var dataid = $(this).attr('data-id');
+					if(dataid == 1)  
+					{  
+						swalAlertInit('hapus'); 
+					}  else { 
+					$("input[type=radio]:checked").each(function() {
+						var id = $(this).attr('noumk');
+						var no = $(this).attr('data-no');
+						// delete stuff
+						const swalWithBootstrapButtons = Swal.mixin({
+							customClass: {
+								confirmButton: 'btn btn-primary',
+								cancelButton: 'btn btn-danger'
+							},
+								buttonsStyling: false
+							})
+							swalWithBootstrapButtons.fire({
+								title: "Data yang akan dihapus?",
+								text: "No. UMK : " + id+" dan NO urut : "+no,
+								icon: 'warning',
+								showCancelButton: true,
+								reverseButtons: true,
+								confirmButtonText: 'Ya, hapus',
+								cancelButtonText: 'Batalkan'
+							})
+							.then((result) => {
+							if (result.value) {
+								$.ajax({
+									url: "{{ route('modul_umum.uang_muka_kerja.delete.detail') }}",
+									type: 'DELETE',
+									dataType: 'json',
+									data: {
+										"id": id,
+										"no": no,
+										"_token": "{{ csrf_token() }}",
+									},
+									success: function () {
+										Swal.fire({
+											icon  : 'success',
+											title : 'Hapus Data Detail UMK',
+											text  : 'Berhasil',
+											timer : 2000
+										}).then(function() {
+											location.reload();
+										});
+									},
+									error: function () {
+										alert("Terjadi kesalahan, coba lagi nanti");
+									}
+								});
+							}
+						});
+					});
+				} 
+			});
+		});
+
+		//create
+		$('#form-edit').submit(function(e){
+			e.preventDefault();
+
+			if($(this).valid()) {
+				const swalWithBootstrapButtons = Swal.mixin({
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					cancelButton: 'btn btn-danger'
+				},
+					buttonsStyling: false
+				})
+
+				swalWithBootstrapButtons.fire({
+					title: "Apakah anda yakin mau menyimpan data ini?",
+					text: "",
+					icon: 'warning',
+					showCancelButton: true,
+					reverseButtons: true,
+					confirmButtonText: 'Ya, Simpan',
+					cancelButtonText: 'Tidak'
+				})
+				.then((result) => {
+					if (result.value == true) {
+						$(this).unbind('submit').submit();
+					}
+				});
+			}
+		});
+
+	}); // end jquery
+
 	function displayResult(ci){ 
 		if(ci == 1) {
             $('#kurs').val(1);
@@ -437,208 +645,5 @@
             $('#kurs').removeClass("disabled bg-secondary");
         }
 	}
-	// minimum setup
-	$('#datepicker').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	// minimum setup
-	$('#bulan_buku').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'yyyymm'
-	});
-
-    $('#btn-create-detail').on('click', function(e) {
-		e.preventDefault();
-		$('#title-detail').html("Tambah Detail Uang Muka Kerja");
-		$('.modal-create-detail-umk').modal('show');
-	});
-
-    //create detail
-    $('#form-tambah-umk-detail').submit(function(){
-		$.ajax({
-			url  : "{{route('modul_umum.uang_muka_kerja.store.detail')}}",
-			type : "POST",
-			data : $('#form-tambah-umk-detail').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-                Swal.fire({
-					icon  : 'success',
-					title : 'Data Detail UMK Berhasil Ditambah',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-					location.reload();
-				});
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
-			}
-		});	
-		return false;
-	});
-    //proses update detail
-    $('#form-edit-tambah-umk-detail').submit(function(){
-		$.ajax({
-			url  : "{{route('modul_umum.uang_muka_kerja.store.detail')}}",
-			type : "POST",
-			data : $('#form-edit-tambah-umk-detail').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-                Swal.fire({
-					icon  : 'success',
-					title : 'Data Detail UMK Berhasil Diubah',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-					location.reload();
-				});
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
-			}
-		});	
-		return false;
-	});
-//tampil edit detail
-$('#btn-edit-detail').on('click', function(e) {
-	e.preventDefault();
-var allVals = [];  
-$(".btn-radio:checked").each(function() {  
-	var dataid = $(this).attr('data-id');
-	var datano = $(this).attr('data-no');
-	if(dataid == 1)  
-	{  
-		swalAlertInit('ubah');  
-	}  else { 
-		$.ajax({
-			url :"{{url('umum/uang-muka-kerja/edit-detail')}}"+ '/' + dataid + '/' + datano,
-			type : 'get',
-			dataType:"json",
-			headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-			success:function(data)
-			{
-				$('#no-edit').val(data.no);
-				$('#keterangan-edit').val(data.keterangan);
-				$('#pk').val(data.pk);
-				var d=parseFloat(data.nilai);
-				var rupiah = d.toFixed(2);
-				$('#nilai').val(rupiah);
-				$('#title-detail').html("Edit Detail Uang Muka Kerja");
-				$('.modal-edit-detail-umk').modal('show');
-				$('#select-bagian').val(data.bagian).trigger('change');
-				$('#select-acc').val(data.account).trigger('change');
-				$('#select-jb').val(data.jb).trigger('change');
-				$('#select-cj').val(data.cj).trigger('change');
-			}
-		})
-	}
-				
-});
-});
-
-        $('#deleteRow').click(function(e) {
-			e.preventDefault();
-			$(".btn-radio:checked").each(function() {  
-			var dataid = $(this).attr('data-id');
-				if(dataid == 1)  
-				{  
-					swalAlertInit('hapus'); 
-				}  else { 
-				$("input[type=radio]:checked").each(function() {
-					var id = $(this).attr('noumk');
-                    var no = $(this).attr('data-no');
-					// delete stuff
-					const swalWithBootstrapButtons = Swal.mixin({
-						customClass: {
-							confirmButton: 'btn btn-primary',
-							cancelButton: 'btn btn-danger'
-						},
-							buttonsStyling: false
-						})
-						swalWithBootstrapButtons.fire({
-							title: "Data yang akan dihapus?",
-							text: "No. UMK : " + id+" dan NO urut : "+no,
-							icon: 'warning',
-							showCancelButton: true,
-							reverseButtons: true,
-							confirmButtonText: 'Ya, hapus',
-							cancelButtonText: 'Batalkan'
-						})
-						.then((result) => {
-						if (result.value) {
-							$.ajax({
-								url: "{{ route('modul_umum.uang_muka_kerja.delete.detail') }}",
-								type: 'DELETE',
-								dataType: 'json',
-								data: {
-									"id": id,
-									"no": no,
-									"_token": "{{ csrf_token() }}",
-								},
-								success: function () {
-									Swal.fire({
-										icon  : 'success',
-										title : 'Hapus Data Detail UMK',
-										text  : 'Berhasil',
-										timer : 2000
-									}).then(function() {
-										location.reload();
-									});
-								},
-								error: function () {
-									alert("Terjadi kesalahan, coba lagi nanti");
-								}
-							});
-						}
-					});
-				});
-			} 
-			
-		});
-	});
-	//create
-    $('#form-edit').submit(function(e){
-        e.preventDefault();
-
-        if($(this).valid()) {
-            const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-primary',
-                cancelButton: 'btn btn-danger'
-            },
-                buttonsStyling: false
-            })
-
-            swalWithBootstrapButtons.fire({
-                title: "Apakah anda yakin mau menyimpan data ini?",
-                text: "",
-                icon: 'warning',
-                showCancelButton: true,
-                reverseButtons: true,
-                confirmButtonText: 'Ya, Simpan',
-                cancelButtonText: 'Tidak'
-            })
-            .then((result) => {
-                if (result.value == true) {
-                    $(this).unbind('submit').submit();
-                }
-            });
-        }
-    });
 </script>
 @endpush

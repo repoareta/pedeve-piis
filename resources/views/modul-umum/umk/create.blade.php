@@ -38,7 +38,7 @@
             <div class="form-group row">
                 <label for="nopek-input" class="col-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="tgl_panjar" value="{{ date('d-m-Y') }}" id="datepicker" id="tgl_panjar" size="15" maxlength="15" required>
+                    <input class="form-control" type="text" name="tgl_panjar" value="{{ date('d-m-Y') }}" id="tgl_panjar" size="15" maxlength="15" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -70,7 +70,7 @@
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Bulan Buku <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control disabled bg-secondary" type="text"  value="{{$bulan_buku}}"  name="bulan_buku" size="6" maxlength="6">
+                    <input class="form-control disabled bg-secondary" type="text"  value="{{ $bulan_buku }}"  name="bulan_buku" size="6" maxlength="6">
                 </div>
             </div>
             <div class="form-group row">
@@ -111,8 +111,8 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-10">
-                        <a  href="{{route('modul_umum.uang_muka_kerja.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Cancel</a>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Save</button>
+                        <a  href="{{route('modul_umum.uang_muka_kerja.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                     </div>
                 </div>
             </div>
@@ -181,42 +181,18 @@
 			}
 				
 		});
-	});
-	function displayResult(ci){ 
-		if(ci == 1) {
-            $('#kurs').val(1);
-            $('#simbol-kurs').addClass('d-none');
-            $( "#kurs" ).prop( "required", false );
-            $( "#kurs" ).prop( "readonly", true );
-            $('#kurs').addClass("disabled bg-secondary");
-        } else {
-            var kurs1 = $('#data-kurs').val();
-            $('#kurs').val(kurs1);
-            $('#simbol-kurs').removeClass('d-none');
-            $( "#kurs" ).prop( "required", true );
-            $( "#kurs" ).prop( "readonly", false );
-            $('#kurs').removeClass("disabled bg-secondary");
-        }
-	}
-	// minimum setup
-	$('#datepicker').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	// minimum setup
-	$('#bulan_buku').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'yyyymm'
-	});
 
-	//create
-	$('#form-create').submit(function(e){
+        // minimum setup
+        $('#tgl_panjar').datepicker({
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            language : 'id',
+            format   : 'dd-mm-yyyy'
+        });
+
+        //create
+        $('#form-create').submit(function(e) {
 			e.preventDefault();
 
             if($(this).valid()) {
@@ -244,5 +220,23 @@
                 });
             }
 		});
+
+	}); // end jquery
+	function displayResult(ci){ 
+		if(ci == 1) {
+            $('#kurs').val(1);
+            $('#simbol-kurs').addClass('d-none');
+            $( "#kurs" ).prop( "required", false );
+            $( "#kurs" ).prop( "readonly", true );
+            $('#kurs').addClass("disabled bg-secondary");
+        } else {
+            var kurs1 = $('#data-kurs').val();
+            $('#kurs').val(kurs1);
+            $('#simbol-kurs').removeClass('d-none');
+            $( "#kurs" ).prop( "required", true );
+            $( "#kurs" ).prop( "readonly", false );
+            $('#kurs').removeClass("disabled bg-secondary");
+        }
+	}
 </script>
 @endpush

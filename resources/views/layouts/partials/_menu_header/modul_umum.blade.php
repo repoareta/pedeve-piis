@@ -42,7 +42,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
+            <li class="menu-item menu-item-submenu {{ Route::is('modul_umum.uang_muka_kerja.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>	
@@ -52,7 +52,7 @@
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is(['modul_umum.uang_muka_kerja.index', 'modul_umum.uang_muka_kerja.create', 'modul_umum.uang_muka_kerja.edit', 'modul_umum.uang_muka_kerja.approv']) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_umum.uang_muka_kerja.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
@@ -60,7 +60,7 @@
                                 <span class="menu-text">Permintaan UMK</span>
                             </a>
                         </li>
-                        <li class="menu-item" aria-haspopup="true">
+                        <li class="menu-item {{ Route::is('modul_umum.uang_muka_kerja.pertanggungjawaban.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.index') }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
