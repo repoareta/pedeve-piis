@@ -23,7 +23,7 @@ class KomisarisController extends Controller
 
         return datatables()->of($komisaris_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_komisaris" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_komisaris" nama="' . $row->nama . '" value="' . $row->id . '"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])
@@ -71,8 +71,8 @@ class KomisarisController extends Controller
         return redirect()->route(
             'modul_cm.perusahaan_afiliasi.edit',
             [
-            'perusahaan_afiliasi' => $perusahaan_afiliasi->id
-        ]
+                'perusahaan_afiliasi' => $perusahaan_afiliasi->id
+            ]
         );
     }
 

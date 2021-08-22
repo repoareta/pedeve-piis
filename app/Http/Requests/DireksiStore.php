@@ -27,7 +27,6 @@ class DireksiStore extends FormRequest
             'nama_direksi' => 'required|string',
             'tmt_dinas' => 'required|date_format:Y-m-d',
             'akhir_masa_dinas' => 'required|date_format:Y-m-d|after_or_equal:tmt_dinas',
-            'nopeg' => 'required|string',
         ];
     }
 }
