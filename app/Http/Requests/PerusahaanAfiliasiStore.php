@@ -24,15 +24,15 @@ class PerusahaanAfiliasiStore extends FormRequest
     public function rules()
     {
         return [
-            'nama_perusahaan' => 'required|unique:App\Models\PerusahaanAfiliasi,nama',
+            'nama_perusahaan' => 'required|unique:cm_perusahaan_afiliasi,nama',
             'alamat' => 'required',
             'no_telepon' => 'string|digits_between:6,15',
             'bidang_usaha' => 'required',
             'npwp' => 'string',
-            'modal_dasar' => 'required|numeric|min:0',
-            'modal_disetor' => 'required|numeric|min:0',
-            'jumlah_lembar_saham' => 'required|integer|min:0',
-            'nilai_nominal_per_saham' => 'required|numeric|min:0',
+            'modal_dasar' => 'required|string',
+            'modal_disetor' => 'required|string',
+            'jumlah_lembar_saham' => 'required|integer',
+            'nilai_nominal_per_saham' => 'required|string',
         ];
     }
 }
