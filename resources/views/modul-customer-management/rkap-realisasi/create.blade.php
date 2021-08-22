@@ -169,6 +169,8 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\RKAPStoreRequest', '#form-create') !!}
+
 <script type="text/javascript">
     $(document).ready(function(){
         $("input[name=kategori]").change(function(){
@@ -186,6 +188,6 @@
                 $("#kurs-group").hide();
             }
         });
-    });		
+    });
 </script>
 @endpush

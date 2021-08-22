@@ -30,7 +30,7 @@ class AktaStore extends FormRequest
             'tanggal_akta' => 'required|date_format:d-m-Y',
             'notaris' => 'required|string',
             'tmt_berlaku' => 'required|date_format:d-m-Y',
-            'tmt_berakhir' => 'required|date_format:d-m-Y',
+            'tmt_berakhir' => 'required|date_format:d-m-Y|after_or_equal:tmt_berlaku',
             'created_by' => 'required|string',
             'dokumen_akta' => 'required|file',
         ];

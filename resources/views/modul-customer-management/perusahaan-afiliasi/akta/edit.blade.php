@@ -92,7 +92,7 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\AktaStore', '#form-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\AktaUpdate', '#form-edit') !!}
 
 <script>
     $(document).ready(function () {

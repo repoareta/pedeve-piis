@@ -19,7 +19,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form id="form-create" action="{{ route('modul_cm.rkap_realisasi.update', ['kd_rencana_kerja' => $rkapRealisasi->kd_rencana_kerja]) }}" method="POST">
+                <form id="form-edit" action="{{ route('modul_cm.rkap_realisasi.update', ['kd_rencana_kerja' => $rkapRealisasi->kd_rencana_kerja]) }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <label class="col-2 col-form-label"></label>
@@ -169,6 +169,8 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\RKAPStoreRequest', '#form-edit') !!}
+
 <script type="text/javascript">
     $(document).ready(function(){
         

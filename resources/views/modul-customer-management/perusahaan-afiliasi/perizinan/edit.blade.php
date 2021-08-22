@@ -71,7 +71,7 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\PerizinanStore', '#form-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\PerizinanUpdate', '#form-edit') !!}
 
 <script>
     $(document).ready(function () {
