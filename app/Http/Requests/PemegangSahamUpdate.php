@@ -24,7 +24,9 @@ class PemegangSahamUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_pemegang_saham'   => "required",
+            'kepemilikan'    => "required|numeric|min:0|max:100",
+            'jumlah_lembar_saham_pemegang_saham' => "required|integer",
         ];
     }
 }
