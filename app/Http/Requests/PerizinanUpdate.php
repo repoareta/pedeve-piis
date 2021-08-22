@@ -24,7 +24,12 @@ class PerizinanUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'perusahaan_afiliasi_id' => 'required',
+            'keterangan' => 'required|string',
+            'nomor' => 'required|string',
+            'masa_berlaku_akhir' => 'required|date_format:d-m-Y',
+            'created_by' => 'required|string',
+            'dokumen_perizinan' => 'nullable|file',
         ];
     }
 }

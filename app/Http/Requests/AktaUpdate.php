@@ -32,7 +32,7 @@ class AktaUpdate extends FormRequest
             'tmt_berlaku' => 'required|date_format:d-m-Y',
             'tmt_berakhir' => 'required|date_format:d-m-Y|after_or_equal:tmt_berlaku',
             'created_by' => 'required|string',
-            'dokumen_akta' => 'required|file',
+            'dokumen_akta' => 'nullable|file',
         ];
     }
 }
