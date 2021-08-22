@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CustomerManagement;
 
 use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RKAPStoreRequest;
 use App\Models\PerusahaanAfiliasi;
 use App\Models\RencanaKerja;
 use DB;
@@ -129,7 +130,7 @@ class RkapRealisasiController extends Controller
      * @param Request $request
      * @return void
      */
-    public function store(Request $request, RencanaKerja $rencanaKerja)
+    public function store(RKAPStoreRequest $request, RencanaKerja $rencanaKerja)
     {
         $rencanaKerja->kd_perusahaan = $request->nama;
         $rencanaKerja->ci_r = $request->ci;
