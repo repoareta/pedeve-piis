@@ -169,7 +169,7 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\RKAPStoreRequest', '#form-edit') !!}
+{!! JsValidator::formRequest('App\Http\Requests\RKAPUpdateRequest', '#form-edit') !!}
 
 <script type="text/javascript">
     $(document).ready(function(){
