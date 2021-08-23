@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PerusahaanAfiliasiStore;
 use App\Http\Requests\PerusahaanAfiliasiUpdate;
 use App\Models\PerusahaanAfiliasi;
+use DomPDF;
 use Illuminate\Http\Request;
-
 
 class PerusahaanAfiliasiController extends Controller
 {
@@ -139,5 +139,25 @@ class PerusahaanAfiliasiController extends Controller
         $perusahaan->delete();
 
         return response()->json();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function export(PerusahaanAfiliasi $perusahaanAfiliasi)
+    {
+        $pdf = DomPDF::loadView(
+            'modul-customer-management.perusahaan-afiliasi.export-row-pdf',
+            compact(
+                'panjar_header'
+            )
+        );
+
+        return $pdf->stream(
+            'perusahaan_afiliasi'.date('Y-m-d H:i:s').'.pdf'
+        );
     }
 }

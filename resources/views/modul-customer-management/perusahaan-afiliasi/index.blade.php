@@ -33,6 +33,11 @@
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                <a href="#">
+					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
+						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
+					</span>                    
+				</a>
             </div>
         </div>
     </div>
@@ -145,6 +150,44 @@
                 swalAlertInit('hapus');
             }
         });
+
+        $('#exportRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) {
+				$("input[type=radio]:checked").each(function() {
+					var id = $(this).val();
+					var nama = $(this).attr('nama');
+					
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
+
+					swalWithBootstrapButtons.fire({
+						title: "Data yang akan dicetak?",
+						text: "Perusahaan : " + id,
+						icon: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Cetak',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							// go to page edit
+							var url = '{{ route("modul_cm.perusahaan_afiliasi.export", ":id") }}';
+							// go to page edit
+							window.open(url.replace(':id',id), '_blank');
+						}
+					});
+				});
+			} else {
+				swalAlertInit('cetak');
+			}
+		});
     });
 </script>
 @endpush
