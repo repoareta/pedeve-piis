@@ -24,7 +24,15 @@ class PerusahaanAfiliasiUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nama_perusahaan' => 'required|string',
+            'alamat' => 'required',
+            'no_telepon' => 'string|digits_between:6,15',
+            'bidang_usaha' => 'required',
+            'npwp' => 'string',
+            'modal_dasar' => 'required|string|max:18',
+            'modal_disetor' => 'required|string|max:18',
+            'jumlah_lembar_saham' => 'required|integer|digits_between:0,10',
+            'nilai_nominal_per_saham' => 'required|string|max:18',
         ];
     }
 }

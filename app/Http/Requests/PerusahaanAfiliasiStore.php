@@ -29,10 +29,10 @@ class PerusahaanAfiliasiStore extends FormRequest
             'no_telepon' => 'string|digits_between:6,15',
             'bidang_usaha' => 'required',
             'npwp' => 'string',
-            'modal_dasar' => 'required|string',
-            'modal_disetor' => 'required|string',
-            'jumlah_lembar_saham' => 'required|integer',
-            'nilai_nominal_per_saham' => 'required|string',
+            'modal_dasar' => 'required|string|max:18',
+            'modal_disetor' => 'required|string|max:18',
+            'jumlah_lembar_saham' => 'required|integer|digits_between:0,10',
+            'nilai_nominal_per_saham' => 'required|string|max:18',
         ];
     }
 }
