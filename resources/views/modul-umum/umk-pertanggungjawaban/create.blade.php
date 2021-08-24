@@ -118,25 +118,6 @@
                 Detail Pertanggungjawaban Uang Muka Kerja
             </h3>
         </div>
-        <div class="card-toolbar">
-            <div class="float-left">
-                <a href="#">
-					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas fa-2x fa-plus-circle text-success" id="openDetail"></i>
-					</span>
-				</a>
-				<a href="#">
-					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
-					</span>
-				</a>
-				<a href="#">
-					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
-					</span>
-				</a>
-            </div>
-        </div>
     </div>
 
     <div class="card-body">
@@ -159,108 +140,6 @@
     </div>
 
 </div>
-
-<!--begin::Modal-->
-<div class="modal fade" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="title_modal" data-state="add">Tambah Detail Pertanggungjawaban Panjar Dinas</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				</button>
-			</div>
-			<form class="kt-form kt-form--label-right" action="" method="POST" id="formPUmkDetail">
-				<div class="modal-body">
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">No. Urut</label>
-						<div class="col-10">
-							<input class="form-control disabled bg-secondary" type="text" name="no_urut" id="no_urut" readonly>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Keterangan</label>
-						<div class="col-10">
-							<textarea class="form-control" name="keterangan_detail" id="keterangan_detail"></textarea>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Account</label>
-						<div class="col-10">
-							<select class="form-control kt-select2" id="account_detail" name="account_detail" style="width: 100% !important;">
-								<option value="">- Pilih Account -</option>
-								@foreach ($account_list as $account)
-									<option value="{{ $account->kodeacct.'-'.$account->descacct }}">{{$account->kodeacct}} - {{$account->descacct}}</option>
-								@endforeach
-							</select>
-							<div id="account_detail-nya"></div>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Kode Bagian</label>
-						<div class="col-10">
-							<select class="form-control kt-select2" id="kode_bagian_detail" name="kode_bagian_detail" style="width: 100% !important;">
-								<option value="">- Pilih Kode Bagian -</option>
-								@foreach ($bagian_list as $bagian)
-									<option value="{{ $bagian->kode.'-'.$bagian->nama }}">{{ $bagian->kode.' - '.$bagian->nama }}</option>
-								@endforeach
-							</select>
-							<div id="kode_bagian_detail-nya"></div>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Perintah Kerja</label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="perintah_kerja_detail" id="perintah_kerja_detail" value="000">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Jenis Biaya</label>
-						<div class="col-10">
-							<select class="form-control kt-select2" id="jenis_biaya_detail" name="jenis_biaya_detail" style="width: 100% !important;">
-								<option value="">- Pilih Jenis Biaya -</option>
-								@foreach ($jenis_biaya_list as $jenis_biaya)
-									<option value="{{ $jenis_biaya->kode.'-'.$jenis_biaya->keterangan }}">{{ $jenis_biaya->kode.' - '.$jenis_biaya->keterangan }}</option>
-								@endforeach
-							</select>
-							<div id="jenis_biaya_detail-nya"></div>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">C.Judex</label>
-						<div class="col-10">
-							<select class="form-control kt-select2" id="c_judex_detail" name="c_judex_detail" style="width: 100% !important;">
-								<option value="">- Pilih C Judex -</option>
-								@foreach ($c_judex_list as $c_judex)
-									<option value="{{ $c_judex->kode.'-'.$c_judex->nama }}">{{ $c_judex->kode.' - '.$c_judex->nama }}</option>
-								@endforeach
-							</select>
-							<div id="c_judex_detail-nya"></div>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Jumlah</label>
-						<div class="col-10">
-							<input class="form-control money" type="text" name="jumlah_detail" id="jumlah_detail">
-						</div>
-					</div>				
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
-					<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
 @endsection
 
 @push('page-scripts')
@@ -304,13 +183,7 @@
 			},
 			order: [[ 0, "asc" ], [ 1, "asc" ]]
 		});
-	
-		$('#openDetail').click(function(e) {
-			e.preventDefault();
-			refreshTable();
-			$('#kt_modal_4').modal('show');
-			$('#title_modal').data('state', 'add');
-		});
+
 		// minimum setup
 		$('#tanggal').datepicker({
 			todayHighlight: true,
@@ -319,210 +192,34 @@
 			// language : 'id',
 			format   : 'yyyy-mm-dd'
 		});
-		$("#jumlah_detail_pumk, #jumlah").on('change', function(e){
-			var jumlah = $('#jumlah').val();
-			var jumlah_detail = $('#jumlah_detail_pumk').val();
-			var selisih = jumlah - jumlah_detail;
-			$('#jumlah').val(selisih.toFixed(2));
-		});
-		$("#formPPUmk").on('submit', function(){
-			if ($('#no_umk-error').length){
-				$("#no_umk-error").insertAfter("#no_umk-nya");
-			}
-			if ($('#nopek-error').length){
-				$("#nopek-error").insertAfter("#nopek-nya");
-			}
-			if ($('#jabatan-error').length){
-				$("#jabatan-error").insertAfter("#jabatan-nya");
-			}
-		});
-		$("#formPUmkDetail").on('submit', function(){
-			if ($('#account_detail-error').length){
-				$("#account_detail-error").insertAfter("#account_detail-nya");
-			}
-			if ($('#kode_bagian_detail-error').length){
-				$("#kode_bagian_detail-error").insertAfter("#kode_bagian_detail-nya");
-			}
-			if ($('#jenis_biaya_detail-error').length){
-				$("#jenis_biaya_detail-error").insertAfter("#jenis_biaya_detail-nya");
-			}
-			if ($('#c_judex_detail-error').length){
-				$("#c_judex_detail-error").insertAfter("#c_judex_detail-nya");
-			}
-			if($(this).valid()) {
-				// do your ajax stuff here
-				var no = $('#no_urut').val();
-				var no_urut = $('#no_urut').data('no_urut');
-				var keterangan = $('#keterangan_detail').val();
-				var account = $('#account_detail').val().split('-')[0];
-				var account_nama = $('#account_detail').val().split('-')[1];
-				var kode_bagian = $('#kode_bagian_detail').val().split('-')[0];
-				var kode_bagian_nama = $('#kode_bagian_detail').val().split('-')[1];
-				var jenis_biaya = $('#jenis_biaya_detail').val().split('-')[0];
-				var jenis_biaya_nama = $('#jenis_biaya_detail').val().split('-')[1];
-				var c_judex = $('#c_judex_detail').val().split('-')[0];
-				var c_judex_nama = $('#c_judex_detail').val().split('-')[1];
-				var perintah_kerja = $('#perintah_kerja_detail').val();
-				var jumlah = $('#jumlah_detail').val();
-				var state = $('#title_modal').data('state');
-				var url, session, swal_title;
-				if(state == 'add'){
-					url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.store') }}";
-					session = true;
-					swal_title = "Tambah Detail Pertanggungjawaban UMK";
-				} else {
-					url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.update') }}";
-					session = true;
-					swal_title = "Update Detail Pertanggungjawaban UMK";
-				}
-				$.ajax({
-					url: url,
-					type: "POST",
-					data: {
-						no: no,
-						no_urut: no_urut,
-						no_pumk: null,
-						keterangan: keterangan,
-						account: account,
-						account_nama: account_nama,
-						bagian: kode_bagian,
-						bagian_nama: kode_bagian_nama,
-						pk: perintah_kerja,
-						jb: jenis_biaya,
-						jb_nama: jenis_biaya_nama,
-						cj: c_judex,
-						cj_nama: c_judex_nama,
-						nilai: jumlah,
-						session: session,
-						_token:"{{ csrf_token() }}"		
-					},
-					success: function(dataResult){
-						Swal.fire({
-							type : 'success',
-							title: swal_title,
-							text : 'Berhasil',
-							timer: 2000
-						});
-						// close modal
-						$('#kt_modal_4').modal('toggle');
-						// clear form
-						$('#kt_modal_4').on('hidden.bs.modal', function () {
-							$(this).find('form').trigger('reset');
-							$('#account_detail').val('').trigger('change');
-							$('#kode_bagian_detail').val('').trigger('change');
-							$('#jenis_biaya_detail').val('').trigger('change');
-							$('#c_judex_detail').val('').trigger('change');
-						});
-						// append to datatable
-						t.ajax.reload();
-					},
-					error: function () {
-						alert("Terjadi kesalahan, coba lagi nanti");
-					}
-				});
-			}
-			return false;
-		});
-		$('#deleteRow').click(function(e) {
+
+		$("#form-create").on('submit', function(e){
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function() {
-					var no = $(this).val().split('-')[0];
-					var no_pumk = $(this).val().split('-')[1];
-					
-					const swalWithBootstrapButtons = Swal.mixin({
-					customClass: {
-						confirmButton: 'btn btn-primary',
-						cancelButton: 'btn btn-danger'
-					},
-						buttonsStyling: false
-					})
-					swalWithBootstrapButtons.fire({
-						title: "Data yang akan dihapus?",
-						text: "No : " + no,
-						type: 'warning',
-						showCancelButton: true,
-						reverseButtons: true,
-						confirmButtonText: 'Ya, hapus',
-						cancelButtonText: 'Batalkan'
-					})
-					.then((result) => {
-						if (result.value) {
-							$.ajax({
-								url: "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.delete') }}",
-								type: 'DELETE',
-								dataType: 'json',
-								data: {
-									"no": no,
-									"no_pumk": no_pumk,
-									"session": true,
-									"_token": "{{ csrf_token() }}",
-								},
-								success: function () {
-									Swal.fire({
-										type  : 'success',
-										title : 'Hapus Detail Pertanggungjawaban UMK ' + no,
-										text  : 'Berhasil',
-										timer : 2000
-									}).then(function() {
-										t.ajax.reload();
-									});
-								},
-								error: function () {
-									alert("Terjadi kesalahan, coba lagi nanti");
-								}
-							});
-						}
-					});
-				});
-			} else {
-				swalAlertInit('hapus');
-			}
-		});
-		$('#editRow').click(function(e) {
-			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
-				$("input[type=radio]:checked").each(function() {
-					// get value from row					
-					var no_urut = $(this).val().split('-')[0];
-					var no_pumk = $(this).val().split('-')[1];
-					var url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.show.json') }}";
-					$.ajax({
-						url: url,
-						type: 'GET',
-						data: {
-							"no_urut": no_urut,
-							"no_pumk": no_pumk,
-							"session": true,
-							"_token": "{{ csrf_token() }}",
-						},
-						success: function (response) {
-							// update stuff
-							// append value
-							$('#no_urut').val(response.no);
-							$('#keterangan_detail').val(response.keterangan);
-							$('#perintah_kerja_detail').val(response.pk);
-							$('#jumlah_detail').val(response.nilai);
-							$('#account_detail').val(response.account + '-' + response.account_nama).trigger('change');
-							$('#kode_bagian_detail').val(response.bagian + '-' + response.bagian_nama).trigger('change');
-							$('#jenis_biaya_detail').val(response.jb + '-' + response.jb_nama).trigger('change');
-							$('#c_judex_detail').val(response.cj + '-' + response.cj_nama).trigger('change');
-							// title
-							$('#title_modal').text('Ubah Detail Pertanggungjawaban UMK');
-							$('#title_modal').data('state', 'update');
-							$('#no_urut').data('no_urut', response.no);
-							// open modal
-							$('#kt_modal_4').modal('toggle');
-						},
-						error: function () {
-							alert("Terjadi kesalahan, coba lagi nanti");
-						}
-					});
-					
-				});
-			} else {
-				swalAlertInit('ubah');
-			}
+
+            if($(this).valid()) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value == true) {
+                        $(this).unbind('submit').submit();
+                    }
+                });
+            }
 		});
 	});
 </script>
