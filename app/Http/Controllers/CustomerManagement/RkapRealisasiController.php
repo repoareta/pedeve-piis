@@ -176,7 +176,7 @@ class RkapRealisasiController extends Controller
      * @param Request $request
      * @return void
      */
-    public function update(Request $request, $id)
+    public function update(RKAPStoreRequest $request, $id)
     {
         $rencanaKerja = RencanaKerja::find($id);
         $rencanaKerja->kd_perusahaan = $request->nama;
