@@ -122,12 +122,12 @@
             <div class="float-left">
                 <a href="#">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-						<i class="fas fa-2x fa-plus-circle text-success" id="openDetail"></i>
+						<i class="fas fa-2x fa-plus-circle text-success" id="btn-create-detail"></i>
 					</span>
 				</a>
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
+						<i class="fas fa-2x fa-edit text-warning" id="btn-edit-detail"></i>
 					</span>
 				</a>
 				<a href="#">
@@ -161,96 +161,188 @@
 </div>
 
 <!--begin::Modal-->
-<div class="modal fade" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-create-detail-pumk" id="modal-create-detail-pumk"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="title_modal" data-state="add">Tambah Detail Pertanggungjawaban Panjar Dinas</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				</button>
+				<h5 class="modal-title" id="title-detail">Tambah Detail Pertanggungjawaban Uang Muka Kerja</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<form class="kt-form kt-form--label-right" action="" method="POST" id="formPUmkDetail">
+			<form  class="kt-form " id="form-tambah-pumk-detail"  enctype="multipart/form-data">
 				<div class="modal-body">
-					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">No. Urut</label>
+					@csrf
+                    <input  class="form-control" hidden type="text" value="{{ $pumk_header->no_pumk }}" name="no_pumk">
+                    <div class="form-group row ">
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control disabled bg-secondary" type="text" name="no_urut" id="no_urut" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+						<label for="example-text-input" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
-							<textarea class="form-control" name="keterangan_detail" id="keterangan_detail"></textarea>
+							<textarea  class="form-control" type="text" value="" id="keterangan-create" name="keterangan" required>-</textarea>
+						</div>
+					</div>
+                    		
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">Account</label>
+						<div  class="col-10" >
+							<select class="cariaccount form-control select2" style="width: 100% !important;" name="account">
+                                <option value="">-Pilih-</option>
+                                @foreach($account_list as $row)
+								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
+                                @endforeach
+                            </select>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Account</label>
-						<div class="col-10">
-							<select class="form-control kt-select2" id="account_detail" name="account_detail" style="width: 100% !important;">
-								<option value="">- Pilih Account -</option>
-								@foreach ($account_list as $account)
-									<option value="{{ $account->kodeacct.'-'.$account->descacct }}">{{$account->kodeacct}} - {{$account->descacct}}</option>
-								@endforeach
-							</select>
-							<div id="account_detail-nya"></div>
+						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
+						<div  class="col-10">
+							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian">
+                                <option value="">-Pilih-</option>
+                                @foreach($bagian_list as $row)
+								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
+                                @endforeach
+                            </select>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Kode Bagian</label>
+						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<div class="col-10">
-							<select class="form-control kt-select2" id="kode_bagian_detail" name="kode_bagian_detail" style="width: 100% !important;">
-								<option value="">- Pilih Kode Bagian -</option>
-								@foreach ($bagian_list as $bagian)
-									<option value="{{ $bagian->kode.'-'.$bagian->nama }}">{{ $bagian->kode.' - '.$bagian->nama }}</option>
-								@endforeach
-							</select>
-							<div id="kode_bagian_detail-nya"></div>
+							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete='off'>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Perintah Kerja</label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="perintah_kerja_detail" id="perintah_kerja_detail" value="000">
+						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
+						<div  class="col-10">
+							<select class="carijb form-control select2" style="width: 100% !important;" name="jb">
+                                <option value="">-Pilih-</option>
+                                @foreach($jenis_biaya_list as $row)
+								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
+                                @endforeach
+                            </select>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Jenis Biaya</label>
+						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<div class="col-10">
-							<select class="form-control kt-select2" id="jenis_biaya_detail" name="jenis_biaya_detail" style="width: 100% !important;">
-								<option value="">- Pilih Jenis Biaya -</option>
-								@foreach ($jenis_biaya_list as $jenis_biaya)
-									<option value="{{ $jenis_biaya->kode.'-'.$jenis_biaya->keterangan }}">{{ $jenis_biaya->kode.' - '.$jenis_biaya->keterangan }}</option>
-								@endforeach
-							</select>
-							<div id="jenis_biaya_detail-nya"></div>
+							<select class="caricj form-control select2" style="width: 100% !important;" name="cj">
+                                <option value="">-Pilih-</option>
+                                @foreach($c_judex_list as $row)
+								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
+                                @endforeach
+                            </select>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">C.Judex</label>
+						<label for="example-text-input" class="col-2 col-form-label">Jumlah <span class="text-danger">*</span></label>
 						<div class="col-10">
-							<select class="form-control kt-select2" id="c_judex_detail" name="c_judex_detail" style="width: 100% !important;">
-								<option value="">- Pilih C Judex -</option>
-								@foreach ($c_judex_list as $c_judex)
-									<option value="{{ $c_judex->kode.'-'.$c_judex->nama }}">{{ $c_judex->kode.' - '.$c_judex->nama }}</option>
-								@endforeach
-							</select>
-							<div id="c_judex_detail-nya"></div>
+							<input class="form-control money" type="text" value="" name="nilai" required autocomplete='off'>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade modal-edit-detail-pumk" id="modal-edit-detail-pumk"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="title-detail">Edit Detail Pertanggungjawaban Uang Muka Kerja</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form  class="kt-form " id="form-edit-pumk-detail"  enctype="multipart/form-data">
+				<div class="modal-body">
+					@csrf
+                    <input  class="form-control" hidden type="text" value="{{ $pumk_header->no_pumk }}" name="no_pumk">
+                    <div class="form-group row ">
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
+						<div class="col-10">
+							<input class="form-control disabled bg-secondary" type="text" name="no_urut" id="no_urut_edit" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Jumlah</label>
+						<label for="example-text-input" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
-							<input class="form-control money" type="text" name="jumlah_detail" id="jumlah_detail">
+							<textarea  class="form-control" type="text" value="" id="keterangan_edit" name="keterangan" required>-</textarea>
 						</div>
-					</div>				
+					</div>
+                    		
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">Account</label>
+						<div  class="col-10" >
+							<select class="cariaccount form-control select2" style="width: 100% !important;" name="account" id="account_edit">
+                                <option value="">-Pilih-</option>
+                                @foreach($account_list as $row)
+								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
+                                @endforeach
+                            </select>
+						</div>
+					</div>
 
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
+						<div  class="col-10">
+							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian" id="bagian_edit">
+                                <option value="">-Pilih-</option>
+                                @foreach($bagian_list as $row)
+								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
+                                @endforeach
+                            </select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
+						<div class="col-10">
+							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete='off' id="pk_edit">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
+						<div  class="col-10">
+							<select class="carijb form-control select2" style="width: 100% !important;" name="jb" id="jb_edit">
+                                <option value="">-Pilih-</option>
+                                @foreach($jenis_biaya_list as $row)
+								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
+                                @endforeach
+                            </select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
+						<div class="col-10">
+							<select class="caricj form-control select2" style="width: 100% !important;" name="cj" id="cj_edit">
+                                <option value="">-Pilih-</option>
+                                @foreach($c_judex_list as $row)
+								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
+                                @endforeach
+                            </select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="example-text-input" class="col-2 col-form-label">Jumlah <span class="text-danger">*</span></label>
+						<div class="col-10">
+							<input class="form-control money" type="text" value="" name="nilai" required autocomplete='off' id="nilai_edit">
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
@@ -265,6 +357,8 @@
 
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\PUMKUpdateRequest', '#form-edit'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\PUMKDetailStoreRequest', '#form-tambah-pumk-detail'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\PUMKDetailStoreRequest', '#form-edit-pumk-detail'); !!}
 
 <script>
     function refreshTable() {
@@ -273,8 +367,6 @@
 		table.ajax.url("{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.index.json', ['no_pumk' => str_replace('/', '-', $pumk_header->no_pumk)]) }}").load(function() {
 			// Callback loads updated row count into a DOM element
 			// (a Bootstrap badge on a menu item in this case):
-			var rowCount = table.rows().count();
-			$('#no_urut').val(rowCount + 1);
 		});
 	}
 	$(document).ready(function () {
@@ -303,13 +395,7 @@
 			},
 			order: [[ 0, "asc" ], [ 1, "asc" ]]
 		});
-	
-		$('#openDetail').click(function(e) {
-			e.preventDefault();
-			refreshTable();
-			$('#kt_modal_4').modal('show');
-			$('#title_modal').data('state', 'add');
-		});
+
 		// minimum setup
 		$('#tanggal').datepicker({
 			todayHighlight: true,
@@ -318,110 +404,84 @@
 			// language : 'id',
 			format   : 'yyyy-mm-dd'
 		});
+
 		$("#jumlah_detail_pumk, #jumlah").on('change', function(e){
-			var jumlah = $('#jumlah').data('jumlah');
-			var jumlah_detail = $('#jumlah_detail_pumk').val();
+			var jumlah = parseInt($('#jumlah').data('jumlah'));
+			var jumlah_detail = parseInt($('#jumlah_detail_pumk').val().replaceAll(',', ''));
 			var selisih = jumlah - jumlah_detail;
 			$('#jumlah').val(selisih.toFixed(2));
 		});
-		$("#formPPUmk").on('submit', function(){
-			if ($('#no_umk-error').length){
-				$("#no_umk-error").insertAfter("#no_umk-nya");
-			}
-			if ($('#nopek-error').length){
-				$("#nopek-error").insertAfter("#nopek-nya");
-			}
-			if ($('#jabatan-error').length){
-				$("#jabatan-error").insertAfter("#jabatan-nya");
-			}
+
+		$('#btn-create-detail').on('click', function(e) {
+			e.preventDefault();
+			var rowCount = t.rows().count();
+			$('#no_urut').val(rowCount + 1);
+			$('#title-detail').html("Tambah Detail Uang Muka Kerja");
+			$('#modal-create-detail-pumk').modal('show');
 		});
-		$("#formPUmkDetail").on('submit', function(){
-			if ($('#account_detail-error').length){
-				$("#account_detail-error").insertAfter("#account_detail-nya");
-			}
-			if ($('#kode_bagian_detail-error').length){
-				$("#kode_bagian_detail-error").insertAfter("#kode_bagian_detail-nya");
-			}
-			if ($('#jenis_biaya_detail-error').length){
-				$("#jenis_biaya_detail-error").insertAfter("#jenis_biaya_detail-nya");
-			}
-			if ($('#c_judex_detail-error').length){
-				$("#c_judex_detail-error").insertAfter("#c_judex_detail-nya");
-			}
+
+		$('#form-tambah-pumk-detail').submit(function(e) {
+			e.preventDefault();
+
 			if($(this).valid()) {
-				// do your ajax stuff here
-				var no = $('#no_urut').val();
-				var no_urut = $('#no_urut').data('no_urut');
-				var keterangan = $('#keterangan_detail').val();
-				var account = $('#account_detail').val().split('-')[0];
-				var account_nama = $('#account_detail').val().split('-')[1];
-				var kode_bagian = $('#kode_bagian_detail').val().split('-')[0];
-				var kode_bagian_nama = $('#kode_bagian_detail').val().split('-')[1];
-				var jenis_biaya = $('#jenis_biaya_detail').val().split('-')[0];
-				var jenis_biaya_nama = $('#jenis_biaya_detail').val().split('-')[1];
-				var c_judex = $('#c_judex_detail').val().split('-')[0];
-				var c_judex_nama = $('#c_judex_detail').val().split('-')[1];
-				var perintah_kerja = $('#perintah_kerja_detail').val();
-				var jumlah = $('#jumlah_detail').val();
-				var state = $('#title_modal').data('state');
-				var url, session, swal_title;
-				if(state == 'add'){
-					url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.store') }}";
-					session = false;
-					swal_title = "Tambah Detail Pertanggungjawaban UMK";
-				} else {
-					url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.update') }}";
-					session = false;
-					swal_title = "Update Detail Pertanggungjawaban UMK";
-				}
 				$.ajax({
-					url: url,
-					type: "POST",
-					data: {
-						no          : no,
-						no_urut     : no_urut,
-						no_pumk     : "{{ $pumk_header->no_pumk }}",
-						keterangan  : keterangan,
-						account     : account,
-						account_nama: account_nama,
-						bagian      : kode_bagian,
-						bagian_nama : kode_bagian_nama,
-						pk          : perintah_kerja,
-						jb          : jenis_biaya,
-						jb_nama     : jenis_biaya_nama,
-						cj          : c_judex,
-						cj_nama     : c_judex_nama,
-						nilai       : jumlah,
-						session     : session,
-						_token:"{{ csrf_token() }}"		
+					url  : "{{route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.store')}}",
+					type : "POST",
+					data : $('#form-tambah-pumk-detail').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
 					},
-					success: function(dataResult){
+					success : function(data){
 						Swal.fire({
-							type : 'success',
-							title: swal_title,
+							icon : 'success',
+							title : 'Data Detail UMK Berhasil Ditambah',
 							text : 'Berhasil',
-							timer: 2000
+							timer : 2000
+						}).then(function() {
+							t.ajax.reload();
+							$('#modal-create-detail-pumk').modal('toggle');
+							$('#form-tambah-pumk-detail').trigger('reset');
 						});
-						// close modal
-						$('#kt_modal_4').modal('toggle');
-						// clear form
-						$('#kt_modal_4').on('hidden.bs.modal', function () {
-							$(this).find('form').trigger('reset');
-							$('#account_detail').val('').trigger('change');
-							$('#kode_bagian_detail').val('').trigger('change');
-							$('#jenis_biaya_detail').val('').trigger('change');
-							$('#c_judex_detail').val('').trigger('change');
-						});
-						// append to datatable
-						t.ajax.reload();
-					},
-					error: function () {
+					}, 
+					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
 				});
 			}
-			return false;
 		});
+
+		$('#form-edit-pumk-detail').submit(function(e) {
+			e.preventDefault();
+
+			if($(this).valid()) {
+				$.ajax({
+					url  : "{{route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.update')}}",
+					type : "POST",
+					data : $('#form-edit-pumk-detail').serialize(),
+					dataType : "JSON",
+					headers: {
+						'X-CSRF-Token': '{{ csrf_token() }}',
+					},
+					success : function(data){
+						Swal.fire({
+							icon : 'success',
+							title : 'Data Detail UMK Berhasil Diubah',
+							text : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							t.ajax.reload();
+							$('#modal-edit-detail-pumk').modal('toggle');
+							$('#form-edit-pumk-detail').trigger('reset');
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
+		});
+
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
@@ -478,7 +538,8 @@
 				swalAlertInit('hapus');
 			}
 		});
-		$('#editRow').click(function(e) {
+
+		$('#btn-edit-detail').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
@@ -498,20 +559,17 @@
 						success: function (response) {
 							// update stuff
 							// append value
-							$('#no_urut').val(response.no);
-							$('#keterangan_detail').val(response.keterangan);
-							$('#perintah_kerja_detail').val(response.pk);
-							$('#jumlah_detail').val(parseFloat(response.nilai).toFixed(2));
-							$('#account_detail').val(response.account + '-' + response.account_nama).trigger('change');
-							$('#kode_bagian_detail').val(response.bagian + '-' + response.bagian_nama).trigger('change');
-							$('#jenis_biaya_detail').val(response.jb + '-' + response.jb_nama).trigger('change');
-							$('#c_judex_detail').val(response.cj + '-' + response.cj_nama).trigger('change');
-							// title
-							$('#title_modal').text('Ubah Detail Pertanggungjawaban UMK');
-							$('#title_modal').data('state', 'update');
-							$('#no_urut').data('no_urut', response.no);
+							$('#no_urut_edit').val(response.no);
+							$('#keterangan_edit').val(response.keterangan);
+							$('#account_edit').val(response.account).trigger('change');
+							$('#pk_edit').val(response.pk);
+							$('#bagian_edit').val(response.bagian).trigger('change');
+							$('#jb_edit').val(response.jb).trigger('change');
+							$('#cj_edit').val(response.cj).trigger('change');
+							$('#nilai_edit').val(parseFloat(response.nilai).toFixed(2));
+							$('#no_urut_edit').data('no_urut', response.no);
 							// open modal
-							$('#kt_modal_4').modal('toggle');
+							$('#modal-edit-detail-pumk').modal('toggle');
 						},
 						error: function () {
 							alert("Terjadi kesalahan, coba lagi nanti");

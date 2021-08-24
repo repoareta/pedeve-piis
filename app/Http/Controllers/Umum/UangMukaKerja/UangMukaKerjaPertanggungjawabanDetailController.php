@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Umum\UangMukaKerja;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PUMKDetailStoreRequest;
 use Illuminate\Http\Request;
 
 // Load Model
@@ -26,14 +27,10 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
      */
     public function indexJson(Request $request, $no_pumk = 'null')
     {
-        // $request->session()->flush();
-        if (session('pumk_detail') and $request->no_pumk == 'null') {
-            $pumk_list_detail = session('pumk_detail');
-        } else {
-            $no_pumk = str_replace('-', '/', $request->no_pumk);
-            $pumk_list_detail = PUmkDetail::where('no_pumk', $no_pumk)
+        $no_pumk = str_replace('-', '/', $request->no_pumk);
+        $pumk_list_detail = PUmkDetail::where('no_pumk', $no_pumk)
             ->get();
-        }
+
         return datatables()->of($pumk_list_detail)
             ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no.'-'.$row->no_pumk.'"><span></span></label>';
@@ -56,38 +53,22 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PUMKDetailStoreRequest $request)
     {
         $pumk_detail = new PUmkDetail;
-        $pumk_detail->no = $request->no;
+        $pumk_detail->no = $request->no_urut;
         $pumk_detail->keterangan = $request->keterangan;
         $pumk_detail->account = $request->account;
-        $pumk_detail->nilai = $request->nilai;
+        $pumk_detail->nilai = sanitize_nominal($request->nilai);
         $pumk_detail->cj = $request->cj;
         $pumk_detail->jb = $request->jb;
         $pumk_detail->bagian = $request->bagian;
         $pumk_detail->pk = $request->pk;
-        $pumk_detail->no_pumk = $request->no_pumk ? $request->no_pumk : null; // for add edit only
+        $pumk_detail->no_pumk = $request->no_pumk;
 
-        if ($request->session == 'true') {
-            $pumk_detail->account_nama = $request->account_nama;
-            $pumk_detail->cj_nama = $request->cj_nama;
-            $pumk_detail->jb_nama = $request->jb_nama;
-            $pumk_detail->bagian_nama = $request->bagian_nama;
+        $pumk_detail->save();
 
-            if (session('pumk_detail')) {
-                session()->push('pumk_detail', $pumk_detail);
-            } else {
-                session()->put('pumk_detail', []);
-                session()->push('pumk_detail', $pumk_detail);
-            }
-            $this->pumk_detail_reset();
-        } else {
-            // insert to database
-            $pumk_detail->save();
-        }
-
-        return response()->json(session('pumk_detail'), 200);
+        return response()->json($pumk_detail, 200);
     }
 
     /**
@@ -134,56 +115,23 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
      */
     public function update(Request $request)
     {
-        if ($request->session == 'true') {
-            // search
-            // delete session
-            // insert a new one
-            // dd($no_urut);
-            foreach (session('pumk_detail') as $key => $value) {
-                if ($value['no'] == $request->no_urut and $value['no_pumk'] == $request->no_pumk) {
-                    // dd($value);
-                    $update_pumk_detail = $value;
-                    $update_pumk_detail['no'] = $request->no;
-                    $update_pumk_detail['keterangan'] = $request->keterangan;
-                    $update_pumk_detail['account'] = $request->account;
-                    $update_pumk_detail['nilai'] = $request->nilai;
-                    $update_pumk_detail['cj'] = $request->cj;
-                    $update_pumk_detail['jb'] = $request->jb;
-                    $update_pumk_detail['bagian'] = $request->bagian;
-                    $update_pumk_detail['pk'] = $request->pk;
-                    $update_pumk_detail['no_pumk'] = $request->no_pumk ? $request->no_pumk : null; // for add edit only
-                    $update_pumk_detail['account_nama'] = $request->account_nama;
-                    $update_pumk_detail['cj_nama'] = $request->cj_nama;
-                    $update_pumk_detail['jb_nama'] = $request->jb_nama;
-                    $update_pumk_detail['bagian_nama'] = $request->bagian_nama;
-            
-                    $request->session()->put('pumk_detail'.$key, $update_pumk_detail);
-                    $pumk_detail = $update_pumk_detail;
-                }
-            }
+        $pumk_detail = PUmkDetail::where('no', $request->no_urut)
+        ->where('no_pumk', $request->no_pumk)
+        ->first();
 
-            $this->pumk_detail_reset();
-        } else {
-            // for Database
-            $pumk_detail = PUmkDetail::where('no', $request->no_urut)
-            ->where('no_pumk', $request->no_pumk)
-            ->first();
+        $pumk_detail->no = $request->no_urut;
+        $pumk_detail->keterangan = $request->keterangan;
+        $pumk_detail->account = $request->account;
+        $pumk_detail->nilai = sanitize_nominal($request->nilai);
+        $pumk_detail->cj = $request->cj;
+        $pumk_detail->jb = $request->jb;
+        $pumk_detail->bagian = $request->bagian;
+        $pumk_detail->pk = $request->pk;
+        $pumk_detail->no_pumk = $request->no_pumk;
 
-            $pumk_detail->no = $request->no;
-            $pumk_detail->keterangan = $request->keterangan;
-            $pumk_detail->account = $request->account;
-            $pumk_detail->nilai = $request->nilai;
-            $pumk_detail->cj = $request->cj;
-            $pumk_detail->jb = $request->jb;
-            $pumk_detail->bagian = $request->bagian;
-            $pumk_detail->pk = $request->pk;
-            $pumk_detail->no_pumk = $request->no_pumk;
-
-            $pumk_detail->save();
-        }
-
-        $data = $pumk_detail;
-        return response()->json($data, 200);
+        $pumk_detail->save();
+        
+        return response()->json($pumk_detail, 200);
     }
 
     /**
