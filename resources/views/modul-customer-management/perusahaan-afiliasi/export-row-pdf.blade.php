@@ -237,8 +237,8 @@ header {
                     @forelse ($direksiList as $direksi)
                         <tr>
                             <td>{{ $direksi->nama }}</td>
-                            <td>{{ \Carbon\Carbon::parse($direksi->tmt_dinas)->format('d F Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($direksi->akhir_masa_dinas)->format('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($direksi->tmt_dinas)->translatedFormat('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($direksi->akhir_masa_dinas)->translatedFormat('d F Y') }}</td>
                         </tr>
                     @empty
                     <tr>
@@ -266,8 +266,8 @@ header {
                     @forelse ($komisarisList as $komisaris)
                         <tr>
                             <td>{{ $komisaris->nama }}</td>
-                            <td>{{ \Carbon\Carbon::parse($komisaris->tmt_dinas)->format('d F Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($komisaris->akhir_masa_dinas)->format('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($komisaris->tmt_dinas)->translatedFormat('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($komisaris->akhir_masa_dinas)->translatedFormat('d F Y') }}</td>
                         </tr>
                     @empty
                     <tr>
@@ -297,7 +297,7 @@ header {
                         <tr>
                             <td>{{ $perizinan->keterangan }}</td>
                             <td>{{ $perizinan->nomor }}</td>
-                            <td>{{ \Carbon\Carbon::parse($perizinan->masa_berlaku_akhir)->format('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($perizinan->masa_berlaku_akhir)->translatedFormat('d F Y') }}</td>
                             <td>{{ $perizinan->dokumen }}</td>
                         </tr>
                     @empty
@@ -331,10 +331,10 @@ header {
                         <tr>
                             <td>{{ $akta->jenis }}</td>
                             <td>{{ $akta->nomor_akta }}</td>
-                            <td>{{ \Carbon\Carbon::parse($akta->tanggal)->format('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($akta->tanggal)->translatedFormat('d F Y') }}</td>
                             <td>{{ $akta->notaris }}</td>
-                            <td>{{ \Carbon\Carbon::parse($akta->tmt_mulai)->format('d F Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($akta->tmt_akhir)->format('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($akta->tmt_mulai)->translatedFormat('d F Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($akta->tmt_akhir)->translatedFormat('d F Y') }}</td>
                             <td>{{ $akta->dokumen }}</td>
                         </tr>
                     @empty
