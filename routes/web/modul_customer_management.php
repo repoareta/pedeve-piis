@@ -91,7 +91,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
         Route::post('perusahaan-afiliasi/update/{perusahaan_afiliasi}', [PerusahaanAfiliasiController::class, 'update'])->name('update');
         Route::get('perusahaan-afiliasi/detail/{perusahaan_afiliasi}', [PerusahaanAfiliasiController::class, 'detail'])->name('detail');
         Route::delete('perusahaan-afiliasi/delete', [PerusahaanAfiliasiController::class, 'delete'])->name('delete');
-        Route::get('perusahaan-afiliasi/export', [PerusahaanAfiliasiController::class, 'export'])->name('export');
+        Route::get('perusahaan-afiliasi/export/{perusahaan_afiliasi}', [PerusahaanAfiliasiController::class, 'export'])->name('export');
 
         
         // Matches The "/perusahaan-afiliasi/xxx" URL

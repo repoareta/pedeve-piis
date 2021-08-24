@@ -6,6 +6,11 @@ use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PerusahaanAfiliasiStore;
 use App\Http\Requests\PerusahaanAfiliasiUpdate;
+use App\Models\Akta;
+use App\Models\Direksi;
+use App\Models\Komisaris;
+use App\Models\PemegangSaham;
+use App\Models\Perizinan;
 use App\Models\PerusahaanAfiliasi;
 use DomPDF;
 use Illuminate\Http\Request;
@@ -33,7 +38,7 @@ class PerusahaanAfiliasiController extends Controller
 
         return datatables()->of($perusahaan_afiliasi_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" data-nama="'.$row->nama.'" value="'.$row->id.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])
@@ -149,10 +154,21 @@ class PerusahaanAfiliasiController extends Controller
      */
     public function export(PerusahaanAfiliasi $perusahaanAfiliasi)
     {
+        $pemegangSahamList = PemegangSaham::where('perusahaan_afiliasi_id', $perusahaanAfiliasi->id)->get();
+        $direksiList = Direksi::where('perusahaan_afiliasi_id', $perusahaanAfiliasi->id)->get();
+        $komisarisList = Komisaris::where('perusahaan_afiliasi_id', $perusahaanAfiliasi->id)->get();
+        $perizinanList = Perizinan::where('perusahaan_afiliasi_id', $perusahaanAfiliasi->id)->get();
+        $aktaList = Akta::where('perusahaan_afiliasi_id', $perusahaanAfiliasi->id)->get();
+        
         $pdf = DomPDF::loadView(
             'modul-customer-management.perusahaan-afiliasi.export-row-pdf',
             compact(
-                'panjar_header'
+                'perusahaanAfiliasi',
+                'pemegangSahamList',
+                'direksiList',
+                'komisarisList',
+                'perizinanList',
+                'aktaList'
             )
         );
 

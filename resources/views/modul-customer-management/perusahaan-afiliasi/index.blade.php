@@ -156,7 +156,7 @@
 			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
-					var nama = $(this).attr('nama');
+					var nama = $(this).data('nama');
 					
 					const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
@@ -168,7 +168,7 @@
 
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dicetak?",
-						text: "Perusahaan : " + id,
+						text: "Perusahaan : " + nama,
 						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,

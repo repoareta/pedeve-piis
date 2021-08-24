@@ -54,7 +54,8 @@
             "app/Helpers/pajak_helper.php",
             "app/Helpers/pekerja_status_helper.php",
             "app/Helpers/sanitize_nominal.php",
-            "app/Helpers/terbilang_helper.php"
+            "app/Helpers/terbilang_helper.php",
+            "app/Helpers/abs_thousands_helper.php"
         ]
     },
     "autoload-dev": {
