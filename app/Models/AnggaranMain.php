@@ -17,11 +17,11 @@ class AnggaranMain extends Model
 
     public function anggaran_submain()
     {
-        return $this->hasMany('App\Models\AnggaranSubMain', 'kode_main');
+        return $this->hasMany(AnggaranSubMain::class, 'kode_main');
     }
 
     public function anggaran_detail()
     {
-        return $this->hasManyThrough('App\Models\AnggaranDetail', 'App\Models\AnggaranSubmain', 'kode_main', 'kode_submain');
+        return $this->hasManyThrough(AnggaranDetail::class, AnggaranSubMain::class, 'kode_main', 'kode_submain');
     }
 }
