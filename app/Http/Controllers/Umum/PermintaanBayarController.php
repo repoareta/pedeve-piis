@@ -52,42 +52,42 @@ class PermintaanBayarController extends Controller
             foreach ($data_tahunbulan as $data_bul) {
                 $bulan_buku = $data_bul->bulan_buku;
             }
-             
+
             $data = DB::select("SELECT  a.no_bayar,a.kepada,a.bulan_buku,a.keterangan,a.lampiran,a.no_kas,a.app_pbd as app_pbd,a.app_sdm as app_sdm,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as nilai from umu_bayar_header a where a.bulan_buku ='$bulan_buku' order by a.no_bayar desc");
         }
 
         return datatables()->of($data)
-        ->addColumn('nilai', function ($data) {
-            return currency_format($data->nilai);
-        })
-        ->addColumn('radio', function ($data) {
-            if ($data->app_pbd == 'Y') {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
-            } else {
-                if ($data->app_sdm == 'Y') {
-                    $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
+            ->addColumn('nilai', function ($data) {
+                return currency_format($data->nilai);
+            })
+            ->addColumn('radio', function ($data) {
+                if ($data->app_pbd == 'Y') {
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
                 } else {
-                    $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="'.$data->no_bayar.'" data-id="'.str_replace('/', '-', $data->no_bayar).'" name="btn-radio"><span></span></label>';
+                    if ($data->app_sdm == 'Y') {
+                        $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
+                    } else {
+                        $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
+                    }
                 }
-            }
-            return $radio;
-        })
-        ->addColumn('approval', function ($data) {
-            if ($data->app_pbd == 'Y') {
-                $action = '<span title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span>';
-            } else {
-                if ($data->app_sdm == 'Y') {
-                    $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span title="Batalkan Approval"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span></a>';
+                return $radio;
+            })
+            ->addColumn('approval', function ($data) {
+                if ($data->app_pbd == 'Y') {
+                    $action = '<span title="Data Sudah di proses perbendaharaan"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span>';
                 } else {
-                    $action = '<a href="'. route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]).'"><span title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
+                    if ($data->app_sdm == 'Y') {
+                        $action = '<a href="' . route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]) . '"><span title="Batalkan Approval"><i class="fas fa-check-circle fa-2x fa-2x text-success"></i></span></a>';
+                    } else {
+                        $action = '<a href="' . route('modul_umum.permintaan_bayar.approv', ['id' => str_replace('/', '-', $data->no_bayar)]) . '"><span title="Klik untuk Approval"><i class="fas fa-ban fa-2x text-danger"></i></span></a>';
+                    }
                 }
-            }
-            return $action;
-        })
-        ->rawColumns(['radio','approval'])
-        ->make(true);
+                return $action;
+            })
+            ->rawColumns(['radio', 'approval'])
+            ->make(true);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -106,9 +106,9 @@ class PermintaanBayarController extends Controller
         }
         $no_bayar_max = $data_no_bayar->no_bayar;
         if (!empty($no_bayar_max)) {
-            $permintaan_header_count= sprintf("%03s", abs($no_bayar_max + 1)). '/CS/' . date('d/m/Y');
+            $permintaan_header_count = sprintf("%03s", abs($no_bayar_max + 1)) . '/CS/' . date('d/m/Y');
         } else {
-            $permintaan_header_count= sprintf("%03s", 1). '/CS/' . date('d/m/Y');
+            $permintaan_header_count = sprintf("%03s", 1) . '/CS/' . date('d/m/Y');
         }
         $vendor = Vendor::all();
         return view('modul-umum.permintaan-bayar.create', compact('debit_nota', 'permintaan_header_count', 'vendor', 'bulan_buku'));
@@ -125,43 +125,43 @@ class PermintaanBayarController extends Controller
         $check_data =  DB::select("SELECT * from umu_bayar_header where no_bayar = '$request->nobayar'");
         if (!empty($check_data)) {
             PermintaanBayarHeader::where('no_bayar', $request->nobayar)
-            ->update([
-            'no_bayar' => $request->nobayar,
-            'tgl_bayar' => $request->tanggal,
-            'lampiran' => $request->lampiran,
-            'keterangan' => $request->keterangan,
-            'kepada' => $request->dibayar,
-            'debet_dari' => $request->debetdari,
-            'debet_no' => $request->nodebet,
-            'debet_tgl' => $request->tgldebet,
-            'no_kas' => $request->nokas,
-            'bulan_buku' => $request->bulanbuku,
-            'ci' => $request->ci,
-            'rate' => $request->kurs,
-            'mulai' => $request->mulai,
-            'sampai' => $request->sampai,
-            ]);
+                ->update([
+                    'no_bayar' => $request->nobayar,
+                    'tgl_bayar' => $request->tanggal,
+                    'lampiran' => $request->lampiran,
+                    'keterangan' => $request->keterangan,
+                    'kepada' => $request->dibayar,
+                    'debet_dari' => $request->debetdari,
+                    'debet_no' => $request->nodebet,
+                    'debet_tgl' => $request->tgldebet,
+                    'no_kas' => $request->nokas,
+                    'bulan_buku' => $request->bulanbuku,
+                    'ci' => $request->ci,
+                    'rate' => $request->kurs,
+                    'mulai' => $request->mulai,
+                    'sampai' => $request->sampai,
+                ]);
             return response()->json();
         } else {
             DB::table('umu_bayar_header')->insert([
-            'no_bayar' => $request->nobayar,
-            'tgl_bayar' => $request->tanggal,
-            'lampiran' => $request->lampiran,
-            'keterangan' => $request->keterangan,
-            'kepada' => $request->dibayar,
-            'debet_dari' => $request->debetdari,
-            'rekyes' => $request->rekyes,
-            'debet_no' => $request->nodebet,
-            'debet_tgl' => $request->tgldebet,
-            'no_kas' => $request->nokas,
-            'bulan_buku' => $request->bulanbuku,
-            'ci' => $request->ci,
-            'rate' => $request->kurs,
-            'mulai' => $request->mulai,
-            'sampai' => $request->sampai,
-            'app_sdm' => 'N',
-            'app_pbd' => 'N',
-            // Save Panjar Header
+                'no_bayar' => $request->nobayar,
+                'tgl_bayar' => $request->tanggal,
+                'lampiran' => $request->lampiran,
+                'keterangan' => $request->keterangan,
+                'kepada' => $request->dibayar,
+                'debet_dari' => $request->debetdari,
+                'rekyes' => $request->rekyes,
+                'debet_no' => $request->nodebet,
+                'debet_tgl' => $request->tgldebet,
+                'no_kas' => $request->nokas,
+                'bulan_buku' => $request->bulanbuku,
+                'ci' => $request->ci,
+                'rate' => $request->kurs,
+                'mulai' => $request->mulai,
+                'sampai' => $request->sampai,
+                'app_sdm' => 'N',
+                'app_pbd' => 'N',
+                // Save Panjar Header
             ]);
             return response()->json();
         }
@@ -172,30 +172,30 @@ class PermintaanBayarController extends Controller
         $check_data =  DB::select("SELECT * from umu_bayar_detail where no = '$request->no' and  no_bayar = '$request->nobayar'");
         if (!empty($check_data)) {
             PermintaanBayarDetail::where('no_bayar', $request->nobayar)
-            ->where('no', $request->no)
-            ->update([
-            'no' => $request->no,
-            'keterangan' => $request->keterangan,
-            'account' => $request->acc,
-            'nilai' => str_replace([',', '.'], '', $request->nilai),
-            'cj' => $request->cj,
-            'jb' => $request->jb,
-            'bagian' => $request->bagian,
-            'pk' => $request->pk,
-            'no_bayar' => $request->nobayar
-            ]);
+                ->where('no', $request->no)
+                ->update([
+                    'no' => $request->no,
+                    'keterangan' => $request->keterangan,
+                    'account' => $request->acc,
+                    'nilai' => str_replace([',', '.'], '', $request->nilai),
+                    'cj' => $request->cj,
+                    'jb' => $request->jb,
+                    'bagian' => $request->bagian,
+                    'pk' => $request->pk,
+                    'no_bayar' => $request->nobayar
+                ]);
             return response()->json();
         } else {
             PermintaanBayarDetail::insert([
-            'no' => $request->no,
-            'keterangan' => $request->keterangan,
-            'account' => $request->acc,
-            'nilai' => str_replace([',', '.'], '', $request->nilai),
-            'cj' => $request->cj,
-            'jb' => $request->jb,
-            'bagian' => $request->bagian,
-            'pk' => $request->pk,
-            'no_bayar' => $request->nobayar
+                'no' => $request->no,
+                'keterangan' => $request->keterangan,
+                'account' => $request->acc,
+                'nilai' => str_replace([',', '.'], '', $request->nilai),
+                'cj' => $request->cj,
+                'jb' => $request->jb,
+                'bagian' => $request->bagian,
+                'pk' => $request->pk,
+                'no_bayar' => $request->nobayar
             ]);
             return response()->json();
         }
@@ -203,28 +203,28 @@ class PermintaanBayarController extends Controller
 
     public function storeApp(Request $request)
     {
-        $nobayar=str_replace('-', '/', $request->nobayar);
+        $nobayar = str_replace('-', '/', $request->nobayar);
         $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->select('*')->get();
         foreach ($data_app as $data) {
             $check_data = $data->app_sdm;
         }
         if ($check_data == 'Y') {
             PermintaanBayarHeader::where('no_bayar', $nobayar)
-            ->update([
-                'app_sdm' => 'N',
-                'app_sdm_oleh' => $request->userid,
-                'app_sdm_tgl' => $request->tgl_app,
-            ]);
-            Alert::success('No. Bayar : '.$nobayar.' Berhasil Dibatalkan Approval', 'Berhasil')->persistent(true)->autoClose(2000);
+                ->update([
+                    'app_sdm' => 'N',
+                    'app_sdm_oleh' => $request->userid,
+                    'app_sdm_tgl' => $request->tgl_app,
+                ]);
+            Alert::success('No. Bayar : ' . $nobayar . ' Berhasil Dibatalkan Approval', 'Berhasil')->persistent(true)->autoClose(2000);
             return redirect()->route('permintaan_bayar.index');
         } else {
             PermintaanBayarHeader::where('no_bayar', $nobayar)
-            ->update([
-                'app_sdm' => 'Y',
-                'app_sdm_oleh' => $request->userid,
-                'app_sdm_tgl' => $request->tgl_app,
-            ]);
-            Alert::success('No. Bayar : '.$nobayar.' Berhasil Diapproval', 'Berhasil')->persistent(true)->autoClose(2000);
+                ->update([
+                    'app_sdm' => 'Y',
+                    'app_sdm_oleh' => $request->userid,
+                    'app_sdm_tgl' => $request->tgl_app,
+                ]);
+            Alert::success('No. Bayar : ' . $nobayar . ' Berhasil Diapproval', 'Berhasil')->persistent(true)->autoClose(2000);
             return redirect()->route('permintaan_bayar.index');
         }
     }
@@ -248,7 +248,7 @@ class PermintaanBayarController extends Controller
      */
     public function edit($nobayar)
     {
-        $nobayars=str_replace('-', '/', $nobayar);
+        $nobayars = str_replace('-', '/', $nobayar);
         $data_bayar =  PermintaanBayarHeader::where('no_bayar', $nobayars)->first();
         $debit_nota = UmuDebetNota::all();
         $no_uruts =  DB::select("SELECT max(no) as no from umu_bayar_detail where no_bayar = '$nobayars'");
@@ -257,14 +257,14 @@ class PermintaanBayarController extends Controller
         $data_bagian = DB::select("SELECT A.kode,A.nama FROM sdm_tbl_kdbag A ORDER BY A.kode");
         $data_jenisbiaya = DB::select("SELECT kode,keterangan from jenisbiaya order by kode");
         $data_cj = DB::select("SELECT kode,nama from cashjudex order by kode");
-        $count= PermintaanBayarDetail::where('no_bayar', $nobayars)->select('no_bayar')->sum('nilai');
-        $vendor=Vendor::all();
+        $count = PermintaanBayarDetail::where('no_bayar', $nobayars)->select('no_bayar')->sum('nilai');
+        $vendor = Vendor::all();
         if (!empty($no_urut) == null) {
             foreach ($no_uruts as $no_urut) {
-                $no_bayar_details=$no_urut->no + 1;
+                $no_bayar_details = $no_urut->no + 1;
             }
         } else {
-            $no_bayar_details= 1;
+            $no_bayar_details = 1;
         }
         return view('modul-umum.permintaan-bayar.edit', compact(
             'data_bayar',
@@ -315,7 +315,7 @@ class PermintaanBayarController extends Controller
 
     public function editDetail($dataid, $datano)
     {
-        $nobayar=str_replace('-', '/', $dataid);
+        $nobayar = str_replace('-', '/', $dataid);
         $data = PermintaanBayarDetail::where('no', $datano)->where('no_bayar', $nobayar)->distinct()->get();
         return response()->json($data[0]);
     }
@@ -340,7 +340,7 @@ class PermintaanBayarController extends Controller
      */
     public function delete(Request $request)
     {
-        $nobayars=str_replace('-', '/', $request->id);
+        $nobayars = str_replace('-', '/', $request->id);
         PermintaanBayarHeader::where('no_bayar', $nobayars)->delete();
         PermintaanBayarDetail::where('no_bayar', $nobayars)->delete();
         return response()->json();
@@ -349,15 +349,15 @@ class PermintaanBayarController extends Controller
     public function deleteDetail(Request $request)
     {
         PermintaanBayarDetail::where('no', $request->no)
-        ->where('no_bayar', $request->id)
-        ->delete();
+            ->where('no_bayar', $request->id)
+            ->delete();
         return response()->json();
     }
 
 
     public function approv($id)
     {
-        $nobayar=str_replace('-', '/', $id);
+        $nobayar = str_replace('-', '/', $id);
         $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->select('*')->get();
         return view('modul-umum.permintaan-bayar.approv', compact('data_app'));
     }
@@ -365,7 +365,7 @@ class PermintaanBayarController extends Controller
     //surat permintaan bayar
     public function rekap($id)
     {
-        $nobayar=str_replace('-', '/', $id);
+        $nobayar = str_replace('-', '/', $id);
         $data_cekjb = DB::select("SELECT a.no_bayar,(select sum(nilai) from umu_bayar_detail where no_bayar=a.no_bayar) as total from umu_bayar_header a where a.no_bayar='$nobayar'");
         foreach ($data_cekjb as $data_cek) {
             $data_c = $data_cek->total;
@@ -400,11 +400,11 @@ class PermintaanBayarController extends Controller
 
     public function rekapExport(Request $request)
     {
-        $nobayar=$request->nobayar;
+        $nobayar = $request->nobayar;
         PermintaanBayarHeader::where('no_bayar', $nobayar)
             ->update([
-            'pemohon' => $request->pemohon,
-            'menyetujui' => $request->menyetujui,
+                'pemohon' => $request->pemohon,
+                'menyetujui' => $request->menyetujui,
             ]);
         $bayar_header_list = PermintaanBayarHeader::where('no_bayar', $nobayar)->get();
         foreach ($bayar_header_list as $data_report) {
@@ -412,7 +412,7 @@ class PermintaanBayarController extends Controller
             $data_rek = DB::select("SELECT * from tbl_vendor where nama ='$data_report->kepada'");
         }
         $bayar_detail_list = PermintaanBayarDetail::where('no_bayar', $nobayar)->get();
-        $list_acount =PermintaanBayarDetail::where('no_bayar', $nobayar)->select('nilai')->sum('nilai');
+        $list_acount = PermintaanBayarDetail::where('no_bayar', $nobayar)->select('nilai')->sum('nilai');
         $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.export', compact('list_acount', 'data_report', 'bayar_detail_list', 'request', 'data_rek'))->setPaper('a4', 'Portrait');
         // return $pdf->download('rekap_permint_'.date('Y-m-d H:i:s').'.pdf');
         return $pdf->stream();
@@ -421,14 +421,14 @@ class PermintaanBayarController extends Controller
     {
         $data_cek = PermintaanBayarHeader::whereBetween('tgl_bayar', [$request->mulai, $request->sampai])->count();
         if ($data_cek == 0) {
-            Alert::error('Tidak Ada Data Pada Tanggal Mulai: '.$request->mulai.' Sampai Tanggal: '.$request->sampai.'', 'Failed')->persistent(true);
+            Alert::error('Tidak Ada Data Pada Tanggal Mulai: ' . $request->mulai . ' Sampai Tanggal: ' . $request->sampai . '', 'Failed')->persistent(true);
             return redirect()->route('modul_umum.permintaan_bayar.rekap.range');
         } else {
             if ($request->submit == 'pdf') {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
-                $array_bln	 = array(
+                $array_bln     = array(
                     1 =>   'Januari',
                     'Februari',
                     'Maret',
@@ -442,29 +442,29 @@ class PermintaanBayarController extends Controller
                     'November',
                     'Desember'
                 );
-                
-                $bulan= strtoupper($array_bln[ (int)$pecahkan[1] ]);
-                $tahun=$pecahkan[0];
+
+                $bulan = strtoupper($array_bln[(int)$pecahkan[1]]);
+                $tahun = $pecahkan[0];
                 $bayar_header_list = \DB::table('umu_bayar_header AS a')
-                ->select(\DB::raw('a.*, (SELECT sum(b.nilai)  FROM umu_bayar_detail as b WHERE b.no_bayar=a.no_bayar) AS nilai'))
-                ->whereBetween('tgl_bayar', [$mulai, $sampai])
-                ->get();
-                $bayar_header_list_total =PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
-                ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
-                ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
-                ->get();
+                    ->select(\DB::raw('a.*, (SELECT sum(b.nilai)  FROM umu_bayar_detail as b WHERE b.no_bayar=a.no_bayar) AS nilai'))
+                    ->whereBetween('tgl_bayar', [$mulai, $sampai])
+                    ->get();
+                $bayar_header_list_total = PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
+                    ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
+                    ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
+                    ->get();
                 $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.export-range-pdf', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun'))->setPaper('a4', 'landscape');
                 $pdf->output();
                 $dom_pdf = $pdf->getDomPDF();
                 $canvas = $dom_pdf->getCanvas();
                 $canvas->page_text(700, 120, "Page {PAGE_NUM} of {PAGE_COUNT}", null, 10, array(0, 0, 0));
                 // return $pdf->download('rekap_permint_'.date('Y-m-d H:i:s').'.pdf');
-                return $pdf->stream('my.pdf', array('Attachment'=>true));
+                return $pdf->stream('my.pdf', array('Attachment' => true));
             } elseif ($request->submit == 'xlsx') {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
-                $array_bln	 = array(
+                $array_bln     = array(
                     1 =>   'Januari',
                     'Februari',
                     'Maret',
@@ -478,24 +478,24 @@ class PermintaanBayarController extends Controller
                     'November',
                     'Desember'
                 );
-                
-                $bulan= strtoupper($array_bln[ (int)$pecahkan[1] ]);
-                $tahun=$pecahkan[0];
+
+                $bulan = strtoupper($array_bln[(int)$pecahkan[1]]);
+                $tahun = $pecahkan[0];
                 $bayar_header_list = \DB::table('umu_bayar_header AS a')
-                ->select(\DB::raw('a.*, (SELECT sum(b.nilai)  FROM umu_bayar_detail as b WHERE b.no_bayar=a.no_bayar) AS nilai'))
-                ->whereBetween('tgl_bayar', [$mulai, $sampai])
-                ->get();
-                $bayar_header_list_total =PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
-                ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
-                ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
-                ->get();
-                $excel=new Spreadsheet;
+                    ->select(\DB::raw('a.*, (SELECT sum(b.nilai)  FROM umu_bayar_detail as b WHERE b.no_bayar=a.no_bayar) AS nilai'))
+                    ->whereBetween('tgl_bayar', [$mulai, $sampai])
+                    ->get();
+                $bayar_header_list_total = PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
+                    ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
+                    ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
+                    ->get();
+                $excel = new Spreadsheet;
                 return view('modul-umum.permintaan-bayar.export-range-excel', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
                 $pecahkan = explode('-', $request->mulai);
-                $array_bln	 = array(
+                $array_bln     = array(
                     1 =>   'Januari',
                     'Februari',
                     'Maret',
@@ -509,18 +509,18 @@ class PermintaanBayarController extends Controller
                     'November',
                     'Desember'
                 );
-                
-                $bulan= strtoupper($array_bln[ (int)$pecahkan[1] ]);
-                $tahun=$pecahkan[0];
+
+                $bulan = strtoupper($array_bln[(int)$pecahkan[1]]);
+                $tahun = $pecahkan[0];
                 $bayar_header_list = \DB::table('umu_bayar_header AS a')
-                ->select(\DB::raw('a.*, (SELECT sum(b.nilai)  FROM umu_bayar_detail as b WHERE b.no_bayar=a.no_bayar) AS nilai'))
-                ->whereBetween('tgl_bayar', [$mulai, $sampai])
-                ->get();
-                $bayar_header_list_total =PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
-                ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
-                ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
-                ->get();
-                $excel=new Spreadsheet;
+                    ->select(\DB::raw('a.*, (SELECT sum(b.nilai)  FROM umu_bayar_detail as b WHERE b.no_bayar=a.no_bayar) AS nilai'))
+                    ->whereBetween('tgl_bayar', [$mulai, $sampai])
+                    ->get();
+                $bayar_header_list_total = PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
+                    ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
+                    ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
+                    ->get();
+                $excel = new Spreadsheet;
                 return view('modul-umum.permintaan-bayar.export-range-csv', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
             }
         }
