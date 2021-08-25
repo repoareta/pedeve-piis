@@ -87,24 +87,22 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">CI</label>
-                <div class="col-10">
+                <label class="col-2 col-form-label">CI</label>
+                <div class="col-8 col-form-label">
                     <div class="radio-inline">
                         <label class="radio">
-                            <input value="1" type="radio" name="ci" id="ci" onclick="displayResult(1)" checked>
-                            <span></span> Rp
-                        </label>
+                            <input type="radio" value="1" name="ci" id="idr" onclick="displayResult(1)" {{ $data->ci == '1' ? 'checked' : null }}>
+                        <span></span>Rp</label>
                         <label class="radio">
-                            <input value="2" type="radio" name="ci" id="ci" onclick="displayResult(2)">
-                            <span></span> US$
-                        </label>
+                            <input type="radio" value="2" name="ci" id="usd" onclick="displayResult(2)" {{ $data->ci == '1' ? null : 'checked' }}>
+                        <span></span>US $</label>
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Nilai Perkara <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" name="nilai_perkara" size="25" maxlength="20" title="Nilai Perkara" autocomplete='off' value="{{ number_format($data->nilai_perkara, 0, '', '') }}">
+                    <input class="form-control money" type="text" name="nilai_perkara" size="25" maxlength="20" title="Nilai Perkara" autocomplete='off' value="{{ $data->nilai_perkara }}">
                 </div>
             </div>
                                                             
