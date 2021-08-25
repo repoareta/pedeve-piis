@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Umum\UangMukaKerja;
 
+use App\Exports\RekapUMKExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UMKApprovalStoreRequest;
 use App\Http\Requests\UMKDetailStoreRequest;
@@ -575,8 +576,15 @@ class UangMukaKerjaController extends Controller
                 $tahun = $pecahkan[0];
                 $umk_header_list = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])->get();
                 $list_acount = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])->select('jumlah')->sum('jumlah');
-                $excel = new Spreadsheet();
-                return view('modul-umum.umk.export-xls', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
+                
+                $dataExcel = [
+                    $umk_header_list,
+                    $list_acount,
+                    [$mulai, $sampai],
+                    [$bulan, $tahun],
+                ];
+
+                return (new RekapUMKExport($dataExcel))->download('REKAP.xlsx');
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
