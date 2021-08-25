@@ -368,13 +368,13 @@
                         <div class="col-lg-2">
                             <div class="image-input image-input-outline" id="kt_image_4" style="background-image: url({{ asset('assets/media/users/blank.png') }})">
                                 @if ($pegawai->photo)
-                                <div class="image-input-wrapper" style="background-image: url({{ asset('storage/pekerja_img/'.$pegawai->photo) }})"></div>
+                                <div class="image-input-wrapper" style="background-image: url({{ asset('storage/img_pegawai/'.$pegawai->photo) }})"></div>
                                 @else
                                 <div class="image-input-wrapper" style="background-image: url({{ asset('assets/media/users/default.jpg') }})"></div>
                                 @endif
                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                     <i class="fa fa-pen icon-sm text-muted"></i>
-                                    <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg"/>
+                                    <input type="file" name="photo" accept=".png, .jpg, .jpeg"/>
                                     <input type="hidden" name="profile_avatar_remove"/>
                                 </label>
 
@@ -655,4 +655,18 @@
 
     });
 </script>
+
+@stack('keluarga-scripts')
+@stack('jabatan-scripts')
+@stack('gaji-pokok-scripts')
+@stack('golongan-gaji-scripts')
+@stack('kursus-scripts')
+@stack('pendidikan-scripts')
+@stack('penghargaan-scripts')
+@stack('pengalaman-kerja-scripts')
+@stack('seminar-scripts')
+@stack('smk-scripts')
+@stack('upah-tetap-scripts')
+@stack('upah-tetap-pensiun-scripts')
+@stack('upah-all-in-scripts')
 @endpush
