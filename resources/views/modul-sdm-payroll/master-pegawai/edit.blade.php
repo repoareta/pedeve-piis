@@ -395,7 +395,7 @@
                             <div class="row">
                                 <div class="col-4"></div>
                                 <div class="col-8">
-                                    <a  href="{{ route('modul_sdm_payroll.master_pegawai.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+                                    <a href="{{ route('modul_sdm_payroll.master_pegawai.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
                                 </div>
                             </div>
@@ -524,7 +524,7 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\MasterPegawaiStore', '#formMasterPegawai') !!}
+{!! JsValidator::formRequest('App\Http\Requests\MasterPegawaiUpdate', '#formMasterPegawai') !!}
 
 <script>
     $(document).ready(function () {
@@ -594,33 +594,7 @@
             }
 
             if($(this).valid()) {
-                const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-primary',
-                    cancelButton: 'btn btn-danger'
-                },
-                    buttonsStyling: false
-                })
-
-                swalWithBootstrapButtons.fire({
-                    title: "Ingin melanjutkan isi detail pegawai?",
-                    text: "",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    reverseButtons: true,
-                    confirmButtonText: 'Ya, Lanjut Isi Detail Pegawai',
-                    cancelButtonText: 'Tidak'
-                })
-                .then((result) => {
-                    if (result.value) {
-                        $(this).append('<input type="hidden" name="url" value="edit" />');
-                        $(this).unbind('submit').submit();
-                    }
-                    else if (result.dismiss === Swal.DismissReason.cancel) {
-                        $(this).append('<input type="hidden" name="url" value="modul_sdm_payroll.master_pegawai.index" />');
-                        $(this).unbind('submit').submit();
-                    }
-                });
+                $(this).unbind('submit').submit();
             }
         });
 
@@ -657,10 +631,11 @@
 
                 avatar4.on('remove', function(imageInput) {
                     swal.fire({
-                        title: 'Image successfully removed !',
-                        type: 'error',
+                        title: 'Foto Profil Berhasil Di Hapus',
+                        type: 'success',
+                        icon: 'success',
                         buttonsStyling: false,
-                        confirmButtonText: 'Got it!',
+                        confirmButtonText: 'Ok',
                         confirmButtonClass: 'btn btn-primary font-weight-bold'
                     });
                 });
