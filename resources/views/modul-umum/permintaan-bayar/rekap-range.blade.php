@@ -60,6 +60,8 @@
         $('#date_range_picker').datepicker({
             todayHighlight: true,
             format   : 'yyyy-mm-dd',
+            orientation: "bottom left",
+            language: 'id',
         });
 
         $("#formRekapSPD").on('submit', function(){

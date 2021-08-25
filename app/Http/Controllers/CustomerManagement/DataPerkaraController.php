@@ -79,7 +79,7 @@ class DataPerkaraController extends Controller
             ->put('file', '0')
             ->put('rate', 1)
             ->forget('nilai_perkara')
-            ->put('nilai_perkara', (string) str_replace([',', '.'], '', $request->nilai_perkara))
+            ->put('nilai_perkara', sanitize_nominal($request->nilai_perkara))
             ->toArray();
 
         DB::table('tbl_perkara')->insert($validated);
@@ -267,7 +267,7 @@ class DataPerkaraController extends Controller
             ->put('file', '0')
             ->put('rate', 1)
             ->forget(['nilai_perkara', 'no_perkara'])
-            ->put('nilai_perkara', (string) str_replace([',', '.'], '', $request->nilai_perkara))
+            ->put('nilai_perkara', sanitize_nominal($request->nilai_perkara))
             ->toArray();
 
         DB::table('tbl_perkara')

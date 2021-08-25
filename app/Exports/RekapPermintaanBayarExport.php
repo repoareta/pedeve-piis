@@ -12,14 +12,14 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class RekapUMKExport implements
+class RekapPermintaanBayarExport implements
     WithDrawings,
     WithEvents
 {
     use Exportable;
 
-    private $dataUMK,
-        $jumlahUMK,
+    private $dataPermintaanBayar,
+        $jumlahPermintaanBayar,
         $tanggal,
         $waktu,
         $columns,
@@ -30,33 +30,33 @@ class RekapUMKExport implements
      *
      * @param  array $dataInArray
      * 
-     * $dataInArray[0] = data UMK
-     * $dataInArray[1] = data Jumlah UMK
-     * $dataInArray[2] = $mulai, $sampai
-     * $dataInArray[3] = $bulan, $tahun
+     * $dataInArray[0] = data Permintaan Bayar
+     * $dataInArray[1] = data Jumlah Permintaan Bayar
+     * $dataInArray[2] = [$mulai, $sampai]
+     * $dataInArray[3] = [$bulan, $tahun]
      * 
      * @return void
      */
     public function __construct(array $dataInArray)
     {
-        $this->dataUMK = $dataInArray[0];
-        $this->jumlahUMK = $dataInArray[1];
+        $this->dataPermintaanBayar = $dataInArray[0];
+        $this->jumlahPermintaanBayar = $dataInArray[1];
         $this->tanggal = $dataInArray[2];
         $this->waktu = $dataInArray[3];
 
-        $this->columns = ['A', 'B', 'C', 'D', 'E', 'F'];
+        $this->columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
         $this->styles = [
-            'font' => array('bold' => true),
-            'alignment' => array(
+            'font' => ['bold' => true],
+            'alignment' => [
                 'horizontal' => Alignment::HORIZONTAL_CENTER,
                 'vertical' => Alignment::VERTICAL_CENTER
-            ),
-            'borders' => array(
-                'top' => array('style'  => Border::BORDER_MEDIUM),
-                'right' => array('style'  => Border::BORDER_MEDIUM),
-                'bottom' => array('style'  => Border::BORDER_MEDIUM),
-                'left' => array('style'  => Border::BORDER_MEDIUM)
-            )
+            ],
+            'borders' => [
+                'top' => ['style'  => Border::BORDER_MEDIUM],
+                'right' => ['style'  => Border::BORDER_MEDIUM],
+                'bottom' => ['style'  => Border::BORDER_MEDIUM],
+                'left' => ['style'  => Border::BORDER_MEDIUM]
+            ]
         ];
     }
 
@@ -90,34 +90,36 @@ class RekapUMKExport implements
     private function populateSheet($sheet)
     {
         $sheet->setCellValue('A1', "PT. PERTAMINA PEDEVE INDONESIA");
-        $sheet->setCellValue('A2', "REKAP UANG MUKA KERJA ");
+        $sheet->setCellValue('A2', "REKAP PERMINTAAN BAYAR ");
         $sheet->setCellValue('A3', "BULAN {$this->waktu[0]} {$this->waktu[1]}");
         $sheet->setCellValue('A5', "NO");
         $sheet->setCellValue('B5', "NO. BAYAR");
         $sheet->setCellValue('C5', "NO. KAS");
         $sheet->setCellValue('D5', "KEPADA");
         $sheet->setCellValue('E5', "KETERANGAN");
-        $sheet->setCellValue('F5', "JUMLAH");
+        $sheet->setCellValue('F5', "LAMPIRAN");
+        $sheet->setCellValue('G5', "JUMLAH");
 
         $lineNumber = 1;
         $rowNumber = 6;
 
-        foreach ($this->dataUMK as $dataUMK) {
+        foreach ($this->dataPermintaanBayar as $dataPermintaanBayar) {
             $sheet->setCellValue('A' . $rowNumber, $lineNumber);
-            $sheet->setCellValue('B' . $rowNumber, $dataUMK['no_umk']);
-            $sheet->setCellValue('C' . $rowNumber, $dataUMK['no_kas']);
-            $sheet->setCellValue('D' . $rowNumber, $dataUMK['kepada']);
-            $sheet->setCellValue('E' . $rowNumber, $dataUMK['keterangan']);
-            $sheet->setCellValue('F' . $rowNumber, currency_idr($dataUMK['jumlah']));
+            $sheet->setCellValue('B' . $rowNumber, $dataPermintaanBayar->no_bayar);
+            $sheet->setCellValue('C' . $rowNumber, $dataPermintaanBayar->no_kas);
+            $sheet->setCellValue('D' . $rowNumber, $dataPermintaanBayar->kepada);
+            $sheet->setCellValue('E' . $rowNumber, $dataPermintaanBayar->keterangan);
+            $sheet->setCellValue('F' . $rowNumber, $dataPermintaanBayar->lampiran);
+            $sheet->setCellValue('G' . $rowNumber, currency_idr($dataPermintaanBayar->nilai));
             $this->selfStyling($sheet, $rowNumber);
 
             $rowNumber++;
             $lineNumber++;
         }
 
-        $sheet->mergeCells('A' . $rowNumber . ':E' . $rowNumber);
+        $sheet->mergeCells('A' . $rowNumber . ':F' . $rowNumber);
         $sheet->setCellValue('A' . $rowNumber, 'TOTAL: ');
-        $sheet->setCellValue('F' . $rowNumber, currency_idr($this->jumlahUMK));
+        $sheet->setCellValue('G' . $rowNumber, currency_idr($this->jumlahPermintaanBayar));
         $this->selfStyling($sheet, $rowNumber, true);
     }
 
@@ -125,12 +127,12 @@ class RekapUMKExport implements
     {
         if ($useStyles) {
             $sheet->getDelegate()
-                ->getStyle('A' . $rowNumber . ':F' . $rowNumber)
+                ->getStyle('A' . $rowNumber . ':G' . $rowNumber)
                 ->applyFromArray($this->styles);
         }
 
         $sheet->getDelegate()
-            ->getStyle('A' . $rowNumber . ':F' . $rowNumber)
+            ->getStyle('A' . $rowNumber . ':G' . $rowNumber)
             ->getBorders()
             ->getAllBorders()
             ->setBorderStyle(Border::BORDER_THIN);
@@ -138,24 +140,24 @@ class RekapUMKExport implements
 
     private function sheetStyling($event)
     {
-        $event->sheet->getDelegate()->mergeCells('A1:F1');
-        $event->sheet->getDelegate()->mergeCells('A2:F2');
-        $event->sheet->getDelegate()->mergeCells('A3:F3');
+        $event->sheet->getDelegate()->mergeCells('A1:G1');
+        $event->sheet->getDelegate()->mergeCells('A2:G2');
+        $event->sheet->getDelegate()->mergeCells('A3:G3');
         $event->sheet
             ->getDelegate()
-            ->getStyle('A5:F5')
+            ->getStyle('A5:G5')
             ->applyFromArray($this->styles);
 
         $event->sheet
             ->getDelegate()
-            ->getStyle('A5:F5')
+            ->getStyle('A5:G5')
             ->getBorders()
             ->getAllBorders()
             ->setBorderStyle(Border::BORDER_THIN);
 
         $event->sheet
             ->getDelegate()
-            ->getStyle('A5:F5')
+            ->getStyle('A5:G5')
             ->getFill()
             ->setFillType(Fill::FILL_SOLID)
             ->getStartColor()
@@ -163,7 +165,7 @@ class RekapUMKExport implements
 
         $event->sheet
             ->getDelegate()
-            ->getStyle('A1:F5')
+            ->getStyle('A1:G5')
             ->applyFromArray($this->styles);
 
         foreach ($this->columns as $columns) {

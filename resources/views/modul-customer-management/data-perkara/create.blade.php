@@ -87,17 +87,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">CI</label>
-                <div class="col-10">
+                <label class="col-2 col-form-label">CI</label>
+                <div class="col-8 col-form-label">
                     <div class="radio-inline">
                         <label class="radio">
-                            <input value="1" type="radio" name="ci" id="ci" onclick="displayResult(1)" checked>
-                            <span></span> Rp
-                        </label>
+                            <input type="radio" value="1" name="ci" id="idr" onclick="displayResult(1)" checked>
+                        <span></span>Rp</label>
                         <label class="radio">
-                            <input value="2" type="radio" name="ci" id="ci" onclick="displayResult(2)">
-                            <span></span> US$
-                        </label>
+                            <input type="radio" value="2" name="ci" id="usd" onclick="displayResult(2)">
+                        <span></span>US $</label>
                     </div>
                 </div>
             </div>
