@@ -576,7 +576,7 @@ class UangMukaKerjaController extends Controller
                 $tahun = $pecahkan[0];
                 $umk_header_list = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])->get();
                 $list_acount = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])->select('jumlah')->sum('jumlah');
-                
+
                 $dataExcel = [
                     $umk_header_list,
                     $list_acount,
@@ -584,7 +584,7 @@ class UangMukaKerjaController extends Controller
                     [$bulan, $tahun],
                 ];
 
-                return (new RekapUMKExport($dataExcel))->download('REKAP.xlsx');
+                return (new RekapUMKExport($dataExcel))->download('REKAP-' . date('Ymd') . '.xlsx');
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
