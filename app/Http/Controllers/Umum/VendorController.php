@@ -60,7 +60,7 @@ class VendorController extends Controller
 
         $vendor->save();
 
-        return redirect()->route('vendor.index');
+        return redirect()->route('modul_umum.vendor.index');
     }
 
     /**
@@ -92,7 +92,7 @@ class VendorController extends Controller
 
         $vendor->save();
 
-        return redirect()->route('vendor.index');
+        return redirect()->route('modul_umum.vendor.index');
     }
 
     /**
