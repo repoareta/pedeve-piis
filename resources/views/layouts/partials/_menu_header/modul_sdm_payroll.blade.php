@@ -174,7 +174,7 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Tunjangan Pergolongan</span>
+                                <span class="menu-text">Tunjangan Per Golongan</span>
                             </a>
                         </li>
                         <li class="menu-item {{ Route::is('modul_sdm_payroll.jenis_upah.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">

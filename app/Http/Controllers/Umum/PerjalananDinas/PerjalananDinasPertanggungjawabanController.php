@@ -92,7 +92,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
             $no_pspd = sprintf("%03d", $last_ppanjar_no)."/CS/$date_now/$month_now/$year_now";
         }
 
-        return view('perjalanan-dinas-pertanggungjawaban.create', compact(
+        return view('modul-umum.perjalanan-dinas-pertanggungjawaban.create', compact(
             'pegawai_list',
             'panjar_header_list',
             'no_pspd',

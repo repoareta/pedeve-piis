@@ -51,6 +51,10 @@
         white-space: nowrap;
     }
 
+    .no-wrap {
+        white-space: nowrap;
+    }
+
     .swal2-popup .swal2-icon {
         margin: auto;
         margin-top: 30px;

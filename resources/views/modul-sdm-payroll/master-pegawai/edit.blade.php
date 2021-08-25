@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" id="formMasterPegawai" action="{{ route('modul_sdm_payroll.master_pegawai.update', ['pegawai' => $pegawai->nopeg]) }}" method="POST" enctype="multipart/form-data">
+                <form class="form form--label-right" id="formMasterPegawai" action="{{ route('modul_sdm_payroll.master_pegawai.update', ['pegawai' => $pegawai->nopeg]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-5">
@@ -273,21 +273,21 @@
             
                             <div class="form-group row">
                                 <label for="" class="col-4 col-form-label">Jenis Kelamin</label>
-                                <div class="col-8">
-                                    <div class="kt-radio-inline">
-                                        <label class="kt-radio kt-radio--solid">
+                                <div class="col-8 col-form-label">
+                                    <div class="radio-inline">
+                                        <label class="radio">
                                             <input type="radio" name="jenis_kelamin" value="L"
                                             @if($pegawai->gender == 'L')
 											checked
-											@endif> Laki-laki
-                                            <span></span>
+											@endif>
+                                            <span></span> Laki-laki
                                         </label>
-                                        <label class="kt-radio kt-radio--solid">
+                                        <label class="radio">
                                             <input type="radio" name="jenis_kelamin" value="P"
                                             @if($pegawai->gender == 'P')
 											checked
-											@endif> Perempuan
-                                            <span></span>
+											@endif>
+                                            <span></span> Perempuan
                                         </label>
                                     </div>
                                 </div>
@@ -390,7 +390,7 @@
                         </div>
                     </div>
     
-                    <div class="kt-form__actions">
+                    <div class="form__actions">
                         <div class="col-lg-5">
                             <div class="row">
                                 <div class="col-4"></div>
@@ -408,68 +408,68 @@
 
     <div class="card-header card-header-tabs-line">
         <div class="card-toolbar">
-            <ul class="nav nav-tabs nav-bold nav-tabs-line">
-                <li class="nav-item">
+            <ul class="nav nav-tabs nav-bold nav-tabs-line d-flex flex-nowrap">
+                <li class="nav-item no-wrap">
                     <a class="nav-link active" data-toggle="tab" href="#detail_keluarga">
                         <span class="nav-text">Keluarga</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n5">
                     <a class="nav-link" data-toggle="tab" href="#detail_jabatan">
                         <span class="nav-text">Jabatan</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_gaji_pokok">
                         <span class="nav-text">Gaji Pokok</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_golongan_gaji">
                         <span class="nav-text">Golongan Gaji</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_kursus">
                         <span class="nav-text">Kursus</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_pendidikan">
                         <span class="nav-text">Pendidikan</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_penghargaan">
                         <span class="nav-text">Penghargaan</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_pengalaman_kerja">
                         <span class="nav-text">Pengalaman Kerja</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_seminar">
                         <span class="nav-text">Seminar</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_smk">
                         <span class="nav-text">SMK</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_upah_tetap">
                         <span class="nav-text">Upah Tetap</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_upah_tetap_pensiun">
                         <span class="nav-text">Upah Tetap Pensiun</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item no-wrap ml-n1">
                     <a class="nav-link" data-toggle="tab" href="#detail_upah_all_in">
                         <span class="nav-text">Upah All In</span>
                     </a>
@@ -479,112 +479,46 @@
     </div>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="detail_keluarga" role="tabpanel" aria-labelledby="detail_keluarga">
-            <div class="card card-custom">
-                <div class="card-header justify-content-start">
-                    <div class="card-title">
-                        <span class="card-icon">
-                            <i class="flaticon2-chart2 text-primary"></i>
-                        </span>
-                        <h3 class="card-label">
-                            Keluarga
-                        </h3>
-                    </div>
-                    <div class="card-toolbar">
-                        <div class="float-left">
-                            <a href="#">
-                                <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                                    <i class="fas fa-2x fa-plus-circle text-success"></i>
-                                </span>
-                            </a>
-                            <a href="#">
-                                <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                                    <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
-                                </span>
-                            </a>
-                            <a href="#">
-                                <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                                    <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <table class="table table-bordered" id="kt_table_pemegang_saham">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th></th>
-                                        <th>Nama PT</th>
-                                        <th>% Kepemilikan</th>
-                                        <th>Jumlah Lembar Saham</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('modul-sdm-payroll.master-pegawai._keluarga.index')
         </div>
         <div class="tab-pane fade" id="detail_jabatan" role="tabpanel" aria-labelledby="detail_jabatan">
-            ...
+            @include('modul-sdm-payroll.master-pegawai._jabatan.index')
         </div>
         <div class="tab-pane fade" id="detail_gaji_pokok" role="tabpanel" aria-labelledby="detail_gaji_pokok">
-            ...
+            @include('modul-sdm-payroll.master-pegawai._gaji-pokok.index')
+        </div>
+        <div class="tab-pane fade" id="detail_golongan_gaji" role="tabpanel" aria-labelledby="detail_golongan_gaji">
+            @include('modul-sdm-payroll.master-pegawai._golongan-gaji.index')
+        </div>
+        <div class="tab-pane fade" id="detail_kursus" role="tabpanel" aria-labelledby="detail_kursus">
+            @include('modul-sdm-payroll.master-pegawai._kursus.index')
+        </div>
+        <div class="tab-pane fade" id="detail_pendidikan" role="tabpanel" aria-labelledby="detail_pendidikan">
+            @include('modul-sdm-payroll.master-pegawai._pendidikan.index')
+        </div>
+        <div class="tab-pane fade" id="detail_penghargaan" role="tabpanel" aria-labelledby="detail_penghargaan">
+            @include('modul-sdm-payroll.master-pegawai._penghargaan.index')
+        </div>
+        <div class="tab-pane fade" id="detail_pengalaman_kerja" role="tabpanel" aria-labelledby="detail_pengalaman_kerja">
+            @include('modul-sdm-payroll.master-pegawai._pengalaman-kerja.index')
+        </div>
+        <div class="tab-pane fade" id="detail_seminar" role="tabpanel" aria-labelledby="detail_seminar">
+            @include('modul-sdm-payroll.master-pegawai._seminar.index')
+        </div>
+        <div class="tab-pane fade" id="detail_smk" role="tabpanel" aria-labelledby="detail_smk">
+            @include('modul-sdm-payroll.master-pegawai._smk.index')
+        </div>
+        <div class="tab-pane fade" id="detail_upah_tetap" role="tabpanel" aria-labelledby="detail_upah_tetap">
+            @include('modul-sdm-payroll.master-pegawai._upah-tetap.index')
+        </div>
+        <div class="tab-pane fade" id="detail_upah_tetap_pensiun" role="tabpanel" aria-labelledby="detail_upah_tetap_pensiun">
+            @include('modul-sdm-payroll.master-pegawai._upah-tetap-pensiun.index')
+        </div>
+        <div class="tab-pane fade" id="detail_upah_all_in" role="tabpanel" aria-labelledby="detail_upah_all_in">
+            @include('modul-sdm-payroll.master-pegawai._upah-all-in.index')
         </div>
     </div>
 
-
-    <div class="card-header justify-content-start">
-        <div class="card-title">
-            <span class="card-icon">
-                <i class="flaticon2-chart2 text-primary"></i>
-            </span>
-            <h3 class="card-label">
-                Pemegang Saham
-            </h3>
-        </div>
-        <div class="card-toolbar">
-            <div class="float-left">
-                <a href="#">
-                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-                        <i class="fas fa-2x fa-plus-circle text-success"></i>
-                    </span>
-                </a>
-                <a href="#">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
-                    </span>
-                </a>
-                <a href="#">
-                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-xl-12">
-                <table class="table table-bordered" id="kt_table_pemegang_saham">
-                    <thead class="thead-light">
-                        <tr>
-                            <th></th>
-                            <th>Nama PT</th>
-                            <th>% Kepemilikan</th>
-                            <th>Jumlah Lembar Saham</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>
 
 @endsection
