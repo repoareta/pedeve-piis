@@ -610,8 +610,15 @@ class UangMukaKerjaController extends Controller
                     ->get();
                 $list_acount = Umk::whereBetween('tgl_panjar', [$mulai, $sampai])
                     ->select('jumlah')->sum('jumlah');
-                $excel = new Spreadsheet;
-                return view('modul-umum.umk.export-csv', compact('umk_header_list', 'list_acount', 'excel', 'bulan', 'tahun'));
+
+                $dataExcel = [
+                    $umk_header_list,
+                    $list_acount,
+                    [$mulai, $sampai],
+                    [$bulan, $tahun],
+                ];
+
+                return (new RekapUMKExport($dataExcel))->download('REKAP-' . date('Ymd') . '.csv');
             }
         }
     }
