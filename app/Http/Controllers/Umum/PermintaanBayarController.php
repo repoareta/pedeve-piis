@@ -14,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use DB;
 use DomPDF;
 use Alert;
+use App\Exports\RekapPermintaanBayarExport;
 
 class PermintaanBayarController extends Controller
 {
@@ -488,9 +489,16 @@ class PermintaanBayarController extends Controller
                 $bayar_header_list_total = PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
                     ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
                     ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
-                    ->get();
-                $excel = new Spreadsheet;
-                return view('modul-umum.permintaan-bayar.export-range-excel', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
+                    ->first();
+                
+                $dataExcel = [
+                    $bayar_header_list->toArray(),
+                    $bayar_header_list_total->nilai,
+                    [$mulai, $sampai],
+                    [$bulan, $tahun],
+                ];
+
+                return (new RekapPermintaanBayarExport($dataExcel))->download('REKAP-PERMINTAAN-BAYAR-' . date('Ymd') . '.xlsx');
             } else {
                 $mulai = date($request->mulai);
                 $sampai = date($request->sampai);
@@ -519,9 +527,16 @@ class PermintaanBayarController extends Controller
                 $bayar_header_list_total = PermintaanBayarHeader::select(\DB::raw('SUM(umu_bayar_detail.nilai) as nilai'))
                     ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
                     ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
-                    ->get();
-                $excel = new Spreadsheet;
-                return view('modul-umum.permintaan-bayar.export-range-csv', compact('bayar_header_list_total', 'bayar_header_list', 'bulan', 'tahun', 'excel'));
+                    ->first();
+                
+                    $dataExcel = [
+                        $bayar_header_list->toArray(),
+                        $bayar_header_list_total->nilai,
+                        [$mulai, $sampai],
+                        [$bulan, $tahun],
+                    ];
+    
+                    return (new RekapPermintaanBayarExport($dataExcel))->download('REKAP-PERMINTAAN-BAYAR-' . date('Ymd') . '.csv');
             }
         }
     }
