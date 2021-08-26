@@ -19,7 +19,7 @@
 
     <div class="card-body">
         <div class="card-body">
-            <form action="{{ route('modul_umum.permintaan_bayar.store') }}" method="post" id="form-create">
+            <form action="{{ route('modul_umum.permintaan_bayar.store') }}" method="post" id="form-edit-permintaan-bayar">
                 @csrf
                 <div class="alert alert-custom alert-default" role="alert">
                     <div class="alert-text">
@@ -63,7 +63,7 @@
                 <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Rekening Bank</label>
                     <div class="col-10">
-                        <input style="width: 17px;height: 26px;" name="rekyes" type="checkbox"  id="rekyes" value="{{$data_bayar->rekyes}}" <?php if ($data_bayar->rekyes == '1' )  echo 'checked' ; ?>></td>
+                        <input style="width: 17px;height: 30px;" name="rekyes" type="checkbox"  id="rekyes" value="{{$data_bayar->rekyes}}" <?php if ($data_bayar->rekyes == '1' )  echo 'checked' ; ?>></td>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -99,20 +99,17 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">CI <span class="text-danger">*</span></label>
-                    <div class="col-5">
-                        <div class="radio-inline">
-                            <label class="radio">
-                                <input value="1" type="radio" name="ci" onclick="displayResult(1)" checked>
-                                <span></span> IDR
-                            </label>
-                            <label class="radio">
-                                <input value="2" type="radio" name="ci" onclick="displayResult(2)">
-                                <span></span> USD
-                            </label>
-                        </div>
-                    </div>
-
+                    <label class="col-2 col-form-label">CI</label>
+					<div class="col-5 col-form-label">
+						<div class="radio-inline">
+							<label class="radio">
+								<input type="radio" value="1" name="ci" id="1" onclick="displayResult(1)" checked>
+							<span></span>IDR</label>
+							<label class="radio">
+								<input type="radio" value="2" name="ci" id="2" onclick="displayResult(2)">
+							<span></span>USD</label>
+						</div>
+					</div>
                     <label for="spd-input" class="col-2 col-form-label">Kurs <span class="text-danger">*</span></label>
                     <div class="col-3">
                         <input class="form-control" type="text" name="kurs" id="kurs" value="<?php echo number_format($data_bayar->rate, 0, ',', '.'); ?>" size="10" maxlength="10" onkeypress="return hanyaAngka(event)" >
@@ -177,7 +174,7 @@
 
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="#" data-toggle="modal" data-target="#modal-create-detail-umk">
+                <a href="#" data-toggle="modal" data-target="#modal-create-detail-bayar">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -197,7 +194,7 @@
     </div>
 
     <div class="card-body">
-        <table class="table table-bordered" id="kt_table">
+        <table class="table table-bordered" id="table-detail">
             <thead class="thead-light">
                 <tr>
                     <th ><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked ></th>
@@ -216,7 +213,7 @@
                 @foreach($data_bayar_details as $data_bayar_detail)
                 <?php $no++; ?>
                     <tr>
-                        <td scope="row" align="center"><label class="kt-radio kt-radio--bold kt-radio--brand"><input type="radio" name="btn-radio" data-no="{{$data_bayar_detail->no}}"  data-id="{{str_replace('/', '-', $data_bayar_detail->no_bayar)}}" nobayar="{{$data_bayar_detail->no_bayar}}" class="btn-radio" ><span></span></label></td>
+                        <td scope="row" align="center"><label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="btn-radio" data-no="{{$data_bayar_detail->no}}"  data-id="{{str_replace('/', '-', $data_bayar_detail->no_bayar)}}" nobayar="{{$data_bayar_detail->no_bayar}}" class="btn-radio" ><span></span></label></td>
                         <td scope="row" align="center">{{$no}}</td>
                         <td>{{$data_bayar_detail->keterangan}}</td>
                         <td align="center">{{$data_bayar_detail->bagian}}</td>
@@ -226,19 +223,20 @@
                         <td align="center">{{$data_bayar_detail->cj}}</td>
                         <td><?php echo number_format($data_bayar_detail->nilai, 2, '.', ','); ?></td>
                     </tr>
-                @endforeach
+                @endforeach                    
             </tbody>
-                    <tr>
-                        <td colspan="8" align="right">Jumlah Total : </td>
-                        <td ><?php echo number_format($count, 2, '.', ','); ?></td>
-                    </tr>
-            </tbody>
+			<tfoot>
+				<tr>
+					<td colspan="8" align="right">Jumlah Total : </td>
+					<td ><?php echo number_format($count, 2, '.', ','); ?></td>
+				</tr>
+			</tfoot>
         </table>
     </div>
 </div>
 
 <!--begin::Modal-->
-<div class="modal fade modal-create-detail-umk" id="modal-create-detail-umk"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-create-detail-bayar" id="modal-create-detail-bayar"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -442,14 +440,19 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PermintaanBayarStoreRequest', '#form-edit-permintaan-bayar'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\PermintaanBayarDetailStoreRequest', '#form-tambah-bayar-detail'); !!}
+{!! JsValidator::formRequest('App\Http\Requests\PermintaanBayarDetailStoreRequest', '#form-edit-bayar-detail'); !!}
+
 <script>
     $(document).ready(function () {
-		var t = $('#kt_table').DataTable({
+		var t = $('#table-detail').DataTable({
 			scrollX   : true,
 			processing: true,
 			serverSide: false,
 		});
-		$('#kt_table tbody').on( 'click', 'tr', function (event) {
+		
+		$('#table-detail tbody').on( 'click', 'tr', function (event) {
 			if ( $(this).hasClass('selected') ) {
 				$(this).removeClass('selected');
 			} else {
@@ -461,19 +464,20 @@
 				$(this).addClass('selected');
 			}
 		} );
+		
 		$('.kt-select2').select2().on('change', function() {
 			// $(this).valid();
 		});
+		
 		$("input[name=ci]:checked").each(function() {  
 			var ci = $(this).val();
-			if(ci == 1)
-			{
+			if(ci == 1) {
 				$('#kurs').val(1);
 				$('#simbol-kurs').hide();
 				$( "#kurs" ).prop( "required", false );
 				$( "#kurs" ).prop( "readonly", true );
 				$('#kurs').addClass("disabled bg-secondary");
-			}else{
+			} else {
 				var kurs1 = $('#data-kurs').val();
 				$('#kurs').val(kurs1);
 				$('#simbol-kurs').show();
@@ -483,133 +487,133 @@
 			}
 				
 		});
-// proses update permintaan bayar
-		$('#form-update-permintaan-bayar').submit(function(){
-        	var no_umk = $("#noumk").val();
-			$.ajax({
-				url  : "{{route('modul_umum.permintaan_bayar.store')}}",
-				type : "POST",
-				data : $('#form-update-permintaan-bayar').serialize(),
-				dataType : "JSON",
-				headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-				success : function(data){
-				console.log(data);
-				Swal.fire({
-					icon  : 'success',
-					title : 'Data Permintaan Biaya Berhasil Disimpan',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-						window.location.replace("{{ route('modul_umum.permintaan_bayar.index')}}");;
-					});
-				}, 
-				error : function(){
-					alert("Terjadi kesalahan, coba lagi nanti");
-				}
-			});	
-			return false;
+
+		// proses update permintaan bayar
+		$('#form-edit-permintaan-bayar').submit(function(e){
+			e.preventDefault();
+
+			if ($(this).valid()) {
+				var no_umk = $("#noumk").val();
+				$.ajax({
+					url : "{{route('modul_umum.permintaan_bayar.store')}}",
+					type : "POST",
+					data : $('#form-edit-permintaan-bayar').serialize(),
+					dataType : "JSON",
+					success : function(data){
+						Swal.fire({
+							icon : 'success',
+							title : 'Data Permintaan Biaya Berhasil Disimpan',
+							text : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							location.href = "{{ route('modul_umum.permintaan_bayar.index')}}";
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
+			}
 		});
 	
- //prosess create detail
-    $('#form-tambah-bayar-detail').submit(function(){
-		$.ajax({
-			url  : "{{route('modul_umum.permintaan_bayar.store.detail')}}",
-			type : "POST",
-			data : $('#form-tambah-bayar-detail').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-                Swal.fire({
-					icon  : 'success',
-					title : 'Data Detail Permintaan Biaya Berhasil Ditambah',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-                    location.reload();
-                });
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
+		//prosess create detail
+		$('#form-tambah-bayar-detail').submit(function(e) {
+			e.preventDefault();
+
+			if ($(this).valid()) {
+				$.ajax({
+					url  : "{{route('modul_umum.permintaan_bayar.store.detail')}}",
+					type : "POST",
+					data : $('#form-tambah-bayar-detail').serialize(),
+					dataType : "JSON",
+					success : function(data){
+						Swal.fire({
+							icon  : 'success',
+							title : 'Data Detail Permintaan Biaya Berhasil Ditambah',
+							text  : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							location.reload();
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
 			}
-		});	
-		return false;
-	});
- //proses update detail
- $('#form-edit-bayar-detail').submit(function(){
-		$.ajax({
-			url  : "{{route('modul_umum.permintaan_bayar.store.detail')}}",
-			type : "POST",
-			data : $('#form-edit-bayar-detail').serialize(),
-			dataType : "JSON",
-            headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
-            },
-			success : function(data){
-                Swal.fire({
-					icon  : 'success',
-					title : 'Data Detail Permintaan Biaya Berhasil Diubah',
-					text  : 'Berhasil',
-					timer : 2000
-				}).then(function() {
-                    window.location.reload();
-                });
-			}, 
-			error : function(){
-				alert("Terjadi kesalahan, coba lagi nanti");
+		});
+
+		//proses update detail
+		$('#form-edit-bayar-detail').submit(function(e) {
+			e.preventDefault();
+
+			if ($(this).valid()) {
+				$.ajax({
+					url  : "{{route('modul_umum.permintaan_bayar.store.detail')}}",
+					type : "POST",
+					data : $('#form-edit-bayar-detail').serialize(),
+					dataType : "JSON",
+					success : function(data){
+						Swal.fire({
+							icon : 'success',
+							title : 'Data Detail Permintaan Biaya Berhasil Diubah',
+							text : 'Berhasil',
+							timer : 2000
+						}).then(function() {
+							window.location.reload();
+						});
+					}, 
+					error : function(){
+						alert("Terjadi kesalahan, coba lagi nanti");
+					}
+				});
 			}
-		});	
-		return false;
-	});
-//tampil edit detail
-$('#editRow').on('click', function(e) {
-	e.preventDefault();
-var allVals = [];  
-$(".btn-radio:checked").each(function() {  
-	var dataid = $(this).attr('data-id');
-	var datano = $(this).attr('data-no');
-	if(dataid == 1)  
-	{  
-		swalAlertInit('ubah'); 
-	}  else { 
-		$.ajax({
-			url :"{{url('umum/permintaan-bayar/editdetail')}}"+ '/' +dataid+ '/' +datano,
-			type : 'get',
-			dataType:"json",
-			headers: {
-				'X-CSRF-Token': '{{ csrf_token() }}',
-				},
-			success:function(data)
-			{
-				$('#no').val(data.no);
-				$('#keterangan').val(data.keterangan);
-				$('#pk').val(data.pk);
-				var d=parseFloat(data.nilai);
-				var rupiah = d.toFixed(2);
-				$('#nilai').val(rupiah);
-				$('.modal-edit-detail-bayar').modal('show');
-				$('#select-bagian').val(data.bagian).trigger('change');
-				$('#select-acc').val(data.account).trigger('change');
-				$('#select-jb').val(data.jb).trigger('change');
-				$('#select-cj').val(data.cj).trigger('change');
-			}
-		})
-	}
-				
-});
-});
-//delete permintaan bayar detail
-$('#deleteRow').click(function(e) {
+		});
+		
+		//tampil edit detail
+		$('#editRow').on('click', function(e) {
+			e.preventDefault();
+			var allVals = [];  
+			$(".btn-radio:checked").each(function() {  
+				var dataid = $(this).attr('data-id');
+				var datano = $(this).attr('data-no');
+				if(dataid == 1) {  
+					swalAlertInit('ubah'); 
+				}  else { 
+					$.ajax({
+						url :"{{url('umum/permintaan-bayar/editdetail')}}"+ '/' +dataid+ '/' +datano,
+						type : 'get',
+						dataType:"json",
+						headers: {
+							'X-CSRF-Token': '{{ csrf_token() }}',
+						},
+						success:function(data) {
+							$('#no').val(data.no);
+							$('#keterangan').val(data.keterangan);
+							$('#pk').val(data.pk);
+							var d=parseFloat(data.nilai);
+							var rupiah = d.toFixed(2);
+							$('#nilai').val(rupiah);
+							$('.modal-edit-detail-bayar').modal('show');
+							$('#select-bagian').val(data.bagian).trigger('change');
+							$('#select-acc').val(data.account).trigger('change');
+							$('#select-jb').val(data.jb).trigger('change');
+							$('#select-cj').val(data.cj).trigger('change');
+						}
+					})
+				}
+							
+			});
+		});
+		
+		//delete permintaan bayar detail
+		$('#deleteRow').click(function(e) {
 			e.preventDefault();
 			$(".btn-radio:checked").each(function() {  
-			var dataid = $(this).attr('data-id');
-				if(dataid == 1)  
-				{  
+				var dataid = $(this).attr('data-id');
+				if(dataid == 1)   {  
 					swalAlertInit('hapus'); 
-				}  else { 
+				} else { 
 				$("input[type=radio]:checked").each(function() {
                     var id = $(this).attr('nobayar');
                     var no = $(this).attr('data-no');
@@ -631,82 +635,80 @@ $('#deleteRow').click(function(e) {
 							cancelButtonText: 'Batalkan'
 						})
 						.then((result) => {
-						if (result.value) {
-							$.ajax({
-								url: "{{ route('modul_umum.permintaan_bayar.delete.detail') }}",
-								type: 'DELETE',
-								dataType: 'json',
-								data: {
-									"id": id,
-									"no": no,
-									"_token": "{{ csrf_token() }}",
-								},
-								success: function () {
-									Swal.fire({
-										icon  : 'success',
-										title : 'Hapus Data Detail Permintaan Bayar',
-										text  : 'Berhasil',
-										timer : 2000
-									}).then(function() {
-										location.reload();
-									});
-								},
-								error: function () {
-									alert("Terjadi kesalahan, coba lagi nanti");
-								}
-							});
-						}
+							if (result.value) {
+								$.ajax({
+									url: "{{ route('modul_umum.permintaan_bayar.delete.detail') }}",
+									type: 'DELETE',
+									dataType: 'json',
+									data: {
+										"id": id,
+										"no": no,
+										"_token": "{{ csrf_token() }}",
+									},
+									success: function () {
+										Swal.fire({
+											icon  : 'success',
+											title : 'Hapus Data Detail Permintaan Bayar',
+											text  : 'Berhasil',
+											timer : 2000
+										}).then(function() {
+											location.reload();
+										});
+									},
+									error: function () {
+										alert("Terjadi kesalahan, coba lagi nanti");
+									}
+								});
+							}
+						});
 					});
-				});
-			} 
+				} 
+			});
+		});
+		
+		// range picker
+		$('#date_range_picker').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
+		});
+		
+		// minimum setup
+		$('#tanggal').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
+		});
+
+		// minimum setup
+		$('#tgldebet').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
 		});
 	});
-	// range picker
-	$('#date_range_picker').datepicker({
-		todayHighlight: true,
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	// minimum setup
-	$('#tanggal').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	// minimum setup
-	$('#tgldebet').datepicker({
-		todayHighlight: true,
-		orientation: "bottom left",
-		autoclose: true,
-		// language : 'id',
-		format   : 'dd-mm-yyyy'
-	});
-	$('#bulanbuku').datepicker({
-        weekStart: 1,
-        daysOfWeekHighlighted: "6,0",
-        autoclose: true,
-        todayHighlight: true,
-    });
-	$('#bulanbuku').datepicker("setDate", new Date());
-});
-function displayResult(ci){ 
-	if(ci == 1) {
-        $('#kurs').val(1);
-        $('#simbol-kurs').hide();
-        $( "#kurs" ).prop( "required", false );
-        $( "#kurs" ).prop( "readonly", true );
-        $('#kurs').addClass("disabled bg-secondary");
-    } else {
-        var kurs1 = $('#data-kurs').val();
-        $('#kurs').val(kurs1);
-        $('#simbol-kurs').show();
-        $( "#kurs" ).prop( "required", true );
-        $( "#kurs" ).prop( "readonly", false );
-        $('#kurs').removeClass("disabled bg-secondary");
-    }
-}
+
+	function displayResult(ci){ 
+		if(ci == 1) {
+			$('#kurs').val(1);
+			$('#simbol-kurs').hide();
+			$( "#kurs" ).prop( "required", false );
+			$( "#kurs" ).prop( "readonly", true );
+			$('#kurs').addClass("disabled bg-secondary");
+		} else {
+			var kurs1 = $('#data-kurs').val();
+			$('#kurs').val(kurs1);
+			$('#simbol-kurs').show();
+			$( "#kurs" ).prop( "required", true );
+			$( "#kurs" ).prop( "readonly", false );
+			$('#kurs').removeClass("disabled bg-secondary");
+		}
+	}
 </script>
 @endpush
