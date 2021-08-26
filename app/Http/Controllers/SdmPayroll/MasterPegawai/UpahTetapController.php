@@ -42,7 +42,7 @@ class UpahTetapController extends Controller
 
     public function create(MasterPegawai $pegawai)
     {
-        return view('modul-sdm-payroll.master-pegawai._upah-tetap-pensiun.create', compact(
+        return view('modul-sdm-payroll.master-pegawai._upah-tetap.create', compact(
             'pegawai',
         ));
     }

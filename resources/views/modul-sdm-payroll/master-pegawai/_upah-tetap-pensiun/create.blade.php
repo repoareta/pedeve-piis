@@ -12,7 +12,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Upah Tetap
+                Tambah Upah Tetap Pensiun
             </h3>
         </div>
     </div>
@@ -20,13 +20,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('modul_sdm_payroll.master_pegawai.upah_tetap.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-upah-tetap">
+                <form action="{{ route('modul_sdm_payroll.master_pegawai.upah_tetap_pensiun.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-upah-tetap-pensiun">
                     @csrf
-
                     <div class="form-group row">
-						<label for="" class="col-2 col-form-label">Upah Tetap</label>
+						<label for="" class="col-2 col-form-label">Upah Tetap Pensiun</label>
 						<div class="col-10">
-							<input class="form-control money" type="text" name="nilai_upah_tetap" id="nilai_upah_tetap">
+							<input class="form-control money" type="text" name="nilai_upah_tetap_pensiun" id="nilai_upah_tetap_pensiun">
 						</div>
                     </div>
 
@@ -34,7 +33,7 @@
 						<label for="" class="col-2 col-form-label">Mulai</label>
 						<div class="col-4">
 							<div class="input-group date">
-								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="mulai_upah_tetap" id="mulai_upah_tetap">
+								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="mulai_upah_tetap_pensiun" id="mulai_upah_tetap_pensiun">
 								<div class="input-group-append">
 									<span class="input-group-text">
 										<i class="la la-calendar-check-o"></i>
@@ -46,7 +45,7 @@
                         <label for="" class="col-2 col-form-label">Sampai</label>
 						<div class="col-4">
 							<div class="input-group date">
-								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="sampai_upah_tetap" id="sampai_upah_tetap">
+								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="sampai_upah_tetap_pensiun" id="sampai_upah_tetap_pensiun">
 								<div class="input-group-append">
 									<span class="input-group-text">
 										<i class="la la-calendar-check-o"></i>
@@ -59,7 +58,7 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="keterangan_upah_tetap" id="keterangan_upah_tetap">
+							<input class="form-control" type="text" name="keterangan_upah_tetap_pensiun" id="keterangan_upah_tetap_pensiun">
 						</div>
                     </div>
 
@@ -78,5 +77,5 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\UpahTetapStoreRequest', '#form-create-upah-tetap') !!}
+{!! JsValidator::formRequest('App\Http\Requests\UpahTetapPensiunStoreRequest', '#form-create-upah-tetap-pensiun') !!}
 @endpush
