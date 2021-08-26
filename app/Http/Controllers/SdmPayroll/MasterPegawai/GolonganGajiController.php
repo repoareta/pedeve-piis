@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GolonganGajiStore;
 use App\Models\GolonganGaji;
 use App\Models\MasterPegawai;
+use App\Models\PayTunjangan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,13 +34,23 @@ class GolonganGajiController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        $golongan_gaji_list = PayTunjangan::all();
+
+        return view('modul-sdm-payroll.master-pegawai._golongan-gaji.create', compact(
+            'pegawai',
+            'golongan_gaji_list',
+        ));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(GolonganGajiStore $request, MasterPegawai $pegawai)
     {
         $golongan_gaji = new GolonganGaji;
         $golongan_gaji->nopeg = $pegawai->nopeg;
@@ -49,7 +61,8 @@ class GolonganGajiController extends Controller
 
         $golongan_gaji->save();
 
-        return response()->json($golongan_gaji, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

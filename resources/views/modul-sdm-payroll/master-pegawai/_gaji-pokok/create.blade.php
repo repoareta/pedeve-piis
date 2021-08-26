@@ -79,8 +79,4 @@
 
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\GajiPokokStoreRequest', '#form-create-gaji-pokok') !!}
-
-<script>
-
-</script>
 @endpush
