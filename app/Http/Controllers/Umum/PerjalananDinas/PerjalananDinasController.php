@@ -162,7 +162,7 @@ class PerjalananDinasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PanjarHeader $no_panjar)
+    public function edit($no_panjar)
     {
         $no_panjar = str_replace('-', '/', $no_panjar);
         $panjar_header = PanjarHeader::where('no_panjar', $no_panjar)->first();
@@ -219,10 +219,11 @@ class PerjalananDinasController extends Controller
         $panjar_header->kendaraan = $request->kendaraan;
         $panjar_header->ditanggung_oleh = $request->biaya;
         $panjar_header->keterangan = $request->keterangan;
-        $panjar_header->jum_panjar = currency_format($request->jumlah);
+        $panjar_header->jum_panjar = sanitize_nominal($request->jumlah);
 
         $panjar_header->save();
 
+        Alert::success('Simpan Panjar Dinas', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.perjalanan_dinas.index');
     }
 

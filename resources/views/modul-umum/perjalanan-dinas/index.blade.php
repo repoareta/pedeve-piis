@@ -186,7 +186,7 @@
 									success: function () {
 										Swal.fire({
 											icon  : 'success',
-											title : 'Hapus No. Panjar ' + id,
+											text : 'Hapus No. Panjar: ' + id,
 											title  : 'Berhasil',
 											timer : 2000
 										}).then(function() {

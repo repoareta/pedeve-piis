@@ -147,7 +147,7 @@
 					<div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
-                            <a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
+                            <a href="{{ route('modul_umum.perjalanan_dinas.index') }}" class="btn btn-warning"><i class="fa fa-reply"></i> Batal</a>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
                         </div>
                     </div>
@@ -155,9 +155,7 @@
             </div>
         </div>        
     </div>
-</div>
 
-<div class="card card-custom gutter-b">
     <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">
@@ -218,9 +216,6 @@
 {!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasStore', '#formPanjarDinas'); !!}
 <script>
     $(document).ready(function () {
-
-        
-
         // range picker
 		$('#date_range_picker').datepicker({
 			todayHighlight: true,
