@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GajiPokokStoreRequest;
 use App\Models\GajiPokok;
 use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GajiPokokController extends Controller
 {
@@ -38,26 +40,34 @@ class GajiPokokController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._gaji-pokok.create', compact(
+            'pegawai',
+        ));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(GajiPokokStoreRequest $request, MasterPegawai $pegawai)
     {
         $gaji_pokok = new GajiPokok;
         $gaji_pokok->nopeg = $pegawai->nopeg;
         $gaji_pokok->mulai = $request->mulai_gaji_pokok;
         $gaji_pokok->sampai = $request->sampai_gaji_pokok;
-        $gaji_pokok->gapok = $request->nilai_gaji_pokok;
+        $gaji_pokok->gapok = sanitize_nominal($request->nilai_gaji_pokok);
         $gaji_pokok->keterangan = $request->keterangan_gaji_pokok;
         $gaji_pokok->userid = Auth::user()->userid;
         $gaji_pokok->tglentry = Carbon::now();
 
         $gaji_pokok->save();
 
-        return response()->json($gaji_pokok, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GolonganGajiStore extends FormRequest
+class GajiPokokStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,10 @@ class GolonganGajiStore extends FormRequest
     {
         return [
             'nopeg' => 'required',
-            'tanggal_golongan_gaji' => 'required',
-            'golongan_gaji' => 'required',
+            'mulai_gaji_pokok' => 'required',
+            'sampai_gaji_pokok' => 'required',
+            'nilai_gaji_pokok' => 'required',
+            'keterangan_gaji_pokok' => 'nullable',
         ];
     }
 }
