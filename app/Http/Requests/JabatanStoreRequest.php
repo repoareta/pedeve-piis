@@ -24,7 +24,6 @@ class JabatanStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nopeg' => 'required',
             'bagian' => 'required',
             'jabatan' => 'required',
             'mulai' => 'required|unique:sdm_jabatan,mulai',

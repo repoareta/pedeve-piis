@@ -24,7 +24,6 @@ class KursusStore extends FormRequest
     public function rules()
     {
         return [
-            'nopeg' => 'required',
             'mulai_kursus' => 'required',
             'sampai_kursus' => 'required',
             'nama_kursus' => 'required',

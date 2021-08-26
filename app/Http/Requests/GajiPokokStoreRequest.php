@@ -24,7 +24,6 @@ class GajiPokokStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nopeg' => 'required',
             'mulai_gaji_pokok' => 'required',
             'sampai_gaji_pokok' => 'required',
             'nilai_gaji_pokok' => 'required',

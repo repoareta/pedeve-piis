@@ -22,7 +22,6 @@
             <div class="col-12">
                 <form action="{{ route('modul_sdm_payroll.master_pegawai.gaji_pokok.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-gaji-pokok">
                     @csrf
-                    <input type="hidden" name="nopeg" value="{{ $pegawai->nopeg }}">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Gaji Pokok</label>
                         <div class="col-10">
