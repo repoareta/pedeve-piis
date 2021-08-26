@@ -10,6 +10,7 @@ use App\Models\PayTunjangan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GolonganGajiController extends Controller
 {
