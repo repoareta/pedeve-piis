@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PengalamanKerjaStoreRequest;
 use App\Models\MasterPegawai;
 use App\Models\PengalamanKerja;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PengalamanKerjaController extends Controller
 {
@@ -22,7 +24,7 @@ class PengalamanKerjaController extends Controller
 
         return datatables()->of($pengalaman_kerja_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pengalaman_kerja" data-mulai="'.$row->mulai.'" data-pangkat="'.$row->pangkat.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pengalaman_kerja" data-mulai="' . $row->mulai . '" data-pangkat="' . $row->pangkat . '"><span></span></label>';
                 return $radio;
             })
             ->addColumn('mulai', function ($row) {
@@ -35,13 +37,20 @@ class PengalamanKerjaController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._pengalaman-kerja.create', compact(
+            'pegawai',
+        ));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(PengalamanKerjaStoreRequest $request, MasterPegawai $pegawai)
     {
         $pengalaman_kerja = new PengalamanKerja;
         $pengalaman_kerja->nopeg    = $pegawai->nopeg;
@@ -57,7 +66,8 @@ class PengalamanKerjaController extends Controller
 
         $pengalaman_kerja->save();
 
-        return response()->json($pengalaman_kerja, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
@@ -69,9 +79,9 @@ class PengalamanKerjaController extends Controller
     public function showJson(Request $request)
     {
         $pengalaman_kerja = PengalamanKerja::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('pangkat', $request->pangkat)
-        ->first();
+            ->where('mulai', $request->mulai)
+            ->where('pangkat', $request->pangkat)
+            ->first();
 
         return response()->json($pengalaman_kerja, 200);
     }
@@ -86,9 +96,9 @@ class PengalamanKerjaController extends Controller
     public function update(Request $request, MasterPegawai $pegawai, $mulai)
     {
         $pengalaman_kerja = PengalamanKerja::where('nopeg', $pegawai->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('pangkat', $request->pangkat)
-        ->first();
+            ->where('mulai', $request->mulai)
+            ->where('pangkat', $request->pangkat)
+            ->first();
 
         $pengalaman_kerja->nopeg    = $pegawai->nopeg;
         $pengalaman_kerja->mulai    = $request->mulai_pengalaman_kerja;
@@ -114,9 +124,9 @@ class PengalamanKerjaController extends Controller
     public function delete(Request $request)
     {
         $pengalaman_kerja = PengalamanKerja::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('pangkat', $request->pangkat)
-        ->delete();
+            ->where('mulai', $request->mulai)
+            ->where('pangkat', $request->pangkat)
+            ->delete();
 
         return response()->json(['deleted' => true], 200);
     }
