@@ -50,3 +50,84 @@
         </div>
     </div>
 </div>
+
+@push('detail-scripts')
+<script type="text/javascript">
+	$(document).ready(function () {
+        var t = $('#table_pengalaman_kerja').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('modul_sdm_payroll.master_pegawai.pengalaman_kerja.index.json', ['pegawai' => $pegawai->nopeg]) }}",
+            columns: [
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+                {data: 'mulai', name: 'mulai'},
+                {data: 'sampai', name: 'sampai'},
+                {data: 'instansi', name: 'instansi'},
+                {data: 'pangkat', name: 'pangkat'},
+                {data: 'kota', name: 'kota'},
+                {data: 'negara', name: 'negara'}
+            ],
+            order: [[ 0, "asc" ], [ 1, "asc" ]]
+        });
+
+        $('#deleteRowPengalamanKerja').click(function(e) {
+            e.preventDefault();
+            if($('input[name=radio_pengalaman_kerja]').is(':checked')) { 
+                $("input[name=radio_pengalaman_kerja]:checked").each(function() {
+                    var mulai = $(this).val().split('_')[1];
+                    var pangkat = $(this).val().split('_')[2];
+                    
+                    const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Data yang akan dihapus?",
+                        text: "Nama Pangkat : " + pangkat,
+                        type: 'warning',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batalkan'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_sdm_payroll.master_pegawai.pengalaman_kerja.delete', ['pegawai' => $pegawai->nopeg]) }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "mulai": mulai,
+                                    "pangkat": pangkat,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : 'Hapus Detail Pengalaman Kerja ' + pangkat,
+                                        text  : 'Success',
+                                        timer : 2000
+                                    }).then(function() {
+                                        t.ajax.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
+
+    });
+</script>
+@endpush

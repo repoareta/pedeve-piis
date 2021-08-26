@@ -51,7 +51,7 @@
     </div>
 </div>
 
-@push('keluarga-scripts')
+@push('detail-scripts')
 <script type="text/javascript">
 	$(document).ready(function () {
         var t = $('#table_jabatan').DataTable({
@@ -60,7 +60,7 @@
             serverSide: true,
             ajax: "{{ route('modul_sdm_payroll.master_pegawai.jabatan.index.json', ['pegawai' => $pegawai->nopeg]) }}",
             columns: [
-                {data: 'radio', name: 'radio', class:'radio-button'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'bagian', name: 'bagian'},
                 {data: 'jabatan', name: 'jabatan'},
                 {data: 'mulai', name: 'mulai'},

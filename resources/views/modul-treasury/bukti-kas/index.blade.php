@@ -212,7 +212,7 @@
 				}
 			},
 			columns: [
-				{ data: 'radio', name: 'radio', class:'radio-button' },
+				{ data: 'radio', name: 'radio', class:'radio-button text-center', width: '10' },
                 { data: 'no_dok', name: 'no_dok' },
                 { data: 'tanggal', name: 'tanggal' },
                 { data: 'voucher', name: 'voucher' },

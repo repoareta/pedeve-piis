@@ -52,7 +52,7 @@
     </div>
 </div>
 
-@push('keluarga-scripts')
+@push('detail-scripts')
 <script type="text/javascript">
 	$(document).ready(function () {
         var t = $('#table_keluarga').DataTable({

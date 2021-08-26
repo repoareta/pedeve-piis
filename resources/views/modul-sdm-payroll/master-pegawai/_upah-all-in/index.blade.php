@@ -47,3 +47,80 @@
         </div>
     </div>
 </div>
+
+@push('detail-scripts')
+<script type="text/javascript">
+	$(document).ready(function () {
+
+        var t = $('#table_upah_all_in').DataTable({
+            scrollX   : true,
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('modul_sdm_payroll.master_pegawai.upah_all_in.index.json', ['pegawai' => $pegawai->nopeg]) }}",
+            columns: [
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+                {data: 'nilai', name: 'nilai'},
+                {data: 'mulai', name: 'mulai'},
+                {data: 'sampai', name: 'sampai'}
+            ],
+            order: [[ 0, "asc" ], [ 1, "asc" ]]
+        });
+        
+        $('#deleteRowUpahAllIn').click(function(e) {
+            e.preventDefault();
+            if($('input[name=radio_upah_all_in]').is(':checked')) { 
+                $("input[name=radio_upah_all_in]:checked").each(function() {
+                    var nilai = $(this).val().split('-')[1];
+                    
+                    const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Data yang akan dihapus?",
+                        text: "Nilai : " + nilai,
+                        type: 'warning',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batalkan'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: "{{ route('modul_sdm_payroll.master_pegawai.upah_all_in.delete', ['pegawai' => $pegawai->nopeg]) }}",
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "nilai": nilai,
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        type  : 'success',
+                                        title : 'Hapus Detail Upah All In ' + nilai,
+                                        text  : 'Success',
+                                        timer : 2000
+                                    }).then(function() {
+                                        t.ajax.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
+
+    });
+</script>
+@endpush

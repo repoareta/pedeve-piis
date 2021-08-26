@@ -557,7 +557,6 @@
             }
         });
 
-
         $("#formMasterPegawai").on('submit', function(e){
             e.preventDefault();
 
@@ -653,20 +652,21 @@
             KTImageInputDemo.init();
         });
 
+        $('.table tbody').on( 'click', 'tr', function (event) {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+            } else {
+                $('.table tbody tr.selected').removeClass('selected');
+                // $(':radio', this).trigger('click');
+                if (event.target.type !== 'radio') {
+                    $(':radio', this).trigger('click');
+                }
+                $(this).addClass('selected');
+            }
+        });
+
     });
 </script>
 
-@stack('keluarga-scripts')
-@stack('jabatan-scripts')
-@stack('gaji-pokok-scripts')
-@stack('golongan-gaji-scripts')
-@stack('kursus-scripts')
-@stack('pendidikan-scripts')
-@stack('penghargaan-scripts')
-@stack('pengalaman-kerja-scripts')
-@stack('seminar-scripts')
-@stack('smk-scripts')
-@stack('upah-tetap-scripts')
-@stack('upah-tetap-pensiun-scripts')
-@stack('upah-all-in-scripts')
+@stack('detail-scripts')
 @endpush
