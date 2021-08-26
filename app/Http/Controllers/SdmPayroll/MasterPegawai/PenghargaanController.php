@@ -22,7 +22,7 @@ class PenghargaanController extends Controller
 
         return datatables()->of($penghargaan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_penghargaan" value="'.$row->nopeg.'_'.$row->tanggal.'_'.$row->nama.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_penghargaan" data-tanggal="'.$row->tanggal.'" data-nama="'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])

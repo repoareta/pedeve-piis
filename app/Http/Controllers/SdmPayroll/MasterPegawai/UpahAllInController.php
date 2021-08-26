@@ -18,11 +18,11 @@ class UpahAllInController extends Controller
      */
     public function indexJson(MasterPegawai $pegawai)
     {
-        $upah_all_in_list = UpahAllIn::where('nopek', $pegawai->nopeg)->get();
+        $upah_all_in_list = UpahAllIn::where('nopek', $pegawai->nopeg);
 
         return datatables()->of($upah_all_in_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_all_in" value="'.$row->nopek.'-'.$row->nilai.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_all_in" data-nilai="'.$row->nilai.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('nilai', function ($row) {

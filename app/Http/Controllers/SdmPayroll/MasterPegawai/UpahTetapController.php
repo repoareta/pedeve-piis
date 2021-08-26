@@ -22,7 +22,7 @@ class UpahTetapController extends Controller
 
         return datatables()->of($upah_tetap_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap" value="'.$row->nopeg.'-'.$row->ut.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap" data-ut="'.$row->ut.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('ut', function ($row) {

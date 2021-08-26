@@ -51,7 +51,7 @@ class PegawaiController extends Controller
                 }
             })
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->nopeg.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pegawai" value="'.$row->nopeg.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('bagian', function ($row) {
