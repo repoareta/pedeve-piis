@@ -4,8 +4,10 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KeluargaStore;
+use App\Models\Agama;
 use App\Models\Keluarga;
 use App\Models\MasterPegawai;
+use App\Models\Pendidikan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,11 +22,11 @@ class KeluargaController extends Controller
      */
     public function indexJson(MasterPegawai $pegawai)
     {
-        $keluarga_list = Keluarga::where('nopeg', $pegawai->nopeg)->get();
+        $keluarga_list = Keluarga::where('nopeg', $pegawai->nopeg);
 
         return datatables()->of($keluarga_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_keluarga" value="'.$row->nopeg.'-'.$row->status.'-'.$row->nama.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_keluarga" data-nama="'.$row->nama.'" data-status="'.$row->status.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('status', function ($row) {
@@ -50,14 +52,30 @@ class KeluargaController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request, MasterPegawai $pegawai)
+    {
+        $agama_list = Agama::all();
+        $pendidikan_list = Pendidikan::all();
+        return view('modul-sdm-payroll.master-pegawai._keluarga.create', compact(
+            'pegawai',
+            'agama_list',
+            'pendidikan_list'
+        ));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KeluargaStore $request, MasterPegawai $pegawai)
+    public function store(KeluargaStore $request, MasterPegawai $pegawai, Keluarga $keluarga)
     {
-        $keluarga                   = new Keluarga;
         $keluarga->nopeg            = $pegawai->nopeg;
         $keluarga->status           = $request->status_keluarga;
         $keluarga->nama             = $request->nama_keluarga;
@@ -82,7 +100,7 @@ class KeluargaController extends Controller
                 $pegawai->nopeg."_".$keluarga->status."_".$nama_keluarga.".".$extension,
                 $photo
             );
-            $photo_path = $photo_keluarga->storeAs('pekerja_img', $keluarga->photo, 'public');
+            $photo_path = $photo_keluarga->storeAs('img_pegawai', $keluarga->photo, 'public');
         }
 
         $keluarga->save();
@@ -96,7 +114,7 @@ class KeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJson(Request $request)
+    public function edit(Request $request)
     {
         $keluarga = Keluarga::where('nopeg', $request->nopeg)
         ->where('status', $request->status)
@@ -144,7 +162,7 @@ class KeluargaController extends Controller
                 $pegawai->nopeg."_".$keluarga->status."_".$nama_keluarga.".".$extension,
                 $photo
             );
-            $photo_path = $photo_keluarga->storeAs('pekerja_img', $keluarga->photo, 'public');
+            $photo_path = $photo_keluarga->storeAs('img_pegawai', $keluarga->photo, 'public');
         }
 
         $keluarga->save();
@@ -165,7 +183,7 @@ class KeluargaController extends Controller
         ->where('nama', $request->nama)
         ->first();
 
-        $image_path = "public/pekerja_img/$keluarga->photo";  // Value is not URL but directory file path
+        $image_path = "public/img_pegawai/$keluarga->photo";  // Value is not URL but directory file path
         Storage::delete($image_path);
 
         $keluarga->delete();

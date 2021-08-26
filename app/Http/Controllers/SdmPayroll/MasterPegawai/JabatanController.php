@@ -19,11 +19,11 @@ class JabatanController extends Controller
      */
     public function indexJson(MasterPegawai $pegawai)
     {
-        $jabatan_list = Jabatan::where('nopeg', $pegawai->nopeg)->get();
+        $jabatan_list = Jabatan::where('nopeg', $pegawai->nopeg);
 
         return datatables()->of($jabatan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_jabatan" value="'.$row->nopeg.'_'.$row->mulai.'_'.$row->kdbag.'_'.$row->kdjab.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_jabatan" data-mulai="'.$row->mulai.'" data-kdbagian="'.$row->kdbag.'" data-kdjabatan="'.$row->kdjab.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('bagian', function ($row) {
@@ -79,7 +79,7 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJson(Request $request)
+    public function edit(Request $request)
     {
         $jabatan = Jabatan::where('nopeg', $request->nopeg)
         ->where('mulai', $request->mulai)

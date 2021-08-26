@@ -182,6 +182,12 @@
             }, 0 );
         });
 
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $($.fn.dataTable.tables(true)).DataTable()
+            .columns.adjust()
+            .responsive.recalc();
+        });
+
         // Restricts input for the set of matched elements to the given inputFilter function.
         (function($) {
         $.fn.inputFilter = function(inputFilter) {
@@ -204,7 +210,7 @@
             days: ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"],
             daysShort: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
             daysMin: ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"],
-            months: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "Desember"],
+            months: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
             monthsShort: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"],
             today: "Hari Ini",
             clear: "Clear",
@@ -212,6 +218,14 @@
             titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
             weekStart: 0
         };
+
+        $('.datepicker').datepicker({
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            language : 'id',
+            format   : 'yyyy-mm-dd'
+        });
 
         $('#nopek').select2().on('change', function() {
             var id = $(this).val();
