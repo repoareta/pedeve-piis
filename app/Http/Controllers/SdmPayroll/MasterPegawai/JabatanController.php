@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\JabatanStoreRequest;
 use App\Models\Jabatan;
+use App\Models\KodeBagian;
 use App\Models\KodeJabatan;
 use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JabatanController extends Controller
 {
@@ -51,7 +54,12 @@ class JabatanController extends Controller
 
     public function create(MasterPegawai $pegawai)
     {
-        return view('modul-sdm-payroll.master-pegawai._jabatan.create');
+        $kodeBagian = KodeBagian::all();
+
+        return view('modul-sdm-payroll.master-pegawai._jabatan.create', compact(
+            'kodeBagian',
+            'pegawai',
+        ));
     }
 
     /**
@@ -60,11 +68,11 @@ class JabatanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai, Jabatan $jabatan)
+    public function store(JabatanStoreRequest $request, MasterPegawai $pegawai, Jabatan $jabatan)
     {
         $jabatan->nopeg    = $pegawai->nopeg;
-        $jabatan->kdbag    = $request->bagian_pekerja;
-        $jabatan->kdjab    = $request->jabatan_pekerja;
+        $jabatan->kdbag    = $request->bagian;
+        $jabatan->kdjab    = $request->jabatan;
         $jabatan->mulai    = $request->mulai;
         $jabatan->sampai   = $request->sampai;
         $jabatan->noskep   = $request->no_skep;
@@ -75,7 +83,8 @@ class JabatanController extends Controller
 
         $jabatan->save();
 
-        return response()->json($jabatan, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
