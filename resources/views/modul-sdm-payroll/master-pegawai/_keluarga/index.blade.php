@@ -61,7 +61,7 @@
             serverSide: true,
             ajax: "{{ route('modul_sdm_payroll.master_pegawai.keluarga.index.json', ['pegawai' => $pegawai->nopeg]) }}",
             columns: [
-                {data: 'radio', name: 'radio', orderable: false, searchable: false, class:'radio-button'},
+                {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'nama', name: 'nama'},
                 {data: 'status', name: 'status'},
                 {data: 'tempatlahir', name: 'tempatlahir'},

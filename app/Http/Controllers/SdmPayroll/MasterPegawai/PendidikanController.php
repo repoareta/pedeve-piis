@@ -22,7 +22,7 @@ class PendidikanController extends Controller
 
         return datatables()->of($PekerjaPendidikan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_PekerjaPendidikan" value="'.$row->nopeg.'_'.$row->mulai.'_'.$row->tempatdidik.'_'.$row->kodedidik.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pekerja_pendidikan" data-mulai="'.$row->mulai.'" data-tempatdidik="'.$row->tempatdidik.'" data-kodedidik="'.$row->kodedidik.'"><span></span></label>';
                 
                 return $radio;
             })

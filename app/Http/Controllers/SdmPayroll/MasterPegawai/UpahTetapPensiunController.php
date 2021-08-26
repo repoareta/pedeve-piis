@@ -22,7 +22,7 @@ class UpahTetapPensiunController extends Controller
 
         return datatables()->of($upah_tetap_pensiun_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap_pensiun" value="'.$row->nopeg.'-'.$row->ut.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_tetap_pensiun" data-ut="'.$row->ut.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('ut', function ($row) {
@@ -44,9 +44,8 @@ class UpahTetapPensiunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(Request $request, MasterPegawai $pegawai, UpahTetapPensiun $upah)
     {
-        $upah             = new UpahTetapPensiun;
         $upah->nopeg      = $pegawai->nopeg;
         $upah->ut         = $request->nilai_upah_tetap_pensiun;
         $upah->mulai      = $request->mulai_upah_tetap_pensiun;
@@ -66,7 +65,7 @@ class UpahTetapPensiunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJson(Request $request)
+    public function edit(Request $request)
     {
         $upah = UpahTetapPensiun::where('nopeg', $request->nopeg)
         ->where('ut', $request->ut)

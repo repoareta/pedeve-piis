@@ -22,7 +22,7 @@ class SmkController extends Controller
 
         return datatables()->of($smk_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_smk" value="'.$row->nopeg.'-'.$row->tahun.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_smk" data-tahun="'.$row->tahun.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])

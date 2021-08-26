@@ -22,7 +22,7 @@ class GolonganGajiController extends Controller
 
         return datatables()->of($golongan_gaji_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_golongan_gaji" value="'.$row->nopeg.'_'.$row->golgaji.'_'.$row->tanggal.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_golongan_gaji" data-golgaji="'.$row->golgaji.'" data-tanggal="'.$row->tanggal.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('tanggal', function ($row) {

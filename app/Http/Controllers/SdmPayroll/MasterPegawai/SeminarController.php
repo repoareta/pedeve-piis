@@ -22,7 +22,7 @@ class SeminarController extends Controller
 
         return datatables()->of($seminar_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_seminar" value="'.$row->nopeg.'_'.$row->mulai.'_'.$row->nama.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_seminar" data-mulai="'.$row->mulai.'" data-nama="'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('mulai', function ($row) {
