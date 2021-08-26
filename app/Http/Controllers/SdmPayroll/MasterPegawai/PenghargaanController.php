@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PenghargaanStoreRequest;
 use App\Models\MasterPegawai;
 use App\Models\Penghargaan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenghargaanController extends Controller
 {
@@ -25,8 +27,18 @@ class PenghargaanController extends Controller
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_penghargaan" data-tanggal="'.$row->tanggal.'" data-nama="'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
+            ->addColumn('tanggal', function ($row) {
+                return Carbon::parse($row->tanggal)->translatedFormat('d F Y');
+            })
             ->rawColumns(['radio'])
             ->make(true);
+    }
+
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._penghargaan.create', compact(
+            'pegawai',
+        ));
     }
 
     /**
@@ -35,7 +47,7 @@ class PenghargaanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(PenghargaanStoreRequest $request, MasterPegawai $pegawai)
     {
         $penghargaan = new Penghargaan;
         $penghargaan->nopeg = $pegawai->nopeg;
@@ -47,7 +59,8 @@ class PenghargaanController extends Controller
 
         $penghargaan->save();
 
-        return response()->json($penghargaan, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
