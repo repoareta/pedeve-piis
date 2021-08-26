@@ -15,6 +15,8 @@ use DB;
 use DomPDF;
 use Alert;
 use App\Exports\RekapPermintaanBayarExport;
+use App\Http\Requests\PermintaanBayarDetailStoreRequest;
+use App\Http\Requests\PermintaanBayarStoreRequest;
 
 class PermintaanBayarController extends Controller
 {
@@ -121,7 +123,7 @@ class PermintaanBayarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PermintaanBayarStoreRequest $request)
     {
         $check_data =  DB::select("SELECT * from umu_bayar_header where no_bayar = '$request->nobayar'");
         if (!empty($check_data)) {
@@ -168,7 +170,7 @@ class PermintaanBayarController extends Controller
         }
     }
 
-    public function storeDetail(request $request)
+    public function storeDetail(PermintaanBayarDetailStoreRequest $request)
     {
         $check_data =  DB::select("SELECT * from umu_bayar_detail where no = '$request->no' and  no_bayar = '$request->nobayar'");
         if (!empty($check_data)) {
@@ -178,7 +180,7 @@ class PermintaanBayarController extends Controller
                     'no' => $request->no,
                     'keterangan' => $request->keterangan,
                     'account' => $request->acc,
-                    'nilai' => str_replace([',', '.'], '', $request->nilai),
+                    'nilai' => sanitize_nominal($request->nilai),
                     'cj' => $request->cj,
                     'jb' => $request->jb,
                     'bagian' => $request->bagian,
@@ -191,7 +193,7 @@ class PermintaanBayarController extends Controller
                 'no' => $request->no,
                 'keterangan' => $request->keterangan,
                 'account' => $request->acc,
-                'nilai' => str_replace([',', '.'], '', $request->nilai),
+                'nilai' => sanitize_nominal($request->nilai),
                 'cj' => $request->cj,
                 'jb' => $request->jb,
                 'bagian' => $request->bagian,
