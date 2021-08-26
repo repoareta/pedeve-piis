@@ -12,7 +12,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Penghargaan
+                Tambah Pengalaman Kerja
             </h3>
         </div>
     </div>

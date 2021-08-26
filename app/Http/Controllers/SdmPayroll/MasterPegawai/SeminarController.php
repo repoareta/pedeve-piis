@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SeminarStoreRequest;
 use App\Models\MasterPegawai;
 use App\Models\Seminar;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SeminarController extends Controller
 {
@@ -35,13 +37,20 @@ class SeminarController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._seminar.create', compact(
+            'pegawai',
+        ));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(SeminarStoreRequest $request, MasterPegawai $pegawai)
     {
         $seminar = new Seminar;
         $seminar->nopeg         = $pegawai->nopeg;
@@ -57,7 +66,8 @@ class SeminarController extends Controller
 
         $seminar->save();
 
-        return response()->json($seminar, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
