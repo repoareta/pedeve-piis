@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpahAllInStoreRequest;
 use App\Models\MasterPegawai;
 use App\Models\UpahAllIn;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UpahAllInController extends Controller
 {
@@ -22,7 +24,7 @@ class UpahAllInController extends Controller
 
         return datatables()->of($upah_all_in_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_all_in" data-nilai="'.$row->nilai.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_upah_all_in" data-nilai="' . $row->nilai . '"><span></span></label>';
                 return $radio;
             })
             ->addColumn('nilai', function ($row) {
@@ -44,17 +46,24 @@ class UpahAllInController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._upah-all-in.create', compact(
+            'pegawai',
+        ));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(UpahAllInStoreRequest $request, MasterPegawai $pegawai)
     {
         $upah           = new UpahAllIn;
         $upah->nopek    = $pegawai->nopeg;
-        $upah->nilai    = $request->nilai_upah_all_in;
+        $upah->nilai    = sanitize_nominal($request->nilai_upah_all_in);
         $upah->mulai    = $request->mulai_upah_all_in;
         $upah->sampai   = $request->sampai_upah_all_in;
         $upah->userid   = Auth::user()->userid;
@@ -62,7 +71,8 @@ class UpahAllInController extends Controller
 
         $upah->save();
 
-        return response()->json($upah, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
@@ -74,8 +84,8 @@ class UpahAllInController extends Controller
     public function showJson(Request $request)
     {
         $upah = UpahAllIn::where('nopek', $request->nopeg)
-        ->where('nilai', $request->nilai)
-        ->first();
+            ->where('nilai', $request->nilai)
+            ->first();
 
         $upah['mulai_date'] = $upah->formated_mulai;
         $upah['sampai_date'] = $upah->formated_sampai;
@@ -93,8 +103,8 @@ class UpahAllInController extends Controller
     public function update(Request $request, MasterPegawai $pegawai, $nilai)
     {
         $upah = UpahAllIn::where('nopek', $pegawai->nopeg)
-        ->where('nilai', $request->nilai)
-        ->first();
+            ->where('nilai', $request->nilai)
+            ->first();
 
         $upah->nopek    = $pegawai->nopeg;
         $upah->nilai    = $request->nilai_upah_all_in;
@@ -116,8 +126,8 @@ class UpahAllInController extends Controller
     public function delete(Request $request)
     {
         $upah = UpahAllIn::where('nopek', $request->nopeg)
-        ->where('nilai', $request->nilai)
-        ->delete();
+            ->where('nilai', $request->nilai)
+            ->delete();
 
         return response()->json(['delete' => true], 200);
     }
