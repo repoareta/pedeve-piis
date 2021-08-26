@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form form--label-right" action="{{ route('modul_sdm_payroll.proses_gaji.slip_gaji.export') }}" method="post">
+                <form class="form" action="{{ route('modul_sdm_payroll.proses_gaji.slip_gaji.export') }}" method="post">
                     @csrf
                     <div class="form-group row">
                         <label for="dari-input" class="col-2 col-form-label">Nama Pegawai<span class="text-danger">*</span></label>

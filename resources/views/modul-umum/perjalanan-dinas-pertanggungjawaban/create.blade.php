@@ -13,7 +13,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Panjar Dinas
+                Tambah Pertanggungjawaban Panjar Dinas
             </h3>
         </div>
     </div>
@@ -25,7 +25,7 @@
                         <div class="alert-text">Header Pertanggungjawaban Panjar Dinas</div>
                     </div>
                 </div>
-                <form class="kt-form kt-form--label-right" id="formPPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.store') }}" method="POST">
+                <form class="form" id="formPPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="spd-input" class="col-2 col-form-label">No. PJ Panjar</label>
@@ -38,12 +38,11 @@
 							<input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('Y-m-d') }}">
 						</div>
 					</div>
-
 					
 					<div class="form-group row">
-						<label for="example-email-input" class="col-2 col-form-label">No. Panjar</label>
+						<label for="" class="col-2 col-form-label">No. Panjar</label>
 						<div class="col-5">
-							<select class="form-control kt-select2" name="no_panjar" id="no_panjar">
+							<select class="form-control select2" name="no_panjar" id="no_panjar">
 								<option value="">- Pilih No. Panjar -</option>
 								@foreach ($panjar_header_list as $panjar_header)
 									<option value="{{ $panjar_header->no_panjar }}">{{ $panjar_header->no_panjar }}</option>
@@ -52,7 +51,7 @@
 							<div id="no_panjar-nya"></div>
 						</div>
 
-						<label for="example-email-input" class="col-2 col-form-label">Keterangan</label>
+						<label for="" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-3">
 							<input class="form-control" type="text" readonly name="keterangan" id="keterangan">
 						</div>
@@ -61,7 +60,7 @@
 					<div class="form-group row">
 						<label for="nopek-input" class="col-2 col-form-label">Nopek</label>
 						<div class="col-10">
-							<select class="form-control kt-select2" id="nopek" name="nopek">
+							<select class="form-control select2" id="nopek" name="nopek">
 								<option value="">- Pilih Nopek -</option>
 								@foreach ($pegawai_list as $pegawai)
 								<option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
@@ -72,9 +71,9 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="example-email-input" class="col-2 col-form-label">Jabatan</label>
+						<label for="" class="col-2 col-form-label">Jabatan</label>
 						<div class="col-5">
-							<select class="form-control kt-select2" name="jabatan" id="jabatan">
+							<select class="form-control select2" name="jabatan" id="jabatan">
 								<option value="">- Pilih Jabatan -</option>
 								@foreach ($jabatan_list as $jabatan)
 									<option value="{{ $jabatan->keterangan }}">{{ $jabatan->keterangan }}</option>
@@ -83,7 +82,7 @@
 							<div id="jabatan-nya"></div>
 						</div>
 
-						<label for="example-email-input" class="col-2 col-form-label">Golongan</label>
+						<label for="" class="col-2 col-form-label">Golongan</label>
 						<div class="col-3">
 							<input class="form-control" type="text" readonly name="golongan" id="golongan">
 						</div>
@@ -92,21 +91,21 @@
 					<div class="form-group row">
 						<label for="jumlah" class="col-2 col-form-label">Jumlah Panjar Dinas</label>
 						<div class="col-5">
-							<input class="form-control thousands" type="text" readonly name="jumlah" id="jumlah" value="0.00">
+							<input class="form-control money" type="text" readonly name="jumlah" id="jumlah" value="0.00">
 						</div>
 
-						<label for="example-email-input" class="col-2 col-form-label">Jumlah Panjar Detail</label>
+						<label for="" class="col-2 col-form-label">Jumlah Panjar Detail</label>
 						<div class="col-3">
-							<input class="form-control thousands" type="text" readonly name="jumlah_detail" id="jumlah_detail">
+							<input class="form-control money" type="text" readonly name="jumlah_detail" id="jumlah_detail">
 						</div>
 					</div>
 
-					<div class="kt-form__actions">
+					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-								<button type="submit" class="btn btn-brand"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
+								<a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
 							</div>
 						</div>
 					</div>
@@ -114,9 +113,7 @@
             </div>
         </div>        
     </div>
-</div>
 
-<div class="card card-custom gutter-b">
     <div class="card-header justify-content-start">
         <div class="card-title">
             <span class="card-icon">

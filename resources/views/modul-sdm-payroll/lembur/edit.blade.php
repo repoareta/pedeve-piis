@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-email-input" class="col-2 col-form-label">Tgl. Lembur<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Tgl. Lembur<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="{{ date('d/m/Y') }}" style="background-color:#DCDCDC; cursor:not-allowed" readonly id="tanggal" name="tanggal" autocomplete="off">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid" autocomplete="off">

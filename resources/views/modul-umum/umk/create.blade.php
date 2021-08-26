@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-email-input" class="col-2 col-form-label">Jenis Uang Muka <span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Jenis Uang Muka <span class="text-danger">*</span></label>
                 <div class="col-6">
                     <div class="radio-inline">
                         <label class="radio">

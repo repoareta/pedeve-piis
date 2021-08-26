@@ -61,7 +61,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="example-email-input" class="col-2 col-form-label">Jabatan</label>
+                <label for="" class="col-2 col-form-label">Jabatan</label>
                 <div class="col-5">
                     <select class="form-control kt-select2" name="jabatan" id="jabatan">
                         <option value="">- Pilih Jabatan -</option>
@@ -72,7 +72,7 @@
                     <div id="jabatan-nya"></div>
                 </div>
 
-                <label for="example-email-input" class="col-2 col-form-label">Golongan</label>
+                <label for="" class="col-2 col-form-label">Golongan</label>
                 <div class="col-3">
                     <input class="form-control" type="text" name="golongan" id="golongan">
                 </div>

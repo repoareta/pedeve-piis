@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form form--label-right" id="formMasterPegawai" action="{{ route('modul_sdm_payroll.master_pegawai.update', ['pegawai' => $pegawai->nopeg]) }}" method="POST" enctype="multipart/form-data">
+                <form class="form" id="formMasterPegawai" action="{{ route('modul_sdm_payroll.master_pegawai.update', ['pegawai' => $pegawai->nopeg]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-5">
