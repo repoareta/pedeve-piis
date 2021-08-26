@@ -24,8 +24,7 @@ class GolonganGajiStore extends FormRequest
     public function rules()
     {
         return [
-            'nopeg' => 'required',
-            'tanggal_golongan_gaji' => 'required',
+            'tanggal_golongan_gaji' => 'required|unique:sdm_golgaji,tanggal',
             'golongan_gaji' => 'required',
         ];
     }
