@@ -21,9 +21,6 @@
         <div class="row">
             <div class="col-12">
                 <form action="{{ route('modul_sdm_payroll.master_pegawai.seminar.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-seminar">
-                    @if($errors->any())
-                        {{ implode('', $errors->all('<div>:message</div>')) }}
-                    @endif
                     @csrf
                     <div class="form-group row">
 						<label class="col-2 col-form-label">Nama</label>
