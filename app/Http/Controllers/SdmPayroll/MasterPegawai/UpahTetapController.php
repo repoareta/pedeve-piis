@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpahTetapStoreRequest;
 use App\Models\MasterPegawai;
 use App\Models\UpahTetap;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UpahTetapController extends Controller
 {
@@ -38,17 +40,24 @@ class UpahTetapController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._upah-tetap-pensiun.create', compact(
+            'pegawai',
+        ));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, MasterPegawai $pegawai)
+    public function store(UpahTetapStoreRequest $request, MasterPegawai $pegawai)
     {
         $upah             = new UpahTetap;
         $upah->nopeg      = $pegawai->nopeg;
-        $upah->ut         = $request->nilai_upah_tetap;
+        $upah->ut         = sanitize_nominal($request->nilai_upah_tetap);
         $upah->mulai      = $request->mulai_upah_tetap;
         $upah->sampai     = $request->sampai_upah_tetap;
         $upah->keterangan = $request->keterangan_upah_tetap;
@@ -57,7 +66,8 @@ class UpahTetapController extends Controller
 
         $upah->save();
 
-        return response()->json($upah, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
