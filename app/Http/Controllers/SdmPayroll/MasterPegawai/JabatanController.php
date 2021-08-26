@@ -49,6 +49,11 @@ class JabatanController extends Controller
             ->make(true);
     }
 
+    public function create(MasterPegawai $pegawai)
+    {
+        return view('modul-sdm-payroll.master-pegawai._jabatan.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

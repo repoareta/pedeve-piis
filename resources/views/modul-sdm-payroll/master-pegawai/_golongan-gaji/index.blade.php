@@ -10,7 +10,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="#">
+                <a href="{{ route('modul_sdm_payroll.master_pegawai.golongan_gaji.create', ['pegawai' => $pegawai->nopeg]) }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
