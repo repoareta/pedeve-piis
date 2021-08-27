@@ -93,15 +93,4 @@
 
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\AktaUpdate', '#form-edit') !!}
-
-<script>
-    $(document).ready(function () {
-        $('.datepicker').datepicker({
-            todayHighlight: true,
-            orientation: "bottom left",
-            autoclose: true,
-            format   : 'dd-mm-yyyy'
-        });
-    });
-</script>
 @endpush
