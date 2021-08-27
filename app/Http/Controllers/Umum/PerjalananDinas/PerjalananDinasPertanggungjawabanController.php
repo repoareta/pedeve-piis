@@ -163,8 +163,6 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         ->orderBy('keterangan', 'ASC')
         ->get();
 
-        // $panjar_header_list = PanjarHeader::all();
-
         $no_panjar = $ppanjar_header->panjar_header->no_panjar;
 
         $ppanjar_header_list = PPanjarHeader::select('no_panjar')
@@ -175,7 +173,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
 
         $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)->get();
 
-        return view('perjalanan-dinas-pertanggungjawaban.edit', compact(
+        return view('modul-umum.perjalanan-dinas-pertanggungjawaban.edit', compact(
             'pegawai_list',
             'panjar_header_list',
             'jabatan_list',

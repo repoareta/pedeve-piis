@@ -34,6 +34,11 @@ class PerjalananDinasDetailController extends Controller
             ->make(true);
     }
 
+    public function create()
+    {
+        return view('modul-umum.perjalanan-dinas._detail.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

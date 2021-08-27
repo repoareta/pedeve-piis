@@ -12,7 +12,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Akta
+                Tambah Perizinan
             </h3>
         </div>
     </div>
