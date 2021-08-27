@@ -179,7 +179,7 @@
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-dark fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                             <i class="fas fa-2x fa-times-circle text-dark"></i>
                         </span>
                     </a>

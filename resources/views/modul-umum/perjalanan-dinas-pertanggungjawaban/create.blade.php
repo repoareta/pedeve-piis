@@ -120,7 +120,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Detail Panjar Dinas
+                Detail Pertanggungjawaban Panjar Dinas
             </h3>
         </div>
         <div class="card-toolbar">
@@ -137,7 +137,7 @@
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-dark fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                             <i class="fas fa-2x fa-times-circle text-dark"></i>
                         </span>
                     </a>
@@ -171,4 +171,33 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PPerjalananDinasStore', '#formPPanjarDinas') !!}
+
+<script type="text/javascript">
+	$(document).ready(function () {
+        
+		$("#jumlah_detail, #jumlah").on('change', function(e){
+			var jumlah = $('#jumlah').val();
+			var jumlah_detail = $('#jumlah_detail').val();
+
+			var selisih = jumlah - jumlah_detail;
+
+			$('#jumlah').val(selisih.toFixed(2));
+		});
+
+		$("#formPPanjarDinas").on('submit', function(){
+			if ($('#no_panjar-error').length){
+				$("#no_panjar-error").insertAfter("#no_panjar-nya");
+			}
+
+			if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#nopek-nya");
+			}
+
+			if ($('#jabatan-error').length){
+				$("#jabatan-error").insertAfter("#jabatan-nya");
+			}
+		});
+	});
+</script>
 @endpush
