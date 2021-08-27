@@ -136,17 +136,17 @@ class PerjalananDinasDetailController extends Controller
         $no_urut,
         $nopek
     ) {
-        $no_panjar = str_replace('-', '/', $no_panjar);
+        $no_panjar_detail = str_replace('-', '/', $no_panjar);
         $pegawai = MasterPegawai::where('nopeg', $nopek)
         ->firstOrFail();
 
-        $panjar_detail = PanjarDetail::where('no_panjar', $no_panjar)
+        $panjar_detail = PanjarDetail::where('no_panjar', $no_panjar_detail)
         ->where('no', $no_urut)
         ->where('nopek', $nopek)
         ->firstOrFail();
 
         $panjar_detail->no = $request->no_urut;
-        $panjar_detail->no_panjar = $no_panjar;
+        $panjar_detail->no_panjar = $no_panjar_detail;
         $panjar_detail->nopek = $request->nopek;
         $panjar_detail->nama = $pegawai->nama;
         $panjar_detail->jabatan = $request->jabatan;
