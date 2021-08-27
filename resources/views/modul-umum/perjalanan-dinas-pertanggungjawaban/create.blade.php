@@ -184,6 +184,9 @@
 		});
 
 		$("#formPPanjarDinas").on('submit', function(){
+
+			e.preventDefault();
+			
 			if ($('#no_panjar-error').length){
 				$("#no_panjar-error").insertAfter("#no_panjar-nya");
 			}
