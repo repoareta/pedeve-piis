@@ -25,7 +25,12 @@
                         <div class="alert-text">Header Pertanggungjawaban Panjar Dinas</div>
                     </div>
                 </div>
-                <form class="form" id="formPPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.update', ['no_ppanjar' => 123]) }}" method="POST">
+                <form class="form" id="formPPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.update', [
+					'no_ppanjar' => str_replace(
+						'/',
+						'-',
+						$ppanjar_header->no_ppanjar
+					)]) }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">No. PJ Panjar</label>
@@ -127,6 +132,30 @@
 
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\PPerjalananDinasUpdate', '#formPPanjarDinas') !!}
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		$("#formPPanjarDinas").on('submit', function(e){
+			e.preventDefault();
+			
+			if ($('#no_panjar-error').length){
+				$("#no_panjar-error").insertAfter("#no_panjar-nya");
+			}
+
+			if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#nopek-nya");
+			}
+
+			if ($('#jabatan-error').length){
+				$("#jabatan-error").insertAfter("#jabatan-nya");
+			}
+
+			if($(this).valid()) {
+				$(this).unbind('submit').submit();
+			}
+		});
+	});
+</script>
 
 @stack('detail-scripts')
 @endpush

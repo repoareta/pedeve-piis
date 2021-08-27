@@ -149,14 +149,14 @@
                 <table class="table table-hover table-checkable" id="kt_table">
                     <thead class="thead-light">
                         <tr>
-                            <th></th>
-                            <th>NO</th>
-                            <th>NOPEK</th>
-                            <th>NAMA</th>
-                            <th>GOL</th>
-                            <th>JABATAN</th>
-                            <th>KETERANGAN</th>
-                        </tr>
+							<th></th>
+							<th>NO</th>
+							<th>NOPEK</th>
+							<th>KETERANGAN</th>
+							<th>NILAI</th>
+							<th>QTY</th>
+							<th>TOTAL</th>
+						</tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -173,18 +173,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-        
-		$("#jumlah_detail, #jumlah").on('change', function(e){
-			var jumlah = $('#jumlah').val();
-			var jumlah_detail = $('#jumlah_detail').val();
-
-			var selisih = jumlah - jumlah_detail;
-
-			$('#jumlah').val(selisih.toFixed(2));
-		});
 
 		$("#formPPanjarDinas").on('submit', function(e){
-
 			e.preventDefault();
 			
 			if ($('#no_panjar-error').length){

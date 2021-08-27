@@ -188,8 +188,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
             'pegawai_list',
             'panjar_header_list',
             'jabatan_list',
-            'ppanjar_header',
-            'no_ppanjar'
+            'ppanjar_header'
         ));
     }
 

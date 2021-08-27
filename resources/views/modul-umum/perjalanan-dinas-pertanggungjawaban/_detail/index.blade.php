@@ -10,7 +10,12 @@
     <div class="card-toolbar">
         <div class="float-left">
             <div class="">
-                <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.create') }}">
+                <a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.detail.create', [
+                    'no_ppanjar' => str_replace(
+                        '/',
+                        '-',
+                        $ppanjar_header->no_ppanjar
+                    )]) }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
@@ -35,14 +40,14 @@
             <table class="table table-bordered" id="kt_table">
                 <thead class="thead-light">
                     <tr>
-                        <th></th>
-                        <th>NO</th>
-                        <th>NOPEK</th>
-                        <th>NAMA</th>
-                        <th>GOL</th>
-                        <th>JABATAN</th>
-                        <th>KETERANGAN</th>
-                    </tr>
+						<th></th>
+						<th>NO</th>
+						<th>NOPEK</th>
+						<th>KETERANGAN</th>
+						<th>NILAI</th>
+						<th>QTY</th>
+						<th>TOTAL</th>
+					</tr>
                 </thead>
                 <tbody>
                 </tbody>
@@ -50,3 +55,85 @@
         </div>
     </div>        
 </div>
+
+@push('detail-scripts')
+<script type="text/javascript">
+	$(document).ready(function () {
+		var t = $('#kt_table').DataTable({
+			scrollX   : true,
+			processing: true,
+			serverSide: true,
+			ajax: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.detail.index.json', ['no_ppanjar' => str_replace('/', '-', $ppanjar_header->no_ppanjar)]) }}",
+			columns: [
+				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
+				{data: 'no', name: 'no'},
+				{data: 'nopek', name: 'nopek'},
+				{data: 'keterangan', name: 'keterangan'},
+				{data: 'nilai', name: 'nilai', class:'no-wrap text-right'},
+				{data: 'qty', name: 'qty', class:'no-wrap text-right'},
+				{data: 'total', name: 'total', class:'no-wrap text-right'}
+			]
+		});
+
+		$('#deleteRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var no_nopek = $(this).val();
+					
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
+
+					swalWithBootstrapButtons.fire({
+						title: "Data yang akan dihapus?",
+						text: "Nopek : " + no_nopek,
+						type: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Ya, hapus',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							$.ajax({
+								url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.detail.delete', ['no_ppanjar' => $ppanjar_header->no_ppanjar]) }}",
+								type: 'DELETE',
+								dataType: 'json',
+								data: {
+									"no_nopek": no_nopek,
+									"_token": "{{ csrf_token() }}",
+								},
+								success: function () {
+									Swal.fire({
+										type  : 'success',
+										title : 'Hapus Detail Pertanggungjawaban Panjar ' + no_nopek,
+										text  : 'Success',
+										timer : 2000
+									}).then(function() {
+										t.ajax.reload();
+									});
+								},
+								error: function () {
+									alert("Terjadi kesalahan, coba lagi nanti");
+								}
+							});
+						}
+					});
+				});
+			} else {
+				Swal.fire({
+					type: 'warning',
+					timer: 2000,
+					title: 'Oops...',
+					text: 'Tandai baris yang ingin dihapus'
+				});
+			}
+		});
+	});
+</script>
+@endpush
