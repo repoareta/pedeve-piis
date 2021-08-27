@@ -138,7 +138,9 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         $ppanjar_header->save();
 
         if ($request->url == 'edit') {
-            return redirect()->route('modul_umum.perjalanan_dinas.pertanggungjawaban.edit', [
+            return redirect()->route(
+                'modul_umum.perjalanan_dinas.pertanggungjawaban.edit',
+                [
                 'no_ppanjar' => str_replace(
                     '/',
                     '-',
@@ -179,13 +181,15 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         ->get()
         ->toArray();
 
-        $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)->get();
+        $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)
+        ->get();
 
         return view('modul-umum.perjalanan-dinas-pertanggungjawaban.edit', compact(
             'pegawai_list',
             'panjar_header_list',
             'jabatan_list',
-            'ppanjar_header'
+            'ppanjar_header',
+            'no_ppanjar'
         ));
     }
 
