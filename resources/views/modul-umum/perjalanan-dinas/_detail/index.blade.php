@@ -53,15 +53,6 @@
 
 @push('detail-scripts')
 <script>
-    function refreshTable() {
-		var table = $('#kt_table').DataTable();
-		table.clear();
-		table.ajax.url("{{ route('modul_umum.perjalanan_dinas.detail.index.json', ['no_panjar' => str_replace('/', '-', $panjar_header->no_panjar)]) }}").load(function() {
-			var rowCount = table.rows().count();
-			$('#no_urut').val(rowCount + 1);
-		});
-	}
-
     $(document).ready(function () {
         var t = $('#kt_table').DataTable({
 			scrollX   : true,
@@ -76,15 +67,39 @@
 				{data: 'golongan', name: 'golongan'},
 				{data: 'jabatan', name: 'jabatan'},
 				{data: 'keterangan', name: 'keterangan'}
-			],
-			order: [[ 0, "asc" ], [ 1, "asc" ]]
+			]
+		});
+
+		$('#editRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var no_panjar = $(this).data('no_panjar');
+					var no_urut = $(this).data('no_urut');
+					var nopek = $(this).data('nopeg');
+					var url = '{{ route("modul_umum.perjalanan_dinas.detail.edit", [
+						"no_panjar" => ":no_panjar", 
+						"no_urut" => ":no_urut",
+						"nopek" => ":nopek" 
+					]) }}';
+					// go to page edit
+					url = url.replace(':no_panjar', no_panjar);
+					url = url.replace(':no_urut', no_urut);
+					url = url.replace(':nopek', nopek);
+					window.location.href = url;
+				});
+			} else {
+				swalAlertInit('ubah');
+			}
 		});
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
-					var no_nopek = $(this).val();
+					var no_urut = $(this).data('no_urut');
+					var nopeg = $(this).data('nopeg');
+					var nama = $(this).data('nama');
 					// delete stuff
 					const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
@@ -96,7 +111,7 @@
 
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
-						text: "Nopek : " + no_nopek,
+						text: "Nama Pegawai : " + nama,
 						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
@@ -110,9 +125,8 @@
 								type: 'DELETE',
 								dataType: 'json',
 								data: {
-									"no_nopek": no_nopek,
-									"no_panjar": "{{ $panjar_header->no_panjar }}",
-									"session": false,
+									"no_urut": no_urut,
+									"nopeg": nopeg,
 									"_token": "{{ csrf_token() }}",
 								},
 								success: function () {

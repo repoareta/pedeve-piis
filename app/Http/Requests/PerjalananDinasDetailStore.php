@@ -24,11 +24,11 @@ class PerjalananDinasDetailStore extends FormRequest
     public function rules()
     {
         return [
-            'no_urut'           => 'required',
-            'keterangan_detail' => 'required',
-            'nopek_detail'      => 'required',
-            'jabatan_detail'    => 'required',
-            'golongan_detail'   => 'required',
+            'no_urut'    => 'required|numeric',
+            'keterangan' => 'required',
+            'nopek'      => 'required',
+            'jabatan'    => 'required',
+            'golongan'   => 'required',
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Umum\PerjalananDinas;
 use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PerjalananDinasDetailStore;
+use App\Http\Requests\PerjalananDinasDetailUpdate;
 use App\Models\KodeJabatan;
 use App\Models\MasterPegawai;
 use App\Models\PanjarDetail;
@@ -19,19 +20,26 @@ class PerjalananDinasDetailController extends Controller
      */
     public function indexJson(Request $request, $no_panjar = null)
     {
-        if (session('panjar_detail') and $no_panjar == null) {
-            $panjar_list_detail = session('panjar_detail');
-        } else {
-            $no_panjar = str_replace('-', '/', $no_panjar);
-            $panjar_list_detail = PanjarDetail::where('no_panjar', $no_panjar)->get();
-        }
+        $no_panjar = str_replace('-', '/', $no_panjar);
+        $panjar_list_detail = PanjarDetail::where('no_panjar', $no_panjar)
+        ->orderBy('no', 'ASC');
 
         return datatables()->of($panjar_list_detail)
             ->addColumn('golongan', function ($row) {
                 return $row->status;
             })
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no.'-'.$row->nopek.'"><span></span></label>';
+                $radio = '
+                <label class="radio radio-outline radio-outline-2x radio-primary">
+                    <input 
+                        type="radio" 
+                        name="radio1" 
+                        data-no_panjar="'.str_replace('/', '-', $row->no_panjar).'" 
+                        data-no_urut="'.$row->no.'" 
+                        data-nopeg="'.$row->nopek.'" 
+                        data-nama="'.$row->nama.'">
+                    <span></span>
+                </label>';
                 return $radio;
             })
             ->rawColumns(['radio'])
@@ -61,49 +69,58 @@ class PerjalananDinasDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PerjalananDinasDetailStore $request, $no_panjar, PanjarDetail $panjar_detail)
-    {
-        $panjar_detail->no = $request->no;
-        $panjar_detail->no_panjar = $no_panjar; // for add update only
+    public function store(
+        PerjalananDinasDetailStore $request,
+        $no_panjar,
+        PanjarDetail $panjar_detail
+    ) {
+        $pegawai = MasterPegawai::where('nopeg', $request->nopek)->first();
+
+        $panjar_detail->no = $request->no_urut;
+        $panjar_detail->no_panjar = str_replace('-', '/', $no_panjar); // for add update only
         $panjar_detail->nopek = $request->nopek;
-        $panjar_detail->nama = $request->nama;
+        $panjar_detail->nama = $pegawai->nama;
         $panjar_detail->jabatan = $request->jabatan;
         $panjar_detail->status = $request->golongan;
         $panjar_detail->keterangan = $request->keterangan;
 
-        // insert to database
         $panjar_detail->save();
 
-        Alert::success('Simpan Detail Panjar Dinas', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success(
+            'Simpan Detail Panjar Dinas',
+            'Berhasil'
+        )
+        ->persistent(true)
+        ->autoClose(2000);
+        
         return redirect()->route('modul_umum.perjalanan_dinas.edit', [
             'no_panjar' => $no_panjar
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+    public function edit($no_panjar, $no_urut, $nopek)
     {
-        // $nopek = substr($request->no_nopek, strpos($request->no_nopek, "-") + 1);
-        $nopek = $request->no_nopek;
-        $no = $request->no_urut;
+        $panjar_detail = PanjarDetail::where('nopek', $nopek)
+        ->where('no', $no_urut)
+        ->where('no_panjar', str_replace('-', '/', $no_panjar))
+        ->firstOrFail();
 
-        if ($request->session == 'true') {
-            foreach (session('panjar_detail') as $key => $value) {
-                if ($value['nopek'] == $nopek and $value['no'] == $no) {
-                    $data = session("panjar_detail.$key");
-                }
-            }
-        } else {
-            $data = PanjarDetail::where('no_panjar', $request->no_panjar)
-            ->where('nopek', $nopek)->first();
-        }
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        ->orderBy('nama', 'ASC')
+        ->get();
 
-        return response()->json($data, 200);
+        $jabatan_list = KodeJabatan::distinct('keterangan')
+        ->orderBy('keterangan', 'ASC')
+        ->get();
+
+        return view('modul-umum.perjalanan-dinas._detail.edit', compact(
+            'pegawai_list',
+            'jabatan_list',
+            'no_panjar',
+            'no_urut',
+            'nopek',
+            'panjar_detail'
+        ));
     }
 
     /**
@@ -113,53 +130,41 @@ class PerjalananDinasDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $no_panjar, $no_urut, $nopek)
-    {
-        if ($request->session == 'true') {
-            // delete session
-            foreach (session('panjar_detail') as $key => $value) {
-                if ($value['no'] == $no_urut and $value['nopek'] == $nopek) {
-                    session()->forget("panjar_detail.$key");
+    public function update(
+        PerjalananDinasDetailUpdate $request,
+        $no_panjar,
+        $no_urut,
+        $nopek
+    ) {
+        $no_panjar = str_replace('-', '/', $no_panjar);
+        $pegawai = MasterPegawai::where('nopeg', $nopek)
+        ->firstOrFail();
 
-                    $panjar_detail = new PanjarDetail;
-                    $panjar_detail->no = $request->no;
-                    $panjar_detail->nopek = $request->nopek;
-                    $panjar_detail->nama = $request->nama;
-                    $panjar_detail->jabatan = $request->jabatan;
-                    $panjar_detail->golongan = $request->golongan;
-                    $panjar_detail->status = $request->golongan;
-                    $panjar_detail->keterangan = $request->keterangan;
+        $panjar_detail = PanjarDetail::where('no_panjar', $no_panjar)
+        ->where('no', $no_urut)
+        ->where('nopek', $nopek)
+        ->firstOrFail();
 
-                    // dd($panjar_detail);
+        $panjar_detail->no = $request->no_urut;
+        $panjar_detail->no_panjar = $no_panjar;
+        $panjar_detail->nopek = $request->nopek;
+        $panjar_detail->nama = $pegawai->nama;
+        $panjar_detail->jabatan = $request->jabatan;
+        $panjar_detail->status = $request->golongan;
+        $panjar_detail->keterangan = $request->keterangan;
 
-                    if (session('panjar_detail')) {
-                        session()->push('panjar_detail', $panjar_detail);
-                    } else {
-                        session()->put('panjar_detail', []);
-                        session()->push('panjar_detail', $panjar_detail);
-                    }
-                }
-            }
-        } else {
-            // Dari Database
-            $panjar_detail = PanjarDetail::where('no_panjar', $request->no_panjar)
-            ->where('no', $request->no)
-            ->delete();
+        $panjar_detail->save();
 
-            $panjar_detail = new PanjarDetail;
-            $panjar_detail->no = $request->no;
-            $panjar_detail->no_panjar = $request->no_panjar;
-            $panjar_detail->nopek = $request->nopek;
-            $panjar_detail->nama = $request->nama;
-            $panjar_detail->jabatan = $request->jabatan;
-            $panjar_detail->status = $request->golongan;
-            $panjar_detail->keterangan = $request->keterangan;
-
-            $panjar_detail->save();
-        }
-
-        $data = $panjar_detail;
-        return response()->json($data, 200);
+        Alert::success(
+            'Ubah Detail Panjar Dinas',
+            'Berhasil'
+        )
+        ->persistent(true)
+        ->autoClose(2000);
+        
+        return redirect()->route('modul_umum.perjalanan_dinas.edit', [
+            'no_panjar' => $no_panjar
+        ]);
     }
 
     /**
@@ -168,23 +173,14 @@ class PerjalananDinasDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request)
+    public function delete(Request $request, $no_panjar)
     {
-        $nopek = substr($request->no_nopek, strpos($request->no_nopek, "-") + 1);
-        // dd($nopek);
-        if ($request->session == 'true') {
-            // delete session
-            foreach (session('panjar_detail') as $key => $value) {
-                if ($value['nopek'] == $nopek) {
-                    session()->forget("panjar_detail.$key");
-                }
-            }
-        } else {
-            // delete Database
-            PanjarDetail::where('nopek', $nopek)
-            ->where('no_panjar', $request->no_panjar)
-            ->delete();
-        }
+        $no_panjar = str_replace('-', '/', $no_panjar);
+        // delete Database
+        PanjarDetail::where('nopek', $request->nopeg)
+        ->where('no', $request->no_urut)
+        ->where('no_panjar', $no_panjar)
+        ->delete();
 
         return response()->json();
     }

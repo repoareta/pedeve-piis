@@ -42,7 +42,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
                 Route::post('{no_panjar}/detail/store', [PerjalananDinasDetailController::class, 'store'])->name('store');
                 Route::get('{no_panjar}/detail/show', [PerjalananDinasDetailController::class, 'show'])->name('show.json');
                 Route::get('{no_panjar}/detail/edit/{no_urut}/{nopek}', [PerjalananDinasDetailController::class, 'edit'])->name('edit');
-                Route::post('{no_panjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasController::class, 'update'])->name('update');
+                Route::post('{no_panjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasDetailController::class, 'update'])->name('update');
                 Route::delete('{no_panjar}/detail/delete', [PerjalananDinasDetailController::class, 'delete'])->name('delete');
             });
             
