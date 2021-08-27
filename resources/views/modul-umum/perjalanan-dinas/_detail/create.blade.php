@@ -85,6 +85,7 @@
 
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasDetailStore', '#formPanjarDinasDetail'); !!}
+
 <script>
     $(document).ready(function () {
         $("#formPanjarDinasDetail").on('submit', function(){
@@ -95,6 +96,10 @@
 			if ($('#jabatan-error').length){
 				$("#jabatan-error").insertAfter("#jabatan-nya");
 			}
+
+            if($(this).valid()) {
+                $(this).unbind('submit').submit();
+            }
 		});
     });
 </script>

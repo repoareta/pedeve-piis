@@ -170,5 +170,46 @@
 @push('page-scripts')
 {!! JsValidator::formRequest('App\Http\Requests\PerjalananDinasUpdate', '#formPanjarDinas') !!}
 
+<script>
+    $(document).ready(function () {
+		$('#date_range_picker, #tanggal').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			format   : 'dd-mm-yyyy'
+		});
+
+        $("#formPanjarDinas").on('submit', function(e){
+
+            e.preventDefault();
+
+            if ($('#nopek-error').length){
+                $("#nopek-error").insertAfter("#nopek-nya");
+            }
+
+            if ($('#jabatan-error').length){
+                $("#jabatan-error").insertAfter("#jabatan-nya");
+            }
+
+            if ($('#jenis_dinas-error').length){
+                $("#jenis_dinas-error").insertAfter("#jenis_dinas-nya");
+            }
+
+            if ($('#biaya-error').length){
+                $("#biaya-error").insertAfter("#biaya-nya");
+            }
+
+            if ($('#sampai-error').length){
+                $("#sampai-error").addClass("float-right");
+            }
+
+            if($(this).valid()) {
+                $(this).unbind('submit').submit();
+            }
+        });
+    });
+</script>
+
 @stack('detail-scripts')
 @endpush

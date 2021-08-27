@@ -48,10 +48,15 @@ class PerjalananDinasDetailController extends Controller
 
     public function create($no_panjar)
     {
+        $panjar_detail_pegawai = PanjarDetail::where('no_panjar', str_replace('-', '/', $no_panjar))
+        ->pluck('nopek')
+        ->toArray();
+
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        ->whereNotIn('nopeg', $panjar_detail_pegawai)
         ->orderBy('nama', 'ASC')
         ->get();
-
+        
         $jabatan_list = KodeJabatan::distinct('keterangan')
         ->orderBy('keterangan', 'ASC')
         ->get();
@@ -105,7 +110,13 @@ class PerjalananDinasDetailController extends Controller
         ->where('no_panjar', str_replace('-', '/', $no_panjar))
         ->firstOrFail();
 
+        $panjar_detail_pegawai = PanjarDetail::where('nopek' , '<>', $nopek)
+        ->where('no_panjar', str_replace('-', '/', $no_panjar))
+        ->pluck('nopek')
+        ->toArray();
+
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        ->whereNotIn('nopeg', $panjar_detail_pegawai)
         ->orderBy('nama', 'ASC')
         ->get();
 
