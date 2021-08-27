@@ -137,23 +137,22 @@ class PerjalananDinasDetailController extends Controller
         $nopek
     ) {
         $no_panjar_detail = str_replace('-', '/', $no_panjar);
-        $pegawai = MasterPegawai::where('nopeg', $nopek)
+        
+        $pegawai = MasterPegawai::where('nopeg', $request->nopek)
         ->firstOrFail();
 
         $panjar_detail = PanjarDetail::where('no_panjar', $no_panjar_detail)
         ->where('no', $no_urut)
         ->where('nopek', $nopek)
-        ->firstOrFail();
-
-        $panjar_detail->no = $request->no_urut;
-        $panjar_detail->no_panjar = $no_panjar_detail;
-        $panjar_detail->nopek = $request->nopek;
-        $panjar_detail->nama = $pegawai->nama;
-        $panjar_detail->jabatan = $request->jabatan;
-        $panjar_detail->status = $request->golongan;
-        $panjar_detail->keterangan = $request->keterangan;
-
-        $panjar_detail->save();
+        ->update([
+            'no' => $request->no_urut,
+            'no_panjar' => $no_panjar_detail,
+            'nopek' => $request->nopek,
+            'nama' => $pegawai->nama,
+            'jabatan' => $request->jabatan,
+            'status' => $request->golongan,
+            'keterangan' => $request->keterangan,
+        ]);
 
         Alert::success(
             'Ubah Detail Panjar Dinas',
