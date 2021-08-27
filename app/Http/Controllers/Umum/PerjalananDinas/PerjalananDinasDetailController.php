@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Umum\PerjalananDinas;
 
+use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PerjalananDinasDetailStore;
+use App\Models\KodeJabatan;
+use App\Models\MasterPegawai;
 use App\Models\PanjarDetail;
 use Illuminate\Http\Request;
 
@@ -34,9 +38,21 @@ class PerjalananDinasDetailController extends Controller
             ->make(true);
     }
 
-    public function create()
+    public function create($no_panjar)
     {
-        return view('modul-umum.perjalanan-dinas._detail.create');
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        ->orderBy('nama', 'ASC')
+        ->get();
+
+        $jabatan_list = KodeJabatan::distinct('keterangan')
+        ->orderBy('keterangan', 'ASC')
+        ->get();
+
+        return view('modul-umum.perjalanan-dinas._detail.create', compact(
+            'pegawai_list',
+            'jabatan_list',
+            'no_panjar'
+        ));
     }
 
     /**
@@ -45,30 +61,23 @@ class PerjalananDinasDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PerjalananDinasDetailStore $request, $no_panjar, PanjarDetail $panjar_detail)
     {
-        $panjar_detail = new PanjarDetail;
         $panjar_detail->no = $request->no;
-        $panjar_detail->no_panjar = $request->no_panjar ? $request->no_panjar : null; // for add update only
+        $panjar_detail->no_panjar = $no_panjar; // for add update only
         $panjar_detail->nopek = $request->nopek;
         $panjar_detail->nama = $request->nama;
         $panjar_detail->jabatan = $request->jabatan;
         $panjar_detail->status = $request->golongan;
         $panjar_detail->keterangan = $request->keterangan;
 
-        if ($request->session == 'true') {
-            if (session('panjar_detail')) {
-                session()->push('panjar_detail', $panjar_detail);
-            } else {
-                session()->put('panjar_detail', []);
-                session()->push('panjar_detail', $panjar_detail);
-            }
-        } else {
-            // insert to database
-            $panjar_detail->save();
-        }
+        // insert to database
+        $panjar_detail->save();
 
-        return response()->json($panjar_detail, 200);
+        Alert::success('Simpan Detail Panjar Dinas', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_umum.perjalanan_dinas.edit', [
+            'no_panjar' => $no_panjar
+        ]);
     }
 
     /**
