@@ -183,7 +183,7 @@
 			$('#jumlah').val(selisih.toFixed(2));
 		});
 
-		$("#formPPanjarDinas").on('submit', function(){
+		$("#formPPanjarDinas").on('submit', function(e){
 
 			e.preventDefault();
 			
