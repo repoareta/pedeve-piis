@@ -68,16 +68,29 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         ->orderBy('nama', 'ASC')
         ->get();
 
+        $pegawai_list_panjar = $pegawai_list->pluck('nopeg')->toArray();
+
         $jabatan_list = KodeJabatan::distinct('keterangan')
         ->orderBy('keterangan', 'ASC')
         ->get();
 
-        $ppanjar_header_list = PPanjarHeader::select('no_panjar')->whereNotNull('no_panjar')->get()->toArray();
-        $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)->get();
+        $ppanjar_header_list = PPanjarHeader::select('no_panjar')
+        ->whereNotNull('no_panjar')
+        ->get()
+        ->toArray();
+
+        $panjar_header_list = PanjarHeader::whereNotIn(
+            'no_panjar',
+            $ppanjar_header_list
+        )
+        ->whereIn('nopek', $pegawai_list_panjar)
+        ->get();
 
         $ppanjar_header_count = PPanjarHeader::all()->count();
 
-        $last_ppanjar = PPanjarHeader::withTrashed()->latest()->first();
+        $last_ppanjar = PPanjarHeader::withTrashed()
+        ->latest()
+        ->first();
         
         $date_now = date('d');
         $month_now = date('m');

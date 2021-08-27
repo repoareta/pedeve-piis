@@ -29,21 +29,21 @@
                     id="formPemegangSaham">
                     @csrf
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Nama</label>
+                        <label for="" class="col-2 col-form-label">Nama</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="nama_pemegang_saham" id="nama_pemegang_saham" value="{{ $pemegang_saham->nama }}">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">% Kepemilikan</label>
+                        <label for="" class="col-2 col-form-label">% Kepemilikan</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="kepemilikan" id="kepemilikan" value="{{ $pemegang_saham->kepemilikan }}">
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Jumlah Lembar Saham</label>
+                        <label for="" class="col-2 col-form-label">Jumlah Lembar Saham</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="jumlah_lembar_saham_pemegang_saham" id="jumlah_lembar_saham_pemegang_saham" value="{{ $pemegang_saham->jumlah_lembar_saham }}">
                         </div>

@@ -23,14 +23,14 @@
                 <form action="{{ route('modul_sdm_payroll.master_pegawai.smk.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-smk">
                     @csrf
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Tahun</label>
+						<label for="" class="col-2 col-form-label">Tahun</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="tahun_smk" id="tahun_smk" value="{{ date('Y') }}">
 						</div>
 					</div>
 					
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Nilai</label>
+						<label for="" class="col-2 col-form-label">Nilai</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nilai_smk" id="nilai_smk">
 						</div>

@@ -24,14 +24,14 @@
                     @csrf
 
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Nilai</label>
+						<label for="" class="col-2 col-form-label">Nilai</label>
 						<div class="col-10">
 							<input class="form-control money" type="text" name="nilai_upah_all_in" id="nilai_upah_all_in">
 						</div>
                     </div>
 
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Mulai</label>
+						<label for="" class="col-2 col-form-label">Mulai</label>
 						<div class="col-4">
 							<div class="input-group date">
 								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="mulai_upah_all_in" id="mulai_upah_all_in">
@@ -43,7 +43,7 @@
 							</div>
                         </div>
                         
-                        <label for="spd-input" class="col-2 col-form-label">Sampai</label>
+                        <label for="" class="col-2 col-form-label">Sampai</label>
 						<div class="col-4">
 							<div class="input-group date">
 								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="sampai_upah_all_in" id="sampai_upah_all_in">

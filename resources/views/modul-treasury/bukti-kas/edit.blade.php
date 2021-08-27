@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="form-group row">
-					<label for="spd-input" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+					<label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
 					<div class="col-4">
 						<input class="form-control disabled bg-secondary" type="text" value="{{$bulan}}"   name="bulan" id="bulan" size="2" maxlength="2" readonly>
 						<input class="form-control disabled bg-secondary" type="hidden" value="{{$data->thnbln}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly>

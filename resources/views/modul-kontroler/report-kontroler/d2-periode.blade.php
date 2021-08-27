@@ -70,7 +70,7 @@
                                 <option value="12" <?php if($bulan == '12') echo 'selected' ; ?>>Desember</option>
                             </select>
 						</div>
-                        <label for="spd-input" class="col-1 col-form-label text-center">S/D</label>
+                        <label for="" class="col-1 col-form-label text-center">S/D</label>
 						<div class="col-5">
 								<select class="form-control select2"" name="bulan_sampai">
 									<option value="01" <?php if($bulan == '01') echo 'selected' ; ?>>Januari</option>

@@ -29,7 +29,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">No.Dokumen</label>
+                <label for="" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-5">
                 <?php 
                     $docno = $mp . '/' . $bagian . '/' . $nomor;
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan</label>
+                <label for="" class="col-2 col-form-label">Bulan</label>
                 <div class="col-3">
                     <?php
                     $jabatan = "Sekretaris Perseroan";
@@ -65,18 +65,18 @@
                         <option value="12" <?php if($bulan  == '12' ) echo 'selected' ; ?>>Desember</option>
                     </select>
                 </div>
-                <label for="spd-input" class="col-1 col-form-label">Tahun</label>
+                <label for="" class="col-1 col-form-label">Tahun</label>
                 <div class="col-3" >
                     <input class="form-control" type="text" value="{{ $tahun }}" name="tahun" size="4" maxlength="4" autocomplete="off" required>
                     <input class="form-control" type="hidden" name="inputid" value="{{ auth()->user()->userid }}" autocomplete="off">
                 </div>
-                <label for="spd-input" class="col-1 col-form-label">suplesi</label>
+                <label for="" class="col-1 col-form-label">suplesi</label>
                 <div class="col-2" >
                     <input class="form-control" type="text" value="{{ $suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete="off" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bagian</label>
+                <label for="" class="col-2 col-form-label">Bagian</label>
                 <div class="col-5">
                     <input class="form-control" type="text" name="bagian" value="{{ $bagian }}" id="bagian" required>
                 </div>

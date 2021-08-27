@@ -23,21 +23,21 @@
                 <form class="form" action="{{ route('modul_umum.perjalanan_dinas.detail.store', ['no_panjar' => $no_panjar]) }}" method="POST" id="formPanjarDinasDetail">
                     @csrf
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">No. Urut</label>
+                        <label for="" class="col-2 col-form-label">No. Urut</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="no_urut" id="no_urut">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+                        <label for="" class="col-2 col-form-label">Keterangan</label>
                         <div class="col-10">
                             <textarea class="form-control" name="keterangan" id="keterangan"></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Nopek</label>
+                        <label for="" class="col-2 col-form-label">Nopek</label>
                         <div class="col-10">
                             <select class="form-control select2" id="nopek" name="nopek" style="width: 100% !important;">
                                 <option value="">- Pilih Nopek -</option>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Jabatan</label>
+                        <label for="" class="col-2 col-form-label">Jabatan</label>
                         <div class="col-10">
                             <select class="form-control select2" name="jabatan" id="jabatan" style="width: 100% !important;" readonly>
                                 <option value="">- Pilih Jabatan -</option>
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Golongan</label>
+                        <label for="" class="col-2 col-form-label">Golongan</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="golongan" id="golongan" readonly>
                         </div>

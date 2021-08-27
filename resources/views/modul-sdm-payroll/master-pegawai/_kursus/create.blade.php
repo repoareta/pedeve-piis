@@ -23,21 +23,21 @@
                 <form action="{{ route('modul_sdm_payroll.master_pegawai.kursus.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-kursus">
                     @csrf
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Nama Kursus</label>
+                        <label for="" class="col-2 col-form-label">Nama Kursus</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="nama_kursus" id="nama_kursus">
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Penyelenggara</label>
+                        <label for="" class="col-2 col-form-label">Penyelenggara</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="penyelenggara_kursus" id="penyelenggara_kursus">
                         </div>
                     </div>
                 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Mulai</label>
+                        <label for="" class="col-2 col-form-label">Mulai</label>
                         <div class="col-4">
                             <div class="input-group date">
                                 <input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="mulai_kursus" id="mulai_kursus">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         
-                        <label for="spd-input" class="col-2 col-form-label">Sampai</label>
+                        <label for="" class="col-2 col-form-label">Sampai</label>
                         <div class="col-4">
                             <div class="input-group date">
                                 <input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="sampai_kursus" id="sampai_kursus">
@@ -63,19 +63,19 @@
                     </div>
                 
                     <div class="form-group row has-success">
-                        <label for="spd-input" class="col-2 col-form-label">Negara</label>
+                        <label for="" class="col-2 col-form-label">Negara</label>
                         <div class="col-10">
                             <input class="form-control valid" type="text" name="negara_kursus" id="negara_kursus" value="INDONESIA">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Kota</label>
+                        <label for="" class="col-2 col-form-label">Kota</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="kota_kursus" id="kota_kursus">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+                        <label for="" class="col-2 col-form-label">Keterangan</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="keterangan_kursus" id="keterangan_kursus">
                         </div>

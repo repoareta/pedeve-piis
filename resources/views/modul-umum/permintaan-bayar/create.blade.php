@@ -28,14 +28,14 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">No. Permintaan</label>
+                        <label for="" class="col-2 col-form-label">No. Permintaan</label>
                         <div class="col-5">
                             <?php $data_no_bayar = str_replace('/', '-', $permintaan_header_count); ?>
                             <input class="form-control" type="hidden" value="{{ $data_no_bayar}}" id="noumk" size="25" maxlength="25" readonly>
                             <input class="form-control disabled bg-secondary" type="text" name="nobayar" value="{{ $permintaan_header_count }}" id="nobayar" readonly>
                         </div>
 
-                        <label for="spd-input" class="col-2 col-form-label">Tanggal</label>
+                        <label for="" class="col-2 col-form-label">Tanggal</label>
                         <div class="col-3">
                             <input class="form-control" type="text" name="tanggal" id="tanggal"
                                 value="{{ date('d-m-Y') }}">
@@ -95,11 +95,11 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="spd-input" class="col-2 col-form-label">No. Kas</label>
+                        <label for="" class="col-2 col-form-label">No. Kas</label>
                         <div class="col-5">
                             <input readonly class="form-control disabled bg-secondary" name="nokas" type="text" value="" id="nokas" size="10" maxlength="25" autocomplete="off">
                         </div>
-                        <label for="spd-input" class="col-2 col-form-label">Bulan Buku<span class="text-danger">*</span></label>
+                        <label for="" class="col-2 col-form-label">Bulan Buku<span class="text-danger">*</span></label>
                         <div class="col-3">
                             <input readonly class="form-control disabled bg-secondary" type="text" value="{{ $bulan_buku}}" name="bulanbuku" size="6" maxlength="6">
                         </div>
@@ -118,7 +118,7 @@
                                 </label>
                             </div>
                         </div>
-                        <label for="spd-input" class="col-2 col-form-label">Kurs<span class="text-danger" id="simbol-kurs">*</span></label>
+                        <label for="" class="col-2 col-form-label">Kurs<span class="text-danger" id="simbol-kurs">*</span></label>
                         <div class="col-3">
                             <input class="form-control" type="text" value="1" name="kurs" id="kurs" size="10" maxlength="10" autocomplete="off">
                         </div>

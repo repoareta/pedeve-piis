@@ -120,12 +120,20 @@
             rightAlign: false
         });
 
-        $('.tahun').mask('0000', {
+        $('.tahun, .angka').mask('0000', {
             reverse: true
         });
 
         $('.select2').select2().on('change', function() {
             $(this).valid();
+        });
+
+        $('.datepicker').datepicker({
+            todayHighlight: true,
+            orientation: "bottom left",
+            autoclose: true,
+            language : 'id',
+            format   : 'yyyy-mm-dd'
         });
 
         $('#kt_table tbody').on( 'click', 'tr', function (event) {
@@ -219,14 +227,6 @@
             weekStart: 0
         };
 
-        $('.datepicker').datepicker({
-            todayHighlight: true,
-            orientation: "bottom left",
-            autoclose: true,
-            language : 'id',
-            format   : 'yyyy-mm-dd'
-        });
-
         $('#nopek').select2().on('change', function() {
             var id = $(this).val();
             var url = '{{ route("modul_sdm_payroll.master_pegawai.show.json", ":pekerja") }}';
@@ -249,38 +249,9 @@
             });
         });
 
-        $('#nopek_detail').select2().on('change', function() {
-            // console.log($(this).val());
-            var id = $(this).val().split('-')[0];
-            // var id = $('#nopek_detail').val().split('-')[0];
-            var url = '{{ route("modul_sdm_payroll.master_pegawai.show.json", ":pekerja") }}';
-            // go to page edit
-            url = url.replace(':pekerja',id);
-            if(id != ''){
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    data: {
-                        _token:"{{ csrf_token() }}"		
-                    },
-                    success: function(response){
-                        // console.log(response);
-                        // isi jabatan
-                        $('#jabatan_detail').val(response.jabatan).trigger('change');
-                        // isi golongan
-                        $('#golongan_detail').val(response.golongan);
-                    },
-                    error: function () {
-                        alert("Terjadi kesalahan, coba lagi nanti");
-                    }
-                });
-            }
-        });
-
         $('#no_panjar').select2().on('change', function() {
             var id = $(this).val().split('/').join('-');
             var url = '{{ route("modul_umum.perjalanan_dinas.show.json") }}';
-
             $.ajax({
                 url: url,
                 type: "GET",
@@ -295,7 +266,7 @@
                     // isi jumlah
                     const jumlah = parseFloat(response.jum_panjar).toFixed(2);
                     $('#jumlah').data('jumlah', jumlah);
-                    $('#jumlah').val(jumlah).trigger("change");
+                    $('#jumlah').val(jumlah);
                     $('#nopek').val(response.nopek).trigger("change");
                 },
                 error: function () {

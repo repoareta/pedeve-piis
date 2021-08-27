@@ -60,7 +60,7 @@
                 @csrf
 				<div class="modal-body">
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Nama</label>
+						<label for="" class="col-2 col-form-label">Nama</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nama" id="nama_pihak" size="100" maxlength="100" autocomplete='off'>
 							<input class="form-control" type="hidden" name="kd_pihak" id="kd_pihak">
@@ -73,7 +73,7 @@
 					</div>
                     
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Alamat</label>
+						<label for="" class="col-2 col-form-label">Alamat</label>
 						<div class="col-10">
 							<textarea class="form-control" type="text"  name="alamat" id="alamat_pihak" size="100" maxlength="100" autocomplete='off'></textarea>
 							<div id="jabatan_pekerja-nya"></div>
@@ -81,21 +81,21 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Telp</label>
+						<label for="" class="col-2 col-form-label">Telp</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="telp" id="telp_pihak" autocomplete='off'>
 						</div>
                     </div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+						<label for="" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
 							<textarea class="form-control" type="text" name="keterangan" id="keterangan_pihak" autocomplete='off'></textarea>
 						</div>
                     </div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Status</label>
+						<label for="" class="col-2 col-form-label">Status</label>
 						<div class="col-10">
 							<select class="form-control select2" name="status" id="status_pihak" style="width: 100% !important;">
 								<option value=""> - Pilih - </option>

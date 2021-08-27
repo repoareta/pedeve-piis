@@ -29,7 +29,7 @@
                 {{ implode('', $errors->all('<div>:message</div>')) }}
             @endif
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">ID Pinjaman<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">ID Pinjaman<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" name="no_pinjaman" id="no_pinjaman" size="8" maxlength="8" autocomplete="off" disabled value="{{ $data_list->id_pinjaman }}">
                     <input class="form-control" type="hidden" name="id_pinjaman" id="id_pinjaman" value="{{ $data_list->id_pinjaman }}">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">NO. Kontrak<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">NO. Kontrak<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" name="no_kontrak" size="16" maxlength="16" autocomplete="off" value="{{ $data_list->no_kontrak }}">
                 </div>
@@ -63,19 +63,19 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Tenor<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Tenor<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" name="tenor" size="4" maxlength="4" autocomplete="off" value="{{ $data_list->tenor }}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Angsuran<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Angsuran<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete="off" value="{{ number_format($data_list->angsuran, 0, '', '') }}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Pinjaman<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Pinjaman<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input  class="form-control" type="text" name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete="off" value="{{ number_format($data_list->jml_pinjaman, 0, '', '') }}">
                 </div>

@@ -29,7 +29,7 @@
             </div>
 
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">No.Dokumen</label>
+                <label for="" class="col-2 col-form-label">No.Dokumen</label>
                 <div class="col-5">
                     <input class="form-control" type="text" value="{{ $data_jur->mp }}" disabled>
                     <input class="form-control" type="hidden" name="mp" value="{{ $data_jur->mp }}" id="mp">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bulan</label>
+                <label for="" class="col-2 col-form-label">Bulan</label>
                 <div class="col-3">
                     <?php
                     $jabatan = "Sekretaris Perseroan";
@@ -50,19 +50,19 @@
                     <input type="text" class="form-control" value="{{ $data_jur->bulan }}" disabled>
                     <input type="hidden" class="form-control" value="{{ $data_jur->bulan }}" name="bulan">
                 </div>
-                <label for="spd-input" class="col-1 col-form-label">Tahun</label>
+                <label for="" class="col-1 col-form-label">Tahun</label>
                 <div class="col-3" >
                     <input class="form-control" type="text" value="{{ $data_jur->tahun }}" disabled>
                     <input class="form-control" type="hidden" value="{{ $data_jur->tahun }}" name="tahun">
                     <input class="form-control" type="hidden" name="inputid" value="{{ auth()->user()->userid }}" autocomplete="off">
                 </div>
-                <label for="spd-input" class="col-1 col-form-label">suplesi</label>
+                <label for="" class="col-1 col-form-label">suplesi</label>
                 <div class="col-2" >
                     <input class="form-control" type="text" value="{{ $data_jur->suplesi }}" name="suplesi" size="2" maxlength="2" autocomplete="off" required>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">Bagian</label>
+                <label for="" class="col-2 col-form-label">Bagian</label>
                 <div class="col-5">
                     <input class="form-control" type="text" name="bagian" value="{{ $data_jur->bagian }}" id="bagian" disabled>
                 </div>

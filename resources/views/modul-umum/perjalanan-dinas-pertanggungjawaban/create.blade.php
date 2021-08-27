@@ -28,12 +28,12 @@
                 <form class="form" id="formPPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">No. PJ Panjar</label>
+						<label for="" class="col-2 col-form-label">No. PJ Panjar</label>
 						<div class="col-5">
 							<input class="form-control" type="text" readonly name="no_pj_panjar" value="{{ $no_pspd }}" id="no_pj_panjar">
 						</div>
 
-						<label for="spd-input" class="col-2 col-form-label">Tanggal PJ Panjar</label>
+						<label for="" class="col-2 col-form-label">Tanggal PJ Panjar</label>
 						<div class="col-3">
 							<input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('Y-m-d') }}">
 						</div>
@@ -100,13 +100,11 @@
 						</div>
 					</div>
 
-					<div class="form__actions">
-						<div class="row">
-							<div class="col-2"></div>
-							<div class="col-10">
-								<a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
-							</div>
+					<div class="row">
+						<div class="col-2"></div>
+						<div class="col-10">
+							<a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
 						</div>
 					</div>
 				</form>

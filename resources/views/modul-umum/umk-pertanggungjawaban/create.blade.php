@@ -22,12 +22,12 @@
             @csrf
 
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">No. PUMK</label>
+                <label for="" class="col-2 col-form-label">No. PUMK</label>
                 <div class="col-5">
                     <input class="form-control disabled bg-secondary" type="text" name="no_pumk" value="{{ sprintf("%03s", $pumk_header_count + 1).'/CS/'.date('d').'/'.date('m').'/'.date('Y') }}" id="no_pumk" readonly>
                 </div>
 
-                <label for="spd-input" class="col-2 col-form-label">Tanggal PUMK</label>
+                <label for="" class="col-2 col-form-label">Tanggal PUMK</label>
                 <div class="col-3">
                     <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('Y-m-d') }}">
                 </div>

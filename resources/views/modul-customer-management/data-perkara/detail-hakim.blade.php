@@ -63,7 +63,7 @@
 			<form class="kt-form kt-form--label-right"  id="form-create-hakim" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Nama</label>
+						<label for="" class="col-2 col-form-label">Nama</label>
 						<div class="col-10">
 							<input class="form-control" type="text"  name="nama" id="nama_hakim" size="100" maxlength="100" autocomplete='off'>
 							<input class="form-control" type="hidden" value=""  name="kd_hakim" id="kd_hakim">
@@ -75,28 +75,28 @@
 					</div>
                     
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Alamat</label>
+						<label for="" class="col-2 col-form-label">Alamat</label>
 						<div class="col-10">
 							<textarea class="form-control" type="text"  name="alamat" id="alamat_hakim" size="100" maxlength="100" autocomplete='off'></textarea>
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Telp</label>
+						<label for="" class="col-2 col-form-label">Telp</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="telp" id="telp_hakim" autocomplete='off'>
 						</div>
                     </div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Keterangan</label>
+						<label for="" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
 							<textarea class="form-control" type="text" name="keterangan" id="keterangan_hakim" autocomplete='off'></textarea>
 						</div>
                     </div>
 
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Status</label>
+						<label for="" class="col-2 col-form-label">Status</label>
 						<div class="col-10">
 							<select class="form-control select2" name="status" id="status_hakim" style="width: 100% !important;" required>
 								<option value=""> - Pilih - </option>
@@ -108,7 +108,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Pihak</label>
+						<label for="" class="col-2 col-form-label">Pihak</label>
 						<div class="col-10">
 							<select class="form-control select2" name="kd_pihak" id="pihak_hakim" style="width: 100% !important;" required>
 								<option value=""> - Pilih - </option>
