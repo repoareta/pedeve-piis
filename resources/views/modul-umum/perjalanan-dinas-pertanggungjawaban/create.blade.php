@@ -195,6 +195,36 @@
 			if ($('#jabatan-error').length){
 				$("#jabatan-error").insertAfter("#jabatan-nya");
 			}
+
+			if($(this).valid()) {
+				const swalWithBootstrapButtons = Swal.mixin({
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					cancelButton: 'btn btn-danger'
+				},
+					buttonsStyling: false
+				})
+
+				swalWithBootstrapButtons.fire({
+					title: "Apakah anda yakin mau menyimpan data ini?",
+					text: "",
+					type: 'warning',
+					showCancelButton: true,
+					reverseButtons: true,
+					confirmButtonText: 'Ya, Simpan P Panjar Dinas',
+					cancelButtonText: 'Tidak'
+				})
+				.then((result) => {
+					if (result.value) {
+						$(this).append('<input type="hidden" name="url" value="edit" />');
+						$(this).unbind('submit').submit();
+					}
+					else if (result.dismiss === Swal.DismissReason.cancel) {
+						$(this).append('<input type="hidden" name="url" value="modul_umum.perjalanan_dinas.detail.index" />');
+						$(this).unbind('submit').submit();
+					}
+				});
+			}
 		});
 	});
 </script>

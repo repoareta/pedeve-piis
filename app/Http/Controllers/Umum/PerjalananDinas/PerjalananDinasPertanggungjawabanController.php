@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Umum\PerjalananDinas;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PPerjalananDinasStore;
 use App\Models\KodeJabatan;
@@ -132,29 +133,23 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         $ppanjar_header->nama = $pegawai->nama;
         $ppanjar_header->pangkat = $request->jabatan;
         $ppanjar_header->gol = $request->golongan;
-        $ppanjar_header->jmlpanjar = $request->jumlah;
+        $ppanjar_header->jmlpanjar = sanitize_nominal($request->jumlah);
         // Save Panjar Header
         $ppanjar_header->save();
 
-        // Save Panjar Detail;
-        if (session('ppanjar_detail')) {
-            foreach (session('ppanjar_detail') as $ppanjar) {
-                $ppanjar_detail = new PPanjarDetail();
-                $ppanjar_detail->no = $ppanjar['no'];
-                $ppanjar_detail->no_ppanjar = $request->no_pj_panjar;
-                $ppanjar_detail->keterangan = $ppanjar['keterangan'];
-                $ppanjar_detail->nilai = $ppanjar['nilai'];
-                $ppanjar_detail->qty = $ppanjar['qty'];
-                $ppanjar_detail->nopek = $ppanjar['nopek'];
-                $ppanjar_detail->total = $ppanjar['total'];
-
-                $ppanjar_detail->save();
-            }
-
-            session()->forget('ppanjar_detail');
+        if ($request->url == 'edit') {
+            return redirect()->route('modul_umum.perjalanan_dinas.pertanggungjawaban.edit', [
+                'no_ppanjar' => str_replace(
+                    '/',
+                    '-',
+                    $request->no_pj_panjar
+                )]
+            );
         }
 
-        return redirect()->route('perjalanan_dinas.pertanggungjawaban.index');
+        Alert::success('Simpan PertanggungJawaban Panjar Dinas', 'Berhasil')->persistent(true)->autoClose(2000);
+
+        return redirect()->route('modul_umum.perjalanan_dinas.pertanggungjawaban.index');
     }
 
     /**
