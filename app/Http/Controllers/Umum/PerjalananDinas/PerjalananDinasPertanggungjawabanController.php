@@ -242,10 +242,10 @@ class PerjalananDinasPertanggungjawabanController extends Controller
 
         $pegawai_jabatan = $ppanjar_header->pangkat;
 
-        $pdf = DomPDF::loadview('modul-umum.perjalanan-dinas-pertanggungjawaban.export-row', [
+        $pdf = DomPDF::loadview('modul-umum.perjalanan-dinas-pertanggungjawaban.row-pdf', [
             'ppanjar_header' => $ppanjar_header,
-            'pekerja_jabatan' => $pegawai_jabatan
+            'pegawai_jabatan' => $pegawai_jabatan
         ]);
-        return $pdf->stream('rekap_panjar_dinas_pertanggungjawaban_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->stream('panjar_dinas_pertanggungjawaban_'.date('Y-m-d H:i:s').'.pdf');
     }
 }
