@@ -28,17 +28,17 @@ class RKAPStoreRequest extends FormRequest
             'ci' => 'required|string',
             'tahun' => 'required|date_format:Y',
             'bulan' => 'nullable|date_format:m',
-            'kurs' => 'date_format:m',
-            'aset' => 'required|numeric',
-            'pendapatan_usaha' => 'required|numeric',
-            'beban_usaha' => 'required|numeric',
-            'pendapatan_beban_lain' => 'required|numeric',
-            'laba_bersih' => 'required|numeric',
-            'ebitda' => 'required|numeric',
-            'investasi_bd' => 'required|numeric',
-            'investasi_nbd' => 'required|numeric',
-            'tkp' => 'required|numeric',
-            'kpi' => 'required|numeric',
+            'kurs' => 'nullable',
+            'aset' => 'required',
+            'pendapatan_usaha' => 'required',
+            'beban_usaha' => 'required',
+            'pendapatan_beban_lain' => 'required',
+            'laba_bersih' => 'required',
+            'ebitda' => 'required',
+            'investasi_bd' => 'required',
+            'investasi_nbd' => 'required',
+            'tkp' => 'required',
+            'kpi' => 'required'
         ];
     }
 }

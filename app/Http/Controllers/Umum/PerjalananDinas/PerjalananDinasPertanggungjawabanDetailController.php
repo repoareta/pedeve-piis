@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Umum\PerjalananDinas;
 
 use App\Http\Controllers\Controller;
+use App\Models\MasterPegawai;
 use App\Models\PPanjarDetail;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,13 @@ class PerjalananDinasPertanggungjawabanDetailController extends Controller
      */
     public function create()
     {
-        return view('modul-umum.perjalanan-dinas-pertanggungjawaban._detail.create');
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        ->orderBy('nama', 'ASC')
+        ->get();
+
+        return view('modul-umum.perjalanan-dinas-pertanggungjawaban._detail.create', compact(
+            'pegawai_list'
+        ));
     }
 
     /**
