@@ -32,6 +32,11 @@
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                <a href="#">
+					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
+						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
+					</span>                    
+				</a>
             </div>
         </div>
     </div>
@@ -151,6 +156,43 @@
                 swalAlertInit('ubah');
             }
         });
+
+        $('#exportRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) {
+				$("input[type=radio]:checked").each(function() {
+					var no = $(this).data('no');
+					
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
+
+					swalWithBootstrapButtons.fire({
+						title: "Data yang akan dicetak?",
+						text: "No. Perkara : " + no,
+						icon: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Cetak',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							// go to page edit
+							var url = '{{ route("modul_cm.data_perkara.export", ":no") }}';
+							// go to page edit
+							window.open(url.replace(':no', no), '_blank');
+						}
+					});
+				});
+			} else {
+				swalAlertInit('cetak');
+			}
+		});
     });
 </script>
 @endpush

@@ -14,6 +14,11 @@ use Alert;
 use App\Http\Requests\DataPerkaraStoreRequest;
 use App\Http\Requests\DetailDokumenStoreRequest;
 use App\Http\Requests\DetailPihakStoreRequest;
+use App\Models\TblDokumenPerkara;
+use App\Models\TblHakim;
+use App\Models\TblPerkara;
+use App\Models\TblPihak;
+use DomPDF;
 use Illuminate\Support\Facades\File;
 
 class DataPerkaraController extends Controller
@@ -50,7 +55,7 @@ class DataPerkaraController extends Controller
                 return  '<a href="' . route('modul_cm.data_perkara.detail', ['no' => str_replace('/', '--', $data->no_perkara)]) . '">Detail</a>';
             })
             ->addColumn('radio', function ($data) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-id="' . str_replace('/', '--', $data->no_perkara) . '" value="' . str_replace('/', '--', $data->no_perkara) . '" name="btn-radio"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-no="'.str_replace('/', '-', $data->no_perkara).'" data-id="' . str_replace('/', '--', $data->no_perkara) . '" value="' . str_replace('/', '--', $data->no_perkara) . '" name="btn-radio"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio', 'view', 'detail'])
@@ -360,5 +365,30 @@ class DataPerkaraController extends Controller
         DB::table('tbl_dokumen_perkara')->where('kd_dok', $request->kd_dok)->delete();
         File::delete('data_perkara/' . $request->noperkara . '/' . $request->filed);
         return response()->json();
+    }
+
+    public function export($no)
+    {
+        $dataPerkara = TblPerkara::find(str_replace('/', '-', $no));
+        $dataPihakList = TblPihak::where('no_perkara', $dataPerkara->no_perkara)
+        ->get();
+        $kuasaHukumList = TblHakim::whereIn('kd_pihak', $dataPihakList->pluck('kd_pihak')->toArray())
+        ->get();
+        $dokumenPerkaraList = TblDokumenPerkara::where('no_perkara', $dataPerkara->no_perkara)
+        ->get();
+
+        $pdf = DomPDF::loadView(
+            'modul-customer-management.data-perkara.row-pdf',
+            compact(
+                'dataPerkara',
+                'dataPihakList',
+                'kuasaHukumList',
+                'dokumenPerkaraList'
+            )
+        );
+
+        return $pdf->stream(
+            'data_perkara'.date('Y-m-d H:i:s').'.pdf'
+        );
     }
 }
