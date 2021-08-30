@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DataPerkaraStoreRequest extends FormRequest
@@ -32,7 +33,7 @@ class DataPerkaraStoreRequest extends FormRequest
             'r_perkara' => 'nullable|string',
             'r_patitum' => 'nullable|string',
             'r_putusan' => 'nullable|string',
-            'nilai_perkara' => 'required|string',
+            'nilai_perkara' => ['required', new MoneyFormat, 'max:18'],
             'ci' => 'nullable|string',
         ];
     }
