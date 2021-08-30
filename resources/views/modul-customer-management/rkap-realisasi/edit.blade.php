@@ -20,6 +20,9 @@
         <div class="row">
             <div class="col-xl-12">
                 <form id="form-edit" action="{{ route('modul_cm.rkap_realisasi.update', ['kd_rencana_kerja' => $rkapRealisasi->kd_rencana_kerja]) }}" method="POST">
+                    @if($errors->any())
+                        {{ implode('', $errors->all('<div>:message</div>')) }}
+                    @endif
                     @csrf
                     <div class="form-group row">
                         <label class="col-2 col-form-label"></label>
@@ -180,6 +183,7 @@
                 $("#bulan-group").show();
             }else if($("#rkap").is(':checked')){
                 $("#bulan-group").hide();
+                $('#bulan').val(null).change();
             }
         });
 
