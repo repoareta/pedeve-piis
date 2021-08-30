@@ -166,7 +166,7 @@ header {
                 <tr>
                     <td class="no-wrap">Tanggal</td>
                     <td>:</td>
-                    <td>{{ $dataPerkara->tgl_perkara }}</td>
+                    <td>{{ \Carbon\Carbon::parse($dataPerkara->tgl_perkara)->translatedFormat('d F Y') }}</td>
                 </tr>
                 <tr>
                     <td class="no-wrap">Ringkasan Perkara</td>
