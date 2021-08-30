@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RKAPUpdateRequest extends FormRequest
@@ -29,16 +30,16 @@ class RKAPUpdateRequest extends FormRequest
             'tahun' => 'required|date_format:Y',
             'bulan' => 'nullable|date_format:m',
             'kurs' => 'nullable',
-            'aset' => 'required',
-            'pendapatan_usaha' => 'required',
-            'beban_usaha' => 'required',
-            'pendapatan_beban_lain' => 'required',
-            'laba_bersih' => 'required',
-            'ebitda' => 'required',
-            'investasi_bd' => 'required',
-            'investasi_nbd' => 'required',
-            'tkp' => 'required',
-            'kpi' => 'required',
+            'aset' => ['required', new MoneyFormat, 'max:18'],
+            'pendapatan_usaha' => ['required', new MoneyFormat, 'max:18'],
+            'beban_usaha' => ['required', new MoneyFormat, 'max:18'],
+            'pendapatan_beban_lain' => ['required', new MoneyFormat, 'max:18'],
+            'laba_bersih' => ['required', new MoneyFormat, 'max:18'],
+            'ebitda' => ['required', new MoneyFormat, 'max:18'],
+            'investasi_bd' => ['required', new MoneyFormat, 'max:18'],
+            'investasi_nbd' => ['required', new MoneyFormat, 'max:18'],
+            'tkp' => ['required', new MoneyFormat, 'max:18'],
+            'kpi' => ['required', new MoneyFormat, 'max:18']
         ];
     }
 }
