@@ -7,6 +7,7 @@ use App\Http\Requests\PerizinanStore;
 use App\Http\Requests\PerizinanUpdate;
 use App\Models\Perizinan;
 use App\Models\PerusahaanAfiliasi;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
@@ -28,8 +29,19 @@ class PerizinanController extends Controller
                 return $radio;
             })
             ->addColumn('dokumen', function ($row) {
-                $file_path = asset("storage/$row->perusahaan_afiliasi_id/perizinan/$row->dokumen");
-                $dokumen = '<a href="'.$file_path.'" target=_blank>'.$row->dokumen.'</a>';
+                $files = collect($row->files);
+
+                $dokumen = null;
+
+                foreach ($files as $file) {
+                    $file_path = asset("storage/$row->perusahaan_afiliasi_id/perizinan/$file->dokumen");
+                    $dokumen .= '<a href="' . $file_path . '" target=_blank>' . $file->dokumen . '</a>';
+                    
+                    if ($files->last()->id !== $file->id) {
+                        $dokumen .= ', <br>';
+                    }
+                }
+
                 return $dokumen;
             })
             ->rawColumns(['radio', 'dokumen'])
@@ -69,20 +81,27 @@ class PerizinanController extends Controller
         $perizinan->nomor = $request->nomor;
         $perizinan->masa_berlaku_akhir = $request->masa_berlaku_akhir;
         $perizinan->created_by = auth()->user()->nopeg;
-
-        $file = $request->file('dokumen_perizinan');
-
-        if ($file) {
-            $file_name = $file->getClientOriginalName();
-            $perizinan->dokumen = $file_name;
-            $file_path = $file->storeAs(
-                $perusahaan_afiliasi->id.'/perizinan',
-                $perizinan->dokumen,
-                'public'
-            );
-        }
+        $perizinan->dokumen = '0';
 
         $perizinan->save();
+
+        $files = $request->file('filedok');
+
+        if ($files) {
+            foreach ($files as $file) {
+                $file_name = $file->getClientOriginalName();
+                
+                $findOldFile = public_path('storage/' . $perusahaan_afiliasi->id . '/perizinan/' . $file_name);
+                $pathToSave = $perusahaan_afiliasi->id . '/perizinan';
+
+                $fileName = (new FileUploadService($file, $pathToSave, $findOldFile))->upload();
+
+                $perizinan->files()->insert([
+                    'perizinan_id' => $perizinan->id,
+                    'dokumen' => $fileName,
+                ]);
+            }
+        }
 
         Alert::success('Berhasil', 'Data berhasil di simpan')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]);
@@ -118,24 +137,30 @@ class PerizinanController extends Controller
         $perizinan->nomor = $request->nomor;
         $perizinan->masa_berlaku_akhir = $request->masa_berlaku_akhir;
         $perizinan->created_by = auth()->user()->nopeg;
-
-        $file = $request->file('dokumen_perizinan');
-
-        if ($file) {
-            // Value is not URL but directory file path
-            $file_path = "public/$perusahaan_afiliasi->id/perizinan/$perizinan->dokumen";
-            Storage::delete($file_path);
+        $perizinan->dokumen = '0';
         
-            $file_name = $file->getClientOriginalName();
-            $perizinan->dokumen = $file_name;
-            $file_path = $file->storeAs(
-                $perusahaan_afiliasi->id.'/perizinan',
-                $perizinan->dokumen,
-                'public'
-            );
-        }
-
         $perizinan->save();
+
+        $files = $request->file('filedok');
+
+        if ($files) {
+            Storage::delete(Storage::allFiles("public/$perusahaan_afiliasi->id/perizinan/"));
+            $perizinan->files()->delete();
+
+            foreach ($files as $file) {
+                $file_name = $file->getClientOriginalName();
+
+                $findOldFile = public_path('storage/' . $perusahaan_afiliasi->id . '/perizinan/' . $file_name);
+                $pathToSave = $perusahaan_afiliasi->id . '/perizinan';
+
+                $fileName = (new FileUploadService($file, $pathToSave, $findOldFile))->upload();
+
+                $perizinan->files()->insert([
+                    'perizinan_id' => $perizinan->id,
+                    'dokumen' => $fileName,
+                ]);
+            }
+        }
 
         Alert::success('Berhasil', 'Data berhasil di simpan')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_cm.perusahaan_afiliasi.edit', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]);
@@ -150,9 +175,8 @@ class PerizinanController extends Controller
     public function delete(PerusahaanAfiliasi $perusahaan_afiliasi, Perizinan $perizinan)
     {
         // Value is not URL but directory file path
-        $file_path = "public/$perusahaan_afiliasi->id/perizinan/$perizinan->dokumen";
-        Storage::delete($file_path);
-
+        Storage::delete(Storage::allFiles("public/$perusahaan_afiliasi->id/perizinan/"));
+        $perizinan->files()->delete();
         $perizinan->delete();
 
         return response()->json(['delete' => true], 200);
