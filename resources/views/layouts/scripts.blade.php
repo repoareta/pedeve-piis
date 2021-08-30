@@ -120,6 +120,24 @@
             rightAlign: false
         });
 
+        $('.persen').inputmask("numeric", {
+            groupSeparator: ',',
+            autoGroup: true, 
+            digits: 2,
+            digitsOptional: true,
+            placeholder: '0',
+            rightAlign: false,
+            min: 0,
+            max: 100,
+        });
+
+        $('.saham').inputmask("numeric", {
+            placeholder: '0',
+            rightAlign: false,
+            min: 0,
+            max: 999999,
+        });
+
         $('.tahun, .angka').mask('0000', {
             reverse: true
         });

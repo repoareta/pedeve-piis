@@ -35,7 +35,7 @@
 							<textarea class="form-control" name="alamat" id="alamat"></textarea>
 						</div>
                     </div>
-                    
+
 					<div class="form-group row">
 						<label for="no_telepon" class="col-2 col-form-label">No Telepon</label>
 						<div class="col-10">
@@ -56,8 +56,7 @@
 							<input class="form-control" type="text" name="bidang_usaha" id="bidang_usaha">
 						</div>
                     </div>
-                    
-                    
+
 					<div class="form-group row">
 						<label for="modal_dasar" class="col-2 col-form-label">Modal Dasar</label>
 						<div class="col-10">
@@ -75,10 +74,10 @@
                     <div class="form-group row">
 						<label for="jumlah_lembar_saham" class="col-2 col-form-label">Jumlah Lembar Saham</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="jumlah_lembar_saham" id="jumlah_lembar_saham" value="0" min="0">
+							<input class="form-control saham" type="text" name="jumlah_lembar_saham" id="jumlah_lembar_saham" value="0" min="0">
 						</div>
                     </div>
-                    
+
                     <div class="form-group row">
 						<label for="nilai_nominal_per_saham" class="col-2 col-form-label">Nilai Nominal per Saham</label>
 						<div class="col-10">
