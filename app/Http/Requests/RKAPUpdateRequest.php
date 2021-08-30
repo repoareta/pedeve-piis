@@ -25,10 +25,11 @@ class RKAPUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'kategori' => 'required',
             'nama' => 'required|string',
             'ci' => 'required|string',
             'tahun' => 'required|date_format:Y',
-            'bulan' => 'nullable|date_format:m',
+            'bulan' => 'sometimes|required_if:kategori,realisasi',
             'kurs' => 'nullable',
             'aset' => ['required', new MoneyFormat, 'max:18'],
             'pendapatan_usaha' => ['required', new MoneyFormat, 'max:18'],

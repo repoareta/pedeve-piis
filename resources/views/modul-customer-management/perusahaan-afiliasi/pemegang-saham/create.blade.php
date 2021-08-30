@@ -32,14 +32,14 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">% Kepemilikan</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="kepemilikan" id="kepemilikan" value="0">
+                            <input class="form-control persen" type="text" name="kepemilikan" id="kepemilikan" value="0">
                         </div>
                     </div>
                     
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Jumlah Lembar Saham</label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="jumlah_lembar_saham_pemegang_saham" id="jumlah_lembar_saham_pemegang_saham" value="0">
+                            <input class="form-control saham" type="text" name="jumlah_lembar_saham_pemegang_saham" id="jumlah_lembar_saham_pemegang_saham" value="0">
                         </div>
                     </div>
 
