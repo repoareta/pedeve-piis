@@ -26,7 +26,11 @@ class RkapRealisasiController extends Controller
         ->orderBy('tahun', 'DESC')
         ->get();
 
-        $perusahaanList = PerusahaanAfiliasi::all();
+        $rkapRealisasiPerusahaanList = RencanaKerja::pluck('kd_perusahaan')
+        ->toArray();
+
+        $perusahaanList = PerusahaanAfiliasi::whereIn('id', $rkapRealisasiPerusahaanList)
+        ->get();
 
         return view('modul-customer-management.rkap-realisasi.index', compact('rkapRealisasiTahunList', 'perusahaanList'));
     }
