@@ -187,7 +187,7 @@ class SetUserController extends Controller
         $gcg_fungsi_list = GcgFungsi::all();
         $gcg_jabatan_list = GcgJabatan::all();
         $pegawai_list = MasterPegawai::all();
-
+        
         return view('modul-administrator.set-user.edit', compact(
             'data',
             'gcg_fungsi_list',

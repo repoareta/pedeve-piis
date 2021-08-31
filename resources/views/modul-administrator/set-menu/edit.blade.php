@@ -24,10 +24,10 @@
             <div class="float-left">
                 <div class="">
                     <button id="saveForm" class="btn btn-success" data-id="{{ $id }}">
-                        <i class="fa fa-check" aria-text="true"></i> Save
+                        <i class="fa fa-check" aria-text="true"></i> Simpan
                     </button>
                     <a href="{{ url()->previous() }}" class="btn btn-warning">
-                        <i class="fa fa-reply" aria-text="true"></i> Cancel
+                        <i class="fa fa-reply" aria-text="true"></i> Batal
                     </a>
                 </div>
             </div>
