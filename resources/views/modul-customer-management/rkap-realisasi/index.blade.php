@@ -135,7 +135,13 @@
                 {data: 'investasi_nbd', name: 'investasi_nbd', class: 'text-right'},
                 {data: 'tkp', name: 'tkp', class: 'text-right'},
                 {data: 'kpi', name: 'kpi', class: 'text-right'},
-            ]
+            ],
+			"createdRow": function(row, data, dataIndex){
+                if(data.bulan == null){
+                    $(row).addClass('table-secondary');
+					$('td', row).eq(1).css("background-color", "white");
+                }
+            }
         });
 
         $('#search-form').on('submit', function(e) {
