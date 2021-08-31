@@ -132,10 +132,11 @@
         });
 
         $('.saham').inputmask("numeric", {
+            groupSeparator: ',',
             placeholder: '0',
             rightAlign: false,
             min: 0,
-            max: 999999,
+            max: 1000000000,
         });
 
         $('.tahun, .angka').mask('0000', {

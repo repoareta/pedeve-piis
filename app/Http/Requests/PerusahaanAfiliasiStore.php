@@ -32,7 +32,7 @@ class PerusahaanAfiliasiStore extends FormRequest
             'npwp' => 'required|string',
             'modal_dasar' => ['required', new MoneyFormat, 'max:18'],
             'modal_disetor' => ['required', new MoneyFormat, 'max:18'],
-            'jumlah_lembar_saham' => 'required|integer|digits_between:0,10',
+            'jumlah_lembar_saham' => ['required', new MoneyFormat, 'digits_between:0,13'],
             'nilai_nominal_per_saham' => ['required', new MoneyFormat, 'max:18'],
         ];
     }
