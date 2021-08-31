@@ -43,6 +43,7 @@
                                     <option value="{{ $perusahaan->id }}">{{ $perusahaan->nama }}</option>
                                 @endforeach
                             </select>
+                            <div id="nama-nya"></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -69,6 +70,7 @@
                                 <option value="11">November</option>
                                 <option value="12">Desember</option>
                             </select>
+                            <div id="bulan-nya"></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -187,6 +189,24 @@
                 $("#kurs-group").show();
             }else if($("#idr").is(':checked')){
                 $("#kurs-group").hide();
+                $("#kurs").val(1);
+            }
+        });
+
+        $("#form-create").on('submit', function(e){
+
+            e.preventDefault();
+
+            if ($('#nama-error').length){
+                $("#nama-error").insertAfter("#nama-nya");
+            }
+
+            if ($('#bulan-error').length){
+                $("#bulan-error").insertAfter("#bulan-nya");
+            }
+
+            if($(this).valid()) {
+                $(this).unbind('submit').submit();
             }
         });
     });

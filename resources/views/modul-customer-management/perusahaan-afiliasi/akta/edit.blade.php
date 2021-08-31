@@ -40,7 +40,7 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Tanggal Akta</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="tanggal_akta" id="tanggal_akta" autocomplete="off" value="{{ date('Y-m-d', $akta->tanggal_akta) }}">
+							<input class="form-control datepicker" type="text" name="tanggal_akta" id="tanggal_akta" autocomplete="off" value="{{ date('Y-m-d', $akta->tanggal_akta) }}" style="width: 100%;">
 						</div>
                     </div>
 
@@ -54,14 +54,14 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">TMT Berlaku</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="tmt_berlaku" id="tmt_berlaku" autocomplete="off" value="{{ date('Y-m-d', strtotime($akta->tmt_mulai)) }}">
+							<input class="form-control datepicker" type="text" name="tmt_berlaku" id="tmt_berlaku" autocomplete="off" value="{{ date('Y-m-d', strtotime($akta->tmt_mulai)) }}" style="width: 100%;">
 						</div>
                     </div>
 
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">TMT Berakhir</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="tmt_berakhir" id="tmt_berakhir" autocomplete="off" value="{{ date('Y-m-d', strtotime($akta->tmt_akhir)) }}">
+							<input class="form-control datepicker" type="text" name="tmt_berakhir" id="tmt_berakhir" autocomplete="off" value="{{ date('Y-m-d', strtotime($akta->tmt_akhir)) }}" style="width: 100%;">
 						</div>
                     </div>
 

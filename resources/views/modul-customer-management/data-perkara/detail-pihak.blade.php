@@ -102,8 +102,8 @@
 								<option value="1">Penggugat</option>
 								<option value="2">Tergugat</option>
 								<option value="3">Turut Tergugat</option>
-                               
 							</select>
+							<div id="status-nya"></div>
 						</div>
 					</div>                    
 				</div>
@@ -172,6 +172,9 @@
         
 		$('#form-create').submit(function(e) {
 			e.preventDefault();
+			if ($('#status_pihak-error').length){
+				$("#status_pihak-error").insertAfter("#status-nya");
+			}
 
 			if ($(this).valid()) {
 				$.ajax({

@@ -103,8 +103,8 @@
 								<option value="1">Penggugat</option>
 								<option value="2">Tergugat</option>
 								<option value="3">Turut Tergugat</option>
-                               
 							</select>
+							<div id="status_hakim-nya"></div>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -113,6 +113,7 @@
 							<select class="form-control select2" name="kd_pihak" id="pihak_hakim" style="width: 100% !important;" required>
 								<option value=""> - Pilih - </option>
 							</select>
+							<div id="pihak_hakim-nya"></div>
 						</div>
 					</div>
                     
@@ -183,6 +184,14 @@
 
 		$('#form-create-hakim').submit(function(e) {
 			e.preventDefault();
+
+			if ($('#status_hakim-error').length){
+				$("#status_hakim-error").insertAfter("#status_hakim-nya");
+			}
+
+			if ($('#pihak_hakim-error').length){
+				$("#pihak_hakim-error").insertAfter("#pihak_hakim-nya");
+			}
 
 			if ($(this).valid()) {
 				$.ajax({
