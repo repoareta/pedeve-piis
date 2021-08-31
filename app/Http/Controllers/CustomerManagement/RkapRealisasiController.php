@@ -161,12 +161,10 @@ class RkapRealisasiController extends Controller
      * @param [type] $id
      * @return void
      */
-    public function edit($id)
+    public function edit(RencanaKerja $kd_rencana_kerja)
     {
-        $rkapRealisasi = RencanaKerja::find($id);
+        $rkapRealisasi = $kd_rencana_kerja;
         $perusahaanList = PerusahaanAfiliasi::all();
-
-        // dd($rkapRealisasi);
 
         return view('modul-customer-management.rkap-realisasi.edit', compact('rkapRealisasi', 'perusahaanList'));
     }

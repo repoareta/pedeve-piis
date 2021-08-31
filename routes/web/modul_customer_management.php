@@ -65,7 +65,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
         Route::get('rkap-realisasi/index-json', [RkapRealisasiController::class, 'indexJson'])->name('index.json');
         Route::get('rkap-realisasi/create', [RkapRealisasiController::class, 'create'])->name('create');
         Route::post('rkap-realisasi/store', [RkapRealisasiController::class, 'store'])->name('store');
-        Route::get('rkap-realisasi/edit/{id}', [RkapRealisasiController::class, 'edit'])->name('edit');
+        Route::get('rkap-realisasi/edit/{kd_rencana_kerja}', [RkapRealisasiController::class, 'edit'])->name('edit');
         Route::post('rkap-realisasi/update/{kd_rencana_kerja}', [RkapRealisasiController::class, 'update'])->name('update');
         Route::delete('rkap-realisasi/delete', [RkapRealisasiController::class, 'delete'])->name('delete');
         Route::get('rkap-realisasi/export', [RkapRealisasiController::class, 'export'])->name('export');

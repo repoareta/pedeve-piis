@@ -57,6 +57,7 @@
                     <div class="form-group row" id="bulan-group" @if($rkapRealisasi->bulan === null) style="display: none;" @endif>
                         <label class="col-2 col-form-label">Bulan</label>
                         <div class="col-8">
+                            <input class="form-control" type="hidden" value="{{ $rkapRealisasi->bulan }}" name="bulan_prev"> 
                             <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan" style="width: 100%">
                                 <option value="">- Pilih -</option>
                                 <option value="01" @if($rkapRealisasi->bulan == '01') selected @endif>Januari</option>
