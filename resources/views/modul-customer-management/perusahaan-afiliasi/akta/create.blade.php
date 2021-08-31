@@ -40,7 +40,7 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Tanggal Akta</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="tanggal_akta" id="tanggal_akta" autocomplete="off">
+							<input class="form-control datepicker" type="text" name="tanggal_akta" id="tanggal_akta" autocomplete="off" style="width: 100%;">
 						</div>
                     </div>
 
@@ -54,14 +54,14 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">TMT Berlaku</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="tmt_berlaku" id="tmt_berlaku" autocomplete="off">
+							<input class="form-control datepicker" type="text" name="tmt_berlaku" id="tmt_berlaku" autocomplete="off" style="width: 100%;">
 						</div>
                     </div>
 
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">TMT Berakhir</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="tmt_berakhir" id="tmt_berakhir" autocomplete="off">
+							<input class="form-control datepicker" type="text" name="tmt_berakhir" id="tmt_berakhir" autocomplete="off" style="width: 100%;">
 						</div>
                     </div>
 

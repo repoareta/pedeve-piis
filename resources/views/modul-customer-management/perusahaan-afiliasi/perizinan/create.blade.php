@@ -40,7 +40,7 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Masa Berlaku Akhir</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="masa_berlaku_akhir" id="masa_berlaku_akhir" autocomplete="off">
+							<input class="form-control datepicker" type="text" name="masa_berlaku_akhir" id="masa_berlaku_akhir" autocomplete="off" style="width: 100%;">
 						</div>
                     </div>
 

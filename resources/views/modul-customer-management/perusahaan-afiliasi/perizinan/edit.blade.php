@@ -40,7 +40,7 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Masa Berlaku Akhir</label>
 						<div class="col-10">
-							<input class="form-control datepicker" type="text" name="masa_berlaku_akhir" id="masa_berlaku_akhir" autocomplete="off" value="{{ date('Y-m-d', strtotime($perizinan->masa_berlaku_akhir)) }}">
+							<input class="form-control datepicker" type="text" name="masa_berlaku_akhir" id="masa_berlaku_akhir" autocomplete="off" value="{{ date('Y-m-d', strtotime($perizinan->masa_berlaku_akhir)) }}" style="width: 100%;">
 						</div>
                     </div>
 

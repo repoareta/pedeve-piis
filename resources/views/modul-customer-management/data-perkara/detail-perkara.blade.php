@@ -95,7 +95,11 @@
 
 @push('page-scripts')
 <script type="text/javascript">
-$(document).ready(function () {
+    $(document).ready(function () {
+        $('.tab-pane').on('click', function () {
+            $('input[class=btn-radio]').prop('checked', false);
+        });
+
         $('#deleteRow').click(function(e) {
             e.preventDefault();
             if($('input[class=btn-radio]').is(':checked')) { 

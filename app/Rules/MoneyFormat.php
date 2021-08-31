@@ -25,7 +25,7 @@ class MoneyFormat implements Rule
      */
     public function passes($attribute, $value)
     {
-        $regex = '/^\d+(,\d{3})*(\.\d+)?$/';
+        $regex = '/^\-?\d+(,\d{3})*(\.\d+)?$/';
 
         $validate = preg_match($regex, $value);
 
