@@ -144,7 +144,7 @@
 			},
 			ajax: "{{ route('modul_cm.data_perkara.search.hakim', ['no_perkara' => $data->no_perkara]) }}",
 			columns: [
-				{data: 'radio', name: 'radio'},
+				{data: 'radio', name: 'radio', width: '10'},
 				{data: 'nama_p', name: 'nama_p'},
 				{data: 'nama', name: 'nama'},
 				{data: 'alamat', name: 'alamat'},
