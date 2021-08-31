@@ -96,8 +96,10 @@
 @push('page-scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.tab-pane').on('click', function () {
-            $('input[class=btn-radio]').prop('checked', false);
+        $('#reload-umum, #reload-pihak, #reload-hakim, #reload-dokumen').on('click', function (e) {            
+            if($('input[class=btn-radio]').is(':checked')) {
+                $('input[class=btn-radio]').prop('checked', false);
+            }
         });
 
         $('#deleteRow').click(function(e) {
