@@ -9,6 +9,7 @@ use App\Http\Requests\RKAPUpdateRequest;
 use App\Models\PerusahaanAfiliasi;
 use App\Models\RencanaKerja;
 use DB;
+use DomPDF;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -219,6 +220,7 @@ class RkapRealisasiController extends Controller
     /**
      * Undocumented function
      *
+     * @param Request $request
      * @return void
      */
     public function export(Request $request)
@@ -722,46 +724,19 @@ class RkapRealisasiController extends Controller
         AND $perusahaan_trk
         AND bulan IS NULL");
 
-        if($request->perusahaan){
-            // return default PDF
-            $headerHtml = view()->make(
-                'modul-customer-management.rkap-realisasi.report-export-pdf-header',
-                compact('tahun_pdf', 'perusahaan_pdf')
-            )->render();
-
-            $pdf = PDF::loadView(
-                'modul-customer-management.rkap-realisasi.report-export-pdf',
-                compact('rkapRealisasiList', 'tahun_pdf')
-            )
-            ->setPaper('a4', 'landscape')
-            ->setOption('margin-top', '10mm')
-            ->setOption('margin-bottom', '10mm')
-            ->setOption('header-html', $headerHtml)
-            ->setOption('footer-right', 'Halaman [page] dari [topage]')
-            ->setOption('footer-font-name', 'sans-serif')
-            ->setOption('footer-font-size', 8);
-
-            return $pdf->download('report_rkap_realisasi_'.date('Y-m-d H:i:s').'.pdf');
-        }
-
-        // return default PDF
-        $headerHtml = view()->make(
-            'modul-customer-management.rkap-realisasi.report-export-pdf-header',
-            compact('tahun_pdf', 'perusahaan_pdf')
-        )->render();
-
-        $pdf = PDF::loadView(
-            'modul-customer-management.rkap-realisasi.report-all-pdf',
-            compact('rkapRealisasiList', 'tahun_pdf')
-        )
-        ->setPaper('a4', 'landscape')
-        ->setOption('margin-top', '10mm')
-        ->setOption('margin-bottom', '10mm')
-        ->setOption('header-html', $headerHtml)
-        ->setOption('footer-right', 'Halaman [page] dari [topage]')
-        ->setOption('footer-font-name', 'sans-serif')
-        ->setOption('footer-font-size', 8);
-
+        $pdf = DomPDF::loadView('modul-customer-management.rkap-realisasi.report-all-dompdf', compact(
+            'rkapRealisasiList', 
+            'tahun_pdf',
+            'perusahaan_pdf'
+        ));
+        $pdf->setOptions([
+            'isPhpEnabled' => true,
+            'isHtml5ParserEnabled' => true, 
+            'isRemoteEnabled' => true,
+            'tempDir' => public_path(),
+            'chroot'  => public_path(),
+        ]);
+        $pdf->setPaper('A4', 'landscape');
         return $pdf->download('report_rkap_realisasi_'.date('Y-m-d H:i:s').'.pdf');
     }
 }
