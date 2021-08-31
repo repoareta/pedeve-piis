@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PemegangSahamUpdate extends FormRequest
@@ -26,7 +27,7 @@ class PemegangSahamUpdate extends FormRequest
         return [
             'nama_pemegang_saham'   => "required",
             'kepemilikan'    => "required|numeric|min:0|max:100",
-            'jumlah_lembar_saham_pemegang_saham' => "required|integer|digits_between:0,10",
+            'jumlah_lembar_saham_pemegang_saham' => ['required', new MoneyFormat, 'digits_between:0,13'],
         ];
     }
 }

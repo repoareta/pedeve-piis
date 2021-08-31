@@ -53,7 +53,7 @@ class PemegangSahamController extends Controller
         $pemegang_saham->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
         $pemegang_saham->nama = $request->nama_pemegang_saham;
         $pemegang_saham->kepemilikan = $request->kepemilikan;
-        $pemegang_saham->jumlah_lembar_saham = $request->jumlah_lembar_saham_pemegang_saham;
+        $pemegang_saham->jumlah_lembar_saham = sanitize_nominal($request->jumlah_lembar_saham_pemegang_saham);
         $pemegang_saham->created_by = auth()->user()->nopeg;
 
         $pemegang_saham->save();
@@ -96,7 +96,7 @@ class PemegangSahamController extends Controller
         $pemegang_saham->perusahaan_afiliasi_id = $perusahaan_afiliasi->id;
         $pemegang_saham->nama = $request->nama_pemegang_saham;
         $pemegang_saham->kepemilikan = $request->kepemilikan;
-        $pemegang_saham->jumlah_lembar_saham = $request->jumlah_lembar_saham_pemegang_saham;
+        $pemegang_saham->jumlah_lembar_saham = sanitize_nominal($request->jumlah_lembar_saham_pemegang_saham);
         $pemegang_saham->created_by = auth()->user()->nopeg;
 
         $pemegang_saham->save();
