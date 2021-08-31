@@ -27,7 +27,7 @@ class KasBankKontrolerStore extends FormRequest
         return [
             'kodestore' => 'required|numeric|unique:storejk',
             'jeniskartu' => 'required|numeric|in:10,11,13', 
-            'kodeacct' => 'required|numeric|unique:account',
+            'kodeacct' => 'required|numeric|exists:account',
             'ci' => 'required|numeric|in:1,2',
             'namabank' => 'required|string',
             'norekening' => 'required|numeric',

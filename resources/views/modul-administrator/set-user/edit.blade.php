@@ -110,10 +110,10 @@
                                     <input type="checkbox" name="pbd" value="D" {{ $userp3 == 'D' ? 'checked' : '' }}>
                                 <span></span>Perbendaharaan</label>
                                 <label class="checkbox checkbox-primary">
-                                    <input type="checkbox" name="umu" value="E" {{ $userp3 == 'E' ? 'checked' : '' }}>
+                                    <input type="checkbox" name="umu" value="E" {{ $userp4 == 'E' ? 'checked' : '' }}>
                                 <span></span>Umum</label>
                                 <label class="checkbox checkbox-primary">
-                                    <input type="checkbox" name="sdm" value="F" {{ $userp3 == 'F' ? 'checked' : '' }}>
+                                    <input type="checkbox" name="sdm" value="F" {{ $userp5 == 'F' ? 'checked' : '' }}>
                                 <span></span>SDM</label>
                             </div>
                         </div>
