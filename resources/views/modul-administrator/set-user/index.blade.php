@@ -85,14 +85,14 @@
 				<div class="modal-body">
 					<div class="form-group row">
 						<div class="col-12">
-							<div class="radio-inline">
+							<div class="radio-inline col-form-label">
 								<label class="radio ">
-									<input type="radio" name="cetak" value="A" onclick="displayResult(1)" checked/> Cetak All
-									<span></span>
+									<input type="radio" name="cetak" value="A" onclick="displayResult(1)" checked/> 
+									<span></span>Cetak All
 								</label>
 								<label class="radio ">
-									<input type="radio" name="cetak" value="B" onclick="displayResult(2)" /> Cetak Per User
-									<span></span>
+									<input type="radio" name="cetak" value="B" onclick="displayResult(2)" /> 
+									<span></span>Cetak Per User
 								</label>
 							</div>
 						</div>
