@@ -133,10 +133,16 @@ class RkapRealisasiController extends Controller
      */
     public function store(RKAPStoreRequest $request, RencanaKerja $rencanaKerja)
     {
+        if ($request->kategori == 'rkap') {
+            $bulan = null;
+        } else if($request->kategori == 'realisasi') {
+            $bulan = $request->bulan;
+        }
+        
         $rencanaKerja->kd_perusahaan = $request->nama;
         $rencanaKerja->ci_r = $request->ci;
         $rencanaKerja->tahun = $request->tahun;
-        $rencanaKerja->bulan = $request->bulan;
+        $rencanaKerja->bulan = $bulan;
         $rencanaKerja->rate_r = sanitize_nominal($request->kurs);
         $rencanaKerja->aset_r = sanitize_nominal($request->aset);
         $rencanaKerja->pendapatan_usaha = sanitize_nominal($request->pendapatan_usaha);

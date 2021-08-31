@@ -32,6 +32,7 @@ class RKAPUpdateRequest extends FormRequest
             'tahun' => 'required|date_format:Y',
             'bulan' => [
                 'sometimes',
+                'nullable',
                 'required_if:kategori,realisasi',
                 Rule::unique('tbl_rencana_kerja', 'bulan')
                 ->ignore($this->request->get('bulan_prev'), 'bulan')

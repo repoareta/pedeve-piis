@@ -109,7 +109,7 @@
             processing: true,
             serverSide: true,
             pageLength: 100,
-            'rowsGroup': [1],
+            rowsGroup: [1],
             ajax: {
                 url: "{{ route('modul_cm.rkap_realisasi.index.json') }}",
                 data: function (d) {

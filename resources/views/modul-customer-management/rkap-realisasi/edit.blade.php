@@ -46,6 +46,7 @@
                                 <option value="{{ $perusahaan->id }}" @if ($perusahaan->id == $rkapRealisasi->kd_perusahaan) selected @endif>{{ $perusahaan->nama }}</option>
                                 @endforeach
                             </select>
+                            <div id="nama-nya"></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -73,6 +74,7 @@
                                 <option value="11" @if($rkapRealisasi->bulan == '11') selected @endif>November</option>
                                 <option value="12" @if($rkapRealisasi->bulan == '12') selected @endif>Desember</option>
                             </select>
+                            <div id="bulan-nya"></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -177,14 +179,11 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        
-
         $("input[name=kategori]").change(function(){
             if($("#realisasi").is(':checked')){
                 $("#bulan-group").show();
             }else if($("#rkap").is(':checked')){
                 $("#bulan-group").hide();
-                $('#bulan').val(null).change();
             }
         });
 
@@ -195,6 +194,24 @@
                 $("#kurs-group").hide();
             }
         });
+
+        $("#form-edit").on('submit', function(e){
+
+            e.preventDefault();
+
+            if ($('#nama-error').length){
+                $("#nama-error").insertAfter("#nama-nya");
+            }
+
+            if ($('#bulan-error').length){
+                $("#bulan-error").insertAfter("#bulan-nya");
+            }
+
+            if($(this).valid()) {
+                $(this).unbind('submit').submit();
+            }
+        });
+
     });		
 </script>
 @endpush
