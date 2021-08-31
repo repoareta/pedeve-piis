@@ -57,7 +57,7 @@
 						<label for="" class="col-3 col-form-label">Dokumen Perkara</label>
 						<div class="col-9">
 							<div class="input-group control-group after-add-more">
-                                <input type="file" name="filedok[]" class="form-control" title="Dokumen" accept=".pdf,.jpg,.jpeg">
+                                <input type="file" name="filedok[]" class="form-control" title="Dokumen" accept=".pdf,.jpg,.jpeg,.png">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary add-more" type="button"><i class="fas fa-plus"></i> Tambah</button>
                                 </div>
