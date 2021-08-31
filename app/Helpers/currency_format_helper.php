@@ -8,5 +8,5 @@
  */
 function currency_format($angka)
 {
-    return number_format((float) $angka, 2, ',', '.');
+    return number_format((float) $angka, 2, '.', ',');
 }
