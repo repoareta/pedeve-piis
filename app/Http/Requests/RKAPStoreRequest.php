@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RKAPStoreRequest extends FormRequest
@@ -24,21 +25,22 @@ class RKAPStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'kategori' => 'required',
             'nama' => 'required|string',
             'ci' => 'required|string',
             'tahun' => 'required|date_format:Y',
-            'bulan' => 'nullable|date_format:m',
-            'kurs' => 'date_format:m',
-            'aset' => 'required|numeric',
-            'pendapatan_usaha' => 'required|numeric',
-            'beban_usaha' => 'required|numeric',
-            'pendapatan_beban_lain' => 'required|numeric',
-            'laba_bersih' => 'required|numeric',
-            'ebitda' => 'required|numeric',
-            'investasi_bd' => 'required|numeric',
-            'investasi_nbd' => 'required|numeric',
-            'tkp' => 'required|numeric',
-            'kpi' => 'required|numeric',
+            'bulan' => 'sometimes|required_if:kategori,realisasi',
+            'kurs' => 'nullable',
+            'aset' => ['required', new MoneyFormat, 'max:18'],
+            'pendapatan_usaha' => ['required', new MoneyFormat, 'max:18'],
+            'beban_usaha' => ['required', new MoneyFormat, 'max:18'],
+            'pendapatan_beban_lain' => ['required', new MoneyFormat, 'max:18'],
+            'laba_bersih' => ['required', new MoneyFormat, 'max:18'],
+            'ebitda' => ['required', new MoneyFormat, 'max:18'],
+            'investasi_bd' => ['required', new MoneyFormat, 'max:18'],
+            'investasi_nbd' => ['required', new MoneyFormat, 'max:18'],
+            'tkp' => ['required', new MoneyFormat, 'max:18'],
+            'kpi' => ['required', new MoneyFormat, 'max:18']
         ];
     }
 }

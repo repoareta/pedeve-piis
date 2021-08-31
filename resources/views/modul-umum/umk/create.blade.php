@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">No. UMK <span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">No. UMK <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <?php $data_no_umk = str_replace('/', '-', $no_umk); ?>
                     <input class="form-control" type="hidden" value="{{$data_no_umk}}" id="noumk"  size="25" maxlength="25" readonly>

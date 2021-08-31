@@ -23,7 +23,7 @@
                 <form action="{{ route('modul_sdm_payroll.master_pegawai.golongan_gaji.store', ['pegawai' => $pegawai->nopeg]) }}" method="post" id="form-create-golongan-gaji">
                     @csrf
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Golongan Gaji</label>
+						<label for="" class="col-2 col-form-label">Golongan Gaji</label>
 						<div class="col-10">
 							<select class="form-control select2" name="golongan_gaji" id="golongan_gaji" style="width: 100% !important;">
 								<option value="">- Pilih Golongan Gaji -</option>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">Tanggal</label>
+						<label for="" class="col-2 col-form-label">Tanggal</label>
 						<div class="col-10">
 							<div class="input-group date">
 								<input type="text" class="form-control datepicker" readonly="" placeholder="Pilih Tanggal" name="tanggal_golongan_gaji" id="tanggal_golongan_gaji">

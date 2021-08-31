@@ -66,16 +66,33 @@
                     </div>
 
                     <div class="form-group row">
-						<label for="" class="col-2 col-form-label">Dokumen Upload</label>
+						<label for="" class="col-2 col-form-label">Dokumen Akta</label>
 						<div class="col-10">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="dokumen_akta" title="Dokumen Akta" accept=".pdf">
-                                <label class="custom-file-label" for="customFile">Pilih File</label>
-                                <span class="form-text text-muted" id="photo-nya">Tipe dokumen: .pdf</span>
-                                <div id="dokumen_akta-nya"></div>
-                            </div>
-                        </div>
-                    </div>
+							<div class="input-group control-group after-add-more">
+                                <input type="file" name="filedok[]" class="form-control" title="Dokumen" accept=".pdf">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary add-more" type="button"><i class="fas fa-plus"></i> Tambah</button>
+                                </div>
+							</div>
+							@if(count($errors) > 0)
+								@foreach ($errors->all() as $error)
+								<span class="text-danger">Format harus pdf</span>
+								@endforeach
+							@else
+								<span>Format file pdf</span>
+							@endif
+						</div>
+					</div>
+					<div style="display:none;">
+						<div class="copy hide">
+                            <div class="input-group control-group my-2">
+                                <input type="file" name="filedok[]" class="form-control" title="Dokumen" accept=".pdf">
+                                <div class="input-group-append">
+                                    <button class="btn btn-danger remove" type="button"><i class="fas fa-minus"></i> Hapus</button>
+                                </div>
+							</div>
+						</div>
+					</div>
 
                     <div class="form-group row">
                         <div class="col-2"></div>
@@ -96,12 +113,14 @@
 
 <script>
     $(document).ready(function () {
-        $('.datepicker').datepicker({
-            todayHighlight: true,
-            orientation: "bottom left",
-            autoclose: true,
-            format   : 'dd-mm-yyyy'
-        });
+        $(".add-more").click(function(){ 
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+		});
+
+        $("body").on("click",".remove",function(){ 
+			$(this).parents(".control-group").remove();
+		});
     });
 </script>
 @endpush

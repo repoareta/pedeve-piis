@@ -179,7 +179,7 @@
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-dark fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                             <i class="fas fa-2x fa-times-circle text-dark"></i>
                         </span>
                     </a>
@@ -260,33 +260,33 @@
             }
 
             if($(this).valid()) {
-            const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-primary',
-                cancelButton: 'btn btn-danger'
-            },
-                buttonsStyling: false
-            })
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-primary',
+                    cancelButton: 'btn btn-danger'
+                },
+                    buttonsStyling: false
+                })
 
-            swalWithBootstrapButtons.fire({
-                title: "Apakah anda yakin mau menyimpan data ini?",
-                text: "",
-                icon: 'warning',
-                showCancelButton: true,
-                reverseButtons: true,
-                confirmButtonText: 'Ya, Simpan Panjar',
-                cancelButtonText: 'Tidak'
-            })
-            .then((result) => {
-                if (result.value) {
-                    $(this).append('<input type="hidden" name="url" value="edit" />');
-                    $(this).unbind('submit').submit();
-                }
-                else if (result.dismiss === Swal.DismissReason.cancel) {
-                    $(this).append('<input type="hidden" name="url" value="modul_umum.perjalanan_dinas.index" />');
-                    $(this).unbind('submit').submit();
-                }
-            });
+                swalWithBootstrapButtons.fire({
+                    title: "Apakah anda yakin mau menyimpan data ini?",
+                    text: "",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    reverseButtons: true,
+                    confirmButtonText: 'Ya, Simpan Panjar',
+                    cancelButtonText: 'Tidak'
+                })
+                .then((result) => {
+                    if (result.value) {
+                        $(this).append('<input type="hidden" name="url" value="edit" />');
+                        $(this).unbind('submit').submit();
+                    }
+                    else if (result.dismiss === Swal.DismissReason.cancel) {
+                        $(this).append('<input type="hidden" name="url" value="modul_umum.perjalanan_dinas.index" />');
+                        $(this).unbind('submit').submit();
+                    }
+                });
             }
         });
     });

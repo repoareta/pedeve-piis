@@ -390,9 +390,9 @@
                         </div>
                     </div>
     
-                    <div class="form__actions">
+                    <div class="row">
                         <div class="col-lg-5">
-                            <div class="row">
+                            <div class="form-group row">
                                 <div class="col-4"></div>
                                 <div class="col-8">
                                     <a href="{{ route('modul_sdm_payroll.master_pegawai.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>

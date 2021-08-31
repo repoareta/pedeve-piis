@@ -27,12 +27,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="spd-input" class="col-2 col-form-label">No. Permintaan <span class="text-danger">*</span></label>
+                    <label for="" class="col-2 col-form-label">No. Permintaan <span class="text-danger">*</span></label>
                     <div class="col-5">
                         <input class="form-control disabled bg-secondary" type="text" name="nobayar" value="{{$data_bayar->no_bayar}}" id="nobayar" readonly>
                     </div>
 
-                    <label for="spd-input" class="col-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
+                    <label for="" class="col-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
                     <div class="col-3">
                         <input class="form-control" type="text" name="tanggal" id="tanggal" value="<?php echo date("d-m-Y", strtotime($data_bayar->tgl_bayar)) ?>">
                     </div>
@@ -89,11 +89,11 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="spd-input"  class="col-2 col-form-label">No. Kas</label>
+                    <label for=""  class="col-2 col-form-label">No. Kas</label>
                     <div class="col-5">
                         <input readonly class="form-control disabled bg-secondary" name="nokas" type="text" value="{{ $data_bayar->no_kas }}" id="nokas" size="10" maxlength="25">
                     </div>
-                    <label for="spd-input"  class="col-2 col-form-label">Bulan Buku <span class="text-danger">*</span></label>
+                    <label for=""  class="col-2 col-form-label">Bulan Buku <span class="text-danger">*</span></label>
                     <div class="col-3" >
                         <input class="form-control disabled bg-secondary" type="text" value="{{ $data_bayar->bulan_buku }}"  name="bulanbuku" size="6" maxlength="6" readonly>
                     </div>
@@ -110,7 +110,7 @@
 							<span></span>USD</label>
 						</div>
 					</div>
-                    <label for="spd-input" class="col-2 col-form-label">Kurs <span class="text-danger">*</span></label>
+                    <label for="" class="col-2 col-form-label">Kurs <span class="text-danger">*</span></label>
                     <div class="col-3">
                         <input class="form-control" type="text" name="kurs" id="kurs" value="<?php echo number_format($data_bayar->rate, 0, ',', '.'); ?>" size="10" maxlength="10" onkeypress="return hanyaAngka(event)" >
                         <input class="form-control" type="hidden" id="data-kurs" value="<?php echo number_format($data_bayar->rate, 0, ',', '.'); ?>" >

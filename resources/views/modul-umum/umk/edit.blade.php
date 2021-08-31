@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="spd-input" class="col-2 col-form-label">No. UMK <span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">No. UMK <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="hidden" value="{{ str_replace('/', '-', $noumk) }}" id="noumk"  size="25" maxlength="25" readonly>
                     <input class="form-control disabled bg-secondary" type="text" value="{{$noumk}}" name="no_umk" size="25" maxlength="25" readonly required>

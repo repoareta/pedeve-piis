@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CustomerManagement;
 use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RKAPStoreRequest;
+use App\Http\Requests\RKAPUpdateRequest;
 use App\Models\PerusahaanAfiliasi;
 use App\Models\RencanaKerja;
 use DB;
@@ -176,7 +177,7 @@ class RkapRealisasiController extends Controller
      * @param Request $request
      * @return void
      */
-    public function update(RKAPStoreRequest $request, $id)
+    public function update(RKAPUpdateRequest $request, $id)
     {
         $rencanaKerja = RencanaKerja::find($id);
         $rencanaKerja->kd_perusahaan = $request->nama;

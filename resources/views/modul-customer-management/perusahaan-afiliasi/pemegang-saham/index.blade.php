@@ -58,8 +58,8 @@
             columns: [
                 {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
                 {data: 'nama', name: 'nama'},
-                {data: 'kepemilikan', name: 'kepemilikan'},
-                {data: 'jumlah_lembar_saham', name: 'jumlah_lembar_saham'}
+                {data: 'kepemilikan', name: 'kepemilikan', class:'text-right'},
+                {data: 'jumlah_lembar_saham', name: 'jumlah_lembar_saham', class: 'text-right'}
             ],
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });

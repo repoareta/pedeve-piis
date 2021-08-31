@@ -1,5 +1,6 @@
 <html>
     <head>
+      <title>Pertanggungjawaban Panjar Dinas {{ $ppanjar_header->no_ppanjar }}</title>
         <style>
             .row {
               display: -ms-flexbox;

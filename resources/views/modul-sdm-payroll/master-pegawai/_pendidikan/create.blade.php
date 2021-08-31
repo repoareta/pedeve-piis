@@ -84,7 +84,7 @@
 					</div>
 
                     <div class="form-group row">
-						<label for="spd-input" class="col-3 col-form-label">Catatan</label>
+						<label for="" class="col-3 col-form-label">Catatan</label>
 						<div class="col-9">
 							<input class="form-control" type="text" name="catatan_pendidikan_pegawai" id="catatan_pendidikan_pegawai">
 						</div>

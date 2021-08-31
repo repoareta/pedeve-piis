@@ -2,18 +2,16 @@
 
 use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasController;
 use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasPertanggungjawabanController;
-
 use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaController;
 use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaPertanggungjawabanController;
 use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaPertanggungjawabanDetailController;
-
 use App\Http\Controllers\Umum\PermintaanBayarController;
 use App\Http\Controllers\Umum\VendorController;
-
 use App\Http\Controllers\Umum\Anggaran\AnggaranController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainDetailController;
 use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasDetailController;
+use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasPertanggungjawabanDetailController;
 
 Route::prefix('umum')->name('modul_umum.')->group(function () {
 
@@ -42,7 +40,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
                 Route::post('{no_panjar}/detail/store', [PerjalananDinasDetailController::class, 'store'])->name('store');
                 Route::get('{no_panjar}/detail/show', [PerjalananDinasDetailController::class, 'show'])->name('show.json');
                 Route::get('{no_panjar}/detail/edit/{no_urut}/{nopek}', [PerjalananDinasDetailController::class, 'edit'])->name('edit');
-                Route::post('{no_panjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasController::class, 'update'])->name('update');
+                Route::post('{no_panjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasDetailController::class, 'update'])->name('update');
                 Route::delete('{no_panjar}/detail/delete', [PerjalananDinasDetailController::class, 'delete'])->name('delete');
             });
             
@@ -63,11 +61,15 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
 
                 Route::prefix('pertanggungjawaban')->group(function () {
                     // P PERJALANAN DINAS DETAIL START
-                    Route::get('{no_ppanjar}/detail/index-json', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'indexJson'])->name('detail.index.json');
-                    Route::get('{no_ppanjar}/detail/show', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'show'])->name('detail.show');
-                    Route::post('{no_ppanjar}/detail/store', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'store'])->name('detail.store');
-                    Route::post('{no_ppanjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'update'])->name('detail.update');
-                    Route::delete('{no_ppanjar}/detail/delete', [PerjalananDinasPertanggungjawabanControllerDetail::class, 'delete'])->name('detail.delete');
+                    Route::name('detail.')->group(function () {
+                        Route::get('{no_ppanjar}/detail/index-json', [PerjalananDinasPertanggungjawabanDetailController::class, 'indexJson'])->name('index.json');
+                        Route::get('{no_ppanjar}/detail/create', [PerjalananDinasPertanggungjawabanDetailController::class, 'create'])->name('create');
+                        Route::post('{no_ppanjar}/detail/store', [PerjalananDinasPertanggungjawabanDetailController::class, 'store'])->name('store');
+                        Route::get('{no_ppanjar}/detail/edit/{no_urut}/{nopek}', [PerjalananDinasPertanggungjawabanDetailController::class, 'edit'])->name('edit');
+                        Route::post('{no_ppanjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasPertanggungjawabanDetailController::class, 'update'])->name('update');
+                        Route::delete('{no_ppanjar}/detail/delete', [PerjalananDinasPertanggungjawabanDetailController::class, 'delete'])->name('delete');
+                    });
+                    
                     // P PERJALANAN DINAS DETAIL END
                 }); 
             });

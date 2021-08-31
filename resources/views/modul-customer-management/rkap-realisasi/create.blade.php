@@ -178,6 +178,7 @@
                 $("#bulan-group").show();
             }else if($("#rkap").is(':checked')){
                 $("#bulan-group").hide();
+                $('#bulan').val(null).change();
             }
         });
 

@@ -77,19 +77,6 @@
                     {data: 'userap', name: 'userap'},
                 ]
             });
-
-            $('#kt_table tbody').on('click', 'tr',function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                } else {
-                    t.$('tr.selected').removeClass('selected');
-                    
-                    if (event.target.type !== 'checkbox') {
-                        $(':checkbox', this).trigger('click');
-                    }
-                    $(this).addClass('selected');
-                }
-            } );
     
             //edit 
             $("#checkBoxAll").click(function () {

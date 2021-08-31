@@ -26,10 +26,18 @@ class PerizinanStore extends FormRequest
         return [
             'perusahaan_afiliasi_id' => 'required',
             'keterangan' => 'required|string',
-            'nomor' => 'required|string',
-            'masa_berlaku_akhir' => 'required|date_format:d-m-Y',
+            'nomor' => 'required|numeric',
+            'masa_berlaku_akhir' => 'required|date_format:Y-m-d',
+            'masa_berlaku_akhir' => 'required',
             'created_by' => 'required|string',
-            'dokumen_perizinan' => 'required|file',
+            'filedok.*' => 'required|mimes:pdf|max:100000',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'filedok.*' => 'Dokumen Perizinan'
         ];
     }
 }

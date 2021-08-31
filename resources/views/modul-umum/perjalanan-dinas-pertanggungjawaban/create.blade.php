@@ -28,12 +28,12 @@
                 <form class="form" id="formPPanjarDinas" action="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="spd-input" class="col-2 col-form-label">No. PJ Panjar</label>
+						<label for="" class="col-2 col-form-label">No. PJ Panjar</label>
 						<div class="col-5">
 							<input class="form-control" type="text" readonly name="no_pj_panjar" value="{{ $no_pspd }}" id="no_pj_panjar">
 						</div>
 
-						<label for="spd-input" class="col-2 col-form-label">Tanggal PJ Panjar</label>
+						<label for="" class="col-2 col-form-label">Tanggal PJ Panjar</label>
 						<div class="col-3">
 							<input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('Y-m-d') }}">
 						</div>
@@ -100,13 +100,11 @@
 						</div>
 					</div>
 
-					<div class="form__actions">
-						<div class="row">
-							<div class="col-2"></div>
-							<div class="col-10">
-								<a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
-								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
-							</div>
+					<div class="row">
+						<div class="col-2"></div>
+						<div class="col-10">
+							<a href="{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+							<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
 						</div>
 					</div>
 				</form>
@@ -120,7 +118,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Detail Panjar Dinas
+                Detail Pertanggungjawaban Panjar Dinas
             </h3>
         </div>
         <div class="card-toolbar">
@@ -137,7 +135,7 @@
                         </span>
                     </a>
                     <a href="#">
-                        <span class="text-dark fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <span class="fa-disabled" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                             <i class="fas fa-2x fa-times-circle text-dark"></i>
                         </span>
                     </a>
@@ -151,14 +149,14 @@
                 <table class="table table-hover table-checkable" id="kt_table">
                     <thead class="thead-light">
                         <tr>
-                            <th></th>
-                            <th>NO</th>
-                            <th>NOPEK</th>
-                            <th>NAMA</th>
-                            <th>GOL</th>
-                            <th>JABATAN</th>
-                            <th>KETERANGAN</th>
-                        </tr>
+							<th></th>
+							<th>NO</th>
+							<th>NOPEK</th>
+							<th>KETERANGAN</th>
+							<th>NILAI</th>
+							<th>QTY</th>
+							<th>TOTAL</th>
+						</tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -171,4 +169,56 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PPerjalananDinasStore', '#formPPanjarDinas') !!}
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		$("#formPPanjarDinas").on('submit', function(e){
+			e.preventDefault();
+			
+			if ($('#no_panjar-error').length){
+				$("#no_panjar-error").insertAfter("#no_panjar-nya");
+			}
+
+			if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#nopek-nya");
+			}
+
+			if ($('#jabatan-error').length){
+				$("#jabatan-error").insertAfter("#jabatan-nya");
+			}
+
+			if($(this).valid()) {
+				const swalWithBootstrapButtons = Swal.mixin({
+				customClass: {
+					confirmButton: 'btn btn-primary',
+					cancelButton: 'btn btn-danger'
+				},
+					buttonsStyling: false
+				})
+
+				swalWithBootstrapButtons.fire({
+					title: "Apakah anda yakin mau menyimpan data ini?",
+					text: "",
+					type: 'warning',
+					showCancelButton: true,
+					reverseButtons: true,
+					confirmButtonText: 'Ya, Simpan P Panjar Dinas',
+					cancelButtonText: 'Tidak'
+				})
+				.then((result) => {
+					if (result.value) {
+						$(this).append('<input type="hidden" name="url" value="edit" />');
+						$(this).unbind('submit').submit();
+					}
+					else if (result.dismiss === Swal.DismissReason.cancel) {
+						$(this).append('<input type="hidden" name="url" value="modul_umum.perjalanan_dinas.detail.index" />');
+						$(this).unbind('submit').submit();
+					}
+				});
+			}
+		});
+	});
+</script>
 @endpush

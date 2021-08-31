@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Umum\PerjalananDinas;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PPerjalananDinasStore;
 use App\Models\KodeJabatan;
@@ -68,16 +69,29 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         ->orderBy('nama', 'ASC')
         ->get();
 
+        $pegawai_list_panjar = $pegawai_list->pluck('nopeg')->toArray();
+
         $jabatan_list = KodeJabatan::distinct('keterangan')
         ->orderBy('keterangan', 'ASC')
         ->get();
 
-        $ppanjar_header_list = PPanjarHeader::select('no_panjar')->whereNotNull('no_panjar')->get()->toArray();
-        $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)->get();
+        $ppanjar_header_list = PPanjarHeader::select('no_panjar')
+        ->whereNotNull('no_panjar')
+        ->get()
+        ->toArray();
+
+        $panjar_header_list = PanjarHeader::whereNotIn(
+            'no_panjar',
+            $ppanjar_header_list
+        )
+        ->whereIn('nopek', $pegawai_list_panjar)
+        ->get();
 
         $ppanjar_header_count = PPanjarHeader::all()->count();
 
-        $last_ppanjar = PPanjarHeader::withTrashed()->latest()->first();
+        $last_ppanjar = PPanjarHeader::withTrashed()
+        ->latest()
+        ->first();
         
         $date_now = date('d');
         $month_now = date('m');
@@ -119,29 +133,25 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         $ppanjar_header->nama = $pegawai->nama;
         $ppanjar_header->pangkat = $request->jabatan;
         $ppanjar_header->gol = $request->golongan;
-        $ppanjar_header->jmlpanjar = $request->jumlah;
+        $ppanjar_header->jmlpanjar = sanitize_nominal($request->jumlah);
         // Save Panjar Header
         $ppanjar_header->save();
 
-        // Save Panjar Detail;
-        if (session('ppanjar_detail')) {
-            foreach (session('ppanjar_detail') as $ppanjar) {
-                $ppanjar_detail = new PPanjarDetail();
-                $ppanjar_detail->no = $ppanjar['no'];
-                $ppanjar_detail->no_ppanjar = $request->no_pj_panjar;
-                $ppanjar_detail->keterangan = $ppanjar['keterangan'];
-                $ppanjar_detail->nilai = $ppanjar['nilai'];
-                $ppanjar_detail->qty = $ppanjar['qty'];
-                $ppanjar_detail->nopek = $ppanjar['nopek'];
-                $ppanjar_detail->total = $ppanjar['total'];
-
-                $ppanjar_detail->save();
-            }
-
-            session()->forget('ppanjar_detail');
+        if ($request->url == 'edit') {
+            return redirect()->route(
+                'modul_umum.perjalanan_dinas.pertanggungjawaban.edit',
+                [
+                'no_ppanjar' => str_replace(
+                    '/',
+                    '-',
+                    $request->no_pj_panjar
+                )]
+            );
         }
 
-        return redirect()->route('perjalanan_dinas.pertanggungjawaban.index');
+        Alert::success('Simpan PertanggungJawaban Panjar Dinas', 'Berhasil')->persistent(true)->autoClose(2000);
+
+        return redirect()->route('modul_umum.perjalanan_dinas.pertanggungjawaban.index');
     }
 
     /**
@@ -163,8 +173,6 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         ->orderBy('keterangan', 'ASC')
         ->get();
 
-        // $panjar_header_list = PanjarHeader::all();
-
         $no_panjar = $ppanjar_header->panjar_header->no_panjar;
 
         $ppanjar_header_list = PPanjarHeader::select('no_panjar')
@@ -173,9 +181,10 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         ->get()
         ->toArray();
 
-        $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)->get();
+        $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)
+        ->get();
 
-        return view('perjalanan-dinas-pertanggungjawaban.edit', compact(
+        return view('modul-umum.perjalanan-dinas-pertanggungjawaban.edit', compact(
             'pegawai_list',
             'panjar_header_list',
             'jabatan_list',
@@ -233,10 +242,10 @@ class PerjalananDinasPertanggungjawabanController extends Controller
 
         $pegawai_jabatan = $ppanjar_header->pangkat;
 
-        $pdf = DomPDF::loadview('modul-umum.perjalanan-dinas-pertanggungjawaban.export-row', [
+        $pdf = DomPDF::loadview('modul-umum.perjalanan-dinas-pertanggungjawaban.row-pdf', [
             'ppanjar_header' => $ppanjar_header,
-            'pekerja_jabatan' => $pegawai_jabatan
+            'pegawai_jabatan' => $pegawai_jabatan
         ]);
-        return $pdf->stream('rekap_panjar_dinas_pertanggungjawaban_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->stream('panjar_dinas_pertanggungjawaban_'.date('Y-m-d H:i:s').'.pdf');
     }
 }

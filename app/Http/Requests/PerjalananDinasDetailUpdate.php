@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Request;
 
 class PerjalananDinasDetailUpdate extends FormRequest
 {
@@ -24,11 +26,24 @@ class PerjalananDinasDetailUpdate extends FormRequest
     public function rules()
     {
         return [
-            'no_urut'           => 'required',
-            'keterangan_detail' => 'required',
-            'nopek_detail'      => 'required',
-            'jabatan_detail'    => 'required',
-            'golongan_detail'   => 'required',
+            'no_urut'    => [
+                'required',
+                'numeric',
+                Rule::unique('panjar_detail', 'no')
+                ->ignore(Request::segment(6), 'no')
+                ->where(function ($query) {
+                    $query->where('no_panjar', str_replace(
+                        '-',
+                        '/',
+                        Request::segment(3)
+                    ))
+                    ->where('no', $this->request->get('no_urut'));
+                })
+            ],
+            'keterangan' => 'required',
+            'nopek'      => 'required',
+            'jabatan'    => 'required',
+            'golongan'   => 'required',
         ];
     }
 }

@@ -24,7 +24,14 @@ class PPerjalananDinasUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'no_pj_panjar' => 'required',
+            'tanggal'      => 'required',
+            'no_panjar'    => 'required',
+            'keterangan'   => 'required',
+            'nopek'        => 'required',
+            'jabatan'      => 'required',
+            'golongan'     => 'required',
+            'jumlah'       => 'required',
         ];
     }
 }

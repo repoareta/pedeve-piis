@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="kt-form kt-form--label-right" id="formMasterPegawai" action="{{ route('modul_sdm_payroll.master_pegawai.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="form" id="formMasterPegawai" action="{{ route('modul_sdm_payroll.master_pegawai.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-5">
@@ -218,15 +218,15 @@
             
                             <div class="form-group row">
                                 <label for="" class="col-4 col-form-label">Jenis Kelamin</label>
-                                <div class="col-8">
-                                    <div class="kt-radio-inline">
-                                        <label class="kt-radio kt-radio--solid">
-                                            <input type="radio" name="jenis_kelamin" checked value="L"> Laki-laki
-                                            <span></span>
+                                <div class="col-8 col-form-label">
+                                    <div class="radio-inline">
+                                        <label class="radio">
+                                            <input type="radio" name="jenis_kelamin" checked value="L">
+                                            <span></span>  Laki-laki
                                         </label>
-                                        <label class="kt-radio kt-radio--solid">
-                                            <input type="radio" name="jenis_kelamin" value="P"> Perempuan
-                                            <span></span>
+                                        <label class="radio">
+                                            <input type="radio" name="jenis_kelamin" value="P">
+                                            <span></span>  Perempuan
                                         </label>
                                     </div>
                                 </div>
@@ -311,9 +311,9 @@
                         </div>
                     </div>
     
-                    <div class="kt-form__actions">
+                    <div class="row">
                         <div class="col-lg-5">
-                            <div class="row">
+                            <div class="form-group row">
                                 <div class="col-4"></div>
                                 <div class="col-8">
                                     <a href="{{ route('modul_sdm_payroll.master_pegawai.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>

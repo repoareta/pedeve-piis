@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group row">
-            <label for="spd-input" class="col-2 col-form-label">Bulan/Tahun <span class="text-danger">*</span></label>
+            <label for="" class="col-2 col-form-label">Bulan/Tahun <span class="text-danger">*</span></label>
             <div class="col-4">
                 <?php 
                 $array_bln	 = array (

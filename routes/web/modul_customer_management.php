@@ -25,6 +25,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
         Route::get('data-perkara/detail/{no}', [DataPerkaraController::class, 'detail'])->name('detail');
         Route::post('data-perkara/update', [DataPerkaraController::class, 'update'])->name('update');
         Route::delete('data-perkara/delete', [DataPerkaraController::class, 'delete'])->name('delete');
+        Route::get('data-perkara/export/{no}', [DataPerkaraController::class, 'export'])->name('export');
         Route::get('data-perkara/pihak/index-json', [DataPerkaraController::class, 'searchPihak'])->name('search.pihak');
         Route::post('data-perkara/show', [DataPerkaraController::class, 'showPihak'])->name('show.pihak.json');
         Route::post('data-perkara/pihak', [DataPerkaraController::class, 'pihak'])->name('store.pihak');
