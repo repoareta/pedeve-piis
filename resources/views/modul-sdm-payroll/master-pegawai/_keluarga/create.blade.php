@@ -34,9 +34,9 @@
                         <div class="col-10">
                             <select class="form-control select2" id="status" name="status" style="width: 100% !important;">
                                 <option value="">- Pilih Status -</option>
-                                <option value="S">Suami<option>
-                                <option value="I">Istri<option>
-                                <option value="A">Anak<option>
+                                <option value="S">Suami</option>
+                                <option value="I">Istri</option>
+                                <option value="A">Anak</option>
                             </select>
                             <div id="status-nya"></div>
                         </div>
