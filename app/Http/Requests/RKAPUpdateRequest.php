@@ -43,16 +43,16 @@ class RKAPUpdateRequest extends FormRequest
                 })
             ],
             'kurs' => 'nullable',
-            'aset' => ['required', new MoneyFormat, 'max:18'],
-            'pendapatan_usaha' => ['required', new MoneyFormat, 'max:18'],
-            'beban_usaha' => ['required', new MoneyFormat, 'max:18'],
-            'pendapatan_beban_lain' => ['required', new MoneyFormat, 'max:18'],
-            'laba_bersih' => ['required', new MoneyFormat, 'max:18'],
-            'ebitda' => ['required', new MoneyFormat, 'max:18'],
-            'investasi_bd' => ['required', new MoneyFormat, 'max:18'],
-            'investasi_nbd' => ['required', new MoneyFormat, 'max:18'],
-            'tkp' => ['required', new MoneyFormat, 'max:18'],
-            'kpi' => ['required', new MoneyFormat, 'max:18']
+            'aset' => ['required', new MoneyFormat, 'max:30'],
+            'pendapatan_usaha' => ['required', new MoneyFormat, 'max:30'],
+            'beban_usaha' => ['required', new MoneyFormat, 'max:30'],
+            'pendapatan_beban_lain' => ['required', new MoneyFormat, 'max:30'],
+            'laba_bersih' => ['required', new MoneyFormat, 'max:30'],
+            'ebitda' => ['required', new MoneyFormat, 'max:30'],
+            'investasi_bd' => ['required', new MoneyFormat, 'max:30'],
+            'investasi_nbd' => ['required', new MoneyFormat, 'max:30'],
+            'tkp' => ['required', new MoneyFormat, 'max:30'],
+            'kpi' => ['required', new MoneyFormat, 'max:30']
         ];
     }
 }

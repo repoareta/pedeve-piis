@@ -30,10 +30,10 @@ class PerusahaanAfiliasiUpdate extends FormRequest
             'no_telepon' => 'required|numeric|digits_between:6,15',
             'bidang_usaha' => 'required|string',
             'npwp' => 'required|string',
-            'modal_dasar' => ['required', new MoneyFormat, 'max:18'],
-            'modal_disetor' => ['required', new MoneyFormat, 'max:18'],
-            'jumlah_lembar_saham' => ['required', new MoneyFormat, 'max:18'],
-            'nilai_nominal_per_saham' => ['required', new MoneyFormat, 'max:18'],
+            'modal_dasar' => ['required', new MoneyFormat, 'max:30'],
+            'modal_disetor' => ['required', new MoneyFormat, 'max:30'],
+            'jumlah_lembar_saham' => ['required', new MoneyFormat, 'max:30'],
+            'nilai_nominal_per_saham' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }

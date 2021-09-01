@@ -27,7 +27,7 @@ class PemegangSahamStore extends FormRequest
         return [
             'nama_pemegang_saham'   => "required",
             'kepemilikan'    => "required|numeric|min:0|max:100",
-            'jumlah_lembar_saham_pemegang_saham' => ['required', new MoneyFormat, 'max:18'],
+            'jumlah_lembar_saham_pemegang_saham' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }
