@@ -108,7 +108,7 @@
 			},
 			ajax: "{{ route('modul_cm.data_perkara.search.dokumen', ['no_perkara' => $data->no_perkara]) }}",
 			columns: [
-				{data: 'radio', name: 'radio'},
+				{data: 'radio', name: 'radio', width: '10'},
 				{data: 'file', name: 'file'},
 				{data: 'nama', name: 'nama'},
 			]
