@@ -33,7 +33,7 @@ class DataPerkaraStoreRequest extends FormRequest
             'r_perkara' => 'nullable|string',
             'r_patitum' => 'nullable|string',
             'r_putusan' => 'nullable|string',
-            'nilai_perkara' => ['required', new MoneyFormat, 'max:18'],
+            'nilai_perkara' => ['required', new MoneyFormat, 'max:30'],
             'ci' => 'nullable|string',
         ];
     }
