@@ -22,9 +22,6 @@
             <div class="col-12">
                 <form class="form" id="formPerusahaanAfiliasiUpdate" action="{{ route('modul_cm.perusahaan_afiliasi.update', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]) }}" method="POST">
 					@csrf
-					@if($errors->any())
-						{{ implode('', $errors->all('<div>:message</div>')) }}
-					@endif
 					<div class="form-group row">
 						<label for="nama_perusahaan" class="col-2 col-form-label">Nama Perusahaan</label>
 						<div class="col-10">
