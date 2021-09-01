@@ -64,7 +64,7 @@
 					</div>
 						<div class="col-6" >
 							<input class="form-control disabled bg-secondary" type="text" value="{{$tahun}}"   name="tahun" id="tahun" size="4" maxlength="4" readonly>
-							<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete='off'>
+							<input class="form-control" type="hidden" value="{{Auth::user()->userid}}"  name="userid" autocomplete="off">
 						</div>
 					</div>
 
@@ -135,14 +135,14 @@
 						<label class="col-2 col-form-label">
 						@if($mp == "M") Dari @else Kepada @endif<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control disabled bg-secondary" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required autocomplete='off'>
+							<input class="form-control disabled bg-secondary" type="text" name="kepada" id="kepada" value="{{$data->kepada}}" size="40" maxlength="40" required autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label">Sejumlah</label>
 						<div class="col-10">
-							<input class="form-control money disabled bg-secondary" type="text"  value="{{ $count }}" size="16" maxlength="16" readonly autocomplete='off'>
-							<input class="form-control money" type="hidden" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" autocomplete='off'>
+							<input class="form-control money disabled bg-secondary" type="text"  value="{{ $count }}" size="16" maxlength="16" readonly autocomplete="off">
+							<input class="form-control money" type="hidden" name="nilai" id="nilai" value="{{ $count }}" size="16" maxlength="16" autocomplete="off">
 						</div>
 					</div>
 					<div class="form-group row">

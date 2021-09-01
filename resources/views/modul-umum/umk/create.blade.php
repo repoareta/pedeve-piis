@@ -91,7 +91,7 @@
             <div class="form-group row">
                 <label for="tujuan-input" class="col-2 col-form-label">Kurs  <span class="text-danger d-none" id="simbol-kurs">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="1" name="rate" id="kurs" readonly  size="10" maxlength="10" autocomplete='off'>
+                    <input class="form-control" type="text" value="1" name="rate" id="kurs" readonly  size="10" maxlength="10" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">

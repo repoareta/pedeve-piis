@@ -287,7 +287,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<div class="col-10">
-							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete='off'>
+							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete="off">
 						</div>
 					</div>
 
@@ -318,7 +318,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control money" type="text" name="nilai" required autocomplete='off'>
+							<input class="form-control money" type="text" name="nilai" required autocomplete="off">
 						</div>
 					</div>
                     
@@ -389,7 +389,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<div class="col-10">
-							<input  class="form-control" type="text" value="" id="pk" name="pk" size="6" maxlength="6" autocomplete='off'>
+							<input  class="form-control" type="text" value="" id="pk" name="pk" size="6" maxlength="6" autocomplete="off">
 						</div>
 					</div>
 
@@ -420,7 +420,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input  class="form-control money" type="text" name="nilai" id="nilai" autocomplete='off'>
+							<input  class="form-control money" type="text" name="nilai" id="nilai" autocomplete="off">
 						</div>
 					</div>													
 					<div class="kt-form__actions">

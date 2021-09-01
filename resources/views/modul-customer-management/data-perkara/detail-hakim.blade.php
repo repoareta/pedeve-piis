@@ -65,7 +65,7 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Nama</label>
 						<div class="col-10">
-							<input class="form-control" type="text"  name="nama" id="nama_hakim" size="100" maxlength="100" autocomplete='off'>
+							<input class="form-control" type="text" name="nama" id="nama_hakim" size="100" maxlength="100" autocomplete="off">
 							<input class="form-control" type="hidden" value=""  name="kd_hakim" id="kd_hakim">
 							<input class="form-control" type="hidden" value=""  name="cekhakim" id="cekhakim">
 							@foreach($data_list as $data)
@@ -77,21 +77,21 @@
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Alamat</label>
 						<div class="col-10">
-							<textarea class="form-control" type="text"  name="alamat" id="alamat_hakim" size="100" maxlength="100" autocomplete='off'></textarea>
+							<textarea class="form-control" type="text" name="alamat" id="alamat_hakim" size="100" maxlength="100" autocomplete="off"></textarea>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Telp</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="telp" id="telp_hakim" autocomplete='off'>
+							<input class="form-control" type="text" name="telp" id="telp_hakim" autocomplete="off">
 						</div>
                     </div>
 
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
-							<textarea class="form-control" type="text" name="keterangan" id="keterangan_hakim" autocomplete='off'></textarea>
+							<textarea class="form-control" type="text" name="keterangan" id="keterangan_hakim" autocomplete="off"></textarea>
 						</div>
                     </div>
 

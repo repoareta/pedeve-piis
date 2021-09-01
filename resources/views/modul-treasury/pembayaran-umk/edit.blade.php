@@ -345,7 +345,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah <span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control money" type="text" value="" name="nilai" size="25" maxlength="25" required autocomplete='off'>
+							<input class="form-control money" type="text" value="" name="nilai" size="25" maxlength="25" required autocomplete="off">
 						</div>
 					</div>												
 					<div class="form__actions">

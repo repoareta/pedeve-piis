@@ -23,13 +23,13 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">No. Perkara <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{ old('no_perkara') }}" name="no_perkara" size="100" maxlength="100" title="No. Perkara" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{ old('no_perkara') }}" name="no_perkara" size="100" maxlength="100" title="No. Perkara" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Tanggal Perkara</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{ date('d-m-Y') }}" name="tgl_perkara" id="tanggal" size="15" maxlength="10" title="Tanggal Perkara" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{ date('d-m-Y') }}" name="tgl_perkara" id="tanggal" size="15" maxlength="10" title="Tanggal Perkara" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -48,7 +48,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Klasifikasi Perkara</label>
                 <div class="col-10">						
-                    <input class="form-control" type="text" value="{{ old('klasifikasi_perkara') }}" name="klasifikasi_perkara"  size="100" maxlength="100" title="Klasifikasi Perkara" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{ old('klasifikasi_perkara') }}" name="klasifikasi_perkara"  size="100" maxlength="100" title="Klasifikasi Perkara" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -71,19 +71,19 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Ringkasan Perkara</label>
                 <div class="col-10">
-                    <textarea class="form-control" type="text" name="r_perkara" title="Ringkasan Perkara" autocomplete='off'>{{ old('r_perkara') }}</textarea>
+                    <textarea class="form-control" type="text" name="r_perkara" title="Ringkasan Perkara" autocomplete="off">{{ old('r_perkara') }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Ringkasan Petitum</label>
                 <div class="col-10">
-                    <textarea class="form-control" type="text" name="r_patitum" title="Ringkasan Petitum" autocomplete='off'>{{ old('r_petitum') }}</textarea>
+                    <textarea class="form-control" type="text" name="r_patitum" title="Ringkasan Petitum" autocomplete="off">{{ old('r_petitum') }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Ringkasan Putusan</label>
                 <div class="col-10">
-                    <textarea class="form-control" type="text" name="r_putusan" title="Ringkasan Putusan" autocomplete='off'>{{ old('r_putusan') }}</textarea>
+                    <textarea class="form-control" type="text" name="r_putusan" title="Ringkasan Putusan" autocomplete="off">{{ old('r_putusan') }}</textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -102,7 +102,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Nilai Perkara <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" name="nilai_perkara" size="25" maxlength="20" title="Nilai Perkara" autocomplete='off'>
+                    <input class="form-control money" type="text" name="nilai_perkara" size="25" maxlength="20" title="Nilai Perkara" autocomplete="off">
                 </div>
             </div>
                                                             

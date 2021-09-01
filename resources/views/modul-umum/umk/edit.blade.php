@@ -90,7 +90,7 @@
             <div class="form-group row">
                 <label for="tujuan-input" class="col-2 col-form-label">Kurs  <span class="text-danger d-none" id="simbol-kurs">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{ number_format($data_umk->rate, 0, '', '') }}" name="rate" id="kurs" readonly  size="10" maxlength="10" autocomplete='off'>
+                    <input class="form-control" type="text" value="{{ number_format($data_umk->rate, 0, '', '') }}" name="rate" id="kurs" readonly  size="10" maxlength="10" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -238,7 +238,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<div class="col-10">
-							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete='off'>
+							<input  class="form-control" type="text" value="000"  name="pk" size="6" maxlength="6" autocomplete="off">
 						</div>
 					</div>
 
@@ -269,7 +269,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah <span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control money" type="text" value="" name="nilai" required autocomplete='off'>
+							<input class="form-control money" type="text" value="" name="nilai" required autocomplete="off">
 						</div>
 					</div>
                     
@@ -342,7 +342,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<div class="col-10">
-							<input  class="form-control" type="text" value="000" id="pk" name="pk" size="6" maxlength="6" autocomplete='off'>
+							<input  class="form-control" type="text" value="000" id="pk" name="pk" size="6" maxlength="6" autocomplete="off">
 						</div>
 					</div>
 
@@ -373,7 +373,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah</label>
 						<div class="col-10">
-							<input  class="form-control money" type="text" value="" name="nilai" id="nilai" autocomplete='off'>
+							<input  class="form-control money" type="text" value="" name="nilai" id="nilai" autocomplete="off">
 						</div>
 					</div>
 					<div class="kt-form__actions">
