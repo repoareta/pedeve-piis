@@ -20,11 +20,17 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
                 <form class="form" id="formPerusahaanAfiliasiUpdate" action="{{ route('modul_cm.perusahaan_afiliasi.update', ['perusahaan_afiliasi' => $perusahaan_afiliasi->id]) }}" method="POST">
 					@csrf
-					@if($errors->any())
-						{{ implode('', $errors->all('<div>:message</div>')) }}
-					@endif
 					<div class="form-group row">
 						<label for="nama_perusahaan" class="col-2 col-form-label">Nama Perusahaan</label>
 						<div class="col-10">
