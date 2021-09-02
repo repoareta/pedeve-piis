@@ -173,7 +173,7 @@
 					@csrf
                     <input  class="form-control" hidden type="text" value="{{ $pumk_header->no_pumk }}" name="no_pumk">
                     <div class="form-group row ">
-						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut <span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control disabled bg-secondary" type="text" name="no_urut" id="no_urut" readonly>
 						</div>
@@ -195,6 +195,7 @@
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
                                 @endforeach
                             </select>
+							<div id="account-nya"></div>
 						</div>
 					</div>
 
@@ -207,6 +208,7 @@
 								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="bagian-nya"></div>
 						</div>
 					</div>
 
@@ -226,6 +228,7 @@
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
                                 @endforeach
                             </select>
+							<div id="jb-nya"></div>
 						</div>
 					</div>
 
@@ -238,6 +241,7 @@
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="cj-nya"></div>
 						</div>
 					</div>
 
@@ -291,6 +295,7 @@
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
                                 @endforeach
                             </select>
+							<div id="account_edit-nya"></div>
 						</div>
 					</div>
 
@@ -303,6 +308,7 @@
 								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="bagian_edit-nya"></div>
 						</div>
 					</div>
 
@@ -322,6 +328,7 @@
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
                                 @endforeach
                             </select>
+							<div id="jb_edit-nya"></div>
 						</div>
 					</div>
 
@@ -334,6 +341,7 @@
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="cj_edit-nya"></div>
 						</div>
 					</div>
 
@@ -379,7 +387,7 @@
 			serverSide: true,
 			ajax: "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.index.json', ['no_pumk' => str_replace('/', '-', $pumk_header->no_pumk)]) }}",
 			columns: [
-				{data: 'radio', name: 'radio', orderable: false, searchable: false, class:'radio-button'},
+				{data: 'radio', name: 'radio', orderable: false, searchable: false, class:'radio-button', width: 10},
 				{data: 'no', name: 'no'},
 				{data: 'keterangan', name: 'keterangan'},
 				{data: 'account', name: 'account'},
@@ -423,6 +431,22 @@
 		$('#form-tambah-pumk-detail').submit(function(e) {
 			e.preventDefault();
 
+			if ($('#account-error').length){
+				$("#account-error").insertAfter("#account-nya");
+			}
+
+			if ($('#bagian-error').length){
+				$("#bagian-error").insertAfter("#bagian-nya");
+			}
+
+			if ($('#jb-error').length){
+				$("#jb-error").insertAfter("#jb-nya");
+			}
+
+			if ($('#cj-error').length){
+				$("#cj-error").insertAfter("#cj-nya");
+			}
+
 			if($(this).valid()) {
 				$.ajax({
 					url  : "{{route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.store')}}",
@@ -451,8 +475,40 @@
 			}
 		});
 
+		$('#form-edit').submit(function(e) {
+			e.preventDefault();
+
+			if ($('#no_umk-error').length){
+				$("#no_umk-error").insertAfter("#no_umk-nya");
+			}
+
+            if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#nopek-nya");
+			}
+
+            if ($('#jabatan-error').length){
+				$("#jabatan-error").insertAfter("#jabatan-nya");
+			}
+		});
+
 		$('#form-edit-pumk-detail').submit(function(e) {
 			e.preventDefault();
+
+			if ($('#account_edit-error').length){
+				$("#account_edit-error").insertAfter("#account_edit-nya");
+			}
+
+			if ($('#bagian_edit-error').length){
+				$("#bagian_edit-error").insertAfter("#bagian_edit-nya");
+			}
+
+			if ($('#jb_edit-error').length){
+				$("#jb_edit-error").insertAfter("#jb_edit-nya");
+			}
+
+			if ($('#cj_edit-error').length){
+				$("#cj_edit-error").insertAfter("#cj_edit-nya");
+			}
 
 			if($(this).valid()) {
 				$.ajax({

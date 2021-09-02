@@ -124,7 +124,7 @@
         <table class="table table-striped table-bordered table-hover table-checkable" id="kt_table">
             <thead class="thead-light">
                 <tr>
-                    <th></th>
+                    <th width="10"></th>
                     <th>No</th>
                     <th>Keterangan</th>
                     <th>Account</th>
@@ -167,7 +167,7 @@
 			serverSide: true,
 			ajax: "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.index.json', ['no_pumk' => 'null']) }}",
 			columns: [
-				{data: 'radio', name: 'radio', orderable: false, searchable: false, class:'text-center radio-button'},
+				{data: 'radio', name: 'radio', orderable: false, searchable: false, class:'text-center radio-button', width: 10},
 				{data: 'no', name: 'no'},
 				{data: 'keterangan', name: 'keterangan'},
 				{data: 'account', name: 'account'},
@@ -189,12 +189,24 @@
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,
-			// language : 'id',
+			language : 'id',
 			format   : 'yyyy-mm-dd'
 		});
 
 		$("#form-create").on('submit', function(e){
 			e.preventDefault();
+
+            if ($('#no_umk-error').length){
+				$("#no_umk-error").insertAfter("#no_umk-nya");
+			}
+
+            if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#nopek-nya");
+			}
+
+            if ($('#jabatan-error').length){
+				$("#jabatan-error").insertAfter("#jabatan-nya");
+			}
 
             if($(this).valid()) {
                 const swalWithBootstrapButtons = Swal.mixin({
