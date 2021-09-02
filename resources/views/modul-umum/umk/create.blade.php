@@ -53,17 +53,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Jenis Uang Muka <span class="text-danger">*</span></label>
-                <div class="col-6">
+                <label class="col-2 col-form-label">Jenis Uang Muka <span class="text-danger">*</span></label>
+                <div class="col-10 col-form-label">
                     <div class="radio-inline">
                         <label class="radio">
-                            <input value="K" type="radio" name="jenis_um" checked>
-                            <span></span> Uang Muka Kerja
-                        </label>
+                            <input type="radio" value="K" name="jenis_um" checked>
+                        <span></span>Uang Muka Kerja</label>
                         <label class="radio">
-                            <input value="D" type="radio" name="jenis_um">
-                            <span></span> Uang Muka Dinas
-                        </label>
+                            <input type="radio" value="D" name="jenis_um">
+                        <span></span>Uang Muka Dinas</label>
                     </div>
                 </div>
             </div>
@@ -74,17 +72,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label">Mata Uang <span class="text-danger">*</span></label>
-                <div class="col-10">
+                <label class="col-2 col-form-label">Mata Uang <span class="text-danger">*</span></label>
+                <div class="col-10 col-form-label">
                     <div class="radio-inline">
                         <label class="radio">
-                            <input value="1" type="radio" name="ci" onclick="displayResult(1)" checked>
-                            <span></span> IDR
-                        </label>
+                            <input type="radio" value="1" name="ci" id="idr" onclick="displayResult(1)" checked>
+                        <span></span>IDR</label>
                         <label class="radio">
-                            <input value="2" type="radio" name="ci" onclick="displayResult(2)">
-                            <span></span> USD
-                        </label>
+                            <input type="radio" value="2" name="ci" id="usd" onclick="displayResult(2)">
+                        <span></span>USD</label>
                     </div>
                 </div>
             </div>
@@ -134,7 +130,7 @@
         <table class="table table-bordered" id="kt_table">
             <thead class="thead-light">
                 <tr>
-                    <th ><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked></th>
+                    <th width="10"><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked></th>
                     <th >No.</th>
                     <th >Keterangan</th>
                     <th >Account</th>

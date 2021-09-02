@@ -52,8 +52,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Jenis Uang Muka <span class="text-danger">*</span></label>
-                <div class="col-6">
+                <label class="col-2 col-form-label">Jenis Uang Muka <span class="text-danger">*</span></label>
+                <div class="col-10 col-form-label">
                     <div class="radio-inline">
                         <label class="radio">
                             <input value="K" type="radio" name="jenis_um" {{ $data_umk->jenis_um == "K" ? 'checked' : null }}>
@@ -73,8 +73,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="dari-input" class="col-2 col-form-label">Mata Uang <span class="text-danger">*</span></label>
-                <div class="col-10">
+                <label class="col-2 col-form-label">Mata Uang <span class="text-danger">*</span></label>
+                <div class="col-10 col-form-label">
                     <div class="radio-inline">
                         <label class="radio">
                             <input value="1" type="radio" name="ci" onclick="displayResult(1)" {{ $data_umk->ci == "1" ? 'checked' : null }}>
@@ -153,7 +153,7 @@
         <table class="table table-bordered" id="kt_table">
             <thead class="thead-light">
                 <tr>
-                    <th ><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked></th>
+                    <th width="10"><input type="radio" hidden name="btn-radio"  data-id="1" class="btn-radio" checked></th>
                     <th >No.</th>
                     <th >Keterangan</th>
                     <th >Account</th>
@@ -198,14 +198,14 @@
 					@csrf
                     <input  class="form-control" hidden type="text" value="{{ $data_umk->no_umk }}" name="no_umk">
                     <div class="form-group row ">
-						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">No. Urut <span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control disabled bg-secondary" type="text" value="{{$no_umk_details}}" name="no">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="example-text-input" class="col-2 col-form-label">Keterangan<span class="text-danger">*</span></label>
+						<label for="example-text-input" class="col-2 col-form-label">Keterangan <span class="text-danger">*</span></label>
 						<div class="col-10">
 							<textarea  class="form-control" type="text" value="" id="keterangan-create" name="keterangan" required>-</textarea>
 						</div>
@@ -220,6 +220,7 @@
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
                                 @endforeach
                             </select>
+							<div id="account-nya"></div>
 						</div>
 					</div>
 
@@ -232,6 +233,7 @@
 								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="bagian-nya"></div>
 						</div>
 					</div>
 
@@ -251,6 +253,7 @@
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
                                 @endforeach
                             </select>
+							<div id="jb-nya"></div>
 						</div>
 					</div>
 
@@ -263,6 +266,7 @@
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="cj-nya"></div>
 						</div>
 					</div>
 
@@ -318,24 +322,26 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div id="div-acc" class="col-10">
-							<select name="acc" id="select-acc" class="cariaccount form-control" style="width: 100% !important;">
+							<select name="acc" id="select-acc" class="cariaccount form-control select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_account as $row)
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
                                 @endforeach
 							</select>
+							<div id="select-account-nya"></div>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<div id="div-bagian" class="col-10">
-							<select name="bagian" id="select-bagian"  class="caribagian form-control kt-select2" style="width: 100% !important;">
+							<select name="bagian" id="select-bagian" class="caribagian form-control select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_bagian as $row)
 								<option value="{{$row->kode}}" <?php if( '<input value="$row->kode">' == '<input id="bagian">' ) echo 'selected' ; ?>>{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
 							</select>
+							<div id="select-bagian-nya"></div>
 						</div>
 					</div>
 
@@ -349,24 +355,26 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<div id="div-jb" class="col-10">
-							<select name="jb" id="select-jb"  class="carijb form-control kt-select2" style="width: 100% !important;">
+							<select name="jb" id="select-jb"  class="carijb form-control select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_jenisbiaya as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
                                 @endforeach
 							</select>
+							<div id="select-jb-nya"></div>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<div class="col-10" id="div-cj">
-							<select name="cj" id="select-cj" class="caricj form-control kt-select2" style="width: 100% !important;">
+							<select name="cj" id="select-cj" class="caricj form-control select2" style="width: 100% !important;">
 								<option value="">-Pilih-</option>
                                 @foreach($data_cj as $row)
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
 							</select>
+							<div id="select-cj-nya"></div>
 						</div>
 					</div>
                     
@@ -442,6 +450,22 @@
 		$('#form-tambah-umk-detail').submit(function(e) {
 			e.preventDefault();
 
+			if ($('#acc-error').length){
+				$("#acc-error").insertAfter("#account-nya");
+			}
+
+			if ($('#bagian-error').length){
+				$("#bagian-error").insertAfter("#bagian-nya");
+			}
+
+			if ($('#jb-error').length){
+				$("#jb-error").insertAfter("#jb-nya");
+			}
+
+			if ($('#cj-error').length){
+				$("#cj-error").insertAfter("#cj-nya");
+			}
+
 			if($(this).valid()) {
 				$.ajax({
 					url  : "{{route('modul_umum.uang_muka_kerja.store.detail')}}",
@@ -471,6 +495,22 @@
 		//proses update detail
 		$('#form-edit-tambah-umk-detail').submit(function(e){
 			e.preventDefault();
+
+			if ($('#select-acc-error').length){
+				$("#select-acc-error").insertAfter("#select-account-nya");
+			}
+
+			if ($('#select-bagian-error').length){
+				$("#select-bagian-error").insertAfter("#select-bagian-nya");
+			}
+
+			if ($('#select-jb-error').length){
+				$("#select-jb-error").insertAfter("#select-jb-nya");
+			}
+
+			if ($('#select-cj-error').length){
+				$("#select-cj-error").insertAfter("#select-cj-nya");
+			}
 
 			if($(this).valid()) {
 				$.ajax({

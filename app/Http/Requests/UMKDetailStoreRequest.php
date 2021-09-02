@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UMKDetailStoreRequest extends FormRequest
@@ -27,11 +28,11 @@ class UMKDetailStoreRequest extends FormRequest
             'no' => 'required',
             'keterangan' => 'nullable',
             'acc' => 'required',
-            'nilai' => 'required',
+            'nilai' => ['required', new MoneyFormat, 'max:30'],
             'cj' => 'required',
             'jb' => 'required',
             'bagian' => 'required',
-            'pk' => 'required',
+            'pk' => 'required|numeric',
             'no_umk' => 'required',
         ];
     }

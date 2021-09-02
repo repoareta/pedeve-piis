@@ -35,4 +35,11 @@ class UMKStoreRequest extends FormRequest
             'jumlah' => 'required',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'rate' => 'Kurs'
+        ];
+    }
 }
