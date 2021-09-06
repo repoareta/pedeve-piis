@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\View\Composers\SdmPayroll\MasterPayrollChannel;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -25,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // SDM Payroll
+        // SDM Payroll || Master Payroll
+        View::composer(['modul-sdm-payroll.*'], MasterPayrollChannel::class);
     }
 }
