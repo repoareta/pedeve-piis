@@ -8,6 +8,7 @@ use App\Http\Requests\VendorUpdate;
 use Illuminate\Http\Request;
 
 use App\Models\Vendor;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VendorController extends Controller
 {
@@ -60,6 +61,7 @@ class VendorController extends Controller
 
         $vendor->save();
 
+        Alert::success('Data berhasil di simpan', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.vendor.index');
     }
 
@@ -92,6 +94,7 @@ class VendorController extends Controller
 
         $vendor->save();
 
+        Alert::success('Data berhasil di ubah', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.vendor.index');
     }
 

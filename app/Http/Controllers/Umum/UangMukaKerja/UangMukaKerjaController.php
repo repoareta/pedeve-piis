@@ -226,7 +226,7 @@ class UangMukaKerjaController extends Controller
                     'no_kas' => ''
                 ]);
             Alert::success('No. UMK : ' . $noumk . ' Berhasil Dibatalkan Approval', 'Berhasil')->persistent(true)->autoClose(2000);
-            return redirect()->route('uang_muka_kerja.index');
+            return redirect()->route('modul_umum.uang_muka_kerja.index');
         } else {
             $timestamp = date("Y-m-d H:i:s");
             $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");

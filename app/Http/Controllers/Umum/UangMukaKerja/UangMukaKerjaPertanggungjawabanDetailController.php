@@ -33,7 +33,7 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
 
         return datatables()->of($pumk_list_detail)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no.'-'.$row->no_pumk.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="' . $row->no . '-' . $row->no_pumk . '"><span></span></label>';
                 return $radio;
             })
             ->addColumn('nilai', function ($row) {
@@ -87,8 +87,8 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
             }
         } else {
             $pumk_detail = PUmkDetail::where('no', $request->no_urut)
-            ->where('no_pumk', $request->no_pumk)
-            ->first();
+                ->where('no_pumk', $request->no_pumk)
+                ->first();
 
             $account = DB::select("SELECT kodeacct, descacct FROM account WHERE kodeacct = '$pumk_detail->account'")[0];
             $c_judex = DB::select("SELECT kode, nama FROM cashjudex WHERE kode = '$pumk_detail->cj'")[0];
@@ -116,8 +116,8 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
     public function update(Request $request)
     {
         $pumk_detail = PUmkDetail::where('no', $request->no_urut)
-        ->where('no_pumk', $request->no_pumk)
-        ->first();
+            ->where('no_pumk', $request->no_pumk)
+            ->first();
 
         $pumk_detail->no = $request->no_urut;
         $pumk_detail->keterangan = $request->keterangan;
@@ -130,7 +130,7 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
         $pumk_detail->no_pumk = $request->no_pumk;
 
         $pumk_detail->save();
-        
+
         return response()->json($pumk_detail, 200);
     }
 
@@ -156,8 +156,8 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
         } else {
             // delete Database
             PUmkDetail::where('no_pumk', $request->no_pumk)
-            ->where('no', $request->no)
-            ->delete();
+                ->where('no', $request->no)
+                ->delete();
         }
 
         return response()->json(['result' => session('pumk_detail')], 200);
@@ -169,8 +169,8 @@ class UangMukaKerjaPertanggungjawabanDetailController extends Controller
 
         foreach (session('pumk_detail') as $key => $value) {
             $update_pumk_detail = $value;
-            $update_pumk_detail['no']= $key + 1;
-            Session::put('pumk_detail.'.$key, $update_pumk_detail);
+            $update_pumk_detail['no'] = $key + 1;
+            Session::put('pumk_detail.' . $key, $update_pumk_detail);
         }
     }
 }
