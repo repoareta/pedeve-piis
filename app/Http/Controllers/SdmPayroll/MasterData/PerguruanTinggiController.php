@@ -32,7 +32,7 @@ class PerguruanTinggiController extends Controller
 
         return datatables()->of($perguruan_tinggi_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="' . $row->kode . '"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])
@@ -73,7 +73,9 @@ class PerguruanTinggiController extends Controller
      */
     public function edit(PerguruanTinggi $perguruan_tinggi)
     {
-        return view('modul-sdm-payroll.master-data.perguruan_tinggi.edit', compact('perguruan_tinggi'));
+        return view('modul-sdm-payroll.master-data.perguruan-tinggi.edit', compact(
+            'perguruan_tinggi'
+        ));
     }
 
     /**
@@ -102,7 +104,7 @@ class PerguruanTinggiController extends Controller
     public function delete(Request $request)
     {
         PerguruanTinggi::find($request->id)
-        ->delete();
+            ->delete();
 
         return response()->json();
     }

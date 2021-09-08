@@ -76,8 +76,8 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::get('perguruan-tinggi/index-json', [PerguruanTinggiController::class, 'indexJson'])->name('index.json');
         Route::get('perguruan-tinggi/create', [PerguruanTinggiController::class, 'create'])->name('create');
         Route::post('perguruan-tinggi/store', [PerguruanTinggiController::class, 'store'])->name('store');
-        Route::get('perguruan-tinggi/edit/{perguruan-tinggi}', [PerguruanTinggiController::class, 'edit'])->name('edit');
-        Route::post('perguruan-tinggi/update/{perguruan-tinggi}', [PerguruanTinggiController::class, 'update'])->name('update');
+        Route::get('perguruan-tinggi/edit/{perguruan_tinggi}', [PerguruanTinggiController::class, 'edit'])->name('edit');
+        Route::post('perguruan-tinggi/update/{perguruan_tinggi}', [PerguruanTinggiController::class, 'update'])->name('update');
         Route::delete('perguruan-tinggi/delete', [PerguruanTinggiController::class, 'delete'])->name('delete');
     });
     // Perguruan Tinggi END
