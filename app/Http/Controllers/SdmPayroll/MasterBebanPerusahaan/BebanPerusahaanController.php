@@ -100,8 +100,8 @@ class BebanPerusahaanController extends Controller
         $beban_perusahaan->bulan      = $request->bulan;
         $beban_perusahaan->nopek      = $request->pegawai;
         $beban_perusahaan->aard       = $request->aard;
-        $beban_perusahaan->lastamount = $request->last_amount;
-        $beban_perusahaan->curramount = $request->current_amount;
+        $beban_perusahaan->lastamount = sanitize_nominal($request->last_amount);
+        $beban_perusahaan->curramount = sanitize_nominal($request->current_amount);
         $beban_perusahaan->userid     = Auth::user()->userid;
 
         $beban_perusahaan->save();
@@ -152,8 +152,8 @@ class BebanPerusahaanController extends Controller
         $beban_perusahaan->bulan      = $request->bulan;
         $beban_perusahaan->nopek      = $request->pegawai;
         $beban_perusahaan->aard       = $request->aard;
-        $beban_perusahaan->lastamount = $request->last_amount;
-        $beban_perusahaan->curramount = $request->current_amount;
+        $beban_perusahaan->lastamount = sanitize_nominal($request->last_amount);
+        $beban_perusahaan->curramount = sanitize_nominal($request->current_amount);
         $beban_perusahaan->userid     = Auth::user()->userid;
 
         $beban_perusahaan->save();

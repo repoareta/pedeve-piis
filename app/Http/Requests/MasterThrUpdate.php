@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Rules\MoneyFormat;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 class MasterThrUpdate extends FormRequest
 {
     /**
@@ -24,7 +26,13 @@ class MasterThrUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'bulan' => 'required',
+            'tahun' => 'required',
+            'pegawai' => 'required',
+            'aard' => 'required',
+            'jumlah_cicilan' => ['required', new MoneyFormat, 'max:30'],
+            'cicilan' => ['required', new MoneyFormat, 'max:30'],
+            'nilai' => ['required', new MoneyFormat, 'max:30']
         ];
     }
 }
