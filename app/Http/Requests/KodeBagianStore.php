@@ -24,7 +24,16 @@ class KodeBagianStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode' => ['required', 'string', 'unique:sdm_tbl_kdbag,kode', 'max:6'],
+            'nama' => ['required', 'string'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'kode' => 'Kode bagian',
+            'nama' => 'Nama bagian',
         ];
     }
 }

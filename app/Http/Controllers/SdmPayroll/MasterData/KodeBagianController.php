@@ -73,7 +73,9 @@ class KodeBagianController extends Controller
      */
     public function edit(KodeBagian $kode_bagian)
     {
-        return view('modul-sdm-payroll.master-data.kode-bagian.edit', compact('kode_bagian'));
+        return view('modul-sdm-payroll.master-data.kode-bagian.edit', compact(
+            'kode_bagian'
+        ));
     }
 
     /**
