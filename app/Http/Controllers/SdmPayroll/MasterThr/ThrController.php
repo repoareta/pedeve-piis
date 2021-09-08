@@ -154,7 +154,7 @@ class ThrController extends Controller
         ->where('nopek', $nopek)
         ->where('aard', $aard)
         ->first();
-
+        
         $thr->tahun  = $request->tahun;
         $thr->bulan  = $request->bulan;
         $thr->nopek  = $request->pegawai;

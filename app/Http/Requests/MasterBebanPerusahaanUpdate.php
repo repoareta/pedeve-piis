@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Rules\MoneyFormat;
 class MasterBebanPerusahaanUpdate extends FormRequest
 {
     /**
@@ -13,7 +13,7 @@ class MasterBebanPerusahaanUpdate extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class MasterBebanPerusahaanUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'bulan' => 'required',
+            'tahun' => 'required',
+            'pegawai' => 'required',
+            'aard' => 'required',
+            'last_amount' => ['required', new MoneyFormat, 'max:30'],
+            'current_amount' => ['required', new MoneyFormat, 'max:30']
         ];
     }
 }

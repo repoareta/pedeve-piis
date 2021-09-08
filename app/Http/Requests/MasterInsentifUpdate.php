@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\MoneyFormat;
 
 class MasterInsentifUpdate extends FormRequest
 {
@@ -24,7 +25,12 @@ class MasterInsentifUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'bulan' => 'required',
+            'tahun' => 'required',
+            'pegawai' => 'required',
+            'aard' => 'required',
+            'tahun_insentif' => 'required',
+            'nilai' => ['required', new MoneyFormat, 'max:14']
         ];
     }
 }

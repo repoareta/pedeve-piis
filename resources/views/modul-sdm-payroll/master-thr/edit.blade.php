@@ -20,12 +20,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form class="form" id="formThrMaster" action="{{ route('modul_sdm_payroll.master_thr.update', [
-					'tahun' => $thr->tahun, 
-					'bulan' => $thr->bulan, 
-					'nopek'=> $thr->nopek, 
-					'aard'=> $thr->aard, 
-				]) }}" method="POST">
+                <form class="form" id="formMasterThr" action="{{ route('modul_sdm_payroll.master_thr.update', [
+						'tahun' => $thr->tahun, 
+						'bulan' => $thr->bulan, 
+						'nopek'=> $thr->nopek, 
+						'aard'=> $thr->aard, 
+					]) }}" method="POST">
 					@csrf
 					<div class="form-group row">
 						<label for="tahun" class="col-2 col-form-label">Bulan</label>
