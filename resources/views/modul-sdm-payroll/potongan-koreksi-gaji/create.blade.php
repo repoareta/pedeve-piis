@@ -59,6 +59,7 @@
                         <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
                         @endforeach
                     </select>
+                    <div id="nopek-error-placement"></div>
                 </div>
             </div>
             <div class="form-group row">
@@ -70,12 +71,13 @@
                         <option value="{{ $dataa->kode }}">{{ $dataa->kode }} - {{ $dataa->nama }}</option>
                         @endforeach
                     </select>
+                    <div id="aard-error-placement"></div>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" required autocomplete="off">
+                    <input class="form-control money" name="nilai" type="text" required autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -101,6 +103,9 @@
 
         $('#form-create').submit(function(e){
 			e.preventDefault();
+
+            if ($('#nopek-error').length) $('#nopek-error').insertAfter('#nopek-error-placement');
+            if ($('#aard-error').length) $('#aard-error').insertAfter('#aard-error-placement');
 
             if($(this).valid()) {
                 const swalWithBootstrapButtons = Swal.mixin({

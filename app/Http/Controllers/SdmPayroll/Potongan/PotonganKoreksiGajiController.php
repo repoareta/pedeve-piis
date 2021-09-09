@@ -147,11 +147,13 @@ class PotonganKoreksiGajiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PotonganKoreksiGajiStoreRequest $request)
-    {        
+    {
         $validated = collect($request->validated())
-                            ->put('jmlcc', 0)
-                            ->put('ccl', 0)
-                            ->toArray();
+            ->put('jmlcc', 0)
+            ->put('ccl', 0)
+            ->toArray();
+
+        $validated['nilai'] = sanitize_nominal($validated['nilai']);
 
         KoreksiGaji::insert($validated);
 
@@ -162,7 +164,7 @@ class PotonganKoreksiGajiController extends Controller
     public function edit($bulan, $tahun, $aard, $nopek)
     {
         $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'")[0];
-        
+
         $bulan = date_format(now(), 'n');
         $tahun = date_format(now(), 'Y');
         $data = KoreksiGaji::where('nopek', $nopek)
@@ -182,10 +184,10 @@ class PotonganKoreksiGajiController extends Controller
             ->where('nopek', $request->nopek)
             ->where('aard', $request->aard)
             ->update([
-                'nilai' => str_replace(',', '.', $request->nilai),
+                'nilai' => sanitize_nominal($request->nilai),
                 'userid' => $request->userid,
             ]);
-        
+
         Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.potongan_koreksi_gaji.index');
     }

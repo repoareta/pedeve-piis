@@ -74,7 +74,7 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="number" value="{{ $data_list->nilai }}" required autocomplete="off">
+                    <input class="form-control money" name="nilai" type="text" value="{{ $data_list->nilai }}" required autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -92,6 +92,8 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\PotonganKoreksiGajiUpdateRequest', '#form-edit'); !!}
+
 <script>
     $(document).ready(function () {
         $('#bulan').select2();

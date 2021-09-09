@@ -6,7 +6,7 @@ use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PotonganKoreksiGajiStoreRequest extends FormRequest
+class PotonganKoreksiGajiUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class PotonganKoreksiGajiStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -36,6 +36,7 @@ class PotonganKoreksiGajiStoreRequest extends FormRequest
                     ->where('aard', $this->aard)
                     ->where('bulan', $this->bulan)
                     ->where('tahun', $this->tahun)
+                    ->ignore($this->nopek, 'nopek')
             ],
             'aard' => 'required|string',
             'nilai' => ['required', new MoneyFormat, 'max:30'],
