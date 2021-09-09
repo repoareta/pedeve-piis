@@ -139,7 +139,7 @@ class HonorKomiteController extends Controller
      */
     public function store(HonorKomiteStoreRequest $request)
     {
-        $nilai = str_replace(',', '.', $request->nilai);
+        $nilai = (float) sanitize_nominal($request->nilai);
         $pajak = (35/65) * $nilai;
         $data_tahun = $request->tahun;
         $data_bulan = $request->bulan;
@@ -206,7 +206,7 @@ class HonorKomiteController extends Controller
     {
         $data_tahun = $request->tahun;
         $data_bulan = $request->bulan;
-        $nilai = str_replace(',', '.', $request->nilai);
+        $nilai = (float) sanitize_nominal($request->nilai);
         $nopek = $request->nopek;
         $pajak = (35/65) * $nilai;
 
