@@ -59,26 +59,28 @@ class HonorKomiteController extends Controller
         {
             $bulan_buku = $data_bul->bulan_buku;
         }
-        $tahuns = substr($bulan_buku,0,-2);
+
         $bulan = ltrim($request->bulan, '0');
         $tahun = $request->tahun;
         $nopek = $request->nopek;
-        if($nopek == null ){
-            if($bulan == null and $tahun == null){
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahuns' order by a.tahun,a.bulan,a.nopek");	
-            }elseif($bulan == null and $tahun <> null){
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where a.tahun ='$tahun' order by a.tahun,a.bulan,a.nopek");	
-            } else {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where a.bulan='$bulan' and a.tahun='$tahun' order by a.tahun,a.bulan,a.nopek");
-            }
-        } else {
-            if($bulan == null and $tahun == null){
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' order by a.tahun,a.bulan,a.nopek");	
-            } else {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek from pay_honorarium a join sdm_master_pegawai b on a.nopek=b.nopeg where a.bulan='$bulan' and a.tahun='$tahun' and a.nopek='$nopek' order by a.tahun,a.bulan,a.nopek");
-            }
+
+        $data = DB::table(DB::raw('pay_honorarium as a'))
+            ->select(DB::raw('a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid,a.pajak, b.nama as nama_nopek'))
+            ->join(DB::raw('sdm_master_pegawai as b'), 'a.nopek', '=', 'b.nopeg');
+
+        if ($tahun) {
+            $data = $data->where('a.tahun', '=', $tahun);
         }
-        return datatables()->of($data)
+
+        if ($bulan) {
+            $data = $data->where('a.bulan', '=', $bulan);
+        }
+
+        if ($nopek) {
+            $data = $data->where('a.nopek', '=', $nopek);
+        }
+
+        return datatables()->of($data->get())
         ->addColumn('bulan', function ($data) {
             $array_bln	 = array (
                 1 =>   'Januari',
