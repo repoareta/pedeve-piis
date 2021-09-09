@@ -83,14 +83,14 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Last Amount</label>
 						<div class="col-10">
-							<input class="form-control money" type="text" name="last_amount" id="last_amount" value="{{ float_two($hutang->lastamount) }}">
+							<input class="form-control money" type="text" name="last_amount" id="last_amount" value="{{ currency_format($hutang->lastamount) }}">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Current Amount</label>
 						<div class="col-10">
-							<input class="form-control money" type="text" name="current_amount" id="current_amount" value="{{ float_two($hutang->curramount) }}">
+							<input class="form-control money" type="text" name="current_amount" id="current_amount" value="{{ currency_format($hutang->curramount) }}">
 						</div>
 					</div>
 

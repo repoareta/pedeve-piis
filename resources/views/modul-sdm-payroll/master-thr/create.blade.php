@@ -85,7 +85,7 @@
 					<div class="form-group row">
 						<label for="nilai" class="col-2 col-form-label">Cicilan</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="cicilan" id="cicilan">
+							<input class="form-control money" type="text" name="cicilan" id="cicilan">
 						</div>
 					</div>
 

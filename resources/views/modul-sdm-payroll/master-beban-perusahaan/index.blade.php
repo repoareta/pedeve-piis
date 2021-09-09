@@ -43,7 +43,7 @@
 				<div class="form-group row">
 					<label for="" class="col-form-label">Pegawai</label>
 					<div class="col-4">
-						<select name="nopek" class="form-control select2" style="width: 100% !important;" id="nopek">
+						<select name="no_pekerja" class="form-control select2" style="width: 100% !important;" id="nopek">
 						<option value="">- Pilih -</option>
 							@foreach($pegawai_list as $pegawai)
 							    <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg }} - {{ $pegawai->nama }}</option>

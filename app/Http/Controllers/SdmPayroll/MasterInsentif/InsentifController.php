@@ -39,8 +39,7 @@ class InsentifController extends Controller
     {
         $insentif_master_list = MasterInsentif::orderByRaw('tahun::int DESC')
         ->orderByRaw('bulan::int DESC')
-        ->orderBy('nopek', 'desc');
-
+        ->orderBy('nopek', 'desc');        
         return datatables()->of($insentif_master_list)
             ->filter(function ($query) use ($request) {
                 if ($request->has('no_pekerja')) {
@@ -102,7 +101,7 @@ class InsentifController extends Controller
         $insentif->aard       = $request->aard;
         $insentif->jmlcc      = 0;
         $insentif->ccl        = 0;
-        $insentif->nilai      = $request->nilai;
+        $insentif->nilai      = str_replace(',' ,'', $request->nilai);
         $insentif->userid     = Auth::user()->userid;
         $insentif->status     = MasterPegawai::find($request->pegawai)->status;
         $insentif->tahunins   = $request->tahun_insentif;
@@ -163,7 +162,7 @@ class InsentifController extends Controller
         $insentif->aard       = $request->aard;
         $insentif->jmlcc      = 0;
         $insentif->ccl        = 0;
-        $insentif->nilai      = $request->nilai;
+        $insentif->nilai      = str_replace(',' ,'', $request->nilai);
         $insentif->userid     = Auth::user()->userid;
         $insentif->status     = MasterPegawai::find($request->pegawai)->status;
         $insentif->tahunins   = $request->tahun_insentif;

@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Rules\MoneyFormat;
 class MasterUpahUpdate extends FormRequest
 {
     /**
@@ -24,7 +24,13 @@ class MasterUpahUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'bulan' => 'required',
+            'tahun' => 'required',
+            'pegawai' => 'required',
+            'aard' => 'required',
+            'jumlah_cicilan' => ['required', new MoneyFormat, 'max:30'],
+            'cicilan' => 'required|numeric|digits_between:1,30',
+            'nilai' => ['required', new MoneyFormat, 'max:30']
         ];
     }
 }

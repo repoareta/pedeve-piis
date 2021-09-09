@@ -40,7 +40,6 @@ class HutangController extends Controller
         $hutang_master_list = MasterHutang::orderByRaw('tahun::int DESC')
         ->orderByRaw('bulan::int DESC')
         ->orderBy('nopek', 'desc');
-
         return datatables()->of($hutang_master_list)
             ->filter(function ($query) use ($request) {
                 if ($request->has('no_pekerja')) {

@@ -110,7 +110,6 @@ class UpahController extends Controller
         $upah->ccl    = $request->cicilan;
         $upah->nilai  = str_replace(',' ,'', $request->nilai);
         $upah->userid = Auth::user()->userid;
-
         $upah->save();
 
         Alert::success('Tambah Master Upah', 'Berhasil')->persistent(true)->autoClose(2000);
@@ -159,9 +158,9 @@ class UpahController extends Controller
         $upah->bulan  = $request->bulan;
         $upah->nopek  = $request->pegawai;
         $upah->aard   = $request->aard;
-        $upah->jmlcc  = $request->jumlah_cicilan;
+        $upah->jmlcc  = str_replace(',' ,'', $request->jumlah_cicilan);
         $upah->ccl    = $request->cicilan;
-        $upah->nilai  = $request->nilai;
+        $upah->nilai  = str_replace(',' ,'', $request->nilai);
         $upah->userid = Auth::user()->userid;
 
         $upah->save();
