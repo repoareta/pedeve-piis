@@ -24,7 +24,16 @@ class AgamaStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode' => ['required', 'string', 'unique:sdm_tbl_agama,kode', 'max:2'],
+            'nama' => ['required', 'string'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'kode' => 'Kode Agama',
+            'nama' => 'Nama Agama',
         ];
     }
 }
