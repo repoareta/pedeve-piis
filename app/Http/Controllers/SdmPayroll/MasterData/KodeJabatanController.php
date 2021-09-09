@@ -30,18 +30,18 @@ class KodeJabatanController extends Controller
     public function indexJson()
     {
         $kode_jabatan_list = KodeJabatan::with('kode_bagian')
-        ->orderBy('kdbag', 'asc')
-        ->orderBy('kdjab', 'asc')
-        ->get();
+            ->orderBy('kdbag', 'asc')
+            ->orderBy('kdjab', 'asc')
+            ->get();
 
         return datatables()->of($kode_jabatan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kdbag.'-'.$row->kdjab.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="' . $row->kdbag . '-' . $row->kdjab . '"><span></span></label>';
                 return $radio;
             })
             ->addColumn('kdbag', function ($row) {
-                $kode_bagian = optional($row->kode_bagian)->nama ? ' - '.$row->kode_bagian->nama : null;
-                return $row->kdbag.$kode_bagian;
+                $kode_bagian = optional($row->kode_bagian)->nama ? ' - ' . $row->kode_bagian->nama : null;
+                return $row->kdbag . $kode_bagian;
             })
             ->addColumn('tunjangan', function ($row) {
                 return currency_idr($row->tunjangan);
@@ -58,7 +58,9 @@ class KodeJabatanController extends Controller
     public function create()
     {
         $kode_bagian_list = KodeBagian::all();
-        return view('modul-sdm-payroll.master-data.kode-jabatan.create', compact('kode_bagian_list'));
+        return view('modul-sdm-payroll.master-data.kode-jabatan.create', compact(
+            'kode_bagian_list'
+        ));
     }
 
     /**
@@ -91,10 +93,12 @@ class KodeJabatanController extends Controller
         $kode_bagian_list = KodeBagian::all();
 
         $kode_jabatan = KodeJabatan::where('kdbag', $kode_bagian->kode)
-        ->where('kdjab', $kdjab)
-        ->firstOrFail();
+            ->where('kdjab', $kdjab)
+            ->firstOrFail();
 
-        return view('kode_jabatan.edit', compact('kode_bagian', 'kode_bagian_list', 'kode_jabatan'));
+        // dd($kode_jabatan);
+
+        return view('modul-sdm-payroll.master-data.kode-jabatan.edit', compact('kode_bagian', 'kode_bagian_list', 'kode_jabatan'));
     }
 
     /**
@@ -107,8 +111,8 @@ class KodeJabatanController extends Controller
     public function update(KodeJabatanUpdate $request, KodeBagian $kode_bagian, $kdjab)
     {
         $kode_jabatan = KodeJabatan::where('kdbag', $kode_bagian->kode)
-        ->where('kdjab', $kdjab)
-        ->firstOrFail();
+            ->where('kdjab', $kdjab)
+            ->firstOrFail();
 
         $kode_jabatan->kdbag = $request->kode_bagian;
         $kode_jabatan->kdjab = $request->kode_jabatan;
@@ -137,8 +141,8 @@ class KodeJabatanController extends Controller
     public function delete(Request $request)
     {
         KodeJabatan::where('kdbag', $request->kode_bagian)
-        ->where('kdjab', $request->kode_jabatan)
-        ->delete();
+            ->where('kdjab', $request->kode_jabatan)
+            ->delete();
 
         return response()->json();
     }
@@ -151,14 +155,11 @@ class KodeJabatanController extends Controller
             $kode_jabatan_list = KodeJabatan::where('kdbag', $request->kodebagian)->get();
         }
 
-        
-        
-
         $kode_jabatan_list_new = [];
         foreach ($kode_jabatan_list as $kode_jabatan) {
             $kode_jabatan_list_new[] = [
                 'id'       => $kode_jabatan->kdjab,
-                'text'     => $kode_jabatan->kdjab.' - '.$kode_jabatan->keterangan,
+                'text'     => $kode_jabatan->kdjab . ' - ' . $kode_jabatan->keterangan,
                 'golongan' => $kode_jabatan->goljob
             ];
         }
