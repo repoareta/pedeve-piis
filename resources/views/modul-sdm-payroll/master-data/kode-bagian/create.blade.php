@@ -23,14 +23,14 @@
                 <form class="form" id="formKodeBagian" action="{{ route('modul_sdm_payroll.kode_bagian.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Kode Kode Bagian</label>
+						<label for="" class="col-2 col-form-label">Kode Bagian</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="kode" id="kode">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Nama Kode Bagian</label>
+						<label for="" class="col-2 col-form-label">Nama Bagian</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nama" id="nama">
 						</div>
@@ -40,7 +40,7 @@
 						<div class="row">
 							<div class="col-2"></div>
 							<div class="col-10">
-								<a href="{{ url()->previous() }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
+								<a href="{{ route('modul_sdm_payroll.kode_bagian.index') }}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i> Batal</a>
 								<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
 							</div>
 						</div>

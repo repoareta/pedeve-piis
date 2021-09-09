@@ -24,7 +24,16 @@ class PerguruanTinggiStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode' => ['required', 'string', 'unique:sdm_tbl_pt,kode', 'max:4'],
+            'nama' => ['required', 'string'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'kode' => 'Kode perguruan tinggi',
+            'nama' => 'Nama perguruan tinggi',
         ];
     }
 }

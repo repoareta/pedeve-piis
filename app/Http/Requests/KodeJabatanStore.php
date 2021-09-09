@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class KodeJabatanStore extends FormRequest
@@ -24,7 +25,11 @@ class KodeJabatanStore extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode_bagian' => ['required', 'string'],
+            'kode_jabatan' => ['required', 'string', 'unique:sdm_tbl_kdjab,kdjab', 'max:5'],
+            'nama' => ['required', 'string'],
+            'golongan' => ['required', 'string'],
+            'tunjangan' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }

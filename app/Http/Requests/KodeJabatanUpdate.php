@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class KodeJabatanUpdate extends FormRequest
 {
@@ -24,7 +26,11 @@ class KodeJabatanUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode_bagian' => ['required', 'string'],
+            'kode_jabatan' => ['required', 'string', Rule::unique('sdm_tbl_kdjab')->ignore($this->kode_jabatan, 'kdjab'), 'max:5'],
+            'nama' => ['required', 'string'],
+            'golongan' => ['required', 'string'],
+            'tunjangan' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }

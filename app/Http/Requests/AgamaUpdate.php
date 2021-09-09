@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AgamaUpdate extends FormRequest
 {
@@ -24,7 +25,21 @@ class AgamaUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode' => [
+                'required',
+                'string',
+                Rule::unique('sdm_tbl_agama')->ignore($this->agama, 'kode'),
+                'max:2'
+            ],
+            'nama' => ['required', 'string'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'kode' => 'Kode Agama',
+            'nama' => 'Nama Agama',
         ];
     }
 }

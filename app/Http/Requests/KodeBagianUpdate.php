@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class KodeBagianUpdate extends FormRequest
 {
@@ -11,20 +12,24 @@ class KodeBagianUpdate extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
-            //
+            'kode' => [
+                'required',
+                'string',
+                Rule::unique('sdm_tbl_kdbag')->ignore($this->kode_bagian, 'kode'),
+                'max:6'
+            ],
+            'nama' => ['required', 'string'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'kode' => 'Kode bagian',
+            'nama' => 'Nama bagian',
         ];
     }
 }
