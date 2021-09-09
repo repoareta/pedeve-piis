@@ -6,7 +6,7 @@ use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class HonorKomiteStoreRequest extends FormRequest
+class HonorKomiteUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -35,6 +35,7 @@ class HonorKomiteStoreRequest extends FormRequest
                     ->where('nopek', $this->nopek)
                     ->where('bulan', $this->bulan)
                     ->where('tahun', $this->tahun)
+                    ->ignore($this->nopek, 'nopek')
             ],
             'nilai' => ['required', new MoneyFormat, 'max:30'],
         ];

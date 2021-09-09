@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun <span class="text-danger">*</span></label>
                 <div class="col-5">
                     <?php 
                         $tgl = date_create(now());
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Pegawai <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select name="nopek"  class="form-control select2" style="width: 100% !important;" required autocomplete="off">
                         <option value="">- Pilih -</option>
@@ -64,12 +64,13 @@
                         <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
                         @endforeach
                     </select>
+                    <div id="nopek-error-placement"></div>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 col-form-label">Nilai<span class="text-danger">*</span></label>
+                <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" required autocomplete="off">
+                    <input class="form-control money" name="nilai" type="text" required autocomplete="off">
                     <input type="hidden" value="0" name="pajak" id="pajak">
                 </div>
             </div>
@@ -94,6 +95,8 @@
 	$(document).ready(function () {
 		$('#form-create').submit(function(e){
 			e.preventDefault();
+
+            if ($('#nopek-error').length) $('#nopek-error').insertAfter('#nopek-error-placement');
 
             if($(this).valid()) {
                 const swalWithBootstrapButtons = Swal.mixin({

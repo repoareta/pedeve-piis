@@ -33,11 +33,11 @@
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
-                <a href="#">
+                {{-- <a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
 					</span>
-				</a>
+				</a> --}}
             </div>
         </div>
     </div>

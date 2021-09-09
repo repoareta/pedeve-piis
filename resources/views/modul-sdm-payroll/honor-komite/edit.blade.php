@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Bulan/Tahun <span class="text-danger">*</span></label>
                 <div class="col-5">
                 <?php 
                     $array_bln = array (
@@ -58,17 +58,17 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Pegawai<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Pegawai <span class="text-danger">*</span></label>
                 <div class="col-10">
                     <input class="form-control" type="text" value="{{ $data_list->nopek}} - {{ $data_list->nama_nopek}}" disabled>
                     <input class="form-control" type="hidden" value="{{ $data_list->nopek}}" name="nopek">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-2 col-form-label">Nilai<span class="text-danger">*</span></label>
+                <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" value="<?php echo number_format($data_list->nilai, 2, '.', ''); ?>" required autocomplete="off">
-                    <input type="hidden" value="<?php echo number_format($data_list->pajak, 2, '.', ''); ?>" name="pajak" id="pajak">
+                    <input class="form-control money" name="nilai" type="text" value="{{ $data_list->nilai }}" required autocomplete="off">
+                    <input type="hidden" value="{{ number_format($data_list->pajak, 2, '.', '') }}" name="pajak" id="pajak">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -86,6 +86,8 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\HonorKomiteUpdateRequest', '#form-edit'); !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('#nilai').keyup(function(){

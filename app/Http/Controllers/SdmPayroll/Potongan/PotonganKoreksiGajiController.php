@@ -61,32 +61,28 @@ class PotonganKoreksiGajiController extends Controller
             $request->bulan = null;
         }
 
-        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-        foreach ($data_tahunbulan as $data_bul) {
-            $bulan_buku = $data_bul->bulan_buku;
-        }
-        $tahuns = substr($bulan_buku, 0, -2);
         $bulan = $request->bulan ? ltrim($request->bulan, '0') : null;
         $tahun = $request->tahun;
         $nopek = $request->nopek;
 
-        if ($nopek == null) {
-            if ($bulan == null and $tahun == null) {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.tahun ='$tahuns' order by a.tahun desc,a.bulan desc");
-            } elseif ($bulan == null and $tahun <> null) {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.tahun ='$tahun' order by a.tahun desc,a.bulan desc");
-            } else {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.bulan='$bulan' and a.tahun='$tahun' order by a.tahun desc,a.bulan desc");
-            }
-        } else {
-            if ($bulan == null and $tahun == null) {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.nopek='$nopek' order by a.tahun desc,a.bulan desc");
-            } else {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode where a.bulan='$bulan' and a.tahun='$tahun' and a.nopek='$nopek' order by a.tahun desc,a.bulan desc");
-            }
+        $data = DB::table(DB::raw('pay_koreksigaji as a'))
+            ->select(DB::raw('a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard'))
+            ->join(DB::raw('sdm_master_pegawai as b'), 'a.nopek', '=', 'b.nopeg')
+            ->join(DB::raw('pay_tbl_aard as c'), 'a.aard', '=', 'c.kode');
+
+        if ($tahun) {
+            $data = $data->where('a.tahun', '=', $tahun);
         }
 
-        return datatables()->of($data)
+        if ($bulan) {
+            $data = $data->where('a.bulan', '=', $bulan);
+        }
+
+        if ($nopek) {
+            $data = $data->where('a.nopek', '=', $nopek);
+        }
+
+        return datatables()->of($data->get())
             ->addColumn('tahun', function ($data) {
                 return $data->tahun;
             })
@@ -147,11 +143,13 @@ class PotonganKoreksiGajiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PotonganKoreksiGajiStoreRequest $request)
-    {        
+    {
         $validated = collect($request->validated())
-                            ->put('jmlcc', 0)
-                            ->put('ccl', 0)
-                            ->toArray();
+            ->put('jmlcc', 0)
+            ->put('ccl', 0)
+            ->toArray();
+
+        $validated['nilai'] = sanitize_nominal($validated['nilai']);
 
         KoreksiGaji::insert($validated);
 
@@ -162,7 +160,7 @@ class PotonganKoreksiGajiController extends Controller
     public function edit($bulan, $tahun, $aard, $nopek)
     {
         $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_koreksigaji a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'")[0];
-        
+
         $bulan = date_format(now(), 'n');
         $tahun = date_format(now(), 'Y');
         $data = KoreksiGaji::where('nopek', $nopek)
@@ -182,10 +180,10 @@ class PotonganKoreksiGajiController extends Controller
             ->where('nopek', $request->nopek)
             ->where('aard', $request->aard)
             ->update([
-                'nilai' => str_replace(',', '.', $request->nilai),
+                'nilai' => sanitize_nominal($request->nilai),
                 'userid' => $request->userid,
             ]);
-        
+
         Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.potongan_koreksi_gaji.index');
     }

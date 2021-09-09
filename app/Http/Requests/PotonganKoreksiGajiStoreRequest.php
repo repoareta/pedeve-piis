@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -37,7 +38,7 @@ class PotonganKoreksiGajiStoreRequest extends FormRequest
                     ->where('tahun', $this->tahun)
             ],
             'aard' => 'required|string',
-            'nilai' => 'required|numeric',
+            'nilai' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 
@@ -49,7 +50,7 @@ class PotonganKoreksiGajiStoreRequest extends FormRequest
     public function attributes()
     {
         return [
-            'nopek' => 'Data'
+            'nopek' => 'Pegawai'
         ];
     }
 }
