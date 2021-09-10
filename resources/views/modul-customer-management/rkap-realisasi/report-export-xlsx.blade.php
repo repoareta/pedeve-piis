@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <style>   
-    .text-center {
-        text-align: center;
-    }
-
-    .text-right {
-        text-align: right;
-    }
-    </style>
 <body>
     <table>
         <tr>
