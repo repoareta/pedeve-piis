@@ -54,38 +54,31 @@ class LemburController extends Controller
 
 
     public function indexJson(Request $request)
-    {
-        $data = DB::select("SELECT 
-            a.bulan,
-            a.tahun,
-            a.tanggal,
-            a.nopek,
-            a.libur,
-            a.mulai,
-            a.sampai,
-            a.makanpg,
-            a.makansg,
-            a.makanml,
-            a.transport,
-            a.lembur,
-            (a.makanpg + a.makansg + a.makanml + a.transport + a.lembur) AS total, 
-            b.nama AS nama_nopek 
-            FROM pay_lembur a 
-            JOIN sdm_master_pegawai b 
-            ON a.nopek = b.nopeg
-            ORDER BY a.tanggal ASC");
-
+    {        
+        $data = PayLembur::select('*',                          
+                        'sdm_master_pegawai.nama AS nama_nopek')
+                        ->selectRaw('(makanpg + 
+                        makansg + 
+                        makanml + 
+                        transport + 
+                        lembur) 
+                        AS total')
+                        ->join('sdm_master_pegawai', 'pay_lembur.nopek', 'sdm_master_pegawai.nopeg')
+                        ->orderByDesc('pay_lembur.tanggal');
+        
         return datatables()->of($data)
             ->filter(function ($query) use ($request) {
-                // if (request('nopek')) {
-                //     $query->where('a.nopek', '=', request('nopek'));
-                // }
-                // if (request('bulan')) {
-                //     $query->where('bulan', ltrim(request('bulan'), '0'));
-                // }
-                // if (request('tahun')) {
-                //     $query->where('a.tahun', request('tahun'));
-                // }
+                if ($request->has('nopek')) {
+                    $query->where('nopek', 'like', "%{$request->get('nopek')}%");
+                }
+
+                if ($request->get('bulan')) {
+                    $query->where('bulan', '=', ltrim($request->get('bulan'), '0'));
+                }
+
+                if ($request->get('tahun')) {
+                    $query->where('tahun', '=', $request->get('tahun'));
+                }
             })
             ->addColumn('nopek', function ($data) {
                 return $data->nopek . ' -- ' . $data->nama_nopek;
