@@ -41,7 +41,8 @@
                         @foreach($data_pegawai as $data)
                         <option value="{{$data->nopeg}}">{{$data->nopeg}} - {{$data->nama}}</option>
                         @endforeach
-                    </select>								
+                    </select>		
+                    <div id="status-nya"></div>						
                 </div>
             </div>
             <div class="form-group row">
@@ -72,13 +73,13 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Angsuran<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value="0"  name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete="off">
+                    <input  class="form-control money" type="text" value="0"  name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Pinjaman<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" value="0"  name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete="off">
+                    <input  class="form-control money" type="text" value="0"  name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -166,7 +167,9 @@
 
 		$('#form-create').submit(function(e){
 			e.preventDefault();
-
+            if ($('#nopekerja-error').length){
+				$("#nopekerja-error").insertAfter("#status-nya");
+			}
             if($(this).valid()) {
                 const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

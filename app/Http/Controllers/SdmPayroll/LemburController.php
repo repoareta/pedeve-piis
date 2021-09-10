@@ -148,9 +148,19 @@ class LemburController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LemburStoreRequest $request)
+    public function store(LemburStoreRequest $request, PayLembur $lembur)
     {
-        PayLembur::insert($request->validated());
+        $lembur->tanggal = $request->tanggal;
+        $lembur->userid = $request->userid;
+        $lembur->bulan = $request->bulan;
+        $lembur->tahun = $request->tahun;
+        $lembur->nopek = $request->nopek;
+        $lembur->makanpg = sanitize_nominal($request->makanpg);
+        $lembur->makansg = sanitize_nominal($request->makansg);
+        $lembur->makanml = sanitize_nominal($request->makanml);
+        $lembur->transport = sanitize_nominal($request->transport);
+        $lembur->lembur = sanitize_nominal($request->lembur);
+        $lembur->save();
 
         Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.lembur.index');
@@ -188,15 +198,15 @@ class LemburController extends Controller
      */
     public function update(LemburUpdateRequest $request)
     {
-        $request->makanpg = str_replace(',', '.', $request->makanpg);
-        $request->makansg = str_replace(',', '.', $request->makansg);
-        $request->makanml = str_replace(',', '.', $request->makanml);
-        $request->transport = str_replace(',', '.', $request->transport);
-        $request->lembur = str_replace(',', '.', $request->lembur);
-        
-        PayLembur::where('tanggal', $request->tanggal)
-            ->where('nopek', $request->nopek)
-            ->update($request->validated());
+        $lembur = PayLembur::where('tanggal', $request->tanggal)
+                            ->where('nopek', $request->nopek)
+                            ->first();
+        $lembur->makanpg =  sanitize_nominal($request->makanpg);
+        $lembur->makansg =  sanitize_nominal($request->makansg);
+        $lembur->makanml =  sanitize_nominal($request->makanml);
+        $lembur->transport =  sanitize_nominal($request->transport);
+        $lembur->lembur =  sanitize_nominal($request->lembur);
+        $lembur->update();
 
         Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.lembur.index');

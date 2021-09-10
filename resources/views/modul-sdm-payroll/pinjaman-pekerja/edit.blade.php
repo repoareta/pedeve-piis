@@ -71,13 +71,13 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Angsuran<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete="off" value="{{ number_format($data_list->angsuran, 0, '', '') }}">
+                    <input  class="form-control money" type="text" name="angsuran" id="angsuran" size="25" maxlength="25" autocomplete="off" value="{{ number_format($data_list->angsuran, 0, '', '') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Pinjaman<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input  class="form-control" type="text" name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete="off" value="{{ number_format($data_list->jml_pinjaman, 0, '', '') }}">
+                    <input  class="form-control money" type="text" name="jml_pinjaman" id="jml_pinjaman" size="35" maxlength="35" autocomplete="off" value="{{ number_format($data_list->jml_pinjaman, 0, '', '') }}">
                 </div>
             </div>
             <div class="kt-form__actions">

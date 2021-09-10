@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Rules\MoneyFormat;
 class PinjamanKerjaStoreRequest extends FormRequest
 {
     /**
@@ -26,11 +26,11 @@ class PinjamanKerjaStoreRequest extends FormRequest
         return [
             'id_pinjaman' => 'required',
             'nopek' => 'required',
-            'jml_pinjaman' => 'required|numeric',
-            'tenor' => 'required|numeric',
+            'jml_pinjaman' => ['required', new MoneyFormat, 'max:14'],
+            'tenor' => 'required|numeric|digits_between:1,3',
             'mulai' => 'required|date_format:d-m-Y',
             'sampai' => 'required|date_format:d-m-Y',
-            'angsuran' => 'required|numeric',
+            'angsuran' => ['required', new MoneyFormat, 'max:14'],
             'no_kontrak' => 'required|string',
         ];
     }

@@ -63,31 +63,31 @@
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Pagi</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="makanpg" id="mapg" autocomplete="off">
+                    <input class="form-control money" type="text" value="{{ $dataLembur->makanpg }}" name="makanpg" id="mapg" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Siang</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="makansg" id="masi" autocomplete="off">
+                    <input class="form-control money" type="text" value="{{ $dataLembur->makansg }}" name="makansg" id="masi" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Malam</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="makanml" id="maml" autocomplete="off">
+                    <input class="form-control money" type="text" value="{{ $dataLembur->makanml }}" name="makanml" id="maml" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Transport</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="transport" id="trans" autocomplete="off">
+                    <input class="form-control money" type="text" value="{{ $dataLembur->transport }}" name="transport" id="trans" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Lembur</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0"  name="lembur" id="lem" autocomplete="off">
+                    <input class="form-control money" type="text" value="{{ $dataLembur->lembur }}"  name="lembur" id="lem" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
