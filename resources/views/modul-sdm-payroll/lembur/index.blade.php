@@ -44,7 +44,7 @@
 					<label for="" class="col-form-label">Pegawai</label>
 					<div class="col-4">
 						<select name="nopek" class="form-control select2" style="width: 100% !important;" id="nopek">
-						<option>- Pilih -</option>
+						<option value="">- Pilih -</option>
 							@foreach($pegawai_list as $pegawai)
 							    <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg }} - {{ $pegawai->nama }}</option>
 							@endforeach
@@ -53,7 +53,7 @@
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
 						<select name="bulan" class="form-control select2" style="width: 100% !important;" id="bulan">
-							<option>- Pilih -</option>
+							<option value="">- Pilih -</option>
 							<option value="01" <?php if($bulan == '01') echo 'selected'; ?>>Januari</option>
 							<option value="02" <?php if($bulan == '02') echo 'selected'; ?>>Februari</option>
 							<option value="03" <?php if($bulan == '03') echo 'selected'; ?>>Maret</option>
@@ -113,8 +113,6 @@
             scrollX   : true,
             processing: true,
             serverSide: true,
-            
-            
             ajax: {
                 url: "{{ route('modul_sdm_payroll.lembur.index.json') }}",
                 data: function (d) {
