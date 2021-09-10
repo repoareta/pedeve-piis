@@ -63,36 +63,37 @@
                         <option value="{{ $data->nopeg }}">{{ $data->nopeg }} - {{ $data->nama }}</option>
                         @endforeach
                     </select>
+                    <div id="status-nya"></div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Pagi</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="makanpg" id="mapg" autocomplete="off">
+                    <input class="form-control money" type="text" value="0" name="makanpg" id="mapg" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Siang</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="makansg" id="masi" autocomplete="off">
+                    <input class="form-control money" type="text" value="0" name="makansg" id="masi" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Makan Malam</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="makanml" id="maml" autocomplete="off">
+                    <input class="form-control money" type="text" value="0" name="makanml" id="maml" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Transport</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0" name="transport" id="trans" autocomplete="off">
+                    <input class="form-control money" type="text" value="0" name="transport" id="trans" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="id-pekerja;-input" class="col-2 col-form-label">Lembur</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="0"  name="lembur" id="lem" autocomplete="off">
+                    <input class="form-control money" type="text" value="0"  name="lembur" id="lem" autocomplete="off">
                 </div>
             </div>
             <div class="kt-form__actions">
@@ -114,9 +115,23 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
+
+        // minimum setup
+		$('#tanggal').datepicker({
+			todayHighlight: true,
+			orientation: "bottom left",
+			autoclose: true,
+			language : 'id',
+			// format   : 'yyyy-mm-dd'
+			format   : 'dd-mm-yyyy'
+		});
+
 		$('#form-create').submit(function(e){
 			e.preventDefault();
 
+            if ($('#nopek-error').length){
+				$("#nopek-error").insertAfter("#status-nya");
+			}
             if($(this).valid()) {
                 const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {

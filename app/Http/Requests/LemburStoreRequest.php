@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Rules\MoneyFormat;
 class LemburStoreRequest extends FormRequest
 {
     /**
@@ -29,11 +29,11 @@ class LemburStoreRequest extends FormRequest
             "bulan" => "required",
             "tahun" => "required|date_format:Y",
             "nopek" => "required|unique:pay_lembur,nopek",
-            "makanpg" => "required|numeric",
-            "makansg" => "required|numeric",
-            "makanml" => "required|numeric",
-            "transport" => "required|numeric",
-            "lembur" => "required|numeric",
+            "makanpg" => ['required', new MoneyFormat, 'max:14'],
+            "makansg" => ['required', new MoneyFormat, 'max:14'],
+            "makanml" => ['required', new MoneyFormat, 'max:14'],
+            "transport" => ['required', new MoneyFormat, 'max:14'],
+            "lembur" => ['required', new MoneyFormat, 'max:14'],
         ];
     }
     
