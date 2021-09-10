@@ -69,6 +69,7 @@ Route::prefix('customer-management')->name('modul_cm.')->group(function () {
         Route::post('rkap-realisasi/update/{kd_rencana_kerja}', [RkapRealisasiController::class, 'update'])->name('update');
         Route::delete('rkap-realisasi/delete', [RkapRealisasiController::class, 'delete'])->name('delete');
         Route::get('rkap-realisasi/export', [RkapRealisasiController::class, 'export'])->name('export');
+        Route::get('rkap-realisasi/export-xlsx', [RkapRealisasiController::class, 'exportXLSX'])->name('export.xlsx');
     });
     //end rencana-kerja
 

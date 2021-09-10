@@ -58,7 +58,8 @@
 					</div>
 					<div class="col-4">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>
-						<button type="button" class="btn btn-danger" id="cetak"><i class="fa fa-print"></i> Cetak .pdf</button>
+						<button type="button" class="btn btn-danger" id="cetak"><i class="fa fa-file-pdf"></i> Cetak .PDF</button>
+						<button type="button" class="btn btn-success" id="cetak-xlsx"><i class="fa fa-file-excel"></i> Cetak .XLSX</button>
 					</div>
 				</div>
 			</form>
@@ -174,6 +175,40 @@
 					var link = document.createElement('a');
 					link.href = window.URL.createObjectURL(blob);
 					link.download = "{{ 'report_rkap_realisasi_'.date('Y-m-d_H:i:s').'.pdf' }}";
+					link.click();
+				},
+				error: function () {
+					alert("Terjadi kesalahan, coba lagi nanti");
+				}
+			});
+
+		});
+
+		$('#cetak-xlsx').on('click', function(e) {
+			e.preventDefault();
+			// get tahun
+			var tahun = $('#tahun').val();
+			// perusahaan
+			var perusahaan = $('#perusahaan').val();
+			var perusahaan_nama = $('#perusahaan').find(':selected').data('nama');
+			// akses url to generate pdf
+			$.ajax({
+				url: "{{ route('modul_cm.rkap_realisasi.export.xlsx') }}",
+				type: 'GET',
+				xhrFields: {
+					responseType: 'blob'
+				},
+				data: {
+					"tahun": tahun,
+					"perusahaan": perusahaan,
+					"perusahaan_nama": perusahaan_nama,
+					"_token": "{{ csrf_token() }}",
+				},
+				success: function (response) {
+					var blob = new Blob([response], { type: 'application/xlsx' });
+					var link = document.createElement('a');
+					link.href = window.URL.createObjectURL(blob);
+					link.download = "{{ 'report_rkap_realisasi_'.date('Y-m-d_H:i:s').'.xlsx' }}";
 					link.click();
 				},
 				error: function () {
