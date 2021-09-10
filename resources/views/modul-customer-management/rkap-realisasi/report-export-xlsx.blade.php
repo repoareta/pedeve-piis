@@ -6,7 +6,7 @@
             <td colspan="10">PT PERTAMINA PEDEVE INDONESIA</td>
         </tr>
         <tr>
-            <td colspan="10">REPORT RKAP & REALISASI</td>
+            <td colspan="10">REPORT RKAP &amp; REALISASI</td>
         </tr>
         <tr>
             <td colspan="10">
