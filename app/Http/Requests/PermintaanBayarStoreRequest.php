@@ -29,7 +29,7 @@ class PermintaanBayarStoreRequest extends FormRequest
             'lampiran' => 'required',
             'keterangan' => 'required',
             'dibayar' => 'required',
-            'debetdari' => 'required',
+            'debetdari' => 'nullable',
             'rekyes' => 'nullable',
             'nodebet' => 'required',
             'tgldebet' => 'required|date_format:d-m-Y',
