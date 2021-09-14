@@ -263,24 +263,26 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div  class="col-10" >
-							<select class="cariaccount form-control select2" style="width: 100% !important;" name="acc">
+							<select class="cariaccount form-control select2" style="width: 100% !important;" name="acc" id="acc">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_account as $row)
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
                                 @endforeach
                             </select>
+							<div id="acc-error-placement"></div>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<div  class="col-10">
-							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian">
+							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian" id="bagian">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_bagian as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
                             </select>
+							<div id="bagian-error-placement"></div>
 						</div>
 					</div>
 
@@ -294,24 +296,26 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<div  class="col-10">
-							<select class="carijb form-control select2" style="width: 100% !important;" name="jb">
+							<select class="carijb form-control select2" style="width: 100% !important;" name="jb" id="jb">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_jenisbiaya as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
                                 @endforeach
                             </select>
+							<div id="jb-error-placement"></div>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<div class="col-10">
-							<select class="caricj form-control select2" style="width: 100% !important;" name="cj">
+							<select class="caricj form-control select2" style="width: 100% !important;" name="cj" id="cj">
                                 <option value="">-Pilih-</option>
                                 @foreach($data_cj as $row)
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
 								@endforeach
                             </select>
+							<div id="cj-error-placement"></div>
 						</div>
 					</div>
                     
@@ -365,24 +369,26 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div id="div-acc" class="col-10">
-							<select name="acc" id="select-acc" class="cariaccount form-control" style="width: 100% !important;">
+							<select name="acc" id="select-acc" class="cariaccount form-control" style="width: 100% !important;" id="acc-edit">
 								<option value="">-Pilih-</option>
                                 @foreach($data_account as $row)
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
                                 @endforeach
 							</select>
+							<div id="acc-edit-error-placement"></div>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<div id="div-bagian" class="col-10">
-							<select name="bagian" id="select-bagian"  class="caribagian form-control" style="width: 100% !important;">
+							<select name="bagian" id="select-bagian"  class="caribagian form-control" style="width: 100% !important;" id="bagian-edit">
 								<option value="">-Pilih-</option>
                                 @foreach($data_bagian as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->nama}}</option>
                                 @endforeach
 							</select>
+							<div id="bagian-edit-error-placement"></div>
 						</div>
 					</div>
 
@@ -396,24 +402,26 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<div id="div-jb" class="col-10">
-							<select name="jb" id="select-jb" class="carijb form-control" style="width: 100% !important;">
+							<select name="jb" id="select-jb" class="carijb form-control" style="width: 100% !important;" id="jb-edit">
 								<option value="">-Pilih-</option>
                                 @foreach($data_jenisbiaya as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
                                 @endforeach
 							</select>
+							<div id="jb-edit-error-placement"></div>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<div class="col-10" id="div-cj">
-							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;">
+							<select name="cj" id="select-cj" class="caricj form-control" style="width: 100% !important;" id="cj-edit">
 								<option value="">-Pilih-</option>
                                 @foreach($data_cj as $row)
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
 								@endforeach
 							</select>
+							<div id="cj-edit-error-placement"></div>
 						</div>
 					</div>
                     
@@ -520,6 +528,11 @@
 		$('#form-tambah-bayar-detail').submit(function(e) {
 			e.preventDefault();
 
+			if ($('#acc-error').length) $('#acc-error').insertAfter('#acc-error-placement');
+			if ($('#bagian-error').length) $('#bagian-error').insertAfter('#bagian-error-placement');
+			if ($('#jb-error').length) $('#jb-error').insertAfter('#jb-error-placement');
+			if ($('#cj-error').length) $('#cj-error').insertAfter('#cj-error-placement');
+
 			if ($(this).valid()) {
 				$.ajax({
 					url  : "{{route('modul_umum.permintaan_bayar.store.detail')}}",
@@ -546,6 +559,11 @@
 		//proses update detail
 		$('#form-edit-bayar-detail').submit(function(e) {
 			e.preventDefault();
+
+			if ($('#acc-edit-error').length) $('#acc-edit-error').insertAfter('#acc-edit-error-placement');
+			if ($('#bagian-edit-error').length) $('#bagian-edit-error').insertAfter('#bagian-edit-error-placement');
+			if ($('#jb-edit-error').length) $('#jb-edit-error').insertAfter('#jb-edit-error-placement');
+			if ($('#cj-edit-error').length) $('#cj-edit-error').insertAfter('#cj-edit-error-placement');
 
 			if ($(this).valid()) {
 				$.ajax({
