@@ -107,7 +107,7 @@
 
 						<label for="" class="col-2 col-form-label">Jumlah Panjar Detail</label>
 						<div class="col-3">
-							<input class="form-control money" type="text" readonly name="jumlah_detail" id="jumlah_detail">
+							<input class="form-control money" type="text" readonly name="jumlah_detail" id="jumlah_detail" value="{{ float_two($ppanjar_detail_total) }}">
 						</div>
 					</div>
 

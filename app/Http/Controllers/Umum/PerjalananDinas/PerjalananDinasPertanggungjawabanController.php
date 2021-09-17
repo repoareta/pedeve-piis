@@ -184,11 +184,15 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         $panjar_header_list = PanjarHeader::whereNotIn('no_panjar', $ppanjar_header_list)
         ->get();
 
+        $ppanjar_detail_total = PPanjarDetail::where('no_ppanjar', $ppanjar_header->no_ppanjar)
+        ->sum('total');
+
         return view('modul-umum.perjalanan-dinas-pertanggungjawaban.edit', compact(
             'pegawai_list',
             'panjar_header_list',
             'jabatan_list',
-            'ppanjar_header'
+            'ppanjar_header',
+            'ppanjar_detail_total'
         ));
     }
 

@@ -79,7 +79,8 @@
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 
 				$("input[type=radio]:checked").each(function() {
-					var no_nopek = $(this).val();
+					var no = $(this).data('no');
+					var nopek = $(this).data('nopek');
 					
 					const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
@@ -91,7 +92,7 @@
 
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
-						text: "Nopek : " + no_nopek,
+						text: "Nopek : " + no + ' - ' + nopek,
 						type: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
@@ -101,17 +102,18 @@
 					.then((result) => {
 						if (result.value) {
 							$.ajax({
-								url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.detail.delete', ['no_ppanjar' => $ppanjar_header->no_ppanjar]) }}",
+								url: "{{ route('modul_umum.perjalanan_dinas.pertanggungjawaban.detail.delete', ['no_ppanjar' => str_replace('/', '-', $ppanjar_header->no_ppanjar)]) }}",
 								type: 'DELETE',
 								dataType: 'json',
 								data: {
-									"no_nopek": no_nopek,
+									"no": no,
+									"nopek": nopek,
 									"_token": "{{ csrf_token() }}",
 								},
 								success: function () {
 									Swal.fire({
-										type  : 'success',
-										title : 'Hapus Detail Pertanggungjawaban Panjar ' + no_nopek,
+										icon  : 'success',
+										title : 'Hapus Detail Pertanggungjawaban Panjar ' + no + ' - ' + nopek,
 										text  : 'Success',
 										timer : 2000
 									}).then(function() {

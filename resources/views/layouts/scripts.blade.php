@@ -143,6 +143,11 @@
             reverse: true
         });
 
+        $('.qty').mask('000000000000', {
+            reverse: true,
+            placeholder: '0'
+        });
+
         $('.select2').select2().on('change', function() {
             $(this).valid();
         });
