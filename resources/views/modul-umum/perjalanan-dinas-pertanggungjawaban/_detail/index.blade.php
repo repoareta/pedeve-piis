@@ -75,6 +75,30 @@
 			]
 		});
 
+		$('#editRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) { 
+				$("input[type=radio]:checked").each(function() {
+					var no_ppanjar = $(this).data('ppanjar');
+					var no_urut = $(this).data('no');
+					var nopek = $(this).data('nopek');
+
+					var url = '{{ route("modul_umum.perjalanan_dinas.pertanggungjawaban.detail.edit", [
+						"no_ppanjar" => ":no_ppanjar", 
+						"no_urut" => ":no_urut",
+						"nopek" => ":nopek" 
+					]) }}';
+					// go to page edit
+					url = url.replace(':no_ppanjar', no_ppanjar);
+					url = url.replace(':no_urut', no_urut);
+					url = url.replace(':nopek', nopek);
+					window.location.href = url;
+				});
+			} else {
+				swalAlertInit('ubah');
+			}
+		});
+
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
 			if($('input[type=radio]').is(':checked')) { 

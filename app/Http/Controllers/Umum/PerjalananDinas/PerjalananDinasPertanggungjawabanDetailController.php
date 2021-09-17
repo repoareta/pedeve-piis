@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Umum\PerjalananDinas;
 use Alert;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PPerjalananDinasDetailStore;
+use App\Http\Requests\PPerjalananDinasDetailUpdate;
 use App\Models\MasterPegawai;
 use App\Models\PPanjarDetail;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class PerjalananDinasPertanggungjawabanDetailController extends Controller
 
         return datatables()->of($ppanjar_list_detail)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" data-no="'.$row->no.'" data-nopek="'.$row->nopek.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" data-no="'.$row->no.'" data-nopek="'.$row->nopek.'" data-ppanjar="'.str_replace('/', '-', $row->no_ppanjar).'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('nilai', function ($row) {
@@ -111,7 +112,28 @@ class PerjalananDinasPertanggungjawabanDetailController extends Controller
      */
     public function edit($no_ppanjar, $no_urut, $nopek)
     {
-        return view('modul-umum.perjalanan-dinas-pertanggungjawaban._detail.create');
+        $no_ppanjar_header = str_replace('-', '/', (string) $no_ppanjar);
+
+        $pegawai_list_on_ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
+        ->where('nopek' , '<>', $nopek)
+        ->pluck('nopek')
+        ->toArray();
+
+        $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        ->whereNotIn('nopeg', $pegawai_list_on_ppanjar_detail)
+        ->orderBy('nama', 'ASC')
+        ->get();
+
+        $ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
+        ->where('no', $no_urut)
+        ->where('nopek', $nopek)
+        ->first();
+
+        return view('modul-umum.perjalanan-dinas-pertanggungjawaban._detail.edit', compact(
+            'no_ppanjar',
+            'ppanjar_detail',
+            'pegawai_list'
+        ));
     }
 
     /**
@@ -121,24 +143,36 @@ class PerjalananDinasPertanggungjawabanDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $no_ppanjar, $no_urut, $nopek)
+    public function update(PPerjalananDinasDetailUpdate $request, $no_ppanjar, $no_urut, $nopek)
     {
-        // Dari Database
-        $panjar_detail = PPanjarDetail::where('no_ppanjar', $request->no_ppanjar)
-        ->where('no', $request->no)
-        ->delete();
+        $no_ppanjar_header = str_replace('-', '/', $no_ppanjar);
 
-        $ppanjar_detail = new PPanjarDetail;
-        $ppanjar_detail->no = $request->no;
-        $ppanjar_detail->no_ppanjar = $request->no_ppanjar ? $request->no_ppanjar : null; // for add update only
-        $ppanjar_detail->nopek = $request->nopek;
-        $ppanjar_detail->keterangan = $request->keterangan;
-        $ppanjar_detail->nilai = $request->nilai;
-        $ppanjar_detail->qty = $request->qty;
-        $ppanjar_detail->total = $ppanjar_detail->nilai * $ppanjar_detail->qty;
+        $nilai = (float) sanitize_nominal($request->nilai);
+        $qty = (float) sanitize_nominal($request->qty);
 
-        $ppanjar_detail->save();
-        return response()->json(200);
+        $ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
+        ->where('no', $no_urut)
+        ->where('nopek', $nopek)
+        ->update([
+            'no' => $request->no_urut,
+            'no_ppanjar' => $no_ppanjar_header,
+            'nopek' => $request->nopek,
+            'keterangan' => $request->keterangan,
+            'nilai' => $nilai,
+            'qty' => $qty,
+            'total' => $nilai * $qty,
+        ]);
+
+        Alert::success(
+            'Ubah Detail PPanjar Dinas',
+            'Berhasil'
+        )
+        ->persistent(true)
+        ->autoClose(2000);
+        
+        return redirect()->route('modul_umum.perjalanan_dinas.pertanggungjawaban.edit', [
+            'no_ppanjar' => $no_ppanjar
+        ]);
     }
 
     /**
