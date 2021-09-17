@@ -97,6 +97,8 @@ class PinjamanPekerjaController extends Controller
             ->put('lunas', 'N')
             ->toArray();
 
+        $validated['angsuran'] = sanitize_nominal($validated['angsuran']);
+        $validated['jml_pinjaman'] = sanitize_nominal($validated['jml_pinjaman']);        
         PayMtrPkpp::insert($validated);
         
         Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
@@ -115,8 +117,12 @@ class PinjamanPekerjaController extends Controller
 
     public function update(PinjamanKerjaStoreRequest $request)
     {
+        $validated = $request->validated();
+        $validated['angsuran'] = sanitize_nominal($validated['angsuran']);
+        $validated['jml_pinjaman'] = sanitize_nominal($validated['jml_pinjaman']);
+
         PayMtrPkpp::where('id_pinjaman', $request->id_pinjaman)
-            ->update($request->validated());
+            ->update($validated);
         
         Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.pinjaman_pekerja.index');
