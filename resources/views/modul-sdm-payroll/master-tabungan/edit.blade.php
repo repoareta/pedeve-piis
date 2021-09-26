@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.master_tabungan.update', ['master_tabungan' => $masterTabungan->perusahaan]) }}" id="form" method="POST">
+                <form class="form" action="{{ route('modul_sdm_payroll.master_tabungan.update', ['master_tabungan' => $masterTabungan->perusahaan]) }}" id="form-edit" method="POST">
                     @csrf
                     <div class="form-group form-group-last">
                         <div class="alert alert-secondary" role="alert">
@@ -31,10 +31,10 @@
                         <div class="form-group row">
                             <label class="col-2 col-form-label">Perusahaan<span class="text-danger">*</span></label>
                             <div class="col-10">
-                                <input class="form-control" type="text" name="perusahaan" value="{{ $masterTabungan->perusahaan }}" autocomplete="off">
+                                <input class="form-control money" type="text" name="perusahaan" value="{{ $masterTabungan->perusahaan }}" autocomplete="off">
                             </div>
                         </div>
-                                            
+
                         <div class="kt-form__actions">
                             <div class="row">
                                 <div class="col-2"></div>
@@ -54,4 +54,5 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\MasterTabunganStoreRequest', '#form-edit'); !!}
 @endpush

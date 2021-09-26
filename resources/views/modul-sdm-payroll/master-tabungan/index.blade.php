@@ -72,12 +72,12 @@
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var kode = $(this).attr('kode');
 					var url = '{{ route("modul_sdm_payroll.master_tabungan.edit", ":perusahaan") }}';
 					// go to page edit
-					window.location.href = url.replace(':perusahaan', kode);
+					window.location.href = url.replace(':perusahaan', kode.replaceAll(',', ''));
 				});
 			} else {
 				swalAlertInit('ubah');
@@ -87,7 +87,7 @@
 		//delete potongan manual
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var kode = $(this).attr('kode');
 					// delete stuff

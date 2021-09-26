@@ -1050,7 +1050,7 @@ class PembayaranGajiController extends Controller
             } else {
                 $reportname = "putih-pdf";
             }
-            $pdf = DomPDF::loadview("pembayaran_gaji.$reportname", compact(
+            $pdf = DomPDF::loadview("pembayaran-gaji.$reportname", compact(
                 'request',
                 'data_list',
                 'jk',
