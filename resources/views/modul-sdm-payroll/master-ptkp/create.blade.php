@@ -40,14 +40,14 @@
             <div class="form-group row">
                 <label class="col-2 col-form-label">Nilai <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" name="nilai" type="text" autocomplete="off">
+                    <input class="form-control money" name="nilai" type="text" autocomplete="off">
                     @error('nilai')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
-            </div>                                
+            </div>
             <div class="kt-form__actions">
                 <div class="row">
                     <div class="col-2"></div>

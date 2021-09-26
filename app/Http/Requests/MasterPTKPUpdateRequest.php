@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MasterPTKPUpdateRequest extends FormRequest
@@ -24,7 +25,7 @@ class MasterPTKPUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nilai' => 'required|numeric',
+            'nilai' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }
