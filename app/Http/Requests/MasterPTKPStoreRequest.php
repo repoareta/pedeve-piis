@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MasterPTKPStoreRequest extends FormRequest
@@ -25,7 +26,7 @@ class MasterPTKPStoreRequest extends FormRequest
     {
         return [
             'kdkel' => 'required|string|max:3|unique:pay_tbl_ptkp,kdkel',
-            'nilai' => 'required|numeric',
+            'nilai' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MasterPTKPUpdateRequest extends FormRequest
+class MasterTabunganStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class MasterPTKPUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nilai' => ['required', new MoneyFormat, 'max:30'],
+            'perusahaan' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }

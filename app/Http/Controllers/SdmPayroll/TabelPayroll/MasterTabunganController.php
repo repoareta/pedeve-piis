@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\TabelPayroll;
 
 use Alert;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MasterTabunganStoreRequest;
 use App\Models\PayTblTabungan;
 use DB;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class MasterTabunganController extends Controller
     public function indexJson()
     {
         $data = PayTblTabungan::all();
-        
+
         return datatables()->of($data)
         ->addColumn('radio', function ($row) {
             return '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" kode="'.number_format($row->perusahaan, 0).'" name="btn-radio"><span></span><label>';
@@ -52,9 +53,9 @@ class MasterTabunganController extends Controller
      * @param PayTblTabungan $masterTabungan
      * @return void
      */
-    public function store(Request $request, PayTblTabungan $masterTabungan)
+    public function store(MasterTabunganStoreRequest $request, PayTblTabungan $masterTabungan)
     {
-        $masterTabungan->perusahaan = $request->perusahaan;
+        $masterTabungan->perusahaan = sanitize_nominal($request->perusahaan);
 
         $masterTabungan->save();
 
@@ -82,7 +83,7 @@ class MasterTabunganController extends Controller
     public function update(Request $request, PayTblTabungan $masterTabungan)
     {
         $masterTabungan->perusahaan = $request->perusahaan;
-        
+
         $masterTabungan->save();
 
         Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);

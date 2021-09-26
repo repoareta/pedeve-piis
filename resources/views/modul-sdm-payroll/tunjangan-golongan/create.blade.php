@@ -40,7 +40,7 @@
 					<div class="form-group row">
 						<label for="nilai-input" class="col-2 col-form-label">Nilai<span class="text-danger">*</span></label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="nilai" id="nilai" autocomplete="off">
+							<input class="form-control money" type="text" name="nilai" id="nilai" autocomplete="off">
 						</div>
 					</div>
 					<div class="row">
@@ -52,7 +52,7 @@
                     </div>
 				</form>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 
@@ -62,8 +62,8 @@
 {!! JsValidator::formRequest('App\Http\Requests\TunjanganGolonganStore', '#formTunjanganGolongan'); !!}
 <script>
     $(document).ready(function () {
-        
-        $("#formTunjanganGolongan").on('submit', function(e){            
+
+        $("#formTunjanganGolongan").on('submit', function(e){
                 e.preventDefault();
 
                 if($(this).valid()) {
@@ -92,8 +92,8 @@
                 });
             }
         });
-        
+
     });
-    
+
 </script>
 @endpush
