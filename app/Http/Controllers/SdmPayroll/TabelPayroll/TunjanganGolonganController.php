@@ -24,7 +24,7 @@ class TunjanganGolonganController extends Controller
     public function indexJson()
     {
         $tunjangan_list = PayTunjangan::all();
-        
+
         return datatables()->of($tunjangan_list)
         ->addColumn('radio', function ($row) {
             return '
@@ -68,7 +68,7 @@ class TunjanganGolonganController extends Controller
     {
         PayTunjangan::insert([
             'golongan' => $request->golongan,
-            'nilai' => str_replace(',', '.', $request->nilai),
+            'nilai' => sanitize_nominal($request->nilai),
         ]);
 
         Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);

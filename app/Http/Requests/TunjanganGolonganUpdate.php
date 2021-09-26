@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TunjanganGolonganUpdate extends FormRequest
@@ -25,7 +26,7 @@ class TunjanganGolonganUpdate extends FormRequest
     {
         return [
             'golongan' => 'required|string',
-            'nilai' => 'required|integer'
+            'nilai' => ['required', new MoneyFormat, 'max:30'],
         ];
     }
 }
