@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KeluargaStore;
+use App\Http\Requests\KeluargaUpdate;
 use App\Models\Agama;
 use App\Models\Keluarga;
 use App\Models\MasterPegawai;
@@ -131,7 +132,7 @@ class KeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $status, $nama)
+    public function update(KeluargaUpdate $request, MasterPegawai $pegawai, $status, $nama)
     {
         $keluarga = Keluarga::where('nopeg', $pegawai->nopeg)
         ->where('status', $status)
