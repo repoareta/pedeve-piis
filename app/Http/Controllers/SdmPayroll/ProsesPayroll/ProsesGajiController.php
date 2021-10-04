@@ -41,16 +41,25 @@ class ProsesGajiController extends Controller
     public function store(Request $request)
     {
         if ($request->radioupah == 'proses') {
-            $this->startProsesPayroll($request);
+            
+            return $this->startProsesPayroll($request);
+        
         } else {
             $data_tahun = substr($request->tanggalupah, -4);
+            
             $data_bulan = ltrim(substr($request->tanggalupah, 0, -5), '0');
+            
             $data_bulans = substr($request->tanggalupah, 0, -5);
+            
             $data_cekbatal = DB::select("SELECT * from pay_master_upah where bulan='$data_bulan' and tahun='$data_tahun'");
-            if (!empty($data_cekbatal)) {
-                $data_cektatus = DB::select("SELECT statpbd from statusbayargaji where tahun='$data_tahun' and bulan='$data_bulan'");
-                foreach ($data_cektatus as $data_cek) {
+            
+            if ($data_cekbatal) {
+
+                $data_cekstatus = DB::select("SELECT statpbd from statusbayargaji where tahun='$data_tahun' and bulan='$data_bulan' ORDER BY statpbd ASC");
+
+                foreach ($data_cekstatus as $data_cek) {
                     if ($data_cek->statpbd == 'N') {
+                        
                         MasterUpah::where('tahun', $data_tahun)->where('bulan', $data_bulan)->delete();
                         PayKoreksi::where('tahun', $data_tahun)->where('bulan', $data_bulans)->delete();
                         MasterBebanPerusahaan::where('tahun', $data_tahun)->where('bulan', $data_bulan)->delete();
@@ -59,7 +68,9 @@ class ProsesGajiController extends Controller
                         TblPajak::where('tahun', $data_tahun)->where('bulan', $data_bulan)->delete();
                         StatusBayarGaji::where('tahun', $data_tahun)->where('bulan', $data_bulan)->delete();
                         PayGapokBulanan::where('tahun', $data_tahun)->where('bulan', $data_bulan)->delete();
+                        
                         Alert::success('Proses pembatalan proses Upah selesai', 'Berhasil')->persistent(true);
+                        
                         return redirect()->route('modul_sdm_payroll.proses_gaji.index');
                     } else {
                         Alert::Info('Tidak bisa dibatalkan, Data Upah sudah di proses perbendaharaan', 'Info')->persistent(true);
@@ -69,7 +80,7 @@ class ProsesGajiController extends Controller
             } else {
                 Alert::Info("Tidak ditemukan data upah bulan $data_bulan dan tahun $data_tahun ", 'Info')->persistent(true);
                 return redirect()->route('modul_sdm_payroll.proses_gaji.index');
-            }
+            } 
         }
     }
 
@@ -90,7 +101,8 @@ class ProsesGajiController extends Controller
             Alert::Info("Bulan $data_bulan dan tahun $data_tahun yang dimasukan sudah pernah di proses", 'Info')
             ->persistent(true);
             
-            return redirect()->route('modul_sdm_payroll.proses_gaji.index')->with(['proses' => 'proses']);
+            return redirect()->route('modul_sdm_payroll.proses_gaji.index');
+
         } else {
             // STATUS PEKERJA REQUEST ALL
             if ($request->prosesupah == 'A') {
@@ -619,6 +631,8 @@ class ProsesGajiController extends Controller
                 'pajak_setor' => $pajakbulanpt,
             ]);
         }
+
+        return true;
     }
 
     /**
