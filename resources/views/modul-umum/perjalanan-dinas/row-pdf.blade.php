@@ -195,7 +195,7 @@
                     JAKARTA, {{ date('d/m/Y') }}
                     <br>
                     <center>
-                      SEKR. PERSEROAN
+                      Corporate Secretary & Business Support
                     </center>
                   </td>
                 </tr>
@@ -228,7 +228,7 @@
                   <td valign="top">
                     MENYETUJUI:
                     <br>
-                    KEUANGAN
+                    FINANCE
                   </td>
                 </tr>
 
@@ -288,7 +288,7 @@
             <tr>
               <td>*TEMBUSAN</td>
               <td>:</td>
-              <td>1. UMUM 2. KEU 3. FILE</td>
+              <td>1. CS&BS 2. FINANCE 3. FILE</td>
             </tr>
           </table>
         </div>
