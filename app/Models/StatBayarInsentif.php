@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class StatBayarInsentif extends Model
 {
     use HasFactory;
+
+    protected $table = 'stat_bayar_insentif';
 }
