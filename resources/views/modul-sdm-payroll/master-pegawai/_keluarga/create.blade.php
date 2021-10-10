@@ -116,11 +116,11 @@
                                     <input type="file" name="photo" accept=".png, .jpg, .jpeg"/>
                                     <input type="hidden" name="profile_avatar_remove"/>
                                 </label>
-    
+
                                 <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
                                     <i class="ki ki-bold-close icon-xs text-muted"></i>
                                 </span>
-    
+
                                 <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
                                     <i class="ki ki-bold-close icon-xs text-muted"></i>
                                 </span>
@@ -128,7 +128,7 @@
                             <span class="form-text text-muted" id="photo-nya">Tipe berkas: .png, .jpg, jpeg.</span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <div class="col-2"></div>
                         <div class="col-10">
@@ -136,7 +136,7 @@
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Simpan</button>
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
@@ -150,9 +150,7 @@
 
 <script>
     $(document).ready(function () {
-        $("#formKeluarga").on('submit', function(e){
-            e.preventDefault();
-
+        $("#formKeluarga").on('submit', function(){
             if ($('#status-error').length){
                 $("#status-error").insertAfter("#status-nya");
             }
@@ -171,10 +169,6 @@
 
             if ($('#photo-error').length){
                 $("#photo-error").insertAfter("#photo-nya");
-            }
-
-            if($(this).valid()) {
-                $(this).unbind('submit').submit();
             }
         });
 
