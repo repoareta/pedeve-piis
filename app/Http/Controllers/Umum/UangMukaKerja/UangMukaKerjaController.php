@@ -474,7 +474,11 @@ class UangMukaKerjaController extends Controller
             $pemohon = "ALI SYAMSUL ROHMAN";
             $pemohons = "CS & BS";
         }
-        $data_report = Umk::where('no_umk', $noumk)->select('*')->get();
+
+        $data_report = Umk::where('no_umk', $noumk)->first();
+
+        dd($data_report);
+
         return view('modul-umum.umk.rekap', compact(
             'data_report',
             'setuju',

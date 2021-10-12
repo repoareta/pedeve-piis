@@ -204,32 +204,19 @@ class PermintaanBayarController extends Controller
         }
     }
 
-    public function storeApp(Request $request)
+    public function storeApp(Request $request, $no)
     {
-        $nobayar = str_replace('-', '/', $request->nobayar);
-        $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->select('*')->get();
-        foreach ($data_app as $data) {
-            $check_data = $data->app_sdm;
-        }
-        if ($check_data == 'Y') {
-            PermintaanBayarHeader::where('no_bayar', $nobayar)
-                ->update([
-                    'app_sdm' => 'N',
-                    'app_sdm_oleh' => $request->userid,
-                    'app_sdm_tgl' => $request->tgl_app,
-                ]);
-            Alert::success('No. Bayar : ' . $nobayar . ' Berhasil Dibatalkan Approval', 'Berhasil')->persistent(true)->autoClose(2000);
-            return redirect()->route('permintaan_bayar.index');
-        } else {
-            PermintaanBayarHeader::where('no_bayar', $nobayar)
-                ->update([
-                    'app_sdm' => 'Y',
-                    'app_sdm_oleh' => $request->userid,
-                    'app_sdm_tgl' => $request->tgl_app,
-                ]);
-            Alert::success('No. Bayar : ' . $nobayar . ' Berhasil Diapproval', 'Berhasil')->persistent(true)->autoClose(2000);
-            return redirect()->route('permintaan_bayar.index');
-        }
+        $nobayar = str_replace('-', '/', $no);
+        $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->first();
+
+        $data_app->update([
+            'app_sdm' => 'Y',
+            'app_sdm_oleh' => $request->userid,
+            'app_sdm_tgl' => $request->tgl_app,
+        ]);
+
+        Alert::success('No. Bayar : ' . $nobayar . ' Berhasil di Approval', 'Berhasil')->persistent(true)->autoClose(2000);
+        return redirect()->route('modul_umum.permintaan_bayar.index');
     }
 
     /**
@@ -361,8 +348,8 @@ class PermintaanBayarController extends Controller
     public function approv($id)
     {
         $nobayar = str_replace('-', '/', $id);
-        $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->select('*')->get();
-        return view('modul-umum.permintaan-bayar.approv', compact('data_app'));
+        $data = PermintaanBayarHeader::where('no_bayar', $nobayar)->first();
+        return view('modul-umum.permintaan-bayar.approv', compact('data'));
     }
 
     //surat permintaan bayar
@@ -492,7 +479,7 @@ class PermintaanBayarController extends Controller
                     ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
                     ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                     ->first();
-                
+
                 $dataExcel = [
                     $bayar_header_list->toArray(),
                     $bayar_header_list_total->nilai,
@@ -530,14 +517,14 @@ class PermintaanBayarController extends Controller
                     ->Join('umu_bayar_detail', 'umu_bayar_detail.no_bayar', '=', 'umu_bayar_header.no_bayar')
                     ->whereBetween('umu_bayar_header.tgl_bayar', [$mulai, $sampai])
                     ->first();
-                
+
                     $dataExcel = [
                         $bayar_header_list->toArray(),
                         $bayar_header_list_total->nilai,
                         [$mulai, $sampai],
                         [$bulan, $tahun],
                     ];
-    
+
                     return (new RekapPermintaanBayarExport($dataExcel))->download('REKAP-PERMINTAAN-BAYAR-' . date('Ymd') . '.csv');
             }
         }

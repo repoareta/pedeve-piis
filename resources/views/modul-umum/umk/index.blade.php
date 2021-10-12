@@ -36,7 +36,7 @@
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
-					</span>                    
+					</span>
 				</a>
             </div>
         </div>
@@ -68,7 +68,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
-	
+
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
@@ -129,7 +129,7 @@
                 {data: 'keterangan', name: 'keterangan'},
                 {data: 'jumlah', name: 'jumlah'},
                 {data: 'approval', name: 'approval', class: 'text-center'},
-            ]     
+            ]
         });
 
         $('#search-form').on('submit', function(e) {
@@ -137,50 +137,50 @@
             e.preventDefault();
         });
 
-        //report Uang Muka Kerja 
-    $('#reportRow').on('click', function(e) {
+        //report Uang Muka Kerja
+    $('#exportRow').on('click', function(e) {
         e.preventDefault();
-    
-        var allVals = [];  
-        $(".btn-radio:checked").each(function() {  
+
+        var allVals = [];
+        $(".btn-radio:checked").each(function() {
             e.preventDefault();
             var dataid = $(this).attr('data-id');
             var dataa = $(this).attr('dataumk');
-        
-            if(dataid == 1) 
+
+            if(dataid == 1)
             {
-                swalAlertInit('cetak'); 
-            } else { 
+                swalAlertInit('cetak');
+            } else {
                 location.replace("{{ url('umum/uang-muka-kerja/rekap') }}"+ '/' +dataid);
             }
         });
-    });    
-    
+    });
+
     //edit
     $('#editRow').on('click', function(e) {
         e.preventDefault();
-        var allVals = [];  
-        $(".btn-radio:checked").each(function() {  
+        var allVals = [];
+        $(".btn-radio:checked").each(function() {
             e.preventDefault();
             var dataid = $(this).attr('data-id');
             var dataa = $(this).attr('kt_table');
-        
+
             if(dataid == 1) {
-                swalAlertInit('ubah');  
-            } else {  
+                swalAlertInit('ubah');
+            } else {
                 location.href = "{{ url('umum/uang-muka-kerja/edit') }}" + '/' + dataid ;
             }
         });
     });
-    
+
     //delete
     $('#deleteRow').click(function(e) {
         e.preventDefault();
-        $(".btn-radio:checked").each(function() {  
+        $(".btn-radio:checked").each(function() {
             var dataid = $(this).attr('data-id');
-            if(dataid == 1) {  
-                swalAlertInit('hapus'); 
-            } else { 
+            if(dataid == 1) {
+                swalAlertInit('hapus');
+            } else {
                 $("input[type=radio]:checked").each(function() {
                     var id = $(this).attr('dataumk');
                     var status = $(this).attr('data-s');
