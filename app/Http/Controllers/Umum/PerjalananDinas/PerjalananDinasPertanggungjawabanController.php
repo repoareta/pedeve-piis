@@ -25,7 +25,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
     {
         return view('modul-umum.perjalanan-dinas-pertanggungjawaban.index');
     }
-    
+
     /**
      * Undocumented function
      *
@@ -85,6 +85,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
             $ppanjar_header_list
         )
         ->whereIn('nopek', $pegawai_list_panjar)
+        ->orderBy('tgl_panjar', 'desc')
         ->get();
 
         $ppanjar_header_count = PPanjarHeader::all()->count();
@@ -92,7 +93,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
         $last_ppanjar = PPanjarHeader::withTrashed()
         ->latest()
         ->first();
-        
+
         $date_now = date('d');
         $month_now = date('m');
         $year_now = date('Y');
@@ -123,7 +124,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
     public function store(PPerjalananDinasStore $request)
     {
         $pegawai = MasterPegawai::find($request->nopek);
-        
+
         $ppanjar_header = new PPanjarHeader;
         $ppanjar_header->no_ppanjar = $request->no_pj_panjar;
         $ppanjar_header->no_panjar = $request->no_panjar;
@@ -241,7 +242,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
     public function exportRow($no_ppanjar)
     {
         $no_ppanjar = str_replace('-', '/', $no_ppanjar);
-        
+
         $ppanjar_header = PPanjarHeader::find($no_ppanjar);
 
         $pegawai_jabatan = $ppanjar_header->pangkat;
