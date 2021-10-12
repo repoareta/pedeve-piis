@@ -9,6 +9,7 @@ use App\Http\Requests\PerjalananDinasDetailUpdate;
 use App\Models\KodeJabatan;
 use App\Models\MasterPegawai;
 use App\Models\PanjarDetail;
+use App\Models\PanjarHeader;
 use Illuminate\Http\Request;
 
 class PerjalananDinasDetailController extends Controller
@@ -31,12 +32,12 @@ class PerjalananDinasDetailController extends Controller
             ->addColumn('radio', function ($row) {
                 $radio = '
                 <label class="radio radio-outline radio-outline-2x radio-primary">
-                    <input 
-                        type="radio" 
-                        name="radio1" 
-                        data-no_panjar="'.str_replace('/', '-', $row->no_panjar).'" 
-                        data-no_urut="'.$row->no.'" 
-                        data-nopeg="'.$row->nopek.'" 
+                    <input
+                        type="radio"
+                        name="radio1"
+                        data-no_panjar="'.str_replace('/', '-', $row->no_panjar).'"
+                        data-no_urut="'.$row->no.'"
+                        data-nopeg="'.$row->nopek.'"
                         data-nama="'.$row->nama.'">
                     <span></span>
                 </label>';
@@ -52,11 +53,16 @@ class PerjalananDinasDetailController extends Controller
         ->pluck('nopek')
         ->toArray();
 
+        $panjar_header_pegawai = PanjarHeader::where('no_panjar', str_replace('-', '/', $no_panjar))
+        ->pluck('nopek')
+        ->toArray();
+
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->whereNotIn('nopeg', $panjar_detail_pegawai)
+        ->whereNotIn('nopeg', $panjar_header_pegawai)
         ->orderBy('nama', 'ASC')
         ->get();
-        
+
         $jabatan_list = KodeJabatan::distinct('keterangan')
         ->orderBy('keterangan', 'ASC')
         ->get();
@@ -97,7 +103,7 @@ class PerjalananDinasDetailController extends Controller
         )
         ->persistent(true)
         ->autoClose(2000);
-        
+
         return redirect()->route('modul_umum.perjalanan_dinas.edit', [
             'no_panjar' => $no_panjar
         ]);
@@ -148,7 +154,7 @@ class PerjalananDinasDetailController extends Controller
         $nopek
     ) {
         $no_panjar_detail = str_replace('-', '/', $no_panjar);
-        
+
         $pegawai = MasterPegawai::where('nopeg', $request->nopek)
         ->firstOrFail();
 
@@ -171,7 +177,7 @@ class PerjalananDinasDetailController extends Controller
         )
         ->persistent(true)
         ->autoClose(2000);
-        
+
         return redirect()->route('modul_umum.perjalanan_dinas.edit', [
             'no_panjar' => $no_panjar
         ]);
