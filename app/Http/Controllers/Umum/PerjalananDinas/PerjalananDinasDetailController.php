@@ -121,8 +121,13 @@ class PerjalananDinasDetailController extends Controller
         ->pluck('nopek')
         ->toArray();
 
+        $panjar_header_pegawai = PanjarHeader::where('no_panjar', str_replace('-', '/', $no_panjar))
+        ->pluck('nopek')
+        ->toArray();
+
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')
         ->whereNotIn('nopeg', $panjar_detail_pegawai)
+        ->whereNotIn('nopeg', $panjar_header_pegawai)
         ->orderBy('nama', 'ASC')
         ->get();
 

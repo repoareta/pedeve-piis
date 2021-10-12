@@ -36,7 +36,7 @@
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
-					</span>                    
+					</span>
 				</a>
             </div>
         </div>
@@ -108,28 +108,28 @@
 							<input class="form-control" type="text" name="atasan_ybs" id="atasan_ybs" autocomplete="off">
 						</div>
 					</div>
-					
+
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Menyetujui</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="menyetujui" id="menyetujui" autocomplete="off">
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Sekr. Perseroan</label>
+						<label for="" class="col-2 col-form-label">CS & BS</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="sekr_perseroan" id="sekr_perseroan" autocomplete="off">
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Keuangan</label>
+						<label for="" class="col-2 col-form-label">Finance</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="keuangan" id="keuangan" autocomplete="off">
 						</div>
 					</div>
-					
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
@@ -177,7 +177,7 @@
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var data_ppanjar = $(this).data('ppanjar');
 					if (data_ppanjar === true) {
@@ -201,7 +201,7 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var data_ppanjar = $(this).data('ppanjar');
 					if (data_ppanjar === true) {
@@ -266,7 +266,7 @@
 
 		$('#exportRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
 					// open modal

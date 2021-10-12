@@ -43,7 +43,7 @@
 							<input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date('Y-m-d') }}">
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">No. Panjar</label>
 						<div class="col-5">
@@ -122,7 +122,7 @@
 					</div>
 				</form>
             </div>
-        </div>        
+        </div>
     </div>
 
     @include('modul-umum.perjalanan-dinas-pertanggungjawaban._detail.index')
@@ -137,7 +137,7 @@
 
 		$("#formPPanjarDinas").on('submit', function(e){
 			e.preventDefault();
-			
+
 			if ($('#no_panjar-error').length){
 				$("#no_panjar-error").insertAfter("#no_panjar-nya");
 			}

@@ -45,7 +45,7 @@
                     <div id="no_umk-nya"></div>
                 </div>
             </div>
-            
+
 
             <div class="form-group row">
                 <label for="nopek-input" class="col-2 col-form-label">Nopek</label>
@@ -185,11 +185,11 @@
 							<textarea  class="form-control" type="text" value="" id="keterangan-create" name="keterangan" required>-</textarea>
 						</div>
 					</div>
-                    		
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div  class="col-10" >
-							<select class="cariaccount form-control select2" style="width: 100% !important;" name="account">
+							<select class="cariaccount form-control select2s" style="width: 100% !important;" name="account">
                                 <option value="">-Pilih-</option>
                                 @foreach($account_list as $row)
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
@@ -202,7 +202,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<div  class="col-10">
-							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian">
+							<select class="caribagian form-control select2s" style="width: 100% !important;" name="bagian">
                                 <option value="">-Pilih-</option>
                                 @foreach($bagian_list as $row)
 								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
@@ -222,7 +222,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<div  class="col-10">
-							<select class="carijb form-control select2" style="width: 100% !important;" name="jb">
+							<select class="carijb form-control select2s" style="width: 100% !important;" name="jb">
                                 <option value="">-Pilih-</option>
                                 @foreach($jenis_biaya_list as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
@@ -235,7 +235,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<div class="col-10">
-							<select class="caricj form-control select2" style="width: 100% !important;" name="cj">
+							<select class="caricj form-control select2s" style="width: 100% !important;" name="cj">
                                 <option value="">-Pilih-</option>
                                 @foreach($c_judex_list as $row)
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
@@ -285,11 +285,11 @@
 							<textarea  class="form-control" type="text" value="" id="keterangan_edit" name="keterangan" required>-</textarea>
 						</div>
 					</div>
-                    		
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div  class="col-10" >
-							<select class="cariaccount form-control select2" style="width: 100% !important;" name="account" id="account_edit">
+							<select class="cariaccount form-control select2s" style="width: 100% !important;" name="account" id="account_edit">
                                 <option value="">-Pilih-</option>
                                 @foreach($account_list as $row)
 								<option value="{{$row->kodeacct}}">{{$row->kodeacct}} - {{$row->descacct}}</option>
@@ -302,7 +302,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Kode Bagian</label>
 						<div  class="col-10">
-							<select class="caribagian form-control select2" style="width: 100% !important;" name="bagian" id="bagian_edit">
+							<select class="caribagian form-control select2s" style="width: 100% !important;" name="bagian" id="bagian_edit">
                                 <option value="">-Pilih-</option>
                                 @foreach($bagian_list as $row)
 								<option value="{{ $row->kode }}">{{$row->kode}} - {{$row->nama}}</option>
@@ -322,7 +322,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jenis Biaya</label>
 						<div  class="col-10">
-							<select class="carijb form-control select2" style="width: 100% !important;" name="jb" id="jb_edit">
+							<select class="carijb form-control select2s" style="width: 100% !important;" name="jb" id="jb_edit">
                                 <option value="">-Pilih-</option>
                                 @foreach($jenis_biaya_list as $row)
 								<option value="{{$row->kode}}" >{{$row->kode}} - {{$row->keterangan}}</option>
@@ -335,7 +335,7 @@
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<div class="col-10">
-							<select class="caricj form-control select2" style="width: 100% !important;" name="cj" id="cj_edit">
+							<select class="caricj form-control select2s" style="width: 100% !important;" name="cj" id="cj_edit">
                                 <option value="">-Pilih-</option>
                                 @foreach($c_judex_list as $row)
 								<option value="{{$row->kode}}">{{$row->kode}} - {{$row->nama}}</option>
@@ -381,6 +381,9 @@
 		$('.kt-select2').select2().on('change', function() {
 			$(this).valid();
 		});
+
+        $('.select2s').select2();
+
 		var t = $('#kt_table').DataTable({
 			scrollX   : true,
 			processing: true,
@@ -466,8 +469,9 @@
 							t.ajax.reload();
 							$('#modal-create-detail-pumk').modal('toggle');
 							$('#form-tambah-pumk-detail').trigger('reset');
+                            $('.select2s').select2();
 						});
-					}, 
+					},
 					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
@@ -530,7 +534,7 @@
 							$('#modal-edit-detail-pumk').modal('toggle');
 							$('#form-edit-pumk-detail').trigger('reset');
 						});
-					}, 
+					},
 					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
@@ -540,11 +544,11 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var no = $(this).val().split('-')[0];
 					var no_pumk = $(this).val().split('-')[1];
-					
+
 					const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
 						confirmButton: 'btn btn-primary',
@@ -597,9 +601,9 @@
 
 		$('#btn-edit-detail').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
-					// get value from row					
+					// get value from row
 					var no_urut = $(this).val().split('-')[0];
 					var no_pumk = $(this).val().split('-')[1];
 					var url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.detail.show.json') }}";
@@ -631,7 +635,7 @@
 							alert("Terjadi kesalahan, coba lagi nanti");
 						}
 					});
-					
+
 				});
 			} else {
 				swalAlertInit('ubah');

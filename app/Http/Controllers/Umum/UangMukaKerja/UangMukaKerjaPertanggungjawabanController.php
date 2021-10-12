@@ -70,7 +70,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
                 return $row->nopek . " - " . $row->pekerja->nama;
             })
             ->addColumn('nilai', function ($row) {
-                return currency_format(optional($row->umk_header)->jumlah - $row->pumk_detail->sum('nilai'));
+                return currency_format($row->pumk_detail->sum('nilai'));
             })
             ->addColumn('approval', function ($row) {
                 if ($row->app_pbd == 'Y') {
@@ -109,7 +109,9 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             ->get();
 
         $pumk_header_list = PUmkHeader::select('no_umk')->whereNotNull('no_umk')->get()->toArray();
-        $umk_header_list = UmkHeader::whereNotIn('no_umk', $pumk_header_list)->get();
+        $umk_header_list = UmkHeader::whereNotIn('no_umk', $pumk_header_list)
+        ->orderBy('tgl_panjar', 'DESC')
+        ->get();
 
         $pumk_header_count = PUmkHeader::all()->count();
 
