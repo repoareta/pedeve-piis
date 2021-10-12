@@ -65,12 +65,12 @@ class PermintaanBayarController extends Controller
             })
             ->addColumn('radio', function ($data) {
                 if ($data->app_pbd == 'Y') {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" databayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="Y" data-bayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
                 } else {
                     if ($data->app_sdm == 'Y') {
-                        $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
+                        $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" data-bayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
                     } else {
-                        $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" databayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
+                        $radio =  '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" data-s="N" data-bayar="' . $data->no_bayar . '" data-id="' . str_replace('/', '-', $data->no_bayar) . '" name="btn-radio"><span></span></label>';
                     }
                 }
                 return $radio;
@@ -390,17 +390,14 @@ class PermintaanBayarController extends Controller
 
     public function rekapExport(Request $request)
     {
-        $nobayar = $request->nobayar;
+        $nobayar = $request->no_bayar;
         PermintaanBayarHeader::where('no_bayar', $nobayar)
             ->update([
                 'pemohon' => $request->pemohon,
                 'menyetujui' => $request->menyetujui,
             ]);
-        $bayar_header_list = PermintaanBayarHeader::where('no_bayar', $nobayar)->get();
-        foreach ($bayar_header_list as $data_report) {
-            $data_report;
-            $data_rek = DB::select("SELECT * from tbl_vendor where nama ='$data_report->kepada'");
-        }
+        $data_report = PermintaanBayarHeader::where('no_bayar', $nobayar)->first();
+        $data_rek = DB::select("SELECT * from tbl_vendor where nama ='$data_report->kepada'");
         $bayar_detail_list = PermintaanBayarDetail::where('no_bayar', $nobayar)->get();
         $list_acount = PermintaanBayarDetail::where('no_bayar', $nobayar)->select('nilai')->sum('nilai');
         $pdf = DomPDF::loadview('modul-umum.permintaan-bayar.export', compact('list_acount', 'data_report', 'bayar_detail_list', 'request', 'data_rek'))->setPaper('a4', 'Portrait');
