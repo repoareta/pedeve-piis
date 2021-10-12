@@ -19,7 +19,7 @@
 
     <div class="card-body">
         <div class="card-body">
-            <form action="{{ route('modul_umum.permintaan_bayar.store') }}" method="post" id="form-edit-permintaan-bayar">
+            <form action="{{ $data_bayar->app_pbd == 'Y' ? '#' : route('modul_umum.permintaan_bayar.store') }}" method="post" id="form-edit-permintaan-bayar">
                 @csrf
                 <div class="alert alert-custom alert-default" role="alert">
                     <div class="alert-text">
@@ -74,7 +74,7 @@
                             @foreach ($debit_nota as $row)
                             <option value="{{ $row->kode }}" <?php if($row->kode == $data_bayar->debet_dari ) echo 'selected' ; ?>>{{ $row->kode.' - '.$row->keterangan }}</option>
                             @endforeach
-                            
+
                         </select>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group row">
                     <label class="col-2 col-form-label">Total Nilai</label>
                     <div class="col-10">
@@ -137,27 +137,15 @@
                     </div>
                 </div>
 
-                @if($data_bayar->app_pbd == 'Y')
                 <div class="kt-form__actions">
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
                             <a href="{{route('modul_umum.permintaan_bayar.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
-                            <button type="submit" class="btn btn-primary" disabled style="cursor:not-allowed"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
+                            <button type="submit" class="btn btn-primary {{ $data_bayar->app_pbd == 'Y' ? 'd-none' : null }}"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
                         </div>
                     </div>
                 </div>
-                @else
-                <div class="kt-form__actions">
-                    <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-10">
-                            <a href="{{route('modul_umum.permintaan_bayar.index')}}" class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i>Batal</a>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i>Simpan</button>
-                        </div>
-                    </div>
-                </div>
-                @endif
             </form>
         </div>
     </div>
@@ -223,7 +211,7 @@
                         <td align="center">{{$data_bayar_detail->cj}}</td>
                         <td><?php echo number_format($data_bayar_detail->nilai, 2, '.', ','); ?></td>
                     </tr>
-                @endforeach                    
+                @endforeach
             </tbody>
 			<tfoot>
 				<tr>
@@ -259,7 +247,7 @@
 							<textarea  class="form-control" type="text" value=""  name="keterangan" required oninvalid="this.setCustomValidity('Keterangan Harus Diisi..')" oninput="setCustomValidity('')">-</textarea>
 						</div>
 					</div>
-                    
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div  class="col-10" >
@@ -318,14 +306,14 @@
 							<div id="cj-error-placement"></div>
 						</div>
 					</div>
-                    
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input class="form-control money" type="text" name="nilai" required autocomplete="off">
 						</div>
 					</div>
-                    
+
 					<div class="kt-form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -365,7 +353,7 @@
 							<textarea  class="form-control" type="text" value="" id="keterangan" name="keterangan"></textarea>
 						</div>
 					</div>
-                    
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Account</label>
 						<div id="div-acc" class="col-10">
@@ -424,13 +412,13 @@
 							<div id="cj-edit-error-placement"></div>
 						</div>
 					</div>
-                    
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
 						<div class="col-10">
 							<input  class="form-control money" type="text" name="nilai" id="nilai" autocomplete="off">
 						</div>
-					</div>													
+					</div>
 					<div class="kt-form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -459,7 +447,7 @@
 			processing: true,
 			serverSide: false,
 		});
-		
+
 		$('#table-detail tbody').on( 'click', 'tr', function (event) {
 			if ( $(this).hasClass('selected') ) {
 				$(this).removeClass('selected');
@@ -472,12 +460,12 @@
 				$(this).addClass('selected');
 			}
 		} );
-		
+
 		$('.kt-select2').select2().on('change', function() {
 			// $(this).valid();
 		});
-		
-		$("input[name=ci]:checked").each(function() {  
+
+		$("input[name=ci]:checked").each(function() {
 			var ci = $(this).val();
 			if(ci == 1) {
 				$('#kurs').val(1);
@@ -493,7 +481,7 @@
 				$( "#kurs" ).prop( "readonly", false );
                 $('#kurs').removeClass("disabled bg-secondary");
 			}
-				
+
 		});
 
 		// proses update permintaan bayar
@@ -516,14 +504,14 @@
 						}).then(function() {
 							location.href = "{{ route('modul_umum.permintaan_bayar.index')}}";
 						});
-					}, 
+					},
 					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
 				});
 			}
 		});
-	
+
 		//prosess create detail
 		$('#form-tambah-bayar-detail').submit(function(e) {
 			e.preventDefault();
@@ -548,7 +536,7 @@
 						}).then(function() {
 							location.reload();
 						});
-					}, 
+					},
 					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
@@ -580,24 +568,24 @@
 						}).then(function() {
 							window.location.reload();
 						});
-					}, 
+					},
 					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
 				});
 			}
 		});
-		
+
 		//tampil edit detail
 		$('#editRow').on('click', function(e) {
 			e.preventDefault();
-			var allVals = [];  
-			$(".btn-radio:checked").each(function() {  
+			var allVals = [];
+			$(".btn-radio:checked").each(function() {
 				var dataid = $(this).attr('data-id');
 				var datano = $(this).attr('data-no');
-				if(dataid == 1) {  
-					swalAlertInit('ubah'); 
-				}  else { 
+				if(dataid == 1) {
+					swalAlertInit('ubah');
+				}  else {
 					$.ajax({
 						url :"{{url('umum/permintaan-bayar/editdetail')}}"+ '/' +dataid+ '/' +datano,
 						type : 'get',
@@ -620,18 +608,18 @@
 						}
 					})
 				}
-							
+
 			});
 		});
-		
+
 		//delete permintaan bayar detail
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			$(".btn-radio:checked").each(function() {  
+			$(".btn-radio:checked").each(function() {
 				var dataid = $(this).attr('data-id');
-				if(dataid == 1)   {  
-					swalAlertInit('hapus'); 
-				} else { 
+				if(dataid == 1)   {
+					swalAlertInit('hapus');
+				} else {
 				$("input[type=radio]:checked").each(function() {
                     var id = $(this).attr('nobayar');
                     var no = $(this).attr('data-no');
@@ -680,10 +668,10 @@
 							}
 						});
 					});
-				} 
+				}
 			});
 		});
-		
+
 		// range picker
 		$('#date_range_picker').datepicker({
 			todayHighlight: true,
@@ -692,7 +680,7 @@
 			language : 'id',
 			format   : 'dd-mm-yyyy'
 		});
-		
+
 		// minimum setup
 		$('#tanggal').datepicker({
 			todayHighlight: true,
@@ -712,7 +700,7 @@
 		});
 	});
 
-	function displayResult(ci){ 
+	function displayResult(ci){
 		if(ci == 1) {
 			$('#kurs').val(1);
 			$('#simbol-kurs').hide();

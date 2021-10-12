@@ -37,7 +37,7 @@
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
-					</span>                    
+					</span>
 				</a>
             </div>
         </div>
@@ -68,7 +68,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
-	
+
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
@@ -101,13 +101,71 @@
     </div>
 </div>
 
+<!-- MODAL -->
+<div class="modal fade" id="cetakModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Cetak Data</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form class="form" action="{{ route('modul_umum.permintaan_bayar.rekap.export') }}" method="POST" id="formCetakData" target="_blank">
+                @csrf
+				<div class="modal-body">
+					<div class="form-group row">
+						<label for="" class="col-2 col-form-label">Nomor Permintaan</label>
+						<div class="col-10">
+							<input class="form-control" type="text" readonly name="no_bayar" id="no_bayar">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="" class="col-2 col-form-label">Atasan Ybs</label>
+						<div class="col-10">
+							<input class="form-control" type="text" name="atasan_ybs" id="atasan_ybs" autocomplete="off">
+						</div>
+					</div>
+
+                    <div class="form-group row">
+						<label for="" class="col-2 col-form-label">Menyetujui</label>
+						<div class="col-10">
+							<input class="form-control" type="text" name="menyetujui" id="menyetujui" autocomplete="off">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="" class="col-2 col-form-label">CS & BS</label>
+						<div class="col-10">
+							<input class="form-control" type="text" name="sekr_perseroan" id="sekr_perseroan" autocomplete="off">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="" class="col-2 col-form-label">Finance</label>
+						<div class="col-10">
+							<input class="form-control" type="text" name="keuangan" id="keuangan" autocomplete="off">
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
+					<button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Cetak Data</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{{-- MODAL END --}}
 
 @endsection
 
 @push('page-scripts')
 <script type="text/javascript">
 $(document).ready(function () {
-	
+
 	var t = $('#kt_table').DataTable({
 		scrollX   : true,
 		processing: true,
@@ -130,39 +188,39 @@ $(document).ready(function () {
 			{data: 'nilai', name: 'nilai', class: 'text-right'},
 			{data: 'approval', name: 'approval', class: 'text-center'}
 		]
-			
-		
+
+
 	});
 
 	$('#search-form').on('submit', function(e) {
 		t.draw();
 		e.preventDefault();
 	});
-	
-	//report permintaan bayar
-	$('#reportRow').on('click', function(e) {
-		e.preventDefault();
 
-		if($('input[class=btn-radio]').is(':checked')) { 
-			$("input[class=btn-radio]:checked").each(function() {  
-				e.preventDefault();
-				var dataid = $(this).attr('data-id');
-					location.replace("{{ url('umum/permintaan-bayar/rekap') }}"+ '/' +dataid);
-			});
-		} else{
-			swalAlertInit('cetak');
-		}
-		
-	});
+	//report permintaan bayar
+	$('#exportRow').click(function(e) {
+        e.preventDefault();
+        if($('input[type=radio]').is(':checked')) {
+            $("input[type=radio]:checked").each(function() {
+                var id = $(this).data('bayar');
+                // open modal
+                $('#cetakModal').modal('show');
+                // fill no_panjar to no_panjar field
+                $('#no_bayar').val(id);
+            });
+        } else {
+            swalAlertInit('cetak');
+        }
+    });
 
 	//edit permintaan bayar
 	$('#editRow').click(function(e) {
 		e.preventDefault();
 
-		if($('input[class=btn-radio]').is(':checked')) { 
+		if($('input[class=btn-radio]').is(':checked')) {
 			$("input[class=btn-radio]:checked").each(function(){
-				var id = $(this).attr('data-id');
-				location.replace("{{ url('umum/permintaan-bayar/edit') }}"+ '/' +id);
+				var id = $(this).attr('data-bayar');
+				location.replace("{{ url('umum/permintaan-bayar/edit') }}"+ '/' +id.replaceAll('/', '-'));
 			});
 		} else {
 			swalAlertInit('ubah');
@@ -172,7 +230,7 @@ $(document).ready(function () {
 	//delete permintaan bayar
 	$('#deleteRow').click(function(e) {
 		e.preventDefault();
-		if($('input[class=btn-radio]').is(':checked')) { 
+		if($('input[class=btn-radio]').is(':checked')) {
 			$("input[class=btn-radio]:checked").each(function() {
 				var id = $(this).attr('data-id');
 				var status = $(this).attr('data-s');
@@ -231,7 +289,7 @@ $(document).ready(function () {
 		} else {
 			swalAlertInit('hapus');
 		}
-		
+
 	});
 });
 </script>
