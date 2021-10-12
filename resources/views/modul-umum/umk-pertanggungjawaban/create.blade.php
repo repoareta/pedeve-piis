@@ -39,18 +39,18 @@
                     <select class="form-control kt-select2" id="no_umk" name="no_umk">
                         <option value="">- Pilih No. UMK -</option>
                         @foreach ($umk_header_list as $umk)
-                        <option value="{{ $umk->no_umk }}">{{ $umk->no_umk }}</option>
+                        <option value="{{ $umk->no_umk }}">{{ $umk->no_umk }} - {{ $umk->keterangan }} - {{ currency_format($umk->jumlah) }}</option>
                         @endforeach
                     </select>
                     <div id="no_umk-nya"></div>
                 </div>
             </div>
-            
+
 
             <div class="form-group row">
                 <label for="nopek-input" class="col-2 col-form-label">Nopek</label>
                 <div class="col-10">
-                    <select class="form-control kt-select2" name="nopek">
+                    <select class="form-control kt-select2" name="nopek" id="nopek">
                         <option value="">- Pilih Nopek -</option>
                         @foreach ($pegawai_list as $pegawai)
                         <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg.' - '.$pegawai->nama }}</option>
@@ -156,7 +156,7 @@
 			$('#no_urut').val(rowCount + 1);
 		});
 	}
-    
+
 	$(document).ready(function () {
 		$('.kt-select2').select2().on('change', function() {
 			$(this).valid();

@@ -33,7 +33,7 @@ class PerjalananDinasPertanggungjawabanController extends Controller
      */
     public function indexJson(Request $request)
     {
-        $panjar_list = PPanjarHeader::orderBy('tgl_ppanjar', 'desc');
+        $panjar_list = PPanjarHeader::with('ppanjar_detail')->orderBy('tgl_ppanjar', 'desc');
 
         return datatables()->of($panjar_list)
             ->filter(function ($query) use ($request) {
@@ -47,8 +47,8 @@ class PerjalananDinasPertanggungjawabanController extends Controller
             ->addColumn('nopek', function ($row) {
                 return $row->nopek.".".$row->nama;
             })
-            ->addColumn('jmlpanjar', function ($row) {
-                return currency_idr($row->jmlpanjar);
+            ->addColumn('jml_panjar_detail', function ($row) {
+                return currency_idr(optional($row->ppanjar_detail)->sum('total'));
             })
             ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->no_ppanjar.'"><span></span></label>';

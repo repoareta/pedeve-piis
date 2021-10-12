@@ -36,7 +36,7 @@
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
-					</span>                    
+					</span>
 				</a>
             </div>
         </div>
@@ -68,7 +68,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
-	
+
 					<label for="" class="col-form-label">Tahun</label>
                     <div class="col-2">
                         <select class="form-control select2" name="tahun" id="tahun">
@@ -78,7 +78,7 @@
                             @endforeach
                         </select>
                     </div>
-					
+
 					<div class="col-2">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
 					</div>
@@ -97,7 +97,7 @@
                             <th>No. KAS/BANK</th>
                             <th>PEGAWAI</th>
                             <th>KETERANGAN</th>
-                            <th>NILAI</th>
+                            <th>NILAI (REALISASI)</th>
                             <th>APPROVAL</th>
                         </tr>
                     </thead>
@@ -146,7 +146,7 @@
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
 					// go to page edit
@@ -163,7 +163,7 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
 					// delete stuff
@@ -218,10 +218,10 @@
 
 		$('#exportRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
-					
+
 					const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
 						confirmButton: 'btn btn-primary',

@@ -36,7 +36,7 @@
 				<a href="#">
 					<span class="text-info pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
-					</span>                    
+					</span>
 				</a>
             </div>
         </div>
@@ -69,7 +69,7 @@
                             <th>TANGGAL</th>
                             <th>NOPEK</th>
                             <th>KETERANGAN</th>
-                            <th>JUMLAH</th>
+                            <th>JUMLAH (REALISASI)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,7 +102,7 @@
 				{data: 'tgl_ppanjar', name: 'tgl_ppanjar', class:'no-wrap'},
 				{data: 'nopek', name: 'nopek', class:'no-wrap'},
 				{data: 'keterangan', name: 'keterangan'},
-				{data: 'jmlpanjar', name: 'jmlpanjar', class:'no-wrap text-right'},
+				{data: 'jml_panjar_detail', name: 'jml_panjar_detail', class:'no-wrap text-right'},
 			]
 		});
 
@@ -113,7 +113,7 @@
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
 					var url = '{{ route("modul_umum.perjalanan_dinas.pertanggungjawaban.edit", ":no_ppanjar") }}';
@@ -127,7 +127,7 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
 					// delete stuff
@@ -181,10 +181,10 @@
 
 		$('#exportRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
-					
+
 					const swalWithBootstrapButtons = Swal.mixin({
 					customClass: {
 						confirmButton: 'btn btn-primary',
