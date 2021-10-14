@@ -61,6 +61,8 @@
             todayHighlight: true,
             format   : 'yyyy-mm-dd',
             orientation: "bottom left",
+            autoclose: true,
+            language : 'id',
         });
 
         $("#formRekapSPD").on('submit', function(){

@@ -44,7 +44,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 12pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br><br>
                    <font style="font-size: 12pt;font-weight: bold "><u>PERMINTAAN UANG MUKA KERJA/PANJAR KERJA</u></font><br>
-                   <font style="font-size: 10pt;">NOMOR :{{$data_report->no_umk}}</font>
+                   <font style="font-size: 10pt;">NOMOR : {{$data_report->no_umk}}</font>
                     </td>
                 </tr>
             </table>
@@ -53,7 +53,7 @@
         <main>
         <table width="100%" style="padding-top:10px;">
                 <tr style="font-size: 10pt;">
-                    <td width="100px">KEPADA</td><td width="20px">:</td><td>{{strtoupper($request->kepada)}}</td><br>
+                    <td width="100px">KEPADA</td><td width="20px">:</td><td>{{strtoupper($data_report->kepada)}}</td><br>
                 </tr>
                 <tr style="font-size: 10pt;">
                     <td width="100px">DARI</td><td width="20px">:</td><td>{{strtoupper($request->dari)}}</td>
@@ -94,7 +94,7 @@
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:50px;">
                 <tr style="font-size: 10pt;">
-                    <td align="right" width="400">JAKARTA</td><td width="10">, </td><td>{{$request->tglsurat}}</td><br>
+                    <td align="right" width="400">JAKARTA, </td><td>{{ strtoupper(\Carbon\Carbon::now()->isoFormat('LL')) }}</td><br>
                 </tr>
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:-10px;">
@@ -102,12 +102,12 @@
                     <td align="center" width="200">MENYETUJUI,</td><td align="center" width="200">PEMOHON,</td><br>
                 </tr>
                 <tr style="font-size: 10pt;">
-                    <td align="center" width="200">{{strtoupper($request->menyetujuijb)}}</td><td align="center" width="200">{{strtoupper($request->pemohonjb)}}</td><br>
+                    <td align="center" width="200">{{strtoupper($request->menyetujui)}}</td><td align="center" width="200">{{strtoupper($data_report->kepada)}}</td><br>
                 </tr>
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:10px;">
                 <tr style="font-size: 10pt;">
-                    <td align="center" width="200"><u>{{strtoupper($request->menyetujui)}}</u></td><td align="center" width="200"><u>{{strtoupper($request->pemohon)}}</u></td><br>
+                    <td align="center" width="200"><u>{{strtoupper($request->menyetujui)}}</u></td><td align="center" width="200"><u>{{strtoupper($data_report->kepada)}}</u></td><br>
                 </tr>
         </table>
         @else
@@ -118,7 +118,7 @@
                     <img align="right" src="{{public_path() . '/images/pertamina.jpg'}}" width="160px" height="80px"  style="padding-right:30px;"><br>
                    <font style="font-size: 12pt;font-weight: bold "> PT. PERTAMINA PEDEVE INDONESIA</font><br><br>
                    <font style="font-size: 12pt;font-weight: bold "><u>PERMINTAAN UANG MUKA KERJA/PANJAR KERJA</u></font><br>
-                   <font style="font-size: 10pt;">NOMOR :{{$data_report->no_umk}}</font>
+                   <font style="font-size: 10pt;">NOMOR : {{$data_report->no_umk}}</font>
                     </td>
                 </tr>
             </table>
@@ -127,7 +127,7 @@
         <main>
         <table width="100%" style="padding-top:10px;">
                 <tr style="font-size: 10pt;">
-                    <td width="100px">KEPADA</td><td width="20px">:</td><td>{{strtoupper($request->kepada)}}</td><br>
+                    <td width="100px">KEPADA</td><td width="20px">:</td><td>{{strtoupper($data_report->kepada)}}</td><br>
                 </tr>
                 <tr style="font-size: 10pt;">
                     <td width="100px">DARI</td><td width="20px">:</td><td>{{strtoupper($request->dari)}}</td>
@@ -171,7 +171,7 @@
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:50px;">
                 <tr style="font-size: 10pt;">
-                    <td align="right" width="400">JAKARTA</td><td width="10">, </td><td>{{$request->tglsurat}}</td><br>
+                    <td align="right" width="400">JAKARTA, </td><td>{{ strtoupper(\Carbon\Carbon::now()->isoFormat('LL')) }}</td><br>
                 </tr>
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:-10px;">
@@ -179,12 +179,12 @@
                     <td align="center" width="200">MENYETUJUI,</td><td align="center" width="200">PEMOHON,</td><br>
                 </tr>
                 <tr style="font-size: 10pt;">
-                    <td align="center" width="200">{{strtoupper($request->menyetujuijb)}}</td><td align="center" width="200">{{strtoupper($request->pemohonjb)}}</td><br>
+                    <td align="center" width="200">{{strtoupper($request->menyetujui)}}</td><td align="center" width="200">{{strtoupper($data_report->kepada)}}</td><br>
                 </tr>
         </table>
         <table width="100%" style="font-size: 10pt; padding-top:10px;">
                 <tr style="font-size: 10pt;">
-                    <td align="center" width="200"><u>{{strtoupper($request->menyetujui)}}</u></td><td align="center" width="200"><u>{{strtoupper($request->pemohon)}}</u></td><br>
+                    <td align="center" width="200"><u>{{strtoupper($request->menyetujui)}}</u></td><td align="center" width="200"><u>{{strtoupper($data_report->kepada)}}</u></td><br>
                 </tr>
         </table>
         @endif

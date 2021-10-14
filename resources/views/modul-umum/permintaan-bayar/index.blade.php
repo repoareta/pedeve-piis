@@ -220,7 +220,7 @@ $(document).ready(function () {
 		if($('input[class=btn-radio]').is(':checked')) {
 			$("input[class=btn-radio]:checked").each(function(){
 				var id = $(this).attr('data-bayar');
-				location.replace("{{ url('umum/permintaan-bayar/edit') }}"+ '/' +id.replaceAll('/', '-'));
+				location.href = "{{ url('umum/permintaan-bayar/edit') }}"+ '/' +id.replaceAll('/', '-');
 			});
 		} else {
 			swalAlertInit('ubah');
