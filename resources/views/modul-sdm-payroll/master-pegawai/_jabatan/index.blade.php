@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowJabatan"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowJabatan"></i>
                     </span>
                 </a>
             </div>
@@ -73,12 +73,12 @@
 
         $('#deleteRowJabatan').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_jabatan]').is(':checked')) { 
+            if($('input[name=radio_jabatan]').is(':checked')) {
                 $("input[name=radio_jabatan]:checked").each(function() {
                     var mulai = $(this).data('mulai');
                     var kdbagian = $(this).data('kdbagian');
                     var kdjabatan = $(this).data('kdjabatan');
-                    
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -90,7 +90,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Nama Jabatan : " + kdjabatan,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -111,7 +111,7 @@
                                 success: function () {
                                     Swal.fire({
                                         icon  : 'success',
-                                        title : 'Hapus Detail Jabatan ' + kdjab,
+                                        title : 'Hapus Detail Jabatan ' + kdjabatan,
                                         text  : 'Success',
                                         timer : 2000
                                     }).then(function() {
