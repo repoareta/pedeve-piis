@@ -34,7 +34,7 @@
 
                     <label for="" class="col-2 col-form-label">Tanggal <span class="text-danger">*</span></label>
                     <div class="col-3">
-                        <input class="form-control" type="text" name="tanggal" id="tanggal" value="<?php echo date("d-m-Y", strtotime($data_bayar->tgl_bayar)) ?>">
+                        <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ date("d-m-Y", strtotime($data_bayar->tgl_bayar)) }}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -58,6 +58,7 @@
                             <option value="{{ $row->nama }}" <?php if($row->nama  == $data_bayar->kepada ) echo 'selected' ; ?>>{{ $row->nama }}</option>
                             @endforeach
                         </select>
+                        <div id="dibayar-error-placement"></div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -487,6 +488,8 @@
 		// proses update permintaan bayar
 		$('#form-edit-permintaan-bayar').submit(function(e){
 			e.preventDefault();
+
+            if ($('#dibayar-error').length) $('#dibayar-error').insertAfter('#dibayar-error-placement');
 
 			if ($(this).valid()) {
 				var no_umk = $("#noumk").val();

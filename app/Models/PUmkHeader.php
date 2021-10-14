@@ -21,7 +21,7 @@ class PUmkHeader extends Model
 
     public function umk_header()
     {
-        return $this->belongsTo('App\Models\UmkHeader', 'no_umk');
+        return $this->belongsTo('App\Models\UmkHeader', 'no_umk', 'no_umk');
     }
 
     public function pekerja()

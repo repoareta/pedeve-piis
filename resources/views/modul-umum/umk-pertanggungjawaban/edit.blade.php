@@ -39,7 +39,7 @@
                     <select class="form-control kt-select2" id="no_umk" name="no_umk">
                         <option value="">- Pilih No. UMK -</option>
                         @foreach ($umk_header_list as $umk)
-                        <option value="{{ $umk->no_umk }}" {{ $pumk_header->no_umk == $umk->no_umk ? 'selected' : null }}>{{ $umk->no_umk }}</option>
+                        <option value="{{ $umk->no_umk }}" {{ $pumk_header->no_umk == $umk->no_umk ? 'selected' : null }}>{{ $umk->no_umk }} - {{ $umk->keterangan }} - {{ currency_format($umk->jumlah) }}</option>
                         @endforeach
                     </select>
                     <div id="no_umk-nya"></div>

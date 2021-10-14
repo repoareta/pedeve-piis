@@ -67,7 +67,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             })
 
             ->addColumn('nama', function ($row) {
-                return $row->nopek . " - " . $row->pekerja->nama;
+                return $row->nopek . " - " . optional($row->pekerja)->nama;
             })
             ->addColumn('nilai', function ($row) {
                 return currency_format($row->pumk_detail->sum('nilai'));
@@ -193,9 +193,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
         $pumk_header = PUmkHeader::find($no_pumk);
         $jabatan_latest = DB::table('sdm_jabatan')->where('nopeg', $pumk_header->nopek)->latest('kdjab')->first();
 
-        // dd($pumk_header->pekerja->jabatan_latest[0], );
-
-        $no_umk = $pumk_header->umk_header->no_umk;
+        $no_umk = $pumk_header->no_umk;
 
         $pegawai_jabatan = KodeJabatan::where('kdbag', $jabatan_latest->kdbag)
             ->where('kdjab', $jabatan_latest->kdjab)
@@ -215,7 +213,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             ->get()
             ->toArray();
 
-        $umk_header_list = UmkHeader::whereNotIn('no_umk', $pumk_header_list)->get();
+        $umk_header_list = UmkHeader::whereNotIn('no_umk', $pumk_header_list)->orderBy('tgl_panjar', 'DESC')->get();
 
         $account_list = DB::select("SELECT kodeacct, descacct FROM account where LENGTH(kodeacct)=6 AND kodeacct NOT LIKE '%X%' ORDER BY kodeacct DESC");
 

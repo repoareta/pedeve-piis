@@ -249,7 +249,7 @@
                     <td width="20px">:</td>
                     <td>
                         @foreach($data_rek as $data_r)
-                        {{strtoupper($data_r->norek)}} - {{$data_r->nama_bank}}
+                        {{ strtoupper($data_r->no_rekening) }} - {{ $data_r->nama_bank }}
                         @endforeach
                     </td>
                 </tr>
