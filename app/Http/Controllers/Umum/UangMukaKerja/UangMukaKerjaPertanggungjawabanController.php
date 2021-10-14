@@ -223,8 +223,6 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
 
         $c_judex_list = DB::select("SELECT kode,nama from cashjudex order by kode");
 
-        // dd($pegawai_list, $pumk_header);
-
         return view('modul-umum.umk-pertanggungjawaban.edit', compact(
             'pegawai_list',
             'umk_header_list',
@@ -288,7 +286,7 @@ class UangMukaKerjaPertanggungjawabanController extends Controller
             ->where('kdjab', $pumk_header->pekerja->jabatan_latest[0]->kdjab)
             ->first();
 
-        $pdf = DomPDF::loadview('modul-umum.umk-pertanggungjawaban.export_row', [
+        $pdf = DomPDF::loadview('modul-umum.umk-pertanggungjawaban.export-row', [
             'pumk_header' => $pumk_header,
             'pekerja_jabatan' => $pegawai_jabatan
         ]);

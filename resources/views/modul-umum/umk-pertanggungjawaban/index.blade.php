@@ -243,7 +243,7 @@
 						if (result.value) {
 							var id = $(this).val().split("/").join("-");
 							// go to page edit
-                            var url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.edit', ['no_pumk' => ':no_pumk']) }}";
+                            var url = "{{ route('modul_umum.uang_muka_kerja.pertanggungjawaban.export', ['no_pumk' => ':no_pumk']) }}";
 
 							window.open(url.replace(':no_pumk', id), '_blank');
 						}
