@@ -123,7 +123,7 @@ class PengalamanKerjaController extends Controller
      */
     public function delete(Request $request)
     {
-        $pengalaman_kerja = PengalamanKerja::where('nopeg', $request->nopeg)
+        PengalamanKerja::where('nopeg', $request->pegawai)
             ->where('mulai', $request->mulai)
             ->where('pangkat', $request->pangkat)
             ->delete();

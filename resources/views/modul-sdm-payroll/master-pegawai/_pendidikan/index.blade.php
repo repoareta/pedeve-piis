@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowPendidikan"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowPendidikan"></i>
                     </span>
                 </a>
             </div>
@@ -73,12 +73,12 @@
 
         $('#deleteRowPendidikan').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_pendidikan]').is(':checked')) { 
-                $("input[name=radio_pendidikan]:checked").each(function() {
-                    var mulai = $(this).val().split('_')[1];
-                    var tempatdidik = $(this).val().split('_')[2];
-                    var kodedidik = $(this).val().split('_')[3];
-                    
+            if($('input[name=radio_pekerja_pendidikan]').is(':checked')) {
+                $("input[name=radio_pekerja_pendidikan]:checked").each(function() {
+                    var mulai = $(this).data('mulai');
+                    var tempatdidik = $(this).data('tempatdidik');
+                    var kodedidik = $(this).data('kodedidik');
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -90,7 +90,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Nama : " + tempatdidik,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -110,7 +110,7 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : 'Hapus Detail Pendidikan ' + tempatdidik,
                                         text  : 'Success',
                                         timer : 2000

@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowGajiPokok"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowGajiPokok"></i>
                     </span>
                 </a>
             </div>
@@ -69,10 +69,10 @@
 
         $('#deleteRowGajiPokok').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_gaji_pokok]').is(':checked')) { 
+            if($('input[name=radio_gaji_pokok]').is(':checked')) {
                 $("input[name=radio_gaji_pokok]:checked").each(function() {
                     var gapok = $(this).data('gapok');
-                    
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -84,7 +84,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Gaji Pokok: " + gapok,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',

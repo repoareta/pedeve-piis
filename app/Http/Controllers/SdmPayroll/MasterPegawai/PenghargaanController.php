@@ -112,10 +112,10 @@ class PenghargaanController extends Controller
      */
     public function delete(Request $request)
     {
-        $penghargaan = Penghargaan::where('nopeg', $request->nopeg)
-        ->where('tanggal', $request->tanggal)
-        ->where('nama', $request->nama)
-        ->delete();
+        Penghargaan::where('nopeg', $request->pegawai)
+            ->where('tanggal', $request->tanggal)
+            ->where('nama', $request->nama)
+            ->delete();
 
         return response()->json(['deleted' => true], 200);
     }

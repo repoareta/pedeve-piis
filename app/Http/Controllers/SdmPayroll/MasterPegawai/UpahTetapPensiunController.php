@@ -118,7 +118,7 @@ class UpahTetapPensiunController extends Controller
      */
     public function delete(Request $request)
     {
-        $upah = UpahTetapPensiun::where('nopeg', $request->nopeg)
+        UpahTetapPensiun::where('nopeg', $request->pegawai)
             ->where('ut', $request->ut)
             ->delete();
 

@@ -122,9 +122,9 @@ class SeminarController extends Controller
      */
     public function delete(Request $request)
     {
-        $seminar = Seminar::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->delete();
+        Seminar::where('nopeg', $request->pegawai)
+            ->where('mulai', $request->mulai)
+            ->delete();
 
         return response()->json(['delete' => true], 200);
     }
