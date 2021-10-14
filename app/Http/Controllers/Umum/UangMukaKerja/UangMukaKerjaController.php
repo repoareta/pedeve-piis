@@ -496,10 +496,7 @@ class UangMukaKerjaController extends Controller
     public function rekapExport(Request $request)
     {
         $noumk = $request->noumk;
-        $header_list = Umk::where('no_umk', $noumk)->get();
-        foreach ($header_list as $data_report) {
-            $data_report;
-        }
+        $data_report = Umk::where('no_umk', $noumk)->first();
         $detail_list = DetailUmk::where('no_umk', $noumk)->get();
         $list_acount = DetailUmk::where('no_umk', $noumk)->select('nilai')->sum('nilai');
         $pdf = DomPDF::loadview('modul-umum.umk.export', compact(
