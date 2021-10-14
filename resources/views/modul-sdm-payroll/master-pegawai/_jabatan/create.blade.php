@@ -31,7 +31,7 @@
 								<option value="{{ $bagian->kode }}">{{ $bagian->kode }} - {{ $bagian->nama }}</option>
                                 @endforeach
                             </select>
-                            <div id="bagian-nya"></div>
+                            <div id="bagian-error-placement"></div>
                         </div>
                     </div>
 
@@ -41,7 +41,7 @@
                             <select class="form-control select2" name="jabatan" id="jabatan" style="width: 100% !important;">
                                 <option value=""> - Pilih Jabatan- </option>
                             </select>
-                            <div id="jabatan-nya"></div>
+                            <div id="jabatan-error-placement"></div>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                             <input class="form-control" type="text" readonly="" name="golongan" id="golongan">
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Mulai</label>
                         <div class="col-4">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <label class="col-2 col-form-label">Sampai</label>
                         <div class="col-4">
                             <div class="input-group date">
@@ -77,14 +77,14 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Nomor SKEP</label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="no_skep" id="no_skep">
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
                         <label class="col-2 col-form-label">Tanggal SKEP</label>
                         <div class="col-10">
@@ -118,9 +118,15 @@
 
 <script>
     $(document).ready(function () {
+
+        $('#form-create').on('submit', function () {
+            if ($('#bagian-error').length) $('#bagian-error').insertAfter('#bagian-error-placement');
+            if ($('#jabatan-error').length) $('#jabatan-error').insertAfter('#jabatan-error-placement');
+        });
+
         $('#bagian').on('change', function(){
             var bagian = $('#bagian').val();
-            
+
             $.ajax({
                 url: "{{ route('modul_sdm_payroll.kode_jabatan.index.json.bagian') }}",
                 type: "GET",
@@ -132,7 +138,6 @@
                     "kodebagian" : bagian
                 },
                 success: function(response){
-                    console.log(response);
                     let jabatan = $('#jabatan');
 
                     $('#golongan').val(null);

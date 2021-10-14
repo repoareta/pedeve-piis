@@ -12,6 +12,7 @@ use App\Models\Pendidikan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 use Storage;
 
 class KeluargaController extends Controller
@@ -78,14 +79,14 @@ class KeluargaController extends Controller
     public function store(KeluargaStore $request, MasterPegawai $pegawai, Keluarga $keluarga)
     {
         $keluarga->nopeg            = $pegawai->nopeg;
-        $keluarga->status           = $request->status_keluarga;
-        $keluarga->nama             = $request->nama_keluarga;
-        $keluarga->tempatlahir      = $request->tempat_lahir_keluarga;
-        $keluarga->tgllahir         = $request->tanggal_lahir_keluarga;
-        $keluarga->agama            = $request->agama_keluarga;
-        $keluarga->goldarah         = $request->golongan_darah_keluarga;
-        $keluarga->kodependidikan   = $request->pendidikan_keluarga;
-        $keluarga->tempatpendidikan = $request->tempat_pendidikan_keluarga;
+        $keluarga->status           = $request->status;
+        $keluarga->nama             = $request->nama;
+        $keluarga->tempatlahir      = $request->tempat_lahir;
+        $keluarga->tgllahir         = $request->tanggal_lahir;
+        $keluarga->agama            = $request->agama;
+        $keluarga->goldarah         = $request->golongan_darah;
+        $keluarga->kodependidikan   = $request->pendidikan;
+        $keluarga->tempatpendidikan = $request->tempat_pendidikan;
         $keluarga->kodept           = null;
         $keluarga->userid           = Auth::user()->userid;
         $keluarga->tglentry         = Carbon::now();
@@ -106,7 +107,8 @@ class KeluargaController extends Controller
 
         $keluarga->save();
 
-        return response()->json(['response' => true], 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
@@ -179,10 +181,10 @@ class KeluargaController extends Controller
      */
     public function delete(Request $request)
     {
-        $keluarga = Keluarga::where('nopeg', $request->nopeg)
-        ->where('status', $request->status)
-        ->where('nama', $request->nama)
-        ->first();
+        $keluarga = Keluarga::where('nopeg', $request->pegawai)
+                        ->where('status', $request->status)
+                        ->where('nama', $request->nama)
+                        ->first();
 
         $image_path = "public/img_pegawai/$keluarga->photo";  // Value is not URL but directory file path
         Storage::delete($image_path);

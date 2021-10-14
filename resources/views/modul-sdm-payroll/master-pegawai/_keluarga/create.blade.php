@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.master_pegawai.keluarga.store', ['pegawai' => $pegawai->nopeg]) }}" method="POST" id="formKeluarga" enctype="multipart/form-data">
+                <form class="form" action="{{ route('modul_sdm_payroll.master_pegawai.keluarga.store', ['pegawai' => $pegawai->nopeg]) }}" method="POST" id="form-keluarga" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Nama</label>
@@ -146,11 +146,12 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\KeluargaStore', '#formKeluarga') !!}
+{!! JsValidator::formRequest('App\Http\Requests\KeluargaStore') !!}
 
 <script>
     $(document).ready(function () {
-        $("#formKeluarga").on('submit', function(){
+        $("#form-keluarga").on('submit', function() {
+
             if ($('#status-error').length){
                 $("#status-error").insertAfter("#status-nya");
             }
