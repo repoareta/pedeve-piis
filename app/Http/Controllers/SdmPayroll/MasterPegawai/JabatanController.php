@@ -39,7 +39,7 @@ class JabatanController extends Controller
                     ->where('kdjab', $kode_jabatan)
                     ->first();
                 $nama_jabatan = optional($jabatan)->keterangan ? ' - '.optional($jabatan)->keterangan : null;
-                
+
                 return $kode_jabatan.$nama_jabatan;
             })
             ->addColumn('mulai', function ($row) {
@@ -124,11 +124,11 @@ class JabatanController extends Controller
      */
     public function delete(Request $request)
     {
-        $jabatan = Jabatan::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('kdbag', $request->kdbag)
-        ->where('kdjab', $request->kdjab)
-        ->delete();
+        Jabatan::where('nopeg', $request->pegawai)
+                ->where('mulai', $request->mulai)
+                ->where('kdbag', $request->kdbagian)
+                ->where('kdjab', $request->kdjabatan)
+                ->delete();
 
         return response()->json(['deleted' => true], 200);
     }
