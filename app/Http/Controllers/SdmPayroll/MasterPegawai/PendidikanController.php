@@ -27,7 +27,7 @@ class PendidikanController extends Controller
         return datatables()->of($PekerjaPendidikan_list)
             ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pekerja_pendidikan" data-mulai="'.$row->mulai.'" data-tempatdidik="'.$row->tempatdidik.'" data-kodedidik="'.$row->kodedidik.'"><span></span></label>';
-                
+
                 return $radio;
             })
             ->addColumn('namapt', function ($row) {
@@ -47,7 +47,7 @@ class PendidikanController extends Controller
     {
         $pendidikan_list = Pendidikan::all();
         $perguruan_tinggi_list = PerguruanTinggi::all();
-        
+
         return view('modul-sdm-payroll.master-pegawai._pendidikan.create', compact(
             'pegawai',
             'pendidikan_list',
@@ -133,11 +133,11 @@ class PendidikanController extends Controller
      */
     public function delete(Request $request)
     {
-        $PekerjaPendidikan = PekerjaPendidikan::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('tempatdidik', $request->tempatdidik)
-        ->where('kodedidik', $request->kodedidik)
-        ->delete();
+        PekerjaPendidikan::where('nopeg', $request->pegawai)
+            ->where('mulai', $request->mulai)
+            ->where('tempatdidik', $request->tempatdidik)
+            ->where('kodedidik', $request->kodedidik)
+            ->delete();
 
         return response()->json(['delete' => true], 200);
     }

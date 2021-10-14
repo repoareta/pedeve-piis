@@ -125,7 +125,7 @@ class UpahAllInController extends Controller
      */
     public function delete(Request $request)
     {
-        $upah = UpahAllIn::where('nopek', $request->nopeg)
+        UpahAllIn::where('nopek', $request->pegawai)
             ->where('nilai', $request->nilai)
             ->delete();
 

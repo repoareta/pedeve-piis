@@ -95,7 +95,7 @@ class GolonganGajiController extends Controller
         ->where('golgaji', $golongan_gaji)
         ->where('tanggal', $tanggal)
         ->first();
-        
+
         $golongan_gaji->nopeg = $pegawai->nopeg;
         $golongan_gaji->tanggal = $request->tanggal_golongan_gaji;
         $golongan_gaji->golgaji = $request->golongan_gaji;
@@ -114,10 +114,10 @@ class GolonganGajiController extends Controller
      */
     public function delete(Request $request)
     {
-        $golongan_gaji = GolonganGaji::where('nopeg', $request->nopeg)
-        ->where('golgaji', $request->golongan_gaji)
-        ->where('tanggal', $request->tanggal)
-        ->delete();
+        GolonganGaji::where('nopeg', $request->pegawai)
+                    ->where('golgaji', $request->golongan_gaji)
+                    ->where('tanggal', $request->tanggal)
+                    ->delete();
 
         return response()->json(['deleted' => true], 200);
     }

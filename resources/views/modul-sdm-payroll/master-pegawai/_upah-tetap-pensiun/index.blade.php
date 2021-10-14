@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowUpahTetapPensiun"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowUpahTetapPensiun"></i>
                     </span>
                 </a>
             </div>
@@ -70,10 +70,10 @@
 
         $('#deleteRowUpahTetapPensiun').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_upah_tetap_pensiun]').is(':checked')) { 
+            if($('input[name=radio_upah_tetap_pensiun]').is(':checked')) {
                 $("input[name=radio_upah_tetap_pensiun]:checked").each(function() {
-                    var ut = $(this).val().split('-')[1];
-                    
+                    var ut = $(this).data('ut');
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -85,7 +85,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Upah Tetap Pensiun: " + ut,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -103,7 +103,7 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : 'Hapus Detail Upah Tetap Pensiun ' + ut,
                                         text  : 'Success',
                                         timer : 2000

@@ -118,9 +118,9 @@ class UpahTetapController extends Controller
      */
     public function delete(Request $request)
     {
-        $upah = UpahTetap::where('nopeg', $request->nopeg)
-        ->where('ut', $request->ut)
-        ->delete();
+        UpahTetap::where('nopeg', $request->pegawai)
+            ->where('ut', $request->ut)
+            ->delete();
 
         return response()->json(['delete' => true], 200);
     }

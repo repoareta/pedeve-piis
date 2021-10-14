@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowSmk"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowSMK"></i>
                     </span>
                 </a>
             </div>
@@ -66,10 +66,10 @@
 
         $('#deleteRowSMK').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_smk]').is(':checked')) { 
+            if($('input[name=radio_smk]').is(':checked')) {
                 $("input[name=radio_smk]:checked").each(function() {
-                    var tahun = $(this).val().split('-')[1];
-                    
+                    var tahun = $(this).data('tahun');
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -81,7 +81,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "SMK Tahun : " + tahun,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -99,7 +99,7 @@
                                 },
                                 success: function () {
                                     Swal.fire({
-                                        type  : 'success',
+                                        icon  : 'success',
                                         title : 'Hapus Detail SMK ' + tahun,
                                         text  : 'Success',
                                         timer : 2000

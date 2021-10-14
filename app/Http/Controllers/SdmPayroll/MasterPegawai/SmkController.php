@@ -105,9 +105,9 @@ class SmkController extends Controller
      */
     public function delete(Request $request)
     {
-        $smk = SMK::where('nopeg', $request->nopeg)
-        ->where('tahun', $request->tahun)
-        ->delete();
+        SMK::where('nopeg', $request->pegawai)
+            ->where('tahun', $request->tahun)
+            ->delete();
 
         return response()->json(['delete' => true], 200);
     }

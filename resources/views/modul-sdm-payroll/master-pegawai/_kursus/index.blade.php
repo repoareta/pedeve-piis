@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowKursus"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowKursus"></i>
                     </span>
                 </a>
             </div>
@@ -75,11 +75,11 @@
 
         $('#deleteRowKursus').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_kursus]').is(':checked')) { 
+            if($('input[name=radio_kursus]').is(':checked')) {
                 $("input[name=radio_kursus]:checked").each(function() {
-                    var mulai = $(this).val().split('_')[1];
-                    var nama = $(this).val().split('_')[2];
-                    
+                    var mulai = $(this).data('mulai');
+                    var nama = $(this).data('nama');
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -91,7 +91,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Nama : " + nama,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',

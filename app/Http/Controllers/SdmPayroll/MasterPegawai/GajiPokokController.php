@@ -119,9 +119,9 @@ class GajiPokokController extends Controller
      */
     public function delete(Request $request)
     {
-        $gaji_pokok = GajiPokok::where('nopeg', $request->nopeg)
-        ->where('gapok', $request->gapok)
-        ->delete();
+        GajiPokok::where('nopeg', $request->pegawai)
+                ->where('gapok', $request->gapok)
+                ->delete();
 
         return response()->json(['deleted' => true], 200);
     }

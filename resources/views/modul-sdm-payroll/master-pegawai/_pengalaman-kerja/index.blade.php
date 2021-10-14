@@ -17,12 +17,12 @@
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editPemegangSaham"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowPengalamanKerja"></i>
                     </span>
                 </a>
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-circle text-danger" id="deletePemegangSaham"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowPengalamanKerja"></i>
                     </span>
                 </a>
             </div>
@@ -73,11 +73,11 @@
 
         $('#deleteRowPengalamanKerja').click(function(e) {
             e.preventDefault();
-            if($('input[name=radio_pengalaman_kerja]').is(':checked')) { 
+            if($('input[name=radio_pengalaman_kerja]').is(':checked')) {
                 $("input[name=radio_pengalaman_kerja]:checked").each(function() {
-                    var mulai = $(this).val().split('_')[1];
-                    var pangkat = $(this).val().split('_')[2];
-                    
+                    var mulai = $(this).data('mulai');
+                    var pangkat = $(this).data('pangkat');
+
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-primary',
@@ -89,7 +89,7 @@
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
                         text: "Nama Pangkat : " + pangkat,
-                        type: 'warning',
+                        icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
                         confirmButtonText: 'Ya, hapus',
@@ -110,7 +110,7 @@
                                     Swal.fire({
                                         type  : 'success',
                                         title : 'Hapus Detail Pengalaman Kerja ' + pangkat,
-                                        text  : 'Success',
+                                        icon  : 'Success',
                                         timer : 2000
                                     }).then(function() {
                                         t.ajax.reload();

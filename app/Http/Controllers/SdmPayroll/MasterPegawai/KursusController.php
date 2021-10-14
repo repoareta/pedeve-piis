@@ -123,10 +123,10 @@ class KursusController extends Controller
      */
     public function delete(Request $request)
     {
-        $kursus = Kursus::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('nama', $request->nama)
-        ->delete();
+        Kursus::where('nopeg', $request->pegawai)
+                ->where('mulai', $request->mulai)
+                ->where('nama', $request->nama)
+                ->delete();
 
         return response()->json(['delete' => true], 200);
     }
