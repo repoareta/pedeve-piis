@@ -18,21 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(601)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.master_pegawai.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(601)->rubah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(601)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                @endif
             </div>
         </div>
     </div>
@@ -45,13 +51,13 @@
 					<div class="col-2">
 						<input class="form-control" type="text" name="nopeg" id="nopeg">
 					</div>
-	
+
 					<label for="" class="col-form-label">Status</label>
 					<div class="col-2">
 						<select class="form-control select2" style="width: 100% !important;" name="status" id="status">
 							<option value=""> - Pilih Status- </option>
 							<option value="C">Aktif</option>
-							<option value="P">Pensiun</option>									
+							<option value="P">Pensiun</option>
 							<option value="K">Kontrak</option>
 							<option value="B">Perbantuan</option>
 							<option value="D">Direksi</option>
@@ -60,7 +66,7 @@
 							<option value="O">Komite</option>
 						</select>
 					</div>
-	
+
 					<div class="col-2">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
 					</div>
@@ -122,7 +128,7 @@
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
 					var url = '{{ route("modul_sdm_payroll.master_pegawai.edit", ":kode") }}';
@@ -136,7 +142,7 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
 					// delete stuff

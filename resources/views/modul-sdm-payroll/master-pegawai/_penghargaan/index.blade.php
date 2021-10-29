@@ -10,21 +10,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(600)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.master_pegawai.penghargaan.create', ['pegawai' => $pegawai->nopeg]) }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
+                @endif
+                @if (permission(600)->rubah == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                         <i class="fas fa-2x fa-edit text-warning" id="editRowPenghargaan"></i>
                     </span>
                 </a>
+                @endif
+                @if (permission(600)->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                         <i class="fas fa-2x fa-times-circle text-danger" id="deleteRowPenghargaan"></i>
                     </span>
                 </a>
+                @endif
             </div>
         </div>
     </div>
