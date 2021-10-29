@@ -18,21 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(628)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.pinjaman_pekerja.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(628)->rubah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(628)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                @endif
             </div>
         </div>
     </div>
@@ -45,7 +51,7 @@
                             <th></th>
                             <th>ID PINJAMAN</th>
                             <th>NOPEK</th>
-                            <th>NAMA</th>	
+                            <th>NAMA</th>
                             <th>MULAI</th>
                             <th>SAMPAI</th>
                             <th>TENOR</th>
@@ -95,7 +101,7 @@ $(document).ready(function () {
                 {data: 'cair', name: 'cair', class: 'text-center'},
                 {data: 'lunas', name: 'lunas', class: 'text-center'},
             ]
-            
+
     });
 
     $('#search-form').on('submit', function(e) {
@@ -103,11 +109,11 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    //edit 
+    //edit
     $('#editRow').click(function(e) {
         e.preventDefault();
 
-        if($('input[class=btn-radio]').is(':checked')) { 
+        if($('input[class=btn-radio]').is(':checked')) {
             $("input[class=btn-radio]:checked").each(function(){
                 var id = $(this).attr('id_pinjaman');
                 location.href = "{{ url('sdm-payroll/pinjaman-pekerja/edit') }}" + '/' + id;
@@ -120,7 +126,7 @@ $(document).ready(function () {
     //delete
     $('#deleteRow').click(function(e) {
         e.preventDefault();
-        if($('input[class=btn-radio]').is(':checked')) { 
+        if($('input[class=btn-radio]').is(':checked')) {
             $("input[class=btn-radio]:checked").each(function() {
                 var id_pinjaman = $(this).attr('id_pinjaman');
                 var cair = $(this).attr('cair');

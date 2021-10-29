@@ -18,21 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(622)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.potongan_koreksi_gaji.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(622)->rubah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(622)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                @endif
                 {{-- <a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
@@ -73,7 +79,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
-	
+
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun">
@@ -141,7 +147,7 @@ $(document).ready(function () {
     //edit koreksi gaji
     $('#editRow').click(function(e) {
         e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
+        if($('input[type=radio]').is(':checked')) {
             $("input[type=radio]:checked").each(function(){
                 var tahun = $(this).attr('tahun');
                 var bulan = $(this).attr('bulan');
@@ -158,7 +164,7 @@ $(document).ready(function () {
     //delete koreksi gaji
     $('#deleteRow').click(function(e) {
         e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
+        if($('input[type=radio]').is(':checked')) {
             $("input[type=radio]:checked").each(function() {
                 var tahun = $(this).attr('tahun');
                 var bulan = $(this).attr('bulan');
@@ -215,7 +221,7 @@ $(document).ready(function () {
             });
         } else {
             swalAlertInit('hapus');
-        } 
+        }
     });
 });
 </script>

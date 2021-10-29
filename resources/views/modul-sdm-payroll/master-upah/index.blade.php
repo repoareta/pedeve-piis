@@ -18,27 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-				@if ($usermenu->tambah == 1)
-					<a href="{{ route('modul_sdm_payroll.master_upah.create') }}">
-						<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
-							<i class="fas fa-2x fa-plus-circle text-success"></i>
-						</span>
-					</a>
-				@endif
-				@if ($usermenu->rubah == 1 or $usermenu->lihat == 1)
-					<a href="#">
-						<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-							<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
-						</span>
-					</a>					
-				@endif
-				@if ($usermenu->hapus == 1)
-					<a href="#">
-						<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-							<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
-						</span>
-					</a>					
-				@endif
+                @if (permission(625)->tambah == 1)
+                <a href="{{ route('modul_sdm_payroll.master_upah.create') }}">
+                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
+                        <i class="fas fa-2x fa-plus-circle text-success"></i>
+                    </span>
+                </a>
+                @endif
+                @if (permission(625)->rubah == 1)
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+                        <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
+                    </span>
+                </a>
+                @endif
+                @if (permission(625)->hapus == 1)
+                <a href="#">
+                    <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
+                    </span>
+                </a>
+                @endif
             </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var tahun = $(this).val().split("-")[0];
 					var bulan = $(this).val().split("-")[1];
@@ -173,7 +173,7 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var tahun = $(this).val().split("-")[0];
 					var bulan = $(this).val().split("-")[1];
