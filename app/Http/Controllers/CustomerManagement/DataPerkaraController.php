@@ -341,7 +341,7 @@ class DataPerkaraController extends Controller
     public function dokumen(DetailDokumenStoreRequest $request)
     {
         $folderPath = public_path('/data_perkara/' . $request->no_perkara);
-        
+
         File::ensureDirectoryExists($folderPath);
 
         if ($request->hasfile('filedok')) {
@@ -356,7 +356,7 @@ class DataPerkaraController extends Controller
                 ]);
             }
         }
-        
+
         return response()->json();
     }
 

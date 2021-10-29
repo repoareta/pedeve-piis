@@ -28,7 +28,6 @@ class PembayaranGajiController extends Controller
     public function index()
     {
         $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-        $data_akses = DB::table('usermenu')->where('userid', auth()->user()->userid)->where('menuid', 502)->limit(1)->first();
 
         if (!empty($data_tahunbulan)) {
             foreach ($data_tahunbulan as $data_bul) {
@@ -40,7 +39,7 @@ class PembayaranGajiController extends Controller
             $tahun = date('Y');
         }
 
-        return view('modul-treasury.pembayaran-gaji.index', compact('tahun', 'bulan', 'data_akses'));
+        return view('modul-treasury.pembayaran-gaji.index', compact('tahun', 'bulan'));
     }
 
     public function indexJson(Request $request)

@@ -18,21 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(803)->tambah == 1)
                 <a href="{{ route('modul_cm.perusahaan_afiliasi.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(803)->rubah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(803)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                @endif
             </div>
         </div>
     </div>
@@ -42,10 +48,10 @@
 				<div class="form-group row">
 					<label for="" class="col-form-label">Bulan</label>
 					<div class="col-2">
-						<?php 
+						<?php
 							$tgl = date_create(now());
-							$bulan = date_format($tgl, 'm'); 
-							$tahun = date_format($tgl, 'Y'); 
+							$bulan = date_format($tgl, 'm');
+							$tahun = date_format($tgl, 'Y');
 							$array_bln	 = array (
 								1 =>   'Januari',
 								'Februari',
@@ -60,7 +66,7 @@
 								'November',
 								'Desember'
 							);
-							
+
 							$bulan_1 = ($array_bln[ltrim($bulan,0)]);
 						?>
 						<select class="form-control select2" style="width: 100% !important;" name="bulan">
@@ -78,7 +84,7 @@
 							<option value="12" <?php if($bulan == '12') echo 'selected'; ?>>Desember</option>
 						</select>
 					</div>
-	
+
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
 						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
@@ -163,12 +169,12 @@
             var bulan = $('select[name=bulan]').val();
             $('#acc').val(bulan);
         });
-    
+
         //edit monitoring_kinerja
         $('#editRow').click(function(e) {
             e.preventDefault();
 
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function(){
                     var id = $(this).attr('data-id');
                     location.replace("{{ url('customer_management/monitoring_kinerja/edit') }}"+ '/' +id);
@@ -181,7 +187,7 @@
         //delete monitoring_kinerja
         $('#deleteRow').click(function(e) {
             e.preventDefault();
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function() {
                     var id = $(this).attr('data-id');
                     // delete stuff
@@ -230,8 +236,8 @@
                     });
             } else {
                 swalAlertInit('hapus');
-            } 
+            }
         });
-    });		
+    });
 </script>
 @endpush

@@ -18,21 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(206)->tambah == 1)
                 <a href="{{ route('modul_kontroler.tabel.bulan_kontroler.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas icon-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(206)->rubah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas icon-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(206)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas icon-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                @endif
             </div>
         </div>
     </div>
@@ -86,7 +92,7 @@ $(document).ready(function () {
             {data: 'suplesi', name: 'suplesi'},
         ]
     });
-    
+
     $('#search-form').on('submit', function(e) {
         t.draw();
         e.preventDefault();
@@ -94,7 +100,7 @@ $(document).ready(function () {
 
     $('#deleteRow').click(function(e) {
         e.preventDefault();
-        if($('input[class=btn-radio]').is(':checked')) { 
+        if($('input[class=btn-radio]').is(':checked')) {
             $("input[class=btn-radio]:checked").each(function() {
                 var kode = $(this).val();
                 // delete stuff
@@ -129,7 +135,7 @@ $(document).ready(function () {
                                     icon  : 'success',
                                     title : "Data Bulan Kontroler dengan kode  : " +kode+" Berhasil Dihapus.",
                                     text  : 'Berhasil',
-                                    
+
                                 }).then(function() {
                                     location.reload();
                                 });
@@ -146,10 +152,10 @@ $(document).ready(function () {
         }
     });
 
-    //edit 
+    //edit
     $('#editRow').click(function(e) {
         e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
+        if($('input[type=radio]').is(':checked')) {
             $("input[type=radio]:checked").each(function() {
                 var id = $('input[type=radio]:checked').val();
                 var url = '{{ route("modul_kontroler.tabel.bulan_kontroler.edit", ":kode") }}';

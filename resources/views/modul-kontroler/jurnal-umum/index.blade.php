@@ -18,21 +18,27 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(201)->tambah == 1)
                 <a href="{{ route('modul_kontroler.jurnal_umum.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(201)->rubah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
 						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(201)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
 						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
 					</span>
 				</a>
+                @endif
             </div>
         </div>
     </div>
@@ -71,7 +77,7 @@
 				</div>
 			</form>
 		</div>
-        
+
         <div class="row">
             <div class="col-xl-12">
                 <table class="table table-bordered" id="kt_table" width="100%">
@@ -83,7 +89,7 @@
                             <th>JK</th>
                             <th>STORE</th>
                             <th>NOBUKTI</th>
-                            <th>POSTED</th>	
+                            <th>POSTED</th>
                             <th>COPY</th>
                         </tr>
                     </thead>
@@ -130,7 +136,7 @@
 
         $('#deleteRow').click(function(e) {
             e.preventDefault();
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function() {
                     var docno = $(this).attr('docno');
                     // delete stuff
@@ -180,7 +186,7 @@
                                             title: 'Data Sudah Di Posting, Tidak Bisa Di Update/Hapus.',
                                             text: 'Info',
                                         });
-                                        
+
                                     }
                                 },
                                 error: function () {
@@ -195,11 +201,11 @@
             }
         });
 
-        //edit 
+        //edit
         $('#editRow').click(function(e) {
             e.preventDefault();
 
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function(){
                     var no = $(this).attr('docno');
                     location.href = "{{ url('kontroler/jurnal-umum/edit') }}" + '/' + no;
@@ -208,11 +214,11 @@
                 swalAlertInit('ubah');
             }
         });
-        //export 
+        //export
         $('#exportRow').click(function(e) {
             e.preventDefault();
 
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function(){
                     var docno = $(this).attr('docno');
                     location.href = "{{ url('kontroler/jurnal-umum/rekap') }}" + '/' + docno;

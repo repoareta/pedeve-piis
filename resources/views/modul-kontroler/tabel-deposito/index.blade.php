@@ -18,11 +18,13 @@
         </div>
 		<div class="card-toolbar">
 			<div class="float-left">
+                @if (permission(207)->cetak == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
 						<i class="fas fa-2x fa-print text-info" id="exportRow"></i>
 					</span>
 				</a>
+                @endif
             </div>
 		</div>
 	</div>
@@ -122,12 +124,12 @@ $(document).ready(function () {
 		t.draw();
 		e.preventDefault();
 	});
-	
+
 	//exportRow penempatan deposito
 	$('#exportRow').on('click', function(e) {
 		e.preventDefault();
-		if($('input[class=btn-radio]').is(':checked')) { 
-			$("input[class=btn-radio]:checked").each(function() {  
+		if($('input[class=btn-radio]').is(':checked')) {
+			$("input[class=btn-radio]:checked").each(function() {
 				e.preventDefault();
 				var no = $(this).attr('nodok').split("/").join("-");
 				var id = $(this).attr('lineno');

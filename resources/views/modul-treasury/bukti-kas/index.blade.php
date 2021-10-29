@@ -18,28 +18,28 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                @if($userAbility->tambah == 1)
+                @if (permission(501)->tambah == 1)
                 <a href="{{ route('penerimaan_kas.create.kas') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
-                @if($userAbility->rubah == 1 || $userAbility->lihat == 1)
+                @if (permission(501)->rubah == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                         <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                     </span>
                 </a>
                 @endif
-                @if($userAbility->hapus == 1)
+                @if (permission(501)->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                         <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
-                </button>
+                </a>
                 @endif
-                @if($userAbility->cetak == 1)
+                @if (permission(501)->cetak == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
                         <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
@@ -153,7 +153,7 @@
                             <input class="form-control" type="text" name="pemeriksaan_jabatan" id="pemeriksaan_jabatan">
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Membukukan</label>
                         <div class="col-5">
@@ -163,7 +163,7 @@
                             <input class="form-control" type="text" name="membukukan_jabatan" id="membukukan_jabatan">
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Kas/Bank</label>
                         <div class="col-5">
@@ -225,7 +225,7 @@
                 { data: 'status', name: 'status', class: 'text-center' },
                 { data: 'action', name: 'action', class: 'text-center' },
 			]
-			
+
 	    });
 
         $('#search-form').on('submit', function(e) {
@@ -235,7 +235,7 @@
 
         $('#editRow').click(function(e) {
             e.preventDefault();
-            if($('input[type=radio]').is(':checked')) { 
+            if($('input[type=radio]').is(':checked')) {
                 $("input[type=radio]:checked").each(function(){
                     var nodok = $(this).val().split("/").join("-");
                     // var nodok = $(this).attr('nodok');
@@ -248,7 +248,7 @@
 
         $('#deleteRow').click(function(e) {
             e.preventDefault();
-            if($('input[type=radio]').is(':checked')) { 
+            if($('input[type=radio]').is(':checked')) {
                 $("input[type=radio]:checked").each(function() {
                     var nodok = $(this).val();
                     // delete stuff
@@ -316,7 +316,7 @@
 
         $('#exportRow').click(function(e) {
             e.preventDefault();
-            if($('input[type=radio]').is(':checked')) { 
+            if($('input[type=radio]').is(':checked')) {
                 $("input[type=radio]:checked").each(function() {
                     var id = $(this).val();
                     // open modal

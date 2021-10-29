@@ -18,16 +18,20 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
+                @if (permission(203)->tambah == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Proses Posting">
 						<i class="fas fa-2x fa-database text-success" id="prsposting"></i>
 					</span>
 				</a>
+                @endif
+                @if (permission(203)->hapus == 1)
 				<a href="#">
 					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Batal Posting">
 						<i class="fas fa-2x fa-reply text-warning" id="btlposting"></i>
 					</span>
 				</a>
+                @endif
             </div>
         </div>
     </div>
@@ -36,8 +40,8 @@
             <div class="form-group row">
                 <label class="col-xl-1 col-lg-1 col-form-label">Bulan {{ $bulan }}</label>
                 <div class="col-lg-3 col-xl-3">
-                    <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan">	
-                        <option value="">- Pilih Data -</option>								                        
+                    <select class="form-control select2" style="width: 100% !important;" name="bulan" id="bulan">
+                        <option value="">- Pilih Data -</option>
                         <option value="01" {{ $bulan == '01' ? 'selected' : '' }}>Januari</option>
                         <option value="02" {{ $bulan == '02' ? 'selected' : '' }}>Februari</option>
                         <option value="03" {{ $bulan == '03' ? 'selected' : '' }}>Maret</option>
@@ -53,8 +57,8 @@
                     </select>
                 </div>
                 <label class="col-xl-1 col-lg-1 col-form-label">Tahun</label>
-                <div class="col-lg-3 col-xl-3">                    
-                    <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">                    
+                <div class="col-lg-3 col-xl-3">
+                    <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -113,7 +117,7 @@ $(document).ready(function () {
             {data: 'action', name: 'action'},
         ]
     });
-    
+
     $('#search-form').on('submit', function(e) {
         t.draw();
         e.preventDefault();

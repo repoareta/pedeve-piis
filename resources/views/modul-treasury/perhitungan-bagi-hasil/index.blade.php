@@ -21,14 +21,14 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                @if($data_akses->hapus == 1)
+                @if (permission(509)->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-cirlce text-danger" id="deleteRow"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->cetak == 1)
+                @if (permission(509)->cetak == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
                         <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
@@ -42,7 +42,7 @@
     <div class="card-body">
         <form class="form" method="POST" action="{{ route('perhitungan_bagihasil.index.search') }}">
 			@csrf
-            <div class="form-group row">	
+            <div class="form-group row">
                 <label for="" class="col-1 col-form-label">Tanggal</label>
                 <div class="col-2">
                     <input class="form-control" type="text" name="tanggal" id="tanggal" value="{{ $date }}" size="10" maxlength="10" autocomplete="off">
@@ -97,7 +97,7 @@
 				</tr>
 			@endforeach
 			</tbody>
-			<?php 
+			<?php
 				$a=0;
 				foreach($data_list as $dat)
 				{
@@ -131,9 +131,9 @@
         });
 
 	$('#search-form').on('submit', function(e) {
-		
+
 	});
-		
+
     // minimum setup
     $('#tanggal').datepicker({
         todayHighlight: true,
@@ -146,7 +146,7 @@
     //delete Posisi Saldo Deposito PT.Pertamina Dana Ventura
     $('#deleteRow').click(function(e) {
         e.preventDefault();
-        if($('input[type=radio]').is(':checked')) { 
+        if($('input[type=radio]').is(':checked')) {
             $("input[type=radio]:checked").each(function() {
                 var nodok = $(this).attr('nodok').split("/").join("-");
                 var lineno = $(this).attr('lineno');
@@ -198,7 +198,7 @@
         } else {
             swalAlertInit('hapus');
         }
-        
+
     });
     $('#exportRow').click(function(e) {
         e.preventDefault();
