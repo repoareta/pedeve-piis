@@ -21,35 +21,34 @@
         </div>
 		<div class="card-toolbar">
             <div class="float-left">
-                @if($data_akses->tambah == 1)
+                @if (permission(509)->tambah == 1)
                 <a href="{{ route('penempatan_deposito.create') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->rubah == 1 || $data_akses->lihat == 1)
+                @if (permission(509)->rubah == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                         <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->hapus == 1)
+                @if (permission(509)->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                         <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->tambah == 1)
+                @if (permission(509)->cetak == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Perpanjang Deposito">
                         <i class="fas fa-2x fa-dollar-sign text-primary" id="dolarRow"></i>
                     </span>
                 </a>
-                @endif
-                @if($data_akses->cetak == 1)
+
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
                         <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
@@ -154,16 +153,16 @@
 			columnDefs: [
                 {"className": "dt-center", "targets": "_all"}
             ],
-			
+
 	});
 	$('#search-form').on('submit', function(e) {
 		t.draw();
 		e.preventDefault();
-	});		
+	});
 //edit penempatan deposito
 $('#editRow').click(function(e) {
 	e.preventDefault();
-	if($('input[type=radio]').is(':checked')) { 
+	if($('input[type=radio]').is(':checked')) {
 		$("input[type=radio]:checked").each(function(){
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
@@ -177,8 +176,8 @@ $('#editRow').click(function(e) {
 //exportRow penempatan deposito
 $('#exportRow').on('click', function(e) {
 	e.preventDefault();
-	if($('input[class=btn-radio]').is(':checked')) { 
-		$("input[class=btn-radio]:checked").each(function() {  
+	if($('input[class=btn-radio]').is(':checked')) {
+		$("input[class=btn-radio]:checked").each(function() {
 			e.preventDefault();
 			var no = $(this).attr('nodok').split("/").join("-");
 			var id = $(this).attr('lineno');
@@ -187,12 +186,12 @@ $('#exportRow').on('click', function(e) {
 	} else{
 		swalAlertInit('cetak');
 	}
-	
+
 });
 //perpanjang deposito
 $('#dolarRow').click(function(e) {
 	e.preventDefault();
-	if($('input[type=radio]').is(':checked')) { 
+	if($('input[type=radio]').is(':checked')) {
 		$("input[type=radio]:checked").each(function(){
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
@@ -211,7 +210,7 @@ $('#show-data').on('click', function(e) {
 //delete penempatan deposito
 $('#deleteRow').click(function(e) {
 	e.preventDefault();
-	if($('input[type=radio]').is(':checked')) { 
+	if($('input[type=radio]').is(':checked')) {
 		$("input[type=radio]:checked").each(function() {
 			var nodok = $(this).attr('nodok').split("/").join("-");
 			var lineno = $(this).attr('lineno');
@@ -265,7 +264,7 @@ $('#deleteRow').click(function(e) {
 	} else {
 		swalAlertInit('hapus');
 	}
-	
+
 });
 });
 </script>

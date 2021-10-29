@@ -47,6 +47,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
+            "app/Helpers/permission_helper.php",
             "app/Helpers/bulan_helper.php",
             "app/Helpers/currency_format_helper.php",
             "app/Helpers/currency_idr_helper.php",

@@ -40,8 +40,8 @@
                     <div class="form-group row">
                         <label for="gcg-jabatan-input" class="col-2 col-form-label">Menu ID<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" name="menuid" id="menuid">	
-                                <option value="">- Pilih Data -</option>							
+                            <select class="form-control select2" style="width: 100% !important;" name="menuid" id="menuid">
+                                <option value="">- Pilih Data -</option>
                                 @foreach ($user_menus as $menu)
                                     <option value="{{ $menu->menuid }}">{{ $menu->menuid }} - {{ $menu->menunm }} - Tambah[{{ $menu->tambah }}] Ubah[{{ $menu->rubah }}] Hapus[{{ $menu->hapus }}] Cetak[{{ $menu->cetak }}] Lihat[{{ $menu->lihat }}]</option>
                                 @endforeach
@@ -80,7 +80,7 @@
                     </div>
 				</form>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 
@@ -90,9 +90,8 @@
 {!! JsValidator::formRequest('App\Http\Requests\SetFunctionUpdate', '#formSetFunction'); !!}
 <script>
     $(document).ready(function () {
-        
 
-        $("#formSetFunction").on('submit', function(e){            
+        $("#formSetFunction").on('submit', function(e){
                 e.preventDefault();
 
                 if($(this).valid()) {
@@ -191,6 +190,6 @@
 		});
 
     });
-    
+
 </script>
 @endpush

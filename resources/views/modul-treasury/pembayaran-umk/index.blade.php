@@ -21,28 +21,28 @@
         </div>
 		<div class="card-toolbar">
             <div class="float-left">
-                @if($data_akses->tambah == 1)
+                @if (permission(502)->tambah == 1)
                 <a href="{{ route('pembayaran_umk.create') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->rubah == 1 || $data_akses->lihat == 1)
+                @if (permission(502)->rubah == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
                         <i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->hapus == 1)
+                @if (permission(502)->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
                         <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
                 </a>
                 @endif
-                @if($data_akses->cetak == 1)
+                @if (permission(502)->cetak == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
                         <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
@@ -146,11 +146,11 @@
 			t.draw();
 			e.preventDefault();
 		});
-		
+
 		// edit Kas/Bank Otomatis
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function(){
 					var nodok = $(this).val().split("/").join("-");
 					// var nodok = $(this).attr('nodok');
@@ -163,7 +163,7 @@
 		// delete Kas/Bank otomatis
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var nodok = $(this).val();
 					// delete stuff
@@ -229,10 +229,10 @@
 			}
 		});
 
-		//export 
+		//export
 		$('#exportRow').click(function(e) {
 			e.preventDefault();
-			if($('input[class=btn-radio]').is(':checked')) { 
+			if($('input[class=btn-radio]').is(':checked')) {
 				$("input[class=btn-radio]:checked").each(function(){
 					var docno = $(this).attr('docno');
 					location.href = "{{ url('perbendaharaan/pembayaran-umk/rekap') }}"+ '/' +docno;
@@ -244,3 +244,4 @@
 	});
 </script>
 @endpush
+

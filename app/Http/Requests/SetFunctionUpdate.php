@@ -26,6 +26,11 @@ class SetFunctionUpdate extends FormRequest
         return [
             'userid'      => 'required',
             'menuid'      => 'required|numeric',
+            'tambah'      => 'nullable',
+            'ubah'        => 'nullable',
+            'hapus'       => 'nullable',
+            'cetak'       => 'nullable',
+            'lihat'       => 'nullable',
         ];
     }
 }

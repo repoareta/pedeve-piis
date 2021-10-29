@@ -36,7 +36,7 @@ class SetFunctionController extends Controller
             }
         })
         ->addColumn('userap', function ($data) {
-            
+
             if (substr_count($data->userap, "A") > 0) {
                 $userp1 = "[ KONTROLER ]";
             } else {
@@ -73,12 +73,12 @@ class SetFunctionController extends Controller
             return $radio;
         })
         ->rawColumns(['radio'])
-        ->make(true); 
+        ->make(true);
     }
 
     public function store(Request $request)
     {
-        // 
+        //
     }
 
     public function edit($id)
@@ -90,8 +90,8 @@ class SetFunctionController extends Controller
                     ->join('dftmenu', 'usermenu.menuid', 'dftmenu.menuid')
                     ->where('usermenu.userid', $id)
                     ->orderBy('usermenu.menuid' ,'asc')
-                    ->get();        
-        
+                    ->get();
+
         return view('modul-administrator.set-function.edit',compact('user_menus','user_pdv'));
     }
 
@@ -132,7 +132,7 @@ class SetFunctionController extends Controller
                         'cetak' => $cetak,
                         'lihat' => $lihat,
                     ]);
-        
+
         if($user_menu){
             Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(300000);
             return redirect()->route('modul_administrator.set_function.index');

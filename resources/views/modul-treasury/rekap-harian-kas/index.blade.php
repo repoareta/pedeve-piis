@@ -21,21 +21,27 @@
         </div>
 		<div class="card-toolbar">
             <div class="float-left">
+                @if (permission(507)->tambah == 1)
                 <a href="{{ route('rekap_harian_kas.create') }}">
                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
                         <i class="fas fa-2x fa-plus-circle text-success"></i>
                     </span>
                 </a>
+                @endif
+                @if (permission(507)->hapus == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
-                        <i class="fas fa-2x fa-times-cirlce text-danger" id="deleteRow"></i>
+                        <i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
                     </span>
                 </a>
+                @endif
+                @if (permission(507)->cetak == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Cetak Data">
                         <i class="fas fa-2x fa-print text-info" id="exportRow"></i>
                     </span>
                 </a>
+                @endif
             </div>
         </div>
     </div>
@@ -104,10 +110,10 @@
 			t.draw();
 			e.preventDefault();
 		});
-		
+
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[class=btn-radio]').is(':checked')) { 
+			if($('input[class=btn-radio]').is(':checked')) {
 				$("input[class=btn-radio]:checked").each(function() {
 					var tanggal = $(this).attr('tanggal');
 					var jk = $(this).attr('jk');
@@ -146,7 +152,7 @@
 										icon  : 'success',
 										title : "Data Kas Bank Tanggal  : " +tanggal+ " Nokas : " +nokas+ " Berhasil Dihapus.",
 										text  : 'Berhasil',
-										
+
 									}).then(function() {
 										location.reload();
 									});
@@ -162,10 +168,10 @@
 				swalAlertInit('hapus');
 			}
 		});
-		//edit 
+		//edit
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[class=btn-radio]').is(':checked')) { 
+			if($('input[class=btn-radio]').is(':checked')) {
 				$("input[class=btn-radio]:checked").each(function(){
 					var tgl = $(this).attr('tanggal');
 					var id = $(this).attr('jk');
@@ -176,10 +182,10 @@
 				swalAlertInit('ubah');
 			}
 		});
-		//edit 
+		//edit
 		$('#exportRow').click(function(e) {
 			e.preventDefault();
-			if($('input[class=btn-radio]').is(':checked')) { 
+			if($('input[class=btn-radio]').is(':checked')) {
 				$("input[class=btn-radio]:checked").each(function(){
 					var id = $(this).attr('jk');
 					var no = $(this).attr('nokas');
@@ -193,3 +199,4 @@
 	});
 </script>
 @endpush
+
