@@ -41,7 +41,7 @@ class PenerimaanKasService
         $bukti = $this->request->bukti;
 
         $dataKasHeader = $this->kasHeader
-            ->with('storejk')
+            ->with(['storejk', 'kasline'])
             ->where('kasdoc.kd_kepada', '=', null);
 
         if (is_null($bulan) && is_null($tahun) && is_null($bukti)) {

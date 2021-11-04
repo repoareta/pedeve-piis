@@ -24,7 +24,7 @@ class PenerimaanKasResource extends JsonResource
             'voucher' => $this->voucher,
             'kepada' => $this->kepada,
             'rate' => currency_format($this->rate),
-            'nilai_dokumen' => currency_format($this->nilai_doc),
+            'nilai_dokumen' => currency_format($this->kasline->sum('totprice')),
             'status_paid' => $this->paid,
             'status_verified' => $this->verified,
             'nama_bank' => $this->storejk->namabank ?? null,
