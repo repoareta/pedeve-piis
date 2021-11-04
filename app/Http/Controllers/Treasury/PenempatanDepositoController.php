@@ -334,9 +334,10 @@ class PenempatanDepositoController extends Controller
                             ]);
                     }
                 }
-                return response()->json();
             }
 
+            Alert::success('Data berhasil ditambah', 'Success')->persistent(true);
+            return redirect()->route('penempatan_deposito.index');
     }
 
     public function edit($id, $lineno, $pjg)
@@ -519,7 +520,8 @@ class PenempatanDepositoController extends Controller
                     ]);
                 }
             }
-            return response()->json();
+            Alert::success('Data berhasil ditambah', 'Success')->persistent(true);
+            return redirect()->route('penempatan_deposito.index');
         }
     }
 

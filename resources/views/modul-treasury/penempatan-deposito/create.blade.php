@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" id="form-create">
+        <form method="POST" id="form-create" action="{{ route('penempatan_deposito.store')}}">
             @csrf
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen <span class="text-danger">*</span></label>
@@ -50,7 +50,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" value="" id="nominal" name="nominal" size="25" maxlength="25" required autocomplete="off">
+                    <input class="form-control money" type="text" value="" id="nominal" name="nominal" size="25" maxlength="25" required autocomplete="off" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -127,7 +127,7 @@
 						rupiah += separator + ribuan.join('.');
 					}
 					$('#nominal').val(data.nominal);
-					$('#asal').val(data.asal);
+					$('#asal').val(data.asal || "");
 				},
 				error : function(){
 					alert("Ada kesalahan controller!");
@@ -165,36 +165,36 @@
 				}
 			})
 		});
+    
+		// $('#form-create').submit(function(e) {
+		// 	e.preventDefault();
 
-		$('#form-create').submit(function(e) {
-			e.preventDefault();
-
-			if($(this).valid()) {
-				$.ajax({
-					url  : "{{ route('penempatan_deposito.store') }}",
-					type : "POST",
-					data : $('#form-create').serialize(),
-					dataType : "JSON",
-					headers: {
-						'X-CSRF-Token': '{{ csrf_token() }}',
-					},
-					success : function(data) {
-					console.log(data);
-						Swal.fire({
-							icon  : 'success',
-							title : 'Data Berhasil Ditambah',
-							text  : 'Berhasil',
-							timer : 2000
-						}).then(function() {
-							location.href = "{{ route('penempatan_deposito.index') }}";
-						});
-					},
-					error : function(){
-						alert("Terjadi kesalahan, coba lagi nanti");
-					}
-				});
-			}
-		});
+		// 	if($(this).valid()) {
+		// 		$.ajax({
+		// 			url  : "{{ route('penempatan_deposito.store') }}",
+		// 			type : "POST",
+		// 			data : $('#form-create').serialize(),
+		// 			dataType : "JSON",
+		// 			headers: {
+		// 				'X-CSRF-Token': '{{ csrf_token() }}',
+		// 			},
+		// 			success : function(data) {
+		// 			console.log(data);
+		// 				Swal.fire({
+		// 					icon  : 'success',
+		// 					title : 'Data Berhasil Ditambah',
+		// 					text  : 'Berhasil',
+		// 					timer : 2000
+		// 				}).then(function() {
+		// 					location.href = "{{ route('penempatan_deposito.index') }}";
+		// 				});
+		// 			},
+		// 			error : function(){
+		// 				alert("Terjadi kesalahan, coba lagi nanti");
+		// 			}
+		// 		});
+		// 	}
+		// });
 
 		$('#tanggal').datepicker({
 			todayHighlight: true,

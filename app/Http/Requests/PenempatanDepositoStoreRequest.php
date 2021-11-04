@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PenempatanDepositoStoreRequest extends FormRequest
@@ -26,12 +27,12 @@ class PenempatanDepositoStoreRequest extends FormRequest
         return [
             'nodok' => 'required|string',
             'namabank' => 'required',
-            'nominal' => 'required|numeric',
+            'nominal' => ['nullable'],
             'tanggal' => 'required|date_format:d-m-Y',
             'tanggal2' => 'required|date_format:d-m-Y',
             'noseri' => 'required|string',
             'lineno' => 'required',
-            'asal' => 'required',
+            'asal' => 'nullable',
             'kdbank' => 'required',
             'tahunbunga' => 'required',
             'perpanjangan' => 'required',
