@@ -29,9 +29,9 @@ class BulanPerbendaharaanStoreRequest extends FormRequest
             'suplesi' => 'required|numeric',
             'keterangan' => 'required|string',
             'status' => 'required|string',
-            'tanggal' => 'required|date_format:d-m-Y',
-            'tanggal2' => 'required|date_format:d-m-Y',
-            'tanggal3' => 'required|date_format:d-m-Y',
+            'tanggal' => 'required_if:status,1|date_format:d-m-Y',
+            'tanggal2' => 'nullable',
+            'tanggal3' => 'required_if:status,3|date_format:d-m-Y',
         ];
     }
 

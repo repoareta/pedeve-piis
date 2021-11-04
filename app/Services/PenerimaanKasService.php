@@ -105,7 +105,7 @@ class PenerimaanKasService
                 $titleButton = $formattedKasData['status_paid'] == 'Y' ? 'Batalkan Pembayaran' : 'Klik untuk melakukan Pembayaran';
 
                 $actionButtonOpenTag = '<button class="btn btn-sm btn-clean btn-icon" title="' . $titleButton . '" ' . $onClickAction . '>';
-                
+
                 $actionButtonCloseTag = '</button>';
 
                 $iconButton = '<i class="la la-' . ($formattedKasData['status_paid'] == 'Y' ? 'times' : 'check') . '"></i>';
@@ -400,8 +400,8 @@ class PenerimaanKasService
 
             return $this->resultJson(2, 'success', 'Detail berhasil diupdate.');
         }
-        
-        if ($attributes['cj'] == '50' && $attributes['mp']) {
+
+        if ($attributes['cj'] == '50' && isset($attributes['mp'])) {
             MtrDeposito::insert([
                 'docno' =>  $attributes['nodok'],
                 'lineno' =>  $attributes['nourut'],
@@ -434,10 +434,10 @@ class PenerimaanKasService
     {
         $attributes = $this->objectMappingKasDoc($attributes);
 
-        if ($statusTimeTrans !== 'gtopening') {    
+        if ($statusTimeTrans !== 'gtopening') {
             return $this->resultJson(
-                2, 
-                'info', 
+                2,
+                'info',
                 'Bulan buku tidak ada, atau sudah diposting.'
             );
         }

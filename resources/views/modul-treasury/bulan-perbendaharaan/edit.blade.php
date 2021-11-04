@@ -60,21 +60,6 @@
                 <div class="col-3">
                     <div class="radio-inline">
                         <label class="radio">
-                            <input value="2" <?php if ($status == '2' )  echo 'checked' ; ?> type="radio" name="status">
-                            <span></span> Stoping
-                        </label>
-                    </div>
-                </div>
-                <label for="" class="col-2 col-form-label">Tanggal Stoping</label>
-                <div class="col-5">
-                    <input class="form-control" type="text" value="{{ $tanggal2}}" name="tanggal2" id="tanggal2" size="11" maxlength="11" title="Tanggal Stoping" autocomplete="off">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="" class="col-2 col-form-label"></label>
-                <div class="col-3">
-                    <div class="radio-inline">
-                        <label class="radio">
                             <input value="3" <?php if ($status == '3' )  echo 'checked' ; ?> type="radio" name="status">
                             <span></span> Closing
                         </label>
@@ -106,10 +91,10 @@
 
 <script>
     $(document).ready(function () {
-		
+
 		$('#form-edit').submit(function(e) {
             e.preventDefault();
-            
+
             if($(this).valid()) {
                 $.ajax({
                     url  : "{{ route('bulan_perbendaharaan.update') }}",
@@ -128,14 +113,14 @@
                         }).then(function(data) {
                             window.location.replace("{{ route('bulan_perbendaharaan.index') }}");
                             });
-                    }, 
+                    },
                     error : function(){
                         alert("Terjadi kesalahan, coba lagi nanti");
                     }
                 });
             }
 		});
-        
+
 		$('#tanggal').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
