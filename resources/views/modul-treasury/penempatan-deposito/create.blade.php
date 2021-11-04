@@ -50,7 +50,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" value=""  name="nominal" size="25" maxlength="25" required autocomplete="off">
+                    <input class="form-control money" type="text" value="" id="nominal" name="nominal" size="25" maxlength="25" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -77,7 +77,7 @@
                     <input class="form-control" type="text" value="" id="noseri" name="noseri" size="15" maxlength="15" required autocomplete="off">
                 </div>
             </div>
-            
+
             <div class="form__actions">
                 <div class="row">
                     <div class="col"></div>
@@ -121,12 +121,12 @@
 						sisa 	= number_string.length % 3,
 						rupiah 	= number_string.substr(0, sisa),
 						ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
-							
+
 					if (ribuan) {
 						separator = sisa ? '.' : '';
 						rupiah += separator + ribuan.join('.');
 					}
-					$('#nominal').val(rupiah);
+					$('#nominal').val(data.nominal);
 					$('#asal').val(data.asal);
 				},
 				error : function(){
@@ -135,7 +135,7 @@
 			})
 		});
 
-		// onkeyup="this.value = this.value.toUpperCase()" 
+		// onkeyup="this.value = this.value.toUpperCase()"
 
 		$('#namabank').on('keyup', function () {
 			$(this).val($(this).val().toUpperCase());
@@ -153,10 +153,10 @@
 				dataType: 'json',
 				data : {
 					nodok:nodok
-					},
+                },
 				headers: {
 					'X-CSRF-Token': '{{ csrf_token() }}',
-					},
+                },
 				success : function(data){
 					$('#kurs').val(data.rate);
 				},
@@ -188,11 +188,11 @@
 						}).then(function() {
 							location.href = "{{ route('penempatan_deposito.index') }}";
 						});
-					}, 
+					},
 					error : function(){
 						alert("Terjadi kesalahan, coba lagi nanti");
 					}
-				});	
+				});
 			}
 		});
 

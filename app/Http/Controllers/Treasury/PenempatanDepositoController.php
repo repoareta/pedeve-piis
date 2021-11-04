@@ -40,13 +40,13 @@ class PenempatanDepositoController extends Controller
     }
 
     public function indexJson(Request $request)
-    {        
+    {
             $bulan = ltrim($request->bulan, '0');
             $tahun = $request->tahun;
             if($bulan <> "" and $tahun <> ""){
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulan' and b.tahun='$tahun' order by a.tgltempo asc");
-            }elseif($bulan == "" and $tahun <> ""){ 
-                $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.tahun='$tahun' order by a.tgltempo asc" );				    
+            }elseif($bulan == "" and $tahun <> ""){
+                $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.tahun='$tahun' order by a.tgltempo asc" );
             } else {
                 $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
                 if(!empty($data_tahunbulan)){
@@ -65,7 +65,7 @@ class PenempatanDepositoController extends Controller
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulans' and b.tahun='$tahuns' order by a.tgltempo asc");
             }
                 return datatables()->of($data)
-                
+
                 ->addColumn('warna', function ($data) {
                         $temp = date_create($data->tgltempo);
                         $tgltempo = date_format($temp, 'Y-m-d');
@@ -120,7 +120,7 @@ class PenempatanDepositoController extends Controller
                     return currency_format($data->accnetbulan);
                 })
                 ->addColumn('radio', function ($data) {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>'; 
+                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>';
                     return $radio;
                 })
                 ->rawColumns(['radio'])
@@ -189,7 +189,7 @@ class PenempatanDepositoController extends Controller
             'kdbank' => $kdbank,
             'keterangan' => $keterangan,
             'kurs' => $kurs,
-            'statcair' =>'N'        
+            'statcair' =>'N'
             ]);
             Kasline::where('docno', $docno)
             ->where('lineno', $lineno)
@@ -216,7 +216,7 @@ class PenempatanDepositoController extends Controller
                 $i_lineno=$lineno;
                 $i_panjang=$perpanjangan;
                 $kdbank = $data_mtr->kdbank;
-            
+
                 if($i_proses == 'T'){
                     $data_kdbank = DB::select("SELECT jenis as v_jenis from account where kodeacct='$kdbank'");
                     foreach($data_kdbank as $data_kdb)
@@ -227,29 +227,29 @@ class PenempatanDepositoController extends Controller
                                 $v_pembagi = '36500';
                         }
                     }
-            
+
                     $tgltempos = date_create($data_mtr->tgltempo);
                     $tgltempo= date_format($tgltempos, 'm');
-            
+
                     $tgldeps = date_create($data_mtr->tgldep);
                     $tgldep= date_format($tgldeps, 'm');
                     $bulan = ltrim(date_format($tgldeps, 'm'),0);
                     $tahun = date_format($tgldeps, 'Y');
                     $lastday = date('t',strtotime($data_mtr->tgldep));
-                    
+
                     $v_range = $tgltempo - $tgldep;
                     if($v_range < 0 ){
                         $v_rangeok = ($tgltempo+12) - $tgldep;
                     } else {
                         $v_rangeok = $v_range;
                     }
-            
+
                     if($v_rangeok == 0 ){ //bulan sama
                         $v_jumhari = hitunghari($data_mtr->tgldep,$data_mtr->tgltempo);
                         $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
                         $v_pph20 = round($v_bungabulan * (20/100),2);
                         $v_bunganet = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
-                    
+
                         Dtldepositotest::insert([
                             'docno' => $i_docno,
                             'lineno' => $i_lineno,
@@ -342,7 +342,7 @@ class PenempatanDepositoController extends Controller
     public function edit($id, $lineno, $pjg)
     {
         $nodok = str_replace('-', '/', $id);
-        
+
         $data = DB::table(DB::raw('mtrdeposito as a'))
             ->join(DB::raw('account as b'), DB::raw('a.kdbank'), '=', DB::raw('b.kodeacct'))
             ->where(DB::raw('a.docno'), '=', $nodok)
@@ -581,7 +581,7 @@ class PenempatanDepositoController extends Controller
         'kdbank' => $kdbank,
         'keterangan' => $keterangan,
         'proses' => 'Y',
-        'perpanjangan' => $perpanjangan 
+        'perpanjangan' => $perpanjangan
         ]);
 
         $data_mtrdeposito = DB::select("SELECT * from mtrdeposito where docno='$docno' and lineno='$lineno' and perpanjangan='$perpanjangan'");
@@ -592,7 +592,7 @@ class PenempatanDepositoController extends Controller
                 $i_lineno=$lineno;
                 $i_panjang=$perpanjangan;
                 $kdbank = $data_mtr->kdbank;
-            
+
                 if($i_proses == 'T'){
                     $data_kdbank = DB::select("SELECT jenis as v_jenis from account where kodeacct='$kdbank'");
                     foreach($data_kdbank as $data_kdb)
@@ -603,29 +603,29 @@ class PenempatanDepositoController extends Controller
                                 $v_pembagi = '36500';
                         }
                     }
-            
+
                     $tgltempos = date_create($data_mtr->tgltempo);
                     $tgltempo= date_format($tgltempos, 'm');
-            
+
                     $tgldeps = date_create($data_mtr->tgldep);
                     $tgldep= date_format($tgldeps, 'm');
                     $bulan = ltrim(date_format($tgldeps, 'm'),0);
                     $tahun = date_format($tgldeps, 'Y');
                     $lastday = date('t',strtotime($data_mtr->tgldep));
-                    
+
                     $v_range = $tgltempo - $tgldep;
                     if($v_range < 0 ){
                         $v_rangeok = ($tgltempo+12) - $tgldep;
                     } else {
                         $v_rangeok = $v_range;
                     }
-            
+
                     if($v_rangeok == 0 ){ //bulan sama
                         $v_jumhari = hitunghari($data_mtr->tgldep,$data_mtr->tgltempo);
                         $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
                         $v_pph20 = round($v_bungabulan * (20/100),2);
                         $v_bunganet = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
-                    
+
                         Dtldepositotest::insert([
                             'docno' => $i_docno,
                             'lineno' => $i_lineno,
@@ -772,11 +772,11 @@ class PenempatanDepositoController extends Controller
         }
     }
 
-    
+
 
     public function rekap_Rc($docs, $lineno)
     {
-        $docno = str_replace('-', '/', $docs);   
+        $docno = str_replace('-', '/', $docs);
         $lampiran = "-";
         $perihal = "Penempatan Deposito";
         $data_cari = DB::select("SELECT EXTRACT(day from a.tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from a.tgltempo)-EXTRACT(month from date(now())) selbulan,a.*,b.nama as namabank, b.norek,b.cabang from penempatandepo a, rekening_bank b where a.kdbank=b.kdbank and a.asal=b.lokasi and a.docno = '$docno' and a.lineno='$lineno'");
