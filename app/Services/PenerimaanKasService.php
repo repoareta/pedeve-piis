@@ -401,7 +401,7 @@ class PenerimaanKasService
             return $this->resultJson(2, 'success', 'Detail berhasil diupdate.');
         }
 
-        if ($attributes['cj'] == '50' && isset($attributes['mp'])) {
+        if ($attributes['cj'] == '50') {
             MtrDeposito::insert([
                 'docno' =>  $attributes['nodok'],
                 'lineno' =>  $attributes['nourut'],
