@@ -159,8 +159,7 @@ content: counter(pages);
                         </td>
                     </tr>
                     <tr>
-                        <th nowrap>MENURUT RINCIAN BERIKUT</th>
-                        <th>LP</th>
+                        <th nowrap colspan="2">MENURUT RINCIAN BERIKUT</th>
                         <th>SANDI PERKIRAAN</th>
                         <th>KODE BAGIAN</th>
                         <th>PERINTAH KERJA</th>
@@ -176,8 +175,7 @@ content: counter(pages);
                     @endphp
                     @foreach ($kasdoc->kasline as $kasline)
                     <tr>
-                        <td valign="top">{{ $kasline->keterangan }}</td>
-                        <td valign="top" class="text-center">{{ $kasline->lokasi }}</td>
+                        <td valign="top" colspan="2">{{ $kasline->keterangan }}</td>
                         <td valign="top" class="text-center">{{ $kasline->account }}</td>
                         <td valign="top" class="text-center">{{ $kasline->bagian }}</td>
                         <td valign="top" class="text-center">{{ $kasline->pk }}</td>
@@ -196,7 +194,7 @@ content: counter(pages);
                     </tr>
                     @endforeach
                     <tr>
-                        <td class="border-top-less" valign="top" style="height:{{ 565 - ($total_row*50) }}px">
+                        <td class="border-top-less" valign="top" style="height:{{ 565 - ($total_row*50) }}px" colspan="2">
                             <b><u>KETERANGAN :</u></b>
                             <br>
                             {{ $kasdoc->ket1 }}
@@ -205,7 +203,6 @@ content: counter(pages);
                             <br>
                             {{ $kasdoc->ket3 }}
                         </td>
-                        <td class="border-top-less"></td>
                         <td class="border-top-less"></td>
                         <td class="border-top-less"></td>
                         <td class="border-top-less"></td>

@@ -183,8 +183,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th nowrap>MENURUT RINCIAN BERIKUT</th>
-                        <th>LP</th>
+                        <th nowrap colspan="2">MENURUT RINCIAN BERIKUT</th>
                         <th>SANDI PERKIRAAN</th>
                         <th>KODE BAGIAN</th>
                         <th>PERINTAH KERJA</th>
@@ -200,15 +199,14 @@
                     @endphp
                     @foreach ($kasdoc->kasline as $kasline)
                     <tr>
-                        <td valign="top">{{ $kasline->keterangan }}</td>
-                        <td valign="top" class="text-center">{{ $kasline->lokasi }}</td>
+                        <td valign="top" colspan="2">{{ $kasline->keterangan }}</td>
                         <td valign="top" class="text-center">{{ $kasline->account }}</td>
                         <td valign="top" class="text-center">{{ $kasline->bagian }}</td>
                         <td valign="top" class="text-center">{{ $kasline->pk }}</td>
                         <td valign="top" class="text-center">{{ $kasline->jb }}</td>
                         <td valign="top" class="text-right" nowrap>
                             {{ number_format(abs($kasline->totprice) , 2) }}
-                            @if ($kasline->totprice < 0) CR @endif 
+                            @if ($kasline->totprice < 0) CR @endif
                                 @php $total +=abs($kasline->totprice);
                                 $total_row++;
                                 @endphp
@@ -217,7 +215,7 @@
                     </tr>
                     @endforeach
                     <tr>
-                        <td class="border-top-less" valign="top" style="height:{{ 565 - ($total_row*50) }}px">
+                        <td class="border-top-less" valign="top" style="height:{{ 565 - ($total_row*50) }}px" colspan="2">
                             <b><u>KETERANGAN :</u></b>
                             <br>
                             {{ $kasdoc->ket1 }}
@@ -226,7 +224,6 @@
                             <br>
                             {{ $kasdoc->ket3 }}
                         </td>
-                        <td class="border-top-less"></td>
                         <td class="border-top-less"></td>
                         <td class="border-top-less"></td>
                         <td class="border-top-less"></td>
@@ -292,7 +289,7 @@
     </main>
 
     <script type='text/php'>
-        if ( isset($pdf) ) { 
+        if ( isset($pdf) ) {
         $font = null;
         $size = 9;
         $y = $pdf->get_height() - 30;

@@ -47,7 +47,7 @@ class PenerimaanKasController extends Controller
         $tahun = $this->timeTrans->getCurrentYear();
         $bulan = $this->timeTrans->getCurrentMonth();
         $daftarBulan = $this->timeTrans->getAllMonths();
-        
+
         return view('modul-treasury.bukti-kas.index', compact('tahun', 'bulan', 'daftarBulan', 'userAbility'));
     }
 
@@ -69,11 +69,11 @@ class PenerimaanKasController extends Controller
     public function approval($documentId)
     {
         $kasDocument = $this->penerimaanKasService->getKasDocument($documentId);
-        
+
         if ($kasDocument->paid == 'Y') {
             return redirect()->back();
         }
-        
+
         return view('modul-treasury.bukti-kas.approval', compact('kasDocument'));
     }
 
@@ -85,14 +85,14 @@ class PenerimaanKasController extends Controller
     public function cancel($documentId)
     {
         $kasDocument = $this->penerimaanKasService->getKasDocument($documentId);
-        
+
         if ($kasDocument->paid == 'N') {
             return redirect()->back();
         }
-        
+
         return view('modul-treasury.bukti-kas.approval', compact('kasDocument'));
     }
-    
+
     public function approve($documentId, Request $request)
     {
         $approval = $this->penerimaanKasService->approval($documentId, $request);
@@ -255,7 +255,7 @@ class PenerimaanKasController extends Controller
             $request->validated(),
             $this->timeTrans->getTimeTransStatus($timeTrans),
         );
-        
+
         return response()->json($dataToInsert);
     }
 
@@ -282,7 +282,7 @@ class PenerimaanKasController extends Controller
         $data_casj = CashJudex::all();
         $data_bagian = SdmKdbag::all();
         $data_account = DB::select("SELECT kodeacct,descacct from account where length(kodeacct)=6 and kodeacct not like '%x%'");
-        
+
         return view('modul-treasury.bukti-kas.show', compact(
             'document',
             'codeMP',
@@ -451,14 +451,14 @@ class PenerimaanKasController extends Controller
                 'kasdoc'
             ))->setOption("footer-right", "Page [page] from [topage]");
 
-            return $pdf->stream('bkp_'.date('Y-m-d H:i:s').'.pdf');
+            return $pdf->inline('bkp_'.date('Y-m-d H:i:s').'.pdf');
         } else {
             // return default PDF
             $pdf = PDF::loadview('modul-treasury.bukti-kas.kas-merah-pdf', compact(
                 'kasdoc'
             ))->setOption("footer-right", "Page [page] from [topage]");
 
-            return $pdf->stream('bkm_'.date('Y-m-d H:i:s').'.pdf');
+            return $pdf->inline('bkm_'.date('Y-m-d H:i:s').'.pdf');
         }
     }
 }
