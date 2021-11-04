@@ -109,7 +109,7 @@ class BulanPerbendaharaanController extends Controller
         $keterangan = $request->keterangan;
         $status = $request->status;
         $opendate = $request->tanggal;
-        $stopdate = $request->tanggal2;
+        $stopdate = "";
         $closedate = $request->tanggal3;
 
         if ($opendate <> "") {
@@ -118,7 +118,7 @@ class BulanPerbendaharaanController extends Controller
             $opendate1 = null;
         }
         if ($stopdate <> "") {
-            $stopdate1 = $request->tanggal2;
+            $stopdate1 = "";
         } else {
             $stopdate1 = null;
         }
@@ -172,13 +172,6 @@ class BulanPerbendaharaanController extends Controller
             $tanggal = "";
         }
 
-        if ($data->stopdate <> "") {
-            $tgl2 = date_create($data->stopdate);
-            $tanggal2 = date_format($tgl2, 'd-m-Y');
-        } else {
-            $tanggal2 = "";
-        }
-
         if ($data->closedate <> "") {
             $tgl3 = date_create($data->closedate);
             $tanggal3 = date_format($tgl3, 'd-m-Y');
@@ -193,7 +186,6 @@ class BulanPerbendaharaanController extends Controller
             'thnbln',
             'status',
             'tanggal',
-            'tanggal2',
             'tanggal3',
             'keterangan',
             'suplesi',
@@ -228,9 +220,9 @@ class BulanPerbendaharaanController extends Controller
             $opendate1 = null;
         }
         if ($stopdate <> "") {
-            $stopdate1 = $request->tanggal2;
+            $stopdate1 = "";
         } else {
-            $stopdate1 = null;
+            $stopdate1 = "";
         }
         if ($closedate <> "") {
             $closedate1 = $request->tanggal3;
@@ -238,7 +230,7 @@ class BulanPerbendaharaanController extends Controller
             $closedate1 = null;
         }
 
-        Timetrans::where('thnbln',$thnbln)
+        Timetrans::where('thnbln', $thnbln)
         ->update([
             'status' => $status ,
             'opendate' => $opendate1 ,
@@ -247,7 +239,7 @@ class BulanPerbendaharaanController extends Controller
             'description' => $keterangan ,
             'userid' => $userid,
             'password' => $userid,
-            'suplesi' => $suplesi 
+            'suplesi' => $suplesi
         ]);
 
         return response()->json();

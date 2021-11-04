@@ -68,22 +68,7 @@
                     <input class="form-control" type="text" value="" name="tanggal" id="tanggal" size="11" maxlength="11" title="Tanggal Opening" autocomplete="off">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="" class="col-2 col-form-label text-right"></label>
-                <div class="col-3">
-                    <div class="radio-inline">
-                        <label class="radio">
-                            <input value="2" type="radio" name="status">
-                            <span></span> Stoping
-                        </label>
-                    </div>
-                </div>
-                <label for="" class="col-2 col-form-label text-right">Tanggal Stoping</label>
-                <div class="col-5">
-                    <input class="form-control" type="text" value="" name="tanggal2" id="tanggal2" size="11" maxlength="11"
-                        title="Tanggal Stoping" autocomplete="off">
-                </div>
-            </div>
+
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right"></label>
                 <div class="col-3">
@@ -96,8 +81,7 @@
                 </div>
                 <label for="" class="col-2 col-form-label text-right">Tanggal Closing</label>
                 <div class="col-5">
-                    <input class="form-control" type="text" value="" name="tanggal3" id="tanggal3" size="11" maxlength="11"
-                        title="Tanggal Closing" autocomplete="off">
+                    <input class="form-control" type="text" value="" name="tanggal3" id="tanggal3" size="11" maxlength="11" title="Tanggal Closing" autocomplete="off">
                 </div>
             </div>
 
@@ -124,7 +108,7 @@
     $(document).ready(function () {
 		$('#form-create').submit(function(e){
             e.preventDefault();
-            
+
             if($(this).valid()) {
                 $.ajax({
                     url  : "{{ route('bulan_perbendaharaan.store') }}",
@@ -151,7 +135,7 @@
                             text  : 'Info',
                         });
                     }
-                    }, 
+                    },
                     error : function(){
                         alert("Terjadi kesalahan, coba lagi nanti");
                     }

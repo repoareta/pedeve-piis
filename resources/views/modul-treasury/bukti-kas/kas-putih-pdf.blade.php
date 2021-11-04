@@ -74,14 +74,14 @@ h4 {
 .pagecount:before {
 content: counter(pages);
 }
-/* header { 
-    position: fixed; 
-    left: 0px; 
+/* header {
+    position: fixed;
+    left: 0px;
     top: -110px;
     right: 0px;
     height: 0px;
 } */
-@page { 
+@page {
     margin: 130px 50px 50px 50px;
 }
 .border-top-less {
@@ -99,7 +99,7 @@ content: counter(pages);
                     </b>
                 </p>
             </div>
-    
+
             <div class="row">
                 <div class="text-right" style="width: 100%;">
                     <img src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-right: 20px;">
@@ -107,7 +107,7 @@ content: counter(pages);
             </div>
         </div>
     </header>
-      
+
     <main>
         <div class="text-right">{{ $kasdoc->docno }}</div>
         <div class="row">
@@ -118,9 +118,9 @@ content: counter(pages);
                             <p>
                                 HARAP DIBAYAR KEPADA : {{ $kasdoc->kepada }}
                             <br>
-                            UANG SEJUMLAH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  
+                            UANG SEJUMLAH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
                             @if ($kasdoc->ci == 1)
-                            Rp. 
+                            Rp.
                             @else
                             US$
                             @endif
@@ -144,7 +144,7 @@ content: counter(pages);
                             <br>
                             NO. KAS/BANK &nbsp;&nbsp;: {{ $kasdoc->store }}
                             <br>
-                            NO. BUKTI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+                            NO. BUKTI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                             {{ $kasdoc->voucher }}
                             <br>
                             CURRENCY IDX :
@@ -260,7 +260,7 @@ content: counter(pages);
                         <td colspan="4" valign="top" style="border-top: 2px solid #FFFFFF; border-bottom: 2px solid #FFFFFF;">
                             <center>Cheque/Giro Bilyet/Trans.Bank</center>
                             No.
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             Tgl. {{ Carbon\Carbon::parse($kasdoc->tgl_kurs)->format('d/m/Y') }}
                             <br>
@@ -308,9 +308,9 @@ content: counter(pages);
             </table>
         </div>
     </main>
-    
+
     <script type='text/php'>
-    if ( isset($pdf) ) { 
+    if ( isset($pdf) ) {
         $font = null;
         $size = 9;
         $y = $pdf->get_height() - 30;
@@ -318,6 +318,6 @@ content: counter(pages);
         $pdf->page_text($x, $y, 'Halaman {PAGE_NUM} dari {PAGE_COUNT}', $font, $size);
     }
     </script>
-  
+
 </body>
 </html>
