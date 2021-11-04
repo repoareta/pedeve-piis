@@ -17,20 +17,25 @@ class SandiPerkiraanController extends Controller
         return view('modul-kontroler.tabel.sandi-perkiraan.index');
     }
 
-    public function indexJson()
+    public function indexJson(Request $request)
     {
         $data = Account::orderByDesc('kodeacct');
+
+        if ($request->pencarian) {
+            $data = $data->where('kodeacct', 'LIKE', $request->pencarian . '%');
+        }
+
         return datatables()->of($data)
         ->addColumn('radio', function ($data) {
             $radio = '
                     <label class="radio radio-outline radio-outline-2x radio-primary">
                         <input type="radio" value="'.$data->kodeacct.'" class="btn-radio" name="btn-radio">
                         <span></span>
-                    </label>'; 
+                    </label>';
             return $radio;
         })
         ->rawColumns(['radio'])
-        ->make(true); 
+        ->make(true);
     }
 
     public function create()
@@ -62,7 +67,7 @@ class SandiPerkiraanController extends Controller
             'descacct' => $request->descacct,
             'userid' => auth()->user()->userid
         ]);
-        
+
         Alert::success('Berhasil', 'Data Berhasil Diupdate')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_kontroler.tabel.sandi_perkiraan.index');
     }
