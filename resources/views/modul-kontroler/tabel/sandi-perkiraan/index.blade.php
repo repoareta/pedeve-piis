@@ -43,6 +43,21 @@
         </div>
     </div>
     <div class="card-body">
+        <div class="col-12">
+            <form class="form" id="search-form" method="POST">
+                <div class="form-group row">
+                    <label for="" class="col-form-label">Kode</label>
+                    <div class="col-4">
+                        <input class="form-control" type="text" name="pencarian" id="pencarian">
+                    </div>
+
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="row">
             <div class="col-xl-12">
                 <table class="table table-bordered" id="kt_table" width="100%">
