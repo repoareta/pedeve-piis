@@ -29,9 +29,9 @@
                 $nodok = $data->docno;
                 $mp = substr($data->docno,0,1);
                 $nomor = substr($data->docno,8);
-                $tahun = substr($data->thnbln,0,4); 
-                $bulan = substr($data->thnbln,4); 
-                $bulan = substr($data->thnbln,4); 
+                $tahun = substr($data->thnbln,0,4);
+                $bulan = substr($data->thnbln,4);
+                $bulan = substr($data->thnbln,4);
                 $bagian = substr($data->docno,2,5);
             ?>
             <div class="form-group row">
@@ -50,7 +50,7 @@
             <div class="col-4">
                 <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 <input class="form-control" type="hidden" value="{{ $data->thnbln}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
-                
+
             </div>
                 <div class="col-6">
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#e4e6ef; cursor:not-allowed">
@@ -66,7 +66,7 @@
                         @foreach($data_bagian as $row)
                         <option value="{{ $row->kode }}" <?php if($row->kode == $bagian) echo 'selected'; ?>>{{ $row->kode }} - {{ $row->nama }}</option>
                         @endforeach
-                        
+
                     </select>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                         <option value="10" <?php if($data->jk == '10') echo 'selected'; ?>>Kas(Rupiah)</option>
                         <option value="11" <?php if($data->jk == '11') echo 'selected'; ?>>Bank(Rupiah)</option>
                         <option value="13" <?php if($data->jk == '13') echo 'selected'; ?>>Bank(Dollar)</option>
-                        
+
                     </select>							</div>
                 <label class="col-2 col-form-label">Currency Index</label>
                 <div class="col-2">
@@ -90,13 +90,13 @@
                     <input class="form-control" type="text" name="kurs" value="{{ number_format($data->rate,0) }}" id="kurs" size="7" maxlength="7">
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
                 <div class="col-4">
                     <select name="lokasi" id="lokasi" class="form-control">
                         <option value="">- Pilih -</option>
-                        
+
                     </select>
                     <input class="form-control" type="hidden" value="{{ $data->store }}" id="lokasi2">
                     <input class="form-control" type="hidden" value="{{ $data->namabank }}-{{ $data->norekening }}" id="lokasi1">
@@ -202,13 +202,13 @@
                 <tr>
                     <th ></th>
                     <th>No</th>
-                    <th>Rincian</th>	
+                    <th>Rincian</th>
                     {{-- <th>KL</th> --}}
                     <th>Sanper</th>
                     <th>Bagian</th>
                     <th>PK</th>
                     <th>JB</th>
-                    <th>CJ</th>	
+                    <th>CJ</th>
                     <th>Jumlah</th>
                 </tr>
             </thead>
@@ -238,7 +238,7 @@
     </div>
 </div>
 
-<!--begin::Modal creaate--> 
+<!--begin::Modal creaate-->
 <div class="modal fade modal-create"   tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -249,30 +249,28 @@
 			<span id="form_result"></span>
                 <form class="form" id="form-create-detail"  enctype="multipart/form-data">
 					@csrf
-                        
+
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
-							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
-							<input style="background-color:#e4e6ef; cursor:not-allowed"  class="form-control" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
+						<div class="col-10">
+							<input style="cursor:not-allowed"  class="form-control bg-secondary" type="text" value="{{ $no_urut}}"  name="nourut" readonly>
+							<input style="cursor:not-allowed"  class="form-control bg-secondary" type="hidden" value="{{ $nodok}}"  name="nodok" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Rincian<span class="text-danger">*</span></label>
-						<label for="example-text-input" class=" col-form-label">:</label>
-						<div class="col-8">
-							<select name="status"  class="form-control select2">
+						<div class="col-10">
+							<select name="status"  class="form-control select2" style="width: 100%;">
 								<option value="">- Pilih -</option>
 								@foreach($data_rincian as $rincian)
-								<option value="{{ $rincian->no_bayar}}">{{ $rincian->no_bayar}} -- {{ $rincian->keterangan }}</option>
+								<option value="{{ $rincian->no_bayar}}">{{ $rincian->no_bayar}} - {{ $rincian->keterangan }}</option>
 								@endforeach
 							</select>
 							<input type="hidden" name="tahun" value="{{ $tahuns}}">
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
-					</div>														
+					</div>
 					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -292,7 +290,7 @@
 	</div>
 </div>
 
-<!--begin::Modal Delete--> 
+<!--begin::Modal Delete-->
 <div class="modal fade modal-delete-all"   tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -303,7 +301,7 @@
 			<span id="form_result"></span>
                 <form class="form" id="form-delete-all"  enctype="multipart/form-data">
 					@csrf
-                        
+
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Dokumen<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
@@ -312,7 +310,7 @@
 							<input type="hidden" name="tahun" value="{{ $tahuns}}">
 							<input type="hidden" name="bulan" value="{{ $bulans}}">
 						</div>
-					</div>												
+					</div>
 					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -332,7 +330,7 @@
 	</div>
 </div>
 
-<!--begin::Modal Edit--> 
+<!--begin::Modal Edit-->
 <div class="modal fade modal-edit" id="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -343,7 +341,7 @@
 			<span id="form_result"></span>
                 <form class="form" id="form-edit-detail"  enctype="multipart/form-data">
 					@csrf
-                        
+
                     <div class="form-group row ">
 						<label for="example-text-input" class="col-2 col-form-label">No. Urut<span class="text-danger">*</span></label>
 						<label for="example-text-input" class=" col-form-label">:</label>
@@ -380,7 +378,7 @@
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
-								
+
 							</select>
 						</div>
 					</div>
@@ -393,11 +391,11 @@
 								@foreach($data_bagian as $data_bag)
 								<option value="{{ $data_bag->kode }}">{{ $data_bag->kode }} - {{ $data_bag->nama }}</option>
 								@endforeach
-								
+
 							</select>
 						</div>
 					</div>
-	
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Perintah Kerja</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
@@ -415,11 +413,11 @@
 								@foreach($data_jenis as $data_jen)
 								<option value="{{ $data_jen->kode }}">{{ $data_jen->kode }} - {{ $data_jen->keterangan }}</option>
 								@endforeach
-							
+
 							</select>
 						</div>
 					</div>
-									
+
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">C. Judex</label>
 						<label for="example-text-input" class=" col-form-label">:</label>
@@ -432,7 +430,7 @@
 							</select>
 						</div>
 					</div>
-									
+
 
 					<div class="form-group row">
 						<label for="example-text-input" class="col-2 col-form-label">Jumlah<span class="text-danger">*</span></label>
@@ -442,7 +440,7 @@
 						</div>
 					</div>
 
-																					
+
 					<div class="form__actions">
 						<div class="row">
 							<div class="col-2"></div>
@@ -471,7 +469,7 @@ $(document).ready(function () {
 			processing: true,
 			serverSide: false,
 		});
-		
+
 		var jk = $('#jk').val();
 	if(jk == '13'){
 		$("#ci").val('2');
@@ -517,7 +515,7 @@ $(document).ready(function () {
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}	
+	}
 var jk = $('#jk').val();
 var ci = $('#ci').val();
 var lokasi1 = $('#lokasi1').val();
@@ -540,7 +538,7 @@ $.ajax({
 				for(i=0; i<data.length; i++){
 					html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
 				}
-				$('#lokasi').html(html);		
+				$('#lokasi').html(html);
 	},
 	error : function(){
 		alert("Ada kesalahan controller!");
@@ -564,11 +562,11 @@ $('#form-edit').submit(function(){
 		}).then(function() {
 				window.location.replace("{{ route('pembayaran_pbayar.index') }}");;
 			});
-		}, 
+		},
 		error : function(){
 			alert("Terjadi kesalahan, coba lagi nanti");
 		}
-	});	
+	});
 	return false;
 });
 $("#bagian").on("change", function(e){
@@ -646,7 +644,7 @@ var jk = $('#jk').val();
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}	
+	}
 	var ci = $('#ci').val();
 	$.ajax({
 		url : "{{ route('pembayaran_pbayar.lokasiJson') }}",
@@ -666,7 +664,7 @@ var jk = $('#jk').val();
                     for(i=0; i<data.length; i++){
                         html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
                     }
-                    $('#lokasi').html(html);		
+                    $('#lokasi').html(html);
 		},
 		error : function(){
 			alert("Ada kesalahan controller!");
@@ -675,7 +673,7 @@ var jk = $('#jk').val();
 });
 $("#lokasi").on("click", function(){
 	$("#lokasi").on("change", function(){
-		
+
 	var lokasi = $('#lokasi').val();
 	var mp = $('#mp').val();
 	var tahun = $('#tahun').val();
@@ -730,10 +728,10 @@ $('#btn-delete-all').on('click', function(e) {
 			data : $('#form-create-detail').serialize(),
 			dataType : "JSON",
             headers: {
-            'X-CSRF-Token': '{{ csrf_token() }}',
+                'X-CSRF-Token': '{{ csrf_token() }}',
             },
-			success : function(data){
-		console.log(data);
+			success : function(data) {
+		        console.log(data);
 				if(data == 1){
 					Swal.fire({
 						icon  : 'success',
@@ -742,7 +740,7 @@ $('#btn-delete-all').on('click', function(e) {
 						timer : 2000
 					}).then(function() {
 						location.reload();
-						});
+                    });
 				} else {
 					Swal.fire({
 						type  : 'info',
@@ -751,11 +749,11 @@ $('#btn-delete-all').on('click', function(e) {
 						timer : 2000
 					});
 				}
-			}, 
+			},
 			error : function(){
 				alert("Terjadi kesalahan, coba lagi nanti");
 			}
-		});	
+		});
 		return false;
 	});
 	//prosess delete all detail
@@ -777,19 +775,19 @@ $('#btn-delete-all').on('click', function(e) {
 				}).then(function() {
 					location.reload();
 					});
-			}, 
+			},
 			error : function(){
 				alert("Terjadi kesalahan, coba lagi nanti");
 			}
-		});	
+		});
 		return false;
 	});
 //tampil edit detail
 $('#btn-edit').on('click', function(e) {
 	e.preventDefault();
-var allVals = []; 
-if($('input[type=radio]').is(':checked')) {  
-	$("input[type=radio]:checked").each(function() {  
+var allVals = [];
+if($('input[type=radio]').is(':checked')) {
+	$("input[type=radio]:checked").each(function() {
 		var nodok = $(this).attr('nodok').split("/").join("-");
 		var nourut = $(this).attr('nourut');
 			$.ajax({
@@ -819,8 +817,8 @@ if($('input[type=radio]').is(':checked')) {
 			})
 	});
 } else {
-	swalAlertInit('ubah'); 
-}			
+	swalAlertInit('ubah');
+}
 });
 $('#form-edit-detail').submit(function(){
 		$.ajax({
@@ -840,17 +838,17 @@ $('#form-edit-detail').submit(function(){
 				}).then(function() {
 					location.reload();
 					});
-			}, 
+			},
 			error : function(){
 				alert("Terjadi kesalahan, coba lagi nanti");
 			}
-		});	
+		});
 		return false;
 	});
 	//delete
 	$('#btn-delete').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var nodok = $(this).attr('nodok');
 					var nourut = $(this).attr('nourut');
@@ -911,7 +909,7 @@ $('#form-edit-detail').submit(function(){
 		language : 'id',
 		format   : 'dd-mm-yyyy'
 	});
-	
+
 	$('#bulanbuku').datepicker({
 		todayHighlight: true,
 		orientation: "bottom left",

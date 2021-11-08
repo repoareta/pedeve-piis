@@ -22,7 +22,8 @@
     </div>
 
     <div class="card-body">
-        <form method="POST" id="form-edit">
+        <form method="POST" id="form-edit" action="{{ route('penempatan_deposito.update') }}">
+            @csrf
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label text-right">No. Dokumen<span class="text-danger">*</span></label>
                 <div class="col-10">
@@ -37,14 +38,14 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="{{ $data->namabank }}" id="namabank" name="namabank" size="30" maxlength="30" required autocomplete="off">
+                    <input class="form-control bg-secondary" type="text" value="{{ $data->namabank }}" id="namabank" name="namabank" size="30" maxlength="30" readonly autocomplete="off">
                     <input class="form-control" type="hidden" value="{{ $data->kdbank }}" id="kdbank" name="kdbank" size="30" maxlength="30" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal<span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" value="{{ $data->nominal }}"  name="nominal" size="25" maxlength="25" required autocomplete="off">
+                    <input class="form-control money bg-secondary" type="text" value="{{ $data->nominal }}"  name="nominal" size="25" maxlength="25" readonly autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -90,35 +91,35 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('#form-edit').submit(function(e){
-			e.preventDefault();
-            
-            if($(this).valid()) {
-                $.ajax({
-                    url  : "{{ route('penempatan_deposito.update') }}",
-                    type : "POST",
-                    data : $('#form-edit').serialize(),
-                    dataType : "JSON",
-                    headers: {
-                    'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                    success : function(data){
-                    console.log(data);
-                        Swal.fire({
-                            icon  : 'success',
-                            title : 'Data Berhasil Diubah',
-                            text  : 'Berhasil',
-                            timer : 2000
-                        }).then(function() {
-                                location.href = "{{ route('penempatan_deposito.index') }}";
-                            });
-                    }, 
-                    error : function(){
-                        alert("Terjadi kesalahan, coba lagi nanti");
-                    }
-                });	
-            }
-		});
+		// $('#form-edit').submit(function(e){
+		// 	e.preventDefault();
+
+        //     if($(this).valid()) {
+        //         $.ajax({
+        //             url  : "{{ route('penempatan_deposito.update') }}",
+        //             type : "POST",
+        //             data : $('#form-edit').serialize(),
+        //             dataType : "JSON",
+        //             headers: {
+        //             'X-CSRF-Token': '{{ csrf_token() }}',
+        //             },
+        //             success : function(data){
+        //             console.log(data);
+        //                 Swal.fire({
+        //                     icon  : 'success',
+        //                     title : 'Data Berhasil Diubah',
+        //                     text  : 'Berhasil',
+        //                     timer : 2000
+        //                 }).then(function() {
+        //                         location.href = "{{ route('penempatan_deposito.index') }}";
+        //                     });
+        //             },
+        //             error : function(){
+        //                 alert("Terjadi kesalahan, coba lagi nanti");
+        //             }
+        //         });
+        //     }
+		// });
 
         $('#namabank').on('keyup', function () {
 			$(this).val($(this).val().toUpperCase());

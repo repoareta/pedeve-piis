@@ -439,7 +439,7 @@ class PembayaranPBayarController extends Controller
         $i_nominta = $request->status;
         $tgl_app = date('Y-m-d');
         $userid = auth()->user()->userid;
-        $data_c_umum = db::select("SELECT no_bayar,keterangan,coalesce(account,'501XXX') as account,coalesce(nilai,0) as nilai,coalesce(cj,'25') as cj,coalesce(bagian,'B2000') as bagian,coalesce(jb,'000000') as jb,coalesce(pk,'000000') as pk from umu_bayar_detail where no_bayar='$i_nominta'");
+        $data_c_umum = DB::select("SELECT no_bayar,keterangan,coalesce(account,'501XXX') as account,coalesce(nilai,0) as nilai,coalesce(cj,'25') as cj,coalesce(bagian,'B2000') as bagian,coalesce(jb,'000000') as jb,coalesce(pk,'000000') as pk from umu_bayar_detail where no_bayar='$i_nominta'");
         $data_vkepada = DB::select("SELECT kepada as v_kepada from umu_bayar_header where no_bayar='$i_nominta'");
         foreach ($data_c_umum as $t) {
             $data_no = DB::select("SELECT max(lineno) as v_no from kasline where docno='$docno'");
@@ -465,7 +465,7 @@ class PembayaranPBayarController extends Controller
                 'keterangan'  =>  $t->keterangan,
                 'ref_no'  =>  $i_nominta
             ]);
-            
+
             $data_sum = DB::select("SELECT sum(totprice) as v_total from kasline where docno='$docno'");
             foreach ($data_sum as $data_s) {
                 foreach ($data_vkepada as $data_k) {
@@ -484,9 +484,11 @@ class PembayaranPBayarController extends Controller
                     'app_pbd_oleh' => $userid,
                     'app_pbd_tgl' => $tgl_app
                 ]);
+
+            return response()->json(1);
         }
 
-        $data = 1;
+        $data = 2;
         return response()->json($data);
     }
     public function editDetail($nodok, $nourut)

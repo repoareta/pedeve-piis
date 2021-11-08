@@ -1044,12 +1044,14 @@ class PembayaranGajiController extends Controller
                 $nilai_dok = $data->nilai_dok;
             }
             $mp = substr($docno, 0, 1);
-            if ($mp == "M" or $mp == "m") {
+
+            if ($mp == "M") {
                 $reportname = "merah-pdf";
             } else {
                 $reportname = "putih-pdf";
             }
-            $pdf = DomPDF::loadview("pembayaran-gaji.$reportname", compact(
+
+            $pdf = DomPDF::loadview("modul-treasury.pembayaran-gaji.$reportname", compact(
                 'request',
                 'data_list',
                 'jk',

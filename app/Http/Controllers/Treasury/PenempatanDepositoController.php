@@ -43,6 +43,9 @@ class PenempatanDepositoController extends Controller
     {
             $bulan = ltrim($request->bulan, '0');
             $tahun = $request->tahun;
+            $bulans = null;
+            $tahuns = null;
+
             if($bulan <> "" and $tahun <> ""){
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulan' and b.tahun='$tahun' order by a.tgltempo asc");
             }elseif($bulan == "" and $tahun <> ""){
@@ -64,67 +67,118 @@ class PenempatanDepositoController extends Controller
 
                 $data = DB::select("SELECT a.kurs,a.docno,a.lineno,a.noseri,a.nominal,a.tgldep,a.tgltempo,a.perpanjangan,EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,b.haribunga,a.bungatahun,b.bungabulan,b.pph20,b.netbulan,a.asal,a.kdbank,a.keterangan,b.accharibunga,b.accbungabulan,b.accpph20,b.accnetbulan,b.bulan,b.tahun,c.descacct as namabank from mtrdeposito a join account c on a.kdbank=c.kodeacct,dtldepositotest b where a.proses = 'Y' and b.docno=a.docno and a.lineno=b.lineno and a.perpanjangan=b.perpanjangan and b.bulan='$bulans' and b.tahun='$tahuns' order by a.tgltempo asc");
             }
-                return datatables()->of($data)
 
-                ->addColumn('warna', function ($data) {
-                        $temp = date_create($data->tgltempo);
-                        $tgltempo = date_format($temp, 'Y-m-d');
-                    if(($data->selhari <= 2) and ($data->selhari > 0) and  ($data->selbulan == 0) and ($data->seltahun == 0)){
-                        return 1;
-                    }elseif($tgltempo <= date('Y-m-d')){
-                        return 2;
-                    } else {
-                        return 3;
-                    }
-                })
-                ->addColumn('noseri', function ($data) {
-                    return $data->noseri;
-                })
-                ->addColumn('namabank', function ($data) {
-                    return $data->namabank;
-                })
-                ->addColumn('rate', function ($data) {
+            // a.kurs,
+            // a.docno,
+            // a.lineno,
+            // a.noseri,
+            // a.nominal,
+            // a.tgldep,
+            // a.tgltempo,
+            // a.perpanjangan,
+            // EXTRACT(day from tgltempo)-EXTRACT(day from date(now())) selhari,
+            // EXTRACT(month from tgltempo)-EXTRACT(month from date(now())) selbulan,
+            // EXTRACT(year from tgltempo)-EXTRACT(year from date(now())) seltahun,
+            // b.haribunga,
+            // a.bungatahun,
+            // b.bungabulan,
+            // b.pph20,
+            // b.netbulan,
+            // a.asal,
+            // a.kdbank,
+            // a.keterangan,
+            // b.accharibunga,
+            // b.accbungabulan,
+            // b.accpph20,
+            // b.accnetbulan,
+            // b.bulan,
+            // b.tahun,
+            // c.descacct
 
-                return number_format($data->kurs,0) == 0 ? number_format(1,2) : number_format($data->kurs,2);
-                })
-                ->addColumn('nominal', function ($data) {
-                    return currency_format($data->nominal);
-                })
-                ->addColumn('tgldep', function ($data) {
-                    $tgl = date_create($data->tgldep);
-                    return date_format($tgl, 'd/m/Y');
-                })
-                ->addColumn('tgltempo', function ($data) {
-                    $tgl = date_create($data->tgltempo);
-                    return date_format($tgl, 'd/m/Y');
-                })
-                ->addColumn('haribunga', function ($data) {
-                    return $data->haribunga;
-                })
-                ->addColumn('bungatahun', function ($data) {
-                    return currency_format($data->bungatahun);
-                })
-                ->addColumn('bungabulan', function ($data) {
-                    return currency_format($data->bungabulan);
-                })
-                ->addColumn('pph20', function ($data) {
-                    return currency_format($data->pph20);
-                })
-                ->addColumn('netbulan', function ($data) {
-                    return currency_format($data->netbulan);
-                })
-                ->addColumn('accharibunga', function ($data) {
-                    return $data->accharibunga;
-                })
-                ->addColumn('accnetbulan', function ($data) {
-                    return currency_format($data->accnetbulan);
-                })
-                ->addColumn('radio', function ($data) {
-                    $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>';
-                    return $radio;
-                })
-                ->rawColumns(['radio'])
-                ->make(true);
+            $data = DB::table('mtrdeposito')
+                ->join('account', 'account.kodeacct', 'mtrdeposito.kdbank')
+                ->join('dtldepositotest', 'dtldepositotest.docno', 'mtrdeposito.docno')
+                ->where(DB::raw('mtrdeposito.proses'), 'Y');
+
+            if ($request->bulan) {
+                $data = $data->where(DB::raw('dtldepositotest.bulan'), ltrim($request->bulan, '0'));
+            }
+
+            if ($request->tahun) {
+                $data = $data->where(DB::raw('dtldepositotest.tahun'), $request->tahun);
+            }
+
+            return datatables()->of($data->select([
+                'mtrdeposito.*',
+                'account.descacct',
+                'dtldepositotest.*',
+                DB::raw('EXTRACT(day from mtrdeposito.tgltempo)-EXTRACT(day from date(now())) selhari'),
+                DB::raw('EXTRACT(month from mtrdeposito.tgltempo)-EXTRACT(month from date(now())) selbulan'),
+                DB::raw('EXTRACT(year from mtrdeposito.tgltempo)-EXTRACT(year from date(now())) seltahun'),
+            ])->get())
+
+            ->addColumn('warna', function ($item) {
+                $temp = date_create($item->tgltempo);
+                $tgltempo = date_format($temp, 'Y-m-d');
+
+                if (($item->selhari <= 2) and ($item->selhari > 0) and  ($item->selbulan == 0) and ($item->seltahun == 0)) {
+                    return 1;
+                } elseif ($tgltempo <= date('Y-m-d')) {
+                    return 2;
+                } else {
+                    return 3;
+                }
+
+                return 1;
+            })
+            ->addColumn('noseri', function ($data) {
+                return $data->noseri;
+            })
+            ->addColumn('namabank', function ($data) {
+                return $data->descacct;
+            })
+            ->addColumn('rate', function ($data) {
+
+            return number_format($data->kurs,0) == 0 ? number_format(1,2) : number_format($data->kurs,2);
+            })
+            ->addColumn('nominal', function ($data) {
+                return currency_format($data->nominal);
+            })
+            ->addColumn('tgldep', function ($data) {
+                $tgl = date_create($data->tgldep);
+                return date_format($tgl, 'd/m/Y');
+            })
+            ->addColumn('tgltempo', function ($data) {
+                $tgl = date_create($data->tgltempo);
+                return date_format($tgl, 'd/m/Y');
+            })
+            ->addColumn('haribunga', function ($data) {
+                return $data->haribunga;
+            })
+            ->addColumn('bungatahun', function ($data) {
+                return currency_format($data->bungatahun);
+            })
+            ->addColumn('bungabulan', function ($data) {
+                return currency_format($data->bungabulan);
+            })
+            ->addColumn('pph20', function ($data) {
+                return currency_format($data->pph20);
+            })
+            ->addColumn('netbulan', function ($data) {
+                return currency_format($data->netbulan);
+            })
+            ->addColumn('accharibunga', function ($data) {
+                return $data->accharibunga;
+            })
+            ->addColumn('accnetbulan', function ($data) {
+                return currency_format($data->accnetbulan);
+            })
+            ->addColumn('radio', function ($data) {
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" class="btn-radio" name="btn-radio" nodok="'.$data->docno.'" lineno="'.$data->lineno.'" pjg="'.$data->perpanjangan.'"><span></span></label>';
+                return $radio;
+            })
+            ->rawColumns(['radio'])
+            ->make(true);
     }
 
     /**
@@ -174,9 +228,10 @@ class PenempatanDepositoController extends Controller
         $noseri = $request->noseri;
         $nominal = sanitize_nominal($request->nominal);
         $namabank = $request->namabank;
-        $perpanjangan = $request->perpanjangan;
+        $perpanjangan = $request->perpanjangan ?? 0;
         $keterangan = $request->keterangan;
         $kurs = $request->kurs;
+
         Penempatandepo::insert([
             'docno' => $docno,
             'lineno' => $lineno,
@@ -190,154 +245,151 @@ class PenempatanDepositoController extends Controller
             'keterangan' => $keterangan,
             'kurs' => $kurs,
             'statcair' =>'N'
-            ]);
-            Kasline::where('docno', $docno)
-            ->where('lineno', $lineno)
-            ->update([
-                'inputpwd' => 'Y'
-                ]);
-            Mtrdeposito::where('docno', $docno)
-            ->where('lineno', $lineno)
-            ->where('perpanjangan', '0')
-            ->update([
-                'noseri' => $noseri,
-                'tgldep' => $tgldep,
-                'tgltempo' => $tgltempo,
-                'bungatahun' => $tahunbunga,
-                'kurs' => $kurs,
-                'proses' => 'Y'
-                ]);
+        ]);
 
-            $data_mtrdeposito = DB::select("SELECT * from mtrdeposito where docno='$docno' and lineno='$lineno' and perpanjangan='$perpanjangan'");
-            foreach($data_mtrdeposito as $data_mtr)
-            {
-                $i_proses='T';
-                $i_docno=$docno;
-                $i_lineno=$lineno;
-                $i_panjang=$perpanjangan;
-                $kdbank = $data_mtr->kdbank;
+        Kasline::where('docno', $docno)
+        ->where('lineno', $lineno)
+        ->update([
+            'inputpwd' => 'Y'
+        ]);
+        Mtrdeposito::where('docno', $docno)
+        ->where('lineno', $lineno)
+        ->update([
+            'noseri' => $noseri,
+            'tgldep' => $tgldep,
+            'tgltempo' => $tgltempo,
+            'bungatahun' => $tahunbunga,
+            'kurs' => $kurs,
+            'proses' => 'Y'
+        ]);
 
-                if($i_proses == 'T'){
-                    $data_kdbank = DB::select("SELECT jenis as v_jenis from account where kodeacct='$kdbank'");
-                    foreach($data_kdbank as $data_kdb)
-                    {
-                        if($data_kdb->v_jenis == 'T'){
-                                $v_pembagi = '36000';
-                        } else {
-                                $v_pembagi = '36500';
-                        }
-                    }
+        $data_mtr = MtrDeposito::where('docno', $docno)->where('lineno', $lineno)->first();
 
-                    $tgltempos = date_create($data_mtr->tgltempo);
-                    $tgltempo= date_format($tgltempos, 'm');
+        $i_docno=$docno;
+        $i_lineno=$lineno;
+        $i_panjang=$perpanjangan;
+        $kdbank = $data_mtr->kdbank;
+        $v_tgldepotemp = date_create($data_mtr->tgldep);
 
-                    $tgldeps = date_create($data_mtr->tgldep);
-                    $tgldep= date_format($tgldeps, 'm');
-                    $bulan = ltrim(date_format($tgldeps, 'm'),0);
-                    $tahun = date_format($tgldeps, 'Y');
-                    $lastday = date('t',strtotime($data_mtr->tgldep));
-
-                    $v_range = $tgltempo - $tgldep;
-                    if($v_range < 0 ){
-                        $v_rangeok = ($tgltempo+12) - $tgldep;
-                    } else {
-                        $v_rangeok = $v_range;
-                    }
-
-                    if($v_rangeok == 0 ){ //bulan sama
-                        $v_jumhari = hitunghari($data_mtr->tgldep,$data_mtr->tgltempo);
-                        $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
-                        $v_pph20 = round($v_bungabulan * (20/100),2);
-                        $v_bunganet = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
-
-                        Dtldepositotest::insert([
-                            'docno' => $i_docno,
-                            'lineno' => $i_lineno,
-                            'bulan' => $bulan,
-                            'tahun' => $tahun,
-                            'haribunga' => $v_jumhari,
-                            'bungabulan' => $v_bungabulan,
-                            'pph20' => $v_pph20,
-                            'netbulan' => $v_bunganet,
-                            'perpanjangan' => $i_panjang,
-                            'tglawal' => $data_mtr->tgldep,
-                            'tglakhir' => $data_mtr->tgltempo,
-                            'accharibunga' => $v_jumhari,
-                            'accbungabulan' => $v_bungabulan,
-                            'accpph20' => $v_pph20,
-                            'accnetbulan' => $v_bunganet,
-                            ]);
-                    }elseif($v_rangeok == 1){   //bulan beda 1
-                        $v_jumhari = hitunghari($data_mtr->tgldep, $data_mtr->tgltempo);
-                        $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
-                        $v_pph20  = round($v_bungabulan * (20/100),2);
-                        $v_bunganet  = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
-                        $v_jumhari2 =hitunghari($data_mtr->tgldep,$lastday);
-                        $v_bungabulan2  = round(($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi,2);
-                        $v_pph202  = round($v_bungabulan2 * (20/100),2);
-                        $v_bunganet2  = round((($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan2 * (20/100)),2);
-                        Dtldepositotest::insert([
-                            'docno' => $i_docno,
-                            'lineno' => $i_lineno,
-                            'bulan' => $bulan,
-                            'tahun' => $tahun,
-                            'haribunga' => $v_jumhari,
-                            'bungabulan' => $v_bungabulan,
-                            'pph20' => $v_pph20,
-                            'netbulan' => $v_bunganet,
-                            'perpanjangan' => $i_panjang,
-                            'tglawal' => $data_mtr->tgldep,
-                            'tglakhir' => $data_mtr->tgltempo,
-                            'accharibunga' => $v_jumhari2,
-                            'accbungabulan' => $v_bungabulan2,
-                            'accpph20' => $v_pph202,
-                            'accnetbulan' => $v_bunganet2,
-                            ]);
-                    }elseif($v_rangeok > 1){ // jarak bulan > 1
-                        $v_tgldepotemp = date_create($data_mtr->tgldep);
-                        $bulan = date_format($v_tgldepotemp, 'm');
-                        $tahun = date_format($v_tgldepotemp, 'Y');
-                        $v_hariakhirtemp =date_format($v_tgldepotemp, 'd');
-                        $v_bulanakhirtemp =date_format($v_tgldepotemp, 'm')+1;
-                        $v_tahunakhirtemp =date_format($v_tgldepotemp, 'Y');
-                        if($v_bulanakhirtemp > 12){
-                            $v_bulanakhirtemp =1;
-                            $v_tahunakhirtemp = $v_tahunakhirtemp+1;
-                        }
-                        $v_tglakhir =$v_tahunakhirtemp.'-'.$v_bulanakhirtemp.'-'.$v_hariakhirtemp;
-                        $v_hasiltgl = date_create($v_tglakhir);
-                        $v_hasiltglakhir =date_format($v_hasiltgl, 'Y-m-d');
-                        $v_jumhari =hitunghari($data_mtr->tgldep,$v_hasiltglakhir);
-                        $v_bungabulan  = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
-                        $v_pph20  = round($v_bungabulan * (20/100),2);
-                        $v_bunganet  = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
-                        $v_jumhari2 =hitunghari($v_tgldepotemp,$lastday);
-                        $v_bungabulan2  = round(($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi,2);
-                        $v_pph202  = round($v_bungabulan2 * (20/100),2);
-                        $v_bunganet2  = round((($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan2 * (20/100)),2);
-                        Dtldepositotest::insert([
-                            'docno' => $i_docno,
-                            'lineno' => $i_lineno,
-                            'bulan' => $bulan,
-                            'tahun' => $tahun,
-                            'haribunga' => $v_jumhari,
-                            'bungabulan' => $v_bungabulan,
-                            'pph20' => $v_pph20,
-                            'netbulan' => $v_bunganet,
-                            'perpanjangan' => $i_panjang,
-                            'tglawal' => $data_mtr->tgldep,
-                            'tglakhir' => $v_hasiltglakhir,
-                            'accharibunga' => $v_jumhari2,
-                            'accbungabulan' => $v_bungabulan2,
-                            'accpph20' => $v_pph202,
-                            'accnetbulan' => $v_bunganet2,
-                            ]);
-                    }
-                }
+        $data_kdbank = DB::select("SELECT jenis as v_jenis from account where kodeacct='$kdbank'");
+        foreach($data_kdbank as $data_kdb)
+        {
+            if($data_kdb->v_jenis == 'T'){
+                    $v_pembagi = '36000';
+            } else {
+                    $v_pembagi = '36500';
             }
+        }
 
-            Alert::success('Data berhasil ditambah', 'Success')->persistent(true);
-            return redirect()->route('penempatan_deposito.index');
+        $tgltempos = date_create($data_mtr->tgltempo);
+        $tgltempo= date_format($tgltempos, 'm');
+
+        $tgldeps = date_create($data_mtr->tgldep);
+        $tgldep= date_format($tgldeps, 'm');
+        $bulan = ltrim(date_format($tgldeps, 'm'),0);
+        $tahun = date_format($tgldeps, 'Y');
+        $lastday = date('t',strtotime($data_mtr->tgldep));
+
+        $v_range = $tgltempo - $tgldep;
+        if($v_range < 0 ){
+            $v_rangeok = ($tgltempo+12) - $tgldep;
+        } else {
+            $v_rangeok = $v_range;
+        }
+
+        if($v_rangeok == 0 ){ //bulan sama
+            $v_jumhari = hitunghari($data_mtr->tgldep,$data_mtr->tgltempo);
+            $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
+            $v_pph20 = round($v_bungabulan * (20/100),2);
+            $v_bunganet = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
+
+            Dtldepositotest::insert([
+                'docno' => $i_docno,
+                'lineno' => $i_lineno,
+                'bulan' => $bulan,
+                'tahun' => $tahun,
+                'haribunga' => $v_jumhari,
+                'bungabulan' => $v_bungabulan,
+                'pph20' => $v_pph20,
+                'netbulan' => $v_bunganet,
+                'perpanjangan' => $i_panjang,
+                'tglawal' => $data_mtr->tgldep,
+                'tglakhir' => $data_mtr->tgltempo,
+                'accharibunga' => $v_jumhari,
+                'accbungabulan' => $v_bungabulan,
+                'accpph20' => $v_pph20,
+                'accnetbulan' => $v_bunganet,
+            ]);
+        }elseif($v_rangeok == 1){   //bulan beda 1
+            $v_jumhari = hitunghari($data_mtr->tgldep, $data_mtr->tgltempo);
+            $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
+            $v_pph20  = round($v_bungabulan * (20/100),2);
+            $v_bunganet  = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
+            $v_jumhari2 = hitunghari($v_tgldepotemp->format('Y-m-d'), $request->tanggal2);
+            $v_bungabulan2  = round(($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi,2);
+            $v_pph202  = round($v_bungabulan2 * (20/100),2);
+            $v_bunganet2  = round((($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan2 * (20/100)),2);
+            Dtldepositotest::insert([
+                'docno' => $i_docno,
+                'lineno' => $i_lineno,
+                'bulan' => $bulan,
+                'tahun' => $tahun,
+                'haribunga' => $v_jumhari,
+                'bungabulan' => $v_bungabulan,
+                'pph20' => $v_pph20,
+                'netbulan' => $v_bunganet,
+                'perpanjangan' => $i_panjang,
+                'tglawal' => $data_mtr->tgldep,
+                'tglakhir' => $data_mtr->tgltempo,
+                'accharibunga' => $v_jumhari2,
+                'accbungabulan' => $v_bungabulan2,
+                'accpph20' => $v_pph202,
+                'accnetbulan' => $v_bunganet2,
+            ]);
+        }elseif($v_rangeok > 1){ // jarak bulan > 1
+            $v_tgldepotemp = date_create($data_mtr->tgldep);
+            $bulan = date_format($v_tgldepotemp, 'm');
+            $tahun = date_format($v_tgldepotemp, 'Y');
+            $v_hariakhirtemp =date_format($v_tgldepotemp, 'd');
+            $v_bulanakhirtemp =date_format($v_tgldepotemp, 'm')+1;
+            $v_tahunakhirtemp =date_format($v_tgldepotemp, 'Y');
+            if($v_bulanakhirtemp > 12){
+                $v_bulanakhirtemp =1;
+                $v_tahunakhirtemp = $v_tahunakhirtemp+1;
+            }
+            $v_tglakhir =$v_tahunakhirtemp.'-'.$v_bulanakhirtemp.'-'.$v_hariakhirtemp;
+            $v_hasiltgl = date_create($v_tglakhir);
+            $v_hasiltglakhir =date_format($v_hasiltgl, 'Y-m-d');
+            $v_jumhari =hitunghari($data_mtr->tgldep,$v_hasiltglakhir);
+            $v_bungabulan  = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi,2);
+            $v_pph20  = round($v_bungabulan * (20/100),2);
+            $v_bunganet  = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan * (20/100)),2);
+            $v_jumhari2 = hitunghari($v_tgldepotemp->format('Y-m-d'), $request->tanggal2);
+            $v_bungabulan2  = round(($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi,2);
+            $v_pph202  = round($v_bungabulan2 * (20/100),2);
+            $v_bunganet2  = round((($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun)/$v_pembagi) - ($v_bungabulan2 * (20/100)),2);
+
+            Dtldepositotest::insert([
+                'docno' => $i_docno,
+                'lineno' => $i_lineno,
+                'bulan' => $bulan,
+                'tahun' => $tahun,
+                'haribunga' => $v_jumhari,
+                'bungabulan' => $v_bungabulan,
+                'pph20' => $v_pph20,
+                'netbulan' => $v_bunganet,
+                'perpanjangan' => $i_panjang,
+                'tglawal' => date('Y-m-d', strtotime($data_mtr->tgldep)),
+                'tglakhir' => $v_hasiltglakhir,
+                'accharibunga' => $v_jumhari2,
+                'accbungabulan' => $v_bungabulan2,
+                'accpph20' => $v_pph202,
+                'accnetbulan' => $v_bunganet2,
+            ]);
+        }
+
+        Alert::success('Data berhasil ditambah', 'Success')->persistent(true);
+        return redirect()->route('penempatan_deposito.index');
     }
 
     public function edit($id, $lineno, $pjg)
@@ -348,7 +400,6 @@ class PenempatanDepositoController extends Controller
             ->join(DB::raw('account as b'), DB::raw('a.kdbank'), '=', DB::raw('b.kodeacct'))
             ->where(DB::raw('a.docno'), '=', $nodok)
             ->where('lineno', '=', $lineno)
-            ->where('perpanjangan', '=', $pjg)
             ->select(DB::raw('a.*, b.descacct as namabank'))
             ->first();
 
@@ -370,8 +421,6 @@ class PenempatanDepositoController extends Controller
         $perpanjangan = $request->perpanjangan;
         $keterangan = $request->keterangan;
         $kurs = $request->kurs;
-
-        Dtldepositotest::where('docno', $request->nodok)->where('lineno', $request->lineno)->where('perpanjangan', $request->perpanjangan)->delete();
 
         Penempatandepo::where('docno', $request->nodok)->where('lineno', $request->lineno)
         ->update([
@@ -396,13 +445,14 @@ class PenempatanDepositoController extends Controller
             'proses' =>  'Y',
         ]);
 
-        $data_mtrdeposito = DB::select("SELECT * from mtrdeposito where docno='$docno' and lineno='$lineno' and perpanjangan='$perpanjangan'");
+        $data_mtrdeposito = DB::select("SELECT * from mtrdeposito where docno='$docno' and lineno='$lineno'");
         foreach ($data_mtrdeposito as $data_mtr) {
             $i_proses = 'T';
             $i_docno = $docno;
             $i_lineno = $lineno;
             $i_panjang = $perpanjangan;
             $kdbank = $data_mtr->kdbank;
+            $depo = Dtldepositotest::where('docno', $docno)->where('lineno', $lineno)->first();
 
             if ($i_proses == 'T') {
                 $data_kdbank = DB::select("SELECT jenis as v_jenis from account where kodeacct='$kdbank'");
@@ -436,7 +486,7 @@ class PenempatanDepositoController extends Controller
                     $v_pph20 = round($v_bungabulan * (20 / 100), 2);
                     $v_bunganet = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun) / $v_pembagi) - ($v_bungabulan * (20 / 100)), 2);
 
-                    Dtldepositotest::insert([
+                    $depo->update([
                         'docno' => $i_docno,
                         'lineno' => $i_lineno,
                         'bulan' => $bulan,
@@ -454,15 +504,16 @@ class PenempatanDepositoController extends Controller
                         'accnetbulan' => $v_bunganet,
                     ]);
                 } elseif ($v_rangeok == 1) {   //bulan beda 1
+                    $v_tgldepotemp = date_create($data_mtr->tgldep);
                     $v_jumhari = hitunghari($data_mtr->tgldep, $data_mtr->tgltempo);
                     $v_bungabulan = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun) / $v_pembagi, 2);
                     $v_pph20  = round($v_bungabulan * (20 / 100), 2);
                     $v_bunganet  = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun) / $v_pembagi) - ($v_bungabulan * (20 / 100)), 2);
-                    $v_jumhari2 = hitunghari($data_mtr->tgldep, $lastday);
+                    $v_jumhari2 = hitunghari($v_tgldepotemp->format('Y-m-d'), $request->tanggal2);
                     $v_bungabulan2  = round(($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun) / $v_pembagi, 2);
                     $v_pph202  = round($v_bungabulan2 * (20 / 100), 2);
                     $v_bunganet2  = round((($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun) / $v_pembagi) - ($v_bungabulan2 * (20 / 100)), 2);
-                    Dtldepositotest::insert([
+                    $depo->update([
                         'docno' => $i_docno,
                         'lineno' => $i_lineno,
                         'bulan' => $bulan,
@@ -497,11 +548,11 @@ class PenempatanDepositoController extends Controller
                     $v_bungabulan  = round(($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun) / $v_pembagi, 2);
                     $v_pph20  = round($v_bungabulan * (20 / 100), 2);
                     $v_bunganet  = round((($data_mtr->nominal * $v_jumhari * $data_mtr->bungatahun) / $v_pembagi) - ($v_bungabulan * (20 / 100)), 2);
-                    $v_jumhari2 = hitunghari($data_mtr->tgldep, $lastday);
+                    $v_jumhari2 = hitunghari($v_tgldepotemp->format('Y-m-d'), $request->tanggal2);
                     $v_bungabulan2  = round(($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun) / $v_pembagi, 2);
                     $v_pph202  = round($v_bungabulan2 * (20 / 100), 2);
                     $v_bunganet2  = round((($data_mtr->nominal * $v_jumhari2 * $data_mtr->bungatahun) / $v_pembagi) - ($v_bungabulan2 * (20 / 100)), 2);
-                    Dtldepositotest::insert([
+                    $depo->update([
                         'docno' => $i_docno,
                         'lineno' => $i_lineno,
                         'bulan' => $bulan,
@@ -520,9 +571,10 @@ class PenempatanDepositoController extends Controller
                     ]);
                 }
             }
-            Alert::success('Data berhasil ditambah', 'Success')->persistent(true);
-            return redirect()->route('penempatan_deposito.index');
         }
+
+        Alert::success('Data berhasil diubah', 'Success')->persistent(true);
+        return redirect()->route('penempatan_deposito.index');
     }
 
     public function delete(Request $request)
@@ -530,8 +582,8 @@ class PenempatanDepositoController extends Controller
         $nodok = str_replace('-', '/', $request->nodok);
 
         Dtldepositotest::where('docno', $nodok)->where('lineno', $request->lineno)->where('perpanjangan', $request->pjg)->delete();
-        Mtrdeposito::where('docno', $nodok)->where('lineno', $request->lineno)->where('perpanjangan', $request->pjg)->delete();
-        PenempatanDepo::where('docno', $nodok)->where('lineno', $request->lineno)->delete();
+        // Mtrdeposito::where('docno', $nodok)->where('lineno', $request->lineno)->where('perpanjangan', $request->pjg)->delete();
+        // PenempatanDepo::where('docno', $nodok)->where('lineno', $request->lineno)->delete();
         Kasline::where('docno', $nodok)->where('lineno', $request->lineno)
         ->update([
             'inputpwd' =>  'N',

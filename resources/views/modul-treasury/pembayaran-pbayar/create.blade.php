@@ -31,20 +31,20 @@
                     <input type="text" class="form-control"  value="{{ $mp}}" size="1" maxlength="1" name="mp" id="mp" readonly style="background-color:#e4e6ef; cursor:not-allowed"></td>
                 </div>
             </div>
-    
+
             <div class="form-group row">
             <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
             <div class="col-4">
                 <input class="form-control" type="text" value="{{ $bulan }}" name="bulan" id="bulan" size="2" maxlength="2" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 <input class="form-control" type="hidden" value="{{ $bulan_buku}}" name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
-                
+
             </div>
                 <div class="col-6">
                     <input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" id="tahun" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                     <input class="form-control" type="hidden" value="{{ Auth::user()->userid }}" name="userid">
                 </div>
             </div>
-    
+
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Bagian<span class="text-danger">*</span></label>
                 <div class="col-10">
@@ -53,12 +53,12 @@
                         @foreach($data_bagian as $data)
                         <option value="{{ $data->kode }}">{{ $data->kode }} - {{ $data->nama }}</option>
                         @endforeach
-                        
+
                     </select>
                         <input class="form-control" type="hidden" value=""  name="nomor" id="nomor" size="6" maxlength="6" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
             </div>
-    
+
             <div class="form-group row">
                 <label class="col-2 col-form-label">Jenis Kartu<span class="text-danger">*</span></label>
                 <div class="col-3">
@@ -67,7 +67,7 @@
                         <option value="10">Kas(Rupiah)</option>
                         <option value="11">Bank(Rupiah)</option>
                         <option value="13">Bank(Dollar)</option>
-                        
+
                     </select>							</div>
                 <label class="col-2 col-form-label">Currency Index</label>
                 <div class="col-2">
@@ -78,7 +78,7 @@
                     <input class="form-control" type="text" name="kurs" value="" id="kurs" size="7" maxlength="7">
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
                 <div class="col-4">
@@ -95,7 +95,7 @@
                     <input class="form-control" type="text" name="nover" value="{{ $nover}}" id="nover" readonly style="background-color:#e4e6ef; cursor:not-allowed">
                 </div>
             </div>
-    
+
             <div class="form-group row">
                 <label class="col-2 col-form-label">
                 @if($mp == "M") {{ $darkep}} @else {{ $darkep}} @endif<span class="text-danger">*</span></label>
@@ -145,7 +145,7 @@
 @push('page-scripts')
 <script>
     $(document).ready(function () {
-				$("#jk").on("change", function(){ 
+				$("#jk").on("change", function(){
 		var ci = $(this).val();
 		console.log(ci);
 		if(ci != 13)
@@ -165,7 +165,7 @@
 			$('#kurs').css("background-color","#ffffff");
 			$('#kurs').css("cursor","text");
 		}
-			
+
 	});
 $('#form-create').submit(function(){
 	var mp = $("#mp").val();
@@ -178,7 +178,7 @@ $('#form-create').submit(function(){
 		data : $('#form-create').serialize(),
 		dataType : "JSON",
 		headers: {
-		'X-CSRF-Token': '{{ csrf_token() }}',
+		    'X-CSRF-Token': '{{ csrf_token() }}',
 		},
 		success : function(data){
 		console.log(data);
@@ -204,11 +204,11 @@ $('#form-create').submit(function(){
 				text  : 'Failed',
 			});
 		}
-		}, 
+		},
 		error : function(){
 			alert("Terjadi kesalahan, coba lagi nanti");
 		}
-	});	
+	});
 	return false;
 });
 $("#bagian").on("change", function(){
@@ -269,7 +269,7 @@ var jk = $('#jk').val();
 		$("#nokas").val("");
 		$("#nobukti1").val("");
 		$("#nama_kas").val("");
-	}	
+	}
 	var ci = $('#ci').val();
 	$.ajax({
 		url : "{{ route('pembayaran_pbayar.lokasiJson') }}",
@@ -289,7 +289,7 @@ var jk = $('#jk').val();
                     for(i=0; i<data.length; i++){
                         html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'--'+data[i].norekening+'</option>';
                     }
-                    $('#lokasi').html(html);		
+                    $('#lokasi').html(html);
 		},
 		error : function(){
 			alert("Ada kesalahan controller!");
@@ -340,7 +340,7 @@ $('#nilai').keyup(function(){
 		language : 'id',
 		format   : 'dd-mm-yyyy'
 	});
-	
+
 	$('#bulanbuku').datepicker({
 		rtl: KTUtil.isRTL(),
 		todayHighlight: true,

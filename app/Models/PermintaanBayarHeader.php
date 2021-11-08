@@ -11,6 +11,7 @@ class PermintaanBayarHeader extends Model
 
     protected $table="umu_bayar_header";
     protected $primaryKey = 'no_bayar';
+    protected $guarded = [];
     public $incrementing = false;
     public $timestamps = false;
 
