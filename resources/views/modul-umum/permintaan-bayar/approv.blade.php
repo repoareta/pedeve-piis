@@ -18,7 +18,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route('modul_umum.permintaan_bayar.store.app', str_replace('/', '-', $data->no_bayar)) }}" method="POST" id="form-approve">
+        <form action="{{ route('modul_umum.permintaan_bayar.store.app', ['no' => str_replace('/', '-', $data->no_bayar)]) }}" method="POST" id="form-approve">
             @csrf
             <div class="form-group row">
                 <label for="mulai-input" class="col-2 col-form-label">No.Dokumen</label>

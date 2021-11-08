@@ -11,6 +11,7 @@ class DtlDepositoTest extends Model
 
     protected $table = "dtldepositotest";
     protected $primaryKey = null; // or null
+    protected $guarded = [];
     public $timestamps = false;
     public $incrementing = false;
 }

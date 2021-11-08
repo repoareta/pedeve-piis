@@ -43,14 +43,14 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bank <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" required autocomplete="off">
+                    <input class="form-control bg-secondary" type="text" value="" id="namabank" name="namabank" size="30" maxlength="30" readonly autocomplete="off">
                     <input class="form-control" type="hidden" value="" id="kdbank" name="kdbank" size="30" maxlength="30" required autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Nominal <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control money" type="text" value="" id="nominal" name="nominal" size="25" maxlength="25" required autocomplete="off" readonly>
+                    <input class="form-control money bg-secondary" type="text" value="" id="nominal" name="nominal" size="25" maxlength="25" required autocomplete="off" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -68,7 +68,7 @@
             <div class="form-group row">
                 <label for="" class="col-2 col-form-label text-right">Bunga % Tahun <span class="text-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" value="" name="tahunbunga" size="15" maxlength="15"  required oninput="this.value = this.value.replace(/[^0-9\-]+/g, ',');" autocomplete="off">
+                    <input class="form-control money" type="text" value="" name="tahunbunga" size="15" maxlength="15" autocomplete="off">
                 </div>
             </div>
             <div class="form-group row">
@@ -116,6 +116,7 @@
 					$('#keterangan').val(data.keterangan);
 					$('#kdbank').val(data.kdbank);
 					$('#namabank').val(data.descacct);
+                    console.log(data);
 					var bilangan=data.nominal;
 					var	number_string = bilangan.toString(),
 						sisa 	= number_string.length % 3,
@@ -127,7 +128,7 @@
 						rupiah += separator + ribuan.join('.');
 					}
 					$('#nominal').val(data.nominal);
-					$('#asal').val(data.asal || "");
+					$('#asal').val(data.asal);
 				},
 				error : function(){
 					alert("Ada kesalahan controller!");

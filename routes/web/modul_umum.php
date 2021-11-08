@@ -43,7 +43,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
                 Route::post('{no_panjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasDetailController::class, 'update'])->name('update');
                 Route::delete('{no_panjar}/detail/delete', [PerjalananDinasDetailController::class, 'delete'])->name('delete');
             });
-            
+
             // PERJALANAN DINAS DETAIL END
 
             // Route assigned name "perjalanan_dinas.pertanggungjawaban.index"...
@@ -69,13 +69,13 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
                         Route::post('{no_ppanjar}/detail/update/{no_urut}/{nopek}', [PerjalananDinasPertanggungjawabanDetailController::class, 'update'])->name('update');
                         Route::delete('{no_ppanjar}/detail/delete', [PerjalananDinasPertanggungjawabanDetailController::class, 'delete'])->name('delete');
                     });
-                    
+
                     // P PERJALANAN DINAS DETAIL END
-                }); 
+                });
             });
         });
     });
-    
+
     // UMK
     // Route assigned name "uang-muka-kerja.index"...
     Route::name('uang_muka_kerja.')->group(function () {
@@ -126,7 +126,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
             // P UANG MUKA KERJA DETAIL END
         });
     });
-    //END UANG MUKA KERJA    
+    //END UANG MUKA KERJA
 
     // Permintaan Bayar
     // Route assigned name "permintaan-bayar.index"...
@@ -140,7 +140,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::get('permintaan-bayar/create', [PermintaanBayarController::class, 'create'])->name('create');
         Route::post('permintaan-bayar/store', [PermintaanBayarController::class, 'store'])->name('store');
         Route::post('permintaan-bayar/store_detail', [PermintaanBayarController::class, 'storeDetail'])->name('store.detail');
-        Route::post('permintaan-bayar/store_app', [PermintaanBayarController::class, 'storeApp'])->name('store.app');
+        Route::post('permintaan-bayar/store_app/{no}', [PermintaanBayarController::class, 'storeApp'])->name('store.app');
         Route::get('permintaan-bayar/edit/{no}', [PermintaanBayarController::class, 'edit'])->name('edit');
         Route::get('permintaan-bayar/editdetail/{id}/{no}', [PermintaanBayarController::class, 'editDetail'])->name('edit.detail');
         Route::get('permintaan-bayar/approv/{id}', [PermintaanBayarController::class, 'approv'])->name('approv');
@@ -166,7 +166,7 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::get('anggaran/report', [AnggaranController::class, 'report'])->name('report');
         Route::post('anggaran/report/export', [AnggaranController::class, 'reportExport'])->name('report.export');
         Route::get('anggaran/get-by-tahun', [AnggaranController::class, 'getByTahun'])->name('get_by_tahun');
-    
+
         // ANGGARAN SUBMAIN START
         Route::name('submain.')->group(function () {
             Route::get('anggaran/submain', [AnggaranSubMainController::class, 'index'])->name('index');
@@ -191,8 +191,8 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
             // ANGGARAN SUBMAIN DETAIL END
         });
     });
-    
-    
+
+
     //vendor
     // Route assigned name "vendor.index"...
     Route::name('vendor.')->group(function () {
