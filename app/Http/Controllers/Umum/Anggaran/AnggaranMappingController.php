@@ -36,7 +36,7 @@ class AnggaranMappingController extends Controller
         return DataTables::of($detail_anggaran_list)
             ->filter(function ($query) use ($request) {
                 if ($request->has('kode_detail_anggaran')) {
-                    $query->where('kode', 'like', "%{$request->get('kode_detail_anggaran')}%");
+                    $query->where('kode', 'like', "{$request->get('kode_detail_anggaran')}%");
                 }
 
                 if ($request->has('tahun')) {
@@ -111,7 +111,12 @@ class AnggaranMappingController extends Controller
 
     public function ajaxSanper(Request $request)
     {
+        $sanperAnggaranMappingList = AnggaranMapping::select('kodeacct')
+        ->get()
+        ->toArray();
+
         $sanperList = Account::select('kodeacct', 'descacct')
+        ->whereNotIn('kodeacct', $sanperAnggaranMappingList)
         ->where('kodeacct', 'like', "$request->q%")
         ->orWhere('descacct', 'like', "$request->q%")
         ->orderByDesc('kodeacct')

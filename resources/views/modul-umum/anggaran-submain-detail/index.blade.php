@@ -40,7 +40,7 @@
 		<div class="col-12">
 			<form class="form" id="search-form" method="POST">
 				<div class="form-group row">
-					<label for="" class="col-form-label">Kode Sub Anggaran</label>
+					<label for="" class="col-form-label">Kode Anggaran Submain</label>
 					<div class="col-2">
 						<input class="form-control" type="text" name="kode" id="kode">
 					</div>
@@ -72,7 +72,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th>Sub Main</th>
+                            <th>Kode Anggaran Submain</th>
                             <th>Detail Anggaran</th>
                             <th>Tahun</th>
                             <th>Realisasi</th>
@@ -120,13 +120,13 @@ $(document).ready(function () {
         e.preventDefault();
         if($('input[type=radio]').is(':checked')) { 
             $("input[type=radio]:checked").each(function() {
-                var id = $(this).val();
-                var url = '{{ route("modul_umum.anggaran.submain.detail.edit", [":kode_main", ":kode_submain", ":kode"]) }}';
+                var kode = $(this).val();
+                var kode_submain = $(this).data('kode_submain');
+                var url = '{{ route("modul_umum.anggaran.submain.detail.edit", [":kode_submain", ":kode"]) }}';
                 // go to page edit
                 window.location.href = url
-                .replace(':kode_main', 1)
-                .replace(':kode_submain', 2)
-                .replace(':kode', id);
+                .replace(':kode_submain', kode_submain)
+                .replace(':kode', kode);
             });
         } else {
             swalAlertInit('ubah');
@@ -137,7 +137,9 @@ $(document).ready(function () {
         e.preventDefault();
         if($('input[type=radio]').is(':checked')) { 
             $("input[type=radio]:checked").each(function() {
-                var id = $(this).val();
+                var kode = $(this).val();
+                var kode_submain = $(this).data('kode_submain');
+                var tahun = $(this).data('tahun');
                 // delete stuff
                 const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
@@ -149,7 +151,7 @@ $(document).ready(function () {
 
                 swalWithBootstrapButtons.fire({
                     title: "Data yang akan dihapus?",
-                    text: "Kode : " + id,
+                    text: "Kode : " + kode,
                     icon: 'warning',
                     showCancelButton: true,
                     reverseButtons: true,
@@ -163,14 +165,15 @@ $(document).ready(function () {
                             type: 'DELETE',
                             dataType: 'json',
                             data: {
-                                "id": id,
-                                "kode_submain": id,
+                                "kode": kode,
+                                "kode_submain": kode_submain,
+                                "tahun": tahun,
                                 "_token": "{{ csrf_token() }}",
                             },
                             success: function () {
                                 Swal.fire({
                                     icon  : 'success',
-                                    title : 'Hapus Kode ' + id,
+                                    title : 'Hapus Kode ' + kode,
                                     text  : 'Berhasil',
                                     timer : 2000
                                 }).then(function() {

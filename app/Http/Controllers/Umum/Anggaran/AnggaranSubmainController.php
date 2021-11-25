@@ -171,4 +171,17 @@ class AnggaranSubmainController extends Controller
             return response()->json();
         }
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param Type $var
+     * @return void
+     */
+    public function getByTahun(Request $request)
+    {
+        $anggaran_submain_list = AnggaranSubMain::where('tahun', $request->tahun)->get();
+        
+        return response()->json($anggaran_submain_list);
+    }
 }

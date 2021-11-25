@@ -53,7 +53,7 @@ class AnggaranSubmainDetailController extends Controller
                 return $row->kode.' - '.$row->nama;
             })
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode.'" data-kode_submain="'.$row->kode_submain.'" data-tahun="'.$row->tahun.'"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])
@@ -67,11 +67,10 @@ class AnggaranSubmainDetailController extends Controller
      */
     public function create()
     {
-        $anggaran_main_list = AnggaranMain::all();
-        $anggaran_submain_list = AnggaranSubMain::all();
+        $anggaran_submain_list = AnggaranSubMain::where('tahun', date('Y'))
+        ->get();
         
         return view('modul-umum.anggaran-submain-detail.create', compact(
-            'anggaran_main_list',
             'anggaran_submain_list',
         ));
     }
@@ -82,22 +81,20 @@ class AnggaranSubmainDetailController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AnggaranSubmainDetailStore $request, $kode_submain)
+    public function store(AnggaranSubmainDetailStore $request, AnggaranDetail $anggaran)
     {
-        $anggaran = new AnggaranDetail;
-
-        $anggaran->kode_submain = $kode_submain;
+        $anggaran->kode_submain = $request->kode_submain;
         $anggaran->kode = $request->kode;
         $anggaran->nama = $request->nama;
-        $anggaran->nilai = $request->nilai;
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
 
         $anggaran->save();
 
-        Alert::success('Simpan Anggaran Submain Detail', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('anggaran.submain.detail.index');
+        Alert::success('Simpan Detail Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        
+        return redirect()->route('modul_umum.anggaran.submain.detail.index');
     }
 
     /**
@@ -106,14 +103,20 @@ class AnggaranSubmainDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($kode_main, $kode_submain, $kode)
+    public function edit($kode_submain, $kode)
     {
-        $anggaran = AnggaranDetail::find($kode);
+        $anggaran = AnggaranDetail::where('kode_submain', $kode_submain)
+        ->where('kode', $kode)
+        ->firstOrFail();
+
+        $anggaran_submain_list = AnggaranSubMain::where('tahun', $anggaran->tahun)
+        ->get();
+
         return view('modul-umum.anggaran-submain-detail.edit', compact(
-            'kode_main',
             'kode_submain',
             'kode',
-            'anggaran'
+            'anggaran',
+            'anggaran_submain_list'
         ));
     }
 
@@ -124,7 +127,7 @@ class AnggaranSubmainDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AnggaranSubmainDetailUpdate $request, $kode_main, $kode_submain, $kode)
+    public function update(AnggaranSubmainDetailUpdate $request, $kode_submain, $kode)
     {
         $anggaran = AnggaranDetail::where('kode', $kode)
         ->where('kode_submain', $kode_submain)
@@ -133,7 +136,6 @@ class AnggaranSubmainDetailController extends Controller
         $anggaran->kode_submain = $kode_submain;
         $anggaran->kode = $request->kode;
         $anggaran->nama = $request->nama;
-        $anggaran->nilai = $request->nilai;
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
@@ -141,7 +143,8 @@ class AnggaranSubmainDetailController extends Controller
         $anggaran->save();
 
         Alert::success('Ubah Anggaran Submain Detail', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('anggaran.submain.detail.index', ['kode_main' => $kode_main, 'kode_submain' => $kode_submain]);
+        
+        return redirect()->route('modul_umum.anggaran.submain.detail.index');
     }
 
     /**
@@ -152,8 +155,9 @@ class AnggaranSubmainDetailController extends Controller
      */
     public function delete(Request $request)
     {
-        AnggaranDetail::where('kode', $request->id)
+        AnggaranDetail::where('kode', $request->kode)
         ->where('kode_submain', $request->kode_submain)
+        ->where('tahun', $request->tahun)
         ->delete();
 
         return response()->json();
