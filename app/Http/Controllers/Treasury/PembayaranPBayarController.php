@@ -11,6 +11,7 @@ use App\Models\Lokasi;
 use App\Models\PermintaanBayarHeader;
 use App\Models\SaldoStore;
 use App\Models\SdmKDBag;
+use App\Services\TimeTransactionService;
 use DomPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,22 +19,22 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PembayaranPBayarController extends Controller
 {
+    protected $timeTrans;
+
+    public function __construct(TimeTransactionService $timeTrans)
+    {
+        $this->timeTrans = $timeTrans;
+    }
+
     public function index()
     {
-        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-        $data_akses = DB::table('usermenu')->where('userid', auth()->user()->userid)->where('menuid', 502)->limit(1)->first();
-        if (!empty($data_tahunbulan)) {
-            foreach ($data_tahunbulan as $data_bul) {
-                $tahun = substr($data_bul->bulan_buku, 0, -2);
-                $bulan = substr($data_bul->bulan_buku, 4);
-            }
-        } else {
-            // $bulan ='00';
-            // $tahun ='0000';
-            $bulan = date('m');
-            $tahun = date('Y');
-        }
-        return view('modul-treasury.pembayaran-pbayar.index', compact('tahun', 'bulan', 'data_akses'));
+        $tahun = $this->timeTrans->getCurrentYear();
+        $bulan = $this->timeTrans->getCurrentMonth();
+
+        return view('modul-treasury.pembayaran-pbayar.index', compact(
+            'tahun',
+            'bulan',
+        ));
     }
 
     public function indexJson(Request $request)
@@ -221,8 +222,10 @@ class PembayaranPBayarController extends Controller
         } else {
             $bulan_buku = date_format(date_create(now()), 'Ym');
         }
-        $bulan = substr($bulan_buku, 4);
-        $tahun = substr($bulan_buku, 0, -2);
+
+        $tahun = $this->timeTrans->getCurrentYear();
+        $bulan = $this->timeTrans->getCurrentMonth();
+
         $data_bagian = SdmKdbag::all();
         return view('modul-treasury.pembayaran-pbayar.create', compact('mp', 'data_bagian', 'tahun', 'bulan', 'bulan_buku', 'darkep', 'nover'));
     }
@@ -243,6 +246,7 @@ class PembayaranPBayarController extends Controller
         }
         return response()->json($data);
     }
+
     public function lokasiJson(Request $request)
     {
         $data = DB::select("SELECT a.kodestore,a.namabank,a.norekening from storejk a where a.jeniskartu ='$request->jk' and a.ci='$request->ci' order by a.kodestore");
@@ -413,6 +417,7 @@ class PembayaranPBayarController extends Controller
             'bulans'
         ));
     }
+
     public function update(Request $request)
     {
         Kasdoc::where('docno', $request->nodok)
@@ -430,6 +435,7 @@ class PembayaranPBayarController extends Controller
                 'ket3' =>  $request->ket3,
                 'mrs_no' =>  $request->nover,
             ]);
+
         return response()->json();
     }
 
@@ -491,12 +497,14 @@ class PembayaranPBayarController extends Controller
         $data = 2;
         return response()->json($data);
     }
+
     public function editDetail($nodok, $nourut)
     {
         $no = str_replace('-', '/', $nodok);
         $data = Kasline::where('docno', $no)->where('lineno', $nourut)->distinct()->get();
         return response()->json($data[0]);
     }
+
     public function updateDetail(Request $request)
     {
         Kasline::where('docno', $request->nodok)
@@ -587,6 +595,7 @@ class PembayaranPBayarController extends Controller
         }
         return response()->json();
     }
+
     public function deleteDetailall(Request $request)
     {
         $tgl_app = date('Y-m-d');

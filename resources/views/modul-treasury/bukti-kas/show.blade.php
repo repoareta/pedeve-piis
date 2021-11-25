@@ -167,8 +167,8 @@
                     <th>Bagian</th>
                     <th>PK</th>
                     <th>JB</th>
+                    <th>CJ</th>
                     <th>Jumlah</th>
-                    <th>CJ</th>	
                 </tr>
             </thead>
             <tbody>
@@ -316,7 +316,7 @@
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
-								
+
 							</select>
 						</div>
 					</div>
@@ -520,7 +520,7 @@
                     }).then(function() {
                         location.reload();
                     });
-                }, 
+                },
                 error: function() {
                     Swal.fire({
                         icon: 'error',
@@ -532,7 +532,7 @@
 
             return false;
         });
-        
+
         $('#form-edit-detail').on('submit', function () {
             $.ajax({
                 url: "{{ route('penerimaan_kas.store.detail', request()->documentId) }}",
@@ -549,7 +549,7 @@
                     }).then(function() {
                         location.reload();
                     });
-                }, 
+                },
                 error: function() {
                     Swal.fire({
                         icon: 'error',
@@ -564,8 +564,8 @@
 
         $('#btn-edit').on('click', function(e) {
             e.preventDefault();
-            var allVals = []; 
-            if($('input[type=radio]').is(':checked')) {  
+            var allVals = [];
+            if($('input[type=radio]').is(':checked')) {
                 $("input[type=radio]:checked").each(function() {
                     var nodok = $(this).attr('nodok');
                     if (nodok == ('' || null)) {
@@ -590,7 +590,7 @@
                                 $('#pk').val(data.pk);
                                 var d=parseFloat(data.totprice);
                                 var rupiah = d.toFixed(2);
-                                $('#nilai1').val(rupiah);					
+                                $('#nilai1').val(rupiah);
                                 $('#select-lapangan').val(data.lokasi).trigger('change');
                                 $('#select-sanper').val(data.account).trigger('change');
                                 $('#select-bagian').val(data.bagian).trigger('change');
@@ -601,13 +601,13 @@
                         })
                 });
             } else {
-                swalAlertInit('ubah'); 
-            }			
+                swalAlertInit('ubah');
+            }
         });
 
         $('#btn-delete').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var nodok = $(this).attr('nodok');
                     if (nodok == ('' || null)) {
