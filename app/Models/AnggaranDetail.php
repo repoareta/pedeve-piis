@@ -14,4 +14,9 @@ class AnggaranDetail extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     public $incrementing = false;
+
+    public function anggaran_submain()
+    {
+        return $this->belongsTo(AnggaranSubMain::class, 'kode_submain', 'kode_submain');
+    }
 }

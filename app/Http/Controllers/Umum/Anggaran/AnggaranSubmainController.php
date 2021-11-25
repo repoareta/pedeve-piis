@@ -42,7 +42,10 @@ class AnggaranSubmainController extends Controller
      */
     public function indexJson(Request $request)
     {
-        $anggaran_list = AnggaranSubMain::orderBy('tahun', 'desc')
+        $anggaran_list = AnggaranSubMain::when(request('tahun'), function($q) use ($request) {
+            $q->where('tahun', $request->tahun);
+        })
+        ->orderBy('tahun', 'desc')
         ->orderBy('kode_submain', 'asc');
 
         return datatables()->of($anggaran_list)

@@ -27,7 +27,7 @@ class AnggaranSubmainDetailController extends Controller
      */
     public function index()
     {
-        $tahun = AnggaranMain::select('tahun')
+        $tahun = AnggaranDetail::select('tahun')
         ->whereNotNull('tahun')
         ->distinct()
         ->orderBy('tahun', 'DESC')
@@ -41,13 +41,28 @@ class AnggaranSubmainDetailController extends Controller
      *
      * @return void
      */
-    public function indexJson()
+    public function indexJson(Request $request)
     {
-        $anggaran_list = AnggaranDetail::orderBy('tahun', 'desc');
+        $anggaran_list = AnggaranDetail::when(request('tahun'), function($q) use ($request) {
+            $q->where('tahun', $request->tahun);
+        })
+        ->orderBy('tahun', 'desc');
 
         return datatables()->of($anggaran_list)
+            ->filter(function ($query) use ($request) {
+                if ($request->has('kode')) {
+                    $query->where('kode_submain', 'like', "%{$request->get('kode')}%");
+                }
+
+                if ($request->has('tahun')) {
+                    $query->where('tahun', 'like', "%{$request->get('tahun')}%");
+                }
+            })
             ->addColumn('nilai', function ($row) {
                 return currency_idr($row->nilai);
+            })
+            ->addColumn('anggaran_submain', function ($row) {
+                return $row->anggaran_submain->kode_submain.' - '.$row->anggaran_submain->nama_submain;
             })
             ->addColumn('detail_anggaran', function ($row) {
                 return $row->kode.' - '.$row->nama;

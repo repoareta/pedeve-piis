@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Umum Anggaran Submain Detail
+                Tabel Umum Anggaran Detail
             </h3>
         </div>
         <div class="card-toolbar">
@@ -40,7 +40,7 @@
 		<div class="col-12">
 			<form class="form" id="search-form" method="POST">
 				<div class="form-group row">
-					<label for="" class="col-form-label">Kode Anggaran Submain</label>
+					<label for="" class="col-form-label">Kode Anggaran Detail</label>
 					<div class="col-2">
 						<input class="form-control" type="text" name="kode" id="kode">
 					</div>
@@ -72,7 +72,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th></th>
-                            <th>Kode Anggaran Submain</th>
+                            <th>Anggaran Submain</th>
                             <th>Detail Anggaran</th>
                             <th>Tahun</th>
                             <th>Realisasi</th>
@@ -104,7 +104,7 @@ $(document).ready(function () {
         },
         columns: [
             {data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-            {data: 'kode', name: 'kode'},
+            {data: 'anggaran_submain', name: 'anggaran_submain'},
             {data: 'detail_anggaran', name: 'detail_anggaran'},
             {data: 'tahun', name: 'tahun'},
             {data: 'nilai', name: 'nilai', class: 'text-right'}
