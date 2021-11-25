@@ -28,7 +28,6 @@ class AnggaranSubmainStore extends FormRequest
             'kode'       => 'required|alpha_num|min:2|max:6|unique:App\Models\AnggaranSubmain,kode_submain',
             'nama'       => 'required',
             'tahun'      => 'required|numeric|digits:4',
-            'nilai'      => 'required',
         ];
     }
 }

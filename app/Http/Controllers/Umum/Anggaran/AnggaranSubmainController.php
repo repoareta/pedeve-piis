@@ -11,12 +11,9 @@ use App\Models\AnggaranSubMain;
 
 //load form request (for validation)
 use App\Http\Requests\AnggaranSubmainStore;
+use App\Http\Requests\AnggaranSubmainUpdate;
 
 // Load Plugin
-use Carbon\Carbon;
-use Session;
-use DomPDF;
-use Excel;
 use Alert;
 use Auth;
 
@@ -88,7 +85,9 @@ class AnggaranSubmainController extends Controller
      */
     public function create()
     {
-        $anggaran_main_list = AnggaranMain::where('tahun', date('Y'))->get();
+        $anggaran_main_list = AnggaranMain::where('tahun', date('Y'))
+        ->get();
+
         return view('modul-umum.anggaran-submain.create', compact('anggaran_main_list'));
     }
 
@@ -103,8 +102,6 @@ class AnggaranSubmainController extends Controller
         $anggaran->kode_main = $request->kode_main;
         $anggaran->kode_submain = $request->kode;
         $anggaran->nama_submain = $request->nama;
-        $anggaran->nilai = sanitize_nominal($request->nilai);
-        $anggaran->nilai_real = $request->nilai_real;
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
@@ -112,6 +109,7 @@ class AnggaranSubmainController extends Controller
         $anggaran->save();
 
         Alert::success('Tambah Submain Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        
         return redirect()->route('modul_umum.anggaran.submain.index');
     }
 
@@ -134,7 +132,7 @@ class AnggaranSubmainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $kode_main, $kode_submain)
+    public function update(AnggaranSubmainUpdate $request, $kode_main, $kode_submain)
     {
         $anggaran = AnggaranSubMain::where('kode_main', $kode_main)
         ->where('kode_submain', $kode_submain)
@@ -143,14 +141,13 @@ class AnggaranSubmainController extends Controller
         $anggaran->kode_main = $kode_main;
         $anggaran->kode_submain = $request->kode;
         $anggaran->nama_submain = $request->nama;
-        $anggaran->nilai = sanitize_nominal($request->nilai);
-        // $anggaran->nilai_real = $request->nilai_real;
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
 
         $anggaran->save();
 
         Alert::success('Ubah Submain Anggaran', 'Berhasil')->persistent(true)->autoClose(2000);
+        
         return redirect()->route('modul_umum.anggaran.submain.index');
     }
 
