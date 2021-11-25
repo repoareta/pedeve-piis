@@ -55,7 +55,7 @@
 		<div class="topbar">
 
 			<!--begin::Notifications-->
-			<div class="dropdown">
+			{{-- <div class="dropdown">
 
 				<!--begin::Toggle-->
 				<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
@@ -89,7 +89,7 @@
 				</div>
 
 				<!--end::Dropdown-->
-			</div>
+			</div> --}}
 
 			<!--end::Notifications-->
 

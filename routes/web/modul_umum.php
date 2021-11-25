@@ -8,6 +8,7 @@ use App\Http\Controllers\Umum\UangMukaKerja\UangMukaKerjaPertanggungjawabanDetai
 use App\Http\Controllers\Umum\PermintaanBayarController;
 use App\Http\Controllers\Umum\VendorController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranController;
+use App\Http\Controllers\Umum\Anggaran\AnggaranMappingController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainController;
 use App\Http\Controllers\Umum\Anggaran\AnggaranSubmainDetailController;
 use App\Http\Controllers\Umum\PerjalananDinas\PerjalananDinasDetailController;
@@ -166,6 +167,19 @@ Route::prefix('umum')->name('modul_umum.')->group(function () {
         Route::get('anggaran/report', [AnggaranController::class, 'report'])->name('report');
         Route::post('anggaran/report/export', [AnggaranController::class, 'reportExport'])->name('report.export');
         Route::get('anggaran/get-by-tahun', [AnggaranController::class, 'getByTahun'])->name('get_by_tahun');
+
+        // ANGGARAN MAPPING
+        Route::name('mapping.')->group(function () {
+            Route::get('anggaran/mapping', [AnggaranMappingController::class, 'index'])->name('index');
+            Route::get('anggaran/mapping/index-json', [AnggaranMappingController::class, 'indexJson'])->name('index.json');
+            Route::get('anggaran/mapping/create', [AnggaranMappingController::class, 'create'])->name('create');
+            Route::get('anggaran/mapping/ajax-detail-anggaran/{tahun}', [AnggaranMappingController::class, 'ajaxDetailAnggaranList'])->name('ajax_detail_anggaran');
+            Route::get('anggaran/mapping/ajax-sanper', [AnggaranMappingController::class, 'ajaxSanper'])->name('ajax_sanper');
+            Route::post('anggaran/mapping/store', [AnggaranMappingController::class, 'store'])->name('store');
+            Route::get('anggaran/mapping/edit/{anggaranMapping}', [AnggaranMappingController::class, 'edit'])->name('edit');
+            Route::put('anggaran/mapping/update/{anggaranMaping}', [AnggaranMappingController::class, 'update'])->name('update');
+            Route::delete('anggaran/mapping/delete', [AnggaranMappingController::class, 'delete'])->name('delete');
+        });
 
         // ANGGARAN SUBMAIN START
         Route::name('submain.')->group(function () {
