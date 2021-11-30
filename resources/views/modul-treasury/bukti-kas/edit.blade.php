@@ -39,9 +39,9 @@
 						$nodok = $data->docno;
 						$mp = substr($data->docno,0,1);
 						$nomor = substr($data->docno,8);
-						$tahun = substr($data->thnbln,0,4); 
-						$bulan = substr($data->thnbln,4); 
-						$bulan = substr($data->thnbln,4); 
+						$tahun = substr($data->thnbln,0,4);
+						$bulan = substr($data->thnbln,4);
+						$bulan = substr($data->thnbln,4);
 						$bagian = substr($data->docno,2,5);
 					?>
 					<div class="form-group row">
@@ -60,7 +60,7 @@
 					<div class="col-4">
 						<input class="form-control disabled bg-secondary" type="text" value="{{$bulan}}"   name="bulan" id="bulan" size="2" maxlength="2" readonly>
 						<input class="form-control disabled bg-secondary" type="hidden" value="{{$data->thnbln}}"   name="bulanbuku" id="bulanbuku" size="6" maxlength="6" readonly>
-						
+
 					</div>
 						<div class="col-6" >
 							<input class="form-control disabled bg-secondary" type="text" value="{{$tahun}}"   name="tahun" id="tahun" size="4" maxlength="4" readonly>
@@ -76,7 +76,7 @@
 								@foreach($data_bagian as $row)
 								<option value="{{$row->kode}}" <?php if($row->kode == $bagian ) echo 'selected' ; ?>>{{$row->kode}} - {{$row->nama}}</option>
 								@endforeach
-								
+
 							</select>
 						</div>
 					</div>
@@ -89,7 +89,7 @@
 								<option value="10" <?php if($data->jk == '10' ) echo 'selected' ; ?>>Kas(Rupiah)</option>
 								<option value="11" <?php if($data->jk == '11' ) echo 'selected' ; ?>>Bank(Rupiah)</option>
 								<option value="13" <?php if($data->jk == '13' ) echo 'selected' ; ?>>Bank(Dollar)</option>
-								
+
 							</select>							</div>
 						<label class="col-2 col-form-label">Currency Index</label>
 						<div class="col-2" >
@@ -100,13 +100,13 @@
 							<input class="form-control" type="text" name="kurs" value="{{number_format($data->rate,0)}}"  id="kurs" size="7" maxlength="7" >
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
 						<label for="jenis-dinas-input" class="col-2 col-form-label">Lokasi<span class="text-danger">*</span></label>
 						<div class="col-4">
 							<select name="lokasi" id="lokasi" class="form-control" data-live-search="true">
 								<option value="">- Pilih -</option>
-								
+
 							</select>
 							<input class="form-control" type="hidden"  value="{{$data->store}}" id="lokasi2">
 							<input class="form-control" type="hidden"  value="{{$data->namabank}}-{{$data->norekening}}" id="lokasi1">
@@ -216,8 +216,8 @@
                     <th>Bagian</th>
                     <th>PK</th>
                     <th>JB</th>
+                    <th>CJ</th>
                     <th>Jumlah</th>
-                    <th>CJ</th>	
                 </tr>
             </thead>
             <tbody>
@@ -386,7 +386,7 @@
 								@foreach($data_account as $data_acc)
 								<option value="{{ $data_acc->kodeacct }}">{{ $data_acc->kodeacct }} - {{ $data_acc->descacct }}</option>
 								@endforeach
-								
+
 							</select>
 						</div>
 					</div>
@@ -490,7 +490,7 @@
                     }).then(function() {
                         location.reload();
                     });
-                }, 
+                },
                 error: function() {
                     Swal.fire({
                         icon: 'error',
@@ -506,7 +506,7 @@
 		$('#jk').on('change', function () {
             let jenisKartu = $(this).val();
             let kurs = $("#kurs");
-            
+
             switch (jenisKartu) {
                 case '13':
                     $("#ci").val('2');
@@ -566,14 +566,14 @@
                         html += '<option value="' + data[i].kode_store + '">' + data[i].kode_store + ' - ' + data[i].nama_bank +' - '+ data[i].nomor_rekening + '</option>';
                     }
 
-                    $('#lokasi').html(html);		
+                    $('#lokasi').html(html);
                 },
                 error : function(){
                     alert("Ada kesalahan controller!");
                 }
             })
         });
-        
+
         $('#form-edit-detail').on('submit', function () {
             $.ajax({
                 url: "{{ route('penerimaan_kas.store.detail', request()->documentId) }}",
@@ -590,7 +590,7 @@
                     }).then(function() {
                         location.reload();
                     });
-                }, 
+                },
                 error: function() {
                     Swal.fire({
                         icon: 'error',
@@ -605,8 +605,8 @@
 
 		$('#btn-edit').on('click', function(e) {
             e.preventDefault();
-            var allVals = []; 
-            if($('input[type=radio]').is(':checked')) {  
+            var allVals = [];
+            if($('input[type=radio]').is(':checked')) {
                 $("input[type=radio]:checked").each(function() {
                     var nodok = $(this).attr('nodok');
                     if (nodok == ('' || null)) {
@@ -631,7 +631,7 @@
                                 $('#pk').val(data.pk);
                                 var d=parseFloat(data.totprice);
                                 var rupiah = d.toFixed(2);
-                                $('#nilai1').val(rupiah);					
+                                $('#nilai1').val(rupiah);
                                 $('#select-lapangan').val(data.lokasi).trigger('change');
                                 $('#select-sanper').val(data.account).trigger('change');
                                 $('#select-bagian').val(data.bagian).trigger('change');
@@ -642,13 +642,13 @@
                         })
                 });
             } else {
-                swalAlertInit('ubah'); 
-            }			
+                swalAlertInit('ubah');
+            }
         });
 
 		$('#btn-delete').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var nodok = $(this).attr('nodok');
                     if (nodok == ('' || null)) {
@@ -731,7 +731,7 @@
 				for(i=0; i<data.length; i++){
 					html += '<option value="'+data[i].kodestore+'">'+data[i].namabank+'-'+data[i].norekening+'</option>';
 				}
-				$('#lokasi').html(html);		
+				$('#lokasi').html(html);
 			},
 			error : function(){
 				alert("Ada kesalahan controller!");
