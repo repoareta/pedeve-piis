@@ -193,11 +193,13 @@ class PenerimaanKasService
             ->where('nokas', $kasHeader->store)
             ->first();
 
-        $saldo->update([
-            'saldoakhir' => round($saldo->saldoakhir) + round($selisih),
-            'debet' => round($saldo->debet) + $debet,
-            'kredit' => round($saldo->kredit) + $kredit
-        ]);
+        if ($saldo) {
+            $saldo->update([
+                'saldoakhir' => round($saldo->saldoakhir) + round($selisih),
+                'debet' => round($saldo->debet) + $debet,
+                'kredit' => round($saldo->kredit) + $kredit
+            ]);
+        }
 
         $kasHeader->update([
             'paid' => $cancelation ? 'N' : 'Y',
