@@ -109,8 +109,8 @@ $(document).ready(function () {
             {data: 'anggaran_submain', name: 'anggaran_submain'},
             {data: 'detail_anggaran', name: 'detail_anggaran'},
             {data: 'tahun', name: 'tahun'},
-            {data: 'nilai', name: 'nilai', class: 'text-right'}
-            {data: 'realisasi', name: 'realisasi', class: 'text-right'}
+            {data: 'nilai', name: 'nilai', class: 'text-right'},
+            {data: 'realisasi', name: 'realisasi', class: 'text-right'},
             {data: 'sisa', name: 'sisa', class: 'text-right'}
         ]
     });
