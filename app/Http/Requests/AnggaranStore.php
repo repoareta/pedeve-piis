@@ -26,8 +26,7 @@ class AnggaranStore extends FormRequest
         return [
             'kode' => 'required|alpha_num|size:6',
             'nama' => 'required',
-            'tahun' => 'required|numeric|digits:4',
-            'nilai' => 'required',
+            'tahun' => 'required|numeric|digits:4'
         ];
     }
 }
