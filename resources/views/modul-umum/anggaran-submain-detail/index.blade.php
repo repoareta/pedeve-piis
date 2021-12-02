@@ -75,7 +75,9 @@
                             <th>Anggaran Submain</th>
                             <th>Detail Anggaran</th>
                             <th>Tahun</th>
+                            <th>Nilai</th>
                             <th>Realisasi</th>
+                            <th>Sisa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,6 +110,8 @@ $(document).ready(function () {
             {data: 'detail_anggaran', name: 'detail_anggaran'},
             {data: 'tahun', name: 'tahun'},
             {data: 'nilai', name: 'nilai', class: 'text-right'}
+            {data: 'realisasi', name: 'realisasi', class: 'text-right'}
+            {data: 'sisa', name: 'sisa', class: 'text-right'}
         ]
     });
 

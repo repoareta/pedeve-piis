@@ -56,6 +56,13 @@
 						</div>
 					</div>
 
+                    <div class="form-group row">
+						<label for="nilai" class="col-2 col-form-label">Nilai</label>
+						<div class="col-10">
+							<input class="form-control money" type="text" name="nilai" id="nilai" value="{{ $anggaran->nilai }}">
+						</div>
+					</div>
+
 					<div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">

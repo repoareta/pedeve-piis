@@ -55,6 +55,13 @@
 							<input class="form-control" type="text" name="nama" id="nama" autocomplete="off">
 						</div>
 					</div>
+                    
+					<div class="form-group row">
+						<label for="nilai" class="col-2 col-form-label">Nilai</label>
+						<div class="col-10">
+							<input class="form-control money" type="text" name="nilai" id="nilai">
+						</div>
+					</div>
 
 					<div class="row">
                         <div class="col-2"></div>

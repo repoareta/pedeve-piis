@@ -61,6 +61,12 @@ class AnggaranSubmainDetailController extends Controller
             ->addColumn('nilai', function ($row) {
                 return currency_idr($row->nilai);
             })
+            ->addColumn('realisasi', function ($row) {
+                return currency_idr($row->nilai);
+            })
+            ->addColumn('sisa', function ($row) {
+                return currency_idr($row->nilai);
+            })
             ->addColumn('anggaran_submain', function ($row) {
                 return $row->anggaran_submain->kode_submain.' - '.$row->anggaran_submain->nama_submain;
             })
@@ -101,6 +107,7 @@ class AnggaranSubmainDetailController extends Controller
         $anggaran->kode_submain = $request->kode_submain;
         $anggaran->kode = $request->kode;
         $anggaran->nama = $request->nama;
+        $anggaran->nilai = sanitize_nominal($request->nilai);
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
@@ -151,6 +158,7 @@ class AnggaranSubmainDetailController extends Controller
         $anggaran->kode_submain = $kode_submain;
         $anggaran->kode = $request->kode;
         $anggaran->nama = $request->nama;
+        $anggaran->nilai = sanitize_nominal($request->nilai);
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
