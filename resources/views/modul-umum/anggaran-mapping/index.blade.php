@@ -72,13 +72,9 @@
                     <thead class="thead-light">
                         <tr>
 							<th></th>
-							<th>Tahun</th>
 							<th>Kode</th>
 							<th>Detail Anggaran</th>
 							<th>Sandi Perkiraan</th>
-							<th>Nilai</th>
-							<th>Realisasi</th>
-							<th>Sisa</th>
 						</tr>
                     </thead>
                     <tbody>
@@ -107,13 +103,9 @@
 			},
 			columns: [
 				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
-				{data: 'tahun', name: 'tahun'},
 				{data: 'kode', name: 'kode', class:'no-wrap'},
 				{data: 'nama', name: 'nama'},
-				{data: 'nama_sanper', name: 'nama_sanper'},
-				{data: 'nilai', name: 'nilai', class: 'no-wrap text-right'},
-				{data: 'realisasi', name: 'realisasi', class:'no-wrap text-right'},
-				{data: 'sisa', name: 'sisa', class:'no-wrap text-right'}
+				{data: 'nama_sanper', name: 'nama_sanper'}
 			]
 		});
 
