@@ -66,18 +66,6 @@ class AnggaranSubmainDetailController extends Controller
             ->addColumn('realisasi', function ($row) use ($request) {
                 $tahun = $request->tahun ? $request->tahun : date('Y');
 
-                // $realisasi = DB::table('kasline a')
-                // ->join('kasdoc b', 'b.docno', 'a.docno')
-                // ->where(DB::raw(
-                //     'substring(b.thnbln from 1 for 4)'
-                // ), $tahun)
-                // ->whereIn('a.account', $row)
-                // ->where('a.keterangan', '<>', 'penutup')
-                // ->select(DB::raw('SUM(round(a.totprice,2)) AS realisasi'))
-                // ->first();
-
-                // dd($realisasi);
-
                 $data_list = DB::select("
                 SELECT 
                     SUM(round(a.totprice,2)) AS realisasi
@@ -100,8 +88,29 @@ class AnggaranSubmainDetailController extends Controller
 
                 return currency_idr($data_list[0]->realisasi);
             })
-            ->addColumn('sisa', function ($row) {
-                return currency_idr($row->nilai);
+            ->addColumn('sisa', function ($row) use ($request) {
+                $tahun = $request->tahun ? $request->tahun : date('Y');
+                $data_list = DB::select("
+                SELECT 
+                    SUM(round(a.totprice,2)) AS realisasi
+                FROM 
+                    kasline a 
+                JOIN 
+                    kasdoc b on b.docno = a.docno
+                WHERE
+                    substring(b.thnbln from 1 for 4)= '$tahun'
+                AND 
+                    a.account IN (
+                        SELECT kodeacct
+                        FROM
+                            anggaran_mapping
+                        WHERE
+                            kode = '$row->kode'
+                    )
+                AND 
+                    a.keterangan <> 'penutup'"); 
+
+                return currency_idr($row->nilai - $data_list[0]->realisasi);
             })
             ->addColumn('anggaran_submain', function ($row) {
                 return $row->anggaran_submain->kode_submain.' - '.$row->anggaran_submain->nama_submain;
