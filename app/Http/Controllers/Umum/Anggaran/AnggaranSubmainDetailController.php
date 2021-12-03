@@ -66,51 +66,16 @@ class AnggaranSubmainDetailController extends Controller
             ->addColumn('realisasi', function ($row) use ($request) {
                 $tahun = $request->tahun ? $request->tahun : date('Y');
 
-                $data_list = DB::select("
-                SELECT 
-                    SUM(round(a.totprice,2)) AS realisasi
-                FROM 
-                    kasline a 
-                JOIN 
-                    kasdoc b on b.docno = a.docno
-                WHERE
-                    substring(b.thnbln from 1 for 4)= '$tahun'
-                AND 
-                    a.account IN (
-                        SELECT kodeacct
-                        FROM
-                            anggaran_mapping
-                        WHERE
-                            kode = '$row->kode'
-                    )
-                AND 
-                    a.keterangan <> 'penutup'"); 
+                $dataRealisasi = $this->getRealisasi($row, $tahun);
 
-                return currency_idr($data_list[0]->realisasi);
+                return currency_idr($dataRealisasi);
             })
             ->addColumn('sisa', function ($row) use ($request) {
                 $tahun = $request->tahun ? $request->tahun : date('Y');
-                $data_list = DB::select("
-                SELECT 
-                    SUM(round(a.totprice,2)) AS realisasi
-                FROM 
-                    kasline a 
-                JOIN 
-                    kasdoc b on b.docno = a.docno
-                WHERE
-                    substring(b.thnbln from 1 for 4)= '$tahun'
-                AND 
-                    a.account IN (
-                        SELECT kodeacct
-                        FROM
-                            anggaran_mapping
-                        WHERE
-                            kode = '$row->kode'
-                    )
-                AND 
-                    a.keterangan <> 'penutup'"); 
+                
+                $dataRealisasi = $this->getRealisasi($row, $tahun);
 
-                return currency_idr($row->nilai - $data_list[0]->realisasi);
+                return currency_idr($row->nilai - $dataRealisasi);
             })
             ->addColumn('anggaran_submain', function ($row) {
                 return $row->anggaran_submain->kode_submain.' - '.$row->anggaran_submain->nama_submain;
@@ -124,6 +89,31 @@ class AnggaranSubmainDetailController extends Controller
             })
             ->rawColumns(['radio'])
             ->make(true);
+    }
+
+    public function getRealisasi($anggaranDetail, $tahun)
+    {
+        $realisasi = DB::select("
+            SELECT 
+                SUM(round(a.totprice,2)) AS realisasi
+            FROM 
+                kasline a 
+            JOIN 
+                kasdoc b on b.docno = a.docno
+            WHERE
+                substring(b.thnbln from 1 for 4)= '$tahun'
+            AND 
+                a.account IN (
+                    SELECT kodeacct
+                    FROM
+                        anggaran_mapping
+                    WHERE
+                        kode = '$anggaranDetail->kode'
+                )
+            AND 
+                a.keterangan <> 'penutup'"); 
+
+        return $realisasi[0]->realisasi;
     }
 
     /**
