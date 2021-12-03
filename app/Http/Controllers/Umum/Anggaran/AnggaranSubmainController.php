@@ -100,8 +100,8 @@ class AnggaranSubmainController extends Controller
 
     public function getNilai($anggaranSubmain, $tahun)
     {
-        $nilai = DB::select("
-            SELECT 
+        $nilai = DB::select(
+    "SELECT 
                 SUM(ad.nilai) AS realisasi
             FROM 
                 anggaran_detail ad
@@ -109,7 +109,7 @@ class AnggaranSubmainController extends Controller
                 ad.tahun = '$tahun'
             AND
                 ad.kode_submain = '$anggaranSubmain->kode_submain'
-            "); 
+        "); 
 
         return $nilai[0]->realisasi;
     }
