@@ -102,7 +102,7 @@ class AnggaranSubmainController extends Controller
     {
         $nilai = DB::select(
     "SELECT 
-                SUM(ad.nilai) AS realisasi
+                SUM(ad.nilai) AS nilai
             FROM 
                 anggaran_detail ad
             WHERE
@@ -111,7 +111,7 @@ class AnggaranSubmainController extends Controller
                 ad.kode_submain = '$anggaranSubmain->kode_submain'
         "); 
 
-        return $nilai[0]->realisasi;
+        return $nilai[0]->nilai;
     }
 
     public function getRealisasi($anggaranSubmain, $tahun)
