@@ -11,7 +11,7 @@
               margin-right: -5px;
               margin-left: -5px;
             }
-            
+
             .table {
                 font: normal 10px Verdana, Arial, sans-serif;
                 border-collapse: collapse;
@@ -57,8 +57,8 @@
             }
 
             td.border-less-dashed {
-                border-bottom: dashed; 
-                border-top: dashed; 
+                border-bottom: dashed;
+                border-top: dashed;
                 border-width: 1.5px;
                 border-left: 1px solid black;
                 border-right: 1px solid black;
@@ -72,15 +72,15 @@
                 padding-left:10%;
             }
 
-                /* header { 
-                    position: fixed; 
-                    left: 0px; 
+                /* header {
+                    position: fixed;
+                    left: 0px;
                     top: -110px;
                     right: 0px;
                     height: 0px;
                 } */
 
-            @page { 
+            @page {
                 margin: 130px 50px 50px 50px;
             }
         </style>
@@ -103,7 +103,7 @@
                         </b>
                     </p>
                 </div>
-        
+
                 <div class="row">
                     <div class="text-right" style="width: 100%;">
                         <img src="{{ public_path() . '/images/pertamina.jpg' }}" width="120px" height="60px" style="padding-right: 20px;">
@@ -111,15 +111,21 @@
                 </div>
             </div>
         </header>
-    
+
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
             <div class="row">
                 <table width="100%" class="table">
                     <thead>
                         <tr>
-                            <th style="border-bottom:2px solid black;">KETERANGAN</th>
-                            <th >TOTAL RUPIAH</th>
+                            <th rowspan="2">KETERANGAN</th>
+                            <th rowspan="2">RUPIAH</th>
+                            <th rowspan="2">US DOLLAR</th>
+                            <th colspan="2">EKUIVALEN</th>
+                        </tr>
+                        <tr>
+                            <th>RUPIAH</th>
+                            <th>US DOLLAR</th>
                         </tr>
                     <thead>
                         <tbody>
@@ -130,6 +136,9 @@
                                         A. ARUS KAS DARI AKTIVITAS OPERASI
                                     </b>
                                 </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             @php
@@ -145,6 +154,15 @@
                                 <td class="text-right border-less-top-bottom">
                                     {{ nominal_abs($row->totpricerp) }}
                                 </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs(abs($row->totpricerp) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs($row->totpricerp) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs(abs($row->totpricerp) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
                             @endforeach
                             <tr>
@@ -155,6 +173,15 @@
                                 </td>
                                 <td class="text-right border-less-top-bottom" valign="top">
                                     {{ nominal_abs($aktivitas_operasi->sum('totpricerp')) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs(abs($aktivitas_operasi->sum('totpricerp') / sanitize_nominal($kurs))) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs($aktivitas_operasi->sum('totpricerp')) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs(abs($aktivitas_operasi->sum('totpricerp') / sanitize_nominal($kurs))) }}
                                 </td>
                             </tr>
                             {{-- ARUS KAS DARI AKTIVITAS OPERASI END --}}
@@ -167,6 +194,9 @@
                                     </b>
                                 </td>
                                 <td></td>
+                                <td></td>
+                                <td class="border-less-top-bottom"></td>
+                                <td class="border-less-top-bottom"></td>
                             </tr>
                             @php
                                 $aktivitas_investasi = $data_list->filter(function ($value, $key) {
@@ -181,6 +211,15 @@
                                 <td class="text-right border-less-top-bottom">
                                     {{ nominal_abs($row->totpricerp) }}
                                 </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs(abs($row->totpricerp) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs($row->totpricerp) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs(abs($row->totpricerp) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
                             @endforeach
                             <tr>
@@ -192,6 +231,15 @@
                                 <td class="text-right border-less-top-bottom" valign="top">
                                     {{ nominal_abs($aktivitas_investasi->sum('totpricerp')) }}
                                 </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs(abs($aktivitas_investasi->sum('totpricerp')) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs($aktivitas_investasi->sum('totpricerp')) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs(abs($aktivitas_investasi->sum('totpricerp')) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
                             {{-- ARUS KAS DARI AKTIVITAS INVESTASI END --}}
 
@@ -202,6 +250,9 @@
                                         C. ARUS KAS DARI AKTIVITAS PENDANAAN
                                     </b>
                                 </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                             </tr>
                             @php
@@ -217,6 +268,15 @@
                                 <td class="text-right border-less-top-bottom">
                                     {{ nominal_abs($row->totpricerp) }}
                                 </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs(abs($row->totpricerp) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs($row->totpricerp) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom">
+                                    {{ nominal_abs(abs($row->totpricerp) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
                             @endforeach
                             <tr>
@@ -228,6 +288,15 @@
                                 <td class="text-right border-less-top-bottom" valign="top">
                                     {{ nominal_abs($aktivitas_pendanaan->sum('totpricerp')) }}
                                 </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs(abs($aktivitas_pendanaan->sum('totpricerp')) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs($aktivitas_pendanaan->sum('totpricerp')) }}
+                                </td>
+                                <td class="text-right border-less-top-bottom" valign="top">
+                                    {{ nominal_abs(abs($aktivitas_pendanaan->sum('totpricerp')) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
                             {{-- ARUS KAS DARI AKTIVITAS PENDANAAN END --}}
 
@@ -238,6 +307,15 @@
                                 <td class="text-right">
                                     {{ nominal_abs($data_list->sum('totpricerp')) }}
                                 </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(abs($data_list->sum('totpricerp')) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs($data_list->sum('totpricerp')) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(abs($data_list->sum('totpricerp')) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
 
                             <tr>
@@ -246,6 +324,15 @@
                                 </td>
                                 <td class="text-right">
                                     {{ nominal_abs(12000) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(12000 / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(12000) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(12000 / sanitize_nominal($kurs)) }}
                                 </td>
                             </tr>
 
@@ -256,6 +343,15 @@
                                 <td class="text-right">
                                     {{ nominal_abs($data_list->sum('totpricerp') + 120000) }}
                                 </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(abs($data_list->sum('totpricerp') + 120000) / sanitize_nominal($kurs)) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs($data_list->sum('totpricerp') + 120000) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ nominal_abs(abs($data_list->sum('totpricerp') + 120000) / sanitize_nominal($kurs)) }}
+                                </td>
                             </tr>
                         </tbody>
                 </table>
@@ -263,7 +359,7 @@
         </main>
 
         <script type='text/php'>
-            if ( isset($pdf) ) { 
+            if ( isset($pdf) ) {
                 $font = null;
                 $size = 9;
                 $y = $pdf->get_height() - 30;
