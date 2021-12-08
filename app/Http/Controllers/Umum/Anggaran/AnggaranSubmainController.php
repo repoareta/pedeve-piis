@@ -15,7 +15,11 @@ use App\Http\Requests\AnggaranSubmainUpdate;
 
 // Load Plugin
 use Alert;
+use App\Models\AnggaranDetail;
+use App\Models\AnggaranMapping;
+use App\Models\Kasline;
 use Auth;
+use DB;
 
 class AnggaranSubmainController extends Controller
 {
@@ -64,14 +68,27 @@ class AnggaranSubmainController extends Controller
             ->addColumn('sub_anggaran', function ($row) {
                 return $row->kode_submain.' - '.$row->nama_submain;
             })
-            ->addColumn('nilai', function ($row) {
-                return currency_idr($row->nilai);
+            ->addColumn('nilai', function ($row) use ($request) {
+                // menghitung total nilai dari anggaran detail
+                $tahun = $request->tahun ? $request->tahun : date('Y');
+                $nilai = $this->getNilai($row, $tahun);
+                
+                return currency_idr($nilai);
             })
-            ->addColumn('nilai_real', function ($row) {
-                return currency_idr($row->nilai_real);
+            ->addColumn('nilai_real', function ($row) use ($request) {
+                $tahun = $request->tahun ? $request->tahun : date('Y'); 
+                $realisasi = $this->getRealisasi($row, $tahun);
+
+                return currency_idr($realisasi);
             })
-            ->addColumn('sisa', function ($row) {
-                return currency_idr($row->nilai_real);
+            ->addColumn('sisa', function ($row) use ($request) {
+                $tahun = $request->tahun ? $request->tahun : date('Y'); 
+                
+                $nilai = $this->getNilai($row, $tahun);
+                
+                $realisasi = $this->getRealisasi($row, $tahun);
+
+                return currency_idr($nilai - $realisasi);
             })
             ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode_main.'-'.$row->kode_submain.'"><span></span></label>';
@@ -79,6 +96,55 @@ class AnggaranSubmainController extends Controller
             })
             ->rawColumns(['radio', 'sub_anggaran'])
             ->make(true);
+    }
+
+    public function getNilai($anggaranSubmain, $tahun)
+    {
+        $nilai = DB::select(
+    "SELECT 
+                SUM(ad.nilai) AS nilai
+            FROM 
+                anggaran_detail ad
+            WHERE
+                ad.tahun = '$tahun'
+            AND
+                ad.kode_submain = '$anggaranSubmain->kode_submain'
+        "); 
+
+        return $nilai[0]->nilai;
+    }
+
+    public function getRealisasi($anggaranSubmain, $tahun)
+    {
+        $realisasi = DB::select(
+            "SELECT 
+                SUM(round(a.totprice,2)) AS realisasi
+            FROM 
+                kasline a 
+            JOIN 
+                kasdoc b on b.docno = a.docno
+            WHERE
+                substring(b.thnbln from 1 for 4)= '$tahun'
+            AND 
+                a.account IN (
+                    SELECT 
+                        kodeacct
+                    FROM
+                        anggaran_mapping
+                    WHERE
+                        kode IN (
+                            SELECT
+                                kode
+                            FROM
+                                anggaran_detail
+                            WHERE
+                                kode_submain = '$anggaranSubmain->kode_submain'
+                        )
+                )
+            AND 
+                a.keterangan <> 'penutup'"); 
+
+        return $realisasi[0]->realisasi;
     }
 
     /**
