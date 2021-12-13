@@ -170,6 +170,7 @@ namespace App\Models{
  * @property string|null $inputuser
  * @property string|null $inputdate
  * @property string|null $kode_submain
+ * @property-read \App\Models\AnggaranSubMain|null $anggaran_submain
  * @method static \Illuminate\Database\Eloquent\Builder|AnggaranDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AnggaranDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|AnggaranDetail query()
@@ -209,6 +210,31 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMain whereTahun($value)
  */
 	class AnggaranMain extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\AnggaranMapping
+ *
+ * @property int $id
+ * @property string $kodeacct
+ * @property string $kode
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $tahun
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Account[] $sanper
+ * @property-read int|null $sanper_count
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping whereKode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping whereKodeacct($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping whereTahun($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AnggaranMapping whereUpdatedAt($value)
+ */
+	class AnggaranMapping extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -3830,12 +3856,12 @@ namespace App\Models{
  * @property string|null $jb
  * @property string|null $sandi
  * @property string|null $lapangan
- * @property string|null $last_rp
- * @property string|null $last_dl
- * @property string|null $cur_rp
- * @property string|null $cur_dl
- * @property string|null $cum_rp
- * @property string|null $cum_dl
+ * @property float|null $last_rp
+ * @property float|null $last_dl
+ * @property float|null $cur_rp
+ * @property float|null $cur_dl
+ * @property float|null $cum_rp
+ * @property float|null $cum_dl
  * @property string|null $jenis
  * @property string|null $batas_awal
  * @property string|null $batas_akhir
@@ -3947,12 +3973,12 @@ namespace App\Models{
  * @property string|null $jb
  * @property string|null $sandi
  * @property string|null $lapangan
- * @property string|null $last_rp
- * @property string|null $last_dl
- * @property string|null $cur_rp
- * @property string|null $cur_dl
- * @property string|null $cum_rp
- * @property string|null $cum_dl
+ * @property float|null $last_rp
+ * @property float|null $last_dl
+ * @property float|null $cur_rp
+ * @property float|null $cur_dl
+ * @property float|null $cum_rp
+ * @property float|null $cum_dl
  * @method static \Illuminate\Database\Eloquent\Builder|ViewReportD5 newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ViewReportD5 newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ViewReportD5 query()

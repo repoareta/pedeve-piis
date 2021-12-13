@@ -27,7 +27,7 @@ class KodeJabatanUpdate extends FormRequest
     {
         return [
             'kode_bagian' => ['required', 'string'],
-            'kode_jabatan' => ['required', 'string', Rule::unique('sdm_tbl_kdjab')->ignore($this->kode_jabatan, 'kdjab'), 'max:5'],
+            'kdjab' => ['required', 'string', Rule::unique('sdm_tbl_kdjab')->ignore($this->kdjab, 'kdjab'), 'max:5'],
             'nama' => ['required', 'string'],
             'golongan' => ['required', 'string'],
             'tunjangan' => ['required', new MoneyFormat, 'max:30'],
