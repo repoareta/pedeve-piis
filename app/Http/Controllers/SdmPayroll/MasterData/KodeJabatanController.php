@@ -9,6 +9,7 @@ use App\Http\Requests\KodeJabatanUpdate;
 use App\Models\KodeBagian;
 use App\Models\KodeJabatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KodeJabatanController extends Controller
 {
@@ -72,10 +73,10 @@ class KodeJabatanController extends Controller
     public function store(KodeJabatanStore $request, KodeJabatan $kode_jabatan)
     {
         $kode_jabatan->kdbag = $request->kode_bagian;
-        $kode_jabatan->kdjab = $request->kode_jabatan;
+        $kode_jabatan->kdjab = $request->kdjab;
         $kode_jabatan->keterangan = $request->nama;
         $kode_jabatan->goljob = $request->golongan;
-        $kode_jabatan->tunjangan = $request->tunjangan;
+        $kode_jabatan->tunjangan = sanitize_nominal($request->tunjangan);
         $kode_jabatan->save();
 
         Alert::success('Simpan Data Kode Jabatan', 'Berhasil')->persistent(true)->autoClose(2000);
@@ -110,26 +111,26 @@ class KodeJabatanController extends Controller
      */
     public function update(KodeJabatanUpdate $request, KodeBagian $kode_bagian, $kdjab)
     {
-        $kode_jabatan = KodeJabatan::where('kdbag', $kode_bagian->kode)
-            ->where('kdjab', $kdjab)
-            ->firstOrFail();
-
-        $kode_jabatan->kdbag = $request->kode_bagian;
-        $kode_jabatan->kdjab = $request->kode_jabatan;
-        $kode_jabatan->keterangan = $request->nama;
-        $kode_jabatan->goljob = $request->golongan;
-        $kode_jabatan->tunjangan = $request->tunjangan;
+        $kode_jabatan = DB::table('sdm_tbl_kdjab')
+            ->where('kdbag', $kode_bagian->kode)
+            ->where('kdjab', $kdjab);
 
         try {
-            $kode_jabatan->save();
+            $kode_jabatan->update([
+                'kdbag' => $request->kode_bagian,
+                'kdjab' => $request->kdjab,
+                'keterangan' => $request->nama,
+                'goljob' => $request->golongan,
+                'tunjangan' => sanitize_nominal($request->tunjangan),
+            ]);
         } catch (\Illuminate\Database\QueryException $e) {
             Alert::error('Kode Bagian dan Kode Jabatan sudah ada', 'Gagal')->persistent(true)->autoClose(2000);
 
-            return redirect()->route('kode_jabatan.edit', ['kode_bagian' => $kode_bagian->kode, 'kode_jabatan' => $kdjab]);
+            return redirect()->route('modul_sdm_payroll.kode_jabatan.edit', ['kode_bagian' => $kode_bagian->kode, 'kdjab' => $kdjab]);
         }
 
         Alert::success('Ubah Data Kode Jabatan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('kode_jabatan.index');
+        return redirect()->route('modul_sdm_payroll.kode_jabatan.index');
     }
 
     /**
