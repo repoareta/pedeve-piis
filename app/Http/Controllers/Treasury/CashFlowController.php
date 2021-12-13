@@ -105,12 +105,14 @@ class CashFlowController extends Controller
             ]);
         }
 
+        $kurs = $request->kurs;
 
         // return default PDF
         $pdf = PDF::loadview('modul-treasury.cash-flow.perbulan-pdf', compact(
             'tahun',
             'bulan',
-            'data_list'
+            'data_list',
+            'kurs',
         ))
         ->setPaper('a4', 'Portrait');
 
