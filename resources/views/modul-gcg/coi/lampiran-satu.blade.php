@@ -20,13 +20,13 @@
     <div class="card-body">
         <div class="row">
 			<div class="col-md-12 text-center">
-				<a class="btn btn-primary btn-sm active" href="{{ route('modul_sdm_payroll.gcg.coi.lampiran_satu') }}" role="button">Lampiran 1</a>
-				<a class="btn btn-primary btn-sm" href="{{ route('modul_sdm_payroll.gcg.coi.lampiran_dua') }}" role="button">Lampiran 2</a>
+				<a class="btn btn-primary btn-sm active" href="{{ route('modul_gcg.coi.lampiran_satu') }}" role="button">Lampiran 1</a>
+				<a class="btn btn-primary btn-sm" href="{{ route('modul_gcg.coi.lampiran_dua') }}" role="button">Lampiran 2</a>
 			</div>
 		</div>
 		<div class="row">
 			<form class="form" id="formPrint" 
-			@if(Request::get('tempat'))action="{{ route('modul_sdm_payroll.gcg.coi.lampiran_satu.print') }}" @endif
+			@if(Request::get('tempat'))action="{{ route('modul_gcg.coi.lampiran_satu.print') }}" @endif
 			@if(Request::get('tempat')) method="POST" @else method="GET" @endif>
 			@csrf
 				<div class="col-md-12">

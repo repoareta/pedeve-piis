@@ -13,21 +13,21 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Penerimaan Hadiah/Cindera Mata dan Hiburan (Entertaiment)
+                Pemberian Hadiah/Cindera Mata dan Hiburan (Entertaiment)
             </h3>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" id="formPermintaan" action="{{ route('modul_sdm_payroll.gcg.gratifikasi.permintaan.store') }}" method="POST">
+                <form class="form" id="formPemberian" action="{{ route('modul_gcg.gratifikasi.pemberian.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="permintaan_bulan_lalu" class="col-3 col-form-label">Tidak ada permintaan bulan lalu</label>
+						<label for="pemberian_bulan_lalu" class="col-3 col-form-label">Tidak ada pemberian bulan lalu</label>
 						<div class="col-9">
 							<div class="checkbox-inline">
 								<label class="checkbox checkbox--brand">
-									<input type="checkbox" name="permintaan_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada permintaan untuk periode bulan lalu
+									<input type="checkbox" name="pemberian_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada pemberian untuk periode bulan lalu
 									<span></span>
 								</label>
 							</div>
@@ -35,42 +35,42 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="tanggal_permintaan" class="col-3 col-form-label">Tanggal Permintaan</label>
+						<label for="tanggal_pemberian" class="col-3 col-form-label">Tanggal Pemberian</label>
 						<div class="col-9">
-							<input class="form-control" type="text" name="tanggal_permintaan" id="tanggal_permintaan">
+							<input class="form-control" type="text" name="tanggal_pemberian" id="tanggal_pemberian">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="peminta" class="col-3 col-form-label">Peminta</label>
+						<label for="bentuk_jenis_pemberian" class="col-3 col-form-label">Bentuk/Jenis yang diberikan</label>
 						<div class="col-9">
-							<input class="form-control" type="text" name="peminta" id="peminta">
+							<input class="form-control" type="text" name="bentuk_jenis_pemberian" id="bentuk_jenis_pemberian">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="bentuk_jenis_permintaan" class="col-3 col-form-label">Bentuk/Jenis yang diberikan</label>
-						<div class="col-9">
-							<input class="form-control" type="text" name="bentuk_jenis_permintaan" id="bentuk_jenis_permintaan">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="" class="col-3 col-form-label">Nilai yang diberi (Rp)</label>
+						<label for="" class="col-3 col-form-label">Nilai Pemberian</label>
 						<div class="col-9">
 							<input class="form-control money" type="text" name="nilai" id="nilai">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="jumlah" class="col-3 col-form-label">Jumlah Hadiah</label>
+						<label for="jumlah" class="col-3 col-form-label">Jumlah yang diberikan</label>
 						<div class="col-9">
 							<input class="form-control" type="text" name="jumlah" id="jumlah">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="keterangan" class="col-3 col-form-label">Permintaan dalam rangka</label>
+						<label for="penerima_hadiah" class="col-3 col-form-label">Penerima Hadiah</label>
+						<div class="col-9">
+							<input class="form-control" type="text" name="penerima_hadiah" id="penerima_hadiah">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="keterangan" class="col-3 col-form-label">Keterangan</label>
 						<div class="col-9">
 							<input class="form-control" type="text" name="keterangan" id="keterangan">
 						</div>
@@ -97,7 +97,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		// minimum setup
-		$('#tanggal_permintaan').datepicker({
+		$('#tanggal_pemberian').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\Gcg;
+namespace App\Http\Controllers\Gcg;
 
 use Alert;
 use App\Http\Controllers\Controller;
@@ -18,12 +18,12 @@ class LhkpnController extends Controller
     public function index()
     {
         $lhkpn_list = GcgLhkpn::all();
-        return view('modul-sdm-payroll.gcg.lhkpn.index', compact('lhkpn_list'));
+        return view('modul-gcg.lhkpn.index', compact('lhkpn_list'));
     }
 
     public function create()
     {
-        return view('modul-sdm-payroll.gcg.lhkpn.create');
+        return view('modul-gcg.lhkpn.create');
     }
 
     public function store(GcgLHKPNStore $request, GcgLhkpn $lhkpn)

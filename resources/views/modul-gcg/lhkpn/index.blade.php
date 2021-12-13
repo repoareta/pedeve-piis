@@ -13,12 +13,12 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Sosialisasi
+                LHKPN
             </h3>
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_sdm_payroll.gcg.sosialisasi.create') }}">
+                <a href="{{ route('modul_gcg.lhkpn.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -33,28 +33,34 @@
                     <thead class="thead-light">
                         <tr>
                             <th>
-                                KETERANGAN
+                                STATUS LAPORAN LHKPN
                             </th>
                             <th>
-                                DOKUMEN
+                                TANGGAL LHKPN
+                            </th>
+                            <th>
+                                DOKUMEN LHKPN
                             </th>
                             <th>
                                 TANGGAL DIBUAT
                             </th>
-                            <th>
-                                DIBUAT OLEH
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($sosialisasi_list as $sosialisasi)
+                        @foreach ($lhkpn_list as $lhkpn)
                             <tr>
-                                <td>{{ $sosialisasi->keterangan }}</td>
                                 <td>
-                                    <a href="{{ asset('storage/sosialisasi/'.$sosialisasi->dokumen) }}" target="_blank">{{ $sosialisasi->dokumen }}</a>
+                                    {{ ucfirst($lhkpn->status) }}
                                 </td>
-                                <td>{{ Carbon\Carbon::parse($sosialisasi->created_at)->translatedFormat('d F Y') }}</td>
-                                <td>{{ $sosialisasi->pekerja->nama }}</td>
+                                <td>
+                                    {{ Carbon\Carbon::parse($lhkpn->tanggal)->translatedFormat('d F Y') }}
+                                </td>
+                                <td>
+                                    <a href="{{ asset('storage/lhkpn/'.$lhkpn->dokumen) }}" target="_blank">{{ $lhkpn->dokumen }}</a>
+                                </td>
+                                <td>
+                                    {{ Carbon\Carbon::parse($lhkpn->created_at)->translatedFormat('d F Y') }}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

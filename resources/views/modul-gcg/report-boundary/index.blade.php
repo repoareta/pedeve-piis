@@ -18,7 +18,7 @@
         </div>
         <div class="card-toolbar">
             <div class="float-left">
-                <a href="{{ route('modul_sdm_payroll.gcg.lhkpn.create') }}">
+                <a href="{{ route('modul_gcg.lhkpn.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
@@ -29,7 +29,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" action="{{ route('modul_sdm_payroll.gcg.report_boundary.export') }}" method="GET" target="_blank">
+                <form class="form" action="{{ route('modul_gcg.report_boundary.export') }}" method="GET" target="_blank">
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Bulan<span class="text-danger">*</span></label>
                         <div class="col-4">

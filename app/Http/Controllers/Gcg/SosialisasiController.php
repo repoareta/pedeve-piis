@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\Gcg;
+namespace App\Http\Controllers\Gcg;
 
 use Alert;
 use App\Http\Controllers\Controller;
@@ -18,12 +18,12 @@ class SosialisasiController extends Controller
     public function index()
     {
         $sosialisasi_list = GcgSosialisasi::all();
-        return view('modul-sdm-payroll.gcg.sosialisasi.index', compact('sosialisasi_list'));
+        return view('modul-gcg.sosialisasi.index', compact('sosialisasi_list'));
     }
 
     public function create()
     {
-        return view('modul-sdm-payroll.gcg.sosialisasi.create');
+        return view('modul-gcg.sosialisasi.create');
     }
 
     public function store(GcgSosialisasiStore $request, GcgSosialisasi $sosialisasi)

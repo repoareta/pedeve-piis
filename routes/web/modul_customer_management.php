@@ -13,7 +13,7 @@ use App\Http\Controllers\CustomerManagement\RencanaKerjaController;
 use App\Http\Controllers\CustomerManagement\RkapRealisasiController;
 
 // Customer Management
-Route::prefix('customer-management')->name('modul_cm.')->group(function () {
+Route::prefix('filing-management')->name('modul_cm.')->group(function () {
     //data-perkara
     // Route assigned name "data-perkara.index"...
     Route::name('data_perkara.')->group(function () {

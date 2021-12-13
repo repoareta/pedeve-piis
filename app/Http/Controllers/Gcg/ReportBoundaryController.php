@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\Gcg;
+namespace App\Http\Controllers\Gcg;
 
 use App\Exports\ReportBoundary;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class ReportBoundaryController extends Controller
      */
     public function index()
     {
-        return view('modul-sdm-payroll.gcg.report-boundary.index');
+        return view('modul-gcg.report-boundary.index');
     }
 
     public function export(Request $request)

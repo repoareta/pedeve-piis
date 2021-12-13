@@ -20,14 +20,14 @@
     <div class="card-body">
         <div class="row">
             <div class="col-xl-12">
-                <form class="form" id="formPenerimaan" action="{{ route('modul_sdm_payroll.gcg.gratifikasi.penerimaan.store') }}" method="POST">
+                <form class="form" id="formPermintaan" action="{{ route('modul_gcg.gratifikasi.permintaan.store') }}" method="POST">
 					@csrf
 					<div class="form-group row">
-						<label for="penerimaan_bulan_lalu" class="col-3 col-form-label">Tidak ada penerimaan bulan lalu</label>
+						<label for="permintaan_bulan_lalu" class="col-3 col-form-label">Tidak ada permintaan bulan lalu</label>
 						<div class="col-9">
 							<div class="checkbox-inline">
 								<label class="checkbox checkbox--brand">
-									<input type="checkbox" name="penerimaan_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada penerimaan untuk periode bulan lalu
+									<input type="checkbox" name="permintaan_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada permintaan untuk periode bulan lalu
 									<span></span>
 								</label>
 							</div>
@@ -35,42 +35,42 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="tanggal_penerimaan" class="col-3 col-form-label">Tanggal Penerimaan</label>
+						<label for="tanggal_permintaan" class="col-3 col-form-label">Tanggal Permintaan</label>
 						<div class="col-9">
-							<input class="form-control" type="text" name="tanggal_penerimaan" id="tanggal_penerimaan">
+							<input class="form-control" type="text" name="tanggal_permintaan" id="tanggal_permintaan">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="bentuk_jenis_penerimaan" class="col-3 col-form-label">Bentuk/Jenis yang diterima</label>
+						<label for="peminta" class="col-3 col-form-label">Peminta</label>
 						<div class="col-9">
-							<input class="form-control" type="text" name="bentuk_jenis_penerimaan" id="bentuk_jenis_penerimaan">
+							<input class="form-control" type="text" name="peminta" id="peminta">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="" class="col-3 col-form-label">Nilai Pemberian</label>
+						<label for="bentuk_jenis_permintaan" class="col-3 col-form-label">Bentuk/Jenis yang diberikan</label>
+						<div class="col-9">
+							<input class="form-control" type="text" name="bentuk_jenis_permintaan" id="bentuk_jenis_permintaan">
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="" class="col-3 col-form-label">Nilai yang diberi (Rp)</label>
 						<div class="col-9">
 							<input class="form-control money" type="text" name="nilai" id="nilai">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="jumlah" class="col-3 col-form-label">Jumlah yang diberikan</label>
+						<label for="jumlah" class="col-3 col-form-label">Jumlah Hadiah</label>
 						<div class="col-9">
 							<input class="form-control" type="text" name="jumlah" id="jumlah">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="pemberi_hadiah" class="col-3 col-form-label">Pemberi Hadiah</label>
-						<div class="col-9">
-							<input class="form-control" type="text" name="pemberi_hadiah" id="pemberi_hadiah">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="keterangan" class="col-3 col-form-label">Keterangan</label>
+						<label for="keterangan" class="col-3 col-form-label">Permintaan dalam rangka</label>
 						<div class="col-9">
 							<input class="form-control" type="text" name="keterangan" id="keterangan">
 						</div>
@@ -97,7 +97,7 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		// minimum setup
-		$('#tanggal_penerimaan').datepicker({
+		$('#tanggal_permintaan').datepicker({
 			todayHighlight: true,
 			orientation: "bottom left",
 			autoclose: true,

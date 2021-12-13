@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\SdmPayroll\Gcg;
+namespace App\Http\Controllers\Gcg;
 
 use App\Http\Controllers\Controller;
 use App\Models\GcgGratifikasi;
@@ -38,6 +38,6 @@ class GcgController extends Controller
         ->orderBy('year', 'desc')
         ->get();
 
-        return view('modul-sdm-payroll.gcg.index', compact('gratifikasi_list', 'jabatan'));
+        return view('modul-gcg.index', compact('gratifikasi_list', 'jabatan'));
     }
 }

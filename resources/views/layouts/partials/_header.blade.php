@@ -26,6 +26,10 @@
 					@include('layouts.partials._menu_header.modul_sdm_payroll')
 					<!--end::SDM & Payroll Menu-->
 
+					<!--begin::SDM & Payroll Menu-->
+					@include('layouts.partials._menu_header.modul_gcg')
+					<!--end::SDM & Payroll Menu-->
+
 					<!--begin::Treasury Menu-->
 					@include('layouts.partials._menu_header.modul_treasury')
 					<!--end::Treasury Menu-->

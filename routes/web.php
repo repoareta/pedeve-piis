@@ -38,4 +38,5 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::group([], __DIR__.'/web/modul_sdm_payroll.php');
     Route::group([], __DIR__.'/web/modul_treasury.php');
     Route::group([], __DIR__.'/web/modul_umum.php');
+    Route::group([], __DIR__.'/web/modul_gcg.php');
 });

@@ -1,6 +1,6 @@
 <li class="menu-item menu-item-submenu menu-item-rel {{ Route::is('modul_cm.*') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
     <a href="javascript:;" class="menu-link menu-toggle">
-        <span class="menu-text">Customer Management</span>
+        <span class="menu-text">Filing Management</span>
         <i class="menu-arrow"></i>
     </a>
     <div class="menu-submenu menu-submenu-classic menu-submenu-left">							

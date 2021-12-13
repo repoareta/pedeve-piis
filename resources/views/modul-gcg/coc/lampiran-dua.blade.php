@@ -20,13 +20,13 @@
     <div class="card-body">
         <div class="row">
 			<div class="col-md-12 text-center">
-				<a class="btn btn-primary btn-sm" href="{{ route('modul_sdm_payroll.gcg.coc.lampiran_satu') }}" role="button">Lampiran 1</a>
-				<a class="btn btn-primary btn-sm active" href="{{ route('modul_sdm_payroll.gcg.coc.lampiran_dua') }}" role="button">Lampiran 2</a>
+				<a class="btn btn-primary btn-sm" href="{{ route('modul_gcg.coc.lampiran_satu') }}" role="button">Lampiran 1</a>
+				<a class="btn btn-primary btn-sm active" href="{{ route('modul_gcg.coc.lampiran_dua') }}" role="button">Lampiran 2</a>
 			</div>
 		</div>
 		<div class="row">
 			<form class="form" id="formPrint" 
-			@if(Request::get('orang')) action="{{ route('modul_sdm_payroll.gcg.coc.lampiran_dua.print') }}" @endif
+			@if(Request::get('orang')) action="{{ route('modul_gcg.coc.lampiran_dua.print') }}" @endif
 			@if(Request::get('orang')) method="POST" @else method="GET" @endif>
 			@csrf
 				<div class="col-md-12">
@@ -53,7 +53,7 @@
 						<br>
 						<br>
 
-						1. telah mendistribusikan Etika Usaha dan Tata Perilaku (Code of Conduct) telah diterima dan ditandatangani oleh seluruh insan PERTAMINA PEDEVE INDONESIA di fungsi krja yang menjadi tanggung jawab saya;
+						1. telah mendistribusikan Etika Usaha dan Tata Perilaku (Code of Conduct) telah diterima dan ditandatangani oleh seluruh insan PERTAMINA PEDEVE INDONESIA di fungsi kerja yang menjadi tanggung jawab saya;
 
 						<br>
 

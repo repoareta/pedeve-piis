@@ -17,7 +17,7 @@
             </h3>
         </div>
 
-        @include('modul-sdm-payroll.gcg.gratifikasi.menu')
+        @include('modul-gcg.gratifikasi.menu')
 
     </div>
     <div class="card-body">
@@ -53,7 +53,7 @@
                             <td>NIHIL</td>
                             <td>{{ ucwords($gratifikasi->jenis_gratifikasi) }}</td>
                             <td>
-                                <a href="{{ route('modul_sdm_payroll.gcg.gratifikasi.edit', ['gratifikasi' => $gratifikasi->id]) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i> Ubah</a>
+                                <a href="{{ route('modul_gcg.gratifikasi.edit', ['gratifikasi' => $gratifikasi->id]) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit" aria-hidden="true"></i> Ubah</a>
                             </td>
                         </tr>
                         @endforeach
