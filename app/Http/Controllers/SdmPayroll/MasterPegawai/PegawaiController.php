@@ -55,21 +55,27 @@ class PegawaiController extends Controller
                 return $radio;
             })
             ->addColumn('bagian', function ($row) {
-                $kode_bagian = optional($row->jabatan_latest[0])->kdbag;
-                $bagian = KodeBagian::find($kode_bagian);
-                $nama_bagian = optional($bagian)->nama ? ' - '.optional($bagian)->nama : null;
+                // $kode_jabatan = $row->jabatan_latest ? $row->jabatan_latest[0] : null; 
+
+                // $kode_bagian = optional($kode_jabatan)->kdbag;
+                // $bagian = KodeBagian::find($kode_bagian);
+                // $nama_bagian = optional($bagian)->nama ? ' - '.optional($bagian)->nama : null;
                 
-                return $kode_bagian.$nama_bagian;
+                // return $kode_bagian.$nama_bagian;
+
+                return "bagian & nama bagian";
             })
             ->addColumn('jabatan', function ($row) {
-                $kode_bagian = optional($row->jabatan_latest[0])->kdbag;
-                $kode_jabatan = optional($row->jabatan_latest[0])->kdjab;
-                $jabatan = KodeJabatan::where('kdbag', $kode_bagian)
-                    ->where('kdjab', $kode_jabatan)
-                    ->first();
-                $nama_jabatan = optional($jabatan)->keterangan ? ' - '.optional($jabatan)->keterangan : null;
+                // $kode_bagian = optional($row->jabatan_latest[0])->kdbag;
+                // $kode_jabatan = optional($row->jabatan_latest[0])->kdjab;
+                // $jabatan = KodeJabatan::where('kdbag', $kode_bagian)
+                //     ->where('kdjab', $kode_jabatan)
+                //     ->first();
+                // $nama_jabatan = optional($jabatan)->keterangan ? ' - '.optional($jabatan)->keterangan : null;
                 
-                return $kode_jabatan.$nama_jabatan;
+                // return $kode_jabatan.$nama_jabatan;
+
+                return "jabatan";
             })
             ->addColumn('status', function ($row) {
                 $status = $row->status;
