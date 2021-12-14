@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label">AARD<span class="text-danger">*</span></label>
+                        <label for="" class="col-2 col-form-label">Komponen Upah<span class="text-danger">*</span></label>
                         <div class="col-10">
                             <input type="text" class="form-control bg-secondary" value="{{ $data->aard }} - {{ $data->nama_aard }}">
                         </div>

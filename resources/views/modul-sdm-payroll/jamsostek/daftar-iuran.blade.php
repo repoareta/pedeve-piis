@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Report Iuran Jamsostek
+                Tabel Report Iuran BPJSTK
             </h3>
         </div>
     </div>
@@ -25,9 +25,9 @@
                     <div class="form-group row">
                         <label for="" class="col-2 col-form-label">Bulan/Tahun<span class="text-danger">*</span></label>
                         <div class="col-5">
-                            <?php 
+                            <?php
                                 $tgl = date_create(now());
-                                $tahun = date_format($tgl, 'Y'); 
+                                $tahun = date_format($tgl, 'Y');
                                 $bulan = date_format($tgl, 'n');
                             ?>
                             <select class="form-control select2" style="width: 100% !important;" name="bulan">
@@ -72,13 +72,13 @@
                             <div class="radio-inline">
                                 <label class="radio">
                                     <input type="radio" name="ijp" value="v1" checked>
-                                    <span></span> DAFTAR IURAN JAMSOSTEK PEKERJA 1
+                                    <span></span> DAFTAR IURAN BPJSTK PEKERJA 1
                                 </label>
                             </div>
                             <div class="radio-inline">
                                 <label class="radio">
                                     <input type="radio" name="ijp" value="v2">
-                                    <span></span> DAFTAR IURAN JAMSOSTEK PEKERJA 2
+                                    <span></span> DAFTAR IURAN BPJSTK PEKERJA 2
                                 </label>
                             </div>
                         </div>

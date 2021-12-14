@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            /** 
+            /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -26,9 +26,9 @@
             }
             /** Define the footer rules **/
             footer {
-                position: fixed; 
-                bottom: 0cm; 
-                left: 0cm; 
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
                 right: 0cm;
                 height: 2cm;
             }
@@ -41,7 +41,7 @@
                 <tr>
                     <td align="left" style="padding-left:40px;">
                         <table>
-                            <?php 
+                            <?php
                                 $array_bln	 = array (
                                     1 =>   'Januari',
                                     'Februari',
@@ -56,21 +56,21 @@
                                     'November',
                                     'Desember'
                                 );
-                                
+
                                 $bulan= strtoupper($array_bln[$request->bulan]);
                             ?>
                             <tr>
                                 <td><font style="font-size: 12pt;font-weight: bold ">PT PERTAMINA PEDEVE INDONESIA</font></td>
                             </tr>
                             <tr>
-                                <td><font style="font-size: 12pt;font-weight: bold ">DAFTAR IURAN JAMSOSTEK PEKERJA</font></td>
+                                <td><font style="font-size: 12pt;font-weight: bold ">DAFTAR IURAN BPJSTK PEKERJA</font></td>
                             </tr>
                             <tr>
                                 <td><font style="font-size: 12pt;font-weight: bold ">BULAN {{ $bulan }} {{ $request->tahun }}</font></td>
                             </tr>
                         </table>
                     </td>
-                   
+
                     <td align="center" style="">
                         <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:40px;">
                     </td>
@@ -157,10 +157,10 @@
             </table>
 
 
-            
+
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-        
+
     </body>
 </html>
