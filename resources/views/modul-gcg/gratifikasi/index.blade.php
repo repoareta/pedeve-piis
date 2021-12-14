@@ -60,7 +60,7 @@
 
                     <label for="" class="col-form-label">Type</label>
 					<div class="col-2">
-						<select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
+						<select class="form-control select2" style="width: 100% !important;" name="type" id="type">
 							<option value="">- Pilih Type -</option>
 							<option value="penerimaan">Penerimaan</option>
 							<option value="pemberian">Pemberian</option>
