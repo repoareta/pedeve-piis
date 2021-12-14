@@ -24,7 +24,7 @@ class GratifikasiController extends Controller
      */
     public function index()
     {
-        $gratifikasi_list = GcgGratifikasi::all();
+        $gratifikasi_list = GcgGratifikasi::orderBy('created_at', 'ASC')->get();
         return view('modul-gcg.gratifikasi.index', compact('gratifikasi_list'));
     }
 
@@ -35,20 +35,28 @@ class GratifikasiController extends Controller
 
     public function penerimaanStore(GcgPenerimaanStore $request, GcgGratifikasi $penerimaan)
     {
-        $penerimaan->nopeg             = Auth::user()->nopeg;
-        $penerimaan->gift_last_month   = $request->penerimaan_bulan_lalu;
-        $penerimaan->tgl_gratifikasi   = $request->tanggal_penerimaan;
-        $penerimaan->bentuk            = $request->bentuk_jenis_penerimaan;
-        $penerimaan->nilai             = $request->nilai;
-        $penerimaan->jumlah            = $request->jumlah;
-        $penerimaan->pemberi          = $request->pemberi_hadiah;
-        $penerimaan->keterangan        = $request->keterangan;
-        $penerimaan->jenis_gratifikasi = 'penerimaan';
+        if($request->penerimaan_bulan_lalu == 1) {
+            $penerimaan->nopeg             = Auth::user()->nopeg;
+            $penerimaan->gift_last_month   = $request->penerimaan_bulan_lalu;
+            $penerimaan->jenis_gratifikasi = 'penerimaan';
 
-        $penerimaan->save();
+            $penerimaan->save();
+        } else {
+            $penerimaan->nopeg             = Auth::user()->nopeg;
+            $penerimaan->gift_last_month   = null;
+            $penerimaan->tgl_gratifikasi   = $request->tanggal_penerimaan;
+            $penerimaan->bentuk            = $request->bentuk_jenis_penerimaan;
+            $penerimaan->nilai             = $request->nilai;
+            $penerimaan->jumlah            = $request->jumlah;
+            $penerimaan->pemberi           = $request->pemberi_hadiah;
+            $penerimaan->keterangan        = $request->keterangan;
+            $penerimaan->jenis_gratifikasi = 'penerimaan';
+
+            $penerimaan->save();
+        }
 
         Alert::success('Simpan Data Penerimaan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
+        return redirect()->route('modul_gcg.gratifikasi.index');
     }
 
     public function pemberian()
@@ -58,18 +66,26 @@ class GratifikasiController extends Controller
 
     public function pemberianStore(GcgPemberianStore $request, GcgGratifikasi $pemberian)
     {
-        $pemberian->nopeg             = Auth::user()->nopeg;
-        $pemberian->gift_last_month   = $request->pemberian_bulan_lalu;
-        $pemberian->tgl_gratifikasi   = $request->tanggal_pemberian;
-        $pemberian->bentuk            = $request->bentuk_jenis_pemberian;
-        $pemberian->nilai             = $request->nilai;
-        $pemberian->jumlah            = $request->jumlah;
-        $pemberian->penerima          = $request->penerima_hadiah;
-        $pemberian->keterangan        = $request->keterangan;
-        $pemberian->jenis_gratifikasi = 'pemberian';
+        if($request->pemberian_bulan_lalu == 1) {
+            $pemberian->nopeg             = Auth::user()->nopeg;
+            $pemberian->gift_last_month   = $request->pemberian_bulan_lalu;
+            $pemberian->jenis_gratifikasi = 'pemberian';
 
-        $pemberian->save();
+            $pemberian->save();
+        } else {
+            $pemberian->nopeg             = Auth::user()->nopeg;
+            $pemberian->gift_last_month   = $request->pemberian_bulan_lalu;
+            $pemberian->tgl_gratifikasi   = $request->tanggal_pemberian;
+            $pemberian->bentuk            = $request->bentuk_jenis_pemberian;
+            $pemberian->nilai             = $request->nilai;
+            $pemberian->jumlah            = $request->jumlah;
+            $pemberian->penerima          = $request->penerima_hadiah;
+            $pemberian->keterangan        = $request->keterangan;
+            $pemberian->jenis_gratifikasi = 'pemberian';
 
+            $pemberian->save();
+        }
+        
         Alert::success('Simpan Data Pemberian', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
     }
@@ -81,17 +97,26 @@ class GratifikasiController extends Controller
 
     public function permintaanStore(GcgPermintaanStore $request, GcgGratifikasi $permintaan)
     {
-        $permintaan->nopeg             = Auth::user()->nopeg;
-        $permintaan->gift_last_month   = $request->permintaan_bulan_lalu;
-        $permintaan->tgl_gratifikasi   = $request->tanggal_permintaan;
-        $permintaan->bentuk            = $request->bentuk_jenis_permintaan;
-        $permintaan->nilai             = $request->nilai;
-        $permintaan->jumlah            = $request->jumlah;
-        $permintaan->peminta          = $request->peminta;
-        $permintaan->keterangan        = $request->keterangan;
-        $permintaan->jenis_gratifikasi = 'permintaan';
+        if($request->permintaan_bulan_lalu == 1) {
+            $permintaan->nopeg             = Auth::user()->nopeg;
+            $permintaan->gift_last_month   = $request->permintaan_bulan_lalu;
+            $permintaan->jenis_gratifikasi = 'permintaan';
 
-        $permintaan->save();
+            $permintaan->save();
+        } else {
+            $permintaan->nopeg             = Auth::user()->nopeg;
+            $permintaan->gift_last_month   = $request->permintaan_bulan_lalu;
+            $permintaan->tgl_gratifikasi   = $request->tanggal_permintaan;
+            $permintaan->bentuk            = $request->bentuk_jenis_permintaan;
+            $permintaan->nilai             = $request->nilai;
+            $permintaan->jumlah            = $request->jumlah;
+            $permintaan->peminta          = $request->peminta;
+            $permintaan->keterangan        = $request->keterangan;
+            $permintaan->jenis_gratifikasi = 'permintaan';
+
+            $permintaan->save();
+        }
+        
 
         Alert::success('Simpan Data Permintaan', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');

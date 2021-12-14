@@ -24,11 +24,11 @@
 					@csrf
 					<div class="form-group row">
 						<label for="pemberian_bulan_lalu" class="col-3 col-form-label">Tidak ada pemberian bulan lalu</label>
-						<div class="col-9">
+						<div class="col-9 col-form-label">
 							<div class="checkbox-inline">
-								<label class="checkbox checkbox--brand">
-									<input type="checkbox" name="pemberian_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada pemberian untuk periode bulan lalu
-									<span></span>
+								<label class="checkbox checkbox">
+									<input type="checkbox" name="pemberian_bulan_lalu" value="1">
+									<span></span>*Klik pada kotak jika tidak ada pemberian untuk periode bulan lalu
 								</label>
 							</div>
 						</div>

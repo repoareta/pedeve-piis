@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Penerimaan Hadiah/Cindera Mata dan Hiburan (Entertaiment)
+                Permintaan Hadiah/Cindera Mata dan Hiburan (Entertaiment)
             </h3>
         </div>
     </div>
@@ -24,11 +24,11 @@
 					@csrf
 					<div class="form-group row">
 						<label for="permintaan_bulan_lalu" class="col-3 col-form-label">Tidak ada permintaan bulan lalu</label>
-						<div class="col-9">
+						<div class="col-9 col-form-label">
 							<div class="checkbox-inline">
-								<label class="checkbox checkbox--brand">
-									<input type="checkbox" name="permintaan_bulan_lalu" value="1"> *Klik pada kotak jika tidak ada permintaan untuk periode bulan lalu
-									<span></span>
+								<label class="checkbox checkbox">
+									<input type="checkbox" name="pemberian_bulan_lalu" value="1">
+									<span></span>*Klik pada kotak jika tidak ada permintaan untuk periode bulan lalu
 								</label>
 							</div>
 						</div>
@@ -56,7 +56,7 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="" class="col-3 col-form-label">Nilai yang diberi (Rp)</label>
+						<label for="" class="col-3 col-form-label">Nilai yang diberi (Total dalam Rp.)</label>
 						<div class="col-9">
 							<input class="form-control money" type="text" name="nilai" id="nilai">
 						</div>

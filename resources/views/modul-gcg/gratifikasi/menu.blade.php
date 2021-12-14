@@ -14,6 +14,7 @@
                     <a class="dropdown-item {{ Route::is('modul_gcg.gratifikasi.index.report.management') ? 'active' : '' }}" href="{{ route('modul_gcg.gratifikasi.report.management') }}">Management</a>
                 </div>
             </div>
+            <a class="btn btn-outline-secondary {{ Route::is('modul_gcg.gratifikasi.index.permintaan') ? 'active' : '' }}" href="{{ route('modul_gcg.gratifikasi.permintaan') }}" role="button"><i class="fas fa-eye"></i> View as Admin</a>
         </div>
     </div>
 </div>
