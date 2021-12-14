@@ -19,7 +19,7 @@
         <div class="card-toolbar">
             <div class="float-left">
                 @if (permission(621)->tambah == 1)
-                <a href="{{ route('modul_umum.perjalanan_dinas.create') }}">
+                <a href="{{ route('modul_sdm_payroll.potongan_manual.create') }}">
 					<span data-toggle="tooltip" data-placement="top" title="" data-original-title="Tambah Data">
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
