@@ -7,6 +7,7 @@ use App\Models\PayPotongan;
 use App\Models\MasterPegawai;
 use DB;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PotonganManualController extends Controller
 {
@@ -20,14 +21,14 @@ class PotonganManualController extends Controller
         $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
             if(!empty($data_tahunbulan)) {
                 foreach ($data_tahunbulan as $data_bul) {
-                    $tahun = substr($data_bul->bulan_buku,0,-2); 
-                    $bulan = substr($data_bul->bulan_buku,4); 
+                    $tahun = substr($data_bul->bulan_buku,0,-2);
+                    $bulan = substr($data_bul->bulan_buku,4);
                 }
             } else {
                 $bulan ='00';
                 $tahun ='0000';
             }
-        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");
         return view('modul-sdm-payroll.potongan-manual.index',compact('data_pegawai','tahun','bulan'));
     }
 
@@ -39,7 +40,7 @@ class PotonganManualController extends Controller
                 $bulan_buku = $data_bul->bulan_buku;
             }
             $tahuns = substr($bulan_buku,0,-2);
-        
+
             $bulan = ltrim($request->bulan, '0');
             $tahun = $request->tahun;
             $nopek = $request->nopek;
@@ -55,7 +56,7 @@ class PotonganManualController extends Controller
                 if($bulan == null and $tahun == null and $nopek <> ""){
                 $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode where a.nopek='$nopek' order by a.tahun, a.bulan desc");
                 } else {
-                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
+                $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'" );
                 }
             }
             return datatables()->of($data)
@@ -90,14 +91,14 @@ class PotonganManualController extends Controller
                  return abs($data->ccl);
            })
             ->addColumn('jmlcc', function ($data) {
-                 return currency_format($data->jmlcc);
+                 return number_format($data->jmlcc);
            })
             ->addColumn('nilai', function ($data) {
                  return currency_format($data->nilai);
            })
-    
+
             ->addColumn('radio', function ($data) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>'; 
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" tahun="'.$data->tahun.'" bulan="'.$data->bulan.'"  aard="'.$data->aard.'" nopek="'.$data->nopek.'" nama="'.$data->nama_nopek.'" data-nopek="" class="btn-radio" name="btn-radio-rekap"><span></span></label>';
                 return $radio;
             })
             ->rawColumns(['radio'])
@@ -124,26 +125,31 @@ class PotonganManualController extends Controller
      */
     public function store(Request $request)
     {
-        $data_cek = DB::select("SELECT * from pay_potongan   where nopek='$request->nopek' and aard='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
-        if(!empty($data_cek)){
-            $data=0;
-            return response()->json($data);
-        }else {
-        $data_tahun = $request->tahun;
-        $data_bulan = $request->bulan;
+        $prevData = DB::table('pay_potongan')
+            ->where('nopek', $request->nopek)
+            ->where('aard', $request->aard)
+            ->where('bulan', $request->bulan)
+            ->where('tahun', $request->tahun)
+            ->first();
+
+        if ($prevData) {
+            Alert::info('Failed', 'Data Potongan Manual Yang Diinput Sudah Ada.')->persistent(true)->autoClose(3000);
+            return redirect()->route('modul_sdm_payroll.potongan_manual.create')->withInput();
+        }
+
         PayPotongan::insert([
-            'tahun' => $data_tahun,
-            'bulan' => $data_bulan,
+            'tahun' => $request->tahun,
+            'bulan' => $request->bulan,
             'nopek' => $request->nopek,
             'aard' => $request->aard,
             'jmlcc' => $request->jmlcc,
             'ccl' => $request->ccl,
-            'nilai' => str_replace(',', '.', $request->nilai),
-            'userid' => $request->userid,            
-            ]);
-            $data = 1;
-            return response()->json($data);
-        }
+            'nilai' => sanitize_nominal($request->nilai),
+            'userid' => $request->userid,
+        ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.potongan_manual.index');
     }
 
     /**
@@ -165,8 +171,17 @@ class PotonganManualController extends Controller
      */
     public function edit($bulan,$tahun,$aard,$nopek)
     {
-        $data_list = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'" ); 			
-        return view('modul-sdm-payroll.potongan-manual.edit',compact('data_list'));
+        $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.aard, a.jmlcc, a.ccl, a.nilai, a.userid, b.nama as nama_nopek, b.nopeg ,c.nama as nama_aard from pay_potongan a join sdm_master_pegawai b on a.nopek=b.nopeg join pay_tbl_aard c on a.aard=c.kode  where a.nopek='$nopek' and a.aard='$aard' and a.bulan='$bulan' and a.tahun='$tahun'")[0];
+        $data_pegawai = MasterPegawai::whereNotIn('status',['P'])->get();
+        $pay_aard = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in ('18','28','19','44') order by kode");
+
+        // dd($data);
+
+        return view('modul-sdm-payroll.potongan-manual.edit', compact(
+            'data',
+            'data_pegawai',
+            'pay_aard',
+        ));
     }
 
     /**
@@ -178,19 +193,19 @@ class PotonganManualController extends Controller
      */
     public function update(Request $request)
     {
-      
-
         PayPotongan::where('tahun', $request->tahun)
-            ->where('bulan',$request->bulan)
-            ->where('nopek',$request->nopek)
-            ->where('aard',$request->aard)
+            ->where('bulan', $request->bulan)
+            ->where('nopek', $request->nopek)
+            ->where('aard', $request->aard)
             ->update([
                 'jmlcc' => $request->jmlcc,
                 'ccl' => $request->ccl,
-                'nilai' => str_replace(',', '.', $request->nilai),
+                'nilai' => sanitize_nominal($request->nilai),
                 'userid' => $request->userid,
             ]);
-            return response()->json();
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.potongan_manual.index');
     }
 
     /**
