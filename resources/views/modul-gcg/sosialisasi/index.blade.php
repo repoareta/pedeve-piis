@@ -118,10 +118,26 @@
         // cek sebelumnya sudah pernah menjadi reader
         // jika sudah langsung download file
         // jika belum maka tampilkan show modal
-        $('#myModal').modal('show');
-        $('#konfirmasi').data('nopeg', nopeg);
-        $('#konfirmasi').data('sosialisasi_id', sosialisasi_id);
-        $('#konfirmasi').data('url', url);
+        $.ajax({
+            url: "{{ route('modul_gcg.sosialisasi.reader.store') }}",
+            type: "POST",
+            data: {
+                nopeg: nopeg,
+                sosialisasi_id: sosialisasi_id,
+                _token: "{{ csrf_token() }}",
+            },
+            cache: false,
+            success: function(response){
+                if(response.success == true){
+                    window.open(url, '_blank');
+                } else {
+                    $('#myModal').modal('show');
+                    $('#konfirmasi').data('nopeg', nopeg);
+                    $('#konfirmasi').data('sosialisasi_id', sosialisasi_id);
+                    $('#konfirmasi').data('url', url);
+                }
+            }
+        });
     }
 
     function setReader() {
