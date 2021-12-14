@@ -122,7 +122,7 @@ class PotonganInsentifController extends Controller
 
         if ($prevData) {
             Alert::info('Failed', 'Data Potongan Insentif Yang Diinput Sudah Ada.')->persistent(true)->autoClose(3000);
-            return redirect()->route('modul_sdm_payroll.potongan_manual.create')->withInput();
+            return redirect()->route('modul_sdm_payroll.potongan_insentif.create')->withInput();
         }
 
         PayPotonganInsentif::insert([
@@ -134,7 +134,7 @@ class PotonganInsentifController extends Controller
         ]);
 
         Alert::success('Success', 'Data berhasil ditambahkan.')->persistent(true)->autoClose(3000);
-        return redirect()->route('modul_sdm_payroll.potongan_manual.index');
+        return redirect()->route('modul_sdm_payroll.potongan_insentif.index');
     }
 
     /**
@@ -157,8 +157,6 @@ class PotonganInsentifController extends Controller
     public function edit($bulan,$tahun,$nopek)
     {
         $data = DB::select("SELECT a.tahun, a.bulan, a.nopek, a.nilai, a.userid,b.nama as nama_nopek, b.nopeg from pay_potongan_insentif a join sdm_master_pegawai b on a.nopek=b.nopeg where a.nopek='$nopek' and a.bulan='$bulan' and a.tahun='$tahun'")[0];
-
-        // dd($data);
 
         return view('modul-sdm-payroll.potongan-insentif.edit', compact(
             'data'
