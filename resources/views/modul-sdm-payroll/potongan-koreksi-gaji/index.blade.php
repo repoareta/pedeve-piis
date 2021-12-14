@@ -100,7 +100,7 @@
                             <th>Tahun</th>
                             <th>Bulan</th>
                             <th>Pegawai</th>
-                            <th>AARD</th>
+                            <th>Komponen Upah</th>
                             <th>Nilai</th>
                         </tr>
                     </thead>

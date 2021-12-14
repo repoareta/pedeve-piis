@@ -102,7 +102,7 @@
                             <th></th>
                             <th>BULAN</th>
                             <th>PEGAWAI</th>
-                            <th>AARD</th>
+                            <th>KOMPONEN UPAH</th>
                             <th>CICILAN KE</th>
                             <th>JUMLAH CICILAN</th>
                             <th>NILAI</th>

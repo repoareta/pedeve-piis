@@ -105,7 +105,7 @@
                             <th></th>
                             <th>BULAN</th>
                             <th>PEGAWAI</th>
-                            <th>AARD</th>
+                            <th>KOMPONEN UPAH</th>
                             <th>NILAI</th>
                         </tr>
                     </thead>
@@ -194,7 +194,7 @@
 
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
-						text: "Nopek : " + nopek + " AARD : " + aard,
+						text: "Nopek : " + nopek + " Komponen Upah : " + aard,
 						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
@@ -217,7 +217,7 @@
 								success: function () {
 									Swal.fire({
 										icon  : 'success',
-										title : "Hapus Nopek : " + nopek + " AARD : " + aard,
+										title : "Hapus Nopek : " + nopek + " Komponen Upah : " + aard,
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {

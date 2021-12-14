@@ -63,10 +63,10 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">AARD<span class="text-danger">*</span></label>
+                <label for="" class="col-2 col-form-label">Komponen Upah<span class="text-danger">*</span></label>
                 <div class="col-10">
                     <select name="aard" id="aard" class="form-control selectpicker" data-live-search="true" required autocomplete="off">
-                        <option value="">- Pilih -</option>
+                        <option value="">- Pilih Komponen Upah -</option>
                         @foreach($pay_aard as $dataa)
                         <option value="{{ $dataa->kode }}">{{ $dataa->kode }} - {{ $dataa->nama }}</option>
                         @endforeach

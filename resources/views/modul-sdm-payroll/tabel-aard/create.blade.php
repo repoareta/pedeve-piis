@@ -17,7 +17,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah AARD
+                Tambah Komponen Upah
             </h3>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="col-xl-12">
                 <div class="form-group mb-8">
                     <div class="alert alert-custom alert-default" role="alert">
-                        <div class="alert-text">Header AARD</div>
+                        <div class="alert-text">Header Komponen Upah</div>
                     </div>
                 </div>
                 <form class="form" id="formTabelAard" action="{{ route('modul_sdm_payroll.tabel_aard.store') }}" method="POST">
@@ -89,7 +89,7 @@
                     </div>
 				</form>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 
@@ -99,8 +99,8 @@
 {!! JsValidator::formRequest('App\Http\Requests\TabelAardStore', '#formTabelAard'); !!}
 <script>
     $(document).ready(function () {
-        
-        $("#formTabelAard").on('submit', function(e){            
+
+        $("#formTabelAard").on('submit', function(e){
                 e.preventDefault();
 
                 if($(this).valid()) {
@@ -129,8 +129,8 @@
                 });
             }
         });
-        
+
     });
-    
+
 </script>
 @endpush
