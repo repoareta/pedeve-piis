@@ -13,7 +13,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Master Insentif
+                Tambah Riwayat Insentif
             </h3>
         </div>
     </div>
