@@ -23,12 +23,18 @@
 						<i class="fas fa-2x fa-plus-circle text-success"></i>
 					</span>
 				</a>
+                <a href="#">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
+						<i class="fas fa-2x fa-edit text-warning" id="editRow"></i>
+					</span>
+				</a>
+				<a href="#">
+					<span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Hapus Data">
+						<i class="fas fa-2x fa-times-circle text-danger" id="deleteRow"></i>
+					</span>
+				</a>
             </div>
-            <a href="{{ route('modul_gcg.lhkpn.create') }}" class="pt-2 ml-10">
-                <span class="badge badge-primary mb-3" data-original-title="Tambah Data">
-                    View as Admin
-                </span>
-            </a>
+            <a class="btn btn-outline-secondary btn-sm ml-10" href="#" role="button"><i class="fas fa-eye"></i> View as Admin</a>
         </div>
     </div>
     <div class="card-body">
