@@ -86,6 +86,8 @@
                             <th>Jenis</th>
                             <th>Jumlah</th>
                             <th>Pemberi</th>
+                            <th>Penerima</th>
+                            <th>Peminta</th>
                             <th>Keterangan</th>
                             <th>Status</th>
                             <th>Approval</th>
@@ -102,6 +104,8 @@
                             <td>{{ $gratifikasi->bentuk ? $gratifikasi->bentuk : '-' }}</td>
                             <td>{{ $gratifikasi->jumlah ? $gratifikasi->jumlah : '-' }}</td>
                             <td>{{ $gratifikasi->pemberi ? $gratifikasi->pemberi : '-' }}</td>
+                            <td>{{ $gratifikasi->penerima ? $gratifikasi->penerima : '-' }}</td>
+                            <td>{{ $gratifikasi->peminta ? $gratifikasi->peminta : '-' }}</td>
                             <td>{{ $gratifikasi->keterangan ? $gratifikasi->keterangan : '-' }}</td>
                             <td>{{ $gratifikasi->gift_last_month ? 'NIHIL' : '-' }}</td>
                             <td>{{ $gratifikasi->status }}</td>
