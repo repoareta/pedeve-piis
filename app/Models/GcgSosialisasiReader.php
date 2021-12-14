@@ -10,4 +10,9 @@ class GcgSosialisasiReader extends Model
     use HasFactory;
 
     protected $table = "gcg_sosialisasi_reader";
+
+    public function pekerja()
+    {
+        return $this->belongsTo(MasterPegawai::class, 'nopeg', 'nopeg');
+    }
 }

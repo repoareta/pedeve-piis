@@ -65,14 +65,16 @@
                                 <td>{{ $sosialisasi->keterangan }}</td>
                                 <td>
                                     @foreach ($sosialisasi->dokumen as $file)
-                                        <span class="badge badge-primary mb-3" onclick="getReader({{ auth()->user()->nopeg }})">{{ $file->dokumen }}</span>
+                                        <span class="badge badge-primary mb-3" onclick="getReader('{{ auth()->user()->nopeg }}', '{{ $sosialisasi->id }}', '{{ asset('sosialisasi/'.$file->dokumen) }}')">{{ $file->dokumen }}</span>
                                     @endforeach
                                 </td>
                                 <td>{{ Carbon\Carbon::parse($sosialisasi->created_at)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $sosialisasi->pekerja->nama }}</td>
                                 <td>
-                                    @foreach ($sosialisasi->reader as $reader)
-                                        {{ $reader->nopeg }}
+                                    @foreach ($sosialisasi->reader->where('sosialisasi_id', $sosialisasi->id) as $reader)
+                                        <span class="badge badge-primary mb-3" data-nopeg="{{ $reader->nopeg }}">
+                                            {{ $reader->pekerja->nama }}
+                                        </span>
                                     @endforeach
                                 </td>
                             </tr>
@@ -86,20 +88,19 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Pernyataan Sosialisasi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+                <i aria-hidden="true" class="ki ki-close"></i>
             </button>
         </div>
         <div class="modal-body">
-            Dengan ini saya menyatakan akan dan telah membaca serta memahami isi dari materi yang disampaikan.
+            Dengan ini saya menyatakan telah membaca serta memahami isi dari materi yang disampaikan.
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-primary" onclick="setReader()">Konfirmasi</button>
+            <button type="button" class="btn btn-primary" onclick="setReader()" id="konfirmasi">Konfirmasi</button>
         </div>
         </div>
     </div>
@@ -113,8 +114,41 @@
 		$('#kt_table').DataTable();
 	});
 
-    function getReader(nopeg) {
+    function getReader(nopeg, sosialisasi_id, url) {
+        // cek sebelumnya sudah pernah menjadi reader
+        // jika sudah langsung download file
+        // jika belum maka tampilkan show modal
         $('#myModal').modal('show');
+        $('#konfirmasi').data('nopeg', nopeg);
+        $('#konfirmasi').data('sosialisasi_id', sosialisasi_id);
+        $('#konfirmasi').data('url', url);
+    }
+
+    function setReader() {
+
+        var nopeg = $('#konfirmasi').data('nopeg');
+        var sosialisasi_id = $('#konfirmasi').data('sosialisasi_id');
+        var url = $('#konfirmasi').data('url');
+
+        $.ajax({
+            url: "{{ route('modul_gcg.sosialisasi.reader.store') }}",
+            type: "POST",
+            data: {
+                nopeg: nopeg,
+                sosialisasi_id: sosialisasi_id,
+                _token: "{{ csrf_token() }}",
+            },
+            cache: false,
+            success: function(response){
+                if(response.success == true){
+                    $('#myModal').modal('hide');
+
+                    window.open(url, '_blank');
+                } else {
+                    alert('error, coba lagi nanti');
+                }
+            }
+        });
     }
 </script>
 @endpush
