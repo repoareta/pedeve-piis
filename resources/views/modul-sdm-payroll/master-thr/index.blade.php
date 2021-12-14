@@ -13,10 +13,10 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Master THR
+                Tabel Riwayat THR
             </h3>
         </div>
-        <div class="card-toolbar">
+        {{-- <div class="card-toolbar">
             <div class="float-left">
                 @if (permission(625)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.master_thr.create') }}">
@@ -40,7 +40,7 @@
 				</a>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="card-body">
 

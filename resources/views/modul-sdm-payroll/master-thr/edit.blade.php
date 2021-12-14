@@ -13,7 +13,7 @@
                 <i class="flaticon2-pen text-primary"></i>
             </span>
             <h3 class="card-label">
-                Ubah Master THR
+                Ubah Riwayat THR
             </h3>
         </div>
     </div>
