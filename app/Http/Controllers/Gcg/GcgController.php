@@ -34,6 +34,7 @@ class GcgController extends Controller
             COUNT(CASE WHEN (jenis_gratifikasi = 'penerimaan') THEN jenis_gratifikasi ELSE NULL END) AS penerimaan,
             COUNT(CASE WHEN (jenis_gratifikasi = 'permintaan') THEN jenis_gratifikasi ELSE NULL END) AS permintaan
         ")
+        ->whereNotNull('tgl_gratifikasi')
         ->groupBy('year', 'month')
         ->orderBy('year', 'desc')
         ->get();
