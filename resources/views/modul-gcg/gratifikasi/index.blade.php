@@ -57,6 +57,17 @@
 							<option value="">- Pilih Tahun -</option>
 						</select>
 					</div>
+
+                    <label for="" class="col-form-label">Type</label>
+					<div class="col-2">
+						<select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
+							<option value="">- Pilih Type -</option>
+							<option value="penerimaan">Penerimaan</option>
+							<option value="pemberian">Pemberian</option>
+							<option value="permintaan">Permintaan</option>
+						</select>
+					</div>
+
 					<div class="col-2">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
 					</div>
