@@ -24,6 +24,11 @@
 					</span>
 				</a>
             </div>
+            <a href="{{ route('modul_gcg.lhkpn.create') }}" class="pt-2 ml-10">
+                <span class="badge badge-primary mb-3" data-original-title="Tambah Data">
+                    View as Admin
+                </span>
+            </a>
         </div>
     </div>
     <div class="card-body">
@@ -33,9 +38,6 @@
                     <thead class="thead-light">
                         <tr>
                             <th>
-                                STATUS LAPORAN LHKPN
-                            </th>
-                            <th>
                                 TANGGAL LHKPN
                             </th>
                             <th>
@@ -44,22 +46,27 @@
                             <th>
                                 TANGGAL DIBUAT
                             </th>
+                            <th>
+                                STATUS LAPORAN LHKPN
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($lhkpn_list as $lhkpn)
                             <tr>
                                 <td>
-                                    {{ ucfirst($lhkpn->status) }}
-                                </td>
-                                <td>
                                     {{ Carbon\Carbon::parse($lhkpn->tanggal)->translatedFormat('d F Y') }}
                                 </td>
                                 <td>
-                                    <a href="{{ asset('storage/lhkpn/'.$lhkpn->dokumen) }}" target="_blank">{{ $lhkpn->dokumen }}</a>
+                                    @foreach ($lhkpn->dokumen as $file)
+                                        <a href="{{ asset('lhkpn/'.$file->dokumen) }}" target="_blank"><span class="badge badge-primary mb-3">{{ $file->dokumen }}</span></a>
+                                    @endforeach
                                 </td>
                                 <td>
                                     {{ Carbon\Carbon::parse($lhkpn->created_at)->translatedFormat('d F Y') }}
+                                </td>                                
+                                <td>
+                                    {{ ucfirst($lhkpn->status) }}
                                 </td>
                             </tr>
                         @endforeach
