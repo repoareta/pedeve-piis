@@ -23,6 +23,6 @@ class GcgSosialisasi extends Model
 
     public function reader()
     {
-        return $this->hasMany(GcgSosialisasiReader::class, 'nopeg', 'nopeg');
+        return $this->hasMany(GcgSosialisasiReader::class, 'sosialisasi_id', 'id');
     }
 }

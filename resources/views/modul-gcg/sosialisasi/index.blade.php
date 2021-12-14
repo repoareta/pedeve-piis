@@ -71,7 +71,7 @@
                                 <td>{{ Carbon\Carbon::parse($sosialisasi->created_at)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $sosialisasi->pekerja->nama }}</td>
                                 <td>
-                                    @foreach ($sosialisasi->reader->where('sosialisasi_id', $sosialisasi->id) as $reader)
+                                    @foreach ($sosialisasi->reader as $reader)
                                         <span class="badge badge-primary mb-3" data-nopeg="{{ $reader->nopeg }}">
                                             {{ $reader->pekerja->nama }}
                                         </span>
@@ -119,7 +119,7 @@
         // jika sudah langsung download file
         // jika belum maka tampilkan show modal
         $.ajax({
-            url: "{{ route('modul_gcg.sosialisasi.reader.store') }}",
+            url: "{{ route('modul_gcg.sosialisasi.reader.check') }}",
             type: "POST",
             data: {
                 nopeg: nopeg,

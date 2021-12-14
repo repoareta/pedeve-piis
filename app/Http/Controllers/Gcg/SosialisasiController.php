@@ -83,4 +83,23 @@ class SosialisasiController extends Controller
             'reader' => $reader
         ], 200);
     }
+
+    public function checkReader(Request $request)
+    {   
+        $reader_exist = GcgSosialisasiReader::where('nopeg', $request->nopeg)
+        ->where('sosialisasi_id', $request->sosialisasi_id)
+        ->first();
+
+        if ($reader_exist){
+            return response()->json([
+                'success' => true,
+                'reader' => $reader_exist
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'reader' => 'reader not found'
+            ], 200);
+        }
+    }
 }
