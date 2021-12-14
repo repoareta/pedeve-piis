@@ -67,10 +67,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="" class="col-2 col-form-label">AARD<span class="text-danger">*</span></label>
+                        <label for="" class="col-2 col-form-label">Komponen Upah<span class="text-danger">*</span></label>
                         <div class="col-10">
                             <select name="aard" id="aard" class="form-control select2" style="width: 100% !important;" required autocomplete="off" oninvalid="this.setCustomValidity('Potongan Harus Diisi..')">
-                                <option value="">- Pilih -</option>
+                                <option value="">- Pilih Komponen Upah -</option>
                                 @foreach($pay_aard as $data)
                                 <option value="{{ $data->kode }}">{{ $data->kode }} - {{ $data->nama }}</option>
                                 @endforeach

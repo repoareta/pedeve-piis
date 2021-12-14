@@ -19,7 +19,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Master Data</span>									
+                    <span class="menu-text">Master Data</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu">
@@ -73,7 +73,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Master Pegawai</span>													
+                    <span class="menu-text">Master Pegawai</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
@@ -197,9 +197,9 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Honor Komite/Rapat</span>													
+                    <span class="menu-text">Honor Komite/Rapat</span>
                 </a>
-            </li>																						
+            </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
@@ -278,7 +278,7 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">AARD</span>
+                                <span class="menu-text">Komponen Upah</span>
                             </a>
                         </li>
                         <li class="menu-item" aria-haspopup="true">
@@ -431,7 +431,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Absensi Karyawan</span>													
+                    <span class="menu-text">Absensi Karyawan</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
