@@ -87,7 +87,7 @@ class GratifikasiController extends Controller
         }
         
         Alert::success('Simpan Data Pemberian', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
+        return redirect()->route('modul_gcg.gratifikasi.index');
     }
 
     public function permintaan()
@@ -119,7 +119,7 @@ class GratifikasiController extends Controller
         
 
         Alert::success('Simpan Data Permintaan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
+        return redirect()->route('modul_gcg.gratifikasi.index');
     }
 
     public function reportPersonal()
@@ -279,6 +279,6 @@ class GratifikasiController extends Controller
         $gratifikasi->save();
 
         Alert::success('Update Data Gratifikasi', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('modul_sdm_payroll.gcg.gratifikasi.index');
+        return redirect()->route('modul_gcg.gratifikasi.index');
     }
 }
