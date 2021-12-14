@@ -72,7 +72,7 @@
                                 <td>{{ $sosialisasi->pekerja->nama }}</td>
                                 <td>
                                     @foreach ($sosialisasi->reader as $reader)
-                                        <span class="badge badge-primary mb-3" data-nopeg="{{ $reader->nopeg }}">
+                                        <span class="badge badge-success mb-3" data-nopeg="{{ $reader->nopeg }}">
                                             {{ $reader->pekerja->nama }}
                                         </span>
                                     @endforeach
