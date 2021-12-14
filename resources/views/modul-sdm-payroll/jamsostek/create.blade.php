@@ -13,7 +13,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Jamsostek
+                Tambah BPJSTK
             </h3>
         </div>
     </div>
@@ -23,7 +23,7 @@
             @csrf
             <div class="alert alert-custom alert-default" role="alert">
                 <div class="alert-text">
-                    Header Jamsostek
+                    Header BPJSTK
                 </div>
             </div>
             <div class="form-group row">

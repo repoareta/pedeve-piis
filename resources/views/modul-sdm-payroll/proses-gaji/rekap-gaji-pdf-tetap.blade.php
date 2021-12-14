@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            /** 
+            /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -31,9 +31,9 @@
 
             /** Define the footer rules **/
             footer {
-                position: fixed; 
-                bottom: 0cm; 
-                left: 0cm; 
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
                 right: 0cm;
                 height: 2cm;
             }
@@ -44,7 +44,7 @@
         <header>
         <!-- pegawai tetap -->
             <table width="100%">
-                <?php 
+                <?php
                     $array_bln	 = array (
                         1 =>   'Januari',
                         'Februari',
@@ -59,7 +59,7 @@
                         'November',
                         'Desember'
                     );
-                    
+
                     $bulan= strtoupper($array_bln[$request->bulan]);
                 ?>
                 <tr>
@@ -76,7 +76,7 @@
                             </tr>
                         </table>
                     </td>
-                   
+
                     <td align="center" style="">
                         <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:40px;">
                     </td>
@@ -113,7 +113,7 @@
                                 <td >KOREKSI<br> GAJI</td>
                                 <td >KODE<br> PAJAK</td>
                                 <td >TUNJANGAN<br> PAJAK</td>
-                                <td>IURAN<br> JAMSOSTEK</td>
+                                <td>IURAN<br> BPJSTK</td>
                                 <td>POT.<br> PAJAK</td>
                                 <td>POT.<br> PINJAMAN</td>
                                 <td>PEMBULATAN</td>
@@ -371,7 +371,7 @@
                                 <td style="text-align:right;">{{ array_sum($subtotalc11) <= 0 ? '('.number_format(array_sum($subtotalc11)*-1,0).')' : number_format(array_sum($subtotalc11),0)}}</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotalc13),0)}}</td>
                             </tr>
-                            
+
                             <tr style="font-size: 7pt;font-weight: bold">
                                <td style="text-align:right;" colspan="3">TOTAL</td>
                                 <td style="text-align:right;">{{ number_format(array_sum($subtotala)+array_sum($subtotalb)+array_sum($subtotalc),0)}}</td>
@@ -425,6 +425,6 @@
                 </tr>
             </table>
         </main>
-        
+
     </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            /** 
+            /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -31,9 +31,9 @@
 
             /** Define the footer rules **/
             footer {
-                position: fixed; 
-                bottom: 0cm; 
-                left: 0cm; 
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
                 right: 0cm;
                 height: 2cm;
             }
@@ -43,7 +43,7 @@
         <!-- Define header and footer blocks before your content -->
         <header>
             <table width="100%">
-                <?php 
+                <?php
                     $array_bln	 = array (
                         1 =>   'Januari',
                         'Februari',
@@ -58,7 +58,7 @@
                         'November',
                         'Desember'
                     );
-                    
+
                     $bulan= strtoupper($array_bln[$request->bulan]);
                 ?>
                 <tr>
@@ -75,7 +75,7 @@
                             </tr>
                         </table>
                     </td>
-                   
+
                     <td align="center" style="">
                         <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:45px;">
                     </td>
@@ -113,7 +113,7 @@
                                 <td >KOREKSI<br> GAJI</td>
                                 <td >TUNJANGAN<br> PAJAK</td>
                                 <td>POT.<br> PAJAK</td>
-                                <td>IURAN<br> JAMSOSTEK</td>
+                                <td>IURAN<br> BPJSTK</td>
                                 <td>PEMBULATAN</td>
                             </tr>
                             <tr>
@@ -411,6 +411,6 @@
                 </tr>
             </table>
         </main>
-        
+
     </body>
 </html>
