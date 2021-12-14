@@ -213,7 +213,7 @@
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Master Payroll</span>
+                                <span class="menu-text">Riwayat Payroll</span>
                                 <i class="menu-arrow"></i>
                             </a>
                             <div class="menu-submenu menu-submenu-classic menu-submenu-right">
@@ -223,7 +223,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Master Upah</span>
+                                            <span class="menu-text">Riwayat Upah</span>
                                         </a>
                                     </li>
                                     <li class="menu-item {{ Route::is('modul_sdm_payroll.master_insentif.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
@@ -231,7 +231,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Master Insentif</span>
+                                            <span class="menu-text">Riwayat Insentif</span>
                                         </a>
                                     </li>
                                     <li class="menu-item {{ Route::is('modul_sdm_payroll.master_hutang.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
@@ -239,7 +239,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Master Hutang</span>
+                                            <span class="menu-text">Riwayat Hutang</span>
                                         </a>
                                     </li>
                                     <li class="menu-item {{ Route::is('modul_sdm_payroll.master_beban_perusahaan.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
@@ -255,7 +255,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Master THR</span>
+                                            <span class="menu-text">Riwayat THR</span>
                                         </a>
                                     </li>
                                 </ul>

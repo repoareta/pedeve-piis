@@ -81,7 +81,7 @@
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
                     </i>
-                    <span class="menu-text">Master Payroll</span>
+                    <span class="menu-text">Riwayat Payroll</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu">

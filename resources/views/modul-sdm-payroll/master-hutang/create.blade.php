@@ -13,7 +13,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Master Hutang
+                Tambah Riwayat Hutang
             </h3>
         </div>
     </div>
