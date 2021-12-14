@@ -285,7 +285,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Daftar Iuran Jamsostek</span>
+                                            <span class="menu-text">Daftar Iuran BPJSTK</span>
                                         </a>
                                     </li>
                                     <li class="menu-item" aria-haspopup="true">
@@ -438,7 +438,7 @@
                                             <i class="menu-bullet menu-bullet-dot">
                                                 <span></span>
                                             </i>
-                                            <span class="menu-text">Jamsostek</span>
+                                            <span class="menu-text">BPJSTK</span>
                                         </a>
                                     </li>
                                     <li class="menu-item {{ Route::is('modul_sdm_payroll.pensiun.*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
