@@ -15,4 +15,14 @@ class GcgSosialisasi extends Model
     {
         return $this->belongsTo('App\Models\MasterPegawai', 'nopeg', 'nopeg');
     }
+
+    public function dokumen()
+    {
+        return $this->hasMany(GcgSosialisasiDokumen::class, 'sosialisasi_id', 'id');
+    }
+
+    public function reader()
+    {
+        return $this->hasMany(GcgSosialisasiReader::class, 'nopeg', 'nopeg');
+    }
 }

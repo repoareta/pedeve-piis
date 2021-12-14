@@ -44,6 +44,9 @@
                             <th>
                                 DIBUAT OLEH
                             </th>
+                            <th>
+                                DIBACA OLEH
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,15 +54,43 @@
                             <tr>
                                 <td>{{ $sosialisasi->keterangan }}</td>
                                 <td>
-                                    <a href="{{ asset('storage/sosialisasi/'.$sosialisasi->dokumen) }}" target="_blank">{{ $sosialisasi->dokumen }}</a>
+                                    @foreach ($sosialisasi->dokumen as $file)
+                                        <span class="badge badge-primary mb-3" onclick="getReader({{ auth()->user()->nopeg }})">{{ $file->dokumen }}</span>
+                                    @endforeach
                                 </td>
                                 <td>{{ Carbon\Carbon::parse($sosialisasi->created_at)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $sosialisasi->pekerja->nama }}</td>
+                                <td>
+                                    @foreach ($sosialisasi->reader as $reader)
+                                        {{ $reader->nopeg }}
+                                    @endforeach
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pernyataan Sosialisasi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            Dengan ini saya menyatakan akan dan telah membaca serta memahami isi dari materi yang disampaikan.
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" onclick="setReader()">Konfirmasi</button>
+        </div>
         </div>
     </div>
 </div>
@@ -71,5 +102,9 @@
 	$(document).ready(function () {
 		$('#kt_table').DataTable();
 	});
+
+    function getReader(nopeg) {
+        $('#myModal').modal('show');
+    }
 </script>
 @endpush
