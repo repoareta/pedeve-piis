@@ -76,7 +76,7 @@
                             <th>Jumlah</th>
                             <th>Pemberi</th>
                             <th>Keterangan</th>
-                            <th>NIHIL</th>
+                            <th>Status</th>
                             <th>Approval</th>
                             <th>Type</th>
                             <th>Action</th>
