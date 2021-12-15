@@ -10,6 +10,7 @@ use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class GajiPokokController extends Controller

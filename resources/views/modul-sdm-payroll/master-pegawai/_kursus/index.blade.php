@@ -79,6 +79,22 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editRowKursus').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const mulai = $(this).data('mulai');
+                    const nama = $(this).data('nama');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.kursus.edit", ['pegawai' => $pegawai->nopeg, 'mulai' => ':mulai', 'nama' => ':nama']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':mulai', mulai).replace(':nama', nama);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteRowKursus').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_kursus]').is(':checked')) {

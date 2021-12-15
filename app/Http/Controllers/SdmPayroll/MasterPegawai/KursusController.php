@@ -4,11 +4,13 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KursusStore;
+use App\Http\Requests\KursusUpdate;
 use App\Models\Kursus;
 use App\Models\MasterPegawai;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KursusController extends Controller
@@ -24,7 +26,7 @@ class KursusController extends Controller
 
         return datatables()->of($kursus_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_kursus" data-mulai="'.$row->mulai.'" data-nama="'.$row->nama.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_kursus" data-mulai="'.$row->mulai->format('Y-m-d').'" data-nama="'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('mulai', function ($row) {
@@ -86,6 +88,21 @@ class KursusController extends Controller
         return response()->json($kursus, 200);
     }
 
+    public function edit(Request $request, MasterPegawai $pegawai, $mulai, $nama)
+    {
+        $kursus = Kursus::where('nopeg', $pegawai->nopeg)
+            ->where('mulai', $mulai)
+            ->where('nama', $nama)
+            ->first();
+
+        return view('modul-sdm-payroll.master-pegawai._kursus.edit', compact(
+            'kursus',
+            'pegawai',
+            'mulai',
+            'nama',
+        ));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -93,26 +110,24 @@ class KursusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $mulai, $nama)
+    public function update(KursusUpdate $request, MasterPegawai $pegawai, $mulai, $nama)
     {
-        $kursus = Kursus::where('nopeg', $pegawai->nopeg)
-        ->where('mulai', $mulai)
-        ->where('nama', $nama)
-        ->first();
+        DB::table('sdm_kursus')
+            ->where('nopeg', $pegawai->nopeg)
+            ->where('mulai', $mulai)
+            ->where('nama', $nama)
+            ->update([
+                'mulai' => $request->mulai_kursus,
+                'sampai' => $request->sampai_kursus,
+                'nama' => $request->nama_kursus,
+                'penyelenggara' => $request->penyelenggara_kursus,
+                'kota' => $request->kota_kursus,
+                'negara' => $request->negara_kursus,
+                'keterangan' => $request->keterangan_kursus,
+            ]);
 
-        $kursus->nopeg         = $pegawai->nopeg;
-        $kursus->mulai         = $request->mulai_kursus;
-        $kursus->sampai        = $request->sampai_kursus;
-        $kursus->nama          = $request->nama_kursus;
-        $kursus->penyelenggara = $request->penyelenggara_kursus;
-        $kursus->kota          = $request->kota_kursus;
-        $kursus->negara        = $request->negara_kursus;
-        $kursus->keterangan    = $request->keterangan_kursus;
-        $kursus->userid        = Auth::user()->userid;
-
-        $kursus->save();
-
-        return response()->json($kursus, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

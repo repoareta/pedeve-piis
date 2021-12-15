@@ -1293,8 +1293,8 @@ namespace App\Models{
  * App\Models\Kursus
  *
  * @property string $nopeg
- * @property string $mulai
- * @property string|null $sampai
+ * @property \Illuminate\Support\Carbon $mulai
+ * @property \Illuminate\Support\Carbon|null $sampai
  * @property string|null $nama
  * @property string|null $penyelenggara
  * @property string|null $kota

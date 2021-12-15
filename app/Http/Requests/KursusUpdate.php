@@ -24,7 +24,13 @@ class KursusUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'mulai_kursus' => 'required',
+            'sampai_kursus' => 'required',
+            'nama_kursus' => 'required',
+            'penyelenggara_kursus' => 'required',
+            'kota_kursus' => 'required',
+            'negara_kursus' => 'required',
+            'keterangan_kursus' => 'nullable',
         ];
     }
 }
