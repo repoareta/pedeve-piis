@@ -12,7 +12,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Gaji Pokok
+                Edit Gaji Pokok
             </h3>
         </div>
     </div>
@@ -77,5 +77,5 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\GajiPokokStoreRequest', '#form-edit-gaji-pokok') !!}
+{!! JsValidator::formRequest('App\Http\Requests\GajiPokokUpdate', '#form-edit-gaji-pokok') !!}
 @endpush

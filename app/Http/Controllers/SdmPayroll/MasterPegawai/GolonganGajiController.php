@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GolonganGajiStore;
+use App\Http\Requests\GolonganGajiUdpate;
 use App\Models\GolonganGaji;
 use App\Models\MasterPegawai;
 use App\Models\PayTunjangan;
@@ -25,7 +26,7 @@ class GolonganGajiController extends Controller
 
         return datatables()->of($golongan_gaji_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_golongan_gaji" data-golgaji="'.$row->golgaji.'" data-tanggal="'.$row->tanggal.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_golongan_gaji" data-golgaji="'.$row->golgaji.'" data-tanggal="'.$row->tanggal->format('Y-m-d').'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('tanggal', function ($row) {
@@ -82,6 +83,24 @@ class GolonganGajiController extends Controller
         return response()->json($golongan_gaji, 200);
     }
 
+    public function edit(Request $request, MasterPegawai $pegawai, $golongan_gaji, $tanggal)
+    {
+        $golonganGaji = GolonganGaji::where('nopeg', $pegawai->nopeg)
+            ->where('golgaji', $golongan_gaji)
+            ->where('tanggal', $tanggal)
+            ->first();
+
+        $golongan_gaji_list = PayTunjangan::all();
+
+        return view('modul-sdm-payroll.master-pegawai._golongan-gaji.edit', compact(
+            'golongan_gaji_list',
+            'golonganGaji',
+            'pegawai',
+            'golongan_gaji',
+            'tanggal',
+        ));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -89,21 +108,22 @@ class GolonganGajiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $golongan_gaji, $tanggal)
+    public function update(GolonganGajiUdpate $request, MasterPegawai $pegawai, $golongan_gaji, $tanggal)
     {
-        $golongan_gaji = GolonganGaji::where('nopeg', $pegawai->nopeg)
-        ->where('golgaji', $golongan_gaji)
-        ->where('tanggal', $tanggal)
-        ->first();
+        $golonganGaji = GolonganGaji::where('nopeg', $pegawai->nopeg)
+            ->where('golgaji', $golongan_gaji)
+            ->where('tanggal', $tanggal)
+            ->first();
 
-        $golongan_gaji->nopeg = $pegawai->nopeg;
-        $golongan_gaji->tanggal = $request->tanggal_golongan_gaji;
-        $golongan_gaji->golgaji = $request->golongan_gaji;
-        $golongan_gaji->userid = Auth::user()->userid;
+        $golonganGaji->nopeg = $pegawai->nopeg;
+        $golonganGaji->tanggal = $request->tanggal_golongan_gaji;
+        $golonganGaji->golgaji = $request->golongan_gaji;
+        $golonganGaji->userid = Auth::user()->userid;
 
-        $golongan_gaji->save();
+        $golonganGaji->save();
 
-        return response()->json($golongan_gaji, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

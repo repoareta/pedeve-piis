@@ -777,7 +777,7 @@ namespace App\Models{
  * App\Models\GolonganGaji
  *
  * @property string $nopeg
- * @property string $tanggal
+ * @property \Illuminate\Support\Carbon $tanggal
  * @property string $golgaji
  * @property string|null $userid
  * @property string|null $tglentry
