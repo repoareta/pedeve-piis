@@ -9,6 +9,7 @@ use App\Models\Penghargaan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenghargaanController extends Controller
@@ -24,7 +25,7 @@ class PenghargaanController extends Controller
 
         return datatables()->of($penghargaan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_penghargaan" data-tanggal="'.$row->tanggal.'" data-nama="'.$row->nama.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_penghargaan" data-tanggal="'.$row->tanggal->format('Y-m-d').'" data-nama="'.$row->nama.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('tanggal', function ($row) {
@@ -79,6 +80,21 @@ class PenghargaanController extends Controller
         return response()->json($penghargaan, 200);
     }
 
+    public function edit(MasterPegawai $pegawai, $tanggal, $nama)
+    {
+        $penghargaan = Penghargaan::where('nopeg', $pegawai->nopeg)
+        ->where('tanggal', $tanggal)
+        ->where('nama', $nama)
+        ->first();
+
+        return view('modul-sdm-payroll.master-pegawai._penghargaan.edit', compact(
+            'penghargaan',
+            'pegawai',
+            'tanggal',
+            'nama',
+        ));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -88,20 +104,18 @@ class PenghargaanController extends Controller
      */
     public function update(Request $request, MasterPegawai $pegawai, $tanggal, $nama)
     {
-        $penghargaan = Penghargaan::where('nopeg', $pegawai->nopeg)
-        ->where('tanggal', $request->tanggal)
-        ->where('nama', $request->nama)
-        ->first();
+        DB::table('sdm_penghargaan')
+            ->where('nopeg', $pegawai->nopeg)
+            ->where('tanggal', $tanggal)
+            ->where('nama', $nama)
+            ->update([
+                'tanggal' => $request->tanggal_penghargaan,
+                'nama' => $request->nama_penghargaan,
+                'pemberi' => $request->pemberi_penghargaan,
+            ]);
 
-        $penghargaan->nopeg = $pegawai->nopeg;
-        $penghargaan->tanggal = $request->tanggal_penghargaan;
-        $penghargaan->nama = $request->nama_penghargaan;
-        $penghargaan->pemberi = $request->pemberi_penghargaan;
-        $penghargaan->userid = Auth::user()->userid;
-
-        $penghargaan->save();
-
-        return response()->json($penghargaan, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

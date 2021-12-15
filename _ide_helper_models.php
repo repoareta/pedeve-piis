@@ -2542,7 +2542,7 @@ namespace App\Models{
  * App\Models\Penghargaan
  *
  * @property string $nopeg
- * @property string $tanggal
+ * @property \Illuminate\Support\Carbon $tanggal
  * @property string|null $nama
  * @property string|null $pemberi
  * @property string|null $userid
