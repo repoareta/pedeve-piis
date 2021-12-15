@@ -154,7 +154,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
                 Route::get('{pegawai}/gaji-pokok/create', [GajiPokokController::class, 'create'])->name('create');
                 Route::post('{pegawai}/gaji-pokok/store', [GajiPokokController::class, 'store'])->name('store');
                 Route::get('{pegawai}/gaji-pokok/edit/{nilai}', [GajiPokokController::class, 'edit'])->name('edit');
-                Route::post('{pegawai}/gaji-pokok/update/{nilai}', [GajiPokokController::class, 'udpate'])->name('update');
+                Route::post('{pegawai}/gaji-pokok/update/{nilai}', [GajiPokokController::class, 'update'])->name('update');
                 Route::delete('{pegawai}/gaji-pokok/delete', [GajiPokokController::class, 'delete'])->name('delete');
             });
 

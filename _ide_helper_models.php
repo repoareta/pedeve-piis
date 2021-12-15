@@ -507,8 +507,8 @@ namespace App\Models{
  * App\Models\GajiPokok
  *
  * @property string $nopeg
- * @property string $mulai
- * @property string|null $sampai
+ * @property \Illuminate\Support\Carbon $mulai
+ * @property \Illuminate\Support\Carbon|null $sampai
  * @property string|null $gapok
  * @property string|null $keterangan
  * @property string|null $userid

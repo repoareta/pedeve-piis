@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GajiPokokStoreRequest;
+use App\Http\Requests\GajiPokokUpdate;
 use App\Models\GajiPokok;
 use App\Models\MasterPegawai;
 use Auth;
@@ -70,6 +71,19 @@ class GajiPokokController extends Controller
         return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
+    public function edit(MasterPegawai $pegawai, $nilai)
+    {
+        $gajiPokok = GajiPokok::where('nopeg', $pegawai->nopeg)
+            ->where('gapok', $nilai)
+            ->first();
+
+        return view('modul-sdm-payroll.master-pegawai._gaji-pokok.edit', compact(
+            'gajiPokok',
+            'nilai',
+            'pegawai',
+        ));
+    }
+
     /**
      * Display the specified resource.
      *
@@ -79,8 +93,8 @@ class GajiPokokController extends Controller
     public function showJson(Request $request)
     {
         $gaji_pokok = GajiPokok::where('nopeg', $request->nopeg)
-        ->where('gapok', $request->gapok)
-        ->first();
+            ->where('gapok', $request->gapok)
+            ->first();
 
         return response()->json($gaji_pokok, 200);
     }
@@ -92,23 +106,24 @@ class GajiPokokController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $nilai)
+    public function update(GajiPokokUpdate $request, MasterPegawai $pegawai, $nilai)
     {
         $gaji_pokok = GajiPokok::where('nopeg', $pegawai->nopeg)
-        ->where('gapok', $nilai)
-        ->first();
+            ->where('gapok', $nilai)
+            ->first();
 
         $gaji_pokok->nopeg = $pegawai->nopeg;
         $gaji_pokok->mulai = $request->mulai_gaji_pokok;
         $gaji_pokok->sampai = $request->sampai_gaji_pokok;
-        $gaji_pokok->gapok = $request->nilai_gaji_pokok;
+        $gaji_pokok->gapok = sanitize_nominal($request->nilai_gaji_pokok);
         $gaji_pokok->keterangan = $request->keterangan_gaji_pokok;
         $gaji_pokok->userid = Auth::user()->userid;
         $gaji_pokok->tglentry = Carbon::now();
 
         $gaji_pokok->save();
 
-        return response()->json($gaji_pokok, 200);
+        Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
