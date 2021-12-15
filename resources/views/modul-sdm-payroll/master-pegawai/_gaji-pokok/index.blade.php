@@ -73,6 +73,21 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editRowGajiPokok').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const nilai = $(this).data('gapok');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.gaji_pokok.edit", ['pegawai' => $pegawai->nopeg, 'nilai' => ':nilai']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':nilai', nilai);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteRowGajiPokok').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_gaji_pokok]').is(':checked')) {

@@ -14,9 +14,14 @@ class GajiPokok extends Model
     use CompositeKey;
 
     protected $table = "sdm_gapok";
-    protected $primaryKey = ['nopeg', 'id'];
+    protected $primaryKey = ['nopeg'];
     protected $keyType = 'string';
     public $timestamps = false;
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
+
+    protected $casts = [
+        'mulai' => 'datetime',
+        'sampai' => 'datetime',
+    ];
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class GolonganGajiUdpate extends FormRequest
 {
@@ -24,7 +25,8 @@ class GolonganGajiUdpate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'tanggal_golongan_gaji' => ['required', Rule::unique('sdm_golgaji', 'tanggal')->ignore($this->pegawai->nopeg, 'nopeg')],
+            'golongan_gaji' => 'required',
         ];
     }
 }

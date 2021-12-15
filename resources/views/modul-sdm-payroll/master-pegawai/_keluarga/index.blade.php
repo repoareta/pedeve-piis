@@ -79,12 +79,30 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editKeluarga').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const status = $(this).data('status');
+                    const nama = $(this).data('nama');
+                    const nopeg = $(this).data('nopeg');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.keluarga.edit", ['pegawai' => ':pegawai', 'status' => ':status', 'nama' => ':nama']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':pegawai', nopeg).replace(':status', status).replace(':nama', nama);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteKeluarga').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_keluarga]').is(':checked')) {
                 $("input[name=radio_keluarga]:checked").each(function() {
-                    var status = $(this).data('status');
-                    var nama = $(this).data('nama');
+                    const status = $(this).data('status');
+                    const nama = $(this).data('nama');
+                    const nopeg = $(this).data('nopeg');
 
                     const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -106,7 +124,7 @@
                     .then((result) => {
                         if (result.value) {
                             $.ajax({
-                                url: "{{ route('modul_sdm_payroll.master_pegawai.keluarga.delete', ['pegawai' => $pegawai->nopeg]) }}",
+                                url: "{{ route('modul_sdm_payroll.master_pegawai.keluarga.delete', ['pegawai' => $pegawai->nopeg, 'status' => ':status', 'nama' => ':nama']) }}".replace(':status', status).replace(':nama', nama),
                                 type: 'DELETE',
                                 dataType: 'json',
                                 data: {

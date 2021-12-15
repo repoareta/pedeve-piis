@@ -19,6 +19,10 @@ class Keluarga extends Model
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
 
+    protected $casts = [
+        'tgllahir' => 'datetime'
+    ];
+
     /**
      * Kode Jabatan dimiliki Kode Bagian
      *

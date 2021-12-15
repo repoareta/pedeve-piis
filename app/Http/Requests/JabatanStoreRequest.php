@@ -27,7 +27,7 @@ class JabatanStoreRequest extends FormRequest
             'bagian' => 'required',
             'jabatan' => 'required',
             'mulai' => 'required|unique:sdm_jabatan,mulai',
-            'sampai' => 'required',
+            'sampai' => 'nullable',
             'no_skep' => 'nullable',
             'tanggal_skep' => 'nullable',
         ];

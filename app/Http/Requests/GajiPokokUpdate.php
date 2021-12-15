@@ -24,7 +24,10 @@ class GajiPokokUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'mulai_gaji_pokok' => 'required',
+            'sampai_gaji_pokok' => 'required',
+            'nilai_gaji_pokok' => 'required',
+            'keterangan_gaji_pokok' => 'nullable',
         ];
     }
 }

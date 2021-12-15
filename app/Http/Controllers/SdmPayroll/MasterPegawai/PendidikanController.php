@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PendidikanStore;
+use App\Http\Requests\PendidikanUpdate;
 use App\Models\MasterPegawai;
 use App\Models\PekerjaPendidikan;
 use App\Models\Pendidikan;
@@ -11,6 +12,7 @@ use App\Models\PerguruanTinggi;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PendidikanController extends Controller
@@ -26,7 +28,7 @@ class PendidikanController extends Controller
 
         return datatables()->of($PekerjaPendidikan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pekerja_pendidikan" data-mulai="'.$row->mulai.'" data-tempatdidik="'.$row->tempatdidik.'" data-kodedidik="'.$row->kodedidik.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_pekerja_pendidikan" data-mulai="'.$row->mulai->format('Y-m-d').'" data-tempatdidik="'.$row->tempatdidik.'" data-kodedidik="'.$row->kodedidik.'"><span></span></label>';
 
                 return $radio;
             })
@@ -85,15 +87,27 @@ class PendidikanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(MasterPegawai $pegawai, $mulai, $tempatdidik, $kodedidik)
     {
-        $PekerjaPendidikan = PekerjaPendidikan::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('tempatdidik', $request->tempatdidik)
-        ->where('kodedidik', $request->kodedidik)
-        ->first();
+        $pendidikan_list = Pendidikan::all();
+        $perguruan_tinggi_list = PerguruanTinggi::all();
+        $pendidikanPekerja = PekerjaPendidikan::where('nopeg', $pegawai->nopeg)
+            ->where('mulai', $mulai)
+            ->where('tempatdidik', $tempatdidik)
+            ->where('kodedidik', $kodedidik)
+            ->first();
 
-        return response()->json($PekerjaPendidikan, 200);
+        // return $pendidikanPekerja;
+
+        return view('modul-sdm-payroll.master-pegawai._pendidikan.edit', compact(
+            'pegawai',
+            'pendidikanPekerja',
+            'mulai',
+            'tempatdidik',
+            'kodedidik',
+            'pendidikan_list',
+            'perguruan_tinggi_list',
+        ));
     }
 
     /**
@@ -103,26 +117,24 @@ class PendidikanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $mulai, $tempatdidik, $kodedidik)
+    public function update(PendidikanUpdate $request, MasterPegawai $pegawai, $mulai, $tempatdidik, $kodedidik)
     {
-        $PekerjaPendidikan = PekerjaPendidikan::where('nopeg', $pegawai->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('tempatdidik', $request->tempatdidik)
-        ->where('kodedidik', $request->kodedidik)
-        ->first();
+        DB::table('sdm_pendidikan')
+            ->where('nopeg', $pegawai->nopeg)
+            ->where('mulai', $mulai)
+            ->where('tempatdidik', $tempatdidik)
+            ->where('kodedidik', $kodedidik)
+            ->update([
+                'mulai' => $request->mulai_pendidikan_pegawai,
+                'tgllulus' => $request->sampai_pendidikan_pegawai,
+                'kodedidik' => $request->kode_pendidikan_pegawai,
+                'tempatdidik' => $request->tempat_didik_pegawai,
+                'kodept' => $request->kode_pt_pendidikan_pegawai,
+                'catatan' => $request->catatan_pendidikan_pegawai,
+            ]);
 
-        $PekerjaPendidikan->nopeg       = $pegawai->nopeg;
-        $PekerjaPendidikan->mulai       = $request->mulai_PekerjaPendidikan_pekerja;
-        $PekerjaPendidikan->tgllulus    = $request->sampai_PekerjaPendidikan_pekerja;
-        $PekerjaPendidikan->kodedidik   = $request->kode_PekerjaPendidikan_pekerja;
-        $PekerjaPendidikan->tempatdidik = $request->tempat_didik_pekerja;
-        $PekerjaPendidikan->kodept      = $request->kode_pt_PekerjaPendidikan_pekerja;
-        $PekerjaPendidikan->catatan     = $request->catatan_PekerjaPendidikan_pekerja;
-        $PekerjaPendidikan->userid      = Auth::user()->userid;
-
-        $PekerjaPendidikan->save();
-
-        return response()->json($PekerjaPendidikan, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
