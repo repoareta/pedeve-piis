@@ -28,7 +28,7 @@ class KeluargaController extends Controller
 
         return datatables()->of($keluarga_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_keluarga" data-nama="'.$row->nama.'" data-status="'.$row->status.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_keluarga" data-nama="'.$row->nama.'" data-nopeg="' . $row->nopeg . '" data-status="'.$row->status.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('status', function ($row) {
@@ -117,14 +117,24 @@ class KeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(Request $request, MasterPegawai $pegawai, $status, $nama)
     {
-        $keluarga = Keluarga::where('nopeg', $request->nopeg)
-        ->where('status', $request->status)
-        ->where('nama', $request->nama)
-        ->first();
+        $agama_list = Agama::all();
+        $pendidikan_list = Pendidikan::all();
 
-        return response()->json($keluarga, 200);
+        $keluarga = Keluarga::where('nopeg', $pegawai->nopeg)
+            ->where('status', $status)
+            ->where('nama', $nama)
+            ->first();
+
+        // dd($keluarga);
+
+        return view('modul-sdm-payroll.master-pegawai._keluarga.edit', compact(
+            'keluarga',
+            'pegawai',
+            'agama_list',
+            'pendidikan_list',
+        ));
     }
 
     /**
@@ -142,14 +152,14 @@ class KeluargaController extends Controller
         ->first();
 
         $keluarga->nopeg            = $pegawai->nopeg;
-        $keluarga->status           = $request->status_keluarga;
-        $keluarga->nama             = $request->nama_keluarga;
-        $keluarga->tempatlahir      = $request->tempat_lahir_keluarga;
-        $keluarga->tgllahir         = $request->tanggal_lahir_keluarga;
-        $keluarga->agama            = $request->agama_keluarga;
-        $keluarga->goldarah         = $request->golongan_darah_keluarga;
-        $keluarga->kodependidikan   = $request->pendidikan_keluarga;
-        $keluarga->tempatpendidikan = $request->tempat_pendidikan_keluarga;
+        $keluarga->status           = $request->status;
+        $keluarga->nama             = $request->nama;
+        $keluarga->tempatlahir      = $request->tempat_lahir;
+        $keluarga->tgllahir         = $request->tanggal_lahir;
+        $keluarga->agama            = $request->agama;
+        $keluarga->goldarah         = $request->golongan_darah;
+        $keluarga->kodependidikan   = $request->pendidikan;
+        $keluarga->tempatpendidikan = $request->tempat_pendidikan;
         $keluarga->kodept           = null;
         $keluarga->userid           = Auth::user()->userid;
         $keluarga->tglentry         = Carbon::now();
@@ -170,7 +180,8 @@ class KeluargaController extends Controller
 
         $keluarga->save();
 
-        return response()->json(['response' => true], 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**
@@ -179,11 +190,11 @@ class KeluargaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request)
+    public function delete(MasterPegawai $pegawai, $status, $nama)
     {
-        $keluarga = Keluarga::where('nopeg', $request->pegawai)
-                        ->where('status', $request->status)
-                        ->where('nama', $request->nama)
+        $keluarga = Keluarga::where('nopeg', $pegawai->nopeg)
+                        ->where('status', $status)
+                        ->where('nama', $nama)
                         ->first();
 
         $image_path = "public/img_pegawai/$keluarga->photo";  // Value is not URL but directory file path

@@ -24,15 +24,15 @@ class KeluargaUpdate extends FormRequest
     public function rules()
     {
         return [
-            'status_keluarga' => ['required'],
-            'nama_keluarga' => ['required', 'string'],
-            'tempat_lahir_keluarga' => ['required', 'string'],
-            'tanggal_lahir_keluarga' => ['required'],
-            'agama_keluarga' => ['required'],
-            'golongan_darah_keluarga' => ['required'],
-            'pendidikan_keluarga' => ['required'],
-            'tempat_pendidikan_keluarga' => ['required'],
-            'photo_keluarga' => ['nullable', 'file'],
+            'status' => ['required'],
+            'nama' => ['required', 'string'],
+            'tempat_lahir' => ['required', 'string'],
+            'tanggal_lahir' => ['required'],
+            'agama' => ['required'],
+            'golongan_darah' => ['required'],
+            'pendidikan' => ['required'],
+            'tempat_pendidikan' => ['required'],
+            'photo' => ['nullable', 'file'],
         ];
     }
 }

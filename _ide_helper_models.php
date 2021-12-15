@@ -599,9 +599,9 @@ namespace App\Models{
  * @property int $id
  * @property string|null $nopeg
  * @property string|null $gift_last_month
- * @property string $tgl_gratifikasi
+ * @property string|null $tgl_gratifikasi
  * @property string|null $status
- * @property string $bentuk
+ * @property string|null $bentuk
  * @property string|null $nilai
  * @property string|null $jumlah
  * @property string|null $pemberi
@@ -662,17 +662,17 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $status
- * @property string $dokumen
  * @property string $tanggal
  * @property string $nopeg
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GcgLhkpnDokumen[] $dokumen
+ * @property-read int|null $dokumen_count
  * @property-read \App\Models\MasterPegawai $pekerja
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn query()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn whereDokumen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn whereNopeg($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpn whereStatus($value)
@@ -684,26 +684,92 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\GcgLhkpnDokumen
+ *
+ * @property int $id
+ * @property int $lhkpn_id
+ * @property string $dokumen
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen whereDokumen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen whereLhkpnId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgLhkpnDokumen whereUpdatedAt($value)
+ */
+	class GcgLhkpnDokumen extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\GcgSosialisasi
  *
  * @property int $id
  * @property string $keterangan
- * @property string $dokumen
  * @property string $nopeg
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GcgSosialisasiDokumen[] $dokumen
+ * @property-read int|null $dokumen_count
  * @property-read \App\Models\MasterPegawai $pekerja
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\GcgSosialisasiReader[] $reader
+ * @property-read int|null $reader_count
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi query()
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi whereDokumen($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi whereKeterangan($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi whereNopeg($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasi whereUpdatedAt($value)
  */
 	class GcgSosialisasi extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\GcgSosialisasiDokumen
+ *
+ * @property int $id
+ * @property int $sosialisasi_id
+ * @property string $dokumen
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen whereDokumen($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen whereSosialisasiId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiDokumen whereUpdatedAt($value)
+ */
+	class GcgSosialisasiDokumen extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\GcgSosialisasiReader
+ *
+ * @property int $id
+ * @property int $sosialisasi_id
+ * @property string $nopeg
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\MasterPegawai $pekerja
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader whereNopeg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader whereSosialisasiId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GcgSosialisasiReader whereUpdatedAt($value)
+ */
+	class GcgSosialisasiReader extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -1101,7 +1167,7 @@ namespace App\Models{
  * @property string|null $status
  * @property string|null $nama
  * @property string|null $tempatlahir
- * @property string|null $tgllahir
+ * @property \Illuminate\Support\Carbon|null $tgllahir
  * @property string|null $agama
  * @property string|null $goldarah
  * @property string|null $kodependidikan
