@@ -36,7 +36,7 @@ class GajiPokokController extends Controller
                 return Carbon::parse($row->mulai)->translatedFormat('d F Y');
             })
             ->addColumn('sampai', function ($row) {
-                return Carbon::parse($row->mulai)->translatedFormat('d F Y');
+                return Carbon::parse($row->sampai)->translatedFormat('d F Y');
             })
             ->rawColumns(['radio'])
             ->make(true);
@@ -109,19 +109,15 @@ class GajiPokokController extends Controller
      */
     public function update(GajiPokokUpdate $request, MasterPegawai $pegawai, $nilai)
     {
-        $gaji_pokok = GajiPokok::where('nopeg', $pegawai->nopeg)
+        DB::table('sdm_gapok')
+            ->where('nopeg', $pegawai->nopeg)
             ->where('gapok', $nilai)
-            ->first();
-
-        $gaji_pokok->nopeg = $pegawai->nopeg;
-        $gaji_pokok->mulai = $request->mulai_gaji_pokok;
-        $gaji_pokok->sampai = $request->sampai_gaji_pokok;
-        $gaji_pokok->gapok = sanitize_nominal($request->nilai_gaji_pokok);
-        $gaji_pokok->keterangan = $request->keterangan_gaji_pokok;
-        $gaji_pokok->userid = Auth::user()->userid;
-        $gaji_pokok->tglentry = Carbon::now();
-
-        $gaji_pokok->save();
+            ->update([
+                'mulai' => $request->mulai_gaji_pokok,
+                'sampai' => $request->sampai_gaji_pokok,
+                'gapok' => sanitize_nominal($request->nilai_gaji_pokok),
+                'keterangan' => $request->keterangan_gaji_pokok,
+            ]);
 
         Alert::success('Berhasil', 'Data Berhasil Disimpan')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);

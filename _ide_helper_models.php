@@ -2400,8 +2400,8 @@ namespace App\Models{
  * App\Models\PekerjaPendidikan
  *
  * @property string|null $nopeg
- * @property string|null $mulai
- * @property string|null $tgllulus
+ * @property \Illuminate\Support\Carbon|null $mulai
+ * @property \Illuminate\Support\Carbon|null $tgllulus
  * @property string|null $kodedidik
  * @property string|null $tempatdidik
  * @property string|null $kodept

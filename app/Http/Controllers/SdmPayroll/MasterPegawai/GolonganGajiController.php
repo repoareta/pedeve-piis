@@ -11,6 +11,7 @@ use App\Models\PayTunjangan;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class GolonganGajiController extends Controller
@@ -110,17 +111,13 @@ class GolonganGajiController extends Controller
      */
     public function update(GolonganGajiUdpate $request, MasterPegawai $pegawai, $golongan_gaji, $tanggal)
     {
-        $golonganGaji = GolonganGaji::where('nopeg', $pegawai->nopeg)
+        DB::table('sdm_golgaji')
             ->where('golgaji', $golongan_gaji)
             ->where('tanggal', $tanggal)
-            ->first();
-
-        $golonganGaji->nopeg = $pegawai->nopeg;
-        $golonganGaji->tanggal = $request->tanggal_golongan_gaji;
-        $golonganGaji->golgaji = $request->golongan_gaji;
-        $golonganGaji->userid = Auth::user()->userid;
-
-        $golonganGaji->save();
+            ->update([
+                'tanggal' => $request->tanggal_golongan_gaji,
+                'golgaji' => $request->golongan_gaji,
+            ]);
 
         Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
         return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);

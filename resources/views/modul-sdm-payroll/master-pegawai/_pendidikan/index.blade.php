@@ -77,6 +77,24 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editRowPendidikan').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const mulai = $(this).data('mulai');
+                    const nama = $(this).data('nama');
+                    const tempatdidik = $(this).data('tempatdidik');
+                    const kodedidik = $(this).data('kodedidik');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.pendidikan.edit", ['pegawai' => $pegawai->nopeg, 'mulai' => ':mulai', 'tempatdidik' => ':tempatdidik', 'kodedidik' => ':kodedidik']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':mulai', mulai).replace(':nama', nama).replace(':tempatdidik', tempatdidik).replace(':kodedidik', kodedidik);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteRowPendidikan').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_pekerja_pendidikan]').is(':checked')) {
