@@ -43,23 +43,16 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="kode" class="col-2 col-form-label">Kode Sub</label>
+						<label for="kode" class="col-2 col-form-label">Kode Sub Anggaran</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="kode" id="kode" autocomplete="off">
 						</div>
 					</div>
 
 					<div class="form-group row">
-						<label for="nama" class="col-2 col-form-label">Nama Sub</label>
+						<label for="nama" class="col-2 col-form-label">Nama Sub Anggaran</label>
 						<div class="col-10">
 							<input class="form-control" type="text" name="nama" id="nama" autocomplete="off">
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="nilai" class="col-2 col-form-label">Nilai</label>
-						<div class="col-10">
-							<input class="form-control money" type="text" name="nilai" id="nilai" autocomplete="off">
 						</div>
 					</div>
 

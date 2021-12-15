@@ -26,7 +26,7 @@ class KodeJabatanStore extends FormRequest
     {
         return [
             'kode_bagian' => ['required', 'string'],
-            'kode_jabatan' => ['required', 'string', 'unique:sdm_tbl_kdjab,kdjab', 'max:5'],
+            'kdjab' => ['required', 'string', 'unique:sdm_tbl_kdjab,kdjab', 'max:5'],
             'nama' => ['required', 'string'],
             'golongan' => ['required', 'string'],
             'tunjangan' => ['required', new MoneyFormat, 'max:30'],

@@ -113,6 +113,14 @@
                                 <span class="menu-text">Report Anggaran</span>
                             </a>
                         </li>
+                        <li class="menu-item" aria-haspopup="true">
+                            <a href="{{ route('modul_umum.anggaran.mapping.index') }}" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">Anggaran Mapping</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

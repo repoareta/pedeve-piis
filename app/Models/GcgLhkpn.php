@@ -15,4 +15,9 @@ class GcgLhkpn extends Model
     {
         return $this->belongsTo('App\Models\MasterPegawai', 'nopeg', 'nopeg');
     }
+
+    public function dokumen()
+    {
+        return $this->hasMany(GcgLhkpnDokumen::class, 'lhkpn_id', 'id');
+    }
 }

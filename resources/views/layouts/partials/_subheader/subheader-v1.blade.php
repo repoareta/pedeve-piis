@@ -25,13 +25,13 @@
 
 				<!--begin::Actions-->
 
-				<label class="mb-0 mr-4">Sidebar</label>
+				{{-- <label class="mb-0 mr-4">Sidebar</label>
 				<span class="switch switch-icon">
 					<label>
 						<input type="checkbox" name="select" class="sidebar-switch" />
 						<span></span>
 					</label>
-				</span>
+				</span> --}}
 
 				<!--end::Actions-->
 			</div>

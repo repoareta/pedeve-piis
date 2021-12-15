@@ -3,7 +3,7 @@
 
 <head>
     <style>
-        /** 
+        /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font style="font-size: 12pt;font-weight: bold ">REKAP IURAN DANA JAMSOSTEK </font>
+                                <font style="font-size: 12pt;font-weight: bold ">REKAP IURAN DANA BPJSTK </font>
                             </td>
                         </tr>
                         <tr>

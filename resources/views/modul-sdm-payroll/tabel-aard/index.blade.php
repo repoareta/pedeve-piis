@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel AARD
+                Tabel Komponen Upah
             </h3>
         </div>
         <div class="card-toolbar">
@@ -115,7 +115,7 @@
 						})
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
-							text: "Dedail data AARD Kode: "+kode,
+							text: "Dedail data Komponen Upah Kode: "+kode,
 							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
@@ -135,7 +135,7 @@
 								success: function () {
 									Swal.fire({
 										icon  : 'success',
-										title : "Dedail data AARD Kode: "+kode,
+										title : "Detail data Komponen Upah Kode: "+kode,
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {

@@ -26,6 +26,10 @@
 					@include('layouts.partials._menu_header.modul_sdm_payroll')
 					<!--end::SDM & Payroll Menu-->
 
+					<!--begin::SDM & Payroll Menu-->
+					@include('layouts.partials._menu_header.modul_gcg')
+					<!--end::SDM & Payroll Menu-->
+
 					<!--begin::Treasury Menu-->
 					@include('layouts.partials._menu_header.modul_treasury')
 					<!--end::Treasury Menu-->
@@ -55,7 +59,7 @@
 		<div class="topbar">
 
 			<!--begin::Notifications-->
-			<div class="dropdown">
+			{{-- <div class="dropdown">
 
 				<!--begin::Toggle-->
 				<div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
@@ -89,7 +93,7 @@
 				</div>
 
 				<!--end::Dropdown-->
-			</div>
+			</div> --}}
 
 			<!--end::Notifications-->
 

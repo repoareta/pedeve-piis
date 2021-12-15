@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            /** 
+            /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -31,9 +31,9 @@
 
             /** Define the footer rules **/
             footer {
-                position: fixed; 
-                bottom: 0cm; 
-                left: 0cm; 
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
                 right: 0cm;
                 height: 2cm;
             }
@@ -43,7 +43,7 @@
         <!-- Define header and footer blocks before your content -->
         <header>
             <table width="100%" style="font-family: sans-serif;">
-                <?php 
+                <?php
                     $array_bln	 = array (
                         1 =>   'Januari',
                         'Februari',
@@ -58,7 +58,7 @@
                         'November',
                         'Desember'
                     );
-                    
+
                     $bulan= strtoupper($array_bln[$request->bulan]);
                 ?>
                 <tr>
@@ -95,7 +95,7 @@
                             <td align="center" style="padding-left:150px;">
                             <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:30px;">
                     </td>
-                </tr> 
+                </tr>
             </table>
 
 
@@ -108,13 +108,13 @@
                         <table width="100%" style="border-collapse: collapse;" border="1">
                             <tr style=" font-size: 10pt;text-align:center;font-weight: bold">
                                 <td>Jenis</td>
-                                <td>AARD</td>
+                                <td>Komponen Upah</td>
                                 <td>Keterangan</td>
                                 <td>Jumlah</td>
                             </tr>
                             <?php $a=0; ?>
                             @foreach($data_list as $data)
-                            
+
                             <tr style=" font-size: 8pt;">
                                 <td style=" text-align:left;">{{ $data->nama_upah}}</td>
                                 <td style=" text-align:center;">{{ $data->aard}}</td>
@@ -151,6 +151,6 @@
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
-        
+
     </body>
 </html>

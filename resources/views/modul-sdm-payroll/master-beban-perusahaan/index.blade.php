@@ -16,7 +16,7 @@
                 Tabel Master Beban Perusahaan
             </h3>
         </div>
-        <div class="card-toolbar">
+        {{-- <div class="card-toolbar">
             <div class="float-left">
                 @if (permission(625)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.master_beban_perusahaan.create') }}">
@@ -40,7 +40,7 @@
 				</a>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="card-body">
 
@@ -105,7 +105,7 @@
                             <th></th>
                             <th>BULAN</th>
                             <th>PEGAWAI</th>
-                            <th>AARD</th>
+                            <th>KOMPONEN UPAH</th>
                             <th>NILAI</th>
                         </tr>
                     </thead>
@@ -194,7 +194,7 @@
 
 					swalWithBootstrapButtons.fire({
 						title: "Data yang akan dihapus?",
-						text: "Nopek : " + nopek + " AARD : " + aard,
+						text: "Nopek : " + nopek + " Komponen Upah : " + aard,
 						icon: 'warning',
 						showCancelButton: true,
 						reverseButtons: true,
@@ -217,7 +217,7 @@
 								success: function () {
 									Swal.fire({
 										icon  : 'success',
-										title : "Hapus Nopek : " + nopek + " AARD : " + aard,
+										title : "Hapus Nopek : " + nopek + " Komponen Upah : " + aard,
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {

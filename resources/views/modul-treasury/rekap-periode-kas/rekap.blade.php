@@ -44,7 +44,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label for="dari-input" class="col-2 col-form-label text-right">No.Kas/Bank<span class="text-danger">*</span></label>
                 <div class="col-10">
@@ -53,7 +53,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="form-group row">
                 <label class="col-2 col-form-label text-right">Setuju<span class="text-danger">*</span></label>
                 <div class="col-4">
@@ -81,14 +81,16 @@
 @push('page-scripts')
 <script>
     $(document).ready(function () {
-	
-   
+
+
 	$('#date_range_picker').datepicker({
 		todayHighlight: true,
 		autoclose: true,
         format   : 'dd-mm-yyyy',
+        orientation: "bottom left",
+        language: 'id',
 	});
-	
+
 	$("#tanggal").on("change", function(e){
 		e.preventDefault();
 		var tanggal = $('#tanggal').val();
@@ -111,7 +113,7 @@
 						for(i=0; i<data.length; i++){
 							html += '<option value="'+data[i].jk+'">'+data[i].jk+'</option>';
 						}
-						$('#jk').html(html);		
+						$('#jk').html(html);
 			},
 			error : function(){
 				alert("Ada kesalahan controller!");
@@ -140,7 +142,7 @@
 						for(i=0; i<data.length; i++){
 							html += '<option value="'+data[i].jk+'">'+data[i].jk+'</option>';
 						}
-						$('#jk').html(html);		
+						$('#jk').html(html);
 			},
 			error : function(){
 				alert("Ada kesalahan controller!");
@@ -171,7 +173,7 @@
 						for(i=0; i<data.length; i++){
 							html += '<option value="'+data[i].store+'">'+data[i].store+' -- '+data[i].namabank+' -- '+data[i].norekening+'</option>';
 						}
-						$('#nokas').html(html);		
+						$('#nokas').html(html);
 			},
 			error : function(){
 				alert("Ada kesalahan controller!");

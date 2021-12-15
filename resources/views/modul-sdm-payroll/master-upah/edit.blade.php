@@ -13,7 +13,7 @@
                 <i class="flaticon2-pen text-primary"></i>
             </span>
             <h3 class="card-label">
-                Ubah Master Upah
+                Ubah Riwayat Upah
             </h3>
         </div>
     </div>
@@ -21,10 +21,10 @@
         <div class="row">
             <div class="col-xl-12">
                 <form class="form" id="formMasterUpah" action="{{ route('modul_sdm_payroll.master_upah.update', [
-					'tahun' => $upah->tahun, 
-					'bulan' => $upah->bulan, 
-					'nopek'=> $upah->nopek, 
-					'aard'=> $upah->aard, 
+					'tahun' => $upah->tahun,
+					'bulan' => $upah->bulan,
+					'nopek'=> $upah->nopek,
+					'aard'=> $upah->aard,
 				]) }}" method="POST">
 					@csrf
 
@@ -69,10 +69,10 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">AARD</label>
+						<label for="" class="col-2 col-form-label">Komponen Upah</label>
 						<div class="col-10">
 							<select class="form-control select2" name="aard" id="aard">
-								<option value="">- Pilih AARD -</option>
+								<option value="">- Pilih Komponen Upah -</option>
 								@foreach ($aard_list as $aard)
 									<option value="{{ $aard->kode }}" @if($aard->kode == $upah->aard) selected @endif>{{ $aard->kode.' - '.$aard->nama }}</option>
 								@endforeach

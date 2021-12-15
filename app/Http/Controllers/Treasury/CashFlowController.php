@@ -19,7 +19,7 @@ class CashFlowController extends Controller
     {
         $tahun = $request->tahun;
         $bulan = $request->bulan;
-        
+
         $data_list = ViewCashFlowMutasi::select(
             DB::raw('
                 status,
@@ -40,9 +40,6 @@ class CashFlowController extends Controller
         ->orderBy(DB::raw('cast(urutan as integer)'), 'asc')
         ->get();
 
-        // dd($data_list);
-        
-
         // return default PDF
         $pdf = PDF::loadview('modul-treasury.cash-flow.mutasi-pdf', compact(
             'tahun',
@@ -51,19 +48,23 @@ class CashFlowController extends Controller
         ))
         ->setPaper('a4', 'Portrait');
 
-        return $pdf->stream('laporan_arus_kas_mutasi_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->inline('laporan_arus_kas_mutasi_'.date('Y-m-d H:i:s').'.pdf');
     }
 
     public function perBulan()
     {
-        return view('modul-treasury.cash-flow.perbulan');
+        $kurs = DB::table('kurs_rekap')->orderBy('tahun', 'DESC')->orderBy('bulan', 'DESC')->orderBy('created_at', 'DESC')->first()->kurs;
+
+        return view('modul-treasury.cash-flow.perbulan', compact(
+            'kurs',
+        ));
     }
 
     public function perBulanExport(Request $request)
     {
         $tahun = $request->tahun;
         $bulan = $request->bulan;
-        
+
         $data_list = ViewCashFlowMutasi::select(
             DB::raw('
                 status,
@@ -83,16 +84,39 @@ class CashFlowController extends Controller
         ->orderBy('status', 'asc')
         ->orderBy(DB::raw('cast(urutan as integer)'), 'asc')
         ->get();
-        
+
+        $kurs = DB::table('kurs_rekap');
+
+        $oldKurs = $kurs->orderBy('tahun', 'DESC')->orderBy('bulan', 'DESC')->orderBy('created_at', 'DESC')->first();
+
+        if ($oldKurs->tahun == $tahun && $oldKurs->bulan == $bulan) {
+            $kurs->orderBy('tahun', 'DESC')->orderBy('bulan', 'DESC')->orderBy('created_at', 'DESC')->update([
+                'tahun' => $request->tahun,
+                'bulan' => $request->bulan,
+                'kurs' => sanitize_nominal($request->kurs),
+                'created_at' => now(),
+            ]);
+        } else {
+            $kurs->insert([
+                'tahun' => $request->tahun,
+                'bulan' => $request->bulan,
+                'kurs' => sanitize_nominal($request->kurs),
+                'created_at' => now(),
+            ]);
+        }
+
+        $kurs = $request->kurs;
+
         // return default PDF
         $pdf = PDF::loadview('modul-treasury.cash-flow.perbulan-pdf', compact(
             'tahun',
             'bulan',
-            'data_list'
+            'data_list',
+            'kurs',
         ))
         ->setPaper('a4', 'Portrait');
 
-        return $pdf->stream('laporan_arus_kas_perbulan_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->inline('laporan_arus_kas_perbulan_'.date('Y-m-d H:i:s').'.pdf');
     }
 
     public function perPeriode()
@@ -105,7 +129,7 @@ class CashFlowController extends Controller
         $tahun = $request->tahun;
         $bulan_mulai = $request->bulan_mulai;
         $bulan_sampai = $request->bulan_sampai;
-        
+
         $data_list = ViewCashFlowMutasi::select(
             DB::raw('
                 status,
@@ -120,7 +144,7 @@ class CashFlowController extends Controller
         ->where('tahun', $tahun)
         ->orderBy('status', 'asc')
         ->orderBy(DB::raw('cast(urutan as integer)'), 'asc')
-        ->get();        
+        ->get();
 
         // return default PDF
         $pdf = PDF::loadview('modul-treasury.cash-flow.per-periode-pdf', compact(
@@ -131,7 +155,7 @@ class CashFlowController extends Controller
         ))
         ->setPaper('a4', 'Portrait');
 
-        return $pdf->stream('laporan_arus_kas_per_periode_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->inline('laporan_arus_kas_per_periode_'.date('Y-m-d H:i:s').'.pdf');
     }
 
     public function lengkap()
@@ -144,7 +168,7 @@ class CashFlowController extends Controller
         $tahun = $request->tahun;
         $bulan_mulai = $request->bulan_mulai;
         $bulan_sampai = $request->bulan_sampai;
-        
+
         $data_list = ViewCashFlowMutasi::select(
             DB::raw('
                 status,
@@ -166,7 +190,7 @@ class CashFlowController extends Controller
         ->get();
 
         // dd($data_list);
-        
+
 
         // return default PDF
         $pdf = PDF::loadview('modul-treasury.cash-flow.lengkap-pdf', compact(
@@ -177,7 +201,7 @@ class CashFlowController extends Controller
         ))
         ->setPaper('a4', 'Portrait');
 
-        return $pdf->stream('laporan_arus_kas_lengkap_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->inline('laporan_arus_kas_lengkap_'.date('Y-m-d H:i:s').'.pdf');
     }
 
     public function perMataUang()
@@ -190,7 +214,7 @@ class CashFlowController extends Controller
         $tahun = $request->tahun;
         $bulan = $request->bulan;
         $kurs  = $request->kurs;
-        
+
         $data_list = ViewCashFlowMutasi::select(
             DB::raw('
                 status,
@@ -221,6 +245,6 @@ class CashFlowController extends Controller
         ))
         ->setPaper('a4', 'Portrait');
 
-        return $pdf->stream('laporan_arus_kas_per_mata_uang_'.date('Y-m-d H:i:s').'.pdf');
+        return $pdf->inline('laporan_arus_kas_per_mata_uang_'.date('Y-m-d H:i:s').'.pdf');
     }
 }

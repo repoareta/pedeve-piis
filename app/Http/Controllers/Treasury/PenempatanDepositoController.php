@@ -8,6 +8,7 @@ use App\Models\DtlDepositoTest;
 use App\Models\Kasline;
 use App\Models\MtrDeposito;
 use App\Models\PenempatanDepo;
+use App\Services\TimeTransactionService;
 use DB;
 use DomPDF;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PenempatanDepositoController extends Controller
 {
+    protected $timeTrans;
+
+    public function __construct(TimeTransactionService $timeTrans)
+    {
+        $this->timeTrans = $timeTrans;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,20 +31,13 @@ class PenempatanDepositoController extends Controller
      */
     public function index()
     {
-        $data_akses = DB::table('usermenu')->where('userid', auth()->user()->userid)->where('menuid', 509)->first();
+        $tahun = $this->timeTrans->getCurrentYear();
+        $bulan = $this->timeTrans->getCurrentMonth();
 
-        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-        if (!empty($data_tahunbulan)) {
-            foreach ($data_tahunbulan as $data_bul) {
-                $bulan = substr($data_bul->bulan_buku, 4, 2);
-                $tahun = substr($data_bul->bulan_buku, 0, 4);
-            }
-        } else {
-            $bulan = date('m');
-            $tahun = date('Y');
-        }
-
-        return view('modul-treasury.penempatan-deposito.index', compact('tahun', 'bulan', 'data_akses'));
+        return view('modul-treasury.penempatan-deposito.index', compact(
+            'tahun',
+            'bulan',
+        ));
     }
 
     public function indexJson(Request $request)

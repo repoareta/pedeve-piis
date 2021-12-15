@@ -63,4 +63,14 @@
     .dataTables_wrapper .dataTable {
         border-radius: 0rem;
     }
+
+    @media (min-width: 992px) {
+        .header-menu .menu-nav > .menu-item .menu-submenu > .menu-subnav > .menu-item > .menu-link {
+            padding: 5px 20px;
+        }
+
+        .header-menu .menu-nav > .menu-item .menu-submenu.menu-submenu-classic {
+            padding: 10px 0px;
+        }
+    }    
 </style>

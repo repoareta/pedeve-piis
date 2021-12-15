@@ -13,10 +13,10 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Master Hutang
+                Tabel Riwayat Hutang
             </h3>
         </div>
-        <div class="card-toolbar">
+        {{-- <div class="card-toolbar">
             <div class="float-left">
                 @if (permission(625)->tambah == 1)
                 <a href="{{ route('modul_sdm_payroll.master_hutang.create') }}">
@@ -40,7 +40,7 @@
 				</a>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="card-body">
 
@@ -105,7 +105,7 @@
                             <th></th>
                             <th>BULAN</th>
                             <th>PEGAWAI</th>
-                            <th>AARD</th>
+                            <th>KOMPONEN UPAH</th>
                             <th>LAST AMOUNT</th>
                             <th>CURRENT AMOUNT</th>
                         </tr>
@@ -196,7 +196,7 @@
 
                     swalWithBootstrapButtons.fire({
                         title: "Data yang akan dihapus?",
-                        text: "Nopek : " + nopek + " AARD : " + aard,
+                        text: "Nopek : " + nopek + " Komponen Upah : " + aard,
                         icon: 'warning',
                         showCancelButton: true,
                         reverseButtons: true,
@@ -219,7 +219,7 @@
                                 success: function () {
                                     Swal.fire({
                                         icon  : 'success',
-                                        title : "Hapus Nopek : " + nopek + " AARD : " + aard,
+                                        title : "Hapus Nopek : " + nopek + " Komponen Upah : " + aard,
                                         text  : 'Berhasil',
                                         timer : 2000
                                     }).then(function() {

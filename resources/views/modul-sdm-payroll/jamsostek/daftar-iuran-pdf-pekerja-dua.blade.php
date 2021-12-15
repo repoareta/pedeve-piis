@@ -3,7 +3,7 @@
 
 <head>
     <style>
-        /** 
+        /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -46,7 +46,7 @@
             <tr>
                 <td align="left" style="padding-left:40px;">
                     <table>
-                        <?php 
+                        <?php
                                 $array_bln	 = array (
                                     1 =>   'Januari',
                                     'Februari',
@@ -61,7 +61,7 @@
                                     'November',
                                     'Desember'
                                 );
-                                
+
                                 $bulan= strtoupper($array_bln[$request->bulan]);
                             ?>
                         <tr>
@@ -71,7 +71,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <font style="font-size: 12pt;font-weight: bold ">DAFTAR IURAN JAMSOSTEK PEKERJA</font>
+                                <font style="font-size: 12pt;font-weight: bold ">DAFTAR IURAN BPJSTK PEKERJA</font>
                             </td>
                         </tr>
                         <tr>

@@ -12,6 +12,7 @@ use App\Models\Lokasi;
 use App\Models\PUmkHeader;
 use App\Models\SaldoStore;
 use App\Models\SdmKDBag;
+use App\Services\TimeTransactionService;
 use DomPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,23 +20,22 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PembayaranJUMKController extends Controller
 {
+    protected $timeTrans;
+
+    public function __construct(TimeTransactionService $timeTrans)
+    {
+        $this->timeTrans = $timeTrans;
+    }
+
     public function index()
     {
-        $data_tahunbulan = DB::select("SELECT max(thnbln) as bulan_buku from timetrans where status='1' and length(thnbln)='6'");
-        $data_akses = DB::table('usermenu')->where('userid', auth()->user()->userid)->where('menuid', 502)->limit(1)->first();
+        $tahun = $this->timeTrans->getCurrentYear();
+        $bulan = $this->timeTrans->getCurrentMonth();
 
-        if (!empty($data_tahunbulan)) {
-            foreach ($data_tahunbulan as $data_bul) {
-                $tahun = substr($data_bul->bulan_buku, 0, -2);
-                $bulan = substr($data_bul->bulan_buku, 4);
-            }
-        } else {
-            // $bulan ='00';
-            // $tahun ='0000';
-            $bulan = date('m');
-            $tahun = date('Y');
-        }
-        return view('modul-treasury.pembayaran-jumk.index', compact('tahun', 'bulan', 'data_akses'));
+        return view('modul-treasury.pembayaran-jumk.index', compact(
+            'tahun',
+            'bulan'
+        ));
     }
 
     public function indexJson(Request $request)

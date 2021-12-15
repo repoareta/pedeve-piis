@@ -54,9 +54,12 @@
 
                 <div class="form-group row">
                     <label for="" class="col-2 col-form-label">Tahun<span class="text-danger">*</span></label>
-                    <div class="col-5">
-                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" 
-                            autocomplete="off">
+                    <div class="col-4">
+                        <input class="form-control tahun" type="text" value="{{ $tahun }}" name="tahun" autocomplete="off">
+                    </div>
+                    <label for="" class="col-2 col-form-label">Kurs<span class="text-danger">*</span></label>
+                    <div class="col-4">
+                        <input class="form-control money" type="text" value="{{ $kurs }}" name="kurs" autocomplete="off">
                     </div>
                 </div>
 

@@ -24,7 +24,10 @@ class AnggaranSubmainUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'kode_main'  => 'required|alpha_num|max:6',
+            'kode'       => 'required',
+            'nama'       => 'required',
+            'tahun'      => 'required|numeric|digits:4',
         ];
     }
 }

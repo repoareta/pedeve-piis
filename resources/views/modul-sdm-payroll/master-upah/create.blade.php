@@ -13,7 +13,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Master Upah
+                Tambah Riwayat Upah
             </h3>
         </div>
     </div>
@@ -63,10 +63,10 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">AARD</label>
+						<label for="" class="col-2 col-form-label">Komponen Upah</label>
 						<div class="col-10">
 							<select class="form-control select2" name="aard" id="aard">
-								<option value="">- Pilih AARD -</option>
+								<option value="">- Pilih Komponen Upah -</option>
 								@foreach ($aard_list as $aard)
 									<option value="{{ $aard->kode }}">{{ $aard->kode.' - '.$aard->nama }}</option>
 								@endforeach

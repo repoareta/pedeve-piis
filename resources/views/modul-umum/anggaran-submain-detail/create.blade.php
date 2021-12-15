@@ -30,28 +30,36 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="kode_main" class="col-2 col-form-label">Sub Main</label>
+						<label for="kode_main" class="col-2 col-form-label">Anggaran Submain</label>
 						<div class="col-10">
-							<select class="form-control select2" name="sub_main" id="sub_main">
+							<select class="form-control select2" name="kode_submain" id="kode_submain">
 								<option value="">- Pilih Sub Main -</option>
-                                @foreach ($anggaran_main_list as $anggaran)
-									<option value="{{ $anggaran->kode_main }}">{{ $anggaran->kode_main.' - '.$anggaran->nama_main }}</option>
+                                @foreach ($anggaran_submain_list as $anggaran_submain)
+									<option value="{{ $anggaran_submain->kode_submain }}">{{ $anggaran_submain->kode_submain.' - '.$anggaran_submain->nama_submain }}</option>
 								@endforeach
 							</select>
-							<div id="sub_main-nya"></div>
+							<div id="kode_submain-nya"></div>
 						</div>
 					</div>
 
                     <div class="form-group row">
-						<label for="kode_main" class="col-2 col-form-label">Detail Anggaran</label>
+						<label for="tahun" class="col-2 col-form-label">Kode Detail Anggaran</label>
 						<div class="col-10">
-							<select class="form-control select2" name="detail_anggaran" id="detail_anggaran">
-								<option value="">- Pilih Detail Anggaran -</option>
-                                @foreach ($anggaran_main_list as $anggaran)
-									<option value="{{ $anggaran->kode_main }}">{{ $anggaran->kode_main.' - '.$anggaran->nama_main }}</option>
-								@endforeach
-							</select>
-							<div id="detail_anggaran-nya"></div>
+							<input class="form-control" type="text" name="kode" id="kode" autocomplete="off">
+						</div>
+					</div>
+
+                    <div class="form-group row">
+						<label for="tahun" class="col-2 col-form-label">Nama Detail Anggaran</label>
+						<div class="col-10">
+							<input class="form-control" type="text" name="nama" id="nama" autocomplete="off">
+						</div>
+					</div>
+                    
+					<div class="form-group row">
+						<label for="nilai" class="col-2 col-form-label">Nilai</label>
+						<div class="col-10">
+							<input class="form-control money" type="text" name="nilai" id="nilai">
 						</div>
 					</div>
 
@@ -76,17 +84,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
 		$("#formAnggaranSubmainDetail").on('submit', function(){
-			if ($('#kode_main-error').length){
-				$("#kode_main-error").insertAfter("#kode_main-nya");
+			if ($('#kode_submain-error').length){
+				$("#kode_submain-error").insertAfter("#kode_submain-nya");
 			}
 		});
 	});
 
 	function getSubmain(tahun) {
-		$('#sub_main').select2({
-            placeholder: '- Pilih Master Anggaran -',
+		$('#kode_submain').select2({
+            placeholder: '- Pilih Submain Anggaran -',
             ajax: {
-                url: "{{ route('modul_umum.anggaran.get_by_tahun') }}",
+                url: "{{ route('modul_umum.anggaran.submain.get_by_tahun') }}",
                 dataType: 'json',
                 delay: 250,
                 data: {
@@ -96,8 +104,8 @@
                     return {
                         results:  $.map(data, function (item) {
                             return {
-                                text: item.kode_main + " - " + item.nama_main,
-                                id: item.kode_main
+                                text: item.kode_submain + " - " + item.nama_submain,
+                                id: item.kode_submain
                             }
                         })
                     };

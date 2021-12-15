@@ -61,14 +61,24 @@ class AnggaranController extends Controller
                     $query->where('tahun', 'like', "%{$request->get('tahun')}%");
                 }
             })
-            ->addColumn('nilai_real', function ($row) {
-                return currency_idr($row->nilai_real);
+            ->addColumn('nilai_real', function ($row) use ($request) {
+                $tahun = $request->tahun ? $request->tahun : date('Y');
+                $nilai = $this->getNilai($row, $tahun);
+
+                return currency_idr($nilai);
             })
-            ->addColumn('realisasi', function ($row) {
-                return currency_idr($row->anggaran_submain->sum('nilai'));
+            ->addColumn('realisasi', function ($row) use ($request) {
+                $tahun = $request->tahun ? $request->tahun : date('Y');
+                $realisasi = $this->getRealisasi($row, $tahun);
+
+                return currency_idr($realisasi);
             })
-            ->addColumn('sisa', function ($row) {
-                return currency_idr($row->nilai_real - $row->anggaran_submain->sum('nilai'));
+            ->addColumn('sisa', function ($row) use ($request){
+                $tahun = $request->tahun ? $request->tahun : date('Y');
+                $nilai = $this->getNilai($row, $tahun);
+                $realisasi = $this->getRealisasi($row, $tahun);
+
+                return currency_idr($nilai - $realisasi);
             })
             ->addColumn('radio', function ($row) {
                 $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio1" value="'.$row->kode_main.'"><span></span></label>';
@@ -76,6 +86,69 @@ class AnggaranController extends Controller
             })
             ->rawColumns(['radio', 'nama_main'])
             ->make(true);
+    }
+
+    public function getNilai($anggaranMain, $tahun)
+    {
+        $nilai = DB::select(
+            "SELECT 
+                        SUM(ad.nilai) AS nilai
+                    FROM 
+                        anggaran_detail ad
+                    WHERE
+                        ad.tahun = '$tahun'
+                    AND
+                        ad.kode_submain IN (
+                            SELECT
+                                kode_submain
+                            FROM
+                                anggaran_submain
+                            WHERE
+                                kode_main = '$anggaranMain->kode_main'
+                        )
+                "); 
+        
+                return $nilai[0]->nilai;
+    }
+
+    public function getRealisasi($anggaranMain, $tahun)
+    {
+        $realisasi = DB::select(
+            "SELECT 
+                SUM(round(a.totprice,2)) AS realisasi
+            FROM 
+                kasline a 
+            JOIN 
+                kasdoc b on b.docno = a.docno
+            WHERE
+                substring(b.thnbln from 1 for 4)= '$tahun'
+            AND 
+                a.account IN (
+                    SELECT 
+                        kodeacct
+                    FROM
+                        anggaran_mapping
+                    WHERE
+                        kode IN (
+                            SELECT
+                                kode
+                            FROM
+                                anggaran_detail
+                            WHERE
+                                kode_submain IN (
+                                    SELECT
+                                        kode_submain
+                                    FROM
+                                        anggaran_submain
+                                    WHERE
+                                        kode_main = '$anggaranMain->kode_main'
+                                )
+                        )
+                )
+            AND 
+                a.keterangan <> 'penutup'"); 
+
+        return $realisasi[0]->realisasi;
     }
 
     /**
@@ -98,7 +171,6 @@ class AnggaranController extends Controller
     {
         $anggaran->kode_main = $request->kode;
         $anggaran->nama_main = $request->nama;
-        $anggaran->nilai_real = sanitize_nominal($request->nilai);
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;
@@ -131,7 +203,6 @@ class AnggaranController extends Controller
     {
         $anggaran->kode_main = $request->kode;
         $anggaran->nama_main = $request->nama;
-        $anggaran->nilai_real = sanitize_nominal($request->nilai);
         $anggaran->inputdate = date('Y-m-d H:i:s');
         $anggaran->inputuser = Auth::user()->userid;
         $anggaran->tahun = $request->tahun;

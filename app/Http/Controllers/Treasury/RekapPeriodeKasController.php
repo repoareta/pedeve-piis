@@ -33,7 +33,7 @@ class RekapPeriodeKasController extends Controller
     public function exportPeriode(Request $request)
     {
         $data_vd = DB::select("SELECT min(tglrekap) v_d1, max(tglrekap) v_d2 from rekapkas where tglrekap between '$request->tanggal' and '$request->tanggal2' and  jk='$request->jk' and store='$request->nokas'");
-        
+
         $v_saw = 0;
         $v_sak = 0;
 
@@ -76,7 +76,7 @@ class RekapPeriodeKasController extends Controller
 
         if (!empty($data_list)) {
             $pdf = PDF::loadview('modul-treasury.rekap-periode-kas.export', compact('request', 'data_list'))->setPaper('a4', 'Portrait');
-            return $pdf->stream();
+            return $pdf->inline();
         } else {
             Alert::info("Data Tidak Ditemukan", 'Failed')->persistent(true);
             return redirect()->route('rekap_periode_kas.create');

@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            /** 
+            /**
                 Set the margins of the page to 0, so the footer and the header
                 can be of the full height and width !
              **/
@@ -31,9 +31,9 @@
 
             /** Define the footer rules **/
             footer {
-                position: fixed; 
-                bottom: 0cm; 
-                left: 0cm; 
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
                 right: 0cm;
                 height: 2cm;
             }
@@ -43,7 +43,7 @@
         <!-- Define header and footer blocks before your content -->
         <header>
             <table width="100%">
-                <?php 
+                <?php
                     $array_bln	 = array (
                         1 =>   'Januari',
                         'Februari',
@@ -58,7 +58,7 @@
                         'November',
                         'Desember'
                     );
-                    
+
                     $bulan= strtoupper($array_bln[$request->bulan]);
                 ?>
                 <tr>
@@ -75,12 +75,12 @@
                             </tr>
                         </table>
                     </td>
-                   
+
                     <td align="center" style="">
                         <img align="right" src="{{ public_path() . '/images/pertamina.jpg' }}" width="160px" height="80px" style="padding-right:45px;">
                     </td>
                 </tr>
-            </table>            
+            </table>
         </header>
         <!-- Wrap the content of your PDF inside a main tag -->
         <main>
@@ -111,7 +111,7 @@
                                 <td rowspan="3">KOREKSI/<br> LAIN-LAIN</td>
                                 <td rowspan="3">TUNJANGAN<br> PAJAK</td>
                                 <td rowspan="3">IURAN<br> PENSIUN</td>
-                                <td rowspan="3">IURAN<br> JAMSOSTEK</td>
+                                <td rowspan="3">IURAN<br> BPJSTK</td>
                                 <td colspan="4">ANGSURAN</td>
                                 <td rowspan="3">POT.<br> PAJAK</td>
                                 <td rowspan="3">POT.<br> BAZMA</td>
@@ -240,7 +240,7 @@
                                 <td style="text-align:right;">{{ array_sum($subtotala15) <= 0 ? '('.number_format(array_sum($subtotala15)*-1,0).')' : number_format(array_sum($subtotala15),0)}}</td>
                             </tr>
 
-                           
+
                         </table>
                     </td>
                 </tr>
@@ -270,6 +270,6 @@
                 </tr>
             </table>
         </main>
-        
+
     </body>
 </html>

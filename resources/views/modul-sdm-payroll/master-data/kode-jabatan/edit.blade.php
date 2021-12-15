@@ -38,7 +38,7 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Kode Jabatan</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="kode_jabatan" id="kode_jabatan" value="{{ $kode_jabatan->kdjab }}">
+							<input class="form-control" type="text" name="kdjab" id="kdjab" value="{{ $kode_jabatan->kdjab }}">
 						</div>
 					</div>
 

@@ -13,7 +13,7 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tabel Jamsostek
+                Tabel BPJSTK
             </h3>
         </div>
         <div class="card-toolbar">
@@ -114,7 +114,7 @@
 						})
 						swalWithBootstrapButtons.fire({
 							title: "Data yang akan dihapus?",
-							text: "Dedail data jamsostek: " + dataid,
+							text: "Detail data BPJSTK: " + dataid,
 							icon: 'warning',
 							showCancelButton: true,
 							reverseButtons: true,
@@ -134,7 +134,7 @@
 								success: function () {
 									Swal.fire({
 										icon  : 'success',
-										title :"Dedail data jamsostek: "+dataid,
+										title :"Detail data BPJSTK: "+dataid,
 										text  : 'Berhasil',
 										timer : 2000
 									}).then(function() {
