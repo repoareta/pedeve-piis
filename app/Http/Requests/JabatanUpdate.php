@@ -29,7 +29,7 @@ class JabatanUpdate extends FormRequest
             'jabatan' => 'required',
             'mulai' => 'required|unique:sdm_jabatan,mulai',
             'mulai' => ['required', Rule::unique('sdm_jabatan', 'mulai')->ignore($this->pegawai->nopeg, 'nopeg')],
-            'sampai' => 'required',
+            'sampai' => 'nullable',
             'no_skep' => 'nullable',
             'tanggal_skep' => 'nullable',
         ];
