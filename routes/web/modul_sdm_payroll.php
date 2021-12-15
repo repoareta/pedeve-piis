@@ -143,8 +143,8 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
                 Route::get('{pegawai}/jabatan/index-json', [JabatanController::class, 'indexJson'])->name('index.json');
                 Route::get('{pegawai}/jabatan/create', [JabatanController::class, 'create'])->name('create');
                 Route::post('{pegawai}/jabatan/store', [JabatanController::class, 'store'])->name('store');
-                Route::get('{pegawai}/jabatan/edit/{status}/{nama}', [JabatanController::class, 'edit'])->name('edit');
-                Route::post('{pegawai}/jabatan/update/{status}/{nama}', [JabatanController::class, 'update'])->name('update');
+                Route::get('{pegawai}/jabatan/edit/{mulai}/{kode_bagian}/{kode_jabatan}', [JabatanController::class, 'edit'])->name('edit');
+                Route::post('{pegawai}/jabatan/update/{mulai}/{kode_bagian}/{kode_jabatan}', [JabatanController::class, 'update'])->name('update');
                 Route::delete('{pegawai}/jabatan/delete', [JabatanController::class, 'delete'])->name('delete');
             });
 

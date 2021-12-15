@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JabatanStoreRequest;
+use App\Http\Requests\JabatanUpdate;
 use App\Models\Jabatan;
 use App\Models\KodeBagian;
 use App\Models\KodeJabatan;
@@ -26,7 +27,7 @@ class JabatanController extends Controller
 
         return datatables()->of($jabatan_list)
             ->addColumn('radio', function ($row) {
-                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_jabatan" data-mulai="'.$row->mulai.'" data-kdbagian="'.$row->kdbag.'" data-kdjabatan="'.$row->kdjab.'"><span></span></label>';
+                $radio = '<label class="radio radio-outline radio-outline-2x radio-primary"><input type="radio" name="radio_jabatan" data-mulai="'.$row->mulai->format('Y-m-d').'" data-kdbagian="'.$row->kdbag.'" data-kdjabatan="'.$row->kdjab.'"><span></span></label>';
                 return $radio;
             })
             ->addColumn('bagian', function ($row) {
@@ -93,15 +94,24 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(MasterPegawai $pegawai, $mulai, $kode_bagian, $kode_jabatan)
     {
-        $jabatan = Jabatan::where('nopeg', $request->nopeg)
-        ->where('mulai', $request->mulai)
-        ->where('kdbag', $request->kdbag)
-        ->where('kdjab', $request->kdjab)
-        ->first();
+        $jabatan = Jabatan::where('nopeg', $pegawai->nopeg)
+            ->where('mulai', $mulai)
+            ->where('kdbag', $kode_bagian)
+            ->where('kdjab', $kode_jabatan)
+            ->first();
 
-        return response()->json($jabatan, 200);
+        $kodeBagian = KodeBagian::all();
+
+        return view('modul-sdm-payroll.master-pegawai._jabatan.edit', compact(
+            'jabatan',
+            'pegawai',
+            'mulai',
+            'kodeBagian',
+            'kode_bagian',
+            'kode_jabatan',
+        ));
     }
 
     /**
@@ -111,9 +121,23 @@ class JabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $mulai)
+    public function update(JabatanUpdate $request, MasterPegawai $pegawai, $mulai, $kode_bagian, $kode_jabatan)
     {
-        //
+        Jabatan::where('nopeg', $pegawai->nopeg)
+                ->where('mulai', $mulai)
+                ->where('kdbag', $kode_bagian)
+                ->where('kdjab', $kode_jabatan)
+                ->update([
+                    'kdbag' => $request->bagian,
+                    'kdjab' => $request->jabatan,
+                    'mulai' => $request->mulai,
+                    'sampai' => $request->sampai,
+                    'noskep' => $request->no_skep,
+                    'tglskep' => $request->tanggal_skep,
+                ]);
+
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

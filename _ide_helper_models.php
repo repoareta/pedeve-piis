@@ -823,10 +823,10 @@ namespace App\Models{
  * @property string $nopeg
  * @property string $kdbag
  * @property string $kdjab
- * @property string|null $mulai
- * @property string|null $sampai
+ * @property \Illuminate\Support\Carbon|null $mulai
+ * @property \Illuminate\Support\Carbon|null $sampai
  * @property string|null $noskep
- * @property string|null $tglskep
+ * @property \Illuminate\Support\Carbon|null $tglskep
  * @property string|null $userid
  * @property string|null $tglentry
  * @property string|null $id

@@ -16,6 +16,12 @@ class Jabatan extends Model
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
 
+    protected $casts = [
+        'mulai' => 'datetime',
+        'sampai' => 'datetime',
+        'tglskep' => 'datetime',
+    ];
+
     /**
      * Jabatan dimiliki KodeBagian
      *
