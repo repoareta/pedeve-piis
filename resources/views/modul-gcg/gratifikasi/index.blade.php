@@ -50,7 +50,7 @@
 							<option value="12">Desember</option>
 						</select>
 					</div>
-	
+
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
 						<select class="form-control select2" style="width: 100% !important;" name="tahun" id="tahun">
@@ -110,8 +110,10 @@
                             <td>{{ $gratifikasi->gift_last_month ? 'NIHIL' : '-' }}</td>
                             <td>{{ $gratifikasi->status }}</td>
                             <td>{{ ucwords($gratifikasi->jenis_gratifikasi) }}</td>
-                            <td>
-                                <a href="{{ route('modul_gcg.gratifikasi.edit', ['gratifikasi' => $gratifikasi->id]) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Ubah</a>
+                            <td class="text-nowrap">
+                                @if (!$gratifikasi->gift_last_month && !$gratifikasi->status)
+                                    <a href="{{ route('modul_gcg.gratifikasi.edit', ['gratifikasi' => $gratifikasi->id]) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Ubah</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
