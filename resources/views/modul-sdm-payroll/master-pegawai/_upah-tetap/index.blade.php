@@ -128,6 +128,20 @@
                 swalAlertInit('hapus');
             }
         });
+
+        $('#editRowUpahTetap').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var nilai = $(this).data('ut');
+                    var url = "{{ route('modul_sdm_payroll.master_pegawai.upah_tetap.edit', ['pegawai' => $pegawai->nopeg, ':nilai']) }}";
+                    // go to page edit
+                    window.location.href = url.replace(":nilai", nilai);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
     });
 </script>
 @endpush

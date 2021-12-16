@@ -117,7 +117,8 @@
             digits: 2,
             digitsOptional: true,
             placeholder: '0.00',
-            rightAlign: false
+            rightAlign: false,
+            'removeMaskOnSubmit': true
         });
 
         $('.persen').inputmask("numeric", {

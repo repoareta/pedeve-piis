@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
-class SeminarStoreRequest extends FormRequest
+use Illuminate\Validation\Rule;
+class SeminarUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class SeminarStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'mulai_seminar' => 'required|date_format:Y-m-d|unique:sdm_seminar,mulai',
+            'mulai_seminar' => ['required', 'date_format:Y-m-d', Rule::unique('sdm_seminar', 'mulai')->ignore($this->pegawai->nopeg, 'nopeg')],
             'sampai_seminar' => 'required|date_format:Y-m-d|after_or_equal:mulai_seminar',
             'nama_seminar' => 'required|string',
             'penyelenggara_seminar' => 'required|string',

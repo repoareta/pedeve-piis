@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PengalamanKerjaStoreRequest extends FormRequest
+class PengalamanKerjaUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class PengalamanKerjaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'mulai_pengalaman_kerja' => 'required|date_format:Y-m-d|unique:sdm_pengkerja,mulai',
+            'mulai_pengalaman_kerja' => ['required', 'date_format:Y-m-d', Rule::unique('sdm_pengkerja', 'mulai')->ignore($this->pegawai->nopeg, 'nopeg')],            
             'sampai_pengalaman_kerja' => 'required|date_format:Y-m-d|after_or_equal:mulai_pengalaman_kerja',
             'status_pengalaman_kerja' => 'required|string|max:15',
             'instansi_pengalaman_kerja' => 'required|string',

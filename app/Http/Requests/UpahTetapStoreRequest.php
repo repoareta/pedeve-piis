@@ -27,7 +27,7 @@ class UpahTetapStoreRequest extends FormRequest
         return [
             'nilai_upah_tetap' => ['required', new MoneyFormat],
             'mulai_upah_tetap' => 'required|date_format:Y-m-d',
-            'sampai_upah_tetap' => 'required|date_format:Y-m-d',
+            'sampai_upah_tetap' => 'required|date_format:Y-m-d|after_or_equal:mulai_upah_tetap',
             'keterangan_upah_tetap' => 'nullable|string',
         ];
     }

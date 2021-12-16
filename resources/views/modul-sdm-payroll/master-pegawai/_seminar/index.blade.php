@@ -136,6 +136,20 @@
             }
         });
 
+        $('#editRowSeminar').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var mulai = $(this).data('mulai');
+                    var url = "{{ route('modul_sdm_payroll.master_pegawai.seminar.edit', ['pegawai' => $pegawai->nopeg, ':mulai']) }}";
+                    // go to page edit
+                    window.location.href = url.replace(":mulai", mulai);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
     });
 </script>
 @endpush

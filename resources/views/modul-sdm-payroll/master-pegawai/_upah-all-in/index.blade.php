@@ -127,6 +127,19 @@
             }
         });
 
+        $('#editRowUpahAllIn').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var nilai = $(this).data('nilai');
+                    var url = "{{ route('modul_sdm_payroll.master_pegawai.upah_all_in.edit', ['pegawai' => $pegawai->nopeg, 'nilai' => ':nilai']) }}";
+                    // go to page edit
+                    window.location.href = url.replace(":nilai", nilai);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
     });
 </script>
 @endpush

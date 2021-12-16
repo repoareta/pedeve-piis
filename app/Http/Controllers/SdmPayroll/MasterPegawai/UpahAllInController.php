@@ -32,13 +32,13 @@ class UpahAllInController extends Controller
             })
             ->addColumn('mulai', function ($row) {
                 if ($row->mulai) {
-                    return Carbon::parse($row->mulai)->translatedFormat('d F Y');
+                    return $row->mulai->translatedFormat('d F Y');
                 }
                 return null;
             })
             ->addColumn('sampai', function ($row) {
                 if ($row->sampai) {
-                    return Carbon::parse($row->sampai)->translatedFormat('d F Y');
+                    return $row->sampai->translatedFormat('d F Y');
                 }
                 return null;
             })
@@ -76,21 +76,18 @@ class UpahAllInController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJson(Request $request)
+    public function edit(MasterPegawai $pegawai, $nilai)
     {
-        $upah = UpahAllIn::where('nopek', $request->nopeg)
-            ->where('nilai', $request->nilai)
-            ->first();
-
-        $upah['mulai_date'] = $upah->formated_mulai;
-        $upah['sampai_date'] = $upah->formated_sampai;
-
-        return response()->json($upah, 200);
+        $upah = UpahAllIn::where('nopek', $pegawai->nopeg)
+                            ->where('nilai', $nilai)
+                            ->first();        
+        
+        return view('modul-sdm-payroll.master-pegawai._upah-all-in.edit', compact('upah', 'pegawai'));
     }
 
     /**
@@ -103,8 +100,8 @@ class UpahAllInController extends Controller
     public function update(Request $request, MasterPegawai $pegawai, $nilai)
     {
         $upah = UpahAllIn::where('nopek', $pegawai->nopeg)
-            ->where('nilai', $request->nilai)
-            ->first();
+                        ->where('nilai', $request->nilai)
+                        ->first();
 
         $upah->nopek    = $pegawai->nopeg;
         $upah->nilai    = $request->nilai_upah_all_in;
@@ -114,7 +111,8 @@ class UpahAllInController extends Controller
 
         $upah->save();
 
-        return response()->json($upah, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

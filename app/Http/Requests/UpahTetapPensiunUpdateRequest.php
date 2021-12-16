@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpahAllInStoreRequest extends FormRequest
+class UpahTetapPensiunUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,10 @@ class UpahAllInStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nilai_upah_all_in' => ['required', new MoneyFormat],
-            'mulai_upah_all_in' => 'required|date_format:Y-m-d',
-            'sampai_upah_all_in' => 'required|date_format:Y-m-d|after_or_equal:mulai_upah_all_in',
+            'nilai_upah_tetap_pensiun' => ['required', new MoneyFormat],
+            'mulai_upah_tetap_pensiun' => 'required|date_format:Y-m-d',
+            'sampai_upah_tetap_pensiun' => 'required|date_format:Y-m-d|after_or_equal:mulai_upah_tetap_pensiun',
+            'keterangan_upah_tetap_pensiun' => 'nullable|string',
         ];
     }
 }

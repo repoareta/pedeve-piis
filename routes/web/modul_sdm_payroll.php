@@ -233,7 +233,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
                 Route::get('{pegawai}/upah-tetap/index-json', [UpahTetapController::class, 'indexJson'])->name('index.json');
                 Route::get('{pegawai}/upah-tetap/create', [UpahTetapController::class, 'create'])->name('create');
                 Route::post('{pegawai}/upah-tetap/store', [UpahTetapController::class, 'store'])->name('store');
-                Route::get('{pegawai}/upah-tetap/edit/{nilai}', [UpahTetapController::class, 'nilai'])->name('nilai');
+                Route::get('{pegawai}/upah-tetap/edit/{nilai}', [UpahTetapController::class, 'edit'])->name('edit');
                 Route::post('{pegawai}/upah-tetap/update/{nilai}', [UpahTetapController::class, 'update'])->name('update');
                 Route::delete('{pegawai}/upah-tetap/delete', [UpahTetapController::class, 'delete'])->name('delete');
             });

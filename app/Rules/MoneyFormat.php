@@ -27,6 +27,8 @@ class MoneyFormat implements Rule
     {
         $regex = '/^\-?\d+(,\d{3})*(\.\d+)?$/';
 
+        $value = (string) sanitize_nominal($value);
+
         $validate = preg_match($regex, $value);
 
         if ($validate == 1) {
