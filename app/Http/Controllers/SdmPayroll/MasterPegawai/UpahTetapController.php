@@ -4,10 +4,12 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpahTetapStoreRequest;
+use App\Http\Requests\UpahTetapUpdateRequest;
 use App\Models\MasterPegawai;
 use App\Models\UpahTetap;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -31,10 +33,10 @@ class UpahTetapController extends Controller
                 return currency_idr($row->ut);
             })
             ->addColumn('mulai', function ($row) {
-                return Carbon::parse($row->mulai)->translatedFormat('d F Y');
+                return $row->mulai->translatedFormat('d F Y');
             })
             ->addColumn('sampai', function ($row) {
-                return Carbon::parse($row->sampai)->translatedFormat('d F Y');
+                return $row->sampai->translatedFormat('d F Y');
             })
             ->rawColumns(['radio'])
             ->make(true);
@@ -71,18 +73,18 @@ class UpahTetapController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJson(Request $request)
+    public function edit(MasterPegawai $pegawai, $nilai)
     {
-        $upah = UpahTetap::where('nopeg', $request->nopeg)
-        ->where('ut', $request->ut)
-        ->first();
-
-        return response()->json($upah, 200);
+        $upah = UpahTetap::where('nopeg', $pegawai->nopeg)
+                            ->where('ut', $nilai)
+                            ->first();        
+        
+        return view('modul-sdm-payroll.master-pegawai._upah-tetap.edit', compact('upah', 'pegawai'));
     }
 
     /**
@@ -92,22 +94,22 @@ class UpahTetapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $nilai)
+    public function update(UpahTetapUpdateRequest $request, MasterPegawai $pegawai, $nilai)
     {
-        $upah = UpahTetap::where('nopeg', $pegawai->nopeg)
-        ->where('ut', $nilai)
-        ->first();
+        DB::table('sdm_ut')
+            ->where('nopeg', $pegawai->nopeg)
+            ->where('ut', $nilai)
+            ->update([
+                'nopeg' => $pegawai->nopeg,
+                'ut' => $request->nilai_upah_tetap,
+                'mulai' => $request->mulai_upah_tetap,
+                'sampai' => $request->sampai_upah_tetap,
+                'keterangan' => $request->keterangan_upah_tetap,
+                'userid' => Auth::user()->userid,
+            ]);
 
-        $upah->nopeg      = $pegawai->nopeg;
-        $upah->ut         = $request->nilai_upah_tetap;
-        $upah->mulai      = $request->mulai_upah_tetap;
-        $upah->sampai     = $request->sampai_upah_tetap;
-        $upah->keterangan = $request->keterangan_upah_tetap;
-        $upah->userid     = Auth::user()->userid;
-
-        $upah->save();
-
-        return response()->json($upah, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SMKStoreRequest;
+use App\Http\Requests\SMKUpdateRequest;
 use App\Models\MasterPegawai;
 use App\Models\SMK;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -60,18 +62,18 @@ class SmkController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showJson(Request $request)
+    public function edit(MasterPegawai $pegawai, $tahun)
     {
-        $smk = SMK::where('nopeg', $request->nopeg)
-        ->where('tahun', $request->tahun)
-        ->first();
-
-        return response()->json($smk, 200);
+        $smk = SMK::where('nopeg', $pegawai->nopeg)
+                    ->where('tahun', $tahun)
+                    ->first();
+        
+        return view('modul-sdm-payroll.master-pegawai._smk.edit', compact('smk', 'pegawai'));
     }
 
     /**
@@ -81,20 +83,20 @@ class SmkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $tahun)
+    public function update(SMKUpdateRequest $request, MasterPegawai $pegawai, $tahun)
     {
-        $smk = SMK::where('nopeg', $pegawai->nopeg)
-        ->where('tahun', $request->tahun)
-        ->first();
+        DB::table('sdm_smk')
+            ->where('nopeg', $pegawai->nopeg)
+            ->where('tahun', $tahun)
+            ->update([
+                'nopeg' => $pegawai->nopeg,
+                'tahun' => $request->tahun_smk,
+                'nilai' => $request->nilai_smk,
+                'userid' => Auth::user()->userid,
+            ]);
 
-        $smk->nopeg    = $pegawai->nopeg;
-        $smk->tahun    = $request->tahun_smk;
-        $smk->nilai    = $request->nilai_smk;
-        $smk->userid   = Auth::user()->userid;
-
-        $smk->save();
-
-        return response()->json($smk, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

@@ -27,7 +27,7 @@ class UpahTetapPensiunStoreRequest extends FormRequest
         return [
             'nilai_upah_tetap_pensiun' => ['required', new MoneyFormat],
             'mulai_upah_tetap_pensiun' => 'required|date_format:Y-m-d',
-            'sampai_upah_tetap_pensiun' => 'required|date_format:Y-m-d',
+            'sampai_upah_tetap_pensiun' => 'required|date_format:Y-m-d|after_or_equal:mulai_upah_tetap_pensiun',
             'keterangan_upah_tetap_pensiun' => 'nullable|string',
         ];
     }

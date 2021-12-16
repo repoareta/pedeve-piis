@@ -16,29 +16,8 @@ class UpahAllIn extends Model
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
 
-    protected $dates = [
-        'mulai',
-        'sampai',
-        'tglentry'
+    protected $casts = [
+        'mulai' => 'datetime',
+        'sampai' => 'datetime'
     ];
-
-    /**
-     * Get the user's full name.
-     *
-     * @return string
-     */
-    public function getFormatedMulaiAttribute()
-    {
-        return $this->mulai->format('Y-m-d');
-    }
-
-    /**
-     * Get the user's full name.
-     *
-     * @return string
-     */
-    public function getFormatedSampaiAttribute()
-    {
-        return $this->sampai->format('Y-m-d');
-    }
 }

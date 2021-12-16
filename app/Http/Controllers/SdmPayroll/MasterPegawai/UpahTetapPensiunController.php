@@ -4,9 +4,11 @@ namespace App\Http\Controllers\SdmPayroll\MasterPegawai;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpahTetapPensiunStoreRequest;
+use App\Http\Requests\UpahTetapPensiunUpdateRequest;
 use App\Models\MasterPegawai;
 use App\Models\UpahTetapPensiun;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -31,10 +33,10 @@ class UpahTetapPensiunController extends Controller
                 return currency_idr($row->ut);
             })
             ->addColumn('mulai', function ($row) {
-                return Carbon::parse($row->mulai)->translatedFormat('d F Y');
+                return $row->mulai->translatedFormat('d F Y');
             })
             ->addColumn('sampai', function ($row) {
-                return Carbon::parse($row->sampai)->translatedFormat('d F Y');
+                return $row->sampai->translatedFormat('d F Y');
             })
             ->rawColumns(['radio'])
             ->make(true);
@@ -53,8 +55,9 @@ class UpahTetapPensiunController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UpahTetapPensiunStoreRequest $request, MasterPegawai $pegawai, UpahTetapPensiun $upah)
+    public function store(UpahTetapPensiunStoreRequest $request, MasterPegawai $pegawai)
     {
+        $upah             = new UpahTetapPensiun();
         $upah->nopeg      = $pegawai->nopeg;
         $upah->ut         = sanitize_nominal($request->nilai_upah_tetap_pensiun);
         $upah->mulai      = $request->mulai_upah_tetap_pensiun;
@@ -70,18 +73,18 @@ class UpahTetapPensiunController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(MasterPegawai $pegawai, $nilai)
     {
-        $upah = UpahTetapPensiun::where('nopeg', $request->nopeg)
-            ->where('ut', $request->ut)
-            ->first();
-
-        return response()->json($upah, 200);
+        $upah = UpahTetapPensiun::where('nopeg', $pegawai->nopeg)
+                                ->where('ut', $nilai)
+                                ->first();        
+        
+        return view('modul-sdm-payroll.master-pegawai._upah-tetap-pensiun.edit', compact('upah', 'pegawai'));
     }
 
     /**
@@ -91,23 +94,22 @@ class UpahTetapPensiunController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MasterPegawai $pegawai, $nilai)
+    public function update(UpahTetapPensiunUpdateRequest $request, MasterPegawai $pegawai, $nilai)
     {
-        $upah = UpahTetapPensiun::where('nopeg', $pegawai->nopeg)
+        DB::table('sdm_ut_pensiun')
+            ->where('nopeg', $pegawai->nopeg)
             ->where('ut', $nilai)
-            ->first();
+            ->update([
+                'nopeg' => $pegawai->nopeg,
+                'ut' => $request->nilai_upah_tetap_pensiun,
+                'mulai' => $request->mulai_upah_tetap_pensiun,
+                'sampai' => $request->sampai_upah_tetap_pensiun,
+                'keterangan' => $request->keterangan_upah_tetap_pensiun,
+                'userid' => Auth::user()->userid
+            ]);
 
-        $upah->nopeg      = $pegawai->nopeg;
-        $upah->ut         = $request->nilai_upah_tetap_pensiun;
-        $upah->mulai      = $request->mulai_upah_tetap_pensiun;
-        $upah->sampai     = $request->sampai_upah_tetap_pensiun;
-        $upah->keterangan = $request->keterangan_upah_tetap_pensiun;
-        $upah->userid     = Auth::user()->userid;
-        $upah->tglentry   = Carbon::now();
-
-        $upah->save();
-
-        return response()->json($upah, 200);
+        Alert::success('Berhasil', 'Data Berhasil Diubah')->persistent(true)->autoClose(3000);
+        return redirect()->route('modul_sdm_payroll.master_pegawai.edit', [$pegawai->nopeg]);
     }
 
     /**

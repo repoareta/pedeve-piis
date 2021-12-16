@@ -134,6 +134,21 @@
             }
         });
 
+        $('#editRowPengalamanKerja').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var mulai = $(this).data('mulai');
+                    var pangkat = $(this).data('pangkat');
+                    var url = "{{ route('modul_sdm_payroll.master_pegawai.pengalaman_kerja.edit', ['pegawai' => $pegawai->nopeg, ':mulai', ':pangkat']) }}";
+                    // go to page edit
+                    window.location.href = url.replace(":mulai", mulai).replace(':pangkat', pangkat);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
     });
 </script>
 @endpush

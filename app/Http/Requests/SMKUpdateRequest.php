@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\MoneyFormat;
 use Illuminate\Foundation\Http\FormRequest;
-
-class UpahAllInStoreRequest extends FormRequest
+use Illuminate\Validation\Rule;
+class SMKUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,8 @@ class UpahAllInStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'nilai_upah_all_in' => ['required', new MoneyFormat],
-            'mulai_upah_all_in' => 'required|date_format:Y-m-d',
-            'sampai_upah_all_in' => 'required|date_format:Y-m-d|after_or_equal:mulai_upah_all_in',
+            'tahun_smk' => ['required', 'date_format:Y', Rule::unique('sdm_smk', 'tahun')->ignore($this->pegawai->nopeg, 'nopeg')],
+            'nilai_smk' => 'required|numeric|digits:1',
         ];
     }
 }

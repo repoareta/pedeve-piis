@@ -20,7 +20,7 @@
                 @if (permission(600)->rubah == 1)
                 <a href="#">
                     <span class="pointer-link" data-toggle="tooltip" data-placement="top" title="Ubah Data">
-                        <i class="fas fa-2x fa-edit text-warning" id="editRowSmk"></i>
+                        <i class="fas fa-2x fa-edit text-warning" id="editRowSMK"></i>
                     </span>
                 </a>
                 @endif
@@ -122,6 +122,20 @@
                 });
             } else {
                 swalAlertInit('hapus');
+            }
+        });
+
+        $('#editRowSMK').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) { 
+                $("input[type=radio]:checked").each(function() {
+                    var tahun = $(this).data('tahun');
+                    var url = "{{ route('modul_sdm_payroll.master_pegawai.smk.edit', ['pegawai' => $pegawai->nopeg, ':tahun']) }}";
+                    // go to page edit
+                    window.location.href = url.replace(":tahun", tahun);
+                });
+            } else {
+                swalAlertInit('ubah');
             }
         });
     });
