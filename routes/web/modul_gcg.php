@@ -17,7 +17,7 @@ Route::prefix('gcg')->name('modul_gcg.')->group(function () {
     Route::post('coc/lampiran-satu/print', [CocController::class, 'lampiranSatuPrint'])->name('coc.lampiran_satu.print');
     Route::get('coc/lampiran-dua', [CocController::class, 'lampiranDua'])->name('coc.lampiran_dua');
     Route::post('coc/lampiran-dua/print', [CocController::class, 'lampiranDuaPrint'])->name('coc.lampiran_dua.print');
-    
+
     Route::get('coi/lampiran-satu', [CoiController::class, 'index'])->name('coi.lampiran_satu');
     Route::post('coi/lampiran-satu/print', [CoiController::class, 'lampiranSatuPrint'])->name('coi.lampiran_satu.print');
     Route::get('coi/lampiran-dua', [CoiController::class, 'lampiranDua'])->name('coi.lampiran_dua');
@@ -53,7 +53,10 @@ Route::prefix('gcg')->name('modul_gcg.')->group(function () {
     Route::get('lhkpn', [LhkpnController::class, 'index'])->name('lhkpn.index');
     Route::get('lhkpn/create', [LhkpnController::class, 'create'])->name('lhkpn.create');
     Route::post('lhkpn/store', [LhkpnController::class, 'store'])->name('lhkpn.store');
-    
+    Route::get('lhkpn/{lhkpn}/edit', [LhkpnController::class, 'edit'])->name('lhkpn.edit');
+    Route::put('lhkpn/{lhkpn}', [LhkpnController::class, 'update'])->name('lhkpn.update');
+    Route::delete('lhkpn/{lhkpn}', [LhkpnController::class, 'destroy'])->name('lhkpn.destroy');
+
     Route::get('report-boundary', [ReportBoundaryController::class, 'index'])->name('report_boundary.index');
     Route::get('report-boundary/export', [ReportBoundaryController::class, 'export'])->name('report_boundary.export');
 });

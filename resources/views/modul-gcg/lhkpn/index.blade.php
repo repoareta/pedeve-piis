@@ -43,6 +43,7 @@
                 <table class="table table-bordered" id="kt_table" width="100%">
                     <thead class="thead-light">
                         <tr>
+                            <th></th>
                             <th>
                                 TANGGAL LHKPN
                             </th>
@@ -61,6 +62,12 @@
                         @foreach ($lhkpn_list as $lhkpn)
                             <tr>
                                 <td>
+                                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                                        <input type="radio" name="radio_gaji_pokok" value="{{ $lhkpn->id }}">
+                                        <span></span>
+                                    </label>
+                                </td>
+                                <td>
                                     {{ Carbon\Carbon::parse($lhkpn->tanggal)->translatedFormat('d F Y') }}
                                 </td>
                                 <td>
@@ -70,7 +77,7 @@
                                 </td>
                                 <td>
                                     {{ Carbon\Carbon::parse($lhkpn->created_at)->translatedFormat('d F Y') }}
-                                </td>                                
+                                </td>
                                 <td>
                                     {{ ucfirst($lhkpn->status) }}
                                 </td>
@@ -89,6 +96,74 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('#kt_table').DataTable();
+
+        $('#editRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) {
+				$("input[type=radio]:checked").each(function() {
+					var id = $(this).val();
+					var url = "{{ route('modul_gcg.lhkpn.edit', ['lhkpn' => ':id']) }}";
+					// go to page edit
+					window.location.href = url.replace(':id', id);
+				});
+			} else {
+				swalAlertInit('ubah');
+			}
+		});
+
+        $('#deleteRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) {
+				$("input[type=radio]:checked").each(function() {
+					var id = $(this).val();
+					// delete stuff
+					const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+						confirmButton: 'btn btn-primary',
+						cancelButton: 'btn btn-danger'
+					},
+						buttonsStyling: false
+					})
+
+					swalWithBootstrapButtons.fire({
+						title: "Hapus data ini?",
+						icon: 'warning',
+						showCancelButton: true,
+						reverseButtons: true,
+						confirmButtonText: 'Ya, hapus',
+						cancelButtonText: 'Batalkan'
+					})
+					.then((result) => {
+						if (result.value) {
+							$.ajax({
+								url: "{{ route('modul_gcg.lhkpn.destroy', ['lhkpn' => ':id']) }}".replace(':id', id),
+								type: 'DELETE',
+								dataType: 'json',
+								data: {
+									"id": id,
+									"_token": "{{ csrf_token() }}",
+								},
+								success: function () {
+									Swal.fire({
+										icon  : 'success',
+										title : 'Data berhasil dihapus',
+										text  : 'Berhasil',
+										timer : 2000
+									}).then(function() {
+										document.location.reload(true);
+									});
+								},
+								error: function () {
+									alert("Terjadi kesalahan, coba lagi nanti");
+								}
+							});
+						}
+					});
+				});
+			} else {
+				swalAlertInit('hapus');
+			}
+		});
 	});
 </script>
 @endpush
