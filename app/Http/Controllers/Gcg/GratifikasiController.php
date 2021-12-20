@@ -85,7 +85,7 @@ class GratifikasiController extends Controller
 
             $pemberian->save();
         }
-        
+
         Alert::success('Simpan Data Pemberian', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_gcg.gratifikasi.index');
     }
@@ -110,13 +110,13 @@ class GratifikasiController extends Controller
             $permintaan->bentuk            = $request->bentuk_jenis_permintaan;
             $permintaan->nilai             = $request->nilai;
             $permintaan->jumlah            = $request->jumlah;
-            $permintaan->peminta          = $request->peminta;
+            $permintaan->peminta           = $request->peminta;
             $permintaan->keterangan        = $request->keterangan;
             $permintaan->jenis_gratifikasi = 'permintaan';
 
             $permintaan->save();
         }
-        
+
 
         Alert::success('Simpan Data Permintaan', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_gcg.gratifikasi.index');
@@ -144,7 +144,7 @@ class GratifikasiController extends Controller
             return $q->where(DB::raw('extract(year from tgl_gratifikasi)'), request('tahun'));
         })
         ->get();
-        
+
         // return default PDF
         $pdf = DomPDF::loadview('modul-gcg.gratifikasi.report-personal-export-pdf', compact('gratifikasi_list'))->setOptions(['isPhpEnabled' => true]);
 
@@ -211,7 +211,7 @@ class GratifikasiController extends Controller
             return $q->where(DB::raw('extract(year from tgl_gratifikasi)'), request('tahun'));
         })
         ->get();
-        
+
         // return default PDF
         $pdf = DomPDF::loadview('modul-gcg.gratifikasi.report-management-export-pdf', compact('gratifikasi_list'));
 
@@ -254,7 +254,7 @@ class GratifikasiController extends Controller
                 } else {
                     $fungsi_jabatan =  $row->userpdv->fungsi_jabatan->nama;
                 }
-                
+
                 return $fungsi_jabatan;
             })
             ->addColumn('tanggal_gratifikasi', function ($row) {
@@ -268,13 +268,21 @@ class GratifikasiController extends Controller
 
     public function edit(GcgGratifikasi $gratifikasi)
     {
-        return view('modul-gcg.gratifikasi.edit', compact('gratifikasi'));
+        $view = match ($gratifikasi->jenis_gratifikasi) {
+            'penerimaan' => 'edit-penerimaan',
+            'pemberian' => 'edit-pemberian',
+            'permintaan' => 'edit-permintaan',
+        };
+
+        return view('modul-gcg.gratifikasi.' . $view, compact(
+            'gratifikasi'
+        ));
     }
 
     public function update(GcgGratifikasi $gratifikasi, Request $request)
     {
         $gratifikasi->status  = $request->status;
-        $gratifikasi->catatan = $request->catatan;
+        $gratifikasi->catatan  = $request->catatan;
 
         $gratifikasi->save();
 

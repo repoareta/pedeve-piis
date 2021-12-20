@@ -18,4 +18,8 @@ class GolonganGaji extends Model
     public $timestamps = false;
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
+
+    protected $casts = [
+        'tanggal' => 'datetime',
+    ];
 }

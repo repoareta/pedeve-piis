@@ -71,6 +71,23 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editRowGolonganGaji').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const golongan_gaji = $(this).data('golgaji');
+                    const tanggal = $(this).data('tanggal');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.golongan_gaji.edit", ['pegawai' => $pegawai->nopeg, 'golongan_gaji' => ':golongan_gaji', 'tanggal' => ':tanggal']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':golongan_gaji', golongan_gaji)
+                                                .replace(':tanggal', tanggal);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteRowGolonganGaji').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_golongan_gaji]').is(':checked')) {

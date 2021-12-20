@@ -24,7 +24,12 @@ class PendidikanUpdate extends FormRequest
     public function rules()
     {
         return [
-            //
+            'mulai_pendidikan_pegawai' => 'required|date_format:Y-m-d',
+            'sampai_pendidikan_pegawai' => 'required|date_format:Y-m-d',
+            'kode_pendidikan_pegawai' => 'required',
+            'tempat_didik_pegawai' => 'required',
+            'kode_pt_pendidikan_pegawai' => 'required',
+            'catatan_pendidikan_pegawai' => 'nullable',
         ];
     }
 }

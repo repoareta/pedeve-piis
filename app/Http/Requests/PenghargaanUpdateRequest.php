@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class KursusUpdate extends FormRequest
+class PenghargaanUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class KursusUpdate extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,13 +25,9 @@ class KursusUpdate extends FormRequest
     public function rules()
     {
         return [
-            'mulai_kursus' => 'required',
-            'sampai_kursus' => 'required',
-            'nama_kursus' => 'required',
-            'penyelenggara_kursus' => 'required',
-            'kota_kursus' => 'required',
-            'negara_kursus' => 'required',
-            'keterangan_kursus' => 'nullable',
+            'tanggal_penghargaan' => ['required', Rule::unique('sdm_penghargaan', 'tanggal')->ignore($this->pegawai->nopeg, 'nopeg')],
+            'nama_penghargaan' => 'required|string',
+            'pemberi_penghargaan' => 'required|string',
         ];
     }
 }

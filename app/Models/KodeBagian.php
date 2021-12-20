@@ -14,4 +14,15 @@ class KodeBagian extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     public $incrementing = false;
+
+    protected $fillable = [
+        'kode',
+        'nama',
+        'nopeg',
+    ];
+
+    public function pimpinan()
+    {
+        return $this->belongsTo(MasterPegawai::class, 'nopeg', 'nopeg');
+    }
 }

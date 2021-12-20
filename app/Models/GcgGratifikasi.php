@@ -11,6 +11,10 @@ class GcgGratifikasi extends Model
 
     protected $table = "gcg_gratifikasi";
 
+    protected $casts = [
+        'tgl_gratifikasi' => 'datetime',
+    ];
+
     public function pekerja()
     {
         return $this->belongsTo('App\Models\MasterPegawai', 'nopeg');

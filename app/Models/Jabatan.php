@@ -16,6 +16,12 @@ class Jabatan extends Model
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
 
+    protected $casts = [
+        'mulai' => 'datetime',
+        'sampai' => 'datetime',
+        'tglskep' => 'datetime',
+    ];
+
     /**
      * Jabatan dimiliki KodeBagian
      *
@@ -28,7 +34,7 @@ class Jabatan extends Model
 
     public function kode_jabatan()
     {
-        return $this->belongsTo('App\Models\KodeJabatan', 'kdjab', 'kdbag');
+        return $this->belongsTo('App\Models\KodeJabatan', 'kdbag', 'kdbag');
     }
 
     // public function kode_jabatan_new()

@@ -17,6 +17,8 @@ class CocController extends Controller
      */
     public function index()
     {
+        dd(auth()->user()->load(['pekerja.jabatan.kode_bagian.pimpinan']));
+
         return view('modul-gcg.coc.lampiran-satu');
     }
 

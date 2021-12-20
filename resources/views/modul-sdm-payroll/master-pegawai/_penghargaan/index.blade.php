@@ -71,6 +71,22 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editRowPenghargaan').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const tanggal = $(this).data('tanggal');
+                    const nama = $(this).data('nama');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.penghargaan.edit", ['pegawai' => $pegawai->nopeg, 'tanggal' => ':tanggal', 'nama' => ':nama']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':tanggal', tanggal).replace(':nama', nama);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteRowPenghargaan').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_penghargaan]').is(':checked')) {

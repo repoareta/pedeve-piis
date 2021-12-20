@@ -77,6 +77,25 @@
             order: [[ 0, "asc" ], [ 1, "asc" ]]
         });
 
+        $('#editRowJabatan').click(function(e) {
+            e.preventDefault();
+            if($('input[type=radio]').is(':checked')) {
+                $("input[type=radio]:checked").each(function() {
+                    const mulai = $(this).data('mulai');
+                    const kode_bagian = $(this).data('kdbagian');
+                    const kode_jabatan = $(this).data('kdjabatan');
+
+                    var url = `{{ route("modul_sdm_payroll.master_pegawai.jabatan.edit", ['pegawai' => $pegawai->nopeg, 'mulai' => ':mulai', 'kode_bagian' => ':kode_bagian', 'kode_jabatan' => ':kode_jabatan']) }}`;
+                    // go to page edit
+                    window.location.href = url.replace(':mulai', mulai)
+                                                .replace(':kode_bagian', kode_bagian)
+                                                .replace(':kode_jabatan', kode_jabatan);
+                });
+            } else {
+                swalAlertInit('ubah');
+            }
+        });
+
         $('#deleteRowJabatan').click(function(e) {
             e.preventDefault();
             if($('input[name=radio_jabatan]').is(':checked')) {

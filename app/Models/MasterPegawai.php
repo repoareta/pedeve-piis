@@ -15,7 +15,7 @@ class MasterPegawai extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     public $incrementing = false;
-    
+
     protected $dates = ['deleted_at'];
 
     /**

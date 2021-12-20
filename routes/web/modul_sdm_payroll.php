@@ -101,7 +101,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::delete('kode-jabatan/delete', [KodeJabatanController::class, 'delete'])->name('delete');
     });
     // Kode Jabatan END
-    
+
     // Agama START
     // Route assigned name "agama.index"...
     Route::name('agama.')->group(function () {
@@ -126,7 +126,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::get('master-pegawai/edit/{pegawai}', [PegawaiController::class, 'edit'])->name('edit');
         Route::post('master-pegawai/update/{pegawai}', [PegawaiController::class, 'update'])->name('update');
         Route::delete('master-pegawai/delete', [PegawaiController::class, 'delete'])->name('delete');
-        
+
         Route::prefix('master-pegawai')->group(function () {
             // Route assigned name "master_pegawai.keluarga.index"...
             Route::name('keluarga.')->group(function () {
@@ -135,7 +135,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
                 Route::post('{pegawai}/keluarga/store', [KeluargaController::class, 'store'])->name('store');
                 Route::get('{pegawai}/keluarga/edit/{status}/{nama}', [KeluargaController::class, 'edit'])->name('edit');
                 Route::post('{pegawai}/keluarga/update/{status}/{nama}', [KeluargaController::class, 'update'])->name('update');
-                Route::delete('{pegawai}/keluarga/delete', [KeluargaController::class, 'delete'])->name('delete');
+                Route::delete('{pegawai}/keluarga/delete/{status}/{nama}', [KeluargaController::class, 'delete'])->name('delete');
             });
 
             // Route assigned name "master_pegawai.keluarga.index"...
@@ -143,8 +143,8 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
                 Route::get('{pegawai}/jabatan/index-json', [JabatanController::class, 'indexJson'])->name('index.json');
                 Route::get('{pegawai}/jabatan/create', [JabatanController::class, 'create'])->name('create');
                 Route::post('{pegawai}/jabatan/store', [JabatanController::class, 'store'])->name('store');
-                Route::get('{pegawai}/jabatan/edit/{status}/{nama}', [JabatanController::class, 'edit'])->name('edit');
-                Route::post('{pegawai}/jabatan/update/{status}/{nama}', [JabatanController::class, 'update'])->name('update');
+                Route::get('{pegawai}/jabatan/edit/{mulai}/{kode_bagian}/{kode_jabatan}', [JabatanController::class, 'edit'])->name('edit');
+                Route::post('{pegawai}/jabatan/update/{mulai}/{kode_bagian}/{kode_jabatan}', [JabatanController::class, 'update'])->name('update');
                 Route::delete('{pegawai}/jabatan/delete', [JabatanController::class, 'delete'])->name('delete');
             });
 
@@ -154,7 +154,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
                 Route::get('{pegawai}/gaji-pokok/create', [GajiPokokController::class, 'create'])->name('create');
                 Route::post('{pegawai}/gaji-pokok/store', [GajiPokokController::class, 'store'])->name('store');
                 Route::get('{pegawai}/gaji-pokok/edit/{nilai}', [GajiPokokController::class, 'edit'])->name('edit');
-                Route::post('{pegawai}/gaji-pokok/update/{nilai}', [GajiPokokController::class, 'udpate'])->name('update');
+                Route::post('{pegawai}/gaji-pokok/update/{nilai}', [GajiPokokController::class, 'update'])->name('update');
                 Route::delete('{pegawai}/gaji-pokok/delete', [GajiPokokController::class, 'delete'])->name('delete');
             });
 
@@ -274,7 +274,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::delete('master-upah/delete', [UpahController::class, 'delete'])->name('delete');
     });
     // Master Upah END
-    
+
     // Master Insentif START
     Route::name('master_insentif.')->group(function () {
         Route::get('master-insentif', [InsentifController::class, 'index'])->name('index');
@@ -323,7 +323,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
     });
     // Master THR END
     // Master Payroll END
-    
+
     //potongan koreksi gaji
     // Route assigned name "potongan-koreksi-gaji.index"...
     Route::name('potongan_koreksi_gaji.')->group(function () {
@@ -419,7 +419,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::delete('pinjaman-pekerja/delete', [PinjamanPekerjaController::class, 'delete'])->name('delete');
     });
     //end Pinjaman Pekerja
-        
+
     //proses gaji
     // Route assigned name "proses_upah.index"...
     Route::name('proses_gaji.')->group(function () {
@@ -576,7 +576,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::post('jamsostek/rekap-iuran/export', [JamsostekController::class, 'rekapIuranExport'])->name('rekap_iuran.export');
     });
     //end jamsostek
-    
+
     //pensiun
     // Route assigned name "pensiun.index"...
     Route::name('pensiun.')->group(function () {
@@ -594,7 +594,7 @@ Route::prefix('sdm-payroll')->name('modul_sdm_payroll.')->group(function () {
         Route::post('pensiun/rekap-iuran/export', [PensiunController::class, 'rekapIuranExport'])->name('rekap_iuran.export');
     });
     //end pensiun
-    
+
     //absensi karyawan
     Route::name('absensi_karyawan.')->group(function () {
         Route::get('absensi-karyawan', [AbsensiKaryawanController::class, 'index'])->name('index');

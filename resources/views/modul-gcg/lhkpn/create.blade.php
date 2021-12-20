@@ -20,7 +20,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form class="form" id="formAnggaran" action="{{ route('modul_gcg.lhkpn.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="form" id="form-create" action="{{ route('modul_gcg.lhkpn.store') }}" method="POST" enctype="multipart/form-data">
 					@csrf
 
                     <div class="form-group row">
@@ -69,5 +69,5 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\AnggaranStore', '#formAnggaran') !!}
+{!! JsValidator::formRequest('App\Http\Requests\GcgLHKPNStore', '#form-create') !!}
 @endpush

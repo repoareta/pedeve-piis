@@ -19,6 +19,11 @@ class PekerjaPendidikan extends Model
     public $incrementing = false;
     const CREATED_AT = 'tglentry';
 
+    protected $casts = [
+        'mulai' => 'datetime',
+        'tgllulus' => 'datetime',
+    ];
+
     /**
      * Undocumented function
      *
