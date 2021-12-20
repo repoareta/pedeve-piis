@@ -43,6 +43,9 @@
                     <thead class="thead-light">
                         <tr>
                             <th>
+
+                            </th>
+                            <th>
                                 KETERANGAN
                             </th>
                             <th>
@@ -62,10 +65,15 @@
                     <tbody>
                         @foreach ($sosialisasi_list as $sosialisasi)
                             <tr>
+                                <td>
+                                    <label class="radio radio-outline radio-outline-2x radio-primary">
+                                        <input type="radio" name="radio_sosialisasi" id="radio_sosialisasi" value="{{ $sosialisasi->id }}"><span></span>
+                                    </label>
+                                </td>
                                 <td>{{ $sosialisasi->keterangan }}</td>
                                 <td>
                                     @foreach ($sosialisasi->dokumen as $file)
-                                        <span class="badge badge-primary mb-3" onclick="getReader('{{ auth()->user()->nopeg }}', '{{ $sosialisasi->id }}', '{{ asset('sosialisasi/'.$file->dokumen) }}')">{{ $file->dokumen }}</span>
+                                        <span class="badge badge-primary mb-3" onclick="getReader('{{ auth()->user()->nopeg }}', '{{ $sosialisasi->id }}', '{{ asset('sosialisasi/'.$sosialisasi->id.'/'.$file->dokumen) }}')">{{ $file->dokumen }}</span>
                                     @endforeach
                                 </td>
                                 <td>{{ Carbon\Carbon::parse($sosialisasi->created_at)->translatedFormat('d F Y') }}</td>
@@ -111,7 +119,78 @@
 @push('page-scripts')
 <script type="text/javascript">
 	$(document).ready(function () {
-		$('#kt_table').DataTable();
+		var t = $('#kt_table').DataTable();
+
+        $('#editRow').click(function(e) {
+			e.preventDefault();
+			if($('input[type=radio]').is(':checked')) {
+				$("input[type=radio]:checked").each(function() {
+					var sosialisasi = $(this).val();
+					var url = '{{ route("modul_gcg.sosialisasi.edit", ":sosialisasi") }}';
+					// go to page edit
+					window.location.href = url.replace(':sosialisasi',sosialisasi);
+				});
+			} else {
+				swalAlertInit('ubah');
+			}
+		});
+
+        $('#deleteRow').click(function(e) {
+            e.preventDefault();
+            if($('input[name=radio_sosialisasi]').is(':checked')) { 
+                $("input[name=radio_sosialisasi]:checked").each(function() {
+                    var id = $(this).val();
+
+                    var url = "{{ route('modul_gcg.sosialisasi.delete', ':sosialisasi') }}";
+
+                    url = url.replace(":sosialisasi", id);
+                    const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-danger'
+                    },
+                        buttonsStyling: false
+                    })
+
+                    swalWithBootstrapButtons.fire({
+                        title: "Data yang akan dihapus?",
+                        text: "Id Sosialiasasi : " + id,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        reverseButtons: true,
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batalkan'
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            $.ajax({
+                                url: url,
+                                type: 'DELETE',
+                                dataType: 'json',
+                                data: {
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function () {
+                                    Swal.fire({
+                                        icon  : 'success',
+                                        title : 'Hapus Detail Sosialisasi : ' + id,
+                                        text  : 'Berhasil',
+                                        timer : 2000
+                                    }).then(function() {
+                                        location.reload();
+                                    });
+                                },
+                                error: function () {
+                                    alert("Terjadi kesalahan, coba lagi nanti");
+                                }
+                            });
+                        }
+                    });
+                });
+            } else {
+                swalAlertInit('hapus');
+            }
+        });
 	});
 
     function getReader(nopeg, sosialisasi_id, url) {

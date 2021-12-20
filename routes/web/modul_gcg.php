@@ -47,6 +47,9 @@ Route::prefix('gcg')->name('modul_gcg.')->group(function () {
     Route::get('sosialisasi', [SosialisasiController::class, 'index'])->name('sosialisasi.index');
     Route::get('sosialisasi/create', [SosialisasiController::class, 'create'])->name('sosialisasi.create');
     Route::post('sosialisasi/store', [SosialisasiController::class, 'store'])->name('sosialisasi.store');
+    Route::get('sosialisasi/edit/{sosialisasi}', [SosialisasiController::class, 'edit'])->name('sosialisasi.edit');
+    Route::post('sosialisasi/update/{sosialisasi}', [SosialisasiController::class, 'update'])->name('sosialisasi.update');
+    Route::delete('sosialisasi/delete/{sosialisasi}', [SosialisasiController::class, 'delete'])->name('sosialisasi.delete');
     Route::post('sosialisasi/reader/store', [SosialisasiController::class, 'storeReader'])->name('sosialisasi.reader.store');
     Route::post('sosialisasi/reader/check', [SosialisasiController::class, 'checkReader'])->name('sosialisasi.reader.check');
 
