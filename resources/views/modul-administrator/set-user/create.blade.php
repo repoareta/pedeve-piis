@@ -48,12 +48,12 @@
 						<label for="kode-input" class="col-2 col-form-label">Jenis Dinas</label>
 						<div class="col-10">
 							<select class="form-control select2" name="kode" id="kode">
-								<option value="KONTROLER">KONTROLER</option>		
+								<option value="KONTROLER">KONTROLER</option>
                                 <option value="CUSTOMER MANAGEMENT">CUSTOMER MANAGEMENT</option>
                                 <option value="PERBENDAHARAAN">PERBENDAHARAAN</option>
                                 <option value="SDM">SDM</option>
                                 <option value="UMUM">UMUM</option>
-                                <option value="ADMIN">SYSTEM ADMINISTRATOR</option>	
+                                <option value="ADMIN">SYSTEM ADMINISTRATOR</option>
 							</select>
 						</div>
 					</div>
@@ -95,19 +95,19 @@
                     <div class="form-group row">
                         <label for="nopeg-input" class="col-2 col-form-label">Nopeg Pekerja</label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" name="nopeg" id="nopeg">	
-                                <option value="">- Pilih Data -</option>								
+                            <select class="form-control select2" style="width: 100% !important;" name="nopeg" id="nopeg">
+                                <option value="">- Pilih Data -</option>
                                 @foreach ($pegawai_list as $pegawai)
                                     <option value="{{ $pegawai->nopeg }}">{{ $pegawai->nopeg." - ".$pegawai->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="gcg-fungsi-input" class="col-2 col-form-label">GCG Fungsi</label>
                         <div class="col-10">
                             <select class="form-control select2" style="width: 100% !important;" name="gcg_fungsi_id" id="gcg_fungsi_id">
-                                <option value="">- Pilih Data -</option>									
+                                <option value="">- Pilih Data -</option>
                                 @foreach ($gcg_fungsi_list as $fungsi)
                                     <option value="{{ $fungsi->id }}">{{ $fungsi->nama }}</option>
                                 @endforeach
@@ -117,14 +117,14 @@
                     <div class="form-group row">
                         <label for="gcg-jabatan-input" class="col-2 col-form-label">GCG Jabatan</label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" name="gcg_jabatan_id" id="gcg_jabatan_id">	
-                                <option value="">- Pilih Data -</option>								
+                            <select class="form-control select2" style="width: 100% !important;" name="gcg_jabatan_id" id="gcg_jabatan_id">
+                                <option value="">- Pilih Data -</option>
                                 @foreach ($gcg_jabatan_list as $jabatan)
                                     <option value="{{ $jabatan->id }}">{{ $jabatan->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-10">
@@ -134,7 +134,7 @@
                     </div>
 				</form>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 
@@ -144,9 +144,9 @@
 {!! JsValidator::formRequest('App\Http\Requests\SetUserStore', '#formSetUser'); !!}
 <script>
     $(document).ready(function () {
-        
 
-        $("#formSetUser").on('submit', function(e){            
+
+        $("#formSetUser").on('submit', function(e){
                 e.preventDefault();
 
                 if($(this).valid()) {
@@ -176,6 +176,6 @@
             }
         });
     });
-    
+
 </script>
 @endpush

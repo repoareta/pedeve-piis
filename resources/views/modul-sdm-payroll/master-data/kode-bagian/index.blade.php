@@ -45,6 +45,7 @@
                             <th></th>
                             <th>Kode</th>
                             <th>Nama</th>
+                            <th>Pimpinan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,13 +69,14 @@
 			columns: [
 				{data: 'radio', name: 'radio', class:'radio-button text-center', width: '10'},
 				{data: 'kode', name: 'kode', class:'no-wrap'},
-				{data: 'nama', name: 'nama', class:'no-wrap'}
+				{data: 'nama', name: 'nama', class:'no-wrap'},
+				{data: 'pimpinan', name: 'pimpinan', class:'no-wrap'},
 			]
 		});
 
 		$('#editRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val().split("/").join("-");
 					var url = '{{ route("modul_sdm_payroll.kode_bagian.edit", ":kode") }}';
@@ -88,7 +90,7 @@
 
 		$('#deleteRow').click(function(e) {
 			e.preventDefault();
-			if($('input[type=radio]').is(':checked')) { 
+			if($('input[type=radio]').is(':checked')) {
 				$("input[type=radio]:checked").each(function() {
 					var id = $(this).val();
 					// delete stuff

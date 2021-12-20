@@ -47,12 +47,12 @@
 						<label for="kode-input" class="col-2 col-form-label">Jenis Dinas</label>
 						<div class="col-10">
 							<select class="form-control select2" style="width: 100% !important;" name="kode" id="kode">
-								<option value="KONTROLER" {{ $data->kode == 'KONTROLLER' ? 'selected' : '' }}>KONTROLER</option>		
+								<option value="KONTROLER" {{ $data->kode == 'KONTROLLER' ? 'selected' : '' }}>KONTROLER</option>
                                 <option value="CUSTOMER MANAGEMENT" {{ $data->kode == 'CUSTOMER MANAGEMENT' ? 'selected' : '' }}>CUSTOMER MANAGEMENT</option>
                                 <option value="PERBENDAHARAAN" {{ $data->kode == 'PERBENDAHARAAN' ? 'selected' : '' }}>PERBENDAHARAAN</option>
                                 <option value="SDM" {{ $data->kode == 'SDM' ? 'selected' : '' }}>SDM</option>
                                 <option value="UMUM" {{ $data->kode == 'UMUM' ? 'selected' : '' }}>UMUM</option>
-                                <option value="ADMIN" {{ $data->kode == 'ADMIN' ? 'selected' : '' }}>SYSTEM ADMINISTRATOR</option>	
+                                <option value="ADMIN" {{ $data->kode == 'ADMIN' ? 'selected' : '' }}>SYSTEM ADMINISTRATOR</option>
 							</select>
 						</div>
 					</div>
@@ -72,30 +72,30 @@
                     <div class="form-group row">
                         <?php
                             if(substr_count($data->userap,"A") > 0){
-                                $userp1 = "A"; 
-                            } else { 
+                                $userp1 = "A";
+                            } else {
                                 $userp1="";
-                            } 
+                            }
                             if(substr_count($data->userap,"G") > 0){
-                                $userp2 = "G"; 
-                            } else { 
+                                $userp2 = "G";
+                            } else {
                                 $userp2="";
-                            } 
-                            if(substr_count($data->userap,"D") > 0){ 
-                                $userp3 = "D"; 
-                            } else { 
+                            }
+                            if(substr_count($data->userap,"D") > 0){
+                                $userp3 = "D";
+                            } else {
                                 $userp3="";
-                            } 
-                            if(substr_count($data->userap,"E") > 0){ 
-                                $userp4 = "E"; 
-                            } else { 
+                            }
+                            if(substr_count($data->userap,"E") > 0){
+                                $userp4 = "E";
+                            } else {
                                 $userp4="";
-                            } 
-                            if(substr_count($data->userap,"F") > 0){ 
-                                $userp5 = "F"; 
-                            } else { 
+                            }
+                            if(substr_count($data->userap,"F") > 0){
+                                $userp5 = "F";
+                            } else {
                                 $userp5="";
-                            } 
+                            }
 						?>
                         <label for="user-app-input" class="col-2 col-form-label">User Application</label>
                         <div class="col-10 col-form-label">
@@ -122,18 +122,18 @@
                         <label for="nopeg-input" class="col-2 col-form-label">Nopeg Pekerja</label>
                         <div class="col-10">
                             <select class="form-control select2" style="width: 100% !important;" name="nopeg" id="nopeg">
-                                <option value="">- Pilih Data -</option>									
+                                <option value="">- Pilih Data -</option>
                                 @foreach ($pegawai_list as $pegawai)
                                     <option value="{{ $pegawai->nopeg }}" {{ $data->nopeg == $pegawai->nopeg ? 'selected' : '' }}>{{ $pegawai->nopeg." - ".$pegawai->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="gcg-fungsi-input" class="col-2 col-form-label">GCG Fungsi</label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" name="gcg_fungsi_id" id="gcg_fungsi_id">	
-                                <option value="">- Pilih Data -</option>								
+                            <select class="form-control select2" style="width: 100% !important;" name="gcg_fungsi_id" id="gcg_fungsi_id">
+                                <option value="">- Pilih Data -</option>
                                 @foreach ($gcg_fungsi_list as $fungsi)
                                     <option value="{{ $fungsi->id }}" {{ $data->gcg_fungsi_id == $fungsi->id ? 'selected' : '' }}>{{ $fungsi->nama }}</option>
                                 @endforeach
@@ -143,13 +143,13 @@
                     <div class="form-group row">
                         <label for="gcg-jabatan-input" class="col-2 col-form-label">GCG Jabatan</label>
                         <div class="col-10">
-                            <select class="form-control select2" style="width: 100% !important;" name="gcg_jabatan_id" id="gcg_jabatan_id">									
+                            <select class="form-control select2" style="width: 100% !important;" name="gcg_jabatan_id" id="gcg_jabatan_id">
                                 @foreach ($gcg_jabatan_list as $jabatan)
                                     <option value="{{ $jabatan->id }}" {{ $data->gcg_jabatan_id == $jabatan->id ? 'selected' : '' }}>{{ $jabatan->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="user-app-input" class="col-2 col-form-label">Last Updated By</label>
                         <div class="col-10">
@@ -167,7 +167,7 @@
                     </div>
 				</form>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 
@@ -177,9 +177,9 @@
 {!! JsValidator::formRequest('App\Http\Requests\SetUserUpdate', '#formSetUser'); !!}
 <script>
     $(document).ready(function () {
-        
 
-        $("#formSetUser").on('submit', function(e){            
+
+        $("#formSetUser").on('submit', function(e){
                 e.preventDefault();
 
                 if($(this).valid()) {
@@ -209,6 +209,6 @@
             }
         });
     });
-    
+
 </script>
 @endpush

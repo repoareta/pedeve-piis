@@ -36,6 +36,18 @@
 						</div>
 					</div>
 
+                    <div class="form-group row">
+                        <label for="nopeg-input" class="col-2 col-form-label">Pimpinan</label>
+                        <div class="col-10">
+                            <select class="form-control select2" style="width: 100% !important;" name="nopeg" id="nopeg">
+                                <option value="">- Pilih Data -</option>
+                                @foreach ($pegawai_list as $pegawai)
+                                    <option value="{{ $pegawai->nopeg }}" {{ $pegawai->nopeg == $kode_bagian->nopeg ? 'selected' : null }}>{{ $pegawai->nopeg . " - " . $pegawai->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
 					<div class="kt-form__actions">
 						<div class="row">
 							<div class="col-2"></div>
