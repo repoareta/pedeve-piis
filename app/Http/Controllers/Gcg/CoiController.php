@@ -39,6 +39,8 @@ class CoiController extends Controller
         ->where('kdjab', $jabatan_latest->kdjab)
         ->first();
 
+        // dd(auth()->user()->load('pekerja.jabatan'));
+
         return view('modul-gcg.coi.lampiran-dua', compact('jabatan'));
     }
 

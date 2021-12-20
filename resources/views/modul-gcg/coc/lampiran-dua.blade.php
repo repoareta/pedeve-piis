@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<form class="form" id="formPrint" 
+			<form class="form" id="formPrint"
 			@if(Request::get('orang')) action="{{ route('modul_gcg.coc.lampiran_dua.print') }}" @endif
 			@if(Request::get('orang')) method="POST" @else method="GET" @endif>
 			@csrf
@@ -45,10 +45,10 @@
 						<br>
 						<br>
 
-						Tanggal (Efektif) 
-						<b>{{ date('Y-m-d H:i:s') }}</b> 
+						Tanggal (Efektif)
+						<b>{{ date('Y-m-d H:i:s') }}</b>
 						yang telah saya terima dan pahami sepenuhnya saya menyatakan bahwa pada tahun
-						<b>{{ date('Y') }}</b> 
+						<b>{{ date('Y') }}</b>
 
 						<br>
 						<br>
@@ -57,11 +57,11 @@
 
 						<br>
 
-						2. setelah mengkoordinasikan pelaksanaan sosialisasi dan internalisasi dengan Sekretaris Perseroan untuk 
+						2. setelah mengkoordinasikan pelaksanaan sosialisasi dan internalisasi dengan Sekretaris Perseroan untuk
 						@if (Request::get('orang'))
 							{{ Request::get('orang') }}
 						@else
-						<input class="form-control col-1" style="display:inline" type="text" name="orang" placeholder="jumlah"> 
+						<input class="form-control col-1" style="display:inline" type="text" name="orang" placeholder="jumlah">
 						@endif
 						(orang) insan PERTAMINA PEDEVE INDONESIA dengan daftar terlampir;
 
@@ -71,8 +71,8 @@
 
 						<br>
 
-						4. telah melaporkan semua pelanggaran secara lengkap kepada Sekretaris Perseroan 
-						<b>Jakarta, {{ date('Y-m-d H:i:s') }}</b> 
+						4. telah melaporkan semua pelanggaran secara lengkap kepada Sekretaris Perseroan
+						<b>Jakarta, {{ date('Y-m-d H:i:s') }}</b>
 
 						<br>
 
@@ -86,7 +86,7 @@
 						<br>
 
 						Jabatan: {{ ucwords(strtolower(Auth::user()->fungsi->nama)) }} - {{ ucwords(strtolower(Auth::user()->fungsi_jabatan->nama)) }}
-						
+
 						<br>
 						<br>
 						<br>

@@ -13,6 +13,7 @@ class SdmKDBag extends Model
     protected $table = "sdm_tbl_kdbag";
     protected $fillable= [
         'kode',
-        'nama'
+        'nama',
+        'nopeg',
     ];
 }
