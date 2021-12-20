@@ -34,7 +34,7 @@ class Jabatan extends Model
 
     public function kode_jabatan()
     {
-        return $this->belongsTo('App\Models\KodeJabatan', 'kdjab', 'kdbag');
+        return $this->belongsTo('App\Models\KodeJabatan', 'kdbag', 'kdbag');
     }
 
     // public function kode_jabatan_new()
