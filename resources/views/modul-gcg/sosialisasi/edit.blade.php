@@ -13,19 +13,19 @@
                 <i class="flaticon2-line-chart text-primary"></i>
             </span>
             <h3 class="card-label">
-                Tambah Sosialisasi
+                Ubah Sosialisasi
             </h3>
         </div>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <form class="form" id="formStoreSosialisasi" action="{{ route('modul_gcg.sosialisasi.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="form" id="formUpdateSosialisasi" action="{{ route('modul_gcg.sosialisasi.update', ['sosialisasi' => $sosialisasi->id]) }}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="form-group row">
 						<label for="kode" class="col-2 col-form-label">Keterangan</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="keterangan" id="keterangan" autocomplete="off">
+							<input class="form-control" type="text" name="keterangan" id="keterangan" autocomplete="off" value="{{ $sosialisasi->keterangan }}">
 						</div>
 					</div>
 
@@ -52,5 +52,5 @@
 @endsection
 
 @push('page-scripts')
-{!! JsValidator::formRequest('App\Http\Requests\GcgSosialisasiStore', '#formStoreSosialisasi') !!}
+{!! JsValidator::formRequest('App\Http\Requests\GcgSosialisasiUpdate', '#formUpdateSosialisasi') !!}
 @endpush
