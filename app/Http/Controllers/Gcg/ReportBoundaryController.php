@@ -87,10 +87,13 @@ class ReportBoundaryController extends Controller
         $bulan = date('m');
         $tahun = date('Y');
 
-        return Excel::download(new ReportBoundary(
+        $response = Excel::download(new ReportBoundary(
             $report_list,
             $bulan,
             $tahun
-        ), 'gcg_report_boundary'.date('Y-m-d H:i:s').".xlsx");
+        ), 'gcg_report_boundary'.date('Y-m-d H:i:s').".xlsx", \Maatwebsite\Excel\Excel::XLSX);
+        ob_end_clean();
+
+        return $response;
     }
 }
