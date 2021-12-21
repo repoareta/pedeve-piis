@@ -87,7 +87,7 @@
 
 						Jabatan: {{ Auth::user()->pekerja->jabatan[0]->kode_bagian->nama }} - {{ Auth::user()->pekerja->jabatan[0]->kode_jabatan->keterangan }}
 
-						Jabatan: {{ ucwords(strtolower(Auth::user()->pekerja->jabatan[0]->kode_bagian->nama)) }} - {{ ucwords(strtolower(Auth::user()->pekerja->jabatan[0]->kode_jabatan->keterangan)) }}
+						Jabatan: {{ Auth::user()->pekerja->jabatan[0]->kode_bagian->nama }} - {{ Auth::user()->pekerja->jabatan[0]->kode_jabatan->keterangan }}
 
 						<br>
 						<br>
