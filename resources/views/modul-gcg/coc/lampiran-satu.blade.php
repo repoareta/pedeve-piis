@@ -71,6 +71,8 @@
 						<br>
 						<br>
 						
+						{{ Auth::user()->pekerja->nama.' - '. Auth::user()->pekerja->jabatan[0]->kode_bagian->nama }}
+            
 						{{ ucwords(strtolower(Auth::user()->pekerja->nama)).' - '. ucwords(strtolower(Auth::user()->pekerja->jabatan[0]->kode_bagian->nama)) }}
 						
 						<br>
