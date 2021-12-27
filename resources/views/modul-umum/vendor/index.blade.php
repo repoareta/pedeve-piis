@@ -44,9 +44,10 @@
 					<th></th>
 					<th>NAMA VENDOR</th>
 					<th>NO. REKENING</th>
+					<th>ATAS NAMA</th>
 					<th>NAMA BANK</th>
 					<th>CABANG BANK</th>
-					<th>ALAMAT</th>
+					<th>ALAMAT VENDOR</th>
 					<th>NO. TELEPON</th>
 				</tr>
 			</thead>
@@ -71,30 +72,31 @@
                     {data: 'radio', name: 'radio', class: 'text-center', width: '10'},
                     {data: 'nama', name: 'nama'},
                     {data: 'no_rekening', name: 'no_rekening'},
+                    {data: 'atas_nama', name: 'atas_nama'},
                     {data: 'nama_bank', name: 'nama_bank'},
                     {data: 'cabang_bank', name: 'cabang_bank'},
                     {data: 'alamat', name: 'alamat'},
                     {data: 'telepon', name: 'telepon'},
                 ]
         });
-    
+
         $('#data-vendor tbody').on( 'click', 'tr', function (event) {
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
             } else {
                 t.$('tr.selected').removeClass('selected');
-                
+
                 if (event.target.type !== 'radio') {
                     $(':radio', this).trigger('click');
                 }
                 $(this).addClass('selected');
             }
         });
-    
+
         //edit vendor
         $('#editRow').click(function(e) {
             e.preventDefault();
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function(){
                     var id = $(this).attr('data-id');
                     var url = '{{ route("modul_umum.vendor.edit", ":vendor_id") }}';
@@ -104,11 +106,11 @@
                 swalAlertInit('ubah');
             }
         });
-    
+
         //delete vendor
         $('#deleteRow').click(function(e) {
             e.preventDefault();
-            if($('input[class=btn-radio]').is(':checked')) { 
+            if($('input[class=btn-radio]').is(':checked')) {
                 $("input[class=btn-radio]:checked").each(function() {
                     var id = $(this).attr('data-id');
                     var nama = $(this).attr('data-nama');
@@ -160,6 +162,6 @@
                 swalAlertInit('hapus');
             }
         });
-    });		
+    });
 </script>
 @endpush

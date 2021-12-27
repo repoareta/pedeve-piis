@@ -55,6 +55,7 @@ class VendorController extends Controller
         $vendor->nama = $request->nama;
         $vendor->alamat = $request->alamat;
         $vendor->telepon = $request->telepon;
+        $vendor->atas_nama = $request->atas_nama;
         $vendor->no_rekening = $request->no_rekening;
         $vendor->nama_bank = $request->nama_bank;
         $vendor->cabang_bank = $request->cabang_bank;
@@ -89,6 +90,7 @@ class VendorController extends Controller
         $vendor->alamat = $request->alamat;
         $vendor->telepon = $request->telepon;
         $vendor->no_rekening = $request->no_rekening;
+        $vendor->atas_nama = $request->atas_nama;
         $vendor->nama_bank = $request->nama_bank;
         $vendor->cabang_bank = $request->cabang_bank;
 
