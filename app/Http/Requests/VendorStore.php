@@ -27,7 +27,7 @@ class VendorStore extends FormRequest
             'nama'        => 'required',
             'alamat'      => 'required',
             'telepon'     => 'required|numeric',
-            'no_rekening' => 'required|numeric',
+            'no_rekening' => 'nullable|numeric',
             'atas_nama'   => 'required',
             'nama_bank'   => 'required',
             'cabang_bank' => 'required',

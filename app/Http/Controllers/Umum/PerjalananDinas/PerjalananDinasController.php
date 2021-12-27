@@ -277,7 +277,6 @@ class PerjalananDinasController extends Controller
         $panjar_header->atasan = $request->atasan_ybs;
         $panjar_header->menyetujui = $request->menyetujui;
         $panjar_header->personalia = $request->sekr_perseroan;
-        $panjar_header->menyetujui_keu = $request->keuangan;
 
         $panjar_header->save();
 

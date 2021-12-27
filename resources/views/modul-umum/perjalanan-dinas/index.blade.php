@@ -131,13 +131,6 @@
 						</div>
 					</div>
 
-					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Finance</label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="keuangan" id="keuangan">
-						</div>
-					</div>
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
@@ -193,7 +186,7 @@
 							icon: 'warning',
 							timer: 2000,
 							title: 'Oops...',
-							text: 'Data tidak bisa diubah'
+							text: 'Data Sudah ada Pertanggungjawaban Panjar'
 						});
 					} else {
 						var id = $(this).val().split("/").join("-");
