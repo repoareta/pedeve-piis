@@ -79,7 +79,7 @@
 
 					<label for="" class="col-form-label">Tahun</label>
 					<div class="col-2">
-						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}" autocomplete="off">
+						<input class="form-control tahun" type="text" name="tahun" value="{{ $tahun }}">
 					</div>
 					<div class="col-2">
 						<button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Cari</button>
@@ -114,7 +114,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Cetak Data</h5>
+				<h5 class="modal-title">Cetak Permintaan Bayar</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -130,33 +130,31 @@
 					</div>
 
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Atasan Ybs</label>
+						<label for="" class="col-2 col-form-label">Tanggal Cetak</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="atasan_ybs" id="atasan_ybs" autocomplete="off">
+							<input class="form-control datepicker" type="text" readonly name="tglsurat" id="tglsurat" style="width: 100%;">
 						</div>
 					</div>
 
                     <div class="form-group row">
-						<label for="" class="col-2 col-form-label">Menyetujui</label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="menyetujui" id="menyetujui" autocomplete="off">
-						</div>
-					</div>
+                        <label for="" class="col-2 col-form-label">Menyetujui</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="menyetujui" id="menyetujui">
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="menyetujuijb" id="menyetujuijb">
+                        </div>
+                    </div>
 
 					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">CS & BS</label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="sekr_perseroan" id="sekr_perseroan" autocomplete="off">
-						</div>
+						<label for="" class="col-2 col-form-label">Pemohon</label>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="pemohon" id="pemohon">
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" type="text" name="pemohonjb" id="pemohonjb">
+                        </div>
 					</div>
-
-					<div class="form-group row">
-						<label for="" class="col-2 col-form-label">Finance</label>
-						<div class="col-10">
-							<input class="form-control" type="text" name="keuangan" id="keuangan" autocomplete="off">
-						</div>
-					</div>
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-reply" aria-hidden="true"></i> Batal</button>
