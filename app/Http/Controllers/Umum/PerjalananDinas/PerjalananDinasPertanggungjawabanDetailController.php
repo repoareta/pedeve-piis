@@ -49,12 +49,17 @@ class PerjalananDinasPertanggungjawabanDetailController extends Controller
     {
         $no_ppanjar_header = str_replace('-', '/', $no_ppanjar);
 
-        $pegawai_list_on_ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
-        ->pluck('nopek')
-        ->toArray();
+        // $pegawai_list_on_ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
+        // ->pluck('nopek')
+        // ->toArray();
 
+        // $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        // ->whereNotIn('nopeg', $pegawai_list_on_ppanjar_detail)
+        // ->orderBy('nama', 'ASC')
+        // ->get();
+
+        // Perubahan saat meeting  27 Desember 2021
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')
-        ->whereNotIn('nopeg', $pegawai_list_on_ppanjar_detail)
         ->orderBy('nama', 'ASC')
         ->get();
 
@@ -114,16 +119,21 @@ class PerjalananDinasPertanggungjawabanDetailController extends Controller
     {
         $no_ppanjar_header = str_replace('-', '/', (string) $no_ppanjar);
 
-        $pegawai_list_on_ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
-        ->where('nopek' , '<>', $nopek)
-        ->pluck('nopek')
-        ->toArray();
+        // $pegawai_list_on_ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
+        // ->where('nopek' , '<>', $nopek)
+        // ->pluck('nopek')
+        // ->toArray();
 
+        // $pegawai_list = MasterPegawai::where('status', '<>', 'P')
+        // ->whereNotIn('nopeg', $pegawai_list_on_ppanjar_detail)
+        // ->orderBy('nama', 'ASC')
+        // ->get();
+
+        // Perubahan saat meeting  27 Desember 2021
         $pegawai_list = MasterPegawai::where('status', '<>', 'P')
-        ->whereNotIn('nopeg', $pegawai_list_on_ppanjar_detail)
         ->orderBy('nama', 'ASC')
         ->get();
-
+        
         $ppanjar_detail = PPanjarDetail::where('no_ppanjar', $no_ppanjar_header)
         ->where('no', $no_urut)
         ->where('nopek', $nopek)
