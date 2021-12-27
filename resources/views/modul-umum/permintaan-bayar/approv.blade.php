@@ -12,7 +12,7 @@
                 <i class="flaticon2-plus-1 text-primary"></i>
             </span>
             <h3 class="card-label">
-                Approval Permintaan Bayar
+                {{ $data->app_sdm == 'Y' ? 'Pembatalan Approval' : 'Approval' }} Permintaan Bayar
             </h3>
         </div>
     </div>
