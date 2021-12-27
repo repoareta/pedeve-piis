@@ -215,7 +215,7 @@ class PermintaanBayarController extends Controller
             'app_sdm_tgl' => $request->tgl_app,
         ]);
 
-        Alert::success('No. Bayar : ' . $nobayar . ' Berhasil di Approval', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success($data_app->app_sdm == 'N' ? 'No. Bayar : ' . $nobayar . ' Berhasil dibatalkan' : 'No. Bayar : ' . $nobayar . ' Berhasil diapprove', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.permintaan_bayar.index');
     }
 
