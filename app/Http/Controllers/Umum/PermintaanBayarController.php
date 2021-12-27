@@ -210,7 +210,7 @@ class PermintaanBayarController extends Controller
         $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->first();
 
         $data_app->update([
-            'app_sdm' => 'Y',
+            'app_sdm' => $data_app->app_sdm == 'Y' ? 'N' : 'Y',
             'app_sdm_oleh' => $request->userid,
             'app_sdm_tgl' => $request->tgl_app,
         ]);
