@@ -298,7 +298,7 @@
                 <tr style="font-size: 10pt;">
                     <td align="right" width="400">JAKARTA</td>
                     <td width="10">, </td>
-                    <td>{{$request->tglsurat}}</td><br>
+                    <td>{{date('d m Y', strtotime($request->tglsurat))}}</td><br>
                 </tr>
             </table>
             <table width="100%" style="font-size: 10pt; padding-top:-10px;">
