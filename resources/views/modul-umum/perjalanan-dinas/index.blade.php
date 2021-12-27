@@ -113,28 +113,28 @@
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Atasan Ybs</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="atasan_ybs" id="atasan_ybs" autocomplete="off">
+							<input class="form-control" type="text" name="atasan_ybs" id="atasan_ybs">
 						</div>
 					</div>
 
                     <div class="form-group row">
 						<label for="" class="col-2 col-form-label">Menyetujui</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="menyetujui" id="menyetujui" autocomplete="off">
+							<input class="form-control" type="text" name="menyetujui" id="menyetujui">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">CS & BS</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="sekr_perseroan" id="sekr_perseroan" autocomplete="off">
+							<input class="form-control" type="text" name="sekr_perseroan" id="sekr_perseroan">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="" class="col-2 col-form-label">Finance</label>
 						<div class="col-10">
-							<input class="form-control" type="text" name="keuangan" id="keuangan" autocomplete="off">
+							<input class="form-control" type="text" name="keuangan" id="keuangan">
 						</div>
 					</div>
 

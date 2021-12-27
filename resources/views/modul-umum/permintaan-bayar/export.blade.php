@@ -197,13 +197,13 @@
                 <tr style="font-size: 10pt;">
                     <td width="100px">KEPADA</td>
                     <td width="20px">:</td>
-                    <td>{{strtoupper($request->kepada)}}</td><br>
+                    <td>MAN. FINANCE</td><br>
                 </tr>
 
                 <tr style="font-size: 10pt;">
                     <td width="100px">DARI</td>
                     <td width="20px">:</td>
-                    <td>{{strtoupper($request->dari)}}</td>
+                    <td>{{strtoupper($request->pemohonjb)}}</td>
                     <hr>
                 </tr>
             </table>
@@ -249,7 +249,7 @@
                     <td width="20px">:</td>
                     <td>
                         @foreach($data_rek as $data_r)
-                        {{ strtoupper($data_r->no_rekening) }} - {{ $data_r->nama_bank }}
+                        {{ strtoupper($data_r->atas_nama) }} VIA {{ strtoupper($data_r->no_rekening) }} - {{ $data_r->nama_bank }} Cab. {{ $data_r->cabang_bank }}
                         @endforeach
                     </td>
                 </tr>
