@@ -69,7 +69,7 @@
                         <div class="col-10">
                             {{-- <input name="rekyes" type="checkbox" id="rekyes" value="1"> --}}
                             <div class="form-check form-check-inline">
-                                <input style="width: 17px; height: 30px;" class="form-check-input" type="checkbox" id="rekyes" name="rekyes">
+                                <input style="width: 17px; height: 30px;" class="form-check-input" type="checkbox" id="rekyes" name="rekyes" value="1">
                             </div>
                         </div>
                     </div>
@@ -230,9 +230,9 @@
 				$( "#kurs" ).prop( "readonly", false );
 				$('#kurs').removeClass("disabled bg-secondary");
 			}
-				
+
 		});
-		
+
 		$('#form-create-permintaan-bayar').submit(function(e) {
             e.preventDefault();
 
@@ -256,14 +256,14 @@
                     }).then(function() {
                             location.href = "{{ route('modul_umum.permintaan_bayar.edit', ['no' => $data_no_bayar] ) }}";
                         });
-                    }, 
+                    },
                     error : function(){
                         alert("Terjadi kesalahan, coba lagi nanti");
                     }
                 });
             }
 		});
-	
+
         // range picker
         $('#date_range_picker').datepicker({
             todayHighlight: true,
@@ -291,7 +291,7 @@
         });
     });
 
-    function displayResult(ci){ 
+    function displayResult(ci){
         if(ci == 1) {
             $('#kurs').val(1);
             $('#simbol-kurs').hide();

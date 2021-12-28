@@ -216,7 +216,7 @@
                 </tr>
 
                 <tr>
-                  <td colspan="5" class="container" valign="top">
+                  <td colspan="6" class="container" valign="top">
                     PANJAR/LUMPSUM PERJALANAN DINAS
                     <br>
                     <br>
@@ -224,18 +224,6 @@
                     <br>
                     {{ currency_idr($panjar_header->jum_panjar) }}
                     {{ abs($panjar_header->jum_panjar) > 0 ? '('.strtoupper(Terbilang::make($panjar_header->jum_panjar)).' RUPIAH )' : '(NOL RUPIAH)' }} 
-                  </td>
-                  <td valign="top">
-                    MENYETUJUI:
-                    <br>
-                    FINANCE
-                  </td>
-                </tr>
-
-                <tr>
-                  <td colspan="5" class="border-less"></td>
-                  <td class="text-center border-less">
-                    {{ $panjar_header->menyetujui_keu }}
                   </td>
                 </tr>
               </tbody>

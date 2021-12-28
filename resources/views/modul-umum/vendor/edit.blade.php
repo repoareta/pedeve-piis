@@ -26,39 +26,45 @@
                             <div class="alert-text">Header Vendor</div>
                         </div>
                     </div>
-                
+
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Nama Vendor<span class="text-danger">*</span></label>
+                        <label class="col-2 col-form-label">Nama Vendor <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="nama" value="{{ $vendor->nama }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">No Rekening<span class="text-danger">*</span></label>
+                        <label class="col-2 col-form-label">No Rekening <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="no_rekening" value="{{ $vendor->no_rekening }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Nama Bank<span class="text-danger">*</span></label>
+                        <label class="col-2 col-form-label">Atas Nama <span class="text-danger">*</span></label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" name="atas_nama">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Nama Bank <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="nama_bank" value="{{ $vendor->nama_bank }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Cabang Bank<span class="text-danger">*</span></label>
+                        <label class="col-2 col-form-label">Cabang Bank <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="cabang_bank" value="{{ $vendor->cabang_bank }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Alamat Vendor<span class="text-danger">*</span></label>
+                        <label class="col-2 col-form-label">Alamat Vendor <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <textarea class="form-control" type="text" name="alamat">{{ $vendor->alamat }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">Telepon Vendor<span class="text-danger">*</span></label>
+                        <label class="col-2 col-form-label">Telepon Vendor <span class="text-danger">*</span></label>
                         <div class="col-10">
                             <input class="form-control" type="text" name="telepon" value="{{ $vendor->telepon }}">
                         </div>

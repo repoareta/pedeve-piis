@@ -210,12 +210,12 @@ class PermintaanBayarController extends Controller
         $data_app = PermintaanBayarHeader::where('no_bayar', $nobayar)->first();
 
         $data_app->update([
-            'app_sdm' => 'Y',
+            'app_sdm' => $data_app->app_sdm == 'Y' ? 'N' : 'Y',
             'app_sdm_oleh' => $request->userid,
             'app_sdm_tgl' => $request->tgl_app,
         ]);
 
-        Alert::success('No. Bayar : ' . $nobayar . ' Berhasil di Approval', 'Berhasil')->persistent(true)->autoClose(2000);
+        Alert::success($data_app->app_sdm == 'N' ? 'No. Bayar : ' . $nobayar . ' Berhasil dibatalkan' : 'No. Bayar : ' . $nobayar . ' Berhasil diapprove', 'Berhasil')->persistent(true)->autoClose(2000);
         return redirect()->route('modul_umum.permintaan_bayar.index');
     }
 
