@@ -6,16 +6,16 @@
     <div class="menu-submenu menu-submenu-classic menu-submenu-left">
         <ul class="menu-subnav">
             <li class="menu-item menu-item-submenu {{ Route::is('modul_umum.perjalanan_dinas.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
-                <a href="javascript:;" class="menu-link menu-toggle">	
+                <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
-                    </i>									
+                    </i>
                     <span class="menu-text">Perjalanan Dinas</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="menu-submenu menu-submenu-classic menu-submenu-right">
                     <ul class="menu-subnav">
-                        <li class="menu-item {{ 
+                        <li class="menu-item {{
                             Route::is('modul_umum.perjalanan_dinas.index') ||
                             Route::is('modul_umum.perjalanan_dinas.create') ||
                             Route::is('modul_umum.perjalanan_dinas.edit')
@@ -24,10 +24,10 @@
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Permintaan Panjar Dinas</span>
+                                <span class="menu-text">S. Keterangan Perjalanan Dinas</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ 
+                        {{-- <li class="menu-item {{
                             Route::is('modul_umum.perjalanan_dinas.pertanggungjawaban.index*') ||
                             Route::is('modul_umum.perjalanan_dinas.pertanggungjawaban.create') ||
                             Route::is('modul_umum.perjalanan_dinas.pertanggungjawaban.edit')
@@ -38,15 +38,15 @@
                                 </i>
                                 <span class="menu-text">Pertanggungjawaban Panjar</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>
             <li class="menu-item menu-item-submenu {{ Route::is('modul_umum.uang_muka_kerja.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
-                        <span></span>	
-                    </i>									
+                        <span></span>
+                    </i>
                     <span class="menu-text">Uang Muka Kerja</span>
                     <i class="menu-arrow"></i>
                 </a>
@@ -70,12 +70,12 @@
                         </li>
                     </ul>
                 </div>
-            </li>								
+            </li>
             <li class="menu-item menu-item-submenu {{ Route::is('modul_umum.anggaran.*') ? 'menu-item-active' : '' }}" data-menu-toggle="hover" aria-haspopup="true">
-                <a href="javascript:;" class="menu-link menu-toggle">	
+                <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
-                    </i>							
+                    </i>
                     <span class="menu-text">Anggaran Umum</span>
                     <i class="menu-arrow"></i>
                 </a>
@@ -125,10 +125,10 @@
                 </div>
             </li>
             <li class="menu-item menu-item-submenu" data-menu-toggle="hover" aria-haspopup="true">
-                <a href="javascript:;" class="menu-link menu-toggle">	
+                <a href="javascript:;" class="menu-link menu-toggle">
                     <i class="menu-bullet menu-bullet-line">
                         <span></span>
-                    </i>							
+                    </i>
                     <span class="menu-text">Report Umum</span>
                     <i class="menu-arrow"></i>
                 </a>
