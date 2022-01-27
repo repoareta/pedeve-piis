@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AgamaStore extends FormRequest
+class PotonganGajiOtomatis extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,24 @@ class AgamaStore extends FormRequest
     public function rules()
     {
         return [
-            'kode' => ['required', 'string', 'unique:sdm_tbl_agama,kode', 'max:2'],
-            'nama' => ['required', 'string', 'max:50'],
+            'nopek' => ['required'],
+            'aard' => ['required'],
+            'bulan' => ['required'],
+            'tahun' => ['required'],
+            'ccl' => ['required'],
+            'jmlcc' => ['required'],
+            'nilai' => ['required'],
         ];
     }
 
     public function attributes()
     {
         return [
-            'kode' => 'Kode Agama',
-            'nama' => 'Nama Agama',
+            'nopek' => 'Pegawai',
+            'aard' => 'Potongan',
+            'ccl' => 'Mulai cicilan',
+            'jmlcc' => 'Jumlah cicilan',
+            'nilai' => 'Cicilan/Bulan',
         ];
     }
 }

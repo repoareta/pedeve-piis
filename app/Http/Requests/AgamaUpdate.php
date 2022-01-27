@@ -31,7 +31,7 @@ class AgamaUpdate extends FormRequest
                 Rule::unique('sdm_tbl_agama')->ignore($this->agama, 'kode'),
                 'max:2'
             ],
-            'nama' => ['required', 'string'],
+            'nama' => ['required', 'string', 'max:50'],
         ];
     }
 

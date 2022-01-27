@@ -25,7 +25,7 @@ class KodeBagianStore extends FormRequest
     {
         return [
             'kode' => ['required', 'string', 'unique:sdm_tbl_kdbag,kode', 'max:6'],
-            'nama' => ['required', 'string'],
+            'nama' => ['required', 'string', 'max:50'],
         ];
     }
 

@@ -41,7 +41,7 @@
                                 <option value="U">Komisaris</option>
                                 <option value="O">Komite</option>
                                 <option value="N">Pekerja Baru</option>
-                            </select>								
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -58,12 +58,12 @@
                         <div class="col-8">
                             <div class="radio-inline">
                                 <label class="radio">
-                                    <input value="proses" type="radio" name="radioupah" checked> 
+                                    <input value="proses" type="radio" name="radioupah" checked>
                                     <span></span> PROSES
                                 </label>
 
                                 <label class="radio">
-                                    <input value="batal" type="radio" name="radioupah"> 
+                                    <input value="batal" type="radio" name="radioupah">
                                     <span></span> BATALKAN
                                 </label>
                             </div>
@@ -87,11 +87,13 @@
 @endsection
 
 @push('page-scripts')
+{!! JsValidator::formRequest('App\Http\Requests\ProsesGajiRequest') !!}
+
 <script type="text/javascript">
 	$(document).ready(function () {
         // minimum setup
         $('#tanggal').datepicker({
-            startView: "months", 
+            startView: "months",
             minViewMode: "months",
             orientation: "bottom left",
             autoclose: true,
