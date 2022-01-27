@@ -21,7 +21,7 @@ class KodeBagianUpdate extends FormRequest
                 Rule::unique('sdm_tbl_kdbag')->ignore($this->kode_bagian, 'kode'),
                 'max:6'
             ],
-            'nama' => ['required', 'string'],
+            'nama' => ['required', 'string', 'max:50'],
         ];
     }
 

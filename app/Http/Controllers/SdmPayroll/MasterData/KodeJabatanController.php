@@ -80,7 +80,7 @@ class KodeJabatanController extends Controller
         $kode_jabatan->save();
 
         Alert::success('Simpan Data Kode Jabatan', 'Berhasil')->persistent(true)->autoClose(2000);
-        return redirect()->route('kode_jabatan.index');
+        return redirect()->route('modul_sdm_payroll.kode_jabatan.index');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SdmPayroll\Potongan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PotonganGajiOtomatis;
 use App\Models\PayAard;
 use App\Models\PayPotongan;
 use App\Models\MasterPegawai;
@@ -18,7 +19,7 @@ class PotonganOtomatisController extends Controller
      */
     public function index()
     {
-        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");	
+        $data_pegawai = DB::select("SELECT nopeg,nama,status,nama from sdm_master_pegawai where status <>'P' order by nopeg");
         $data_potongan = DB::select("SELECT kode, nama, jenis, kenapajak, lappajak from pay_tbl_aard where kode in('18','28','19','44') order by kode");
 
         return view('modul-sdm-payroll.potongan-otomatis.index',compact('data_pegawai','data_potongan'));
@@ -32,14 +33,14 @@ class PotonganOtomatisController extends Controller
             $bulan_buku = $data_bul->bulan_buku;
         }
         $tahuns = substr($bulan_buku,0,-2);
-    
+
         $bulan = ltrim($request->bulan, '0');
         $tahun = $request->tahun;
         $nopek = $request->nopek;
         $aardpot = $request->aard;
 
         if($nopek ==  null and $aardpot == null and $bulan == null and $tahun == null){
-                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
+                $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl");
         }elseif($nopek == null and $aardpot == null and $bulan == null and $tahun <> null){
                 $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahun'  order by a.ccl");
         }elseif($nopek == null and $aardpot == null and $bulan <> null and $tahun <> null){
@@ -55,7 +56,7 @@ class PotonganOtomatisController extends Controller
         }elseif($nopek <> null and $aardpot <> null and $bulan == null and $tahun <> null){
                 $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.nopek='$nopek' and a.aardpot='$aardpot' and a.tahun='$tahun' order by a.ccl");
         } else {
-            $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl"); 	
+            $data = DB::select("SELECT a.tahun, a.bulan,a.nopek,a.aardpot,a.jmlcc, a.ccl, a.nilai,a.aardhut,a.awal,a.akhir,a.totalhut,a.userid, b.nama as nama_nopek, c.nama as nama_aardpot  from pay_potongan_revo  a join sdm_master_pegawai b on a.nopek=b.nopeg  join pay_tbl_aard c on a.aardpot=c.kode where a.tahun='$tahuns' order by a.ccl");
         }
         return datatables()->of($data)
         ->addColumn('bulan', function ($data) {
@@ -113,9 +114,9 @@ class PotonganOtomatisController extends Controller
         return view('modul-sdm-payroll.potongan-otomatis.create', compact('data_pegawai','pay_aard'));
     }
 
-    public function store(Request $request)
+    public function store(PotonganGajiOtomatis $request)
     {
-        $data_cek = DB::select("SELECT * from pay_potongan_revo   where nopek='$request->nopek' and aardpot='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" ); 			
+        $data_cek = DB::select("SELECT * from pay_potongan_revo   where nopek='$request->nopek' and aardpot='$request->aard' and bulan='$request->bulan' and tahun='$request->tahun'" );
         if(!empty($data_cek)){
             $data=0;
             return response()->json($data);
@@ -132,7 +133,7 @@ class PotonganOtomatisController extends Controller
         } else {
             DB::delete("delete from pay_potongan where (tahun||bulan >= '$tahunnext||$bulannext') and nopek='$nopek' and aard='$aard'");
             for($col=$ccl;$col<=$akhir;$col++){
-          
+
                 PayPotongan::insert([
                     'tahun' => $tahunnext,
                     'bulan' => $bulannext,
@@ -141,7 +142,7 @@ class PotonganOtomatisController extends Controller
                     'jmlcc' => $jmlcc,
                     'ccl' => $col,
                     'nilai' => str_replace(',', '.', $request->nilai),
-                    'userid' => $request->userid,            
+                    'userid' => $request->userid,
                     ]);
                 $bulannext = $bulannext + 1;
                 if($bulannext == 13){
